@@ -12,9 +12,9 @@ i.e. mempool, etc.
 
 ### ABCI Client
 
-This document provides an overview on how to implement Cosmos-SDK based Rollup
-chains. It goes into detail about how these chains can be built using Celestia
-as a Data Availability (DA) and Consensus Layer. At the same time we try to
+This document provides an overview how these chains can be built using Celestia
+as a Data Availability (DA) and Co on how to implement Cosmos-SDK based Rollup
+chains. It goes into detail aboutnsensus Layer. At the same time we try to
 keep the high level API general enough such that developers can choose
 alternative DA and Consensus Layers (e.g. Ethereum, the Cosmos Hub).
 
@@ -70,7 +70,11 @@ number). This behaviour is similar to the Tendermint mempool.
 
 #### Fraud Proofs
 
-> While RollKit allows you to build sovereign rollups on Celestia, it currently does not support fraud proofs yet and is therefore running in "pessimistic" mode, where nodes would need to re-execute the transactions to check the validity of the chain (i.e. a full node). Furthermore, RollKit currently only supports a single sequencer.
+> While RollKit allows you to build sovereign rollups on Celestia, it currently
+does not support fraud proofs yet and is therefore running in "pessimistic"
+mode, where nodes would need to re-execute the transactions to check the
+validity of the chain (i.e. a full node). Furthermore, RollKit currently only
+supports a single sequencer.
 
 <!-- markdownlint-disable MD013 -->
 | Field | Description |

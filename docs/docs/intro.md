@@ -33,8 +33,8 @@ Easily deploy a new rollup using a ready-made template.
 
 ### 2. Compatible with multiple VMs
 
-Rollmint sovereign rollups can plug in any Virtual Machine (VM) compatible with the ABCI
-interface.
+Rollmint sovereign rollups can plug in any Virtual Machine (VM) compatible
+with the ABCI interface.
 
 ### 3. Develop with modular software
 
