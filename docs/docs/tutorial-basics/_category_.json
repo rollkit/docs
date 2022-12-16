@@ -1,0 +1,8 @@
+{
+  "label": "Tutorials",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Anyone can easily deploy a blockchain with minimal overhead. This guide will walk you through the process of building a blockchain with the minimum amount of effort."
+  }
+}
