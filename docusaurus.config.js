@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'RollKit',
   tagline: 'A modular development kit for building rollups.',
-  url: 'https://rollkit.dev',
-  baseUrl: '/',
+  url: 'https://rollkit.github.io',
+  baseUrl: '/docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -114,7 +114,7 @@ const config = {
               },
               {
                 label: 'Telegram',
-                href: 'https://t.me/rollkit',
+                href: 'https://t.me/+O0xBkr39z2kyZjUx',
               },
               {
                 label: 'Celestia Labs',
