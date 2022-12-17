@@ -85,23 +85,23 @@ const config = {
             items: [
               {
                 label: 'Introduction',
-                to: '/docs/intro',
+                to: '/docs/docs/intro',
               },
               {
                 label: 'Core Concepts',
-                to: '/docs/core-concepts',
+                to: '/docs/docs/core-concepts',
               },
               {
                 label: 'RollKit Stack',
-                to: '/docs/rollkit-stack',
+                to: '/docs/docs/rollkit-stack',
               },
               {
                 label: 'Tutorials',
-                to: '/docs/intro',
+                to: '/docs/docs/intro',
               },
               {
                 label: 'Specs',
-                to: '/docs/specs',
+                to: '/docs/docs/specs',
               },
             ],
           },
