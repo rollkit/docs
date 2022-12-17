@@ -10,7 +10,7 @@ build rollups using an SDK.
 :::tip Tip
 
 If you're familiar with RollKit's core concepts, you may want to skip to the
-[tutorials section](./category/tutorials
+[tutorials section](./category/tutorials)
 
 :::
 
