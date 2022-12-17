@@ -11,7 +11,7 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: 'Deploy Easily',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('@site/static/img/check_mark.svg').default,
     description: (
       <>
         Developers can easily deploy a new blockchain without needing to
@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Be Sovereign',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/rainbow.svg').default,
     description: (
       <>
         RollKit enables developers to build rollups with sovereignty in mind.
@@ -34,7 +34,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Scale Effortlessly',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: require('@site/static/img/rocket.svg').default,
     description: (
       <>
         Developers don’t need to sacrifice on security to achieve scale.
