@@ -9,7 +9,7 @@ const config = {
   title: 'RollKit',
   tagline: 'A modular development kit for building rollups.',
   url: 'https://rollkit.dev',
-  baseUrl: '/',
+  baseUrl: '/docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -18,7 +18,6 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'rollkit', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
-  baseUrl: '/docs/'
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
