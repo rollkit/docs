@@ -114,7 +114,7 @@ const config = {
               },
               {
                 label: 'Telegram',
-                href: 'https://t.me/+O0xBkr39z2kyZjUx',
+                href: 'https://t.me/rollkit',
               },
               {
                 label: 'Celestia Labs',
