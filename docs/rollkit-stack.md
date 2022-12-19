@@ -46,14 +46,6 @@ nonce/sequence number). This behaviour is similar to the Tendermint mempool.
 
 [Issue 631](https://github.com/celestiaorg/rollmint/issues/631)
 
-### RollKit + Celestia
-
-What does this look like? What are the trust assumptions?
-
-### RollKit + EigenDA
-
-What does this look like? What are the trust assumptions?
-
 ## RollKit Node Types
 
 ### Light node
