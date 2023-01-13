@@ -10,7 +10,7 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Deploy Easily',
+    title: 'Easy to Deploy',
     Svg: require('@site/static/img/check_mark.svg').default,
     description: (
       <>
@@ -22,8 +22,8 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Be Sovereign',
-    Svg: require('@site/static/img/rainbow.svg').default,
+    title: 'Sovereign',
+    Svg: require('@site/static/img/landmark.svg').default,
     description: (
       <>
         RollKit enables developers to build rollups with sovereignty in mind.
@@ -33,7 +33,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Scale Effortlessly',
+    title: 'Scalable',
     Svg: require('@site/static/img/rocket.svg').default,
     description: (
       <>
@@ -44,11 +44,22 @@ const FeatureList: FeatureItem[] = [
       </>
     ),
   },
+  {
+    title: 'Secure',
+    Svg: require('@site/static/img/handshake.svg').default,
+    description: (
+      <>
+        RollKit offers a secure platform for developers to build and deploy
+        decentralized applications, utilizing a modular data availability
+        and consensus layer instead bootstrapping their own validator set.
+      </>
+    ),
+  },
 ];
 
 function Feature({title, Svg, description}: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--3')}>
       <div className="text--center">
         <Svg className={styles.featureSvg} role="img" />
       </div>
