@@ -3,7 +3,7 @@ sidebar_position: 5
 sidebar_label: Specs
 ---
 
-# Specifications of the RollKit Scheme and Necessary Components
+# Specifications of the Rollkit Scheme and Necessary Components
 
 ## Components
 
@@ -70,10 +70,10 @@ number). This behaviour is similar to the Tendermint mempool.
 
 #### Fraud Proofs
 
-> While RollKit allows you to build sovereign rollups on Celestia, it currently
+> While Rollkit allows you to build sovereign rollups on Celestia, it currently
 does not support fraud proofs yet and is therefore running in "pessimistic"
 mode, where nodes would need to re-execute the transactions to check the
-validity of the chain (i.e. a full node). Furthermore, RollKit currently only
+validity of the chain (i.e. a full node). Furthermore, Rollkit currently only
 supports a single sequencer.
 
 <!-- markdownlint-disable MD013 -->
@@ -147,14 +147,14 @@ light nodes don’t need to keep historical data.
 
 ### Commits to DA and Consensus Layer
 
-RollKit needs to submit the block to the DA and Consensus Layer. For that it
+Rollkit needs to submit the block to the DA and Consensus Layer. For that it
 needs to keep a light node of the DA and Consensus chain running. Additionally,
 it will need an account of that chain and sufficient balances for submitting a
 Transaction to the DA and Consensus chain.
 
 Note that this only triggers a real state transition on the DA and Consensus
-chain. On the RollKit chain successfully submitting the block to the DA and
-Conseneus Layer (which includes it in its block) means that the RollKit block
+chain. On the Rollkit chain successfully submitting the block to the DA and
+Conseneus Layer (which includes it in its block) means that the Rollkit block
 was finalized.
 
 To keep the greatest flexibility, we start with the following very limited
@@ -164,7 +164,7 @@ use other DA and Consensus Layers though):
 
 ```go
 // TODO define an enum of different non-happy-path cases
-// that might need to be handled by RollKit independent of
+// that might need to be handled by Rollkit independent of
 // the underlying DA and Consensus chain.
 type StatusCode uint64
 
@@ -172,7 +172,7 @@ type ResultSubmitBlock struct {
   // Code is to determine if the action succeeded.
   Code StatusCode
   // Not sure if this needs to be bubbled up to other
-  // parts of RollKit.
+  // parts of Rollkit.
   // Hash hash.Hash
 }
 
@@ -187,7 +187,7 @@ type DataAvailabilityLayerClient interface {
 }
 ```
 
-The `SubmitBlock` method will be called on an aggregator node before RollKit tells
+The `SubmitBlock` method will be called on an aggregator node before Rollkit tells
 the application (via ABCI) to commit the state via the Commit method
 `FinalizeBlock`. Only if `SubmitBlock` succeeds the application will update the
 state accordingly, otherwise the aggregator has to retry or another aggregator
@@ -196,14 +196,14 @@ rule, e.g. first-come-first-serve is a good start here, or, round-robin which
 would be more similar to using Tendermint). `Start` and `Stop` are only called
 together with spinning up or shutting down the node respectively.
 
-### Cosmos-SDK RollKit Module
+### Cosmos-SDK Rollkit Module
 
 #### Sparse Merkle Trees
 
 The state of the Rollmint chain will be stored in a Sparse Merkle Tree. They can
 be used to generate fraud proofs in very compact and easy to verify form.
 
-Celestia Labs and the RollKit team actively participated in developing a
+Celestia Labs and the Rollkit team actively participated in developing a
 `proSeparation` of storage and commitment (by the SMT) allows the optimization
 of different components according to their usage and access patterns.
 

@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'RollKit',
+  title: 'Rollkit',
   tagline: 'A modular development kit for building rollups.',
   url: 'https://rollkit.github.io',
   baseUrl: '/docs',
@@ -57,9 +57,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'RollKit',
+        title: 'Rollkit',
         logo: {
-          alt: 'RollKit logo',
+          alt: 'Rollkit logo',
           src: 'img/toolbox.svg',
         },
         items: [
@@ -92,7 +92,7 @@ const config = {
                 to: '/docs/docs/core-concepts',
               },
               {
-                label: 'RollKit Stack',
+                label: 'Rollkit Stack',
                 to: '/docs/docs/rollkit-stack',
               },
               {
@@ -136,7 +136,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} RollKit`,
+        copyright: `Copyright © ${new Date().getFullYear()} Rollkit`,
       },
       prism: {
         theme: lightCodeTheme,
@@ -148,7 +148,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       // adds `og:image` and `twitter:image` meta tags to every page
-      image: 'img/RollKit.png',
+      image: 'img/Rollkit.png',
     }),
 };
 

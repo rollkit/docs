@@ -2,11 +2,11 @@
 sidebar_position: 3
 ---
 
-# The RollKit Stack
+# The Rollkit Stack
 
-This section will cover the technical stack of RollKit.
+This section will cover the technical stack of Rollkit.
 
-RollKit is built by replacing Tendermint, the Cosmos-SDK Consensus Layer,
+Rollkit is built by replacing Tendermint, the Cosmos-SDK Consensus Layer,
 with a drop-in replacement that communicates directly with Celestia's Data
 Availability (DA) and Consensus Layer. Our version of Tendermint is designed
 to work seamlessly with other modular layers, allowing for greater flexibility
@@ -15,18 +15,18 @@ and adaptability.
 It spins up a sovereign rollup, which collects transactions into blocks and
 posts them onto Celestia for DA and Consensus.
 
-The goal of RollKit is to enable anyone to design and deploy a sovereign
+The goal of Rollkit is to enable anyone to design and deploy a sovereign
 rollup on Celestia in minutes with minimal overhead.
 
-Furthermore, while RollKit allows you to build sovereign rollups on Celestia,
+Furthermore, while Rollkit allows you to build sovereign rollups on Celestia,
 it currently does not support fraud proofs yet and is therefore running in
 "pessimistic" mode, where nodes would need to re-execute the transactions
-to check the validity of the chain (i.e. a full node). Furthermore, RollKit
+to check the validity of the chain (i.e. a full node). Furthermore, Rollkit
 currently only supports a single sequencer.
 
 :::tip Tip
 
-If you're familiar with RollKit's stack, you may want to skip to the [tutorials section](./category/tutorials)
+If you're familiar with Rollkit's stack, you may want to skip to the [tutorials section](./category/tutorials)
 
 :::
 
@@ -46,11 +46,11 @@ nonce/sequence number). This behaviour is similar to the Tendermint mempool.
 
 [Issue 631](https://github.com/celestiaorg/rollmint/issues/631)
 
-## RollKit Node Types
+## Rollkit Node Types
 
 ### Light node
 
-Light nodes are the main producer of transactions in the RollKit network.
+Light nodes are the main producer of transactions in the Rollkit network.
 They participate in gossiping of and fraud proofs. Light nodes may only
 request or store a subset of the state, just to ensure that they can execute
 rollback.
@@ -59,7 +59,7 @@ rollback.
 
 Full nodes are a crucial part of the networks, because they are responsible
 for producing blocks and fraud proofs. They also create a link between the
-RollKit network and the DA and Consensus Layer, by pushing aggregates to
+Rollkit network and the DA and Consensus Layer, by pushing aggregates to
 the DA and Consensus Layer.
 
 ### Sequencer

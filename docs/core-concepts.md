@@ -4,12 +4,12 @@ sidebar_position: 2
 
 # Core Concepts
 
-This section will cover the core concepts and basics of RollKit so you can
+This section will cover the core concepts and basics of Rollkit so you can
 build rollups using an SDK.
 
 :::tip Tip
 
-If you're familiar with RollKit's core concepts, you may want to skip to the
+If you're familiar with Rollkit's core concepts, you may want to skip to the
 [tutorials section](./category/tutorials)
 
 :::
@@ -75,7 +75,7 @@ load on the DA and consensus layer and increasing its overall scalability.
 This also saves the standard overhead associated with bootstrapping a new
 blockchain’s own DA and consensus layer.
 
-Using RollKit, anyone can **easily deploy a blockchain with minimal overhead**.
+Using Rollkit, anyone can **easily deploy a blockchain with minimal overhead**.
 
 Developers can:
 
@@ -129,7 +129,7 @@ set will be able to opt-in to become a validator for other zones.
 
 ## Fraud Proofs
 
-The RollKit chains will have no consensus rules. All valid transactions will
+The Rollkit chains will have no consensus rules. All valid transactions will
 be accepted by block creators. Fraud proofs will be the only way to detect
 and rollback malicious state transitions.
 
@@ -142,7 +142,7 @@ transaction.
 
 :::danger
 
-RollKit [does not yet support fraud proofs](./rollkit-stack#the-rollkit-stack).
+Rollkit [does not yet support fraud proofs](./rollkit-stack#the-rollkit-stack).
 
 :::
 
