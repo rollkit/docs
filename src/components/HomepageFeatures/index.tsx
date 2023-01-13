@@ -11,7 +11,7 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: 'Easy to Deploy',
-    Svg: require('@site/static/img/1F680.svg').default,
+    Svg: require('@site/static/img/1f680.svg').default,
     description: (
       <>
         Developers can easily deploy a new blockchain without needing to
