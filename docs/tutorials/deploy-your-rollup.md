@@ -12,9 +12,3 @@ posting blocks.
 And
 
 - How do you pay for DA with your own token?
-
-:::danger Take care
-
-Don't do this!
-
-:::

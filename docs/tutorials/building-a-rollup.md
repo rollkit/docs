@@ -26,4 +26,4 @@ sidebar_position: 1
 
 ## Full-Stack Modular Dapp
 
-soonᵀᴹ
+[Full Stack Modular Blockchain Development Guide by Celestia Labs](https://docs.celestia.org/developers/full-stack-modular-development-guide/)
