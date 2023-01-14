@@ -9,10 +9,10 @@ const config = {
   title: 'Rollkit',
   tagline: 'A modular development kit for building rollups.',
   url: 'https://rollkit.github.io',
-  baseUrl: '/',
+  baseUrl: '/docs',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: '../img/favicon.ico',
+  favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -60,7 +60,7 @@ const config = {
         title: 'Rollkit',
         logo: {
           alt: 'Rollkit logo',
-          src: '../img/toolbox.svg',
+          src: 'static/img/toolbox.svg',
         },
         items: [
           {
@@ -85,23 +85,23 @@ const config = {
             items: [
               {
                 label: 'Introduction',
-                to: '/docs/intro',
+                to: '/docs/docs/intro',
               },
               {
                 label: 'Core Concepts',
-                to: '/docs/core-concepts',
+                to: '/docs/docs/core-concepts',
               },
               {
                 label: 'Rollkit Stack',
-                to: '/docs/rollkit-stack',
+                to: '/docs/docs/rollkit-stack',
               },
               {
                 label: 'Tutorials',
-                to: '/docs/intro',
+                to: '/docs/docs/intro',
               },
               {
                 label: 'Specs',
-                to: '/docs/specs',
+                to: '/docs/docs/specs',
               },
             ],
           },
@@ -148,7 +148,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       // adds `og:image` and `twitter:image` meta tags to every page
-      image: '../img/Rollkit.png',
+      image: 'img/Rollkit.png',
     }),
 };
 
