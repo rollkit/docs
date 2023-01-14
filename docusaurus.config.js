@@ -60,7 +60,7 @@ const config = {
         title: 'Rollkit',
         logo: {
           alt: 'Rollkit logo',
-          src: 'static/img/toolbox.svg',
+          src: 'img/toolbox.svg',
         },
         items: [
           {
