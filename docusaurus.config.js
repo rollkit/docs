@@ -26,7 +26,7 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-  scripts: [{src: 'https://plausible.io/js/script.js', defer: true, 'data-domain': 'rollkit.dev'}],
+  scripts: [{src: 'https://plausible.celestia.org/js/plausible.js', defer: true, 'data-domain': 'rollkit.dev'}],
   presets: [
     [
       'classic',
