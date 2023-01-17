@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Introduction to Rollkit V0
+# Introduction to Rollkit
 
 Rollkit is a modular development kit for anyone to easily deploy their own
 blockchain with minimal overhead. It solves the problem of bootstrapping a
