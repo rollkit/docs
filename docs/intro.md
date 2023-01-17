@@ -43,11 +43,27 @@ of the rollup, unlocking a more flexible development process.
 
 ## Use Cases
 
-### Build a sovereign rollup on Celestia
+Rollkit can be used to deploy modular infrastructure pieces, or
+all the way up the stack to deploy app-chains.
 
-### Build an app chain on Celestia
+### Build a sovereign rollup
 
-## Developer Pain Points for Monolithic Blockchains
+Follow the [Ethermint tutorial](./tutorials/ethermint.md) to
+build an EVM sovereign rollup that leverages
+Celestia for data availability and consensus.
+
+### Build an app-chain
+
+Rollkit could also be used to build app-chains. From an NFT
+marketplace, to a DEX, to a DAO -- Rollkit covers it all.
+
+### Build a settlement layer
+
+Developers can now deploy a settlement layer that will be deployed
+on by applications looking to get direct access to liquidity, bridging
+to other applications, proofs settlement and other benefits.
+
+## Developer Pain Points
 
 1. If a developer wants to build a monolithic blockchain using a template,
 like the Cosmos SDK, they need to bootstrap a decentralized validator set
