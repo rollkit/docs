@@ -5,26 +5,27 @@
  */
 
 /* You can override the default Infima variables here. */
+/* These color palletes are generated from https://pinetools.com/monochromatic-colors-generator using the HEX #d3d3d3 set to 30 colors*/
 :root {
-  --ifm-color-primary: #000000;
-  --ifm-color-primary-dark: #19539f;
-  --ifm-color-primary-darker: #1d5db3;
-  --ifm-color-primary-darkest: #2068c7;
-  --ifm-color-primary-light: #2372db;
-  --ifm-color-primary-lighter: #377fde;
-  --ifm-color-primary-lightest: #4b8ce1;
+  --ifm-color-primary: #727272;
+  --ifm-color-primary-dark: #7b7b7b;
+  --ifm-color-primary-darker: #838383;
+  --ifm-color-primary-darkest: #8c8c8c;
+  --ifm-color-primary-light: #959595;
+  --ifm-color-primary-lighter: #9e9e9e;
+  --ifm-color-primary-lightest: #a7a7a7;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #ffffff;
-  --ifm-color-primary-dark: #5f98e5;
-  --ifm-color-primary-darker: #73a5e8;
-  --ifm-color-primary-darkest: #87b2eb;
-  --ifm-color-primary-light: #9bbfee;
-  --ifm-color-primary-lighter: #afccf2;
-  --ifm-color-primary-lightest: #c3d8f5;
+  --ifm-color-primary: #afafaf;
+  --ifm-color-primary-dark: #b8b8b8;
+  --ifm-color-primary-darker: #c1c1c1;
+  --ifm-color-primary-darkest: #cacaca;
+  --ifm-color-primary-light: #d3d3d3;
+  --ifm-color-primary-lighter: #dbdbdb;
+  --ifm-color-primary-lightest: #e4e4e4;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
