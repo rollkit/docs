@@ -33,12 +33,12 @@ Easily deploy a new rollup using a ready-made template.
 
 ### 2. Compatible with multiple VMs
 
-Rollmint sovereign rollups can plug in any Virtual Machine (VM) compatible
+Rollkit sovereign rollups can plug in any Virtual Machine (VM) compatible
 with the ABCI interface.
 
 ### 3. Develop with modular software
 
-Rollmint is built for developers to easily modify or replace components
+Rollkit is built for developers to easily modify or replace components
 of the rollup, unlocking a more flexible development process.
 
 ## Use Cases
