@@ -12,7 +12,7 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: './img/favicon.ico',
+  favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -60,7 +60,7 @@ const config = {
         title: 'Rollkit V0',
         logo: {
           alt: 'Rollkit logo',
-          src: './img/toolbox.svg',
+          src: 'img/toolbox.svg',
         },
         items: [
           {
@@ -105,7 +105,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       // adds `og:image` and `twitter:image` meta tags to every page
-      image: './img/RollKit.png',
+      image: 'img/RollKit.png',
     }),
 };
 
