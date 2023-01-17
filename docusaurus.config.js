@@ -95,7 +95,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       // adds `og:image` and `twitter:image` meta tags to every page
-      image: 'img/Rollkit.png',
+      image: 'img/RollKit.png',
     }),
 };
 
