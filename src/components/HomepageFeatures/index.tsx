@@ -14,10 +14,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/1f680.svg').default,
     description: (
       <>
-        Developers can easily deploy a new blockchain without needing to
-        bootstrap a secure and decentralized validator set. In addition,
-        Rollkit does not have the overhead associated with a heavy BFT
-        consensus mechanism.
+        Rollups deployed with a few lines of code
       </>
     ),
   },
@@ -26,9 +23,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/1f306.svg').default,
     description: (
       <>
-        Rollkit enables developers to build rollups with sovereignty in mind.
-        A sovereign rollup can fork just like an L1, giving its community a
-        mechanism for social coordination.
+        Rollups can fork like any L1
       </>
     ),
   },
@@ -37,10 +32,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/1f4c8.svg').default,
     description: (
       <>
-        Developers don’t need to sacrifice on security to achieve scale.
-        Rollkit enables developers to build blockchains using a data
-        availability layer that scales with adoption while staying
-        decentralized and secure.
+        Rollups post their blocks on a modular consensus layer
       </>
     ),
   },
@@ -49,9 +41,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/1f512.svg').default,
     description: (
       <>
-        Rollkit offers a secure platform for developers to build and deploy
-        decentralized applications, utilizing a modular data availability
-        and consensus layer instead bootstrapping their own validator set.
+        Rollups inherit security from the validators of the consensus and data availability layer
       </>
     ),
   },
