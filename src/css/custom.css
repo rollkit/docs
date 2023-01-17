@@ -6,7 +6,29 @@
 
 /* You can override the default Infima variables here. */
 /* These color palletes are generated from https://pinetools.com/monochromatic-colors-generator using the HEX #d3d3d3 set to 30 colors*/
+
+@font-face {
+  font-family: "UbuntuMonoBold";
+  src: url('/fonts/UbuntuMono/UbuntuMono-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "UbuntuMonoRegular";
+  src: url('/fonts/UbuntuMono/UbuntuMono-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "UbuntuMonoBold";
+  src: url('/fonts/UbuntuMono/UbuntuMono-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "RobotoBold";
+  src: url('/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+}
+
 :root {
+  --ifm-font-family-base: "Inter";
   --ifm-color-primary: #727272;
   --ifm-color-primary-dark: #7b7b7b;
   --ifm-color-primary-darker: #838383;
@@ -16,6 +38,14 @@
   --ifm-color-primary-lightest: #a7a7a7;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+p, li {
+  font-family: "UbuntuMonoRegular";
+}
+
+h, h1, h2, h3, h4, h5, h6 {
+  font-family: "RobotoBold";
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
