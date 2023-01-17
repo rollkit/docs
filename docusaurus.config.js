@@ -79,46 +79,6 @@ const config = {
       },
       footer: {
         style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Introduction',
-                to: '/docs/docs/intro',
-              },
-              {
-                label: 'Core Concepts',
-                to: '/docs/docs/core-concepts',
-              },
-              {
-                label: 'Rollkit Stack',
-                to: '/docs/docs/rollkit-stack',
-              },
-              {
-                label: 'Tutorials',
-                to: '/docs/docs/intro',
-              },
-              {
-                label: 'Specs',
-                to: '/docs/docs/specs',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/rollkit',
-              },
-            ],
-          },
-        ],
         copyright: `Copyright © ${new Date().getFullYear()} Rollkit`,
       },
       prism: {
