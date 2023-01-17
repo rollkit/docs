@@ -8,18 +8,8 @@
 /* These color palletes are generated from https://pinetools.com/monochromatic-colors-generator using the HEX #d3d3d3 set to 30 colors*/
 
 @font-face {
-  font-family: "UbuntuMonoBold";
-  src: url('/fonts/UbuntuMono/UbuntuMono-Bold.ttf') format('truetype');
-}
-
-@font-face {
   font-family: "UbuntuMonoRegular";
   src: url('/fonts/UbuntuMono/UbuntuMono-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: "UbuntuMonoBold";
-  src: url('/fonts/UbuntuMono/UbuntuMono-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -27,8 +17,18 @@
   src: url('/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: "RobotoRegular";
+  src: url('/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "InterRegular";
+  src: url('/fonts/Inter/Inter-Regular.ttf') format('truetype');
+}
+
 :root {
-  --ifm-font-family-base: "Inter";
+  --ifm-font-family-base: "RobotoRegular";
   --ifm-color-primary: #727272;
   --ifm-color-primary-dark: #7b7b7b;
   --ifm-color-primary-darker: #838383;
@@ -41,7 +41,7 @@
 }
 
 p, li {
-  font-family: "UbuntuMonoRegular";
+  font-family: "InterRegular";
 }
 
 h, h1, h2, h3, h4, h5, h6 {
