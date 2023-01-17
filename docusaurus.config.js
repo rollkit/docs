@@ -69,7 +69,11 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {
+            href: 'https://twitter.com/Rollkitdev',
+            label: 'Community',
+            position: 'right',
+          },
           {
             href: 'https://github.com/rollkit',
             label: 'GitHub',
