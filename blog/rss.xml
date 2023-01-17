@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Rollkit Blog</title>
-        <link>https://rollkit.github.io/blog</link>
+        <link>https://rollkit.dev/blog</link>
         <description>Rollkit Blog</description>
         <lastBuildDate>Fri, 13 Jan 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -10,7 +10,7 @@
         <language>en</language>
         <item>
             <title><![CDATA[Coming Soon]]></title>
-            <link>https://rollkit.github.io/blog/coming-soon</link>
+            <link>https://rollkit.dev/blog/coming-soon</link>
             <guid>coming-soon</guid>
             <pubDate>Fri, 13 Jan 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Introducing Rollkit]]></description>
