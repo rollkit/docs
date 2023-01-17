@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Rollkit',
   tagline: 'The first modular development kit for building sovereign rollups',
-  url: 'https://rollkit.github.io',
+  url: 'https://rollkit.dev',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
