@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 sidebar_label: GM World Tutorial
 description: Get started with Ignite CLI, Celestia and Rollkit
 ---
