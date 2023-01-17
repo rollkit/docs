@@ -74,10 +74,10 @@ const config = {
             label: 'Community',
             position: 'right',
             items: [
-              {
-                label: 'Twitter',
-                href: 'https://www.twitter.com/Rollkitdev',
-              },
+              // {
+              //   label: 'Twitter',
+              //   href: 'https://www.twitter.com/Rollkitdev',
+              // },
               {
                 label: 'Telegram',
                 href: 'https://t.me/rollkit'
