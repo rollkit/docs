@@ -106,23 +106,6 @@ const config = {
             ],
           },
           {
-            title: 'Community',
-            items: [
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/rollkit',
-              },
-              {
-                label: 'Telegram',
-                href: 'https://t.me/rollkit',
-              },
-              {
-                label: 'Celestia Labs',
-                href: 'https://celestia.org',
-              },
-            ],
-          },
-          {
             title: 'More',
             items: [
               {
