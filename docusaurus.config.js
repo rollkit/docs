@@ -70,9 +70,19 @@ const config = {
             label: 'Docs',
           },
           {
-            href: 'https://twitter.com/Rollkitdev',
+            type: 'dropdown',
             label: 'Community',
             position: 'right',
+            items: [
+              {
+                label: 'Twitter',
+                href: 'https://www.twitter.com/Rollkitdev',
+              },
+              {
+                label: 'Telegram',
+                href: 'https://t.me/rollkit'
+              },
+            ],
           },
           {
             href: 'https://github.com/rollkit',
