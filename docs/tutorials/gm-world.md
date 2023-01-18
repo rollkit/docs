@@ -8,8 +8,8 @@ description: Get started with Ignite CLI, Celestia and Rollkit
 
 ## ☀️ Introduction
 
-In this tutorial, we will build a sovereign `gm world` rollup using rollmint
-and Celestia’s data availability and consensus layer to submit rollmint blocks.
+In this tutorial, we will build a sovereign `gm world` rollup using Rollkit
+and Celestia’s data availability and consensus layer to submit Rollkit blocks.
 
 This tutorial will cover setting up a Celestia Light Node, Ignite CLI, and
 building a Cosmos-SDK application-specific rollup blockchain on top of
@@ -214,9 +214,9 @@ cd gm
 You can learn more about the `gm` directory’s file structure [here](https://docs.ignite.com/guide/hello#blockchain-directory-structure).
 Most of our work in this tutorial will happen in the `x` directory.
 
-### 💎 Installing Rollmint
+### 💎 Installing Rollkit
 
-To swap out Tendermint for Rollmint, run the following command:
+To swap out Tendermint for Rollkit, run the following command:
 
 ```bash
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.7-rollmint-v0.5.0-no-fraud-proofs

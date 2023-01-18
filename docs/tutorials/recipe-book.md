@@ -10,7 +10,7 @@ description: Build a recipe book blockchain with Ignite CLI, Celestia and Rollki
 
 In this tutorial, we are going to build a blockchain
 for your favorite recipes. The goal of this tutorial
-is to create a Rollmint rollup with a module that allows
+is to create a Rollkit rollup with a module that allows
 you to write and read data to and from your application-specific
 blockchain. The end user will be able to submit new
 recipes and read them from the blockchain.
@@ -53,9 +53,9 @@ Change into the `recipes` directory:
 cd recipes
 ```
 
-### 💎 Installing Rollmint
+### 💎 Installing Rollkit
 
-To swap out Tendermint for Rollmint, run the following commands:
+To swap out Tendermint for Rollkit, run the following commands:
 
 ```bash
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.7-rollmint-v0.5.0-no-fraud-proofs

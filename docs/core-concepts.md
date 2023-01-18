@@ -79,18 +79,18 @@ Developers can:
 
 - Deploy easily
   - Developers can easily deploy a new blockchain without needing to bootstrap
-  a secure and decentralized validator set. In addition, Rollmint does not have
+  a secure and decentralized validator set. In addition, Rollkit does not have
   the overhead associated with a heavy BFT consensus mechanism.
 - Be sovereign
-  - Rollmint enables developers to build rollups with sovereignty in mind. A
+  - Rollkit enables developers to build rollups with sovereignty in mind. A
   sovereign rollup can fork just like an L1, giving its community a mechanism
   for social coordination.
 - Scale effortlessly
-  - Developers don’t need to sacrifice on security to achieve scale. Rollmint
+  - Developers don’t need to sacrifice on security to achieve scale. Rollkit
   enables developers to build blockchains using a data availability layer that
   scales with adoption while staying decentralized and secure.
 - Use a credibly neutral public good
-  - Developers don’t need to sacrifice on security to achieve scale. Rollmint
+  - Developers don’t need to sacrifice on security to achieve scale. Rollkit
   enables developers to build blockchains using a data availability layer that
   scales with adoption while staying decentralized and secure.
 
@@ -131,10 +131,10 @@ The Rollkit chains will have no consensus rules. All valid transactions will
 be accepted by block creators. Fraud proofs will be the only way to detect
 and rollback malicious state transitions.
 
-The state of the Rollmint chain will be stored in a Sparse Merkle Tree.
+The state of the Rollkit chain will be stored in a Sparse Merkle Tree.
 They can be used to generate fraud proofs in very compact and easy to verify form.
 
-To be able to validate fraud proofs, blocks of the Rollmint chain have
+To be able to validate fraud proofs, blocks of the Rollkit chain have
 to contain intermediate state roots, reflecting the state of SMT after every
 transaction.
 

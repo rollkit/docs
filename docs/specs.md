@@ -18,7 +18,7 @@ chains. It goes into detail aboutnsensus Layer. At the same time we try to
 keep the high level API general enough such that developers can choose
 alternative DA and Consensus Layers (e.g. Ethereum, the Cosmos Hub).
 
-We briefly compare building a Cosmos-SDK Rollmint chain with the status quo
+We briefly compare building a Cosmos-SDK Rollkit chain with the status quo
 (building a sovereign Cosmos zone): The current way to use the Cosmos-SDK is to
 define the state-machine, also referred to as the Application. Application
 developers do not have to bother about the lower Layers, namely consensus and
@@ -34,19 +34,19 @@ architecture:
 
 [__diagram_1__]
 
-When implementing a Cosmos-SDK based Rollmint chain, this overview changes to:
+When implementing a Cosmos-SDK based Rollkit chain, this overview changes to:
 
 [__diagram_2__]
 
 Note that from the point of view of an application developer, nothing changes.
-Rollmint has the exact same developer experience as the usual Cosmos-SDK with
+Rollkit has the exact same developer experience as the usual Cosmos-SDK with
 Tendermint provides: they still just have to define their business /
-state-machine logic. The Rollmint-specific ABCI Client is stripped down to only
+state-machine logic. The Rollkit-specific ABCI Client is stripped down to only
 handle the network Layer but it also embeds a light node of the DA and
 Consensus Layer chain used and takes care of submitting the block to the DA
 and Consensus Layer. This can also be done with a Consensus Full Node.
 
-As with Tendermint the state-machine and Rollmint interact with each other via
+As with Tendermint the state-machine and Rollkit interact with each other via
 ABCI.
 
 ### Mempool
@@ -104,7 +104,7 @@ configurable e.g. block time, maximum block size.
 ### ABCI Interface
 
 ABCI is what will enable a relatively seamless replacement of Tendermint with
-Rollmint. Of course the devil is in the detail and there is more to it than
+Rollkit. Of course the devil is in the detail and there is more to it than
 simply replacing Tendermint with another piece of software that fulfils the
 client side of the ABCI contract, e.g. the SDK spins up a Tendermint node. These
 places seem managable and having a clear interface between state-machine and the
@@ -113,7 +113,7 @@ ABCI Client.
 
 As we want to change as little as possible inside the SDK we will surely have to
 stick to the vanilla ABCI interface. That said, some of the properties we also
-want for the Rollmint chains, e.g., that the intermediate state roots and the
+want for the Rollkit chains, e.g., that the intermediate state roots and the
 final state root (e.g. app-hash) of a block match the state transitions implied
 by the Transactions included in that very same block require changes in the ABCI
 itself. While ABCI++ is not part of this project’s scope, we are
@@ -200,7 +200,7 @@ together with spinning up or shutting down the node respectively.
 
 #### Sparse Merkle Trees
 
-The state of the Rollmint chain will be stored in a Sparse Merkle Tree. They can
+The state of the Rollkit chain will be stored in a Sparse Merkle Tree. They can
 be used to generate fraud proofs in very compact and easy to verify form.
 
 Celestia Labs and the Rollkit team actively participated in developing a
@@ -211,7 +211,7 @@ Proposal for replacing IAVL+ trees with SMTs for the entire state in Cosmos-SDK.
 
 #### Intermediate State Roots
 
-To be able to validate fraud proofs, blocks of the Rollmint chain have to
+To be able to validate fraud proofs, blocks of the Rollkit chain have to
 contain intermediate state roots, reflecting the state of SMT after every transaction.
 
 ## Customizing Modules

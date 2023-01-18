@@ -9,24 +9,25 @@ description: Get started with Ignite CLI, Celestia and Rollkit
 ![wordle-app](/img/tutorials/wordle/wordle.jpg)
 
 This tutorial guide will go over building a cosmos-sdk app
-for Rollmint, the Sovereign-Rollup implementation of
+for Rollkit, the Sovereign-Rollup implementation of
 Tendermint, for the popular game [Wordle](https://www.nytimes.com/games/wordle/index.html).
 
-This tutorial will go over how to setup Rollmint
+This tutorial will go over how to setup Rollkit
 in the Ignite CLI and use it to build the game.
 The tutorial will go over the simple design,
 as well as conclude with future implementations and ideas
 to extend this codebase.
 
-> NOTE: This tutorial will explore developing with Rollmint,
-  which is still in Alpha stage. If you run into bugs, please
-  write a Github Issue ticket or let us know in our Discord.
-  Furthermore, while Rollmint allows you to build sovereign
-  rollups on Celestia, it currently does not support fraud
-  proofs yet and is therefore running in "pessimistic" mode,
-  where nodes would need to re-execute the transactions to check
-  the validity of the chain (i.e. a full node). Furthermore,
-  Rollmint currently only supports a single sequencer.
+> NOTE: This tutorial will explore developing with Rollkit,
+  which is still in Alpha stage. If you run into bugs, please write a Github
+  [Issue ticket](https://github.com/rollkit/docs/issues/new)
+  or let us know in our [Telegram](https://t.me/rollkit).
+  Furthermore, while Rollkit allows you to build sovereign rollups
+  on Celestia, it currently does not support fraud proofs yet and is
+  therefore running in "pessimistic" mode, where nodes would need to
+  re-execute the transactions to check the validity of the chain
+  (i.e. a full node). Furthermore, Rollkit currently only supports
+  a single sequencer.
 
 :::danger caution
 The script for this tutorial is built for Celestia's
@@ -90,7 +91,7 @@ The following tutorial is broken down into the following
 sections:
 
 1. [Ignite and Chain Scaffolding](#ignite-and-scaffolding-the-wordle-chain)
-2. [Installing Rollmint](#setting-up-rollmint)
+2. [Installing Rollkit](#setting-up-rollkit)
 3. [Modules](#creating-the-wordle-module)
 4. [Messages](#messages)
 5. [Types](#wordle-types)
@@ -188,12 +189,12 @@ to read about it [here](https://docs.ignite.com/kb).
 
 Most of the tutorial work will happen inside the `x` directory.
 
-## Setting Up Rollmint
+## Setting Up Rollkit
 
 Before we continue with building our Wordle App, we need to set up
-Rollmint on our codebase.
+Rollkit on our codebase.
 
-### Installing Rollmint
+### Installing Rollkit
 
 Run the following command inside the `wordle` directory.
 
@@ -204,7 +205,7 @@ go mod tidy
 go mod download
 ```
 
-With that, we have Rollmint changes added to the project directory. Now,
+With that, we have Rollkit changes added to the project directory. Now,
 let's build the Wordle app!
 
 ## Creating the Wordle Module
@@ -633,10 +634,10 @@ wordled tx wordle submit-wordle giant --from wordle-key --keyring-backend test -
 ```
 
 > NOTE: We are submitting a transaction asynchronously due to avoiding
-  any timeout errors. With Rollmint as a replacement to Tendermint, we
+  any timeout errors. With Rollkit as a replacement to Tendermint, we
   need to wait for Celestia's Data-Availability network to ensure a block
   was included from Wordle, before proceeding to the next block. Currently,
-  in Rollmint, the single aggregator is not moving forward with the next block
+  in Rollkit, the single aggregator is not moving forward with the next block
   production as long as it is trying to submit the current block to the DA network.
   In the future, with leader selection, block production and sync logic improves
   dramatically.
@@ -767,7 +768,7 @@ This outputs all Guess objects submitted so far, with the index
 being today’s date and the address of the submitter.
 
 With that, we implemented a basic example of Wordle using
-Cosmos-SDK and Ignite and Rollmint. Read on to how you can
+Cosmos-SDK and Ignite and Rollkit. Read on to how you can
 extend the code base.
 
 ### Extending in the Future
