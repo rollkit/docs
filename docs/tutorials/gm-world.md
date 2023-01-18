@@ -21,7 +21,6 @@ building blockchain applications. The Cosmos Ecosystem uses
 to allow blockchains to communicate with one another.
 
 :::danger caution
-
 The script for this tutorial is built for Celestia's
 [Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet).
 If you choose to use Arabica Devnet,
@@ -48,10 +47,8 @@ written in the Golang programming language. You will need
 Golang to build and run them.
 
 :::tip
-
 Be sure to use the same testnet installation instructions through this
 entire tutorial
-
 :::
 
 You can [install Golang here](https://docs.celestia.org/nodes/environment#install-golang).
@@ -71,11 +68,9 @@ curl https://get.ignite.com/cli! | bash
 ```
 
 :::tip
-
 ✋ On some machines, you may run into permissions errors like the one below.
 You can resolve this error by following the guidance
 [here](https://docs.ignite.com/guide/install#write-permission) or below.
-
 :::
 
 ```bash
@@ -224,7 +219,8 @@ Most of our work in this tutorial will happen in the `x` directory.
 To swap out Tendermint for Rollmint, run the following command:
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.3-rollmint-v0.4.0
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.7-rollmint-v0.5.0-no-fraud-proofs
+go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221013213714-8be9b54c8c21
 go mod tidy
 go mod download
 ```
@@ -363,12 +359,21 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 
 ### 🟢 Start your Sovereign Rollup
 
-Before starting our rollup, we'll need to find and
-change `FlagDisableIAVLFastNode` to `FlagIAVLFastNode`:
+:::danger caution
+Before starting our rollup, we'll need to find and change
+`FlagIAVLFastNode` to `FlagDisableIAVLFastNode`:
 
 ```go title="gm/cmd/gmd/cmd/root.go"
-baseapp.SetIAVLDisableFastNode(cast.ToBool(appOpts.Get(server.FlagIAVLFastNode))),
+baseapp.SetIAVLDisableFastNode(cast.ToBool(appOpts.Get(server.FlagDisableIAVLFastNode))),
 ```
+
+Also, if you are on macOS, you will need to install md5sha1sum:
+
+```sh
+brew install md5sha1sum
+```
+
+:::
 
 We have a handy `init.sh` found in this repo
 [here](https://github.com/celestiaorg/devrel-tools).

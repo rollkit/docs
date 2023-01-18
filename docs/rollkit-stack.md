@@ -25,9 +25,7 @@ to check the validity of the chain (i.e. a full node). Furthermore, Rollkit
 currently only supports a single sequencer.
 
 :::tip Tip
-
 If you're familiar with Rollkit's stack, you may want to skip to the [tutorials section](./category/tutorials)
-
 :::
 
 ## Mempool

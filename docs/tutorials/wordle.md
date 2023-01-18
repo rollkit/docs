@@ -29,12 +29,10 @@ to extend this codebase.
   Rollmint currently only supports a single sequencer.
 
 :::danger caution
-
 The script for this tutorial is built for Celestia's
 [Mocha Testnet](https://docs.celestia.org/nodes/mocha).
 If you choose to use Arabica Devnet,
 you will need to modify the script manually.
-
 :::
 
 ## Pre-requisites
@@ -44,8 +42,8 @@ in Cosmos-SDK, we recommend you go over the following tutorials
 in Ignite to understand all the different components in Cosmos-SDK before
 proceeding with this tutorial.
 
-* [Hello, World](https://docs.ignite.com/guide/hello)
-* [Blog and Module Basics](https://docs.ignite.com/guide/blog)
+* [GM World](./gm-world.md) or [Hello, World](https://docs.ignite.com/guide/hello)
+* [Recipe Book](./recipe-book.md) or [Blog and Module Basics](https://docs.ignite.com/guide/blog)
 * [Nameservice Tutorial](https://docs.ignite.com/guide/nameservice)
 * [Scavenger Hunt](https://docs.ignite.com/guide/scavenge)
 
@@ -91,18 +89,18 @@ our development environment.
 The following tutorial is broken down into the following
 sections:
 
-1. [Ignite and Chain Scaffolding](./scaffold-wordle)
-2. [Installing Rollmint](./install-rollmint)
-3. [Modules](./wordle-module)
-4. [Messages](./wordle-messages)
-5. [Types](./wordle-types)
-6. [Keepers](./wordle-keeper)
-7. [Running Wordle](./run-wordle)
+1. [Ignite and Chain Scaffolding](#ignite-and-scaffolding-the-wordle-chain)
+2. [Installing Rollmint](#setting-up-rollmint)
+3. [Modules](#creating-the-wordle-module)
+4. [Messages](#messages)
+5. [Types](#wordle-types)
+6. [Keepers](#keeper-functions)
+7. [Running Wordle](#run-the-wordle-chain)
 
-# Ignite and Scaffolding the Wordle Chain
+## Ignite and Scaffolding the Wordle Chain
 <!-- markdownlint-disable MD013 -->
 
-## Ignite
+### Ignite
 
 Ignite is an amazing CLI tool to help us get started building
 our own blockchains for cosmos-sdk apps. It provides lots of
@@ -135,7 +133,7 @@ ignite --help
 You should see an output of help commands meaning Ignite
 was installed successfully!
 
-## Scaffolding the Wordle Chain
+### Scaffolding the Wordle Chain
 
 Now, comes the fun part, creating a new blockchain! With Ignite,
 the process is pretty easy and straightforward.
@@ -162,7 +160,7 @@ in your local directory from which you ran the command. Notice
 that we passed the `--no-module` flag, this is because we will be
 creating the module after.
 
-## Wordle Directory
+### Wordle Directory
 
 Now, it’s time to enter the directory:
 
@@ -190,12 +188,12 @@ to read about it [here](https://docs.ignite.com/kb).
 
 Most of the tutorial work will happen inside the `x` directory.
 
-# Setting Up Rollmint
+## Setting Up Rollmint
 
 Before we continue with building our Wordle App, we need to set up
 Rollmint on our codebase.
 
-## Installing Rollmint
+### Installing Rollmint
 
 Run the following command inside the `wordle` directory.
 
@@ -209,7 +207,7 @@ go mod download
 With that, we have Rollmint changes added to the project directory. Now,
 let's build the Wordle app!
 
-# Creating the Wordle Module
+## Creating the Wordle Module
 
 For the Wordle module, we can add dependencies offered by Cosmos-SDK.
 
@@ -224,7 +222,7 @@ is defined as the following:
 
 Many modules exist for slashing, validating, auth.
 
-## Scaffolding A Module
+### Scaffolding A Module
 
 We will be using the `bank` module dependency for transactions.
 
@@ -246,7 +244,7 @@ ignite scaffold module wordle --dep bank
 
 This will scaffold the Wordle module to our Wordle Chain project.
 
-# Messages
+## Messages
 
 Messages allow us to process and submit information to our specific module.
 
@@ -266,7 +264,7 @@ make 2 messages with ignite.
 
 With these initial designs, we can start creating our messages!
 
-## Scaffolding A Message
+### Scaffolding A Message
 
 To create the `SubmitWordle` message, we run the following command:
 
@@ -284,12 +282,12 @@ ignite scaffold message submit-guess word
 
 Here, we are passing a word as a guess with `submit-guess`.
 
-# Wordle Types
+## Wordle Types
 
 For the next steps, we will be creating types to be used by
 the messages we created.
 
-## Scaffolding Wordle Types
+### Scaffolding Wordle Types
 
 ```sh
 ignite scaffold map wordle word submitter --no-message
@@ -309,7 +307,7 @@ ignite scaffold map guess word submitter count --no-message
 Here, we are also storing `count` to count how many guesses
 this address submitted.
 
-# Keeper Functions
+## Keeper Functions
 <!-- markdownlint-disable MD013 -->
 
 Now it’s time to implement the Keeper functions for each
@@ -327,7 +325,7 @@ of the blockchain.
 
 Here, it will help us outline the logic for each message we create.
 
-## SubmitWordle Function
+### SubmitWordle Function
 
 We first start with the `SubmitWordle` function.
 
@@ -420,7 +418,7 @@ Here in the `SubmitWordle` Keeper function, we are doing a few things:
 * We also have a helper function in there to check if a string only
   contains alphabet characters.
 
-## SubmitGuess Function
+### SubmitGuess Function
 
 The next Keeper function we will add is the following:
 `x/wordle/keeper/msg_server_submit_guess.go`
@@ -538,7 +536,7 @@ In the above code, we are doing the following things:
   We then check if the guess is correct. We store the Guess type with
   the updated count to the state.
 
-## Protobuf File
+### Protobuf File
 
   A few files need to be modified for this to work.
 
@@ -568,10 +566,21 @@ type BankKeeper interface {
 With that, we implemented all our Keeper functions! Time to
 compile the blockchain and take it out for a test drive.
 
-# Run the Wordle Chain
+## Run the Wordle Chain
 <!-- markdownlint-disable MD013 -->
 
-## Building and Running Wordle Chain
+### Run a Celestia DA Light Node
+
+Follow instructions to install and start your Celestia Data
+Availalbility layer Light Node selecting the network that
+you had previously used. You can find instructions to install
+and run the node [here](https://docs.celestia.org/nodes/light-node).
+
+After you have Go and Ignite CLI installed, and your Celestia
+Light Node running on your machine, you're ready to build,
+test, and launch your own sovereign rollup.
+
+### Building and Running Wordle Chain
 
 We have a handy `init.sh` found in this repo
 [here](https://github.com/celestiaorg/devrel-tools).
@@ -593,6 +602,12 @@ You can view the contents of the script to see how we
 initialize the Wordle Rollup.
 
 :::danger caution
+Before starting our rollup, we'll need to find
+and change `FlagDisableIAVLFastNode` to `FlagIAVLFastNode`:
+
+```go title="wordle/cmd/wordled/cmd/root.go"
+baseapp.SetIAVLFastNode(cast.ToBool(appOpts.Get(server.FlagIAVLFastNode))),
+```
 
 If you are on macOS, you will need to install md5sha1sum before starting your
 rollup:
@@ -755,7 +770,7 @@ With that, we implemented a basic example of Wordle using
 Cosmos-SDK and Ignite and Rollmint. Read on to how you can
 extend the code base.
 
-## Extending in the Future
+### Extending in the Future
 
 You can extend the codebase and improve this tutorial by checking
 out the repository [here](https://github.com/celestiaorg/wordle).
@@ -773,4 +788,3 @@ There are many ways this codebase can be extended:
 5. You can create a bot that submits a wordle every day at a specific time.
 6. You can create a vue.js front-end with Ignite using example open-source
     repositories [here](https://github.com/yyx990803/vue-wordle) and [here](https://github.com/xudafeng/wordle).
-    

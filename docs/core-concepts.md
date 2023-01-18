@@ -8,10 +8,8 @@ This section will cover the core concepts and basics of Rollkit so you can
 build rollups using an SDK.
 
 :::tip Tip
-
 If you're familiar with Rollkit's core concepts, you may want to skip to the
 [tutorials section](./category/tutorials)
-
 :::
 
 ## Rollups
@@ -141,9 +139,7 @@ to contain intermediate state roots, reflecting the state of SMT after every
 transaction.
 
 :::danger
-
 Rollkit [does not yet support fraud proofs](./rollkit-stack#the-rollkit-stack).
-
 :::
 
 ## Leader Selection
