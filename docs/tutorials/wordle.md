@@ -6,7 +6,7 @@ description: Get started with Ignite CLI, Celestia and Rollkit
 
 # Wordle App
 
-![wordle-app](/img/wordle.jpg)
+![wordle-app](/img/tutorials/wordle/wordle.jpg)
 
 This tutorial guide will go over building a cosmos-sdk app
 for Rollmint, the Sovereign-Rollup implementation of
@@ -30,7 +30,8 @@ to extend this codebase.
 
 :::danger caution
 
-The script for this tutorial is built for Mocha Testnet.
+The script for this tutorial is built for Celestia's
+[Mocha Testnet](https://docs.celestia.org/nodes/mocha).
 If you choose to use Arabica Devnet,
 you will need to modify the script manually.
 

@@ -20,6 +20,14 @@ building blockchain applications. The Cosmos Ecosystem uses
 [Inter-Blockchain Communication (IBC)](https://github.com/cosmos/ibc-go)
 to allow blockchains to communicate with one another.
 
+:::danger caution
+
+The script for this tutorial is built for Celestia's
+[Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet).
+If you choose to use Arabica Devnet,
+you will need to modify the script manually.
+:::
+
 ## Setup
 
 - Operating systems: GNU/Linux, macOS, or Windows Subsystem for Linux (WSL)
@@ -33,8 +41,12 @@ to allow blockchains to communicate with one another.
 
 ### 🏃 Install Golang
 
-Celestia-App, Celestia-Node, and Cosmos-SDK are written in the Golang
-programming language. You will need Golang to build and run them.
+[Celestia-App](https://github.com/celestiaorg/celestia-app),
+[Celestia-Node](https://github.com/celestiaorg/celestia-node),
+and [Cosmos-SDK](https://github.com/cosmos/cosmos-sdk) are
+written in the Golang programming language. You will need
+Golang to build and run them.
+
 :::tip
 
 Be sure to use the same testnet installation instructions through this
