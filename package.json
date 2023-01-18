@@ -14,7 +14,7 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
     "lint": "markdownlint docs/",
-    "lint-mdx": "eslint docs/ --ext mdx"
+    "lint-mdx": "eslint --ext mdx"
   },
   "dependencies": {
     "@docusaurus/core": "2.2.0",
