@@ -17,16 +17,18 @@ an Ethereum-based sovereign rollup that uses Cosmos-SDK and Ethermint.
 
 You can learn more about Ethermint [here](https://docs.ethermint.zone/).
 
-> NOTE: This tutorial will explore developing with Rollkit,
-  which is still in Alpha stage. If you run into bugs, please write a Github
-  [Issue ticket](https://github.com/rollkit/docs/issues/new)
-  or let us know in our [Telegram](https://t.me/rollkit).
-  Furthermore, while Rollkit allows you to build sovereign rollups
-  on Celestia, it currently does not support fraud proofs yet and is
-  therefore running in "pessimistic" mode, where nodes would need to
-  re-execute the transactions to check the validity of the chain
-  (i.e. a full node). Furthermore, Rollkit currently only supports
-  a single sequencer.
+:::tip note
+This tutorial will explore developing with Rollkit,
+which is still in Alpha stage. If you run into bugs, please write a Github
+[Issue ticket](https://github.com/rollkit/docs/issues/new)
+or let us know in our [Telegram](https://t.me/rollkit).
+Furthermore, while Rollkit allows you to build sovereign rollups
+on Celestia, it currently does not support fraud proofs yet and is
+therefore running in "pessimistic" mode, where nodes would need to
+re-execute the transactions to check the validity of the chain
+(i.e. a full node). Furthermore, Rollkit currently only supports
+a single sequencer.
+:::
 
 :::danger caution
 
@@ -68,14 +70,15 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 The Golang version used for this tutorial is v1.18+
 
 If you are using a Linux distribution, you can install Golang
-by following our tutorial [here](../nodes/environment.mdx#install-golang).
+by following our tutorial [here](https://docs.celestia.org/nodes/environment#install-golang).
 
 ## Rollkit installation
 
 ### ethermintd Installation
 
 Here, we are going to pull down the `ethermint` from the
-Celestia repository. This version of Ethermint has Rollkit installed on it.
+[Celestia repository](https://github.com/celestiaorg/ethermint).
+We will install Rollkit to this version of Ethermint.
 Rollkit is a drop-in replacement for Tendermint that allows
 Cosmos-SDK applications to connect to Celestia's Data Availability network.
 
@@ -107,7 +110,7 @@ Celestia.
 
 Here, we must first setup a Celestia Light Node with testnet tokens.
 
-You can do this by following this tutorial [here](./node-tutorial.mdx).
+You can do this by following this tutorial [here](https://docs.celestia.org/developers/node-tutorial).
 
 ### Instantiating the Ethermint Rollup
 
@@ -143,7 +146,7 @@ First, we need to setup some environment variables.
 :::danger Networks
 
 The commands below are for Arabica. If you're using Mocha, you'll need to
-replace the RPC endpoint with [one for Mocha](../nodes/mocha-testnet.md#rpc-endpoints).
+replace the RPC endpoint with [one for Mocha](https://docs.celestia.org/nodes/mocha-testnet#rpc-endpoints).
 
 :::
 
@@ -155,7 +158,7 @@ DA_BLOCK_HEIGHT=$(curl https://rpc.limani.celestia-devops.dev/block | jq -r '.re
 <!-- markdownlint-enable MD013 -->
 
 If you are running this on Arabica devnet, you need to run your light node with
-an account that has Arabica devnet tokens. Visit the faucet [here](../nodes/arabica-devnet.md#arabica-devnet-faucet).
+an account that has Arabica devnet tokens. Visit the faucet [here](https://docs.celestia.org/nodes/arabica-devnet#arabica-devnet-faucet).
 
 With this setup complete, we can now start our Ethermint Rollup:
 
@@ -248,11 +251,11 @@ Foundry is a portable, fast and modular toolkit for Ethereum application develop
 
 Foundry is made up of three components:
 
-- [__Forge__](https://github.com/foundry-rs/foundry/tree/master/forge) - Ethereum
+* [__Forge__](https://github.com/foundry-rs/foundry/tree/master/forge) - Ethereum
  testing framework (like Truffle, Hardhat and DappTools).
-- [__Cast__](https://github.com/foundry-rs/foundry/tree/master/cast) - CLI for
+* [__Cast__](https://github.com/foundry-rs/foundry/tree/master/cast) - CLI for
 interacting with EVM smart contracts, sending transactions, and getting chain data.
-- [__Anvil__](https://github.com/foundry-rs/foundry/tree/master/anvil) - Local
+* [__Anvil__](https://github.com/foundry-rs/foundry/tree/master/anvil) - Local
 Ethereum node, similar to Ganache or Hardhat Network.
 
 We'll use all three to create, test, and deploy our Solidity project.

@@ -22,6 +22,19 @@ modifying the state with transactions (Cosmos SDK messages)
 that are routed to a module and its message handlers, which
 are sent to the `recipes` blockchain.
 
+:::tip note
+This tutorial will explore developing with Rollkit,
+which is still in Alpha stage. If you run into bugs, please write a Github
+[Issue ticket](https://github.com/rollkit/docs/issues/new)
+or let us know in our [Telegram](https://t.me/rollkit).
+Furthermore, while Rollkit allows you to build sovereign rollups
+on Celestia, it currently does not support fraud proofs yet and is
+therefore running in "pessimistic" mode, where nodes would need to
+re-execute the transactions to check the validity of the chain
+(i.e. a full node). Furthermore, Rollkit currently only supports
+a single sequencer.
+:::
+
 :::danger caution
 The script for this tutorial is built for Celestia's
 [Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet).
