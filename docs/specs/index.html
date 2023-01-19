@@ -8,9 +8,9 @@
 
 
 
-<script src="https://plausible.celestia.org/js/plausible.js" defer="defer" data-domain="rollkit.dev"></script><link rel="stylesheet" href="/assets/css/styles.9e6c9e88.css">
-<link rel="preload" href="/assets/js/runtime~main.73d75d97.js" as="script">
-<link rel="preload" href="/assets/js/main.31052dd3.js" as="script">
+<script src="https://plausible.celestia.org/js/plausible.js" defer="defer" data-domain="rollkit.dev"></script><link rel="stylesheet" href="/assets/css/styles.bf43b4a9.css">
+<link rel="preload" href="/assets/js/runtime~main.488d0714.js" as="script">
+<link rel="preload" href="/assets/js/main.4ffd1b81.js" as="script">
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):window.matchMedia("(prefers-color-scheme: light)").matches?e("light"):e("dark")}()</script><div id="__docusaurus">
@@ -19,7 +19,7 @@ i.e. mempool, etc.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="abci-cl
 as a Data Availability (DA) and Co on how to implement Cosmos-SDK based Rollup
 chains. It goes into detail aboutnsensus Layer. At the same time we try to
 keep the high level API general enough such that developers can choose
-alternative DA and Consensus Layers (e.g. Ethereum, the Cosmos Hub).</p><p>We briefly compare building a Cosmos-SDK Rollmint chain with the status quo
+alternative DA and Consensus Layers (e.g. Ethereum, the Cosmos Hub).</p><p>We briefly compare building a Cosmos-SDK Rollkit chain with the status quo
 (building a sovereign Cosmos zone): The current way to use the Cosmos-SDK is to
 define the state-machine, also referred to as the Application. Application
 developers do not have to bother about the lower Layers, namely consensus and
@@ -29,13 +29,13 @@ to <code>tendermint-core</code>. We will replace the default ABCI Client with on
 does not handle Consensus itself. Instead it will only provide the networking
 Layers, and will use the Consensus of the DA Layer. How exactly will be
 described below:</p><p>To summarize, if a current SDK-based app roughly follows the following
-architecture:</p><p>[<strong>diagram_1</strong>]</p><p>When implementing a Cosmos-SDK based Rollmint chain, this overview changes to:</p><p>[<strong>diagram_2</strong>]</p><p>Note that from the point of view of an application developer, nothing changes.
-Rollmint has the exact same developer experience as the usual Cosmos-SDK with
+architecture:</p><p>[<strong>diagram_1</strong>]</p><p>When implementing a Cosmos-SDK based Rollkit chain, this overview changes to:</p><p>[<strong>diagram_2</strong>]</p><p>Note that from the point of view of an application developer, nothing changes.
+Rollkit has the exact same developer experience as the usual Cosmos-SDK with
 Tendermint provides: they still just have to define their business /
-state-machine logic. The Rollmint-specific ABCI Client is stripped down to only
+state-machine logic. The Rollkit-specific ABCI Client is stripped down to only
 handle the network Layer but it also embeds a light node of the DA and
 Consensus Layer chain used and takes care of submitting the block to the DA
-and Consensus Layer. This can also be done with a Consensus Full Node.</p><p>As with Tendermint the state-machine and Rollmint interact with each other via
+and Consensus Layer. This can also be done with a Consensus Full Node.</p><p>As with Tendermint the state-machine and Rollkit interact with each other via
 ABCI.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="mempool">Mempool<a class="hash-link" href="#mempool" title="Direct link to heading">​</a></h3><p>The mempool keeps the set of pending transactions, and is used by block producers
 (full nodes) to produce blocks. Transactions are handled by nodes in the
 First-Come, First-Served (FCFS) manner. Ordering of transactions can be
@@ -47,14 +47,14 @@ validity of the chain (i.e. a full node). Furthermore, Rollkit currently only
 supports a single sequencer.</p></blockquote><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><code>blockHash</code></td><td>Hash of corresponding block header</td></tr><tr><td><code>preStateRoot</code></td><td>Root of Sparse Merkle Tree of the blockchain state before transaction</td></tr><tr><td><code>postStateRoot</code></td><td>Root of Sparse Merkle Tree of the blockchain state after transaction</td></tr><tr><td><code>transaction</code></td><td>Transaction (app specific)</td></tr><tr><td><code>witness</code></td><td>Merkle Proofs</td></tr></tbody></table><h4 class="anchor anchorWithStickyNavbar_LWe7" id="implement-interface-with">Implement interface with<a class="hash-link" href="#implement-interface-with" title="Direct link to heading">​</a></h4><ul><li>Narwahl<ul><li>Data types and Message Formats</li></ul></li><li>Tusk<ul><li>Data types and Message Formats</li></ul></li></ul><h2 class="anchor anchorWithStickyNavbar_LWe7" id="transacation-lifecycle">Transacation Lifecycle<a class="hash-link" href="#transacation-lifecycle" title="Direct link to heading">​</a></h2><h3 class="anchor anchorWithStickyNavbar_LWe7" id="transaction-aggregation">Transaction Aggregation<a class="hash-link" href="#transaction-aggregation" title="Direct link to heading">​</a></h3><p>Transactions will be aggregated by full nodes. It is fundamentally the same
 operation as creating a block with ABCI interface. Multiple parameters should be
 configurable e.g. block time, maximum block size.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="abci-interface">ABCI Interface<a class="hash-link" href="#abci-interface" title="Direct link to heading">​</a></h3><p>ABCI is what will enable a relatively seamless replacement of Tendermint with
-Rollmint. Of course the devil is in the detail and there is more to it than
+Rollkit. Of course the devil is in the detail and there is more to it than
 simply replacing Tendermint with another piece of software that fulfils the
 client side of the ABCI contract, e.g. the SDK spins up a Tendermint node. These
 places seem managable and having a clear interface between state-machine and the
 DA and Consensus Layer makes it possible to replace Tendermint with another
 ABCI Client.</p><p>As we want to change as little as possible inside the SDK we will surely have to
 stick to the vanilla ABCI interface. That said, some of the properties we also
-want for the Rollmint chains, e.g., that the intermediate state roots and the
+want for the Rollkit chains, e.g., that the intermediate state roots and the
 final state root (e.g. app-hash) of a block match the state transitions implied
 by the Transactions included in that very same block require changes in the ABCI
 itself. While ABCI++ is not part of this project’s scope, we are
@@ -86,12 +86,12 @@ state accordingly, otherwise the aggregator has to retry or another aggregator
 node might do so before the aggregator does (in that case we need a tie breaking
 rule, e.g. first-come-first-serve is a good start here, or, round-robin which
 would be more similar to using Tendermint). <code>Start</code> and <code>Stop</code> are only called
-together with spinning up or shutting down the node respectively.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="cosmos-sdk-rollkit-module">Cosmos-SDK Rollkit Module<a class="hash-link" href="#cosmos-sdk-rollkit-module" title="Direct link to heading">​</a></h3><h4 class="anchor anchorWithStickyNavbar_LWe7" id="sparse-merkle-trees">Sparse Merkle Trees<a class="hash-link" href="#sparse-merkle-trees" title="Direct link to heading">​</a></h4><p>The state of the Rollmint chain will be stored in a Sparse Merkle Tree. They can
+together with spinning up or shutting down the node respectively.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="cosmos-sdk-rollkit-module">Cosmos-SDK Rollkit Module<a class="hash-link" href="#cosmos-sdk-rollkit-module" title="Direct link to heading">​</a></h3><h4 class="anchor anchorWithStickyNavbar_LWe7" id="sparse-merkle-trees">Sparse Merkle Trees<a class="hash-link" href="#sparse-merkle-trees" title="Direct link to heading">​</a></h4><p>The state of the Rollkit chain will be stored in a Sparse Merkle Tree. They can
 be used to generate fraud proofs in very compact and easy to verify form.</p><p>Celestia Labs and the Rollkit team actively participated in developing a
 <code>proSeparation</code> of storage and commitment (by the SMT) allows the optimization
-of different components according to their usage and access patterns.</p><p>Proposal for replacing IAVL+ trees with SMTs for the entire state in Cosmos-SDK.</p><h4 class="anchor anchorWithStickyNavbar_LWe7" id="intermediate-state-roots">Intermediate State Roots<a class="hash-link" href="#intermediate-state-roots" title="Direct link to heading">​</a></h4><p>To be able to validate fraud proofs, blocks of the Rollmint chain have to
+of different components according to their usage and access patterns.</p><p>Proposal for replacing IAVL+ trees with SMTs for the entire state in Cosmos-SDK.</p><h4 class="anchor anchorWithStickyNavbar_LWe7" id="intermediate-state-roots">Intermediate State Roots<a class="hash-link" href="#intermediate-state-roots" title="Direct link to heading">​</a></h4><p>To be able to validate fraud proofs, blocks of the Rollkit chain have to
 contain intermediate state roots, reflecting the state of SMT after every transaction.</p><h2 class="anchor anchorWithStickyNavbar_LWe7" id="customizing-modules">Customizing Modules<a class="hash-link" href="#customizing-modules" title="Direct link to heading">​</a></h2><p>soonᵀᴹ</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/rollkit/docs/tree/main/docs/specs.md" target="_blank" rel="noreferrer noopener" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/tutorials/ethermint"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Ethermint Tutorial</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#components" class="table-of-contents__link toc-highlight">Components</a><ul><li><a href="#abci-client" class="table-of-contents__link toc-highlight">ABCI Client</a></li><li><a href="#mempool" class="table-of-contents__link toc-highlight">Mempool</a></li><li><a href="#data-types-and-message-formats" class="table-of-contents__link toc-highlight">Data Types and Message Formats</a></li></ul></li><li><a href="#transacation-lifecycle" class="table-of-contents__link toc-highlight">Transacation Lifecycle</a><ul><li><a href="#transaction-aggregation" class="table-of-contents__link toc-highlight">Transaction Aggregation</a></li><li><a href="#abci-interface" class="table-of-contents__link toc-highlight">ABCI Interface</a></li><li><a href="#commits-to-da-and-consensus-layer" class="table-of-contents__link toc-highlight">Commits to DA and Consensus Layer</a></li><li><a href="#cosmos-sdk-rollkit-module" class="table-of-contents__link toc-highlight">Cosmos-SDK Rollkit Module</a></li></ul></li><li><a href="#customizing-modules" class="table-of-contents__link toc-highlight">Customizing Modules</a></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2023 Rollkit</div></div></div></footer></div>
-<script src="/assets/js/runtime~main.73d75d97.js"></script>
-<script src="/assets/js/main.31052dd3.js"></script>
+<script src="/assets/js/runtime~main.488d0714.js"></script>
+<script src="/assets/js/main.4ffd1b81.js"></script>
 </body>
 </html>

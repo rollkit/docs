@@ -8,9 +8,9 @@
 
 
 
-<script src="https://plausible.celestia.org/js/plausible.js" defer="defer" data-domain="rollkit.dev"></script><link rel="stylesheet" href="/assets/css/styles.9e6c9e88.css">
-<link rel="preload" href="/assets/js/runtime~main.73d75d97.js" as="script">
-<link rel="preload" href="/assets/js/main.31052dd3.js" as="script">
+<script src="https://plausible.celestia.org/js/plausible.js" defer="defer" data-domain="rollkit.dev"></script><link rel="stylesheet" href="/assets/css/styles.bf43b4a9.css">
+<link rel="preload" href="/assets/js/runtime~main.488d0714.js" as="script">
+<link rel="preload" href="/assets/js/main.4ffd1b81.js" as="script">
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):window.matchMedia("(prefers-color-scheme: light)").matches?e("light"):e("dark")}()</script><div id="__docusaurus">
@@ -52,12 +52,12 @@ the desired data availability (DA) and consensus layer, thus reducing the
 load on the DA and consensus layer and increasing its overall scalability.
 This also saves the standard overhead associated with bootstrapping a new
 blockchain’s own DA and consensus layer.</p><p>Using Rollkit, anyone can <strong>easily deploy a blockchain with minimal overhead</strong>.</p><p>Developers can:</p><ul><li>Deploy easily<ul><li>Developers can easily deploy a new blockchain without needing to bootstrap
-a secure and decentralized validator set. In addition, Rollmint does not have
-the overhead associated with a heavy BFT consensus mechanism.</li></ul></li><li>Be sovereign<ul><li>Rollmint enables developers to build rollups with sovereignty in mind. A
+a secure and decentralized validator set. In addition, Rollkit does not have
+the overhead associated with a heavy BFT consensus mechanism.</li></ul></li><li>Be sovereign<ul><li>Rollkit enables developers to build rollups with sovereignty in mind. A
 sovereign rollup can fork just like an L1, giving its community a mechanism
-for social coordination.</li></ul></li><li>Scale effortlessly<ul><li>Developers don’t need to sacrifice on security to achieve scale. Rollmint
+for social coordination.</li></ul></li><li>Scale effortlessly<ul><li>Developers don’t need to sacrifice on security to achieve scale. Rollkit
 enables developers to build blockchains using a data availability layer that
-scales with adoption while staying decentralized and secure.</li></ul></li><li>Use a credibly neutral public good<ul><li>Developers don’t need to sacrifice on security to achieve scale. Rollmint
+scales with adoption while staying decentralized and secure.</li></ul></li><li>Use a credibly neutral public good<ul><li>Developers don’t need to sacrifice on security to achieve scale. Rollkit
 enables developers to build blockchains using a data availability layer that
 scales with adoption while staying decentralized and secure.</li></ul></li></ul><h2 class="anchor anchorWithStickyNavbar_LWe7" id="consensus">Consensus<a class="hash-link" href="#consensus" title="Direct link to heading">​</a></h2><p>In a decentralized network, consensus refers to the process of reaching
 agreement among the network participants on the current state of the network
@@ -78,8 +78,8 @@ utilize it.</p><p>Interchain security is another example of shared security wher
 isn’t inherited from the blockchain itself. Rather, the Cosmos Hub validator
 set will be able to opt-in to become a validator for other zones.</p><h2 class="anchor anchorWithStickyNavbar_LWe7" id="fraud-proofs">Fraud Proofs<a class="hash-link" href="#fraud-proofs" title="Direct link to heading">​</a></h2><p>The Rollkit chains will have no consensus rules. All valid transactions will
 be accepted by block creators. Fraud proofs will be the only way to detect
-and rollback malicious state transitions.</p><p>The state of the Rollmint chain will be stored in a Sparse Merkle Tree.
-They can be used to generate fraud proofs in very compact and easy to verify form.</p><p>To be able to validate fraud proofs, blocks of the Rollmint chain have
+and rollback malicious state transitions.</p><p>The state of the Rollkit chain will be stored in a Sparse Merkle Tree.
+They can be used to generate fraud proofs in very compact and easy to verify form.</p><p>To be able to validate fraud proofs, blocks of the Rollkit chain have
 to contain intermediate state roots, reflecting the state of SMT after every
 transaction.</p><div class="theme-admonition theme-admonition-danger alert alert--danger admonition_LlT9"><div class="admonitionHeading_tbUL"><span class="admonitionIcon_kALy"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path></svg></span>danger</div><div class="admonitionContent_S0QG"><p>Rollkit <a href="/docs/rollkit-stack#the-rollkit-stack">does not yet support fraud proofs</a>.</p></div></div><h2 class="anchor anchorWithStickyNavbar_LWe7" id="leader-selection">Leader Selection<a class="hash-link" href="#leader-selection" title="Direct link to heading">​</a></h2><p>In a proof-of-stake (PoS) blockchain network, the leader is typically
 selected through a process called &quot;stakeholder voting.&quot; In this process,
@@ -124,7 +124,7 @@ maintaining the security of the main chain.</p><p>The term “optimistic” refe
 is done off-chain, or on another chain, with the assumption that the
 transactions will be valid, and the main chain only needs to verify the
 proof of their validity.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/rollkit/docs/tree/main/docs/core-concepts.md" target="_blank" rel="noreferrer noopener" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/intro"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Introduction to Rollkit</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/rollkit-stack"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">The Rollkit Stack</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#rollups" class="table-of-contents__link toc-highlight">Rollups</a></li><li><a href="#modular-rollups" class="table-of-contents__link toc-highlight">Modular Rollups</a></li><li><a href="#consensus" class="table-of-contents__link toc-highlight">Consensus</a></li><li><a href="#shared-security" class="table-of-contents__link toc-highlight">Shared Security</a></li><li><a href="#fraud-proofs" class="table-of-contents__link toc-highlight">Fraud Proofs</a></li><li><a href="#leader-selection" class="table-of-contents__link toc-highlight">Leader Selection</a><ul><li><a href="#why-you-need-a-sequencer" class="table-of-contents__link toc-highlight">Why you need a sequencer</a></li></ul></li><li><a href="#main-types-of-rollups" class="table-of-contents__link toc-highlight">Main types of Rollups</a><ul><li><a href="#zk-rollups" class="table-of-contents__link toc-highlight">zk-Rollups</a></li><li><a href="#optimistic-rollups" class="table-of-contents__link toc-highlight">Optimistic Rollups</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2023 Rollkit</div></div></div></footer></div>
-<script src="/assets/js/runtime~main.73d75d97.js"></script>
-<script src="/assets/js/main.31052dd3.js"></script>
+<script src="/assets/js/runtime~main.488d0714.js"></script>
+<script src="/assets/js/main.4ffd1b81.js"></script>
 </body>
 </html>
