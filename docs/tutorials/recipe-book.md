@@ -10,21 +10,41 @@ description: Build a recipe book blockchain with Ignite CLI, Celestia and Rollki
 
 In this tutorial, we are going to build a blockchain
 for your favorite recipes. The goal of this tutorial
-is to create a Rollmint rollup with a module that allows
+is to create a Rollkit rollup with a module that allows
 you to write and read data to and from your application-specific
 blockchain. The end user will be able to submit new
 recipes and read them from the blockchain.
 
-In the [`gm world` tutorial](./gm-world), we defined a
+In the [`GM World` tutorial](./gm-world), we defined a
 new API endpoint and modified a keeper query function
 to return static data. In this tutorial, we will be
 modifying the state with transactions (Cosmos SDK messages)
 that are routed to a module and its message handlers, which
 are sent to the `recipes` blockchain.
 
+:::tip note
+This tutorial will explore developing with Rollkit,
+which is still in Alpha stage. If you run into bugs, please write a Github
+[Issue ticket](https://github.com/rollkit/docs/issues/new)
+or let us know in our [Telegram](https://t.me/rollkit).
+Furthermore, while Rollkit allows you to build sovereign rollups
+on Celestia, it currently does not support fraud proofs yet and is
+therefore running in "pessimistic" mode, where nodes would need to
+re-execute the transactions to check the validity of the chain
+(i.e. a full node). Furthermore, Rollkit currently only supports
+a single sequencer.
+:::
+
+:::danger caution
+The script for this tutorial is built for Celestia's
+[Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet).
+If you choose to use Arabica Devnet,
+you will need to modify the script manually.
+:::
+
 ## 💻 Prerequisites
 
-- [gm world Tutorial](./gm-world)
+- [GM World Tutorial](./gm-world)
 
 ## 🏗 Scaffolding your Rollup
 
@@ -46,12 +66,13 @@ Change into the `recipes` directory:
 cd recipes
 ```
 
-### 💎 Installing Rollmint
+### 💎 Installing Rollkit
 
-To swap out Tendermint for Rollmint, run the following commands:
+To swap out Tendermint for Rollkit, run the following commands:
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.3-rollmint-v0.4.0
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.7-rollmint-v0.5.0-no-fraud-proofs
+go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221013213714-8be9b54c8c21
 go mod tidy
 go mod download
 ```
@@ -403,12 +424,22 @@ func (k Keeper) Dishes(c context.Context, req *types.QueryDishesRequest) (*types
 ### ✨ Run a Celestia Light Node
 
 Follow instructions to install and start your Celestia Data Availalbility
-layer Light Node selecting the network that you had previously used. You can
+layer Light Node selecting the network that you previously used. You can
 find instructions to install and run the node [here](https://docs.celestia.org/nodes/light-node).
 
 After you have Go and Ignite CLI installed, and your Celestia Light
 Node running on your machine, you're ready to build, test, and launch your own
 sovereign rollup.
+
+Be sure you have initialized your node before trying to start it.
+When starting your node, remember to enable the gateway.
+Your start command should look similar to:
+
+<!-- markdownlint-disable MD013 -->
+```bash
+celestia light start --core.ip https://rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
+```
+<!-- markdownlint-enable MD013 -->
 
 ![light-node.png](../../static/img/tutorials/recipes/light-node.png)
 
@@ -434,14 +465,24 @@ Recipes Rollup.
 You can view the contents of the script to see how we
 initialize the Recipes Rollup.
 
+:::danger caution
 Before starting our rollup, we'll need to find
 and change `FlagDisableIAVLFastNode` to `FlagIAVLFastNode`:
 
-```go title="recipesd/cmd/recipesd/cmd/root.go"
+```go title="recipes/cmd/recipesd/cmd/root.go"
 baseapp.SetIAVLFastNode(cast.ToBool(appOpts.Get(server.FlagIAVLFastNode))),
 ```
 
-🟢 Start the chain with:
+If you are on macOS, you will need to install md5sha1sum before starting your
+rollup:
+
+```sh
+brew install md5sha1sum
+```
+
+:::
+
+🟢 From your project working directory (`recipes/`), start the chain with:
 
 ```bash
 bash init.sh
@@ -452,12 +493,12 @@ With that, we have kickstarted our `recipesd` network!
 ![recipe-start.gif](../../static/img/tutorials/recipes/recipe-start.gif)
 
 Open another teminal instance. Now, create your first
-recipe in the command line by sending a transaction from alice,
+recipe in the command line by sending a transaction from `recipes-key`,
 when prompted, confirm the transaction by entering `y`:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinagrette" --from alice
+recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinagrette" --from recipes-key --keyring-backend test
 ```
 <!-- markdownlint-enable MD013 -->
 

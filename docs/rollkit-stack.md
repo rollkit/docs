@@ -25,9 +25,7 @@ to check the validity of the chain (i.e. a full node). Furthermore, Rollkit
 currently only supports a single sequencer.
 
 :::tip Tip
-
 If you're familiar with Rollkit's stack, you may want to skip to the [tutorials section](./category/tutorials)
-
 :::
 
 ## Mempool
@@ -38,13 +36,13 @@ nodes in the First-Come, First-Served (FCFS) manner. Ordering of transactions
 can be implemented on the application level (for example by adding
 nonce/sequence number). This behaviour is similar to the Tendermint mempool.
 
-## Leader Selection - Interface and API
+<!-- ## Leader Selection - Interface and API
 
-[...]
+[...] -->
 
-## Network Topology
+<!-- ## Network Topology
 
-[Issue 631](https://github.com/celestiaorg/rollmint/issues/631)
+[Issue 631](https://github.com/celestiaorg/rollmint/issues/631) -->
 
 ## Rollkit Node Types
 
@@ -62,9 +60,9 @@ for producing blocks and fraud proofs. They also create a link between the
 Rollkit network and the DA and Consensus Layer, by pushing aggregates to
 the DA and Consensus Layer.
 
-### Sequencer
+<!-- ### Sequencer
 
-soonᵀᴹ
+soonᵀᴹ -->
 
 <!-- ### Super light node
 

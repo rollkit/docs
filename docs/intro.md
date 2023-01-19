@@ -20,9 +20,7 @@ a future where multiple independent teams and organizations
 are able to contribute to Rollkit.
 
 :::tip Tip
-
 If you're familiar with Rollkit, you may want to skip to the [tutorials section](./category/tutorials)
-
 :::
 
 ## Main Components of Rollkit
