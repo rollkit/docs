@@ -9,7 +9,7 @@ const config = {
   title: 'Rollkit',
   tagline: 'The first modular development kit for building sovereign rollups',
   url: 'https://rollkit.dev',
-  baseUrl: '/',
+  baseUrl: process.env.BASE_URL || '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
