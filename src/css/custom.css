@@ -57,3 +57,50 @@ a {
 p, li {
   font-family: "Inter";
 }
+
+.front-page-link {
+  font-family: RuberoidRegular;;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgb(2, 62, 138);
+  padding: 0px 23px;
+  text-decoration: none;
+  width: 300px;
+  margin: 0px 8px;
+  border-radius: 7px;
+  transition: all .35s;
+  border: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: rgba(2, 62, 138, 1) 0px 4px 12px;
+  font-weight: 600;
+  color: white;
+  text-align: left;
+  height: 115px;
+}
+
+.front-page-link:hover {
+  border: 1px solid rgba(255, 255, 255, .3);
+  box-shadow: rgba(2, 62, 138, .5) 0px 4px 12px;
+  color: white;
+  text-decoration: none;
+}
+
+.button-heading {
+  font-size: 22px;
+  font-family: 'RuberoidBold';
+  margin: 0px;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .front-page-link {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+code {
+  max-height: 1000px;
+  overflow-y: auto;
+}

@@ -16,9 +16,22 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Build Modular
+            className="front-page-link"
+            to="/docs/intro/">
+              <p className="button-heading">Intro</p>
+              Learn How Rollkit Works
+          </Link>
+          <Link
+            className="front-page-link"
+            to="/docs/core-concepts/">
+              <p className="button-heading">Concepts</p>
+              Learn About Modular Rollups 
+          </Link>
+          <Link
+            className="front-page-link"
+            to="/docs/tutorials/gm-world/">
+               <p className="button-heading">Sovereign Chain</p>
+              Deploy a Rollup with Rollkit
           </Link>
         </div>
       </div>
