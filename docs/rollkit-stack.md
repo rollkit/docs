@@ -30,6 +30,10 @@ currently only supports a single sequencer.
 If you're familiar with Rollkit's stack, you may want to skip to the [tutorials section](./category/tutorials)
 :::
 
+## Dependencies
+
+* Requires Golang version 1.19+
+
 ## Mempool
 
 The mempool keeps the set of pending transactions, and is used by block
