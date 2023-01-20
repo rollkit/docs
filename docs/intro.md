@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
+sidebar_label: Introduction
+description: Intro to Rollkit, the first modular development kit for building sovereign rollups.
 ---
 
 # Introduction to Rollkit

@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 sidebar_label: Recipe Book Rollup Tutorial
-description: Build a recipe book blockchain with Ignite CLI, Celestia and Rollkit
+description: Build a recipe book rollup with Ignite CLI, Celestia, and Rollkit.
 ---
 
 # 🥗 Recipe Book Overview

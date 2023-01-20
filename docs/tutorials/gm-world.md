@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 sidebar_label: GM World Tutorial
-description: Get started with Ignite CLI, Celestia and Rollkit
+description: Build a sovereign rollup with Ignite CLI, Celestia and Rollkit.
 ---
 
 # GM World
