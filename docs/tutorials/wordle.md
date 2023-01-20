@@ -45,8 +45,8 @@ in Cosmos-SDK, we recommend you go over the following tutorials
 in Ignite to understand all the different components in Cosmos-SDK before
 proceeding with this tutorial.
 
-* [GM World](./gm-world.md) or [Hello, World](https://docs.ignite.com/guide/hello)
-* [Recipe Book](./recipe-book.md) or [Blog and Module Basics](https://docs.ignite.com/guide/blog)
+* [GM World](./gm-world.md/) or [Hello, World](https://docs.ignite.com/guide/hello)
+* [Recipe Book](./recipe-book.md/) or [Blog and Module Basics](https://docs.ignite.com/guide/blog)
 * [Nameservice Tutorial](https://docs.ignite.com/guide/nameservice)
 * [Scavenger Hunt](https://docs.ignite.com/guide/scavenge)
 

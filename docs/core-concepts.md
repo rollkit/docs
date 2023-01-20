@@ -11,7 +11,7 @@ build rollups using an SDK.
 
 :::tip Tip
 If you're familiar with Rollkit's core concepts, you may want to skip to the
-[tutorials section](./category/tutorials)
+[tutorials section](./category/tutorials/)
 :::
 
 ## Rollups
@@ -40,7 +40,7 @@ often known as rollups, allowing them to process more transactions and
 support a larger number of users.
 
 The downside to using traditional, monolithic rollups is that there are
-existing [developer pain points](./intro#developer-pain-points-for-monolithic-blockchains)
+existing [developer pain points](./intro#developer-pain-points)
 that we covered in the introduction.
 
 If you want to learn more, we recommend Vitalik Buterin's

@@ -11,9 +11,9 @@ blockchain with minimal overhead. It solves the problem of bootstrapping a
 secure and decentralized validator set while removing the burden of maintaining
 a new consensus network.
 
-Rollkit provides developers with a [modular design](./core-concepts) to enable
+Rollkit provides developers with a [modular design](./core-concepts/) to enable
 a truly flexible development process. Importantly, Rollkit rollups are
-[sovereign by default](./rollkit-stack), enabling communities to use their
+[sovereign by default](./rollkit-stack/), enabling communities to use their
 sovereign rollup as a coordination mechanism.
 
 We’re building Rollkit as an open-source public good software.
@@ -22,7 +22,7 @@ a future where multiple independent teams and organizations
 are able to contribute to Rollkit.
 
 :::tip Tip
-If you're familiar with Rollkit, you may want to skip to the [tutorials section](./category/tutorials)
+If you're familiar with Rollkit, you may want to skip to the [tutorials section](./category/tutorials/)
 :::
 
 ## Main Components of Rollkit
@@ -48,7 +48,7 @@ all the way up the stack to deploy app-chains.
 
 ### Build a sovereign rollup
 
-Follow the [Ethermint tutorial](./tutorials/ethermint.md) to
+Follow the [Ethermint tutorial](./tutorials/ethermint.md/) to
 build an EVM sovereign rollup that leverages
 Celestia for data availability and consensus.
 
