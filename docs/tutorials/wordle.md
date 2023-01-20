@@ -349,6 +349,7 @@ import (
   sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
   "time"
   "unicode"
+  "github.com/tendermint/tendermint/crypto"
 )
 
 func (k msgServer) SubmitWordle(goCtx context.Context, msg *types.MsgSubmitWordle) (*types.MsgSubmitWordleResponse, error) {
@@ -545,7 +546,7 @@ In the above code, we are doing the following things:
 
   A few files need to be modified for this to work.
 
-The first is `proto/wordle/tx.proto`.
+The first is `proto/wordle/wordle/tx.proto`.
 
 Inside this file, fill in the empty `MsgSubmitGuessResponse`
 with the following code:
@@ -607,11 +608,11 @@ You can view the contents of the script to see how we
 initialize the Wordle Rollup.
 
 :::danger caution
-Before starting our rollup, we'll need to find
-and change `FlagDisableIAVLFastNode` to `FlagIAVLFastNode`:
+On some machines, before starting our rollup, we'll need to find
+and change `FlagIAVLFastNode` to `FlagDisableIAVLFastNode`:
 
 ```go title="wordle/cmd/wordled/cmd/root.go"
-baseapp.SetIAVLFastNode(cast.ToBool(appOpts.Get(server.FlagIAVLFastNode))),
+baseapp.SetIAVLDisableFastNode(cast.ToBool(appOpts.Get(server.FlagDisableIAVLFastNode))),
 ```
 
 If you are on macOS, you will need to install md5sha1sum before starting your
@@ -692,8 +693,8 @@ Confirm with a Y.
 You will then get a response with a transaction hash as shown here:
 
 ```bash
-code: 19
-codespace: sdk
+code: 0
+codespace: ""
 data: ""
 events: []
 gas_used: "0"
@@ -704,7 +705,7 @@ logs: []
 raw_log: ""
 timestamp: ""
 tx: null
-txhash: F70C04CE5E1EEC5B7C0E5050B3BEDA39F74C33D73ED504E42A9E317E7D7FE128
+txhash: F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E
 ```
 
 Note, this does not mean the transaction was included in the block yet.
@@ -712,7 +713,7 @@ Let's query the transaction hash to check whether it has been included in
 the block yet or if there are any errors.
 
 ```bash
-wordled query tx --type=hash F70C04CE5E1EEC5B7C0E5050B3BEDA39F74C33D73ED504E42A9E317E7D7FE128 --chain-id wordle --output json | jq -r '.raw_log'
+wordled query tx --type=hash F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E --chain-id wordle --output json | jq -r '.raw_log'
 ```
 
 This should display an output like the following:
