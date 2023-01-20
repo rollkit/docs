@@ -334,9 +334,10 @@ We first start with the `SubmitWordle` function.
 
 Open up the following file: `x/wordle/keeper/msg_server_submit_wordle.go`
 
-Inside the following, add the following code, which we will go over in a bit:
+Inside the following, replace the current code with the following code,
+which we will go over in a bit:
 
-```go
+```go title="x/wordle/keeper/msg_server_submit_wordle.go"
 package keeper
 
 import (
@@ -426,9 +427,10 @@ Here in the `SubmitWordle` Keeper function, we are doing a few things:
 The next Keeper function we will add is the following:
 `x/wordle/keeper/msg_server_submit_guess.go`
 
-Open that file and add the following code, which we will explain in a bit:
+Open that file and replace its contents with the following code, which we will
+explain in a bit:
 
-```go
+```go title="x/wordle/keeper/msg_server_submit_guess.go"
 package keeper
 
 import (
@@ -548,7 +550,7 @@ The first is `proto/wordle/tx.proto`.
 Inside this file, fill in the empty `MsgSubmitGuessResponse`
 with the following code:
 
-```go
+```go title="proto/wordle/tx.proto"
 message MsgSubmitGuessResponse {
   string title = 1;
   string body = 2;
@@ -560,7 +562,7 @@ Next file is `x/wordle/types/expected_keepers.go`
 Here, we need to add the SendCoins method to the BankKeeper
 interface in order to allow sending the reward to the right guesser.
 
-```go
+```go title="x/wordle/types/expected_keepers.go"
 type BankKeeper interface {
   SendCoins(ctx sdk.Context, fromAddr sdk.AccAddress, toAddr sdk.AccAddress, amt sdk.Coins) error
 }

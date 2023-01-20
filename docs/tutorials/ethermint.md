@@ -145,20 +145,21 @@ First, we need to setup some environment variables.
 
 :::danger Networks
 
-The commands below are for Arabica. If you're using Mocha, you'll need to
-replace the RPC endpoint with [one for Mocha](https://docs.celestia.org/nodes/mocha-testnet#rpc-endpoints).
+The commands below are for Mocha. If you're using Arabica, you'll need to
+replace the RPC endpoint with [one for Arabica](https://docs.celestia.org/nodes/arabica-devnet#rpc-endpoints).
 
 :::
 
 <!-- markdownlint-disable MD013 -->
 ```sh
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
-DA_BLOCK_HEIGHT=$(curl https://rpc.limani.celestia-devops.dev/block | jq -r '.result.block.header.height')
+DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
 ```
 <!-- markdownlint-enable MD013 -->
 
-If you are running this on Arabica devnet, you need to run your light node with
-an account that has Arabica devnet tokens. Visit the faucet [here](https://docs.celestia.org/nodes/arabica-devnet#arabica-devnet-faucet).
+If you are running this on Mocha Testnet or Arabica Devnet, you need to run your
+light node with an account that has Mocha or Arabica tokens. Visit the faucet
+[here](https://docs.celestia.org/nodes/arabica-devnet#arabica-devnet-faucet).
 
 With this setup complete, we can now start our Ethermint Rollup:
 
