@@ -6,7 +6,7 @@ description: Get started with Ignite CLI, Celestia and Rollkit
 
 # Wordle App
 
-![wordle-app](/img/tutorials/wordle/wordle.jpg)
+![wordle-app](/img/tutorials/wordle/wordle.png)
 
 This tutorial guide will go over building a cosmos-sdk app
 for Rollkit, the Sovereign-Rollup implementation of
