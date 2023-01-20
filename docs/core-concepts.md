@@ -40,7 +40,7 @@ often known as rollups, allowing them to process more transactions and
 support a larger number of users.
 
 The downside to using traditional, monolithic rollups is that there are
-existing [developer pain points](./intro#developer-pain-points)
+existing [developer pain points](./intro.md#developer-pain-points)
 that we covered in the introduction.
 
 If you want to learn more, we recommend Vitalik Buterin's
@@ -141,7 +141,7 @@ to contain intermediate state roots, reflecting the state of SMT after every
 transaction.
 
 :::danger
-Rollkit [does not yet support fraud proofs](./rollkit-stack#the-rollkit-stack).
+Rollkit [does not yet support fraud proofs](./rollkit-stack.md/).
 :::
 
 ## Leader Selection
