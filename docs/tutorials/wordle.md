@@ -114,7 +114,7 @@ You can read more about Ignite [here](https://docs.ignite.com/).
 
 To install Ignite, you can run this command in your terminal:
 
-```sh
+```bash
 curl https://get.ignite.com/cli | bash
 sudo mv ignite /usr/local/bin/
 ```
@@ -129,7 +129,7 @@ session for the change to take place.
 
 If you run the following:
 
-```sh
+```bash
 ignite --help
 ```
 
@@ -154,7 +154,7 @@ designed to build blockchains.
 We first run the following command to setup our project for
 our new blockchain, Wordle.
 
-```sh
+```bash
 ignite scaffold chain wordle --no-module
 ```
 
@@ -167,7 +167,7 @@ creating the module after.
 
 Now, it’s time to enter the directory:
 
-```sh
+```bash
 cd wordle
 ```
 
@@ -200,7 +200,7 @@ Rollkit on our codebase.
 
 Run the following command inside the `wordle` directory.
 
-```sh
+```bash
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.7-rollmint-v0.5.0-no-fraud-proofs
 go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221013213714-8be9b54c8c21
 go mod tidy
@@ -241,7 +241,7 @@ module is defined as the following:
 
 We build the module with the `bank` dependency with the following command:
 
-```sh
+```bash
 ignite scaffold module wordle --dep bank
 ```
 
@@ -271,7 +271,7 @@ With these initial designs, we can start creating our messages!
 
 To create the `SubmitWordle` message, we run the following command:
 
-```sh
+```bash
 ignite scaffold message submit-wordle word
 ```
 
@@ -279,7 +279,7 @@ This creates the `submit-wordle` message that takes in `word` as a parameter.
 
 We now create the final message, `SubmitGuess`:
 
-```sh
+```bash
 ignite scaffold message submit-guess word
 ```
 
@@ -292,7 +292,7 @@ the messages we created.
 
 ### Scaffolding Wordle Types
 
-```sh
+```bash
 ignite scaffold map wordle word submitter --no-message
 ```
 
@@ -303,7 +303,7 @@ person that submitted the Wordle.
 The second type is the `Guess` type. It allows us to store
 the latest guess for each address that submitted a solution.
 
-```sh
+```bash
 ignite scaffold map guess word submitter count --no-message
 ```
 
@@ -592,7 +592,7 @@ We have a handy `init.sh` found in this repo
 
 We can copy it over to our directory with the following commands:
 
-```sh
+```bash
 # From inside the `wordle` directory
 cd ..
 git clone https://github.com/celestiaorg/devrel-tools
@@ -617,7 +617,7 @@ baseapp.SetIAVLFastNode(cast.ToBool(appOpts.Get(server.FlagIAVLFastNode))),
 If you are on macOS, you will need to install md5sha1sum before starting your
 rollup:
 
-```sh
+```bash
 brew install md5sha1sum
 ```
 
@@ -625,7 +625,7 @@ brew install md5sha1sum
 
 You can initialize the script with the following command:
 
-```sh
+```bash
 bash init.sh
 ```
 
@@ -633,7 +633,7 @@ With that, we have kickstarted our `wordled` network!
 
 In another window, run the following to submit a Wordle:
 
-```sh
+```bash
 wordled tx wordle submit-wordle giant --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
@@ -683,7 +683,7 @@ This will ask you to confirm the transaction with the following message:
 
 Cosmos-SDK will ask you to confirm the transaction here:
 
-```sh
+```bash
 confirm transaction before signing and broadcasting [y/N]:
 ```
 
@@ -691,7 +691,7 @@ Confirm with a Y.
 
 You will then get a response with a transaction hash as shown here:
 
-```sh
+```bash
 code: 19
 codespace: sdk
 data: ""
@@ -711,7 +711,7 @@ Note, this does not mean the transaction was included in the block yet.
 Let's query the transaction hash to check whether it has been included in
 the block yet or if there are any errors.
 
-```sh
+```bash
 wordled query tx --type=hash F70C04CE5E1EEC5B7C0E5050B3BEDA39F74C33D73ED504E42A9E317E7D7FE128 --chain-id wordle --output json | jq -r '.raw_log'
 ```
 
@@ -724,7 +724,7 @@ This should display an output like the following:
 
 Test out a few things for fun:
 
-```sh
+```bash
 wordled tx wordle submit-guess 12345 --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
@@ -734,7 +734,7 @@ an Invalid Error because you submitted integers.
 
 Now try:
 
-```sh
+```bash
 wordled tx wordle submit-guess ABCDEFG --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
@@ -744,7 +744,7 @@ an Invalid Error because you submitted a word larger than 5 characters.
 
 Now try to submit another wordle even though one was already submitted
 
-```sh
+```bash
 wordled tx wordle submit-wordle meter --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
@@ -754,7 +754,7 @@ has already been submitted for the day.
 
 Now let’s try to guess a five letter word:
 
-```sh
+```bash
 wordled tx wordle submit-guess least --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
@@ -764,7 +764,7 @@ word, it will increment the guess count for wordle-key's account.
 
 We can verify this by querying the list:
 
-```sh
+```bash
 wordled q wordle list-guess --output json
 ```
 

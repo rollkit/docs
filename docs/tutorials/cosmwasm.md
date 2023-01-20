@@ -76,7 +76,7 @@ First, before installing Rust, you would need to install `rustup`.
 
 On Mac and Linux systems, here are the commands for installing it:
 
-```sh
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
@@ -84,7 +84,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 You will see a note similar to below after installing Rust:
 
-```sh
+```bash
 Rust is installed now. Great!
 
 To get started you may need to restart your current shell.
@@ -102,7 +102,7 @@ tutorial!
 
 After installation, follow the commands here to setup Rust.
 
-```sh
+```bash
 rustup default stable
 cargo version
 
@@ -112,7 +112,7 @@ rustup target add wasm32-unknown-unknown
 
 Your output should look similar to below:
 
-```sh
+```bash
 info: using existing install for 'stable-aarch64-apple-darwin'
 info: default toolchain set to 'stable-aarch64-apple-darwin'
 
@@ -139,7 +139,7 @@ Here, we are going to pull down the `wasmd` repository and replace Tendermint
 with Rollkit. Rollkit is a drop-in replacement for Tendermint that allows
 Cosmos-SDK applications to connect to Celestia's Data Availability network.
 
-```sh
+```bash
 git clone https://github.com/CosmWasm/wasmd.git
 cd wasmd
 git fetch --tags
@@ -169,7 +169,7 @@ We have a handy `init.sh` found in this repo
 
 We can copy it over to our directory with the following commands:
 
-```sh
+```bash
 # From inside the `wasmd` directory
 cd ..
 git clone https://github.com/celestiaorg/devrel-tools
@@ -188,7 +188,7 @@ initialize the CosmWasm Rollup.
 If you are on macOS, you will need to install md5sha1sum before starting your
 rollup:
 
-```sh
+```bash
 brew install md5sha1sum
 ```
 
@@ -196,7 +196,7 @@ brew install md5sha1sum
 
 You can initialize the script with the following command:
 
-```sh
+```bash
 bash init.sh
 ```
 
@@ -210,7 +210,7 @@ how Rollkit is initializing the cosmwasm rollup.
 Here are the contents of the script:
 
 <!-- markdownlint-disable MD013 -->
-```sh
+```bash
 #!/bin/sh
 
 VALIDATOR_NAME=validator1
@@ -253,7 +253,7 @@ wasmd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.d
 In a new terminal instance, we will run the following commands to pull down the
 Nameservice smart contract and compile it:
 
-```sh
+```bash
 git clone https://github.com/InterWasm/cw-contracts
 cd cw-contracts
 cd contracts/nameservice
@@ -268,7 +268,7 @@ The compiled contract is outputted to:
 If we want to run tests, we can do so with the following command in the
 `~/cw-contracts/contracts/nameservice` directory:
 
-```sh
+```bash
 cargo unit-test
 ```
 
@@ -293,7 +293,7 @@ import TabItem from '@theme/TabItem';
 Run the following command in the `~/cw-contracts/contracts/nameservice`
 directory:
 
-```sh
+```bash
 sudo docker run --rm -v "$(pwd)":/code \
   --mount type=volume,source="$(basename "$(pwd)")_cache",target=/code/target \
   --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \
@@ -310,7 +310,7 @@ This will place the optimized Wasm bytecode at `artifacts/cw_nameservice.wasm`.
 Run the following command in the `~/cw-contracts/contracts/nameservice`
 directory:
 
-```sh
+```bash
 sudo docker run --platform linux/arm64 --rm -v "$(pwd)":/code \
   --mount type=volume,source="$(basename "$(pwd)")_cache",target=/code/target \
   --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \
@@ -336,7 +336,7 @@ Let's now deploy our smart contract!
 
 Run the following in the `~/cw-contracts/contracts/nameservice` directory:
 
-```sh
+```bash
 TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice.wasm --from celeswasm-key --keyring-backend test --chain-id celeswasm --gas-prices 0uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:26657 --output json -y | jq -r '.txhash') && echo $TX_HASH
 ```
 
@@ -347,7 +347,7 @@ TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice.wasm --from celeswasm-key
 
 Run the following in the `~/cw-contracts/contracts/nameservice` directory:
 
-```sh
+```bash
 TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice-aarch64.wasm --from celeswasm-key --keyring-backend test --chain-id celeswasm --gas-prices 0uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:26657 --output json -y | jq -r '.txhash') && echo $TX_HASH
 ```
 
@@ -380,7 +380,7 @@ we will need to query our  tx hash directly to get information about it.
 
 Let's start by querying our transaction hash for its code ID:
 
-```sh
+```bash
 CODE_ID=$(wasmd query tx --type=hash $TX_HASH --chain-id celeswasm --node http://127.0.0.1:26657 --output json | jq -r '.logs[0].events[-1].attributes[0].value')
 echo $CODE_ID
 ```
@@ -392,7 +392,7 @@ the value is `1`.
 
 Now, we can take a look at the contracts instantiated by this Code ID:
 
-```sh
+```bash
 wasmd query wasm list-contract-by-code $CODE_ID --chain-id celeswasm --node http://127.0.0.1:26657 --output json
 ```
 
@@ -408,7 +408,7 @@ We start instantiating the contract by writing up the following `INIT` message
 for nameservice contract. Here, we are specifying that `purchase_price` of a name
 is `100uwasm` and `transfer_price` is `999uwasm`.
 
-```sh
+```bash
 INIT='{"purchase_price":{"amount":"100","denom":"uwasm"},"transfer_price":{"amount":"999","denom":"uwasm"}}'
 wasmd tx wasm instantiate $CODE_ID "$INIT" --from celeswasm-key --keyring-backend test --label "name service" --chain-id celeswasm --gas-prices 0uwasm --gas auto --gas-adjustment 1.3 -y --no-admin --node http://127.0.0.1:26657
 ```
@@ -417,7 +417,7 @@ wasmd tx wasm instantiate $CODE_ID "$INIT" --from celeswasm-key --keyring-backen
 
 Now that we instantiated it, we can interact further with the contract:
 
-```sh
+```bash
 wasmd query wasm list-contract-by-code $CODE_ID --chain-id celeswasm --output json --node http://127.0.0.1:26657
 CONTRACT=$(wasmd query wasm list-contract-by-code $CODE_ID --chain-id celeswasm --output json --node http://127.0.0.1:26657 | jq -r '.contracts[-1]')
 echo $CONTRACT
@@ -431,7 +431,7 @@ bank balances.
 
 Your output will look similar to below:
 
-```sh
+```bash
 {"contracts":["wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d"],"pagination":{"next_key":null,"total":"0"}}
 wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d
 address: wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d
@@ -451,14 +451,14 @@ pagination:
 
 Now, let's register a name to the contract for our wallet address:
 
-```sh
+```bash
 REGISTER='{"register":{"name":"fred"}}'
 wasmd tx wasm execute $CONTRACT "$REGISTER" --amount 100uwasm --from celeswasm-key --chain-id celeswasm --gas-prices 0uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:26657 --keyring-backend test -y
 ```
 
 Your output will look similar to below:
 
-```sh
+```bash
 DEIP --keyring-backend test -y
 gas estimate: 167533
 code: 0
@@ -478,20 +478,20 @@ txhash: C147257485B72E7FFA5FDB943C94CE951A37817554339586FFD645AD2AA397C3
 
 If you try to register the same name again, you'll see an expected error:
 
-```sh
+```bash
 Error: rpc error: code = Unknown desc = rpc error: code = Unknown desc = failed to execute message; message index: 0: Name has been taken (name fred): execute wasm contract failed [CosmWasm/wasmd/x/wasm/keeper/keeper.go:364] With gas wanted: '0' and gas used: '123809' : unknown request
 ```
 
 Next, query the owner of the name record:
 
-```sh
+```bash
 NAME_QUERY='{"resolve_record": {"name": "fred"}}'
 wasmd query wasm contract-state smart $CONTRACT "$NAME_QUERY" --chain-id celeswasm --node http://127.0.0.1:26657 --output json
 ```
 
 You'll see the owner's address in a JSON response:
 
-```sh
+```bash
 {"data":{"address":"wasm1y9ceqvnsnm9xtcdmhrjvv4rslgwfzmrzky2c5z"}}
 ```
 

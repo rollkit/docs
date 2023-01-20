@@ -382,7 +382,7 @@ baseapp.SetIAVLDisableFastNode(cast.ToBool(appOpts.Get(server.FlagDisableIAVLFas
 
 Also, if you are on macOS, you will need to install md5sha1sum:
 
-```sh
+```bash
 brew install md5sha1sum
 ```
 
