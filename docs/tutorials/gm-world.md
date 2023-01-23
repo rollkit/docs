@@ -44,12 +44,12 @@ you will need to modify the script manually.
 
 - Operating systems: GNU/Linux, macOS, or Windows Subsystem for Linux (WSL)
   - Recommended GNU/Linux or macOS
-- [Golang](https://go.dev/)
-- [Ignite CLI v0.25.1](https://github.com/ignite/cli/)
-- [Homebrew](https://brew.sh/)
-- [wget](https://www.gnu.org/software/wget/)
-- [jq](https://stedolan.github.io/jq/)
-- [A Celestia Light Node](https://docs.celestia.org/nodes/light-node/)
+- [Golang](https://go.dev)
+- [Ignite CLI v0.25.1](https://github.com/ignite/cli)
+- [Homebrew](https://brew.sh)
+- [wget](https://www.gnu.org/software/wget)
+- [jq](https://stedolan.github.io/jq)
+- [A Celestia Light Node](https://docs.celestia.org/nodes/light-node)
 
 ### 🏃 Install Golang
 
@@ -208,7 +208,7 @@ Documentation: https://docs.ignite.com
 
 This command has created a Cosmos SDK blockchain in the `gm` directory. The
 `gm` directory contains a fully functional blockchain. The following standard
-Cosmos SDK [modules](https://docs.cosmos.network/main/modules/) have been
+Cosmos SDK [modules](https://docs.cosmos.network/main/modules) have been
 imported:
 
 - `staking` - for delegated Proof-of-Stake (PoS) consensus mechanism

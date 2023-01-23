@@ -45,8 +45,8 @@ in Cosmos-SDK, we recommend you go over the following tutorials
 in Ignite to understand all the different components in Cosmos-SDK before
 proceeding with this tutorial.
 
-* [GM World](./gm-world.md/) or [Hello, World](https://docs.ignite.com/guide/hello)
-* [Recipe Book](./recipe-book.md/) or [Blog and Module Basics](https://docs.ignite.com/guide/blog)
+* [GM World](./gm-world.md) or [Hello, World](https://docs.ignite.com/guide/hello)
+* [Recipe Book](./recipe-book.md) or [Blog and Module Basics](https://docs.ignite.com/guide/blog)
 * [Nameservice Tutorial](https://docs.ignite.com/guide/nameservice)
 * [Scavenger Hunt](https://docs.ignite.com/guide/scavenge)
 
@@ -110,7 +110,7 @@ our own blockchains for cosmos-sdk apps. It provides lots of
 power toolings and scaffoldings for adding messages, types,
 and modules with a host of cosmos-sdk libraries provided.
 
-You can read more about Ignite [here](https://docs.ignite.com/).
+You can read more about Ignite [here](https://docs.ignite.com).
 
 To install Ignite, you can run this command in your terminal:
 
@@ -229,7 +229,7 @@ Many modules exist for slashing, validating, auth.
 
 We will be using the `bank` module dependency for transactions.
 
-From the Cosmos-SDK docs, the [`bank`](https://docs.cosmos.network/main/modules/bank/)
+From the Cosmos-SDK docs, the [`bank`](https://docs.cosmos.network/main/modules/bank)
 module is defined as the following:
 
 > The bank module is responsible for handling multi-asset coin

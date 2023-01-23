@@ -7,7 +7,7 @@ description: Build a sovereign rollup with CosmWasm, Celestia, and Rollkit.
 # CosmWasm and Rollkit
 
 CosmWasm is a smart contracting platform built for the Cosmos
-ecosystem by making use of [WebAssembly](https://webassembly.org/) (Wasm)
+ecosystem by making use of [WebAssembly](https://webassembly.org) (Wasm)
 to build smart contracts for Cosmos-SDK. In this tutorial, we will be
 exploring how to integrate CosmWasm with Celestia's
 [Data Availability Layer](https://docs.celestia.org/concepts/how-celestia-works/data-availability-layer)
@@ -34,7 +34,7 @@ you will need to modify the script manually.
 
 :::
 
-You can learn more about CosmWasm [here](https://docs.cosmwasm.com/docs/1.0/).
+You can learn more about CosmWasm [here](https://docs.cosmwasm.com/docs/1.0).
 
 In this tutorial, we will going over the following:
 
@@ -129,9 +129,9 @@ info: installing component 'rust-std' for 'wasm32-unknown-unknown'
 We will be using Docker later in this tutorial for compiling a smart contract
 to use a small footprint. We recommend installing Docker on your machine.
 
-Examples on how to install it on Linux are found [here](https://docs.docker.com/engine/install/ubuntu/).
+Examples on how to install it on Linux are found [here](https://docs.docker.com/engine/install/ubuntu).
 Find the right instructions specific for
-[your OS here](https://docs.docker.com/engine/install/).
+[your OS here](https://docs.docker.com/engine/install).
 
 ### wasmd Installation
 

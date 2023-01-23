@@ -15,7 +15,7 @@ in order to build Ethereum-based applications.
 In this tutorial, we will be going over how to use Rollkit to deploy
 an Ethereum-based sovereign rollup that uses Cosmos-SDK and Ethermint.
 
-You can learn more about Ethermint [here](https://docs.ethermint.zone/).
+You can learn more about Ethermint [here](https://docs.ethermint.zone).
 
 :::tip note
 This tutorial will explore developing with Rollkit,
@@ -261,7 +261,7 @@ Ethereum node, similar to Ganache or Hardhat Network.
 
 We'll use all three to create, test, and deploy our Solidity project.
 
-> To learn more about Foundry, check out the [Foundry Book](https://book.getfoundry.sh/).
+> To learn more about Foundry, check out the [Foundry Book](https://book.getfoundry.sh).
 
 ### Getting started
 

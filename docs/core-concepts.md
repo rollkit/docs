@@ -11,7 +11,7 @@ build rollups using an SDK.
 
 :::tip Tip
 If you're familiar with Rollkit's core concepts, you may want to skip to the
-[tutorials section](./category/tutorials/)
+[tutorials section](./category/tutorials)
 :::
 
 ## Rollups
@@ -45,7 +45,7 @@ that we covered in the introduction.
 
 If you want to learn more, we recommend Vitalik Buterin's
 [An Incomplete Guide to Rollups](https://vitalik.ca/general/2021/01/05/rollup.html)
-read this [The Complete Guide to Rollups](https://members.delphidigital.io/reports/the-complete-guide-to-rollups/)
+read this [The Complete Guide to Rollups](https://members.delphidigital.io/reports/the-complete-guide-to-rollups)
 by Jon Charbonneau from Delphi Digital.
 
 ## Modular Rollups
@@ -141,7 +141,7 @@ to contain intermediate state roots, reflecting the state of SMT after every
 transaction.
 
 :::danger
-Rollkit [does not yet support fraud proofs](./rollkit-stack.md/).
+Rollkit [does not yet support fraud proofs](./rollkit-stack.md).
 :::
 
 ## Leader Selection

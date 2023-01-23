@@ -1,6 +1,6 @@
 # Rollkit docs
 
-Rollkit Docs are built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+Rollkit Docs are built using [Docusaurus 2](https://docusaurus.io), a modern static website generator.
 
 ## Installation
 
