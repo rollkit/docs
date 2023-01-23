@@ -18,6 +18,5 @@ You can get started with the following tutorials:
 - [Wordle Game](./wordle.md)
 - [CosmWasm Tutorial](https://rollkit.dev/docs/tutorials/cosmwasm)
 - [Ethermint Tutorial](https://rollkit.dev/docs/tutorials/ethermint)
-- [Full-Stack Modular Dapp by Celestia Labs](https://docs.celestia.org/developers/full-stack-modular-development-guide)
-- Coming Soon - Fuelmint Tutorial by Celestia Labs
-- Coming Soon - Optimism Tutorial by Celestia Labs
+- [Full-Stack Modular Dapp by Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
+- Coming Soon - Fuelmint Tutorial by Celestia
