@@ -11,7 +11,7 @@ build rollups using an SDK.
 
 :::tip Tip
 If you're familiar with Rollkit's core concepts, you may want to skip to the
-[tutorials section](/docs/category/tutorials)
+[tutorials section](../docs/category/tutorials)
 :::
 
 ## Rollups

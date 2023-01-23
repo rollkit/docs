@@ -432,6 +432,6 @@ We will get the following JSON response:
 text: gm world!
 ```
 
-![4.png](/img/tutorials/gm/4.png)
+![4.png](../../static/img/tutorials/gm/4.png)
 
 Congratulations 🎉 you've successfully built your first rollup and queried it!
