@@ -48,7 +48,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`Build modular with ${siteConfig.title}`}
-      description="The first modular development kit for building sovereign rollups">
+      description="A modular development kit for building rollup chains.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

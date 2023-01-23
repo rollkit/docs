@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 sidebar_label: Rollkit Stack
-description: Intro to Rollkit's stack, the first modular development kit for building sovereign rollups.
+description: Intro to Rollkit's stack, a modular development kit for building rollup chains.
 ---
 
 # The Rollkit Stack

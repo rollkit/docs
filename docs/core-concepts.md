@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 sidebar_label: Core Concepts
-description: Getting started with Rollkit, the first modular development kit for building sovereign rollups.
+description: Getting started with Rollkit, a modular development kit for building rollup chains.
 ---
 
 # Core Concepts
