@@ -7,9 +7,9 @@ description: Intro to Rollkit, a modular development kit for building rollup cha
 # Introduction to Rollkit
 
 Rollkit is a modular development kit for anyone to easily deploy their own
-blockchain with minimal overhead. It solves the problem of bootstrapping a
-secure and decentralized validator set while removing the burden of maintaining
-a new consensus network.
+rollup chain with minimal overhead. The rollup developer has the freedom to
+choose which consensus and data availability layer they will secure the
+network with and the freedom to deploy anywhere in the modular stack.
 
 Rollkit provides developers with a [modular design](./core-concepts.md) to enable
 a truly flexible development process. Importantly, Rollkit rollups are
