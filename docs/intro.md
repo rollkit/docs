@@ -67,12 +67,9 @@ to other applications, proofs settlement and other benefits.
 
 ## Developer Pain Points
 
-1. If a developer wants to build a monolithic blockchain using a template,
-like the Cosmos SDK, they need to bootstrap a decentralized validator set
-and maintain the overhead of a consensus network.
-2. If a developer wants to build a rollup using an SDK, they currently have
-no options. Their only choices are to fork an existing rollup or build their
-own from scratch.
+1. **Sovereignty**: Building rollups and applications on top of monolithic L1 deprive developers and communities from forking their chain, causing them to lose their sovereignty.
+2. **Scalability**: Rollups sharing the same monolithic L1 are competing against each other for limited block space.
+3. **Security**: Developers building app-chains using a certain SDK will have to bootstrap a decentralized validator set to secure their chain.
 
 If you're a developer who wants to:
 
