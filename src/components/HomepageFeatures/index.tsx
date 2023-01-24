@@ -41,7 +41,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/1f512.svg').default,
     description: (
       <>
-        Rollups inherit security from the validators of the consensus and data availability layer
+        Rollups inherit security from the consensus and data availability layer
       </>
     ),
   },
