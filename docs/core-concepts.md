@@ -16,28 +16,16 @@ If you're familiar with Rollkit's core concepts, you may want to skip to the
 
 ## Rollups
 
-A blockchain rollup is a type of scalability solution for blockchain networks.
-It allows multiple transactions to be bundled or “rolled up” into a single
-transaction, which is then added to the base-layer blockchain. This can greatly
-increase the transaction throughput of the network, allowing it to process more
-transactions in a given time period.
-
-One key feature of a blockchain rollup is that it maintains the security of the
-underlying blockchain, since the bundled transactions are still
-cryptographically linked to the base-layer blockchain. This allows users to
-trust that their transactions will be processed securely, even as the network
-scales.
-
-Another key advantage of a blockchain rollup is that it can be implemented
-without changing the underlying, base-layer blockchain protocol. This means
-that the existing blockchain networks can potentially benefit from the
-increased scalability of a rollup without having to undergo a hard fork
-(or spoon).
-
-Overall, a blockchain rollup is a promising solution for improving the
-scalability of blockchain networks and application-specific blockchains,
-often known as rollups, allowing them to process more transactions and
-support a larger number of users.
+A rollup is a blockchain that uses another chain as its consensus and data
+availability (DA) layer, but does execution off-chain to the consensus and
+DA chain. The rollup inherits security from the consensus and DA layer, by
+making transactions available for fraud proofs and optimistic rollups, or
+making state accessible for zero knowledge (ZK) rollups. Rollups are able
+to implement unique execution environments without needing a new Layer 1
+blockchain, such as Fuelmint, CosmWasm, and Ethermint. Scalability for
+rollups is enabled by outsourcing computation off-chain to the L1, and
+avoiding the rollups need to share computational resources to other
+applications or rollups.
 
 The downside to using traditional, monolithic rollups is that there are
 existing [developer pain points](./intro.md#developer-pain-points)
