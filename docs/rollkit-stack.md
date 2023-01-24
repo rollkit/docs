@@ -8,23 +8,26 @@ description: Intro to Rollkit's stack, a modular development kit for building ro
 
 This section will cover the technical stack of Rollkit.
 
-Rollkit is built by replacing Tendermint, the Cosmos-SDK Consensus Layer,
-with a drop-in replacement that communicates directly with Celestia's Data
-Availability (DA) and Consensus Layer. Our version of Tendermint is designed
+Rollkit is built by replacing Tendermint, the Cosmos consensus mechanism,
+with a drop-in replacement that communicates directly with a modular (pluggable)
+consensus and data availability (DA) layer. Rollkit is designed
 to work seamlessly with other modular layers, allowing for greater flexibility
-and adaptability.
+and adaptability. The tutorials in this documentation are built with Celestia,
+but any consensus and DA layer can be used with Rollkit.
 
-It spins up a sovereign rollup, which collects transactions into blocks and
+It spins up a rollup, which collects transactions into blocks and
 posts them onto Celestia for DA and Consensus.
 
-The goal of Rollkit is to enable anyone to design and deploy a sovereign
-rollup on Celestia in minutes with minimal overhead.
+The goal of Rollkit is to enable anyone to design and deploy a
+rollup on any DA layer with minimal overhead. Rollkit aims to be a neutral
+public good for building any kind of rollup.
 
 Furthermore, while Rollkit allows you to build sovereign rollups on Celestia,
 it currently does not support fraud proofs yet and is therefore running in
 "pessimistic" mode, where nodes would need to re-execute the transactions
 to check the validity of the chain (i.e. a full node). Furthermore, Rollkit
-currently only supports a single sequencer.
+currently only supports a single sequencer. The Rollkit team has an MVP for
+fraud proofs for Cosmos SDK.
 
 :::tip Tip
 If you're familiar with Rollkit's stack, you may want to skip to the [tutorials section](../category/tutorials)
@@ -55,9 +58,9 @@ nonce/sequence number). This behaviour is similar to the Tendermint mempool.
 ### Light node
 
 Light nodes are the main producer of transactions in the Rollkit network.
-They participate in gossiping of and fraud proofs. Light nodes may only
-request or store a subset of the state, just to ensure that they can execute
-rollback.
+They participate in gossiping of fraud proofs. Light nodes may only
+request or store a subset of the state, so they can query chain balances
+and perform other state checks.
 
 ### Full node
 
@@ -66,9 +69,10 @@ for producing blocks and fraud proofs. They also create a link between the
 Rollkit network and the DA and Consensus Layer, by pushing aggregates to
 the DA and Consensus Layer.
 
-<!-- ### Sequencer
+### Sequencer node
 
-soonᵀᴹ -->
+Sequencer nodes are a node type that is responsible for ordering and
+sequencing transactions for the rollup.
 
 <!-- ### Super light node
 
