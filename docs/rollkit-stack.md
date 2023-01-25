@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 sidebar_label: Rollkit Stack
-description: Intro to Rollkit's stack, a modular development kit for building rollup chains.
+description: Intro to Rollkit's stack, a modular rollup framework.
 ---
 
 # The Rollkit Stack

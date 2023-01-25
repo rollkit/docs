@@ -1,12 +1,16 @@
 ---
 sidebar_position: 1
 sidebar_label: Introduction
-description: Intro to Rollkit, a modular development kit for building rollup chains.
+description: Intro to Rollkit, a modular rollup framework.
 ---
 
 # Introduction to Rollkit
 
-Rollkit is a modular development kit for anyone to easily deploy their own
+Rollkit is a modular rollup framework that gives developers the freedom to
+deploy throughout the modular stack, opening new possibilities of rapid
+experimentation and innovation.
+
+Rollkit allows anyone to easily deploy their own
 rollup chain with minimal overhead. The rollup developer has the freedom to
 choose which consensus and data availability layer they will secure the
 network with and the freedom to deploy anywhere in the modular stack.
