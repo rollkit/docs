@@ -6,12 +6,6 @@ description: Build a sovereign rollup with Ignite CLI, Celestia and Rollkit.
 
 # GM World
 
-## What is GM?
-
-GM means good morning. It's GM o'clock somewhere, so there's never a bad time
-to say GM, Gm, or gm. You can think of "GM" as the new version of
-"hello world".
-
 ## ☀️ Introduction
 
 In this tutorial, we will build a sovereign `gm world` rollup using Rollkit
@@ -46,7 +40,13 @@ If you choose to use Arabica Devnet,
 you will need to modify the script manually.
 :::
 
-## Setup
+### 🤔 What is GM?
+
+GM means good morning. It's GM o'clock somewhere, so there's never a bad time
+to say GM, Gm, or gm. You can think of "GM" as the new version of
+"hello world".
+
+## 🛠️ Setup
 
 - Operating systems: GNU/Linux, macOS, or Windows Subsystem for Linux (WSL)
   - Recommended GNU/Linux or macOS
