@@ -10,6 +10,12 @@ Rollkit is a modular rollup framework that gives developers the freedom to
 deploy throughout the modular stack, opening new possibilities of rapid
 experimentation and innovation.
 
+Rollkit was built by replacing Tendermint, the Cosmos-SDK Consensus Layer,
+with a drop-in replacement that communicates directly a Data Availability
+(DA) and Consensus Layer of the developer's choosing. Rollkit is designed
+to work seamlessly with other modular layers, allowing for greater
+flexibility and adaptability.
+
 Rollkit allows anyone to easily deploy their own
 rollup chain with minimal overhead. The rollup developer has the freedom to
 choose which consensus and data availability layer they will secure the
