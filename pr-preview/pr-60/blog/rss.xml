@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Rollkit Blog</title>
+        <link>https://rollkit.dev/pr-preview/pr-60/blog</link>
+        <description>Rollkit Blog</description>
+        <lastBuildDate>Fri, 13 Jan 2023 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[Coming Soon]]></title>
+            <link>https://rollkit.dev/pr-preview/pr-60/blog/coming-soon</link>
+            <guid>coming-soon</guid>
+            <pubDate>Fri, 13 Jan 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Introducing Rollkit]]></description>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="introducing-rollkit">Introducing Rollkit<a class="hash-link" href="#introducing-rollkit" title="Direct link to heading">​</a></h2><p>You can read more on our blog post <a href="https://blog.celestia.org" target="_blank" rel="noopener noreferrer">here</a>.</p>]]></content:encoded>
+            <category>docusaurus</category>
+        </item>
+    </channel>
+</rss>
