@@ -8,13 +8,6 @@ description: Intro to Rollkit's stack, a modular rollup framework.
 
 This section will cover the technical stack of Rollkit.
 
-Rollkit is built by replacing Tendermint, the Cosmos consensus mechanism,
-with a drop-in replacement that communicates directly with a modular (pluggable)
-consensus and data availability (DA) layer. Rollkit is designed
-to work seamlessly with other modular layers, allowing for greater flexibility
-and adaptability. The tutorials in this documentation are built with Celestia,
-but any consensus and DA layer can be used with Rollkit.
-
 It spins up a rollup, which collects transactions into blocks and
 posts them onto Celestia for DA and Consensus.
 
