@@ -39,28 +39,3 @@ monolithic L1 deprive developers and communities from forking their
 chain, causing them to lose their sovereignty.
 2. **Scalability**: Modular DA layers such as Celestia provide abundant blockspace, without sacrificing security. User fees remain affordable, even under very high loads.
 3. **Security**: Unlike app chains, sovereign roll-ups can immediately benefit from the security of their DA layer, rather than needing to bootstrap security from their own validator set, token, and inflationary rewards.
-
-## Modular Blockchains
-
-A modular blockchain is a type of blockchain that specializes in only a few
-functions, rather than all of them. The key functions are:
-
-1. Execution
-2. Settlement
-3. Consensus
-4. Data availability
-
-Modular blockchains are arranged as a modular stack, with each blockchain in
-the stack referred to as a “layer”. Since modular blockchains only provided
-a subset of the key functions, this enables them to to be purpose-built for
-the functions it provides.
-
-For example, Celestia is a consensus and data availability layer as it only
-provides ordering over transactions (consensus) and verifying that their data
-is available.
-
-Rollkit is as a developer toolkit to bootstrap a sequencer and execution layer
-for developers to build their own modular rollups on using Celestia or another
-layer for Data Availability and Consensus.
-
-Now, you're ready to dive deeper into the core concepts of Rollkit.
