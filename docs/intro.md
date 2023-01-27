@@ -29,22 +29,6 @@ Rollkit is being developed as an open-source public good.
 If you're familiar with Rollkit, you may want to skip to the [tutorials section](../category/tutorials)
 :::
 
-## Main Components of Rollkit
-
-### 1. Build rollups using an SDK
-
-Easily deploy a new rollup using a ready-made template.
-
-### 2. Compatible with multiple VMs
-
-Rollkit sovereign rollups can plug in any Virtual Machine (VM) compatible
-with the ABCI interface.
-
-### 3. Develop with modular software
-
-Rollkit is built for developers to easily modify or replace components
-of the rollup, unlocking a more flexible development process.
-
 ## Use Cases
 
 Rollkit can be used to deploy modular infrastructure pieces, or
