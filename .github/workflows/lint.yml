@@ -16,5 +16,5 @@ jobs:
           node-version: 16.x
           cache: npm
       - run: yarn install --frozen-lockfile
-      - run: yarn run lint
-      - run: yarn run lint-mdx
+      - run: yarn run lint --rule 'md013:false'
+      - run: yarn run lint-mdx --rule 'md013:false'

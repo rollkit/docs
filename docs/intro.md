@@ -10,13 +10,7 @@ Rollkit is a modular rollup framework that gives developers the freedom to
 deploy throughout the modular stack, opening new possibilities of rapid
 experimentation and innovation.
 
-Rollkit is built by replacing Tendermint, the Cosmos consensus mechanism,
-with a drop-in replacement that communicates directly with a modular (pluggable)
-consensus and data availability (DA) layer. Rollkit is designed
-to work seamlessly with other modular layers, allowing for greater flexibility
-and adaptability. The tutorials in this documentation are built with Celestia,
-but any consensus and DA layer can be used with Rollkit. Rollkit is ABCI
-compatible.
+Rollkit is built by replacing Tendermint, the Cosmos consensus mechanism, with a drop-in replacement that communicates directly with a modular (pluggable) consensus and data availability (DA) layer. Rollkit is designed to work seamlessly with other modular layers, allowing for greater flexibility and adaptability. The tutorials in this documentation are built with Celestia, but any consensus and DA layer can be used with Rollkit. Rollkit is ABCI-compatible.
 
 Rollkit allows anyone to easily deploy their own
 rollup chain with minimal overhead. The rollup developer has the freedom to
