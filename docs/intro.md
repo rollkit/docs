@@ -19,10 +19,6 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 :::
 
 ## Use Cases
-
-Rollkit can be used to deploy modular infrastructure pieces, or
-all the way up the stack to deploy app-chains.
-
 ### Build an App-Specific Roll-up with Cosmos-SDK
 Cosmos-SDK, and its extensive documentation and tooling may be used to create a Rollkit-compatible blockchain app.
 
