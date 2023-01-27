@@ -37,5 +37,6 @@ Create a generalized roll-up chain, to run many apps or settle other roll-ups.
 1. **Sovereignty**: Building rollups and applications on top of
 monolithic L1 deprive developers and communities from forking their
 chain, causing them to lose their sovereignty.
-2. **Scalability**: Modular DA layers such as Celestia provide abundant blockspace, without sacrificing security. User fees remain affordable, even under very high loads.
+2. **Scalability**: Modular DA layers such as Celestia provide abundant blockspace, without sacrificing security. Fees remain affordable, even under very high loads.
 3. **Security**: Unlike app chains, sovereign roll-ups can immediately benefit from the security of their DA layer, rather than needing to bootstrap security from their own validator set, token, and inflationary rewards.
+4. **Light Clients**: users of roll-ups can be first-class users, even on low-resource devices, thanks to fraud or validity proofs, and DA sampling.
