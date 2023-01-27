@@ -10,12 +10,10 @@ Rollkit is a modular rollup framework that gives developers the freedom to
 deploy throughout the modular stack, opening new possibilities of rapid
 experimentation and innovation.
 
-Rollkit is a drop-in replacement for Tendermint for any compatible blockchain. It communicates directly with modular (pluggable) consensus and data availability (DA) layers. Rollkit is designed to work seamlessly with other modular layers, allowing for greater flexibility and adaptability. The tutorials in this documentation are built with Celestia, but any consensus and DA layer can be used with Rollkit. Rollkit is ABCI-compatible.
+Rollkit is a drop-in replacement for Tendermint for any ABCI-compatible blockchain. The tutorials are on-top of Celestia, bit it is compatible with any modular DA and consensus layer.
 
 Rollkit allows anyone to easily deploy their own
-rollup chain with minimal overhead. The rollup developer has the freedom to
-choose which consensus and data availability layer they will secure the
-network with and the freedom to deploy anywhere in the modular stack.
+rollup chain with minimal overhead, anywhere in the modular stack.
 
 Rollkit provides developers with a modular design to enable
 a truly flexible development process. Importantly, Rollkit rollups are
