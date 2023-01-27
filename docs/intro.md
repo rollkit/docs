@@ -22,12 +22,8 @@ a truly flexible development process. Importantly, Rollkit rollups are
 [sovereign by default](./rollkit-stack.md), enabling communities to use their
 sovereign rollup as a coordination mechanism.
 
-We’re building Rollkit as an open-source public good.
-As it stands, [Celestia Labs](https://celestia.org) will be the core maintainer
-to boostrap, develop, and fund R&D for Rollkit.
-We want to see
-a future where multiple independent teams and organizations
-are able to contribute to Rollkit.
+Rollkit is being developed as an open-source public good.
+[Celestia Labs](https://celestia.org) develops, maintains, and funds R&D for Rollkit, and contributions from other independent teams and organizations are welcome!
 
 :::tip Tip
 If you're familiar with Rollkit, you may want to skip to the [tutorials section](../category/tutorials)
