@@ -8,19 +8,7 @@ description: Intro to Rollkit's stack, a modular rollup framework.
 
 This section will cover the dependencies and customizeable components of Rollkit.
 
-It spins up a rollup, which collects transactions into blocks and
-posts them onto Celestia for DA and Consensus.
-
-The goal of Rollkit is to enable anyone to design and deploy a
-rollup on any DA layer with minimal overhead. Rollkit aims to be a neutral
-public good for building any kind of rollup.
-
-Furthermore, while Rollkit allows you to build sovereign rollups on Celestia,
-it currently does not support fraud proofs yet and is therefore running in
-"pessimistic" mode, where nodes would need to re-execute the transactions
-to check the validity of the chain (i.e. a full node). Furthermore, Rollkit
-currently only supports a single sequencer. The Rollkit team has an MVP for
-fraud proofs for Cosmos SDK.
+Roll-up sequencer nodes collect transactions from users, aggregate them into blocks, and post the blocks onto Celestia (or other DA layer) to be ordered and finalized. Full nodes execute and verify roll-up blocks, and propagate fraud-proofs when needed. Light clients receive headers, verify fraud proofs, and can authenticate trust-minimized queries about the state.
 
 :::tip Tip
 If you're familiar with Rollkit's stack, you may want to skip to the [tutorials section](../category/tutorials)
