@@ -17,7 +17,7 @@ rollup chain with minimal overhead. The rollup developer has the freedom to
 choose which consensus and data availability layer they will secure the
 network with and the freedom to deploy anywhere in the modular stack.
 
-Rollkit provides developers with a [modular design](./core-concepts.md) to enable
+Rollkit provides developers with a modular design to enable
 a truly flexible development process. Importantly, Rollkit rollups are
 [sovereign by default](./rollkit-stack.md), enabling communities to use their
 sovereign rollup as a coordination mechanism.
