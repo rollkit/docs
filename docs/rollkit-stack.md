@@ -12,7 +12,7 @@ It spins up a rollup, which collects transactions into blocks and
 posts them onto Celestia for DA and Consensus.
 
 The goal of Rollkit is to enable anyone to design and deploy a
-rollup on any DA layer with minimal overhead. Rollkit aims to be a neutral
+rollup on any DA layer with minimal overhead. Rollkit aims to be a credibly neutral
 public good for building any kind of rollup.
 
 Furthermore, while Rollkit allows you to build sovereign rollups on Celestia,
