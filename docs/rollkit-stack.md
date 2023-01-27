@@ -6,7 +6,7 @@ description: Intro to Rollkit's stack, a modular rollup framework.
 
 # The Rollkit Stack
 
-This section will cover the technical stack of Rollkit.
+This section will cover the dependencies and customizeable components of Rollkit.
 
 It spins up a rollup, which collects transactions into blocks and
 posts them onto Celestia for DA and Consensus.

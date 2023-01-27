@@ -9,7 +9,7 @@ description: Intro to Rollkit, a modular rollup framework.
 Rollkit is a rollup framework that gives developers the freedom to
 deploy roll-up blockchains throughout the modular stack with minimal overhead, opening new possibilities for rapid experimentation and innovation.
 
-Rollkit is a drop-in replacement for Tendermint for any [ABCI-compatible](https://github.com/tendermint/abci/blob/master/specification.md) blockchain. The tutorials utilize Celestia, but it is compatible with any modular DA layer.
+Rollkit is a drop-in replacement for Tendermint for any [ABCI-compatible](https://github.com/tendermint/abci/blob/master/specification.md) blockchain app. The tutorials utilize Celestia, but it is compatible with any modular DA layer.
 
 Rollkit is being developed as an open-source public good.
 [Celestia Labs](https://celestia.org) develops, maintains, and funds R&D for Rollkit, and contributions from other independent teams and organizations are welcome!
