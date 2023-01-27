@@ -7,9 +7,9 @@ description: Intro to Rollkit, a modular rollup framework.
 # Introduction to Rollkit
 
 Rollkit is a modular rollup framework that gives developers the freedom to
-deploy roll-up blockchains throughout the modular stack with minimal overhead, opening new possibilities of rapid experimentation and innovation.
+deploy roll-up blockchains throughout the modular stack with minimal overhead, opening new possibilities for rapid experimentation and innovation.
 
-Rollkit is a drop-in replacement for Tendermint for any ABCI-compatible blockchain. The tutorials utilize Celestia, but it is compatible with any modular DA and consensus layer.
+Rollkit is a drop-in replacement for Tendermint for any ABCI-compatible blockchain. The tutorials utilize Celestia, but it is compatible with any modular DA layer.
 
 Rollkit is being developed as an open-source public good.
 [Celestia Labs](https://celestia.org) develops, maintains, and funds R&D for Rollkit, and contributions from other independent teams and organizations are welcome!
@@ -23,41 +23,22 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 Rollkit can be used to deploy modular infrastructure pieces, or
 all the way up the stack to deploy app-chains.
 
-### Build a sovereign rollup
+### Build an App-Specific Roll-up with Cosmos-SDK
+Cosmos-SDK, and its extensive documentation and tooling may be used to create a Rollkit-compatible blockchain app.
 
-Follow the [Ethermint tutorial](./tutorials/ethermint.md) to
-build an EVM sovereign rollup that leverages
-Celestia for data availability and consensus.
+### Build a Roll-up with other virtual machines
+Any ABCI-comptabile state machine may be used with Rollkit, or roll-up your sleeves and build your own VM!
 
-### Build an app-chain
+### Build a settlement Layer
+Create a generalized roll-up chain, to run many apps or settle other roll-ups.
 
-Rollkit could also be used to build app-chains. From an NFT
-marketplace, to a DEX, to a DAO -- Rollkit covers it all.
-
-### Build a settlement layer
-
-Developers can now deploy a settlement layer that will be deployed
-on by applications looking to get direct access to liquidity, bridging
-to other applications, proofs settlement and other benefits.
-
-## Developer Pain Points
+## Roll-up Benefits
 
 1. **Sovereignty**: Building rollups and applications on top of
 monolithic L1 deprive developers and communities from forking their
 chain, causing them to lose their sovereignty.
-2. **Scalability**: Rollups sharing the same monolithic L1 are competing
-against each other for limited block space.
-3. **Security**: Developers building app-chains using a certain SDK will
-have to bootstrap a decentralized validator set to secure their chain.
-
-If you're a developer who wants to:
-
-- deploy a chain for your application
-- build a new blockchain in general
-- build a rollup
-- build a chain for your sovereign community
-
-You've come to the right place.
+2. **Scalability**: Modular DA layers such as Celestia provide abundant blockspace, without sacrificing security. User fees remain affordable, even under very high loads.
+3. **Security**: Unlike app chains, sovereign roll-ups can immediately benefit from the security of their DA layer, rather than needing to bootstrap security from their own validator set, token, and inflationary rewards.
 
 ## Modular Blockchains
 
