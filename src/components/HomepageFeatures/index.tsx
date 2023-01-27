@@ -10,20 +10,11 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Deploy',
-    Svg: require('@site/static/img/1f680.svg').default,
+    title: 'Secure',
+    Svg: require('@site/static/img/1f512.svg').default,
     description: (
       <>
-        Rollups deployed with a few lines of code
-      </>
-    ),
-  },
-  {
-    title: 'Sovereign',
-    Svg: require('@site/static/img/1f306.svg').default,
-    description: (
-      <>
-        Rollups can fork like any L1
+        Rollups inherit security from the consensus and data availability layer
       </>
     ),
   },
@@ -37,11 +28,20 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Secure',
-    Svg: require('@site/static/img/1f512.svg').default,
+    title: 'Sovereign',
+    Svg: require('@site/static/img/1f306.svg').default,
     description: (
       <>
-        Rollups inherit security from the consensus and data availability layer
+        Rollups can fork like any L1
+      </>
+    ),
+  },
+  {
+    title: 'Easy to Deploy',
+    Svg: require('@site/static/img/1f680.svg').default,
+    description: (
+      <>
+        Rollups deployed with a few lines of code
       </>
     ),
   },
