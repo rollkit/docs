@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Rollkit',
-  tagline: 'A modular rollup framework.',
+  tagline: 'A modular framework for rollups.',
   url: 'https://rollkit.dev',
   baseUrl: process.env.BASE_URL || '/',
   onBrokenLinks: 'throw',

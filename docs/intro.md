@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 sidebar_label: Introduction
-description: Intro to Rollkit, a modular rollup framework.
+description: Intro to Rollkit, a modular framework for rollups.
 ---
 
 # Introduction to Rollkit

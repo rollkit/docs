@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 sidebar_label: Rollkit Stack
-description: Intro to Rollkit's stack, a modular rollup framework.
+description: Intro to Rollkit's stack, a modular framework for rollups.
 ---
 
 # The Rollkit Stack
