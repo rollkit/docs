@@ -32,7 +32,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/1f306.svg').default,
     description: (
       <>
-        Rollups can fork like any L1
+        Freedom to configure the execution environment
       </>
     ),
   },
