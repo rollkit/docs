@@ -44,11 +44,7 @@ nonce/sequence number). This behaviour is similar to the Tendermint mempool.
 
 ## Rollkit Node Types
 
-<!-- Drafting all node types -->
-
 ### Sequencer node
-
-<!-- Drafting: sequencer/aggregator nodes that bundles the transactions (rollup) to create a rollup block to be submitted to base layer for data availability -->
 
 Some roll-ups utilize _sequencer nodes_. Sequencers are the main block producers for rollups, respoonsible for aggregating transactions into blocks, and typically executing transactions to produce a state root, securing the rollup's light clients.
 
@@ -56,20 +52,17 @@ Rollkit plans to support multiple different pluggable sequencer schemes:
 
 |                                | Deploy in one-click                  | Faster soft-confirmations than L1 | Control over rollup's transaction ordering | Atomic Composability with other Rollups | Censorship resistance | Implementation Status |
 |--------------------------------|--------------------------------------|-----------------------------------|--------------------------------------------|-----------------------------------------|-----------------------|-----------------------|
-| Centralized Sequencer          | Requires spinning up a sequencer     | Yes                               | Yes                                        | No                                      | Eventual              | Implemented!          |
-| Decentralized Sequencer        | Requires spinning up a sequencer set | Yes                               | Yes                                        | No                                      | Real-time             | Coming soon           |
-| Shared Decentralized Sequencer | Yes                                  | Yes                               | No                                         | Yes                                     | Real-time             | Coming soon           |
-| Pure Fork-Choice Rule          | Yes                                  | No                                | Maybe                                      | Maybe                                   | Eventual              | Coming soon           |
+| Centralized Sequencer          | Requires spinning up a sequencer     | Yes ✅                               | Yes ✅                                        | No ❌                                      | Eventual ⏳              | Implemented! ✅          |
+| Decentralized Sequencer        | Requires spinning up a sequencer set | Yes ✅                               | Yes ✅                                        | No ❌                                      | Real-time ⚡️             | Coming soon 🟢           |
+| Shared Decentralized Sequencer | Yes ✅                                  | Yes ✅                               | No ❌                                         | Yes ✅                                     | Real-time ⚡️             | Coming soon 🟢           |
+| Pure Fork-Choice Rule          | Yes ✅                                  | No ❌                                | Maybe 🟡                                      | Maybe 🟡                                   | Eventual ⏳              | Coming soon 🟢           |
 
 ### Full node
-
-<!-- Drafting: full nodes for maintaining and serving the rollup -->
 
 Full nodes verify all blocks and can produce fraud proofs for optimistic rollups. Since they fully validate all rollup blocks, they don't rely on fraud or validity proofs for security.
 
 ### Light node
 
-<!-- Drafting: light nodes that help validate the rollup transactions -->
 Light nodes are light-weight rollup nodes that authenticate block headers, and are secured by fraud proofs or validity proofs. They're recommended for average users on low-resource devices. Users running light nodes can make trust-minimized queries about the rollup's state.
 
 ## Block-Manager
