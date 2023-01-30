@@ -40,7 +40,13 @@ If you choose to use Arabica Devnet,
 you will need to modify the script manually.
 :::
 
-## Setup
+### 🤔 What is GM?
+
+GM means good morning. It's GM o'clock somewhere, so there's never a bad time
+to say GM, Gm, or gm. You can think of "GM" as the new version of
+"hello world".
+
+## 🛠️ Setup
 
 - Operating systems: GNU/Linux, macOS, or Windows Subsystem for Linux (WSL)
   - Recommended GNU/Linux or macOS
@@ -232,8 +238,8 @@ Most of our work in this tutorial will happen in the `x` directory.
 To swap out Tendermint for Rollkit, run the following command:
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.7-rollmint-v0.5.0-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221013213714-8be9b54c8c21
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/rollkit@v0.46.7-rollkit-v0.5.0-no-fraud-proofs
+go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/tendermint@v0.34.22-0.20221013213714-8be9b54c8c21
 go mod tidy
 go mod download
 ```
