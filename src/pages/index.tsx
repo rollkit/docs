@@ -17,7 +17,7 @@ function HomepageHeader() {
            <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Build Modular
+            Learn More
           </Link>
           {/* <Link
             className="front-page-link"
