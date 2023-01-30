@@ -6,8 +6,12 @@ description: Intro to Rollkit, a modular framework for rollups.
 
 # Introduction to Rollkit
 
+## What is Rollkit?
+
 Rollkit is a rollup framework that gives developers the freedom to
 deploy roll-up blockchains throughout the modular stack with minimal overhead, opening new possibilities for rapid experimentation and innovation.
+
+<!-- Draft: Rollkit is a framework designed to ease the development and deployment of modular blockchains, specifically the execution layers of the modular blockchain stack (aka rollups) (link to celestia article). -->
 
 Rollkit is a drop-in replacement for Tendermint for any [ABCI-compatible](https://github.com/tendermint/abci/blob/master/specification.md) blockchain app. The tutorials utilize Celestia, but it is compatible with any modular DA layer.
 
@@ -18,7 +22,19 @@ Rollkit is being developed as an open-source public good.
 If you're familiar with Rollkit, you may want to skip to the [tutorials section](../category/tutorials)
 :::
 
+## Why is Rollkit necessary?
+
+Today, rollups are built either on top of a monolithic base layer or as independent app-chains. Rollups using a monolithic base layer inherit security but lack scalability due to competition for limited block space. They also lack sovereignty to choose and customize execution environment. App-chains are sovereign but require managing security through a decentralized network of validators and are not fully modular as they handle consensus and settlement.
+
+Rollups built with Rollkit are secured by the base layer, unlike app-chains which require establishing a decentralized network of validators for security. They are scalable because of the modular base layer, which does not have the issue of competing for limited block space as with a monolithic base layer. Additionally, they are sovereign, providing freedom to choose and configure execution environments.
+
+Furthermore, building and deploying rollups requires minimal development effort.
+
+<!-- Drafting: elaborate more on security, scalability, sovereignity, and ease of deloyment factors -->
+
 ## Use Cases
+
+<!-- Drafting: envisioned usecases -->
 
 ### Build a Roll-up with any Virtual Machine
 
@@ -40,6 +56,14 @@ chain, causing them to lose their sovereignty.
 2. **Scalability**: Modular DA layers such as Celestia provide abundant blockspace, without sacrificing security. Fees remain affordable, even under very high loads.
 3. **Security**: Unlike app chains, sovereign roll-ups can immediately benefit from the security of their DA layer, rather than needing to bootstrap security from their own validator set, token, and inflationary rewards.
 4. **Light Clients**: users of roll-ups can be first-class users, even on low-resource devices, thanks to fraud or validity proofs, and DA sampling.
+
+## More about Rollkit
+
+<!-- Drafting: elaborate on how rollkit is built and make it interesting for people to read on to the next sections. -->
+
+## Current state of Rollkit
+
+<!-- Drafting: a paragraph or bullet points describing the current state of Rollkit. -->
 
 ## Developer Pain Points
 
