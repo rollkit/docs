@@ -17,7 +17,7 @@ function HomepageHeader() {
            <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Build Modular
+            Learn More
           </Link>
           {/* <Link
             className="front-page-link"
@@ -48,7 +48,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`Build modular with ${siteConfig.title}`}
-      description="A modular development kit for building rollup chains.">
+      description="A modular framework for rollups.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

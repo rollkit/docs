@@ -1,69 +1,69 @@
 ---
 sidebar_position: 1
 sidebar_label: Introduction
-description: Intro to Rollkit, a modular development kit for building rollup chains.
+description: Intro to Rollkit, a modular framework for rollups.
 ---
 
 # Introduction to Rollkit
 
-Rollkit is a modular development kit for anyone to easily deploy their own
-blockchain with minimal overhead. It solves the problem of bootstrapping a
-secure and decentralized validator set while removing the burden of maintaining
-a new consensus network.
+## What is Rollkit?
 
-Rollkit provides developers with a [modular design](./core-concepts.md) to enable
-a truly flexible development process. Importantly, Rollkit rollups are
-[sovereign by default](./rollkit-stack.md), enabling communities to use their
-sovereign rollup as a coordination mechanism.
+Rollkit is a rollup framework that gives developers the freedom to
+deploy roll-up blockchains throughout the modular stack with minimal overhead, opening new possibilities for rapid experimentation and innovation.
 
-We’re building Rollkit as an open-source public good.
-As it stands, [Celestia Labs](https://celestia.org) will be the core maintainer
-to boostrap, develop, and fund R&D for Rollkit.
-We want to see
-a future where multiple independent teams and organizations
-are able to contribute to Rollkit.
+<!-- Draft: Rollkit is a framework designed to ease the development and deployment of modular blockchains, specifically the execution layers of the modular blockchain stack (aka rollups) (link to celestia article). -->
+
+Rollkit is a drop-in replacement for Tendermint for any [ABCI-compatible](https://github.com/tendermint/abci/blob/master/specification.md) blockchain app. The tutorials utilize Celestia, but it is compatible with any modular DA layer.
+
+Rollkit is being developed as an open-source public good.
+[Celestia Labs](https://celestia.org) develops, maintains, and funds R&D for Rollkit, and contributions from other independent teams and organizations are welcome!
 
 :::tip Tip
 If you're familiar with Rollkit, you may want to skip to the [tutorials section](../category/tutorials)
 :::
 
-## Main Components of Rollkit
+## Why is Rollkit necessary?
 
-### 1. Build rollups using an SDK
+Today, rollups are built either on top of a monolithic base layer or as independent app-chains. Rollups using a monolithic base layer inherit security but lack scalability due to competition for limited block space. They also lack sovereignty to choose and customize execution environment. App-chains are sovereign but require managing security through a decentralized network of validators and are not fully modular as they handle consensus and settlement.
 
-Easily deploy a new rollup using a ready-made template.
+Rollups built with Rollkit are secured by the base layer, unlike app-chains which require establishing a decentralized network of validators for security. They are scalable because of the modular base layer, which does not have the issue of competing for limited block space as with a monolithic base layer. Additionally, they are sovereign, providing freedom to choose and configure execution environments.
 
-### 2. Compatible with multiple VMs
+Furthermore, building and deploying rollups requires minimal development effort.
 
-Rollkit sovereign rollups can plug in any Virtual Machine (VM) compatible
-with the ABCI interface.
-
-### 3. Develop with modular software
-
-Rollkit is built for developers to easily modify or replace components
-of the rollup, unlocking a more flexible development process.
+<!-- Drafting: elaborate more on security, scalability, sovereignity, and ease of deloyment factors -->
 
 ## Use Cases
 
-Rollkit can be used to deploy modular infrastructure pieces, or
-all the way up the stack to deploy app-chains.
+<!-- Drafting: envisioned usecases -->
 
-### Build a sovereign rollup
+### Build a Roll-up with any Virtual Machine
 
-Follow the [Ethermint tutorial](./tutorials/ethermint.md) to
-build an EVM sovereign rollup that leverages
-Celestia for data availability and consensus.
+Any ABCI-comptabile state machine may be used with Rollkit, or roll-up your sleeves and build your own VM!
 
-### Build an app-chain
+### Build an App-Specific Roll-up with Cosmos-SDK
 
-Rollkit could also be used to build app-chains. From an NFT
-marketplace, to a DEX, to a DAO -- Rollkit covers it all.
+Cosmos-SDK, and its extensive documentation and tooling may be used to create a Rollkit-compatible blockchain app.
 
-### Build a settlement layer
+### Build a Settlement Layer
 
-Developers can now deploy a settlement layer that will be deployed
-on by applications looking to get direct access to liquidity, bridging
-to other applications, proofs settlement and other benefits.
+Create a generalized roll-up chain, to run many apps or settle other roll-ups.
+
+## Roll-up Benefits
+
+1. **Sovereignty**: Building rollups and applications on top of
+monolithic L1 deprive developers and communities from forking their
+chain, causing them to lose their sovereignty.
+2. **Scalability**: Modular DA layers such as Celestia provide abundant blockspace, without sacrificing security. Fees remain affordable, even under very high loads.
+3. **Security**: Unlike app chains, sovereign roll-ups can immediately benefit from the security of their DA layer, rather than needing to bootstrap security from their own validator set, token, and inflationary rewards.
+4. **Light Clients**: users of roll-ups can be first-class users, even on low-resource devices, thanks to fraud or validity proofs, and DA sampling.
+
+## More about Rollkit
+
+<!-- Drafting: elaborate on how rollkit is built and make it interesting for people to read on to the next sections. -->
+
+## Current state of Rollkit
+
+<!-- Drafting: a paragraph or bullet points describing the current state of Rollkit. -->
 
 ## Developer Pain Points
 
