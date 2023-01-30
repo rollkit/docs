@@ -50,26 +50,18 @@ nonce/sequence number). This behaviour is similar to the Tendermint mempool.
 
 <!-- Drafting: sequencer/aggregator nodes that bundles the transactions (rollup) to create a rollup block to be submitted to base layer for data availability -->
 
-Sequencer nodes are a node type that is responsible for ordering and
-sequencing transactions for the rollup.
+Some roll-ups utilize _sequencer nodes_. Sequencers are the main block producers for rollups, respoonsible for aggregating transactions into blocks, and typically executing transactions to produce a state root, securing the rollup's light clients.
 
 ### Full node
 
 <!-- Drafting: full nodes for maintaining and serving the rollup -->
 
-Full nodes are a crucial part of the networks, because they are responsible
-for producing blocks and fraud proofs. They also create a link between the
-Rollkit network and the DA and Consensus Layer, by pushing aggregates to
-the DA and Consensus Layer.
+Full nodes verify all blocks and can produce fraud proofs for optimistic rollups. Since they fully validate all rollup blocks, they don't rely on fraud or validity proofs for security.
 
 ### Light node
 
 <!-- Drafting: light nodes that help validate the rollup transactions -->
-
-Light nodes are the main producer of transactions in the Rollkit network.
-They participate in gossiping of fraud proofs. Light nodes may only
-request or store a subset of the state, so they can query chain balances
-and perform other state checks.
+Light nodes are light-weight rollup nodes that authenticate block headers, and are secured by fraud proofs or validity proofs. They're recommended for average users on low-resource devices. Users running light nodes can make trust-minimized queries about the rollup's state.
 
 ## Block-Manager
 
