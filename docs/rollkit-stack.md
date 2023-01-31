@@ -96,6 +96,16 @@ Light nodes are light-weight rollup nodes that authenticate block headers, and a
 
 <!-- Drafting: Manav -->
 
+The Block Manager contains go routines, `AggregationLoop`, `RetrieveLoop`, `SyncLoop` that communicate through go channels. These go routines are run when a RollKit Node starts up (`OnStart`). Only the Sequencer Nodes run `AggregatonLoop` which controls the frequency of block production for a roll-up with a timer as per the `BlockTime` in `BlockManager`.
+
+All nodes run `SyncLoop` which looks for the following operations:
+- Receive block headers: Block headers are received through a channel `HeaderInCh` and RollKit Nodes attempt to verify the block with the corresponding block data.
+- Receive block data: Block bodies are received through a channel `blockInCh` and RollKit Nodes attempt to verify the block.
+- Receive State Fraud Proofs: State Fraud Proofs are received through a channel `FraudProofInCh` and RollKit Notes attempt to verify them. Note that we plan to make this configurable for Full Nodes since Full Nodes also produce State Fraud Proofs on their own.
+- Signal `RetrieveLoop` with timer as per the `DABlockTime` in `BlockManager`.
+
+All nodes also run `RetrieveLoop` which is responsible for interacting with the Data Availability layer. It checks the last updated `DAHeight` to retrieve a block with timer `DABlockTime` signaled by `SyncLoop`. Note that the start height of the DA layer for the roll-up, `DAStartHeight`, is configurable in `BlockManager`.
+
 ## RPC Layer
 
 <!-- Drafting -->
