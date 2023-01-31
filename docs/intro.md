@@ -48,15 +48,19 @@ Plus, current app-chains aren’t truly modular since they handle data availabil
 
 ## Why Rollkit?
 
-### Scalability and Security ✅
+|  | Scalability | Customizability | Sovereignty | Security | Time to market |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Rollkit Rollups | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+### Scalability and Security
 
 By deploying on top of specialized data availability layers like Celestia, Rollkit rollups directly inherit security and scalability from the data availability layer.
 
-### Customizability and Time to Market ✅
+### Customizability and Time to Market
 
 Rollkit is built as a modular framework allowing developers to easily customize and deploy rollups.
 
-### Sovereignty ✅
+### Sovereignty
 
 Finally, since Rollkit rollups are deployed on modular blockchains like Celestia that separate execution from data availability and consensus, rollups now have the possibility to be sovereign by deploying as an app-chain rollup.
 
