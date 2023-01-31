@@ -27,9 +27,9 @@ The tutorials use Celestia as the default data availability layer, but since Rol
 
 ## What problems is Rollkit solving?
 
-### 1. Scalability, Customizability and Sovereignty
+### 1. Scalability, Customizability, and Sovereignty
 
-Rollups deployed on a monolithic L1 benefit from directly inheriting security from the base layer. However, that comes at the cost of scalability, customizability and sovereignty.
+Rollups deployed on a monolithic Layer 1 (L1) blockchain benefit from directly inheriting security from the base layer. However, that comes at the cost of scalability, customizability, and sovereignty.
 All rollups sharing the same monolithic L1 compete with each other over the limited block space, resulting in a lack of scalability.
 In addition, developers lack the freedom and ability to customize different parts of the stack, such as the execution environment, putting a limit and constraint on how they build rollups.
 Furthermore, a rollup community on a monolithic L1 can't fork their chain when needed.
@@ -37,19 +37,24 @@ Furthermore, a rollup community on a monolithic L1 can't fork their chain when n
 ### 2. Security and Time to Market
 
 App-chains might sound like the perfect solution for the problems listed above. While it’s somehow true, app-chains introduced a new set of tradeoffs.
-Developers building their products as app-chains have to bootstrap an entire validator set and face the overhead of managing a full BFT consensus network, increasing the cost and time of bringing their products to market while introducing security risks.
+Developers building their products as app-chains have to bootstrap an entire validator set and face the overhead of managing a full BFT-consensus network, increasing the cost and time of bringing their products to market while introducing security risks.
 Plus, current app-chains aren’t truly modular since they handle data availability, consensus and settlement. Lastly, who doesn’t want to build modular?
 
 ## Why Rollkit?
 
-By deploying on top of specialized data availability layers like Celestia, Rollkit rollups directly inherit security and scalability from the data availability layer => Scalability and Security ✅
+### Scalability and Security ✅
 
-Rollkit is built as a modular framework allowing developers to easily customize and deploy rollups => Customizability and Time to Market ✅
+By deploying on top of specialized data availability layers like Celestia, Rollkit rollups directly inherit security and scalability from the data availability layer.
 
-Finally, since Rollkit rollups are deployed on modular blockchains like Celestia that separate execution from data availability and consensus, rollups now have the possibility to be sovereign by deploying as an app-chain rollup => Sovereignty ✅
+### Customizability and Time to Market ✅
+
+Rollkit is built as a modular framework allowing developers to easily customize and deploy rollups.
+
+### Sovereignty ✅
+
+Finally, since Rollkit rollups are deployed on modular blockchains like Celestia that separate execution from data availability and consensus, rollups now have the possibility to be sovereign by deploying as an app-chain rollup.
 
 ## How can you use Rollkit?
-<!-- Drafting: envisioned usecases -->
 
 ### Build a Roll-up with any Virtual Machine
 
@@ -65,8 +70,8 @@ Create a generalized roll-up chain, to run many apps or settle other roll-ups.
 
 ## When can you use Rollkit?
 
-As of today, Rollkit is still in the MVP stages. The framework currently provides a centralized sequencer, an execution VM ( ABCI and cosmos SDK) and a connection to a data availability layer (Celestia).
+As of today, Rollkit is still in the MVP stages. The framework currently provides a centralized sequencer, an execution VM (ABCI and Cosmos SDK) and a connection to a data availability layer (Celestia).
 
 We’re currently working on implementing many new and exciting features like light nodes and state fraud proofs.
-Head down to the next section (Rollkit Stack) to learn more about what’s coming for Rollkit.
-Spoiler alert, it’s going to be a great rabbit hole!
+Head down to the next section ([Rollkit Stack](./rollkit-stack.md)) to learn more about what’s coming for Rollkit. If you're ready to start building, you can skip to the [Tutorials](./tutorials/) section.
+Spoiler alert, whichever you choose, it’s going to be a great rabbit hole!
