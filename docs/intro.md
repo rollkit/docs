@@ -30,9 +30,9 @@ The tutorials use Celestia as the default data availability layer, but since Rol
 **I- Scalability, Customizability and Sovereignty
 
 Rollups deployed on a monolithic L1 benefit from directly inheriting security from the base layer. But that comes at the cost of scalability, customizability and sovereignty.
-All rollups sharing the same monolithic L1 are competing with each other over the limited block space, resulting in a lack of scalability
-In addition, developers lack the freedom and ability to customize different parts of the stack like the execution environment, putting a limit and constraint on how they build rollups.
-Furthermore, a rollup community on a monolithic L1 doesn't have the ability to fork their chain when needed.
+All rollups sharing the same monolithic L1 compete with each other over the limited block space, resulting in a lack of scalability.
+In addition, developers lack the freedom and ability to customize different parts of the stack, like the execution environment, putting a limit and constraint on how they build rollups.
+Furthermore, a rollup community on a monolithic L1 can't fork their chain when needed.
 
 **II- Security and Time to Market
 
