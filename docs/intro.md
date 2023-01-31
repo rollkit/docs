@@ -47,7 +47,7 @@ By deploying on top of specialized data availability layers like Celestia, Rollk
 
 Rollkit is built as a modular framework allowing developers to easily customize and deploy rollups => Customizability and Time to Market ✅
 
-Finally, since Rollkit rollups are deployed on modular blockchains like Celestia that separate execution from data availability and consensus, rollups now have the possibility to be sovereign by deploying as app-chain rollup => Sovereignty ✅
+Finally, since Rollkit rollups are deployed on modular blockchains like Celestia that separate execution from data availability and consensus, rollups now have the possibility to be sovereign by deploying as an app-chain rollup => Sovereignty ✅
 
 ## How can you use Rollkit? 
 <!-- Drafting: envisioned usecases -->
