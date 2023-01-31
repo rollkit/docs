@@ -66,17 +66,17 @@ Finally, since Rollkit rollups are deployed on modular blockchains like Celestia
 
 ## How can you use Rollkit?
 
-### Build a Roll-up with any Virtual Machine
+### Build a Rollup with any Virtual Machine
 
-Any ABCI-comptabile state machine may be used with Rollkit, or roll-up your sleeves and build your own VM!
+Any ABCI-comptabile state machine may be used with Rollkit, or rollup your sleeves and build your own VM!
 
-### Build an App-Specific Roll-up with Cosmos-SDK
+### Build an App-Specific Rollup with Cosmos-SDK
 
 Cosmos-SDK, and its extensive documentation and tooling may be used to create a Rollkit-compatible blockchain app.
 
 ### Build a Settlement Layer
 
-Create a generalized roll-up chain, to run many apps or settle other roll-ups.
+Create a generalized rollup chain, to run many apps or settle other rollups.
 
 ## When can you use Rollkit?
 
