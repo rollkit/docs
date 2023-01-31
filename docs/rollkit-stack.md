@@ -47,7 +47,17 @@ We plan to make transaction ordering in blocks configurable in the future.
 
 ## State Fraud Proofs
 
-<!-- Drafting: Manav -->
+Currently, Rollkit's design consists of a single sequencer that posts blocks to the DA layer, and multiple (optional) full nodes. Sequencers gossip block headers to full nodes and full nodes fetch posted blocks from the DA layer. Full nodes then execute transactions in these blocks to update their state, and gossip block headers over P2P to Rollkit light nodes. However, if a block contains a fraudulent state transition, Rollkit full nodes can detect it by comparing intermediate state roots (ISRs) between transactions, and generate a state fraud proof that can be gossiped over P2P to Rollkit light nodes. These Rollkit light nodes can use this state fraud proof to verify whether a fraudulent state transition occurred or not by themselves.
+
+Overall, State Fraud Proofs enable trust-minimization between full nodes and light node as long as there is at least one honest full node in the system that will generate state fraud proofs.
+
+Note that Rollkit State Fraud Proofs require new methods on top of ABCI, specifically, `GenerateFraudProof`, `VerifyFraudProof`, and `GetAppHash`.
+
+Future plans:
+
+* Add ability for light nodes to receive and verify state fraud proofs.
+* Support for multiple sequencers in the future, in which case, fraud proof detection works the same as described above.
+* Support more ABCI-compatible State Machines, in addition to the Cosmos SDK state machine.
 
 ## P2P-Layer
 
