@@ -51,7 +51,14 @@ We plan to make transaction ordering in blocks configurable in the future.
 
 ## P2P-Layer
 
-<!-- Drafting: Tomasz -->
+Rollkit's P2P layer enables direct communication between rollup nodes.
+It's used to gossip transactions, headers of newly created blocks and state fraud proofs.
+The P2P layer is implemented using [libp2p](https://github.com/libp2p).
+
+Rollkit uses [DHT-based active peer discovery](https://curriculum.pl-launchpad.io/curriculum/libp2p/dht/).
+Starting a node connects to preconfigured bootstrap peers, and advertises it's namespace ID in DHT.
+This solution is flexible, because multiple rollup networks may reuse the same DHT/bootstrap nodes,
+but specific rollup network might decide to use dedicated nodes as well.
 
 ## DA-Access
 
