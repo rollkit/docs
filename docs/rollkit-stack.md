@@ -18,7 +18,20 @@ For an understanding of the Rollkit stack, let's first look at the key component
 
 ## Rollup Application Dependencies
 
-* Requires Golang version 1.19+
+Would you like to change your Cosmos-SDK application to a Rollkit rollup?
+No problem! You need to replace the Cosmos-SDK Go dependency with
+Rollkit-enabled version, which can be found
+here: [https://github.com/rollkit/cosmos-sdk](https://github.com/rollkit/cosmos-sdk).
+
+To note, the [`rollkit/cosmos-sdk`](https://github.com/rollkit/cosmos-sdk) repository follows the release branches of
+upstream Cosmos-SDK, but with the bonus of using Rollkit instead of Tendermint
+as the ABCI client.
+
+And don't forget to replace another dependency, `tendermint`, with
+[`rollkit/tendermint`](https://github.com/rollkit/tendermint), which has an enhanced ABCI interface that includes
+the methods needed for state fraud proofs.
+
+> **Requires Golang version 1.19+**
 
 ## Mempool
 
