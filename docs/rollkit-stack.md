@@ -38,10 +38,12 @@ the methods needed for state fraud proofs.
 <!-- Drafting: a mempool for queing up transactions - Manav -->
 
 The mempool keeps the set of pending transactions, and is used by block
-producers (full nodes) to produce blocks. Transactions are handled by
+producers to produce blocks and full nodes to verify blocks. Currently, transactions are handled by
 nodes in the First-Come, First-Served (FCFS) manner. Ordering of transactions
 can be implemented on the application level (for example by adding
-nonce/sequence number). This behaviour is similar to the Tendermint mempool.
+nonce/sequence number). This behavior is similar to the Tendermint mempool.
+
+We plan to make transaction ordering in blocks configurable in the future.
 
 ## State Fraud Proofs
 
