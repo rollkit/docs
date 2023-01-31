@@ -51,7 +51,7 @@ Currently, Rollkit's design consists of a single sequencer that posts blocks to 
 
 Overall, State Fraud Proofs enable trust-minimization between full nodes and light node as long as there is at least one honest full node in the system that will generate state fraud proofs.
 
-Note that RollKit State Fraud Proofs require new methods on top of ABCI, specifically, `GenerateFraudProof`, `VerifyFraudProof`, and `GetAppHash`.
+Note that Rollkit State Fraud Proofs require new methods on top of ABCI, specifically, `GenerateFraudProof`, `VerifyFraudProof`, and `GetAppHash`.
 
 Future plans:
 
