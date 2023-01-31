@@ -80,8 +80,8 @@ const config = {
               //   href: 'https://www.twitter.com/Rollkitdev',
               // },
               {
-                label: 'Telegram',
-                href: 'https://t.me/rollkit'
+                label: 'Discord',
+                href: 'https://discord.com/channels/638338779505229824/1065974175237414972'
               },
             ],
           },
