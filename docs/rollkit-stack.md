@@ -53,7 +53,12 @@ nonce/sequence number). This behaviour is similar to the Tendermint mempool.
 
 ## DA-Access
 
-<!-- Drafting: Tomasz -->
+Data Availability (DA) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA.
+
+The `DataAvailabilityLayerClient` interface includes essential life-cycle methods (`Init`, `Start`, `Stop`) as well as data-availability methods (`SubmitBlock`, `CheckBlockAvailability`).
+
+The `BlockRetriever` interface serves to enable syncing of full nodes from the Data Availability layer.
+It's important to keep in mind that there is no direct correlation between the DA block height and the rollup height. Each DA block may contain an arbitrary number of rollup blocks.
 
 ## Rollkit Node Types
 
