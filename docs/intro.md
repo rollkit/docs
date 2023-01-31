@@ -48,6 +48,10 @@ Plus, current app-chains aren’t truly modular since they handle data availabil
 
 ## Why Rollkit?
 
+|  | Scalability | Customizability | Sovereignty | Security | Time to market |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Rollkit Rollups | ✅ | ✅ | ✅ | ✅ | ✅ |
+
 ### Scalability and Security
 
 By deploying on top of specialized data availability layers like Celestia, Rollkit rollups directly inherit security and scalability from the data availability layer.
