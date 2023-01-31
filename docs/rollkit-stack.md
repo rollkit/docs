@@ -36,7 +36,14 @@ nonce/sequence number). This behaviour is similar to the Tendermint mempool.
 
 ## P2P-Layer
 
-<!-- Drafting: Tomasz -->
+Rollkit P2P layer enables direct communication between rollup nodes.
+It's used to gossip transactions, headers of newly created blocks and state fraud proofs.
+P2P layer is implemented using libp2p. 
+
+Rollkit use DHT-based active peer discovery.
+Starting node connects to preconfigured bootstrap peers, and advertise it's namespace ID in DHT.
+This solution is flexible, because multiple rollup networks may reuse the same DHT/bootstrap nodes,
+but specific rollup network might decide to use dedicated as well. 
 
 ## DA-Access
 
