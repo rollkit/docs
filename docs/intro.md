@@ -38,7 +38,7 @@ Furthermore, a rollup community on a monolithic L1 can't fork their chain when n
 
 App-chains might sound like the perfect solution for the problems listed above. While it’s somehow true, app-chains introduced a new set of tradeoffs.
 Developers building their products as app-chains have to bootstrap an entire validator set and face the overhead of managing a full BFT consensus network, increasing the cost and time of bringing their products to market while introducing security risks.
-Plus, current app-chains aren’t truly modular since they handle data availability, consensus and settlement. Who doesn’t want to build modular?
+Plus, current app-chains aren’t truly modular since they handle data availability, consensus and settlement. Lastly, who doesn’t want to build modular?
 
 ## Why Rollkit?
 
