@@ -69,6 +69,6 @@ Create a generalized roll-up chain, to run many apps or settle other roll-ups.
 
 As of today, Rollkit is still in the MVP stages. The framework currently provides a centralized sequencer, an execution VM ( ABCI and cosmos SDK) and a connection to a data availability layer (Celestia). 
 
-We’re currently working on implementing many new and exciting features like light nodes. 
+We’re currently working on implementing many new and exciting features like light nodes and state fraud proofs. 
 Head down to the next section (Rollkit Stack) to learn more about what’s coming for Rollkit. 
 Spoiler alert, it’s going to be a great rabbit hole! 
