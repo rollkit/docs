@@ -23,7 +23,7 @@ It was built as a drop-in replacement for Tendermint for any ABCI-compatible blo
 
 We’re building Rollkit as an open-source public good. While Celestia Labs will fund R&D, we see a future where the developer community contributes and owns Rollkit development.
 
-The tutorials use Celestia as the default data availability layer, but since Rollkit is credibly neutral, developers will have the ability to swap Celestia with any data availability layer.
+The tutorials use Celestia as the default data availability layer, but developers will have the ability to swap Celestia with any data availability layer.
 
 ## What problems is Rollkit solving?
 
