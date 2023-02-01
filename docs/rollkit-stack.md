@@ -38,18 +38,37 @@ the methods needed for state fraud proofs.
 <!-- Drafting: a mempool for queing up transactions - Manav -->
 
 The mempool keeps the set of pending transactions, and is used by block
-producers (full nodes) to produce blocks. Transactions are handled by
+producers to produce blocks and full nodes to verify blocks. Currently, transactions are handled by
 nodes in the First-Come, First-Served (FCFS) manner. Ordering of transactions
 can be implemented on the application level (for example by adding
-nonce/sequence number). This behaviour is similar to the Tendermint mempool.
+nonce/sequence number). This behavior is similar to the Tendermint mempool.
+
+We plan to make transaction ordering in blocks configurable in the future.
 
 ## State Fraud Proofs
 
-<!-- Drafting: Manav -->
+Currently, Rollkit's design consists of a single sequencer that posts blocks to the DA layer, and multiple (optional) full nodes. Sequencers gossip block headers to full nodes and full nodes fetch posted blocks from the DA layer. Full nodes then execute transactions in these blocks to update their state, and gossip block headers over P2P to Rollkit light nodes. However, if a block contains a fraudulent state transition, Rollkit full nodes can detect it by comparing intermediate state roots (ISRs) between transactions, and generate a state fraud proof that can be gossiped over P2P to Rollkit light nodes. These Rollkit light nodes can use this state fraud proof to verify whether a fraudulent state transition occurred or not by themselves.
+
+Overall, State Fraud Proofs enable trust-minimization between full nodes and light node as long as there is at least one honest full node in the system that will generate state fraud proofs.
+
+Note that Rollkit State Fraud Proofs require new methods on top of ABCI, specifically, `GenerateFraudProof`, `VerifyFraudProof`, and `GetAppHash`.
+
+Future plans:
+
+* Add ability for light nodes to receive and verify state fraud proofs.
+* Support for multiple sequencers in the future, in which case, fraud proof detection works the same as described above.
+* Support more ABCI-compatible State Machines, in addition to the Cosmos SDK state machine.
 
 ## P2P-Layer
 
-<!-- Drafting: Tomasz -->
+Rollkit's P2P layer enables direct communication between rollup nodes.
+It's used to gossip transactions, headers of newly created blocks and state fraud proofs.
+The P2P layer is implemented using [libp2p](https://github.com/libp2p).
+
+Rollkit uses [DHT-based active peer discovery](https://curriculum.pl-launchpad.io/curriculum/libp2p/dht/).
+Starting a node connects to preconfigured bootstrap peers, and advertises it's namespace ID in DHT.
+This solution is flexible, because multiple rollup networks may reuse the same DHT/bootstrap nodes,
+but specific rollup network might decide to use dedicated nodes as well.
 
 ## DA-Access
 
@@ -85,7 +104,16 @@ Light nodes are light-weight rollup nodes that authenticate block headers, and a
 
 ## Block-Manager
 
-<!-- Drafting: Manav -->
+The Block Manager contains go routines, `AggregationLoop`, `RetrieveLoop`, `SyncLoop` that communicate through go channels. These go routines are run when a Rollkit Node starts up (`OnStart`). Only the Sequencer Nodes run `AggregatonLoop` which controls the frequency of block production for a roll-up with a timer as per the `BlockTime` in `BlockManager`.
+
+All nodes run `SyncLoop` which looks for the following operations:
+
+* **Receive block headers**: Block headers are received through a channel `HeaderInCh` and Rollkit Nodes attempt to verify the block with the corresponding block data.
+* **Receive block data**: Block bodies are received through a channel `blockInCh` and Rollkit Nodes attempt to verify the block.
+* **Receive State Fraud Proofs**: State Fraud Proofs are received through a channel `FraudProofInCh` and Rollkit Notes attempt to verify them. Note that we plan to make this configurable for Full Nodes since Full Nodes also produce State Fraud Proofs on their own.
+* Signal `RetrieveLoop` with timer as per the `DABlockTime` in `BlockManager`.
+
+All nodes also run `RetrieveLoop` which is responsible for interacting with the Data Availability layer. It checks the last updated `DAHeight` to retrieve a block with timer `DABlockTime` signaled by `SyncLoop`. Note that the start height of the DA layer for the roll-up, `DAStartHeight`, is configurable in `BlockManager`.
 
 ## RPC Layer
 
