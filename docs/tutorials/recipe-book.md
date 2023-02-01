@@ -327,7 +327,7 @@ A response on a successful scaffold will look like this:
 modify proto/recipes/recipes/query.proto
 modify x/recipes/client/cli/query.go
 create x/recipes/client/cli/query_dishes.go
-create x/recipes/keeper/grpc_query_dishes.go
+create x/recipes/keeper/query_dishes.go
 
 🎉 Created a query `dishes`.
 ```
@@ -360,11 +360,11 @@ message QueryDishesResponse {
 ```
 
 In order to implement recipe querying logic in
-`recipes/x/recipes/keeper/grpc_query_dishes.go`,
+`recipes/x/recipes/keeper/query_dishes.go`,
 delete the file contents and replace them with:
 
 <!-- markdownlint-disable MD013 -->
-```go title="recipes/x/recipes/keeper/grpc_query_dishes.go"
+```go title="recipes/x/recipes/keeper/query_dishes.go"
 package keeper
 
 import (
