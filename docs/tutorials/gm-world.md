@@ -278,7 +278,7 @@ Response:
 modify proto/gm/gm/query.proto
 modify x/gm/client/cli/query.go
 create x/gm/client/cli/query_gm.go
-create x/gm/keeper/grpc_query_gm.go
+create x/gm/keeper/query_gm.go
 
 🎉 Created a query `gm`.
 ```
@@ -331,12 +331,12 @@ message QueryGmResponse {
 
 ### 👋 Gm keeper function
 
-The `gm/x/gm/keeper/grpc_query_gm.go` file contains the `Gm` keeper function that
+The `gm/x/gm/keeper/query_gm.go` file contains the `Gm` keeper function that
 handles the query and returns data.
 
 <!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD010 -->
-```go title="gm/x/gm/keeper/grpc_query_gm.go"
+```go title="gm/x/gm/keeper/query_gm.go"
 func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.QueryGmResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
@@ -359,11 +359,11 @@ environment of the request
 Currently, the response is empty and you'll need to update the keeper function.
 
 Our `query.proto` file defines that the response accepts `text`. Use your text
-editor to modify the keeper function in `gm/x/gm/keeper/grpc_query_gm.go` .
+editor to modify the keeper function in `gm/x/gm/keeper/query_gm.go` .
 
 <!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD010 -->
-```go title="gm/x/gm/keeper/grpc_query_gm.go"
+```go title="gm/x/gm/keeper/query_gm.go"
 func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.QueryGmResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
