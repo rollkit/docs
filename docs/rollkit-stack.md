@@ -64,7 +64,7 @@ It's used to gossip transactions, headers of newly created blocks and state frau
 The P2P layer is implemented using [libp2p](https://github.com/libp2p).
 
 Rollkit uses [DHT-based active peer discovery](https://curriculum.pl-launchpad.io/curriculum/libp2p/dht/).
-Starting a node connects to preconfigured bootstrap peers, and advertises it's namespace ID in DHT.
+Starting a node connects to preconfigured bootstrap peers, and advertises its namespace ID in DHT.
 This solution is flexible, because multiple rollup networks may reuse the same DHT/bootstrap nodes,
 but specific rollup network might decide to use dedicated nodes as well.
 
@@ -81,16 +81,16 @@ It's important to keep in mind that there is no direct correlation between the D
 
 ### Sequencer node
 
-Some rollups utilize _sequencer nodes_. Sequencers are the main block producers for rollups, respoonsible for aggregating transactions into blocks, and typically executing transactions to produce a state root, securing the rollup's light clients.
+Some rollups utilize _sequencer nodes_. Sequencers are the main block producers for rollups, responsible for aggregating transactions into blocks, and typically executing transactions to produce a state root, securing the rollup's light clients.
 
 Rollkit plans to support multiple different pluggable sequencer schemes:
 
 |                                | Deploy in one-click                  | Faster soft-confirmations than L1 | Control over rollup's transaction ordering | Atomic Composability with other Rollups | Censorship resistance | Implementation Status |
 |:--------------------------------:|:--------------------------------------:|:-----------------------------------:|:--------------------------------------------:|:-----------------------------------------:|:-----------------------:|:-----------------------:|
 | Centralized Sequencer          | Requires spinning up a sequencer     | Yes ✅                               | Yes ✅                                        | No ❌                                      | Eventual ⏳              | Implemented! ✅          |
-| Decentralized Sequencer        | Requires spinning up a sequencer set | Yes ✅                               | Yes ✅                                        | No ❌                                      | Real-time ⚡️             | Coming soon 🟢           |
-| Shared Decentralized Sequencer | Yes ✅                                  | Yes ✅                               | No ❌                                         | Yes ✅                                     | Real-time ⚡️             | Coming soon 🟢           |
-| Pure Fork-Choice Rule          | Yes ✅                                  | No ❌                                | Maybe 🟡                                      | Maybe 🟡                                   | Eventual ⏳              | Coming soon 🟢           |
+| Decentralized Sequencer        | Requires spinning up a sequencer set | Yes ✅                               | Yes ✅                                        | No ❌                                      | Real-time ⚡️             | Planned           |
+| Shared Decentralized Sequencer | Yes ✅                                  | Yes ✅                               | No ❌                                         | Yes ✅                                     | Real-time ⚡️             | Planned           |
+| Pure Fork-Choice Rule          | Yes ✅                                  | No ❌                                | Maybe 🟡                                      | Maybe 🟡                                   | Eventual ⏳              | Planned           |
 
 ### Full node
 
@@ -102,13 +102,13 @@ Light nodes are light-weight rollup nodes that authenticate block headers, and a
 
 ## Block Manager
 
-The Block Manager contains go routines, `AggregationLoop`, `RetrieveLoop`, `SyncLoop` that communicate through go channels. These go routines are run when a Rollkit Node starts up (`OnStart`). Only the Sequencer Nodes run `AggregatonLoop` which controls the frequency of block production for a roll-up with a timer as per the `BlockTime` in `BlockManager`.
+The Block Manager contains go routines, `AggregationLoop`, `RetrieveLoop`, `SyncLoop` that communicate through go channels. These go routines are run when a Rollkit Node starts up (`OnStart`). Only the Sequencer Nodes run `AggregationLoop` which controls the frequency of block production for a roll-up with a timer as per the `BlockTime` in `BlockManager`.
 
 All nodes run `SyncLoop` which looks for the following operations:
 
 * **Receive block headers**: Block headers are received through a channel `HeaderInCh` and Rollkit Nodes attempt to verify the block with the corresponding block data.
 * **Receive block data**: Block bodies are received through a channel `blockInCh` and Rollkit Nodes attempt to verify the block.
-* **Receive State Fraud Proofs**: State Fraud Proofs are received through a channel `FraudProofInCh` and Rollkit Notes attempt to verify them. Note that we plan to make this configurable for Full Nodes since Full Nodes also produce State Fraud Proofs on their own.
+* **Receive State Fraud Proofs**: State Fraud Proofs are received through a channel `FraudProofInCh` and Rollkit Nodes attempt to verify them. Note that we plan to make this configurable for Full Nodes since Full Nodes also produce State Fraud Proofs on their own.
 * Signal `RetrieveLoop` with timer as per the `DABlockTime` in `BlockManager`.
 
 All nodes also run `RetrieveLoop` which is responsible for interacting with the Data Availability layer. It checks the last updated `DAHeight` to retrieve a block with timer `DABlockTime` signaled by `SyncLoop`. Note that the start height of the DA layer for the roll-up, `DAStartHeight`, is configurable in `BlockManager`.
@@ -118,8 +118,8 @@ All nodes also run `RetrieveLoop` which is responsible for interacting with the 
 Rollkit's RPC layer fully implements the [Tendermint RPC](https://docs.tendermint.com/v0.34/rpc) interfaces and APIs for querying:
 
 * **Information about the rollup node**: Information such as node's health, status, and network info.
-* **The rollup blockchain**: Getting the information about the rollup blockchain such as block headers, blocks, block committments, rollup validators, rollup consensus parameters and state, etc.
-* **The rollup transactions**: Getting the transaction information, broadcasting raw transactions and committments, and search capabilities.
+* **The rollup blockchain**: Getting the information about the rollup blockchain such as block headers, blocks, block commitments, rollup validators, rollup consensus parameters and state, etc.
+* **The rollup transactions**: Getting the transaction information, broadcasting raw transactions and commitments, and search capabilities.
 * **ABCI**: Rollup application information.
 
 The following RPC protocols are currently supported:
