@@ -131,7 +131,6 @@ brew install md5sha1sum
 Run the following:
 
 ```bash
-cd ethermint
 bash init.sh
 ```
 
