@@ -59,7 +59,7 @@ Future plans:
 * Support for multiple sequencers in the future, in which case, fraud proof detection works the same as described above.
 * Support more ABCI-compatible State Machines, in addition to the Cosmos SDK state machine.
 
-## P2P-Layer
+## P2P Layer
 
 Rollkit's P2P layer enables direct communication between rollup nodes.
 It's used to gossip transactions, headers of newly created blocks and state fraud proofs.
@@ -70,7 +70,7 @@ Starting a node connects to preconfigured bootstrap peers, and advertises it's n
 This solution is flexible, because multiple rollup networks may reuse the same DHT/bootstrap nodes,
 but specific rollup network might decide to use dedicated nodes as well.
 
-## DA-Access
+## DA Access
 
 Data Availability (DA) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA.
 
@@ -102,7 +102,7 @@ Full nodes verify all blocks and can produce fraud proofs for optimistic rollups
 
 Light nodes are light-weight rollup nodes that authenticate block headers, and are secured by fraud proofs or validity proofs. They're recommended for average users on low-resource devices. Users running light nodes can make trust-minimized queries about the rollup's state.
 
-## Block-Manager
+## Block Manager
 
 The Block Manager contains go routines, `AggregationLoop`, `RetrieveLoop`, `SyncLoop` that communicate through go channels. These go routines are run when a Rollkit Node starts up (`OnStart`). Only the Sequencer Nodes run `AggregatonLoop` which controls the frequency of block production for a roll-up with a timer as per the `BlockTime` in `BlockManager`.
 
