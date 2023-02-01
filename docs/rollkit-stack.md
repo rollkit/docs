@@ -117,7 +117,7 @@ All nodes also run `RetrieveLoop` which is responsible for interacting with the 
 
 ## RPC Layer
 
-Rollkit's RPC layer fully implements the [Tendermint RPC](https://docs.tendermint.com/v0.34/rpc) interfaces/APIs for querying:
+Rollkit's RPC layer fully implements the [Tendermint RPC](https://docs.tendermint.com/v0.34/rpc) interfaces and APIs for querying:
 
 * **Information about the rollup node**: Information such as node's health, status, and network info.
 * **The rollup blockchain**: Getting the information about the rollup blockchain such as block headers, blocks, block committments, rollup validators, rollup consensus parameters and state, etc.
@@ -127,7 +127,7 @@ Rollkit's RPC layer fully implements the [Tendermint RPC](https://docs.tendermin
 The following RPC protocols are currently supported:
 
 * URI over HTTP
-* JSONRPC over HTTP
-* JSONRPC over websockets
+* JSON-RPC over HTTP
+* JSON-RPC over WebSockets
 
 In future, we plan to support other key APIs such as rollup state validation (optimistic) and make the Rollkit RPCs generalizable beyond Tendermint.
