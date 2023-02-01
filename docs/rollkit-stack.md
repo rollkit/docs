@@ -108,10 +108,10 @@ The Block Manager contains go routines, `AggregationLoop`, `RetrieveLoop`, `Sync
 
 All nodes run `SyncLoop` which looks for the following operations:
 
-- **Receive block headers**: Block headers are received through a channel `HeaderInCh` and Rollkit Nodes attempt to verify the block with the corresponding block data.
-- **Receive block data**: Block bodies are received through a channel `blockInCh` and Rollkit Nodes attempt to verify the block.
-- **Receive State Fraud Proofs**: State Fraud Proofs are received through a channel `FraudProofInCh` and Rollkit Notes attempt to verify them. Note that we plan to make this configurable for Full Nodes since Full Nodes also produce State Fraud Proofs on their own.
-- Signal `RetrieveLoop` with timer as per the `DABlockTime` in `BlockManager`.
+* **Receive block headers**: Block headers are received through a channel `HeaderInCh` and Rollkit Nodes attempt to verify the block with the corresponding block data.
+* **Receive block data**: Block bodies are received through a channel `blockInCh` and Rollkit Nodes attempt to verify the block.
+* **Receive State Fraud Proofs**: State Fraud Proofs are received through a channel `FraudProofInCh` and Rollkit Notes attempt to verify them. Note that we plan to make this configurable for Full Nodes since Full Nodes also produce State Fraud Proofs on their own.
+* Signal `RetrieveLoop` with timer as per the `DABlockTime` in `BlockManager`.
 
 All nodes also run `RetrieveLoop` which is responsible for interacting with the Data Availability layer. It checks the last updated `DAHeight` to retrieve a block with timer `DABlockTime` signaled by `SyncLoop`. Note that the start height of the DA layer for the roll-up, `DAStartHeight`, is configurable in `BlockManager`.
 
