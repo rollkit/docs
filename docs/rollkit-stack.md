@@ -35,8 +35,6 @@ the methods needed for state fraud proofs.
 
 ## Mempool
 
-<!-- Drafting: a mempool for queing up transactions - Manav -->
-
 The mempool keeps the set of pending transactions, and is used by block
 producers to produce blocks and full nodes to verify blocks. Currently, transactions are handled by
 nodes in the First-Come, First-Served (FCFS) manner. Ordering of transactions
