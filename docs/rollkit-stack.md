@@ -8,7 +8,7 @@ description: Intro to Rollkit's stack, a modular framework for rollups.
 
 This section will cover the dependencies and customizeable components of Rollkit.
 
-Rollup sequencer nodes collect transactions from users, aggregate them into blocks, and post the blocks onto Celestia (or other DA layer) to be ordered and finalized. Full nodes execute and verify rollup blocks, and propagate fraud-proofs when needed. Light clients will receive headers, verify proofs (fraud, zk, etc.), and can authenticate trust-minimized queries about the state.
+Rollup sequencer nodes collect transactions from users, aggregate them into blocks, and post the blocks onto Celestia (or other DA layer) to be ordered and finalized. Full nodes execute and verify rollup blocks, and propagate fraud-proofs when needed. Light clients will receive headers, verify proofs (fraud, ZK, etc.), and can authenticate trust-minimized queries about the state.
 
 :::tip Tip
 If you're familiar with Rollkit's stack, you may want to skip to the [tutorials section](../category/tutorials)
