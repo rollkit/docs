@@ -85,9 +85,6 @@ Cosmos-SDK applications to connect to Celestia's Data Availability network.
 ```bash
 git clone https://github.com/celestiaorg/ethermint.git
 cd ethermint
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.7-rollmint-v0.5.0-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221013213714-8be9b54c8c21
-go mod tidy && go build ./...
 make install
 ```
 
@@ -134,7 +131,6 @@ brew install md5sha1sum
 Run the following:
 
 ```bash
-cd ethermint
 bash init.sh
 ```
 
@@ -165,7 +161,7 @@ With this setup complete, we can now start our Ethermint Rollup:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-ethermintd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6000}' --rollmint.namespace_id $NAMESPACE_ID --rollmint.da_start_height $DA_BLOCK_HEIGHT 
+ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT 
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -213,25 +209,25 @@ badger 2022/11/23 01:27:54 INFO: Set nextTxnTs to 0
 1:27AM INF submitting block to DA layer height=1 module=BlockManager
 1:28AM INF Starting JSON-RPC server address=0.0.0.0:8545
 1:28AM INF Starting JSON WebSocket server address=0.0.0.0:8546
-1:28AM INF successfully submitted rollmint block to DA layer daHeight=25422 module=BlockManager rollmintHeight=1
+1:28AM INF successfully submitted rollkit block to DA layer daHeight=25422 module=BlockManager rollkitHeight=1
 1:28AM INF commit synced commit=436F6D6D697449447B5B323130203138352031373920362035322031333820373020313032203135322038302032323920313232203132342036332031382032313920313039203337203832203631203334203139302031323520393020323133203835203232382032323420323232203134203739203131305D3A317D
 1:28AM INF indexed block height=1 module=txindex
 1:28AM INF Creating and publishing block height=2 module=BlockManager
 1:28AM INF minted coins from module account amount=2059726403014551280aphoton from=mint module=x/bank
 1:28AM INF submitting block to DA layer height=2 module=BlockManager
-1:28AM INF successfully submitted rollmint block to DA layer daHeight=25423 module=BlockManager rollmintHeight=2
+1:28AM INF successfully submitted rollkit block to DA layer daHeight=25423 module=BlockManager rollkitHeight=2
 1:28AM INF commit synced commit=436F6D6D697449447B5B3630203231332038372032313820383920313920323034203230322031363320383120323235203235352036352032323820313530203232392032333320323139203233322032343420313334203337203134342031303320313634203138382031393720323339203230342032303120323138203130325D3A327D
 1:28AM INF indexed block height=2 module=txindex
 1:28AM INF Creating and publishing block height=3 module=BlockManager
 1:28AM INF minted coins from module account amount=2059726771778267119aphoton from=mint module=x/bank
 1:28AM INF submitting block to DA layer height=3 module=BlockManager
-1:29AM INF successfully submitted rollmint block to DA layer daHeight=25424 module=BlockManager rollmintHeight=3
+1:29AM INF successfully submitted rollkit block to DA layer daHeight=25424 module=BlockManager rollkitHeight=3
 1:29AM INF commit synced commit=436F6D6D697449447B5B313520323038203831203131203235332032322037322031393020333220323130203634203235332032303920313839203934203137203431203135203230302039362031383920323820313736203132332037352032392031393320313831203134312032303520323231203232325D3A337D
 1:29AM INF indexed block height=3 module=txindex
 1:29AM INF Creating and publishing block height=4 module=BlockManager
 1:29AM INF minted coins from module account amount=2059727140542003996aphoton from=mint module=x/bank
 1:29AM INF submitting block to DA layer height=4 module=BlockManager
-1:29AM INF successfully submitted rollmint block to DA layer daHeight=25425 module=BlockManager rollmintHeight=4
+1:29AM INF successfully submitted rollkit block to DA layer daHeight=25425 module=BlockManager rollkitHeight=4
 1:29AM INF commit synced commit=436F6D6D697449447B5B313433203332203639203732203134342034352037302034302032392032303120393720313137203235312031393320313738203137362031353920323038203231372036312032362031353720353320393820323234203230352031373020313920313034203138372031323220385D3A347D
 1:29AM INF indexed block height=4 module=txindex
 1:29AM INF Creating and publishing block height=5 module=BlockManager
