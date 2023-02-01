@@ -117,8 +117,6 @@ All nodes also run `RetrieveLoop` which is responsible for interacting with the 
 
 ## RPC Layer
 
-<!-- Drafting -->
-
 Rollkit's RPC layer fully implements the [Tendermint RPC](https://docs.tendermint.com/v0.34/rpc) interfaces/APIs for querying:
 
 * **Information about the rollup node**: Information such as node's health, status, and network info.
