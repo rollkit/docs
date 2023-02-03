@@ -102,9 +102,9 @@ Rollkit plans to support multiple different pluggable sequencer schemes:
 
 Full nodes verify all blocks and can produce fraud proofs for optimistic rollups. Since they fully validate all rollup blocks, they don't rely on fraud or validity proofs for security.
 
-### Light node
+### Light node (Work in Progress)
 
-Light nodes are light-weight rollup nodes that authenticate block headers, and are secured by fraud proofs or validity proofs. They're recommended for average users on low-resource devices. Users running light nodes can make trust-minimized queries about the rollup's state.
+Light nodes are light-weight rollup nodes that authenticate block headers, and are secured by fraud proofs or validity proofs. They're recommended for average users on low-resource devices. Users running light nodes can make trust-minimized queries about the rollup's state. Currently, Rollkit light nodes are still under development.
 
 ## [Block Manager](https://github.com/rollkit/rollkit/tree/main/block)
 
