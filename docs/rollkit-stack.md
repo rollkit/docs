@@ -33,7 +33,7 @@ the methods needed for state fraud proofs.
 
 > **Requires Golang version 1.19+**
 
-## Mempool
+## [Mempool](https://github.com/rollkit/rollkit/tree/main/mempool)
 
 The mempool keeps the set of pending transactions, and is used by block
 producers to produce blocks and full nodes to verify blocks. Currently, transactions are handled by
@@ -61,7 +61,7 @@ List of required modifications to push State Fraud Proofs towards completion:
 * Support for multiple sequencers, in which case, fraud proof detection works the same as described above.
 * Support more ABCI-compatible State Machines, in addition to the Cosmos SDK state machine.
 
-## P2P Layer
+## [P2P Layer](https://github.com/rollkit/rollkit/tree/main/p2p)
 
 Rollkit's P2P layer enables direct communication between rollup nodes.
 It's used to gossip transactions, headers of newly created blocks and state fraud proofs.
@@ -72,7 +72,7 @@ Starting a node connects to preconfigured bootstrap peers, and advertises its na
 This solution is flexible, because multiple rollup networks may reuse the same DHT/bootstrap nodes,
 but specific rollup network might decide to use dedicated nodes as well.
 
-## DA Access
+## [DA Access](https://github.com/rollkit/rollkit/tree/main/da)
 
 Data Availability (DA) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA.
 
@@ -81,7 +81,7 @@ The `DataAvailabilityLayerClient` interface includes essential life-cycle method
 The `BlockRetriever` interface serves to enable syncing of full nodes from the Data Availability layer.
 It's important to keep in mind that there is no direct correlation between the DA block height and the rollup height. Each DA block may contain an arbitrary number of rollup blocks.
 
-## Rollkit Node Types
+## [Rollkit Node Types](https://github.com/rollkit/rollkit/tree/main/node)
 
 ### Sequencer node
 
@@ -104,7 +104,7 @@ Full nodes verify all blocks and can produce fraud proofs for optimistic rollups
 
 Light nodes are light-weight rollup nodes that authenticate block headers, and are secured by fraud proofs or validity proofs. They're recommended for average users on low-resource devices. Users running light nodes can make trust-minimized queries about the rollup's state.
 
-## Block Manager
+## [Block Manager](https://github.com/rollkit/rollkit/tree/main/block)
 
 The Block Manager contains go routines, `AggregationLoop`, `RetrieveLoop`, `SyncLoop` that communicate through go channels. These go routines are run when a Rollkit Node starts up (`OnStart`). Only the Sequencer Nodes run `AggregationLoop` which controls the frequency of block production for a rollup with a timer as per the `BlockTime` in `BlockManager`.
 
@@ -117,7 +117,7 @@ All nodes run `SyncLoop` which looks for the following operations:
 
 All nodes also run `RetrieveLoop` which is responsible for interacting with the Data Availability layer. It checks the last updated `DAHeight` to retrieve a block with timer `DABlockTime` signaled by `SyncLoop`. Note that the start height of the DA layer for the rollup, `DAStartHeight`, is configurable in `BlockManager`.
 
-## RPC Layer
+## [RPC Layer](https://github.com/rollkit/rollkit/tree/main/rpc)
 
 Rollkit's RPC layer fully implements the [Tendermint RPC](https://docs.tendermint.com/v0.34/rpc) interfaces and APIs for querying:
 
