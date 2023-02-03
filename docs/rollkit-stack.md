@@ -51,7 +51,7 @@ Overall, State Fraud Proofs will enable trust-minimization between full nodes an
 
 Note that Rollkit State Fraud Proofs are still a work in progress and will require new methods on top of ABCI, specifically, `GenerateFraudProof`, `VerifyFraudProof`, and `GetAppHash`.
 
-List of required modifications to push State Fraud Proofs towards completion:
+List of caveats and required modifications to push State Fraud Proofs towards completion:
 
 * Add ability for light nodes to receive and verify state fraud proofs.
 * Add inclusion proofs over transactions so fraud proof verifiers have knowledge over which rollup transaction is being fraud proven.
@@ -60,6 +60,8 @@ List of required modifications to push State Fraud Proofs towards completion:
 * Write end to end network tests covering different scenarios that can occur in case of state fraud proof submission by a full node.
 * Support for multiple sequencers, in which case, fraud proof detection works the same as described above.
 * Support more ABCI-compatible State Machines, in addition to the Cosmos SDK state machine.
+
+You can find current detailed design in this [Architecture Decision Record (ADR)](https://github.com/rollkit/rollkit/blob/manav/state_fraud_proofs_adr/docs/lazy-adr/adr-009-state-fraud-proofs.md).
 
 ## [P2P Layer](https://github.com/rollkit/rollkit/tree/main/p2p)
 
