@@ -16,7 +16,17 @@ If you're familiar with Rollkit's stack, you may want to skip to the [tutorials 
 
 For an understanding of the Rollkit stack, let's first look at the key components of a rollup. A typical rollup has:
 
-## Rollup Application Dependencies
+## Rollup Application Architecture
+
+![Rollup architecture with Rollkit and ABCI](./rollkit-abci.drawio.svg)
+
+### ABCI Interface
+
+Rollkit is a fully functional ABCI client software - it can be used as Tendermint replacement for any ABCI app.
+Thanks to this compatility, you can use tools like [abci-cli](`https://docs.tendermint.com/v0.34/app-dev/abci-cli.html`)
+to test and debug your rollup.
+
+### Cosmos-SDK
 
 Would you like to change your Cosmos-SDK application to a Rollkit rollup?
 No problem! You need to replace the Cosmos-SDK Go dependency with
@@ -30,6 +40,16 @@ as the ABCI client.
 And don't forget to replace another dependency, `tendermint`, with
 [`rollkit/tendermint`](https://github.com/rollkit/tendermint), which has an enhanced ABCI interface that includes
 the methods needed for state fraud proofs.
+
+### DA API
+Rollkit defines very generic Data Availability Layer Client Interface.
+New implementations can be plugged-in programmatically, without a need to fork Rollkit.
+
+### Celestia
+Celestia is an example of Data Availability integration implemented for Rollkit.
+It's using [Celestia Node Gateway API](https://docs.celestia.org/developers/node-api/)
+via [`celestiaorg/go-cnc`](https://github.com/celestiaorg/go-cnc/) package.
+To deploy Rollkit Rollup on Celestia you also have to [run Celestia Node](https://docs.celestia.org/developers/node-tutorial/).
 
 > **Requires Golang version 1.19+**
 
