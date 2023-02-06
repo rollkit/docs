@@ -8,7 +8,7 @@ description: Intro to Rollkit, a modular framework for rollups.
 
 Welcome to Rollkit docs. We’re happy you made it here!
 
-Our mission is to empower developers to quickly innovate and create entirely new classes of rollups with minimal tradeoffs.
+Our mission is to empower developers to quickly innovate and create entire new classes of rollups with minimal tradeoffs.
 
 We’re setting the bar high for developers’ flexibility and ability to customize rollups however they see fit.
 
@@ -28,23 +28,21 @@ The tutorials use Celestia as the default data availability layer, but developer
 
 ## What problems is Rollkit solving?
 
-### 1. Scalability, Customizability, and Sovereignty
+### 1. Scalability and Customizability
 
-Rollups deployed on a monolithic Layer 1 (L1) blockchain benefit from directly inheriting security from the base layer. However, that comes at the cost of scalability, customizability, and sovereignty.
+Deploying your decentralized application as a smart contract on a shared blockchain has many limitations. Your smart contract has to share computational resources with every other application, so scalability is limited.
 
-All rollups sharing the same monolithic L1 compete with each other over the limited block space, resulting in a lack of scalability.
-
-In addition, developers lack the freedom and ability to customize different parts of the stack, such as the execution environment, putting a limit and constraint on how they build rollups.
-
-Furthermore, a rollup community on a monolithic L1 can't fork their chain when needed.
+Plus, you’re restricted to the execution environment that shared blockchain uses, so developer flexibility is limited.
 
 ### 2. Security and Time to Market
 
-App-chains might sound like the perfect solution for the problems listed above. While it’s somehow true, app-chains introduced a new set of tradeoffs.
+App-chains might sound like the perfect solution for the problems listed above. While it’s somehow true, deploying a new layer 1 chain presents a complex set of challenges and trade-offs for developers looking to build blockchain products.
 
-Developers building their products as app-chains have to bootstrap an entire validator set and face the overhead of managing a full BFT-consensus network, increasing the cost and time of bringing their products to market while introducing security risks.
+Deploying a new layer 1 requires significant resources, including time, capital, and expertise, which can be a barrier to entry for some developers.
 
-Plus, current app-chains aren’t truly modular since they handle data availability, consensus and settlement. Lastly, who doesn’t want to build modular?
+In order to secure the network, developers must bootstrap a sufficiently secure set of validators, incurring the overhead of managing a full consensus network. This requires paying validators with inflationary tokens, putting the business sustainability of the network at risk. A strong community and network effect are also critical for success, but can be challenging to achieve as the network must gain widespread adoption to be secure and valuable.
+
+Also, in a potential future with millions of app-chains, it’s highly unlikely all of those chains will be able to sustainably attract a sufficiently secure and decentralized validator set.
 
 ## Why Rollkit?
 
