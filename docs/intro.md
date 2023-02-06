@@ -30,7 +30,8 @@ The tutorials use Celestia as the default data availability layer, but developer
 
 ### 1. Scalability and Customizability
 
-Deploying your decentralized application as a smart contract on a shared blockchain has many limitations. Your smart contract has to share computational resources with every other application, so scalability is limited. 
+Deploying your decentralized application as a smart contract on a shared blockchain has many limitations. Your smart contract has to share computational resources with every other application, so scalability is limited.
+
 Plus, you’re restricted to the execution environment that shared blockchain uses, so developer flexibility is limited.
 
 ### 2. Security and Time to Market
@@ -41,7 +42,7 @@ Deploying a new layer 1 requires significant resources, including time, capital,
 
 In order to secure the network, developers must bootstrap a sufficiently secure set of validators, incurring the overhead of managing a full consensus network. This requires paying validators with inflationary tokens, putting the business sustainability of the network at risk. A strong community and network effect are also critical for success, but can be challenging to achieve as the network must gain widespread adoption to be secure and valuable.
 
-Also, in a potential future with millions of app chains, it’s highly unlikely all of those chains will be able to sustainably attract a sufficiently secure and decentralized validator set.
+Also, in a potential future with millions of app-chains, it’s highly unlikely all of those chains will be able to sustainably attract a sufficiently secure and decentralized validator set.
 
 ## Why Rollkit?
 
