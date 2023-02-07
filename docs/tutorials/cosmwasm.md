@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 sidebar_label: CosmWasm Tutorial
 description: Build a sovereign rollup with CosmWasm, Celestia, and Rollkit.
 ---
