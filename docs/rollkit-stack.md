@@ -98,6 +98,8 @@ Rollkit plans to support multiple different pluggable sequencer schemes:
 | Shared Decentralized Sequencer | Yes ✅                                  | Yes ✅                               | No ❌                                         | Yes ✅                                     | Real-time ⚡️             | Planned           |
 | Pure Fork-Choice Rule          | Yes ✅                                  | No ❌                                | Maybe 🟡                                      | Maybe 🟡                                   | Eventual ⏳              | Planned           |
 
+> Pure Fork-Choice Rule refers to any rollup without priviledged sequencers, e.g. sequencers that defer to Celestia for ordering and apply a “first-come-first-serve” fork-choice rule.
+
 ### Full node
 
 Full nodes verify all blocks and can produce fraud proofs for optimistic rollups. Since they fully validate all rollup blocks, they don't rely on fraud or validity proofs for security.
