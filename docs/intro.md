@@ -19,11 +19,11 @@ Rollkit is a rollup framework that gives developers the freedom to deploy rollup
 The Rollkit framework features a modular node that can run rollups and expose an **[ABCI](https://github.com/informalsystems/tendermint/tree/main/abci)**-compatible client interface, which can be used as a substitute for Tendermint in any ABCI-compatible blockchain application.\
 By default, the node utilizes Celestia as the DA layer. In the future, the node will be able to connect to any DA layer of choice.
 
-In addition to deploying sovereign app-rollups, Rollkit can also be used to deploy dapps on existing settlement and execution layers, or even to create a new settlement layer. 
+In addition to deploying sovereign app-rollups, Rollkit can also be used to deploy dapps on existing settlement and execution layers, or even to create a new settlement layer.
 The framework's strength lies in its flexibility, allowing developers to customize their rollups as per their requirements.
 
-Rollkit is built as an open-source framework, so that developers could easily import existing modules into their applications. 
-We encourage developers to contribute to the development of Rollkit modules by adding new ones or improving existing ones. 
+Rollkit is built as an open-source framework, so that developers could easily import existing modules into their applications.
+We encourage developers to contribute to the development of Rollkit modules by adding new ones or improving existing ones.
 
 Our goal is to empower developers to quickly innovate and create new classes of rollups with minimal trade-offs.
 
@@ -48,6 +48,7 @@ In order to secure the network, developers must bootstrap a sufficiently secure 
 Also, in a potential future with millions of app-chains, it’s highly unlikely all of those chains will be able to sustainably attract a sufficiently secure and decentralized validator set.
 
 ## Why Rollkit?
+
 Rollkit solves the challenges encountered during the deployment of a smart contract or a new layer 1, by minimizing these tradeoffs through the implementation of rollups.
 
 With Rollkit, developers can benefit from:
@@ -63,7 +64,7 @@ Rollkit is built as an open-source, modular framework, to make it easier for dev
 
 - **Faster Time to Market:**
  Rollkit eliminates the need to bootstrap a validator set, manage a consensus network, incur high economic costs, and face other trade-offs that come with deploying a new layer 1. Deploying a rollup is as easy as deploying a smart contract, cutting the time it takes to bring blockchain products to market from months or even years to just minutes.
- 
+
 - **Sovereignty**: Rollkit also enables developers to build sovereign app-rollups for cases where communities require sovereignty. This possibility is provided to meet these needs.
 
 ## How can you use Rollkit?
