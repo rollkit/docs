@@ -17,7 +17,7 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 Rollkit is a rollup framework that gives developers the freedom to deploy rollups throughout the modular stack, opening new possibilities for rapid experimentation and innovation.
 
 The Rollkit framework features a modular node that can run rollups and expose an **[ABCI](https://github.com/informalsystems/tendermint/tree/main/abci)**-compatible client interface, which can be used as a substitute for Tendermint in any ABCI-compatible blockchain application.
-By default, the node utilizes Celestia as the DA layer. In the future, the node will be able to connect to any DA layer of choice.
+By default, the node utilizes Celestia as the Data Availability (DA) layer. In the future, the node will be able to connect to any DA layer of choice.
 
 In addition to deploying sovereign app-rollups, Rollkit can also be used to deploy dapps on existing settlement and execution layers, or even to create a new settlement layer.
 The framework's strength lies in its flexibility, allowing developers to customize their rollups as per their requirements.
