@@ -64,7 +64,7 @@ Finally, since Rollkit rollups are deployed on modular blockchains like Celestia
 
 ## How can you use Rollkit?
 
-As briefly mentioned above, Rollkit could be used in many different ways. Form sovereign app-rollups, to settlement layers to L3!  
+As briefly mentioned above, Rollkit could be used in many different ways. From sovereign app-rollups, to settlement layers, and even to L3!  
 
 ### Roll with Any Virtual Machine
 
