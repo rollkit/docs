@@ -63,7 +63,7 @@ Rollkit rollups are deployed on specialized data availability layers like Celest
 Rollkit is built as an open-source, modular framework, to make it easier for developers to use existing modules and customize their rollups. There are no constraints on the type of virtual machine that can be used, the programming language for creating applications, the state proof type (zk- vs. fraud-proofs), or any other part of the stack. Making Rollkit rollups fully customizable. We're currently working on further abstractions and enhancing the ABCI compatibilities.
 
 - **Faster Time to Market:**
- Rollkit eliminates the need to bootstrap a validator set, manage a consensus network, incur high economic costs, and face other trade-offs that come with deploying a new layer 1. Deploying a rollup is as easy as deploying a smart contract, cutting the time it takes to bring blockchain products to market from months or even years to just minutes.
+Rollkit eliminates the need to bootstrap a validator set, manage a consensus network, incur high economic costs, and face other trade-offs that come with deploying a new layer 1. Deploying a rollup is as easy as deploying a smart contract, cutting the time it takes to bring blockchain products to market from months or even years to just minutes.
 
 - **Sovereignty**: Rollkit also enables developers to build sovereign app-rollups for cases where communities require sovereignty. This possibility is provided to meet these needs.
 
