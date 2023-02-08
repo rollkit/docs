@@ -63,6 +63,7 @@ Rollkit is built as a modular framework allowing developers to easily customize 
 Finally, since Rollkit rollups are deployed on modular blockchains like Celestia that separate execution from data availability and consensus, rollups now have the possibility to be sovereign by deploying as an app-chain rollup.
 
 ## How can you use Rollkit?
+
 As briefly mentioned above, Rollkit could be used in many different ways. Form sovereign app-rollups, to settlement layers to L3!  
 
 ### Roll with Any Virtual Machine
@@ -71,7 +72,7 @@ Rollkit gives developers the flexibility to use pre-existing ABCI-compatible sta
 
 ### App-Specific Rollup with Cosmos-SDK
 
-Similar to how developers utilize the Cosmos-SDK to build a sovereign L1, the Cosmos-SDK could be utilized to create a Rollkit-compatible app-rollup. 
+Similar to how developers utilize the Cosmos-SDK to build a sovereign L1, the Cosmos-SDK could be utilized to create a Rollkit-compatible app-rollup.
 Cosmos-SDK has great documentation and tooling that developers could leverage to learn.
 
 Another possibility is taking an existing L1 built with the Cosmos-SDK and deploying it as a Rollkit rollup. This can provide a great opportunity for experimentation and growth.
@@ -80,7 +81,7 @@ Another possibility is taking an existing L1 built with the Cosmos-SDK and deplo
 
 Settlement layers are ideal for developers who want to avoid deploying sovereign app-rollups. They provide a platform for rollups to verify proofs and resolve disputes.
 Additionally, they act as a hub for rollups to facilitate token transfers and liquidity sharing between rollups that share the same settlement layer.
-Think of settlement layers as a special type of execution layer. 
+Think of settlement layers as a special type of execution layer.
 
 For more information on how they work, check out:
 [https://celestia.org/learn/modular-settlement-layers/settlement-in-the-modular-stack](https://celestia.org/learn/modular-settlement-layers/settlement-in-the-modular-stack)
