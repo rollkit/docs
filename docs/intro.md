@@ -84,7 +84,6 @@ Additionally, they act as a hub for rollups to facilitate token transfers and li
 Think of settlement layers as a special type of execution layer.
 
 For more information on how they work, check out:
-[https://celestia.org/learn/modular-settlement-layers/settlement-in-the-modular-stack](https://celestia.org/learn/modular-settlement-layers/settlement-in-the-modular-stack)
 
 ## When can you use Rollkit?
 
