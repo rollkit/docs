@@ -69,17 +69,26 @@ Rollkit eliminates the need to bootstrap a validator set, manage a consensus net
 
 ## How can you use Rollkit?
 
-### Build a Rollup with any Virtual Machine
+As briefly mentioned above, Rollkit could be used in many different ways. From sovereign app-rollups, to settlement layers, and even to L3!  
 
-Any ABCI-comptabile state machine may be used with Rollkit, or rollup your sleeves and build your own VM!
+### Roll with Any Virtual Machine
 
-### Build an App-Specific Rollup with Cosmos-SDK
+Rollkit gives developers the flexibility to use pre-existing ABCI-compatible state machines or create a custom virtual machine tailored to their rollup needs. Rollkit does not restrict the use of any specific virtual machine, allowing developers to experiment and bring innovative dapps to life.
 
-Cosmos-SDK, and its extensive documentation and tooling may be used to create a Rollkit-compatible blockchain app.
+### App-Specific Rollup with Cosmos-SDK
+
+Similarly to how developers utilize the Cosmos-SDK to build a sovereign L1, the Cosmos-SDK could be utilized to create a Rollkit-compatible app-rollup.
+Cosmos-SDK has great [documentation](https://docs.cosmos.network/main) and tooling that developers can leverage to learn.
+
+Another possibility is taking an existing L1 built with the Cosmos-SDK and deploying it as a Rollkit rollup. This can provide a great opportunity for experimentation and growth.
 
 ### Build a Settlement Layer
 
-Create a generalized rollup chain, to run many apps or settle other rollups.
+Settlement layers are ideal for developers who want to avoid deploying sovereign app-rollups. They provide a platform for rollups to verify proofs and resolve disputes.
+Additionally, they act as a hub for rollups to facilitate token transfers and liquidity sharing between rollups that share the same settlement layer.
+Think of settlement layers as a special type of execution layer.
+
+For more information on how they work, check out this [page](https://celestia.org/learn/modular-settlement-layers/settlement-in-the-modular-stack) on settlement layers by Celestia Labs.
 
 ## When can you use Rollkit?
 
