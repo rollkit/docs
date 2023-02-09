@@ -57,7 +57,7 @@ You will see something like this, denoting your balance in TIA x 10^(-6):
 {"denom":"utia","amount":"999995000000000"}
 ```
 
-If you want to be able to transpose your JSON results into a nicer format, you can install [`jq`](https://stedolan.github.io/jq/):
+If you want to be able to transpose your JSON results in a nicer format, you can install [`jq`](https://stedolan.github.io/jq/):
 
 ```bash
 sudo apt install jq
@@ -67,7 +67,7 @@ sudo apt install jq
 We'll need `jq` later, so install it!
 :::
 
-Then run this to display in a prettier format:
+Then run this to prettify the result:
 
 ```bash
 curl -X GET http://0.0.0.0:26659/balance | jq
