@@ -83,7 +83,7 @@ Settlement layers are ideal for developers who want to avoid deploying sovereign
 Additionally, they act as a hub for rollups to facilitate token transfers and liquidity sharing between rollups that share the same settlement layer.
 Think of settlement layers as a special type of execution layer.
 
-For more information on how they work, check out:
+For more information on how they work, check out this [page](https://celestia.org/learn/modular-settlement-layers/settlement-in-the-modular-stack) on settlement layers by Celestia Labs.
 
 ## When can you use Rollkit?
 
