@@ -135,5 +135,3 @@ The following RPC protocols are currently supported:
 * URI over HTTP
 * JSON-RPC over HTTP
 * JSON-RPC over WebSockets
-
-In future, we plan to support other key APIs such as rollup state validation (optimistic) and make the Rollkit RPCs generalizable beyond Tendermint.
