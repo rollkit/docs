@@ -73,7 +73,7 @@ Rollkit gives developers the flexibility to use pre-existing ABCI-compatible sta
 ### App-Specific Rollup with Cosmos-SDK
 
 Similarly to how developers utilize the Cosmos-SDK to build a sovereign L1, the Cosmos-SDK could be utilized to create a Rollkit-compatible app-rollup.
-Cosmos-SDK has great documentation and tooling that developers could leverage to learn.
+Cosmos-SDK has great [documentation](https://docs.cosmos.network/main) and tooling that developers can leverage to learn.
 
 Another possibility is taking an existing L1 built with the Cosmos-SDK and deploying it as a Rollkit rollup. This can provide a great opportunity for experimentation and growth.
 
