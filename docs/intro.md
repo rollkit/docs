@@ -6,7 +6,11 @@ description: Intro to Rollkit, a modular framework for rollups.
 
 # Introduction to Rollkit
 
-Welcome to Rollkit docs. We’re happy you made it here!
+Welcome to Rollkit docs. We're happy you made it here!
+
+Our mission is to empower developers to quickly innovate and create entire new classes of rollups with minimal tradeoffs.
+
+We're setting the bar high for developers' flexibility and ability to customize rollups however they see fit.
 
 :::tip Tip
 If you're familiar with Rollkit, you may want to skip to the [tutorials section](../category/tutorials)
