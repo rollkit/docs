@@ -32,7 +32,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/1f306.svg').default,
     description: (
       <>
-        Freedom to configure the execution environment
+        Freedom to fork
       </>
     ),
   },
