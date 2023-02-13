@@ -16,10 +16,6 @@ If you're familiar with Rollkit's stack, you may want to skip to the [tutorials 
 
 For an understanding of the Rollkit stack, let's first look at the key components of a rollup.
 
-## Rollkit dependencies
-
-- **Golang version 1.19+**
-
 ## Rollup Application Architecture
 
 ![Rollup architecture with Rollkit and ABCI](../static/img/rollkit-stack/rollkit-abci.png)
