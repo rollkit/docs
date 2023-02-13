@@ -77,13 +77,13 @@ Note that Rollkit State Fraud Proofs are still a work in progress and will requi
 
 List of caveats and required modifications to push State Fraud Proofs towards completion:
 
-* Add ability for light nodes to receive and verify state fraud proofs.
-* Add inclusion proofs over transactions so fraud proof verifiers have knowledge over which rollup transaction is being fraud proven.
-* Check for badly formatted underlying rollup data before verifying state transition inside the State Machine.
-* Limit number of state witnesses permissible in a state fraud proof since state keys accessed by a transaction can be limited by the state machine.
-* Write end to end network tests covering different scenarios that can occur in case of state fraud proof submission by a full node.
-* Support for multiple sequencers, in which case, fraud proof detection works the same as described above.
-* Support more ABCI-compatible State Machines, in addition to the Cosmos SDK state machine.
+- Add ability for light nodes to receive and verify state fraud proofs.
+- Add inclusion proofs over transactions so fraud proof verifiers have knowledge over which rollup transaction is being fraud proven.
+- Check for badly formatted underlying rollup data before verifying state transition inside the State Machine.
+- Limit number of state witnesses permissible in a state fraud proof since state keys accessed by a transaction can be limited by the state machine.
+- Write end to end network tests covering different scenarios that can occur in case of state fraud proof submission by a full node.
+- Support for multiple sequencers, in which case, fraud proof detection works the same as described above.
+- Support more ABCI-compatible State Machines, in addition to the Cosmos SDK state machine.
 
 You can find current detailed design in this [Architecture Decision Record (ADR)](https://github.com/rollkit/rollkit/blob/manav/state_fraud_proofs_adr/docs/lazy-adr/adr-009-state-fraud-proofs.md).
 
@@ -141,10 +141,10 @@ The [Block Manager](https://github.com/rollkit/rollkit/tree/main/block) contains
 
 All nodes run `SyncLoop` which looks for the following operations:
 
-* **Receive block headers**: Block headers are received through a channel `HeaderInCh` and Rollkit Nodes attempt to verify the block with the corresponding block data.
-* **Receive block data**: Block bodies are received through a channel `blockInCh` and Rollkit Nodes attempt to verify the block.
-* **Receive State Fraud Proofs**: State Fraud Proofs are received through a channel `FraudProofInCh` and Rollkit Nodes attempt to verify them. Note that we plan to make this configurable for Full Nodes since Full Nodes also produce State Fraud Proofs on their own.
-* Signal `RetrieveLoop` with timer as per the `DABlockTime` in `BlockManager`.
+- **Receive block headers**: Block headers are received through a channel `HeaderInCh` and Rollkit Nodes attempt to verify the block with the corresponding block data.
+- **Receive block data**: Block bodies are received through a channel `blockInCh` and Rollkit Nodes attempt to verify the block.
+- **Receive State Fraud Proofs**: State Fraud Proofs are received through a channel `FraudProofInCh` and Rollkit Nodes attempt to verify them. Note that we plan to make this configurable for Full Nodes since Full Nodes also produce State Fraud Proofs on their own.
+- Signal `RetrieveLoop` with timer as per the `DABlockTime` in `BlockManager`.
 
 All nodes also run `RetrieveLoop` which is responsible for interacting with the Data Availability layer. It checks the last updated `DAHeight` to retrieve a block with timer `DABlockTime` signaled by `SyncLoop`. Note that the start height of the DA layer for the rollup, `DAStartHeight`, is configurable in `BlockManager`.
 
@@ -152,13 +152,13 @@ All nodes also run `RetrieveLoop` which is responsible for interacting with the 
 
 Rollkit's [RPC](https://github.com/rollkit/rollkit/tree/main/rpc) layer fully implements the [Tendermint RPC](https://docs.tendermint.com/v0.34/rpc) interfaces and APIs for querying:
 
-* **Information about the rollup node**: Information such as node's health, status, and network info.
-* **The rollup blockchain**: Getting the information about the rollup blockchain such as block headers, blocks, block commitments, rollup validators, rollup consensus parameters and state, etc.
-* **The rollup transactions**: Getting the transaction information, broadcasting raw transactions and commitments, and search capabilities.
-* **ABCI**: Rollup application information.
+- **Information about the rollup node**: Information such as node's health, status, and network info.
+- **The rollup blockchain**: Getting the information about the rollup blockchain such as block headers, blocks, block commitments, rollup validators, rollup consensus parameters and state, etc.
+- **The rollup transactions**: Getting the transaction information, broadcasting raw transactions and commitments, and search capabilities.
+- **ABCI**: Rollup application information.
 
 The following RPC protocols are currently supported:
 
-* URI over HTTP
-* JSON-RPC over HTTP
-* JSON-RPC over WebSockets
+- URI over HTTP
+- JSON-RPC over HTTP
+- JSON-RPC over WebSockets
