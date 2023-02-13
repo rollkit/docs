@@ -31,7 +31,7 @@ We encourage developers to contribute to the development of Rollkit modules by a
 
 Our goal is to empower developers to quickly innovate and create new classes of rollups with minimal trade-offs.
 
-We’re making deploying a new chain as easy as deploying a smart contract!
+Our goal is to make deploying a new chain as easy as deploying a smart contract!
 
 ## What problems is Rollkit solving?
 
@@ -67,7 +67,7 @@ Rollkit rollups are deployed on specialized data availability layers like Celest
 Rollkit is built as an open-source, modular framework, to make it easier for developers to use existing modules and customize their rollups. There are no constraints on the type of virtual machine that can be used, the programming language for creating applications, the state proof type (zk- vs. fraud-proofs), or any other part of the stack. Making Rollkit rollups fully customizable. We're currently working on further abstractions and enhancing the ABCI compatibilities.
 
 - **Faster Time to Market:**
-Rollkit eliminates the need to bootstrap a validator set, manage a consensus network, incur high economic costs, and face other trade-offs that come with deploying a new layer 1. Deploying a rollup is as easy as deploying a smart contract, cutting the time it takes to bring blockchain products to market from months or even years to just minutes.
+Rollkit eliminates the need to bootstrap a validator set, manage a consensus network, incur high economic costs, and face other trade-offs that come with deploying a new layer 1. Rollkit's goal is to make deploying a rollup as easy as it is to deploy a smart contract, cutting the time it takes to bring blockchain products to market from months or even years to just minutes.
 
 - **Sovereignty**: Rollkit also enables developers to build sovereign app-rollups for cases where communities require sovereignty. This possibility is provided to meet these needs.
 
