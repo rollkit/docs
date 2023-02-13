@@ -68,7 +68,24 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
+            label: 'Introduction',
+          },
+          {
+            type: 'dropdown',
             label: 'Docs',
+            position: 'left',
+            items: [
+              {
+                type: 'doc',
+                docId: 'rollkit-stack',
+                label: 'Rollkit Stack',
+              },
+              {
+                type: 'doc',
+                docId: 'tutorials/building-and-deploying-a-rollup',
+                label: 'Tutorials',
+              },
+            ],
           },
           {
             type: 'dropdown',
