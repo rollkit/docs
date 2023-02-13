@@ -26,8 +26,7 @@ By default, the node utilizes Celestia as the Data Availability (DA) layer. In t
 In addition to deploying sovereign app-rollups, Rollkit will be used to deploy rollups on existing settlement and execution layers, or even to create a new settlement layer.
 The framework's strength lies in its flexibility, allowing developers to customize their rollups as per their requirements.
 
-Rollkit is built as an open-source framework, so that developers could easily import existing modules into their applications.
-We encourage developers to contribute to the development of Rollkit modules by adding new ones or improving existing ones.
+Rollkit is built as an open-source framework, so that developers can easily modify it to suit their applications.
 
 Our goal is to empower developers to quickly innovate and create new classes of rollups with minimal trade-offs.
 
