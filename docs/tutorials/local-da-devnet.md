@@ -21,7 +21,7 @@ The development journey for your rollup will look something like this:
 3. Finally, deploy your rollup to the DA Layer's mainnet
 
 Whether you're a developer simply testing things on your laptop or using a virtual machine in the cloud,
-this process can be done on any machine of your choosing. We tested it out successfully on a machine with the following specs:
+this process can be done on any machine of your choosing. We tested it out on a machine with the following specs:
 
 - Memory: 1 GB RAM
 - CPU: Single Core AMD
@@ -33,7 +33,7 @@ this process can be done on any machine of your choosing. We tested it out succe
 First, run the [`local-celestia-devnet`](https://github.com/celestiaorg/local-celestia-devnet) by running the following command:
 
 ```bash
-docker run -p 26650:26657 -p 26659:26659 ghcr.io/celestiaorg/local-celestia-devnet:main
+docker run --platform linux/amd64 -p 26650:26657 -p 26659:26659 ghcr.io/celestiaorg/local-celestia-devnet:main
 ```
 
 :::tip
