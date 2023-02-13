@@ -53,11 +53,9 @@ It's using the [Celestia Node Gateway API](https://docs.celestia.org/developers/
 via the [`celestiaorg/go-cnc`](https://github.com/celestiaorg/go-cnc/) package.
 To deploy a Rollkit Rollup on Celestia you also have to [run a Celestia Node](https://docs.celestia.org/developers/node-tutorial/).
 
-> **Requires Golang version 1.19+**
+## Mempool
 
-## [Mempool](https://github.com/rollkit/rollkit/tree/main/mempool)
-
-The mempool keeps the set of pending transactions, and is used by block
+The [mempool](https://github.com/rollkit/rollkit/tree/main/mempool) keeps the set of pending transactions, and is used by block
 producers to produce blocks and full nodes to verify blocks. Currently, transactions are handled by
 nodes in the First-Come, First-Served (FCFS) manner. Ordering of transactions
 can be implemented on the application level (for example by adding
@@ -75,19 +73,20 @@ Note that Rollkit State Fraud Proofs are still a work in progress and will requi
 
 List of caveats and required modifications to push State Fraud Proofs towards completion:
 
-* Add ability for light nodes to receive and verify state fraud proofs.
-* Add inclusion proofs over transactions so fraud proof verifiers have knowledge over which rollup transaction is being fraud proven.
-* Check for badly formatted underlying rollup data before verifying state transition inside the State Machine.
-* Limit number of state witnesses permissible in a state fraud proof since state keys accessed by a transaction can be limited by the state machine.
-* Write end to end network tests covering different scenarios that can occur in case of state fraud proof submission by a full node.
-* Support for multiple sequencers, in which case, fraud proof detection works the same as described above.
-* Support more ABCI-compatible State Machines, in addition to the Cosmos SDK state machine.
+- Add ability for light nodes to receive and verify state fraud proofs.
+- Add inclusion proofs over transactions so fraud proof verifiers have knowledge over which rollup transaction is being fraud proven.
+- Check for badly formatted underlying rollup data before verifying state transition inside the State Machine.
+- Limit number of state witnesses permissible in a state fraud proof since state keys accessed by a transaction can be limited by the state machine.
+- Write end to end network tests covering different scenarios that can occur in case of state fraud proof submission by a full node.
+- Support for multiple sequencers, in which case, fraud proof detection works the same as described above.
+- Support more ABCI-compatible State Machines, in addition to the Cosmos SDK state machine.
 
 You can find current detailed design in this [Architecture Decision Record (ADR)](https://github.com/rollkit/rollkit/blob/manav/state_fraud_proofs_adr/docs/lazy-adr/adr-009-state-fraud-proofs.md).
 
-## [P2P Layer](https://github.com/rollkit/rollkit/tree/main/p2p)
+## P2P Layer
 
-Rollkit's P2P layer enables direct communication between rollup nodes.
+Rollkit's [P2P layer](https://github.com/rollkit/rollkit/tree/main/p2p) enables
+direct communication between rollup nodes.
 It's used to gossip transactions, headers of newly created blocks and state fraud proofs.
 The P2P layer is implemented using [libp2p](https://github.com/libp2p).
 
@@ -96,16 +95,18 @@ Starting a node connects to preconfigured bootstrap peers, and advertises its na
 This solution is flexible, because multiple rollup networks may reuse the same DHT/bootstrap nodes,
 but specific rollup network might decide to use dedicated nodes as well.
 
-## [DA Access](https://github.com/rollkit/rollkit/tree/main/da)
+## DA Access
 
-Data Availability (DA) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA.
+[Data Availability (DA)](https://github.com/rollkit/rollkit/tree/main/da) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA.
 
 The `DataAvailabilityLayerClient` interface includes essential life-cycle methods (`Init`, `Start`, `Stop`) as well as data-availability methods (`SubmitBlock`, `CheckBlockAvailability`).
 
 The `BlockRetriever` interface serves to enable syncing of full nodes from the Data Availability layer.
 It's important to keep in mind that there is no direct correlation between the DA block height and the rollup height. Each DA block may contain an arbitrary number of rollup blocks.
 
-## [Rollkit Node Types](https://github.com/rollkit/rollkit/tree/main/node)
+## Rollkit Node Types
+
+You can learn more about the details of the following node types [here](https://github.com/rollkit/rollkit/tree/main/node).
 
 ### Sequencer node
 
@@ -130,30 +131,30 @@ Full nodes verify all blocks and can produce fraud proofs for optimistic rollups
 
 Light nodes are light-weight rollup nodes that authenticate block headers, and are secured by fraud proofs or validity proofs. They're recommended for average users on low-resource devices. Users running light nodes can make trust-minimized queries about the rollup's state. Currently, Rollkit light nodes are still under development.
 
-## [Block Manager](https://github.com/rollkit/rollkit/tree/main/block)
+## Block Manager
 
-The Block Manager contains go routines, `AggregationLoop`, `RetrieveLoop`, `SyncLoop` that communicate through go channels. These go routines are run when a Rollkit Node starts up (`OnStart`). Only the Sequencer Nodes run `AggregationLoop` which controls the frequency of block production for a rollup with a timer as per the `BlockTime` in `BlockManager`.
+The [Block Manager](https://github.com/rollkit/rollkit/tree/main/block) contains go routines, `AggregationLoop`, `RetrieveLoop`, `SyncLoop` that communicate through go channels. These go routines are run when a Rollkit Node starts up (`OnStart`). Only the Sequencer Nodes run `AggregationLoop` which controls the frequency of block production for a rollup with a timer as per the `BlockTime` in `BlockManager`.
 
 All nodes run `SyncLoop` which looks for the following operations:
 
-* **Receive block headers**: Block headers are received through a channel `HeaderInCh` and Rollkit Nodes attempt to verify the block with the corresponding block data.
-* **Receive block data**: Block bodies are received through a channel `blockInCh` and Rollkit Nodes attempt to verify the block.
-* **Receive State Fraud Proofs**: State Fraud Proofs are received through a channel `FraudProofInCh` and Rollkit Nodes attempt to verify them. Note that we plan to make this configurable for Full Nodes since Full Nodes also produce State Fraud Proofs on their own.
-* Signal `RetrieveLoop` with timer as per the `DABlockTime` in `BlockManager`.
+- **Receive block headers**: Block headers are received through a channel `HeaderInCh` and Rollkit Nodes attempt to verify the block with the corresponding block data.
+- **Receive block data**: Block bodies are received through a channel `blockInCh` and Rollkit Nodes attempt to verify the block.
+- **Receive State Fraud Proofs**: State Fraud Proofs are received through a channel `FraudProofInCh` and Rollkit Nodes attempt to verify them. Note that we plan to make this configurable for Full Nodes since Full Nodes also produce State Fraud Proofs on their own.
+- Signal `RetrieveLoop` with timer as per the `DABlockTime` in `BlockManager`.
 
 All nodes also run `RetrieveLoop` which is responsible for interacting with the Data Availability layer. It checks the last updated `DAHeight` to retrieve a block with timer `DABlockTime` signaled by `SyncLoop`. Note that the start height of the DA layer for the rollup, `DAStartHeight`, is configurable in `BlockManager`.
 
-## [RPC Layer](https://github.com/rollkit/rollkit/tree/main/rpc)
+## RPC Layer
 
-Rollkit's RPC layer fully implements the [Tendermint RPC](https://docs.tendermint.com/v0.34/rpc) interfaces and APIs for querying:
+Rollkit's [RPC](https://github.com/rollkit/rollkit/tree/main/rpc) layer fully implements the [Tendermint RPC](https://docs.tendermint.com/v0.34/rpc) interfaces and APIs for querying:
 
-* **Information about the rollup node**: Information such as node's health, status, and network info.
-* **The rollup blockchain**: Getting the information about the rollup blockchain such as block headers, blocks, block commitments, rollup validators, rollup consensus parameters and state, etc.
-* **The rollup transactions**: Getting the transaction information, broadcasting raw transactions and commitments, and search capabilities.
-* **ABCI**: Rollup application information.
+- **Information about the rollup node**: Information such as node's health, status, and network info.
+- **The rollup blockchain**: Getting the information about the rollup blockchain such as block headers, blocks, block commitments, rollup validators, rollup consensus parameters and state, etc.
+- **The rollup transactions**: Getting the transaction information, broadcasting raw transactions and commitments, and search capabilities.
+- **ABCI**: Rollup application information.
 
 The following RPC protocols are currently supported:
 
-* URI over HTTP
-* JSON-RPC over HTTP
-* JSON-RPC over WebSockets
+- URI over HTTP
+- JSON-RPC over HTTP
+- JSON-RPC over WebSockets
