@@ -1,6 +1,6 @@
 ---
-sidebar_position: 3
-sidebar_label: Hello World - Local DA Tutorial
+sidebar_position: 2
+sidebar_label: Hello World
 description: Run your Rollkit rollup while connected to a local Celestia Data Availability network.
 ---
 
@@ -185,13 +185,13 @@ ignite version
 Scaffold the chain:
 
 ```bash
-ignite scaffold chain gn
+ignite scaffold chain hello
 ```
 
-Change into the `gn` directory:
+Change into the `hello` directory:
 
 ```bash
-cd gn
+cd hello
 ```
 
 ## Install Rollkit
@@ -208,11 +208,11 @@ go mod download
 Download the `init.sh` script to start the chain:
 
 ```bash
-# From inside the `gn` directory
+# From inside the `hello` directory
 cd ..
 git clone https://github.com/celestiaorg/devrel-tools
-cp devrel-tools/gm/init-local.sh gn/
-cd gn/
+cp devrel-tools/gm/init-local.sh hello/
+cd hello/
 ```
 
 Run the `init-local.sh` script:
@@ -230,7 +230,7 @@ Now let's explore a bit.
 List your keys:
 
 ```bash
-gnd keys list --keyring-backend test
+hellod keys list --keyring-backend test
 ```
 
 ### Transactions
@@ -238,7 +238,7 @@ gnd keys list --keyring-backend test
 Send a transaction:
 
 ```bash
-gnd tx bank send cosmos1xwpz06l484xlew98hu74g77wahwatelmz7xm6g cosmos1pgljtq3a549t70zc0fhl4kze2q3r2tllzt8x0y 42069stake --keyring-backend test
+hellod tx bank send cosmos1xwpz06l484xlew98hu74g77wahwatelmz7xm6g cosmos1pgljtq3a549t70zc0fhl4kze2q3r2tllzt8x0y 42069stake --keyring-backend test
 ```
 
 You'll be prompted to accept the transaction:
@@ -291,7 +291,7 @@ txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
 Then, query your balance:
 
 ```bash
-gnd query bank balances cosmos1pgljtq3a549t70zc0fhl4kze2q3r2tllzt8x0y
+hellod query bank balances cosmos1pgljtq3a549t70zc0fhl4kze2q3r2tllzt8x0y
 ```
 
 This is the key that received the balance, so it should have increased past the initial `STAKING_AMOUNT`:
@@ -308,7 +308,7 @@ pagination:
 The other key, should have decreased in balance:
 
 ```bash
-gnd query bank balances cosmos1xwpz06l484xlew98hu74g77wahwatelmz7xm6g
+hellod query bank balances cosmos1xwpz06l484xlew98hu74g77wahwatelmz7xm6g
 ```
 
 Response:
