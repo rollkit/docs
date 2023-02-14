@@ -41,18 +41,6 @@ And don't forget to replace another dependency, `tendermint`, with
 [`rollkit/tendermint`](https://github.com/rollkit/tendermint), which has an enhanced ABCI interface that includes
 the methods needed for state fraud proofs.
 
-### Data Availability API
-
-Rollkit defines very generic Data Availability (DA) Layer Client Interface.
-New implementations can be plugged in programmatically, without a need to fork Rollkit.
-
-### Celestia
-
-Celestia is an example of a Data Availability integration implemented for Rollkit.
-It's using the [Celestia Node Gateway API](https://docs.celestia.org/developers/node-api/)
-via the [`celestiaorg/go-cnc`](https://github.com/celestiaorg/go-cnc/) package.
-To deploy a Rollkit Rollup on Celestia you also have to [run a Celestia Node](https://docs.celestia.org/developers/node-tutorial/).
-
 ## Mempool
 
 The [mempool](https://github.com/rollkit/rollkit/tree/main/mempool) keeps the set of pending transactions, and is used by block
@@ -95,14 +83,21 @@ Starting a node connects to preconfigured bootstrap peers, and advertises its na
 This solution is flexible, because multiple rollup networks may reuse the same DHT/bootstrap nodes,
 but specific rollup network might decide to use dedicated nodes as well.
 
-## DA Access
+## Data Availability Access
 
-[Data Availability (DA)](https://github.com/rollkit/rollkit/tree/main/da) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA.
+[Data Availability (DA)](https://github.com/rollkit/rollkit/tree/main/da) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA. New implementations can be plugged in programmatically, without a need to fork Rollkit.
 
 The `DataAvailabilityLayerClient` interface includes essential life-cycle methods (`Init`, `Start`, `Stop`) as well as data-availability methods (`SubmitBlock`, `CheckBlockAvailability`).
 
 The `BlockRetriever` interface serves to enable syncing of full nodes from the Data Availability layer.
 It's important to keep in mind that there is no direct correlation between the DA block height and the rollup height. Each DA block may contain an arbitrary number of rollup blocks.
+
+### Celestia
+
+Celestia is an example of a Data Availability integration implemented for Rollkit.
+It's using the [Celestia Node Gateway API](https://docs.celestia.org/developers/node-api/)
+via the [`celestiaorg/go-cnc`](https://github.com/celestiaorg/go-cnc/) package.
+To deploy a Rollkit Rollup on Celestia you also have to [run a Celestia Node](https://docs.celestia.org/developers/node-tutorial/).
 
 ## Rollkit Node Types
 
