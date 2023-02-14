@@ -22,7 +22,7 @@ For an understanding of the Rollkit stack, let's first look at the key component
 
 ### ABCI Interface
 
-Rollkit is a fully-functional ABCI client software - it can be used as a Tendermint replacement for any ABCI app.
+Rollkit is a fully-functional Application BlockChain Interface (ABCI) client software - it can be used as a Tendermint replacement for any ABCI app.
 Thanks to this compatibility, you can use tools like [abci-cli](https://docs.tendermint.com/v0.34/app-dev/abci-cli.html)
 to test and debug your rollup.
 
