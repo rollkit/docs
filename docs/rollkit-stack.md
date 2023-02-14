@@ -31,7 +31,7 @@ to test and debug your rollup.
 Would you like to change your Cosmos-SDK application to a Rollkit rollup?
 No problem! You need to replace the Cosmos-SDK Go dependency with
 Rollkit-enabled version, which can be found
-here: [https://github.com/rollkit/cosmos-sdk](https://github.com/rollkit/cosmos-sdk).
+[here](https://github.com/rollkit/cosmos-sdk).
 
 To note, the [`rollkit/cosmos-sdk`](https://github.com/rollkit/cosmos-sdk) repository follows the release branches of
 upstream Cosmos-SDK, but with the bonus of using Rollkit instead of Tendermint
