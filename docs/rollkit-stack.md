@@ -41,18 +41,6 @@ And don't forget to replace another dependency, `tendermint`, with
 [`rollkit/tendermint`](https://github.com/rollkit/tendermint), which has an enhanced ABCI interface that includes
 the methods needed for state fraud proofs.
 
-### Data Availability API
-
-Rollkit defines very generic Data Availability (DA) Layer Client Interface.
-New implementations can be plugged in programmatically, without a need to fork Rollkit.
-
-### Celestia
-
-Celestia is an example of a Data Availability integration implemented for Rollkit.
-It's using the [Celestia Node Gateway API](https://docs.celestia.org/developers/node-api/)
-via the [`celestiaorg/go-cnc`](https://github.com/celestiaorg/go-cnc/) package.
-To deploy a Rollkit Rollup on Celestia you also have to [run a Celestia Node](https://docs.celestia.org/developers/node-tutorial/).
-
 ## Mempool
 
 The [mempool](https://github.com/rollkit/rollkit/tree/main/mempool) keeps the set of pending transactions, and is used by block
@@ -103,6 +91,16 @@ The `DataAvailabilityLayerClient` interface includes essential life-cycle method
 
 The `BlockRetriever` interface serves to enable syncing of full nodes from the Data Availability layer.
 It's important to keep in mind that there is no direct correlation between the DA block height and the rollup height. Each DA block may contain an arbitrary number of rollup blocks.
+
+Rollkit defines very generic Data Availability (DA) Layer Client Interface.
+New implementations can be plugged in programmatically, without a need to fork Rollkit.
+
+### Celestia
+
+Celestia is an example of a Data Availability integration implemented for Rollkit.
+It's using the [Celestia Node Gateway API](https://docs.celestia.org/developers/node-api/)
+via the [`celestiaorg/go-cnc`](https://github.com/celestiaorg/go-cnc/) package.
+To deploy a Rollkit Rollup on Celestia you also have to [run a Celestia Node](https://docs.celestia.org/developers/node-tutorial/).
 
 ## Rollkit Node Types
 
