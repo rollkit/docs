@@ -1,10 +1,10 @@
 ---
 sidebar_position: 3
-sidebar_label: GN World - Local DA Tutorial
+sidebar_label: Hello World - Local DA Tutorial
 description: Run your Rollkit rollup while connected to a local Celestia Data Availability network.
 ---
 
-# GN World
+# Hello World
 
 :::caution Note
 This tutorial has only been tested on an AMD machine running Ubuntu 22.10 x64.
