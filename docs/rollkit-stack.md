@@ -13,7 +13,7 @@ Rollup sequencer nodes collect transactions from users, aggregate them into bloc
 For an understanding of the Rollkit stack, let's first look at the key components of a rollup.
 
 :::tip Tip
-If you're familiar with Rollkit's stack, you may want to skip to the [tutorials section](../category/tutorials)
+If you're familiar with Rollkit's stack, you may want to skip to the [tutorials section](../category/tutorials).
 :::
 
 ![Rollup architecture with Rollkit and ABCI](../static/img/rollkit-stack/rollkit-abci.png)
