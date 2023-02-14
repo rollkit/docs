@@ -18,7 +18,7 @@ If you're familiar with Rollkit's stack, you may want to skip to the [tutorials 
 
 ![Rollup architecture with Rollkit and ABCI](../static/img/rollkit-stack/rollkit-abci.png)
 
-### Cosmos-SDK
+## Cosmos-SDK
 
 Would you like to change your Cosmos-SDK application to a Rollkit rollup?
 No problem! You need to replace the Cosmos-SDK Go dependency with a
@@ -33,13 +33,13 @@ And don't forget to replace another dependency, `tendermint`, with
 [`rollkit/tendermint`](https://github.com/rollkit/tendermint), which has an enhanced ABCI interface that includes
 the methods needed for state fraud proofs.
 
-### ABCI Interface
+## ABCI Interface
 
 Rollkit is a fully-functional Application BlockChain Interface (ABCI) client software - it can be used as a Tendermint replacement for any ABCI app.
 Thanks to this compatibility, you can use tools like [abci-cli](https://docs.tendermint.com/v0.34/app-dev/abci-cli.html)
 to test and debug your rollup.
 
-### Mempool
+## Mempool
 
 The [mempool](https://github.com/rollkit/rollkit/tree/main/mempool) keeps the set of pending transactions, and is used by block
 producers to produce blocks and full nodes to verify blocks. Currently, transactions are handled by
@@ -49,7 +49,7 @@ nonce/sequence number). This behavior is similar to the Tendermint mempool.
 
 We plan to make transaction ordering in blocks configurable in the future.
 
-### Block Manager
+## Block Manager
 
 The [Block Manager](https://github.com/rollkit/rollkit/tree/main/block) contains go routines, `AggregationLoop`, `RetrieveLoop`, `SyncLoop` that communicate through go channels. These go routines are run when a Rollkit Node starts up (`OnStart`). Only the Sequencer Nodes run `AggregationLoop` which controls the frequency of block production for a rollup with a timer as per the `BlockTime` in `BlockManager`.
 
