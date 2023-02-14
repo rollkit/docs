@@ -29,7 +29,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Flexible',
-    Svg: require('@site/static/img/1f306.svg').default,
+    Svg: require('@site/static/img/2699.svg').default,
     description: (
       <>
         Freedom to configure the execution environment and other components
