@@ -10,7 +10,7 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Secure',
+    title: 'Shared Security',
     Svg: require('@site/static/img/1f512.svg').default,
     description: (
       <>
@@ -23,16 +23,16 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/1f4c8.svg').default,
     description: (
       <>
-        Rollups post their blocks on a modular consensus layer
+        With off-chain execution, rollups have their own dedicated computational resources
       </>
     ),
   },
   {
-    title: 'Sovereign',
+    title: 'Flexible',
     Svg: require('@site/static/img/1f306.svg').default,
     description: (
       <>
-        Freedom to fork
+        Freedom to configure the execution environment and other components
       </>
     ),
   },
@@ -41,7 +41,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/1f680.svg').default,
     description: (
       <>
-        Rollups deployed with a few lines of code
+        Deploy a rollup with only a few terminal commands
       </>
     ),
   },
