@@ -81,8 +81,7 @@ const config = {
                 label: 'Rollkit Stack',
               },
               {
-                type: 'doc',
-                docId: 'tutorials/building-and-deploying-a-rollup',
+                to: 'docs/category/tutorials',
                 label: 'Tutorials',
               },
             ],
