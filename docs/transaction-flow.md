@@ -6,14 +6,18 @@ description: Description of the flow of the Rollkit transaction.
 
 # Transaction Flow
 
-:::caution
-Light nodes are still a work in progesss.
-:::
-
 Rollup users use a light node to communicate with the rollup P2P network for two primary reasons:
 
 - to receive the current state of the rollup
 - to submit transactions
+
+:::caution note
+Light nodes are still a work in progesss.
+:::
+
+Here's what the typical transaction flow looks like:
+
+![tx-flow](../static/img/t-flow/transaction-flow.png)
 
 To transact, users submit a transaction to their light node, which gossips the transaction to a full node. Before adding the transaction to their mempool, the full node checks its validity. Valid transactions are included in the mempool, while invalid ones are refused, and the user's transaction will not be processed.
 
