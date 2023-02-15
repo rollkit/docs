@@ -43,16 +43,16 @@ the methods needed for state fraud proofs.
 
 ### Data Availability
 
-[Data Availability (DA)](https://github.com/rollkit/rollkit/tree/main/da) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA. New implementations can be plugged in programmatically, without a need to fork Rollkit.
+[Data availability (DA)](https://github.com/rollkit/rollkit/tree/main/da) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA. New implementations can be plugged in programmatically, without a need to fork Rollkit.
 
 The `DataAvailabilityLayerClient` interface includes essential life-cycle methods (`Init`, `Start`, `Stop`) as well as data-availability methods (`SubmitBlock`, `CheckBlockAvailability`).
 
-The `BlockRetriever` interface serves to enable syncing of full nodes from the Data Availability layer.
+The `BlockRetriever` interface serves to enable syncing of full nodes from the data availability layer.
 It's important to keep in mind that there is no direct correlation between the DA block height and the rollup height. Each DA block may contain an arbitrary number of rollup blocks.
 
 #### Celestia
 
-Celestia is an example of a Data Availability integration implemented for Rollkit.
+Celestia is an example of a data availability integration implemented for Rollkit.
 It's using the [Celestia Node Gateway API](https://docs.celestia.org/developers/node-api/)
 via the [`celestiaorg/go-cnc`](https://github.com/celestiaorg/go-cnc/) package.
 To deploy a Rollkit Rollup on Celestia you also have to [run a Celestia Node](https://docs.celestia.org/developers/node-tutorial/).
@@ -80,7 +80,7 @@ All nodes run `SyncLoop` which looks for the following operations:
 - **Receive State Fraud Proofs**: State Fraud Proofs are received through a channel `FraudProofInCh` and Rollkit Nodes attempt to verify them. Note that we plan to make this configurable for Full Nodes since Full Nodes also produce State Fraud Proofs on their own.
 - Signal `RetrieveLoop` with timer as per the `DABlockTime` in `BlockManager`.
 
-All nodes also run `RetrieveLoop` which is responsible for interacting with the Data Availability layer. It checks the last updated `DAHeight` to retrieve a block with timer `DABlockTime` signaled by `SyncLoop`. Note that the start height of the DA layer for the rollup, `DAStartHeight`, is configurable in `BlockManager`.
+All nodes also run `RetrieveLoop` which is responsible for interacting with the data availability layer. It checks the last updated `DAHeight` to retrieve a block with timer `DABlockTime` signaled by `SyncLoop`. Note that the start height of the DA layer for the rollup, `DAStartHeight`, is configurable in `BlockManager`.
 
 ### RPC Layer
 

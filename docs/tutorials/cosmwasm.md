@@ -10,7 +10,7 @@ CosmWasm is a smart contracting platform built for the Cosmos
 ecosystem by making use of [WebAssembly](https://webassembly.org) (Wasm)
 to build smart contracts for Cosmos-SDK. In this tutorial, we will be
 exploring how to integrate CosmWasm with Celestia's
-[Data Availability Layer](https://docs.celestia.org/concepts/how-celestia-works/data-availability-layer)
+[data availability layer](https://docs.celestia.org/concepts/how-celestia-works/data-availability-layer)
 using Rollkit.
 
 :::tip note
@@ -137,7 +137,7 @@ Find the right instructions specific for
 
 Here, we are going to pull down the `wasmd` repository and replace Tendermint
 with Rollkit. Rollkit is a drop-in replacement for Tendermint that allows
-Cosmos-SDK applications to connect to Celestia's Data Availability network.
+Cosmos-SDK applications to connect to Celestia's data availability network.
 
 ```bash
 git clone https://github.com/CosmWasm/wasmd.git
@@ -357,7 +357,7 @@ TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice-aarch64.wasm --from celes
 
 This will get you the transaction hash for the smart contract deployment. Given
 we are using Rollkit, there will be a delay on the transaction being included
-due to Rollkit waiting on Celestia's Data Availability Layer to confirm the block
+due to Rollkit waiting on Celestia's data availability layer to confirm the block
 has been included before submitting a new block.
 
 :::danger important
@@ -373,7 +373,7 @@ In the previous steps, we have stored out contract's tx hash in an
 environment variable for later use.
 
 Because of the longer time periods of submitting transactions via Rollkit
-due to waiting on Celestia's Data Availability Layer to confirm block inclusion,
+due to waiting on Celestia's data availability layer to confirm block inclusion,
 we will need to query our  tx hash directly to get information about it.
 
 ### Contract Querying

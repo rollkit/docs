@@ -80,7 +80,7 @@ Here, we are going to pull down the `ethermint` from the
 [Celestia repository](https://github.com/celestiaorg/ethermint).
 We will install Rollkit to this version of Ethermint.
 Rollkit is a drop-in replacement for Tendermint that allows
-Cosmos-SDK applications to connect to Celestia's Data Availability network.
+Cosmos-SDK applications to connect to Celestia's data availability network.
 
 ```bash
 git clone https://github.com/celestiaorg/ethermint.git
