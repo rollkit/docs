@@ -13,6 +13,7 @@ those chains Sovereign Rollups.
 
 You can get started with the following tutorials:
 
+- [Hello World](./hello-world.md)
 - [GM World](./gm-world.md)
 - [Recipe Book](./recipe-book.md)
 - [Wordle Game](./wordle.md)
