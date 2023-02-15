@@ -78,7 +78,7 @@ const config = {
               {
                 type: 'doc',
                 docId: 'rollkit-stack',
-                label: 'Rollkit Stack',
+                label: 'Rollkit stack',
               },
               {
                 to: 'docs/category/tutorials',
