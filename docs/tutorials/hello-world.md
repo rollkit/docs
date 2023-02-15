@@ -28,7 +28,11 @@ this process can be done on any machine of your choosing. We tested it out on a 
 - Disk: 25 GB SSD Storage
 - OS: Ubuntu 22.10 x64
 
-## 🌕 Running Local Devnet with a Rollkit Rollup
+## Prerequisites
+
+- Docker installed on your machine
+
+## Running Local Devnet with a Rollkit Rollup
 
 First, run the [`local-celestia-devnet`](https://github.com/celestiaorg/local-celestia-devnet) by running the following command:
 
