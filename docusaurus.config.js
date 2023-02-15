@@ -58,9 +58,8 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Rollkit v0',
         logo: {
-          alt: 'Rollkit logo',
+          alt: 'Rollkit',
           src: 'img/rollkit-blk.svg',
           srcDark: 'img/rollkit-wht.svg'
         },
