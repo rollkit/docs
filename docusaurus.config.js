@@ -88,6 +88,11 @@ const config = {
             ],
           },
           {
+            to: '/blog',
+            position: 'right',
+            label: 'Blog',
+          },
+          {
             type: 'dropdown',
             label: 'Community',
             position: 'right',
