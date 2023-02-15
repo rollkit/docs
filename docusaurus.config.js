@@ -61,7 +61,8 @@ const config = {
         title: 'Rollkit v0',
         logo: {
           alt: 'Rollkit logo',
-          src: 'img/toolbox.svg',
+          src: 'img/rollkit-blk.svg',
+          srcDark: 'img/rollkit-wht.svg'
         },
         items: [
           {
