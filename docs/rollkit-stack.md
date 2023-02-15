@@ -18,7 +18,15 @@ If you're familiar with Rollkit's stack, you may want to skip to the [tutorials 
 
 ![Rollup architecture with Rollkit and ABCI](../static/img/rollkit-stack/rollkit-abci.png)
 
-## Cosmos-SDK
+## Application structure
+
+### ABCI Interface
+
+Rollkit is a fully-functional Application BlockChain Interface (ABCI) client software - it can be used as a Tendermint replacement for any ABCI app.
+Thanks to this compatibility, you can use tools like [abci-cli](https://docs.tendermint.com/v0.34/app-dev/abci-cli.html)
+to test and debug your rollup.
+
+### Cosmos-SDK
 
 Would you like to change your Cosmos-SDK application to a Rollkit rollup?
 No problem! You need to replace the Cosmos-SDK Go dependency with a
@@ -33,13 +41,25 @@ And don't forget to replace another dependency, `tendermint`, with
 [`rollkit/tendermint`](https://github.com/rollkit/tendermint), which has an enhanced ABCI interface that includes
 the methods needed for state fraud proofs.
 
-## ABCI Interface
+### Data Availability
 
-Rollkit is a fully-functional Application BlockChain Interface (ABCI) client software - it can be used as a Tendermint replacement for any ABCI app.
-Thanks to this compatibility, you can use tools like [abci-cli](https://docs.tendermint.com/v0.34/app-dev/abci-cli.html)
-to test and debug your rollup.
+[Data Availability (DA)](https://github.com/rollkit/rollkit/tree/main/da) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA. New implementations can be plugged in programmatically, without a need to fork Rollkit.
 
-## Mempool
+The `DataAvailabilityLayerClient` interface includes essential life-cycle methods (`Init`, `Start`, `Stop`) as well as data-availability methods (`SubmitBlock`, `CheckBlockAvailability`).
+
+The `BlockRetriever` interface serves to enable syncing of full nodes from the Data Availability layer.
+It's important to keep in mind that there is no direct correlation between the DA block height and the rollup height. Each DA block may contain an arbitrary number of rollup blocks.
+
+#### Celestia
+
+Celestia is an example of a Data Availability integration implemented for Rollkit.
+It's using the [Celestia Node Gateway API](https://docs.celestia.org/developers/node-api/)
+via the [`celestiaorg/go-cnc`](https://github.com/celestiaorg/go-cnc/) package.
+To deploy a Rollkit Rollup on Celestia you also have to [run a Celestia Node](https://docs.celestia.org/developers/node-tutorial/).
+
+## Node components
+
+### Mempool
 
 The [mempool](https://github.com/rollkit/rollkit/tree/main/mempool) keeps the set of pending transactions, and is used by block
 producers to produce blocks and full nodes to verify blocks. Currently, transactions are handled by
@@ -49,7 +69,7 @@ nonce/sequence number). This behavior is similar to the Tendermint mempool.
 
 We plan to make transaction ordering in blocks configurable in the future.
 
-## Block Manager
+### Block Manager
 
 The [Block Manager](https://github.com/rollkit/rollkit/tree/main/block) contains go routines, `AggregationLoop`, `RetrieveLoop`, `SyncLoop` that communicate through go channels. These go routines are run when a Rollkit Node starts up (`OnStart`). Only the Sequencer Nodes run `AggregationLoop` which controls the frequency of block production for a rollup with a timer as per the `BlockTime` in `BlockManager`.
 
@@ -62,23 +82,7 @@ All nodes run `SyncLoop` which looks for the following operations:
 
 All nodes also run `RetrieveLoop` which is responsible for interacting with the Data Availability layer. It checks the last updated `DAHeight` to retrieve a block with timer `DABlockTime` signaled by `SyncLoop`. Note that the start height of the DA layer for the rollup, `DAStartHeight`, is configurable in `BlockManager`.
 
-## Data Availability
-
-[Data Availability (DA)](https://github.com/rollkit/rollkit/tree/main/da) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA. New implementations can be plugged in programmatically, without a need to fork Rollkit.
-
-The `DataAvailabilityLayerClient` interface includes essential life-cycle methods (`Init`, `Start`, `Stop`) as well as data-availability methods (`SubmitBlock`, `CheckBlockAvailability`).
-
-The `BlockRetriever` interface serves to enable syncing of full nodes from the Data Availability layer.
-It's important to keep in mind that there is no direct correlation between the DA block height and the rollup height. Each DA block may contain an arbitrary number of rollup blocks.
-
-### Celestia
-
-Celestia is an example of a Data Availability integration implemented for Rollkit.
-It's using the [Celestia Node Gateway API](https://docs.celestia.org/developers/node-api/)
-via the [`celestiaorg/go-cnc`](https://github.com/celestiaorg/go-cnc/) package.
-To deploy a Rollkit Rollup on Celestia you also have to [run a Celestia Node](https://docs.celestia.org/developers/node-tutorial/).
-
-## RPC Layer
+### RPC Layer
 
 Rollkit's [RPC](https://github.com/rollkit/rollkit/tree/main/rpc) layer fully implements the [Tendermint RPC](https://docs.tendermint.com/v0.34/rpc) interfaces and APIs for querying:
 
@@ -93,7 +97,7 @@ The following RPC protocols are currently supported:
 - JSON-RPC over HTTP
 - JSON-RPC over WebSockets
 
-## P2P Layer
+### P2P Layer
 
 Rollkit's [P2P layer](https://github.com/rollkit/rollkit/tree/main/p2p) enables
 direct communication between rollup nodes.
@@ -108,6 +112,14 @@ but specific rollup network might decide to use dedicated nodes as well.
 ## Rollkit Node Types
 
 You can learn more about the details of the following node types [here](https://github.com/rollkit/rollkit/tree/main/node).
+
+### Full node
+
+Full nodes verify all blocks and can produce fraud proofs for optimistic rollups. Since they fully validate all rollup blocks, they don't rely on fraud or validity proofs for security.
+
+### Light node (Work in Progress)
+
+Light nodes are light-weight rollup nodes that authenticate block headers, and are secured by fraud proofs or validity proofs. They're recommended for average users on low-resource devices. Users running light nodes can make trust-minimized queries about the rollup's state. Currently, Rollkit light nodes are still under development.
 
 ### Sequencer node
 
@@ -125,14 +137,6 @@ Rollkit plans to support multiple different pluggable sequencer schemes:
 > "Pure Fork-Choice Rule" refers to any rollup without privileged sequencers, e.g. nodes defer to Celestia for ordering and apply a “first-come-first-serve” fork-choice rule.
 >
 > \*Implementation of this property is in progress
-
-### Full node
-
-Full nodes verify all blocks and can produce fraud proofs for optimistic rollups. Since they fully validate all rollup blocks, they don't rely on fraud or validity proofs for security.
-
-### Light node (Work in Progress)
-
-Light nodes are light-weight rollup nodes that authenticate block headers, and are secured by fraud proofs or validity proofs. They're recommended for average users on low-resource devices. Users running light nodes can make trust-minimized queries about the rollup's state. Currently, Rollkit light nodes are still under development.
 
 ## State Fraud Proofs (Work in Progress)
 
