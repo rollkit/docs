@@ -1,10 +1,10 @@
 ---
-sidebar_position: 7
+sidebar_position: 8
 sidebar_label: How to restart your rollup
 description: Restart your Rollkit rollup safely
 ---
 
-# How to restart your Rollup
+# How to restart your rollup
 
 This guide will teach you how to restart your Rollkit rollup in the case that the node that you are using to post blocks to your DA and consensus layer runs out of funds (tokens).
 

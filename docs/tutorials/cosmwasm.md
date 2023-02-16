@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-sidebar_label: CosmWasm Tutorial
+sidebar_label: CosmWasm tutorial
 description: Build a sovereign rollup with CosmWasm, Celestia, and Rollkit.
 ---
 
@@ -53,22 +53,22 @@ How to write the Rust smart contract for Nameservice is outside the scope of
 this tutorial. In the future we will add more tutorials for writing CosmWasm
 smart contracts for Celestia.
 
-## CosmWasm Dependency Installations
+## CosmWasm dependency installations
 
-### Environment Setup
+### Environment setup
 
 For this tutorial, we will be using `curl` and `jq` as helpful
 tools. You can follow the guide on installing them
 [here](https://docs.celestia.org/nodes/environment/#-install-wget-and-jq).
 
-### Golang Dependency
+### Golang dependency
 
 The Golang version used for this tutorial is v1.18+
 
 You can install Golang
 by following our tutorial [here](https://docs.celestia.org/nodes/environment#install-golang).
 
-### Rust Installation
+### Rust installation
 
 #### Rustup
 
@@ -124,7 +124,7 @@ info: downloading component 'rust-std' for 'wasm32-unknown-unknown'
 info: installing component 'rust-std' for 'wasm32-unknown-unknown'
 ```
 
-### Docker Installation
+### Docker installation
 
 We will be using Docker later in this tutorial for compiling a smart contract
 to use a small footprint. We recommend installing Docker on your machine.
@@ -133,7 +133,7 @@ Examples on how to install it on Linux are found [here](https://docs.docker.com/
 Find the right instructions specific for
 [your OS here](https://docs.docker.com/engine/install).
 
-### wasmd Installation
+### Wasmd installation
 
 Here, we are going to pull down the `wasmd` repository and replace Tendermint
 with Rollkit. Rollkit is a drop-in replacement for Tendermint that allows
@@ -151,18 +151,18 @@ go mod download
 make install
 ```
 
-### Celestia Node
+### Celestia node
 
 You will need a light node running with test tokens on Mocha Testnet in order
 to complete this tutorial. Please complete the tutorial
 [here](https://docs.celestia.org/developers/node-tutorial), or start up your node.
 
-## Setting Up Your Environment for CosmWasm on Celestia
+## Setting up your environment for CosmWasm on Celestia
 
 Now the `wasmd` binary is built, we need to setup a local network
 that communicates between `wasmd` and Rollkit.
 
-### Initializing Cosmwasm Rollup with a Bash Script
+### Initializing CosmWasm rollup with a bash script
 
 We have a handy `init.sh` found in this repo
 [here](https://github.com/celestiaorg/devrel-tools).
@@ -202,7 +202,7 @@ bash init.sh
 
 With that, we have kickstarted our `wasmd` network!
 
-### Optional: See what's inside the script
+### Optional: see what's inside the script
 
 You can skip this section, but it is important to know
 how Rollkit is initializing the cosmwasm rollup.
@@ -246,9 +246,9 @@ wasmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_c
 ```
 <!-- markdownlint-enable MD010 -->
 
-## Contract Deployment on CosmWasm with Rollkit
+## Contract deployment on CosmWasm with Rollkit
 
-### Compile the Smart Contract
+### Compile the smart contract
 
 In a new terminal instance, we will run the following commands to pull down the
 Nameservice smart contract and compile it:
@@ -263,7 +263,7 @@ cargo wasm
 The compiled contract is outputted to:
 `target/wasm32-unknown-unknown/release/cw_nameservice.wasm`.
 
-### Unit Tests
+### Unit tests
 
 If we want to run tests, we can do so with the following command in the
 `~/cw-contracts/contracts/nameservice` directory:
@@ -272,7 +272,7 @@ If we want to run tests, we can do so with the following command in the
 cargo unit-test
 ```
 
-### Optimized Smart Contract
+### Optimized smart contract
 
 Because we are deploying the compiled smart contract to `wasmd`,
 we want it to be as small as possible.
@@ -323,7 +323,7 @@ This will place the optimized Wasm bytecode at `artifacts/cw_nameservice-aarch64
 </Tabs>
 ````
 
-### Contract Deployment
+### Contract deployment
 
 Let's now deploy our smart contract!
 
@@ -366,7 +366,7 @@ or commands in the remainder of the tutorial, cross-reference
 the variables in the command with the variables in the `init.sh` script.
 :::
 
-## Contract Interaction on CosmWasm with Celestia
+## Contract interaction on CosmWasm with Celestia
 <!-- markdownlint-disable MD013 -->
 
 In the previous steps, we have stored out contract's tx hash in an
@@ -376,7 +376,7 @@ Because of the longer time periods of submitting transactions via Rollkit
 due to waiting on Celestia's data availability layer to confirm block inclusion,
 we will need to query our  tx hash directly to get information about it.
 
-### Contract Querying
+### Contract querying
 
 Let's start by querying our transaction hash for its code ID:
 
@@ -402,7 +402,7 @@ We get the following output:
 {"contracts":[],"pagination":{"next_key":null,"total":"0"}}
 ```
 
-### Contract Instantiation
+### Contract instantiation
 
 We start instantiating the contract by writing up the following `INIT` message
 for nameservice contract. Here, we are specifying that `purchase_price` of a name
@@ -413,7 +413,7 @@ INIT='{"purchase_price":{"amount":"100","denom":"uwasm"},"transfer_price":{"amou
 wasmd tx wasm instantiate $CODE_ID "$INIT" --from celeswasm-key --keyring-backend test --label "name service" --chain-id celeswasm --gas-prices 0uwasm --gas auto --gas-adjustment 1.3 -y --no-admin --node http://127.0.0.1:26657
 ```
 
-### Contract Interaction
+### Contract interaction
 
 Now that we instantiated it, we can interact further with the contract:
 

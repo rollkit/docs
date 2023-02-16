@@ -1,10 +1,10 @@
 ---
 sidebar_position: 2
-sidebar_label: Rollkit Stack
+sidebar_label: Rollkit stack
 description: Intro to Rollkit's stack, a modular framework for rollups.
 ---
 
-# The Rollkit Stack
+# The Rollkit stack
 
 This page will cover the main components of Rollkit.
 
