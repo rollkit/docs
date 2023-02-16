@@ -13,14 +13,23 @@ those chains Sovereign Rollups.
 
 You can get started with the following tutorials:
 
-- [Hello World](./hello-world.md)
-- [GM World](./gm-world.md)
-- [Recipe Book](./recipe-book.md)
-- [Wordle Game](./wordle.md)
-- [CosmWasm Tutorial](https://rollkit.dev/docs/tutorials/cosmwasm)
-- [Ethermint Tutorial](https://rollkit.dev/docs/tutorials/ethermint)
-- [Full-Stack Modular Dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
-- Coming Soon - Fuelmint Tutorial with Celestia
+## Beginner
+
+- [Hello world](./hello-world.md)
+- [GM world](./gm-world.md)
+- [Recipe book](./recipe-book.md)
+- [Restart your rollup](./restart-rollkit-rollup.md)
+
+## Intermediate
+
+- [Wordle game](./wordle.md)
+- [CosmWasm tutorial](https://rollkit.dev/docs/tutorials/cosmwasm)
+
+## Advanced
+
+- [Ethermint tutorial](https://rollkit.dev/docs/tutorials/ethermint)
+- [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
+- Coming soon - Fuelmint tutorial with Celestia
 
 ## Support
 

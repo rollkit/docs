@@ -6,6 +6,10 @@ description: Build a recipe book rollup with Ignite CLI, Celestia, and Rollkit.
 
 # 🥗 Recipe book overview
 
+:::tip difficulty
+Beginner
+:::
+
 ## 📖 Overview
 
 In this tutorial, we are going to build a blockchain

@@ -6,6 +6,10 @@ description: Run your Rollkit rollup while connected to a local Celestia Data Av
 
 # Hello World
 
+:::tip difficulty
+Beginner
+:::
+
 :::caution Note
 This tutorial has only been tested on an AMD machine running Ubuntu 22.10 x64.
 :::

@@ -6,6 +6,10 @@ description: Build a sovereign rollup with Ignite CLI, Celestia and Rollkit.
 
 # GM World
 
+:::tip difficulty
+Beginner
+:::
+
 ## ☀️ Introduction
 
 In this tutorial, we will build a sovereign `gm world` rollup using Rollkit
