@@ -58,17 +58,39 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Rollkit v0',
         logo: {
-          alt: 'Rollkit logo',
-          src: 'img/toolbox.svg',
+          alt: 'Rollkit',
+          src: 'img/rollkit-blk.svg',
+          srcDark: 'img/rollkit-wht.svg'
         },
         items: [
           {
             type: 'doc',
             docId: 'intro',
             position: 'left',
+            label: 'Introduction',
+          },
+          {
+            type: 'dropdown',
             label: 'Docs',
+            position: 'left',
+            items: [
+              {
+                type: 'doc',
+                docId: 'rollkit-stack',
+                label: 'Rollkit Stack',
+              },
+              {
+                type: 'doc',
+                docId: 'tutorials/building-and-deploying-a-rollup',
+                label: 'Tutorials',
+              },
+            ],
+          },
+          {
+            to: '/blog',
+            position: 'right',
+            label: 'Blog',
           },
           {
             type: 'dropdown',
