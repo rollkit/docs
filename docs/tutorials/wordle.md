@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 sidebar_label: Wordle tutorial
 description: Get started with Ignite CLI, Celestia and Rollkit
 ---

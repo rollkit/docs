@@ -21,3 +21,16 @@ You can get started with the following tutorials:
 - [Ethermint Tutorial](https://rollkit.dev/docs/tutorials/ethermint)
 - [Full-Stack Modular Dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
 - Coming Soon - Fuelmint Tutorial with Celestia
+
+## Support
+
+The tutorials will explore developing with Rollkit,
+which is still in Alpha stage. If you run into bugs, please write a Github
+[issue](https://github.com/rollkit/docs/issues/new)
+or let us know in our [Discord](https://discord.com/channels/638338779505229824/1065974175237414972).
+Furthermore, while Rollkit allows you to build sovereign rollups
+on Celestia, it currently does not support fraud proofs yet and is
+therefore running in "pessimistic" mode, where nodes would need to
+re-execute the transactions to check the validity of the chain
+(i.e. a full node). Furthermore, Rollkit currently only supports
+a single sequencer.
