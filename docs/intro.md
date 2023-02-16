@@ -67,7 +67,7 @@ Rollkit eliminates the need to bootstrap a validator set, manage a consensus net
 
 - **Sovereignty**: Rollkit also enables developers to deploy sovereign rollups for cases where communities require sovereignty.
 
-## How Can You Use Rollkit?
+## How can you use Rollkit?
 
 As briefly mentioned above, Rollkit could be used in many different ways. From sovereign rollups, to settlement layers, and in the future even to L3s.
 

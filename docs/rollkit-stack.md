@@ -8,88 +8,79 @@ description: Intro to Rollkit's stack, a modular framework for rollups.
 
 This page will cover the main components of Rollkit.
 
-Rollup sequencer nodes collect transactions from users, aggregate them into blocks, and post the blocks onto a data availability (DA) layer (such as Celestia) to be ordered and finalized. Full nodes execute and verify rollup blocks, and in the case of an optimistic rollup, propagate fraud proofs when needed. Light clients will receive headers, verify proofs (fraud, zero-knowledge, etc.), and can authenticate trust-minimized queries about the state.
-
-For an understanding of the Rollkit stack, let's first look at the key components of a rollup.
+Rollup sequencer nodes collect transactions from users, aggregate them into blocks, and post the blocks onto a data availability (DA) layer (such as Celestia) to be ordered and finalized. Full nodes execute and verify rollup blocks, and in the case of an optimistic rollup, propagate fraud proofs when needed. Light clients will receive headers, verify proofs (fraud, zk, etc), and authenticate trust-minimized queries about the state.
 
 :::tip Tip
 If you're familiar with Rollkit's stack, you may want to skip to the [tutorials section](../category/tutorials).
 :::
 
-![Rollup architecture with Rollkit and ABCI](../static/img/rollkit-stack/rollkit-abci.png)
-
 ## Application structure
 
-### ABCI Interface
+![Rollup architecture with Rollkit and ABCI.](../static/img/rollkit-stack/rollkit-abci.png)
 
-Rollkit is a fully-functional Application BlockChain Interface (ABCI) client software - it can be used as a Tendermint replacement for any ABCI app.
-Thanks to this compatibility, you can use tools like [abci-cli](https://docs.tendermint.com/v0.34/app-dev/abci-cli.html)
-to test and debug your rollup.
+### ABCI interface
 
-### Cosmos-SDK
+Rollkit is a fully functional Application BlockChain Interface (ABCI) client software. It can be used as a Tendermint replacement for any ABCI application.
+Thanks to this compatibility, you can use tools like [abci-cli](https://docs.tendermint.com/v0.34/app-dev/abci-cli.html) to test and debug your rollup.
 
-Would you like to change your Cosmos-SDK application to a Rollkit rollup?
-No problem! You need to replace the Cosmos-SDK Go dependency with a
+#### Cosmos SDK
+
+Would you like to change your Cosmos SDK application to a Rollkit rollup?
+No problem! You need to replace the Cosmos SDK Go dependency with a
 Rollkit-enabled version, which can be found
-[here](https://github.com/rollkit/cosmos-sdk).
+at the [`rollkit/cosmos-sdk`](https://github.com/rollkit/cosmos-sdk) repository.
 
-To note, the [`rollkit/cosmos-sdk`](https://github.com/rollkit/cosmos-sdk) repository follows the release branches of
-upstream Cosmos-SDK, but with the bonus of using Rollkit instead of Tendermint
+Note the [`rollkit/cosmos-sdk`](https://github.com/rollkit/cosmos-sdk) repository follows the release branches of
+upstream Cosmos SDK, but with the bonus of using Rollkit instead of Tendermint
 as the ABCI client.
 
 And don't forget to replace another dependency, `tendermint`, with
 [`rollkit/tendermint`](https://github.com/rollkit/tendermint), which has an enhanced ABCI interface that includes
 the methods needed for state fraud proofs.
 
-### Data Availability
+### Data availability
 
-[Data availability (DA)](https://github.com/rollkit/rollkit/tree/main/da) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA. New implementations can be plugged in programmatically, without a need to fork Rollkit.
+[Data availability (DA)](https://github.com/rollkit/rollkit/tree/main/da) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA layer. New implementations can be plugged in programmatically, without a need to fork Rollkit.
 
-The `DataAvailabilityLayerClient` interface includes essential life-cycle methods (`Init`, `Start`, `Stop`) as well as data-availability methods (`SubmitBlock`, `CheckBlockAvailability`).
+The `DataAvailabilityLayerClient` interface includes essential lifecycle methods (`Init`, `Start`, `Stop`) as well as data availability methods (`SubmitBlock`, `CheckBlockAvailability`).
 
 The `BlockRetriever` interface serves to enable syncing of full nodes from the data availability layer.
-It's important to keep in mind that there is no direct correlation between the DA block height and the rollup height. Each DA block may contain an arbitrary number of rollup blocks.
+It's important to keep in mind that there is no direct correlation between the DA layer block height and the rollup height. Each DA layer block may contain an arbitrary number of rollup blocks.
 
 #### Celestia
 
 Celestia is an example of a data availability integration implemented for Rollkit.
-It's using the [Celestia Node Gateway API](https://docs.celestia.org/developers/node-api/)
-via the [`celestiaorg/go-cnc`](https://github.com/celestiaorg/go-cnc/) package.
-To deploy a Rollkit Rollup on Celestia you also have to [run a Celestia Node](https://docs.celestia.org/developers/node-tutorial/).
+It's using the [Celestia Node gateway API](https://docs.celestia.org/developers/node-api/)
+via the [`celestiaorg/go-cnc`](https://github.com/celestiaorg/go-cnc) package.
+To deploy a Rollkit rollup on Celestia you also have to [run a Celestia light node](https://docs.celestia.org/developers/node-tutorial/).
 
 ## Node components
 
 ### Mempool
 
-The [mempool](https://github.com/rollkit/rollkit/tree/main/mempool) keeps the set of pending transactions, and is used by block
-producers to produce blocks and full nodes to verify blocks. Currently, transactions are handled by
-nodes in the First-Come, First-Served (FCFS) manner. Ordering of transactions
-can be implemented on the application level (for example by adding
-nonce/sequence number). This behavior is similar to the Tendermint mempool.
+The [mempool](https://github.com/rollkit/rollkit/tree/main/mempool) is inspired by the Tendermint mempool. By default, transactions are handled in a First Come, First Served (FCFS) manner. Ordering of transactions can be implemented on the application level; currently this is possible by returning a priority on `CheckTx`, and once we support ABCI++ it is also possible via `PrepareProposal` and the [application mempool](https://docs.cosmos.network/v0.47/building-apps/app-mempool).
 
-We plan to make transaction ordering in blocks configurable in the future.
+### Block manager
 
-### Block Manager
-
-The [Block Manager](https://github.com/rollkit/rollkit/tree/main/block) contains go routines, `AggregationLoop`, `RetrieveLoop`, `SyncLoop` that communicate through go channels. These go routines are run when a Rollkit Node starts up (`OnStart`). Only the Sequencer Nodes run `AggregationLoop` which controls the frequency of block production for a rollup with a timer as per the `BlockTime` in `BlockManager`.
+The [block manager](https://github.com/rollkit/rollkit/tree/main/block) contains Go routines `AggregationLoop`, `RetrieveLoop`, and `SyncLoop` that communicate through Go channels. These Go routines are ran when a Rollkit node starts up (`OnStart`). Only the sequencer nodes run `AggregationLoop` which controls the frequency of block production for a rollup with a timer as per the `BlockTime` in `BlockManager`.
 
 All nodes run `SyncLoop` which looks for the following operations:
 
-- **Receive block headers**: Block headers are received through a channel `HeaderInCh` and Rollkit Nodes attempt to verify the block with the corresponding block data.
-- **Receive block data**: Block bodies are received through a channel `blockInCh` and Rollkit Nodes attempt to verify the block.
-- **Receive State Fraud Proofs**: State Fraud Proofs are received through a channel `FraudProofInCh` and Rollkit Nodes attempt to verify them. Note that we plan to make this configurable for Full Nodes since Full Nodes also produce State Fraud Proofs on their own.
+- **Receive block headers**: block headers are received through a channel `HeaderInCh` and Rollkit nodes attempt to verify the block with the corresponding block data.
+- **Receive block data**: block bodies are received through a channel `blockInCh` and Rollkit nodes attempt to verify the block.
+- **Receive state fraud proofs**: state fraud proofs are received through a channel `FraudProofInCh` and Rollkit nodes attempt to verify them. Note that we plan to make this configurable for full nodes since full nodes also produce state fraud proofs on their own.
 - Signal `RetrieveLoop` with timer as per the `DABlockTime` in `BlockManager`.
 
 All nodes also run `RetrieveLoop` which is responsible for interacting with the data availability layer. It checks the last updated `DAHeight` to retrieve a block with timer `DABlockTime` signaled by `SyncLoop`. Note that the start height of the DA layer for the rollup, `DAStartHeight`, is configurable in `BlockManager`.
 
-### RPC Layer
+### RPC
 
-Rollkit's [RPC](https://github.com/rollkit/rollkit/tree/main/rpc) layer fully implements the [Tendermint RPC](https://docs.tendermint.com/v0.34/rpc) interfaces and APIs for querying:
+Rollkit's [RPC](https://github.com/rollkit/rollkit/tree/main/rpc) fully implements the [Tendermint RPC](https://docs.tendermint.com/v0.34/rpc) interfaces and APIs for querying:
 
-- **Information about the rollup node**: Information such as node's health, status, and network info.
-- **The rollup blockchain**: Getting the information about the rollup blockchain such as block headers, blocks, block commitments, rollup validators, rollup consensus parameters and state, etc.
-- **The rollup transactions**: Getting the transaction information, broadcasting raw transactions and commitments, and search capabilities.
-- **ABCI**: Rollup application information.
+- **Information about the rollup node**: information such as node's health, status, and network info.
+- **The rollup blockchain**: getting information about the rollup blockchain such as blocks and block headers.
+- **The rollup transactions**: getting transaction information and broadcasting raw transactions, with search capabilities.
+- **ABCI**: rollup application information.
 
 The following RPC protocols are currently supported:
 
@@ -97,63 +88,67 @@ The following RPC protocols are currently supported:
 - JSON-RPC over HTTP
 - JSON-RPC over WebSockets
 
-### P2P Layer
+### P2P layer
 
 Rollkit's [P2P layer](https://github.com/rollkit/rollkit/tree/main/p2p) enables
 direct communication between rollup nodes.
-It's used to gossip transactions, headers of newly created blocks and state fraud proofs.
+It's used to gossip transactions, headers of newly created blocks, and state fraud proofs.
 The P2P layer is implemented using [libp2p](https://github.com/libp2p).
 
 Rollkit uses [DHT-based active peer discovery](https://curriculum.pl-launchpad.io/curriculum/libp2p/dht/).
-Starting a node connects to preconfigured bootstrap peers, and advertises its namespace ID in DHT.
+Starting a node connects to pre-configured bootstrap peers, and advertises its namespace ID in the DHT.
 This solution is flexible, because multiple rollup networks may reuse the same DHT/bootstrap nodes,
 but specific rollup network might decide to use dedicated nodes as well.
 
-## Rollkit Node Types
+## Rollkit node types
 
-You can learn more about the details of the following node types [here](https://github.com/rollkit/rollkit/tree/main/node).
+Rollkit nodes are implemented in the [`node`](https://github.com/rollkit/rollkit/tree/main/node) package.
 
 ### Full node
 
-Full nodes verify all blocks and can produce fraud proofs for optimistic rollups. Since they fully validate all rollup blocks, they don't rely on fraud or validity proofs for security.
+Full nodes verify all blocks, and produce fraud proofs for optimistic rollups. Since they fully verify all rollup blocks, they don't rely on fraud or validity proofs for security.
 
-### Light node (Work in Progress)
+### Light node (work in progress)
 
-Light nodes are light-weight rollup nodes that authenticate block headers, and are secured by fraud proofs or validity proofs. They're recommended for average users on low-resource devices. Users running light nodes can make trust-minimized queries about the rollup's state. Currently, Rollkit light nodes are still under development.
+Light nodes are light-weight rollup nodes that authenticate block headers, and can be secured by fraud proofs or validity proofs. They're recommended for average users on low-resource devices. Users running light nodes can make trust-minimized queries about the rollup's state. Currently, Rollkit light nodes are still under development.
 
 ### Sequencer node
 
-Some rollups utilize _sequencer nodes_. Sequencers are the main block producers for rollups, responsible for aggregating transactions into blocks, and typically executing transactions to produce a state root, securing the rollup's light clients.
+Rollups can utilize sequencer nodes. Sequencers are block producers for rollups, responsible for aggregating transactions into blocks, and typically executing transactions to produce a state root, used by the rollup's light clients.
 
 Rollkit plans to support multiple different pluggable sequencer schemes:
 
-|                                | Deploy in one-click                  | Faster soft-confirmations than L1 | Control over rollup's transaction ordering | Atomic Composability with other Rollups | Censorship resistance | Implementation Status |
+|                                | Deploy in one-click                  | Faster soft-confirmations than L1 | Control over rollup's transaction ordering | Atomic composability with other rollups | Censorship resistance | Implementation Status |
 |:--------------------------------:|:--------------------------------------:|:-----------------------------------:|:--------------------------------------------:|:-----------------------------------------:|:-----------------------:|:-----------------------:|
-| Centralized Sequencer          | Requires spinning up a sequencer     | Yes ✅                               | Yes ✅                                        | No ❌                                      | Eventual* ⏳              | ✅ Implemented!          |
-| Decentralized Sequencer        | Requires spinning up a sequencer set | Yes ✅                               | Yes ✅                                        | No ❌                                      | Real-time ⚡️             | Planned           |
-| Shared Decentralized Sequencer | Yes ✅                                  | Yes ✅                               | No ❌                                         | Yes ✅                                     | Real-time ⚡️             | Planned           |
-| Pure Fork-Choice Rule          | Yes ✅                                  | No ❌                                | Maybe 🟡                                      | Maybe 🟡                                   | Eventual ⏳              | Planned           |
+| Centralized sequencer          | Requires spinning up a sequencer     | Yes ✅                               | Yes ✅                                        | No ❌                                      | Eventual* ⏳              | ✅ Implemented!          |
+| Decentralized sequencer        | Requires spinning up a sequencer set | Yes ✅                               | Yes ✅                                        | No ❌                                      | Real-time ⚡️             | Planned           |
+| Shared decentralized sequencer | Yes ✅                                  | Yes ✅                               | No ❌                                         | Yes ✅                                     | Real-time ⚡️             | Planned           |
+| Pure fork-choice rule          | Yes ✅                                  | No ❌                                | Maybe 🟡                                      | Maybe 🟡                                   | Eventual ⏳              | Planned           |
 
-> "Pure Fork-Choice Rule" refers to any rollup without privileged sequencers, e.g. nodes defer to Celestia for ordering and apply a “first-come-first-serve” fork-choice rule.
->
-> \*Implementation of this property is in progress
+"Pure fork-choice rule" refers to any rollup without privileged sequencers, e.g. nodes defer to Celestia for ordering and apply a "first-come-first-serve" fork-choice rule.
 
-## State Fraud Proofs (Work in Progress)
+\* means implementation of this property is in progress.
 
-Rollkit's design consists of a single sequencer that posts blocks to the DA layer, and multiple (optional) full nodes. Sequencers gossip block headers to full nodes and full nodes fetch posted blocks from the DA layer. Full nodes then execute transactions in these blocks to update their state, and gossip block headers over P2P to Rollkit light nodes. Once State Fraud Proofs are enabled, when a block contains a fraudulent state transition, Rollkit full nodes can detect it by comparing intermediate state roots (ISRs) between transactions, and generate a state fraud proof that can be gossiped over P2P to Rollkit light nodes. These Rollkit light nodes can then use this state fraud proof to verify whether a fraudulent state transition occurred or not by themselves.
+## State validity modes
 
-Overall, State Fraud Proofs will enable trust-minimization between full nodes and light node as long as there is at least one honest full node in the system that will generate state fraud proofs.
+### Pessimistic (full nodes only)
 
-Note that Rollkit State Fraud Proofs are still a work in progress and will require new methods on top of ABCI, specifically, `GenerateFraudProof`, `VerifyFraudProof`, and `GetAppHash`.
+A pessimistic rollup is a rollup that only supports full nodes that replay all the transactions in the rollup in order to check its validity. Rollkit supports pessimistic rollups by default.
 
-List of caveats and required modifications to push State Fraud Proofs towards completion:
+Pessimistic rollups are similar to how Tether uses Bitcoin as a data availability layer via [OmniLayer](https://github.com/OmniLayer/spec/blob/master/OmniSpecification-v0.6.adoc#summary).
 
-- Add ability for light nodes to receive and verify state fraud proofs.
-- Add inclusion proofs over transactions so fraud proof verifiers have knowledge over which rollup transaction is being fraud proven.
-- Check for badly formatted underlying rollup data before verifying state transition inside the State Machine.
-- Limit number of state witnesses permissible in a state fraud proof since state keys accessed by a transaction can be limited by the state machine.
-- Write end to end network tests covering different scenarios that can occur in case of state fraud proof submission by a full node.
-- Support for multiple sequencers, in which case, fraud proof detection works the same as described above.
-- Support more ABCI-compatible State Machines, in addition to the Cosmos SDK state machine.
+### Optimistic (fraud proofs) (work in progress)
 
-You can find current detailed design in this [Architecture Decision Record (ADR)](https://github.com/rollkit/rollkit/blob/manav/state_fraud_proofs_adr/docs/lazy-adr/adr-009-state-fraud-proofs.md).
+Rollkit's current design consists of a single sequencer that posts blocks to the DA layer, and multiple (optional) full nodes. Sequencers gossip block headers to full nodes and full nodes fetch posted blocks from the DA layer. Full nodes then execute transactions in these blocks to update their state, and gossip block headers over the P2P network to Rollkit light nodes.
+
+Once state fraud proofs are enabled, when a block contains a fraudulent state transition, Rollkit full nodes can detect it by comparing intermediate state roots (ISRs) between transactions, and generate a state fraud proof that can be gossiped over the P2P network to Rollkit light nodes. These Rollkit light nodes can then use this state fraud proof to verify whether a fraudulent state transition occurred or not by themselves.
+
+Overall, state fraud proofs will enable trust-minimization between full nodes and light nodes as long as there is at least one honest full node in the system that will generate state fraud proofs.
+
+Note that Rollkit state fraud proofs are still a work in progress and will require new methods on top of ABCI, specifically, `GenerateFraudProof`, `VerifyFraudProof`, and `GetAppHash`.
+
+You can find current detailed design and the remaining work needed to push state fraud proofs towards completion in this [Architecture Decision Record (ADR)](https://github.com/rollkit/rollkit/blob/manav/state_fraud_proofs_adr/docs/lazy-adr/adr-009-state-fraud-proofs.md).
+
+### Validity (ZK proofs)
+
+Validity (ZK) rollups are planned, but not currently supported by Rollkit.
