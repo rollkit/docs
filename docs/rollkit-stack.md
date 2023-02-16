@@ -100,51 +100,53 @@ Starting a node connects to pre-configured bootstrap peers, and advertises its n
 This solution is flexible, because multiple rollup networks may reuse the same DHT/bootstrap nodes,
 but specific rollup network might decide to use dedicated nodes as well.
 
-## Rollkit Node Types
+## Rollkit node types
 
-You can learn more about the details of the following node types [here](https://github.com/rollkit/rollkit/tree/main/node).
+Rollkit nodes are implemented in the [`node`](https://github.com/rollkit/rollkit/tree/main/node) package.
 
 ### Full node
 
-Full nodes verify all blocks and can produce fraud proofs for optimistic rollups. Since they fully validate all rollup blocks, they don't rely on fraud or validity proofs for security.
+Full nodes verify all blocks, and produce fraud proofs for optimistic rollups. Since they fully verify all rollup blocks, they don't rely on fraud or validity proofs for security.
 
-### Light node (Work in Progress)
+### Light node (work in progress)
 
-Light nodes are light-weight rollup nodes that authenticate block headers, and are secured by fraud proofs or validity proofs. They're recommended for average users on low-resource devices. Users running light nodes can make trust-minimized queries about the rollup's state. Currently, Rollkit light nodes are still under development.
+Light nodes are light-weight rollup nodes that authenticate block headers, and can be secured by fraud proofs or validity proofs. They're recommended for average users on low-resource devices. Users running light nodes can make trust-minimized queries about the rollup's state. Currently, Rollkit light nodes are still under development.
 
 ### Sequencer node
 
-Some rollups utilize _sequencer nodes_. Sequencers are the main block producers for rollups, responsible for aggregating transactions into blocks, and typically executing transactions to produce a state root, securing the rollup's light clients.
+Rollups can utilize sequencer nodes. Sequencers are block producers for rollups, responsible for aggregating transactions into blocks, and typically executing transactions to produce a state root, used by the rollup's light clients.
 
 Rollkit plans to support multiple different pluggable sequencer schemes:
 
-|                                | Deploy in one-click                  | Faster soft-confirmations than L1 | Control over rollup's transaction ordering | Atomic Composability with other Rollups | Censorship resistance | Implementation Status |
+|                                | Deploy in one-click                  | Faster soft-confirmations than L1 | Control over rollup's transaction ordering | Atomic composability with other rollups | Censorship resistance | Implementation Status |
 |:--------------------------------:|:--------------------------------------:|:-----------------------------------:|:--------------------------------------------:|:-----------------------------------------:|:-----------------------:|:-----------------------:|
-| Centralized Sequencer          | Requires spinning up a sequencer     | Yes ✅                               | Yes ✅                                        | No ❌                                      | Eventual* ⏳              | ✅ Implemented!          |
-| Decentralized Sequencer        | Requires spinning up a sequencer set | Yes ✅                               | Yes ✅                                        | No ❌                                      | Real-time ⚡️             | Planned           |
-| Shared Decentralized Sequencer | Yes ✅                                  | Yes ✅                               | No ❌                                         | Yes ✅                                     | Real-time ⚡️             | Planned           |
-| Pure Fork-Choice Rule          | Yes ✅                                  | No ❌                                | Maybe 🟡                                      | Maybe 🟡                                   | Eventual ⏳              | Planned           |
+| Centralized sequencer          | Requires spinning up a sequencer     | Yes ✅                               | Yes ✅                                        | No ❌                                      | Eventual* ⏳              | ✅ Implemented!          |
+| Decentralized sequencer        | Requires spinning up a sequencer set | Yes ✅                               | Yes ✅                                        | No ❌                                      | Real-time ⚡️             | Planned           |
+| Shared decentralized sequencer | Yes ✅                                  | Yes ✅                               | No ❌                                         | Yes ✅                                     | Real-time ⚡️             | Planned           |
+| Pure fork-choice rule          | Yes ✅                                  | No ❌                                | Maybe 🟡                                      | Maybe 🟡                                   | Eventual ⏳              | Planned           |
 
-> "Pure Fork-Choice Rule" refers to any rollup without privileged sequencers, e.g. nodes defer to Celestia for ordering and apply a “first-come-first-serve” fork-choice rule.
->
-> \*Implementation of this property is in progress
+"Pure fork-choice rule" refers to any rollup without privileged sequencers, e.g. nodes defer to Celestia for ordering and apply a "first-come-first-serve" fork-choice rule.
 
-## State Fraud Proofs (Work in Progress)
+\* means implementation of this property is in progress.
 
-Rollkit's design consists of a single sequencer that posts blocks to the DA layer, and multiple (optional) full nodes. Sequencers gossip block headers to full nodes and full nodes fetch posted blocks from the DA layer. Full nodes then execute transactions in these blocks to update their state, and gossip block headers over P2P to Rollkit light nodes. Once State Fraud Proofs are enabled, when a block contains a fraudulent state transition, Rollkit full nodes can detect it by comparing intermediate state roots (ISRs) between transactions, and generate a state fraud proof that can be gossiped over P2P to Rollkit light nodes. These Rollkit light nodes can then use this state fraud proof to verify whether a fraudulent state transition occurred or not by themselves.
+## State validity modes
 
-Overall, State Fraud Proofs will enable trust-minimization between full nodes and light node as long as there is at least one honest full node in the system that will generate state fraud proofs.
+### Pessimistic (full nodes only)
 
-Note that Rollkit State Fraud Proofs are still a work in progress and will require new methods on top of ABCI, specifically, `GenerateFraudProof`, `VerifyFraudProof`, and `GetAppHash`.
+A pessimistic rollup is a rollup that only supports full nodes that replay all the transactions in the rollup in order to check its validity. Rollkit supports pessimistic rollups by default.
 
-List of caveats and required modifications to push State Fraud Proofs towards completion:
+### Optimistic rollups (fraud proofs) (work in progress)
 
-- Add ability for light nodes to receive and verify state fraud proofs.
-- Add inclusion proofs over transactions so fraud proof verifiers have knowledge over which rollup transaction is being fraud proven.
-- Check for badly formatted underlying rollup data before verifying state transition inside the State Machine.
-- Limit number of state witnesses permissible in a state fraud proof since state keys accessed by a transaction can be limited by the state machine.
-- Write end to end network tests covering different scenarios that can occur in case of state fraud proof submission by a full node.
-- Support for multiple sequencers, in which case, fraud proof detection works the same as described above.
-- Support more ABCI-compatible State Machines, in addition to the Cosmos SDK state machine.
+Rollkit's current design consists of a single sequencer that posts blocks to the DA layer, and multiple (optional) full nodes. Sequencers gossip block headers to full nodes and full nodes fetch posted blocks from the DA layer. Full nodes then execute transactions in these blocks to update their state, and gossip block headers over the P2P network to Rollkit light nodes.
 
-You can find current detailed design in this [Architecture Decision Record (ADR)](https://github.com/rollkit/rollkit/blob/manav/state_fraud_proofs_adr/docs/lazy-adr/adr-009-state-fraud-proofs.md).
+Once state fraud proofs are enabled, when a block contains a fraudulent state transition, Rollkit full nodes can detect it by comparing intermediate state roots (ISRs) between transactions, and generate a state fraud proof that can be gossiped over the P2P network to Rollkit light nodes. These Rollkit light nodes can then use this state fraud proof to verify whether a fraudulent state transition occurred or not by themselves.
+
+Overall, state fraud proofs will enable trust-minimization between full nodes and light nodes as long as there is at least one honest full node in the system that will generate state fraud proofs.
+
+Note that Rollkit state fraud proofs are still a work in progress and will require new methods on top of ABCI, specifically, `GenerateFraudProof`, `VerifyFraudProof`, and `GetAppHash`.
+
+You can find current detailed design and the remaining work needed to push state fraud proofs towards completion in this [Architecture Decision Record (ADR)](https://github.com/rollkit/rollkit/blob/manav/state_fraud_proofs_adr/docs/lazy-adr/adr-009-state-fraud-proofs.md).
+
+### Validity rollups (ZK proofs)
+
+Validity (ZK) rollups are planned, but not currently supported by Rollkit.
