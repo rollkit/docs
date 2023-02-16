@@ -1,10 +1,10 @@
 ---
 sidebar_position: 1
-sidebar_label: Building & Deploying a Rollup
+sidebar_label: Building & deploying a rollup
 description: Build sovereign Cosmos-SDK and EVM applications.
 ---
 
-# Building a Rollup and Testnet Deployment
+# Building a rollup and testnet deployment
 
 The following tutorials will help you get started building
 Cosmos-SDK and EVM applications that connect to Celestia's data availability
@@ -13,6 +13,7 @@ those chains Sovereign Rollups.
 
 You can get started with the following tutorials:
 
+- [Hello World](./hello-world.md)
 - [GM World](./gm-world.md)
 - [Recipe Book](./recipe-book.md)
 - [Wordle Game](./wordle.md)
