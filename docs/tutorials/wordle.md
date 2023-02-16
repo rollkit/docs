@@ -1,10 +1,14 @@
 ---
-sidebar_position: 4
-sidebar_label: Wordle Tutorial
+sidebar_position: 5
+sidebar_label: Wordle tutorial
 description: Get started with Ignite CLI, Celestia and Rollkit
 ---
 
-# Wordle App
+# Wordle app
+
+:::tip difficulty
+Intermediate
+:::
 
 ![wordle-app](../../static/img/tutorials/wordle/wordle.png)
 
@@ -53,7 +57,7 @@ proceeding with this tutorial.
 You do not have to do those guides in order to follow this Wordle tutorial,
 but doing so helps you understand the architecture of Cosmos-SDK better.
 
-## Design Implementation
+## Design implementation
 
 The rules of Wordle are simple: You have to guess the word of the day.
 
@@ -87,7 +91,7 @@ We will go over the architecture to achieve this further
 in the guide. But for now, we will get started setting up
 our development environment.
 
-## Table of Contents For This Tutorial
+## Table of contents for this tutorial
 
 The following tutorial is broken down into the following
 sections:
@@ -100,7 +104,7 @@ sections:
 6. [Keepers](#keeper-functions)
 7. [Running Wordle](#run-the-wordle-chain)
 
-## Ignite and Scaffolding the Wordle Chain
+## Ignite and scaffolding the wordle chain
 <!-- markdownlint-disable MD013 -->
 
 ### Ignite
@@ -136,7 +140,7 @@ ignite --help
 You should see an output of help commands meaning Ignite
 was installed successfully!
 
-### Scaffolding the Wordle Chain
+### Scaffolding the wordle chain
 
 Now, comes the fun part, creating a new blockchain! With Ignite,
 the process is pretty easy and straightforward.
@@ -163,7 +167,7 @@ in your local directory from which you ran the command. Notice
 that we passed the `--no-module` flag, this is because we will be
 creating the module after.
 
-### Wordle Directory
+### Wordle directory
 
 Now, it’s time to enter the directory:
 
@@ -191,7 +195,7 @@ to read about it [here](https://docs.ignite.com/kb).
 
 Most of the tutorial work will happen inside the `x` directory.
 
-## Setting Up Rollkit
+## Setting up Rollkit
 
 Before we continue with building our Wordle App, we need to set up
 Rollkit on our codebase.
@@ -210,7 +214,7 @@ go mod download
 With that, we have Rollkit changes added to the project directory. Now,
 let's build the Wordle app!
 
-## Creating the Wordle Module
+## Creating the wordle module
 
 For the Wordle module, we can add dependencies offered by Cosmos-SDK.
 
@@ -225,7 +229,7 @@ is defined as the following:
 
 Many modules exist for slashing, validating, auth.
 
-### Scaffolding A Module
+### Scaffolding a module
 
 We will be using the `bank` module dependency for transactions.
 
@@ -267,7 +271,7 @@ make 2 messages with ignite.
 
 With these initial designs, we can start creating our messages!
 
-### Scaffolding A Message
+### Scaffolding a message
 
 To create the `SubmitWordle` message, we run the following command:
 
@@ -285,12 +289,12 @@ ignite scaffold message submit-guess word
 
 Here, we are passing a word as a guess with `submit-guess`.
 
-## Wordle Types
+## Wordle types
 
 For the next steps, we will be creating types to be used by
 the messages we created.
 
-### Scaffolding Wordle Types
+### Scaffolding wordle types
 
 ```bash
 ignite scaffold map wordle word submitter --no-message
@@ -310,7 +314,7 @@ ignite scaffold map guess word submitter count --no-message
 Here, we are also storing `count` to count how many guesses
 this address submitted.
 
-## Keeper Functions
+## Keeper functions
 <!-- markdownlint-disable MD013 -->
 
 Now it’s time to implement the Keeper functions for each
@@ -328,7 +332,7 @@ of the blockchain.
 
 Here, it will help us outline the logic for each message we create.
 
-### SubmitWordle Function
+### SubmitWordle function
 
 We first start with the `SubmitWordle` function.
 
@@ -423,7 +427,7 @@ Here in the `SubmitWordle` Keeper function, we are doing a few things:
 * We also have a helper function in there to check if a string only
   contains alphabet characters.
 
-### SubmitGuess Function
+### `SubmitGuess` function
 
 The next Keeper function we will add is the following:
 `x/wordle/keeper/msg_server_submit_guess.go`
@@ -542,7 +546,7 @@ In the above code, we are doing the following things:
   We then check if the guess is correct. We store the Guess type with
   the updated count to the state.
 
-### Protobuf File
+### Protobuf file
 
   A few files need to be modified for this to work.
 
@@ -572,10 +576,10 @@ type BankKeeper interface {
 With that, we implemented all our Keeper functions! Time to
 compile the blockchain and take it out for a test drive.
 
-## Run the Wordle Chain
+## Run the wordle chain
 <!-- markdownlint-disable MD013 -->
 
-### Run a Celestia DA Light Node
+### Run a Celestia light node
 
 Follow instructions to install and start your Celestia Data
 Availalbility layer Light Node selecting the network that
@@ -586,7 +590,7 @@ After you have Go and Ignite CLI installed, and your Celestia
 Light Node running on your machine, you're ready to build,
 test, and launch your own sovereign rollup.
 
-### Building and Running Wordle Chain
+### Building and running wordle chain
 
 We have a handy `init.sh` found in this repo
 [here](https://github.com/celestiaorg/devrel-tools).
@@ -776,7 +780,7 @@ With that, we implemented a basic example of Wordle using
 Cosmos-SDK and Ignite and Rollkit. Read on to how you can
 extend the code base.
 
-### Extending in the Future
+### Extending in the future
 
 You can extend the codebase and improve this tutorial by checking
 out the repository [here](https://github.com/celestiaorg/wordle).
