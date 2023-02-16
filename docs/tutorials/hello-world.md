@@ -4,7 +4,7 @@ sidebar_label: Hello World
 description: Run your Rollkit rollup while connected to a local Celestia Data Availability network.
 ---
 
-# Hello World
+# Hello world
 
 :::tip difficulty
 Beginner
@@ -36,7 +36,7 @@ this process can be done on any machine of your choosing. We tested it out on a 
 
 - Docker installed on your machine
 
-## Running Local Devnet with a Rollkit Rollup
+## Running local devnet with a Rollkit rollup
 
 First, run the [`local-celestia-devnet`](https://github.com/celestiaorg/local-celestia-devnet) by running the following command:
 
