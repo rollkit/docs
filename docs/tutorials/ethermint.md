@@ -1,6 +1,6 @@
 ---
-sidebar_position: 7
-sidebar_label: Ethermint Tutorial
+sidebar_position: 6
+sidebar_label: Ethermint tutorial
 description: Build a sovereign rollup with Ethermint, Celestia and Rollkit
 ---
 
@@ -45,13 +45,13 @@ In this tutorial, we will go over the following:
 * [Instantiate a local network for your Ethermint chain connected to Celestia](#setting-up-your-environment-for-ethermint-on-celestia)
 * [Deploying an Ethereum smart contract on your Ethermint Rollup with Foundry](#deploy-a-solidity-smart-contract-on-ethermint-sovereign-rollup-with-foundry)
 
-## Ethermint Dependencies
+## Ethermint dependencies
 
 This section will guide you through installing the dependencies
 you need for the deployment process of an Ethermint Sovereign Rollup
 on Celestia.
 
-### Hardware Requirements
+### Hardware requirements
 
 The following hardware minimum requirements are recommended for running
 the full storage node:
@@ -61,11 +61,11 @@ the full storage node:
 * Disk: 250 GB SSD Storage
 * Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
-### Setting Up Your Ethermint Node
+### Setting up your Ethermint node
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
-### Golang Dependency
+### Golang dependency
 
 The Golang version used for this tutorial is v1.18+
 
@@ -74,13 +74,13 @@ by following our tutorial [here](https://docs.celestia.org/nodes/environment#ins
 
 ## Rollkit installation
 
-### ethermintd Installation
+### ethermintd installation
 
 Here, we are going to pull down the `ethermint` from the
 [Celestia repository](https://github.com/celestiaorg/ethermint).
 We will install Rollkit to this version of Ethermint.
 Rollkit is a drop-in replacement for Tendermint that allows
-Cosmos-SDK applications to connect to Celestia's Data Availability network.
+Cosmos-SDK applications to connect to Celestia's data availability network.
 
 ```bash
 git clone https://github.com/celestiaorg/ethermint.git
@@ -95,12 +95,12 @@ command:
 ethermintd
 ```
 
-## Setting Up Your Environment for Ethermint on Celestia
+## Setting up your environment for Ethermint on Celestia
 
 Now the `ethermintd` binary is built, we need to setup a local network
 that communicates between `ethermintd` and Rollkit.
 
-### Run A Celestia Light Node
+### Run a Celestia light node
 
 All sovereign rollups need to submit their transaction data to
 Celestia.
@@ -109,7 +109,7 @@ Here, we must first setup a Celestia Light Node with testnet tokens.
 
 You can do this by following this tutorial [here](https://docs.celestia.org/developers/node-tutorial).
 
-### Instantiating the Ethermint Rollup
+### Instantiating the Ethermint rollup
 
 With a Celestia Light Node running in one terminal session,
 we can proceed to generate the Ethermint rollup.
@@ -236,7 +236,7 @@ badger 2022/11/23 01:27:54 INFO: Set nextTxnTs to 0
 
 With that, we have kickstarted our `ethermintd` network!
 
-## Deploy A Solidity Smart Contract on Ethermint Sovereign Rollup with Foundry
+## Deploy a Solidity smart contract on Ethermint sovereign rollup with Foundry
 
 In this guide you'll learn how to deploy a Solidity smart contract to
 the Ethermint chain you just instantiated on Celestia with
@@ -466,7 +466,7 @@ We can then perform read operations with `cast call`:
 cast call $CONTRACT_ADDRESS "getCount()(int)" --rpc-url $RPC_URL
 ```
 
-#### Deploying to the Ethermint Sovereign Rollup
+#### Deploying to the Ethermint sovereign rollup
 
 Now that we've deployed and tested locally, we can deploy to our
 Ethermint chain.

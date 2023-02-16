@@ -1,6 +1,6 @@
 ---
-sidebar_position: 3
-sidebar_label: GM World Tutorial
+sidebar_position: 2
+sidebar_label: GM world tutorial
 description: Build a sovereign rollup with Ignite CLI, Celestia and Rollkit.
 ---
 
@@ -278,7 +278,7 @@ brew install wget && brew install jq
 </Tabs>
 ````
 
-## 🪶 Run a Celestia DA Light Node
+## 🪶 Run a Celestia light node
 
 Follow instructions to install and start your Celestia Data Availalbility
 layer Light Node selecting the network that you had previously used. You can
@@ -288,7 +288,7 @@ After you have Go and Ignite CLI installed, and your Celestia Light
 Node running on your machine, you're ready to build, test, and launch your own
 sovereign rollup.
 
-## 🗞 Building a Sovereign Rollup
+## 🗞 Building a sovereign rollup
 
 The Ignite CLI comes with scaffolding commands to make development of
 blockchains quicker by creating everything that is needed to start a new
@@ -478,7 +478,7 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 <!-- markdownlint-enable MD010 -->
 <!-- markdownlint-enable MD013 -->
 
-### 🟢 Start your Sovereign Rollup
+### 🟢 Start your sovereign rollup
 
 :::danger caution
 Before starting our rollup, we'll need to find and change

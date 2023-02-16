@@ -1,14 +1,14 @@
 ---
 sidebar_position: 1
-sidebar_label: Building & Deploying a Rollup
+sidebar_label: Building & deploying a rollup
 description: Build sovereign Cosmos-SDK and EVM applications.
 ---
 
-# Building a Rollup and Testnet Deployment
+# Building a rollup and testnet deployment
 
 The following tutorials will help you get started building
-Cosmos-SDK and EVM applications that connect to Celestia's Data Availability
-Layer via Rollkit to Mocha testnet or Arabica devnet. We call
+Cosmos-SDK and EVM applications that connect to Celestia's data availability
+(DA) layer via Rollkit to Mocha testnet or Arabica devnet. We call
 those chains Sovereign Rollups.
 
 You can get started with the following tutorials:

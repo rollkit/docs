@@ -1,10 +1,10 @@
 ---
-sidebar_position: 4
-sidebar_label: Recipe Book Rollup Tutorial
+sidebar_position: 3
+sidebar_label: Recipe book tutorial
 description: Build a recipe book rollup with Ignite CLI, Celestia, and Rollkit.
 ---
 
-# 🥗 Recipe Book Overview
+# 🥗 Recipe book overview
 
 ## 📖 Overview
 
@@ -46,9 +46,9 @@ you will need to modify the script manually.
 
 - [GM World Tutorial](./gm-world.md)
 
-## 🏗 Scaffolding your Rollup
+## 🏗 Scaffolding your rollup
 
-### 🔥 Use Ignite CLI to Scaffold a `recipes` Rollup
+### 🔥 Use Ignite CLI to scaffold a `recipes` rollup
 
 Run the following command to scaffold your `recipes` chain using Ignite CLI:
 
@@ -77,9 +77,9 @@ go mod tidy
 go mod download
 ```
 
-## 💬 Message Types
+## 💬 Message types
 
-### ✨ Create Message Types
+### ✨ Create message types
 
 Create a message type and its handler with the `message` command:
 
@@ -311,7 +311,7 @@ message is routed to the recipes module.
 count, adds a recipe using the count as the ID, increments the
 count, and returns the ID
 
-## 🍽️ Querying Recipes
+## 🍽️ Querying recipes
 
 ### 🖥 Query recipes
 
@@ -419,9 +419,9 @@ func (k Keeper) Dishes(c context.Context, req *types.QueryDishesRequest) (*types
 ```
 <!-- markdownlint-enable MD013 -->
 
-## 👩‍🍳 Running the Recipes Rollup
+## 👩‍🍳 Running the recipes rollup
 
-### ✨ Run a Celestia Light Node
+### ✨ Run a Celestia light node
 
 Follow instructions to install and start your Celestia Data Availalbility
 layer Light Node selecting the network that you previously used. You can
@@ -443,7 +443,7 @@ celestia light start --core.ip https://rpc-mocha.pops.one --gateway --gateway.ad
 
 ![light-node.png](../../static/img/tutorials/recipes/light-node.png)
 
-### 🗞️ Start the Recipes Rollup
+### 🗞️ Start the recipes rollup
 
 We have a handy `init.sh` found in this repo
 [here](https://github.com/celestiaorg/devrel-tools).
