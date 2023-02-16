@@ -137,7 +137,7 @@ A pessimistic rollup is a rollup that only supports full nodes that replay all t
 
 Pessimistic rollups are similar to how Tether uses Bitcoin as a data availability layer via [OmniLayer](https://github.com/OmniLayer/spec/blob/master/OmniSpecification-v0.6.adoc#summary).
 
-### Optimistic rollups (fraud proofs) (work in progress)
+### Optimistic (fraud proofs) (work in progress)
 
 Rollkit's current design consists of a single sequencer that posts blocks to the DA layer, and multiple (optional) full nodes. Sequencers gossip block headers to full nodes and full nodes fetch posted blocks from the DA layer. Full nodes then execute transactions in these blocks to update their state, and gossip block headers over the P2P network to Rollkit light nodes.
 
@@ -149,6 +149,6 @@ Note that Rollkit state fraud proofs are still a work in progress and will requi
 
 You can find current detailed design and the remaining work needed to push state fraud proofs towards completion in this [Architecture Decision Record (ADR)](https://github.com/rollkit/rollkit/blob/manav/state_fraud_proofs_adr/docs/lazy-adr/adr-009-state-fraud-proofs.md).
 
-### Validity rollups (ZK proofs)
+### Validity (ZK proofs)
 
 Validity (ZK) rollups are planned, but not currently supported by Rollkit.
