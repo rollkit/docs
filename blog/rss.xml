@@ -4,7 +4,7 @@
         <title>Rollkit Blog</title>
         <link>https://rollkit.dev/blog</link>
         <description>Rollkit Blog</description>
-        <lastBuildDate>Fri, 13 Jan 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 17 Feb 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -12,10 +12,11 @@
             <title><![CDATA[Coming Soon]]></title>
             <link>https://rollkit.dev/blog/coming-soon</link>
             <guid>coming-soon</guid>
-            <pubDate>Fri, 13 Jan 2023 00:00:00 GMT</pubDate>
+            <pubDate>Fri, 17 Feb 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Introducing Rollkit]]></description>
             <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="introducing-rollkit">Introducing Rollkit<a class="hash-link" href="#introducing-rollkit" title="Direct link to heading">​</a></h2><p>You can read more on our blog post <a href="https://blog.celestia.org" target="_blank" rel="noopener noreferrer">here</a>.</p>]]></content:encoded>
-            <category>docusaurus</category>
+            <category>Rollkit</category>
+            <category>Celestia</category>
         </item>
     </channel>
 </rss>
