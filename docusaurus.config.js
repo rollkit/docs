@@ -78,13 +78,19 @@ const config = {
               {
                 type: 'doc',
                 docId: 'rollkit-stack',
-                label: 'Rollkit stack',
+                label: 'Rollkit Stack',
               },
               {
-                to: 'docs/category/tutorials',
+                type: 'doc',
+                docId: 'tutorials/building-and-deploying-a-rollup',
                 label: 'Tutorials',
               },
             ],
+          },
+          {
+            to: '/blog',
+            position: 'right',
+            label: 'Blog',
           },
           {
             type: 'dropdown',

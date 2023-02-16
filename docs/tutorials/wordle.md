@@ -1,10 +1,14 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 sidebar_label: Wordle tutorial
 description: Get started with Ignite CLI, Celestia and Rollkit
 ---
 
 # Wordle app
+
+:::tip difficulty
+Intermediate
+:::
 
 ![wordle-app](../../static/img/tutorials/wordle/wordle.png)
 
@@ -191,7 +195,7 @@ to read about it [here](https://docs.ignite.com/kb).
 
 Most of the tutorial work will happen inside the `x` directory.
 
-## Setting Up Rollkit
+## Setting up Rollkit
 
 Before we continue with building our Wordle App, we need to set up
 Rollkit on our codebase.
@@ -423,7 +427,7 @@ Here in the `SubmitWordle` Keeper function, we are doing a few things:
 * We also have a helper function in there to check if a string only
   contains alphabet characters.
 
-### SubmitGuess function
+### `SubmitGuess` function
 
 The next Keeper function we will add is the following:
 `x/wordle/keeper/msg_server_submit_guess.go`
