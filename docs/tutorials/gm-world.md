@@ -29,12 +29,6 @@ This tutorial will explore developing with Rollkit,
 which is still in Alpha stage. If you run into bugs, please write a Github
 [Issue ticket](https://github.com/rollkit/docs/issues/new)
 or let us know in our [Discord](https://discord.com/channels/638338779505229824/1065974175237414972).
-Furthermore, while Rollkit allows you to build sovereign rollups
-on Celestia, it currently does not support fraud proofs yet and is
-therefore running in "pessimistic" mode, where nodes would need to
-re-execute the transactions to check the validity of the chain
-(i.e. a full node). Furthermore, Rollkit currently only supports
-a single sequencer.
 :::
 
 :::danger caution
