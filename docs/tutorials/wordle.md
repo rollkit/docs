@@ -637,9 +637,11 @@ With that, we have kickstarted our `wordled` network!
 
 In another window, run the following to submit a Wordle:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 wordled tx wordle submit-wordle giant --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
+<!-- markdownlint-enable MD013 -->
 
 > NOTE: We are submitting a transaction asynchronously due to avoiding
   any timeout errors. With Rollkit as a replacement to Tendermint, we
@@ -715,9 +717,11 @@ Note, this does not mean the transaction was included in the block yet.
 Let's query the transaction hash to check whether it has been included in
 the block yet or if there are any errors.
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 wordled query tx --type=hash F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E --chain-id wordle --output json | jq -r '.raw_log'
 ```
+<!-- markdownlint-enable MD013 -->
 
 This should display an output like the following:
 
@@ -728,9 +732,11 @@ This should display an output like the following:
 
 Test out a few things for fun:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 wordled tx wordle submit-guess 12345 --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
+<!-- markdownlint-enable MD013 -->
 
 After confirming the transaction, query the `txhash`
 given the same way you did above. You will see the response shows
@@ -738,9 +744,11 @@ an Invalid Error because you submitted integers.
 
 Now try:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 wordled tx wordle submit-guess ABCDEFG --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
+<!-- markdownlint-enable MD013 -->
 
 After confirming the transaction, query the `txhash` given the same
 way you did above. You will see the response shows
@@ -748,9 +756,11 @@ an Invalid Error because you submitted a word larger than 5 characters.
 
 Now try to submit another wordle even though one was already submitted
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 wordled tx wordle submit-wordle meter --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
+<!-- markdownlint-enable MD013 -->
 
 After submitting the transactions and confirming, query the `txhash`
 given the same way you did above. You will get an error that a wordle
@@ -758,9 +768,11 @@ has already been submitted for the day.
 
 Now let’s try to guess a five letter word:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 wordled tx wordle submit-guess least --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
+<!-- markdownlint-enable MD013 -->
 
 After submitting the transactions and confirming, query the `txhash`
 given the same way you did above. Given you didn’t guess the correct
