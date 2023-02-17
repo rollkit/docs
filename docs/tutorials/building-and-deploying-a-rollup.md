@@ -8,8 +8,9 @@ description: Build sovereign Cosmos-SDK and EVM applications.
 
 The following tutorials will help you get started building
 Cosmos-SDK and EVM applications that connect to Celestia's data availability
-(DA) layer via Rollkit to Mocha testnet or Arabica devnet. We call
-those chains Sovereign Rollups.
+(DA) layer via Rollkit to Celestia's
+[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet)
+or Arabica devnet. We call those chains Sovereign Rollups.
 
 You can get started with the following tutorials:
 

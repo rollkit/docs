@@ -1,10 +1,10 @@
 ---
 sidebar_position: 7
-sidebar_label: Ethermint tutorial
-description: Build a sovereign rollup with Ethermint, Celestia and Rollkit
+sidebar_label: Ethermint (EVM) tutorial
+description: Build a sovereign rollup with Ethermint (EVM + Cosmos SDK), Celestia and Rollkit
 ---
 
-# Ethermint
+# Ethermint (EVM) rollup
 
 :::tip difficulty
 Advanced
@@ -30,7 +30,8 @@ or let us know in our [Discord](https://discord.com/channels/638338779505229824/
 
 :::danger caution
 
-The script for this tutorial is built for Mocha Testnet.
+The script for this tutorial is built for Celestia's
+[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet).
 If you choose to use Arabica Devnet,
 you will need to modify the script manually.
 
@@ -151,8 +152,10 @@ DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.h
 ```
 <!-- markdownlint-enable MD013 -->
 
-If you are running this on Mocha Testnet or Arabica Devnet, you need to run your
-light node with an account that has Mocha or Arabica tokens. Visit the faucet
+If you are running this on Celestia's
+[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet)
+or Arabica devnet, you need to run your light node with an account
+that has Mocha or Arabica tokens. Visit the faucet
 [here](https://docs.celestia.org/nodes/arabica-devnet#arabica-devnet-faucet).
 
 With this setup complete, we can now start our Ethermint Rollup:
