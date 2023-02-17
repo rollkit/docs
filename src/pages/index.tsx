@@ -11,15 +11,15 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">Let's roll.</h1>
+        <h1 className="hero__title">Be free.</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
-           {/* <Link
+           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
             Learn more
-          </Link> */}
-          <Link
+          </Link>
+          {/* <Link
             className="front-page-link"
             to="/docs/intro/">
               <p className="button-heading">Intro</p>
@@ -36,7 +36,7 @@ function HomepageHeader() {
             to="/docs/tutorials/hello-world/">
                <p className="button-heading">Build a rollup</p>
               Deploy a rollup with Rollkit
-          </Link>
+          </Link> */}
         </div>
       </div>
     </header>
