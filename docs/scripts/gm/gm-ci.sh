@@ -3,8 +3,6 @@
 # reset
 cd $HOME
 tmux kill-session -t gm-rollkit
-# rm -rf .celestia-light-mocha/
-# rm -rf celestia-node
 rm -rf .gm
 rm -rf gm
 rm -rf go
@@ -43,21 +41,6 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 go version
 
-# install Celestia Node
-# cd $HOME
-# git clone https://github.com/celestiaorg/celestia-node.git
-# cd $HOME/celestia-node/
-# git checkout tags/v0.6.2-rc1
-# make install
-# make cel-key
-
-# create new key
-# export ADDRESS=$(./cel-key add my_celes_key --keyring-backend test --node.type light)
-# export PRIVATE_KEY=$(./cel-key export my_celes_key --unsafe --unarmored-hex --keyring-backend test --node.type light --p2p.network mocha)
-
-# log versions
-# celestia version
-
 # install ignite
 cd $HOME
 sudo mkdir -p -m 775 /usr/local/bin
@@ -76,12 +59,6 @@ go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/ten
 go mod tidy
 go mod download
 
-# scaffold GM query
-# ignite scaffold query gm --response text -y
-
-# add "gm world!" to query
-# sed -i 's/\.QueryGmResponse{}, nil/.QueryGmResponse{Text: "gm world!"}, nil/g' x/gm/keeper/query_gm.go
-
 # set up chain
 VALIDATOR_NAME=validator1
 CHAIN_ID=gm
@@ -93,14 +70,6 @@ STAKING_AMOUNT="1000000000stake"
 # build chain
 ignite chain build
 
-# init chain and add genesis accounts
-# gmd tendermint unsafe-reset-all
-# gmd init $VALIDATOR_NAME --chain-id $CHAIN_ID
-# gmd keys add $KEY_NAME --keyring-backend test
-# gmd add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
-# gmd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
-# gmd collect-gentxs
-
 # start local DA devnet
 cd $HOME
 tmux new-session -d -s gm-rollkit
@@ -111,15 +80,3 @@ tmux new-window -t gm-rollkit -n 'rollkit-node'
 
 # start rollkit node
 gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"fee":6000,"gas_limit":6000000}' --rollkit.namespace_id $(echo $RANDOM | md5sum | head -c 16; echo;) --rollkit.da_start_height $(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
-
-# make new window in gm-rollkit session and echo mnemonic
-# tmux new-window -t gm-rollkit -n 'mnemonic'
-# tmux send-keys -t gm-rollkit:mnemonic 'echo ${ADDRESS}' Enter 'echo${PRIVATE_KEY}' Enter
-
-# enter tmux
-# tmux attach -t gm-rollkit:rollkit-node
-
-# find out how to test this correctly, even if block is not included on celestia, the query will return "gm world!"
-# # make new window in gm-rollkit session to test gm query
-# tmux new-window -t gm-rollkit -n 'gm-query'
-# tmux send-keys -t gm-rollkit:gm-query 'gmd query gm gm' Enter
