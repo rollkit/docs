@@ -2,15 +2,15 @@
 
 # reset
 cd $HOME
-tmux kill-session -t hello-rollkit
-rm -rf .hello
-rm -rf hello
+tmux kill-session -t gm-rollkit
+rm -rf .gm
+rm -rf gm
 rm -rf go
 rm -rf .ignite
 
 # update dependencies
 sudo apt update && sudo apt upgrade -y
-sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
+sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bacula-console-qt git make ncdu -y
 
 # install Golang
 ver="1.19.1"
@@ -48,11 +48,11 @@ sudo mkdir -p -m 775 /usr/local/bin
 sudo curl https://get.ignite.com/cli! | sudo bash
 ignite version
 
-# scaffold hello chain
+# scaffold gm chain
 cd $HOME
-rm -rf hello/
-ignite scaffold chain hello
-cd $HOME/hello
+rm -rf gm/
+ignite scaffold chain gm
+cd $HOME/gm
 
 # install Rollkit for Consensus & DA
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.6.0-no-fraud-proofs
@@ -62,16 +62,16 @@ go mod download
 
 # start local DA devnet
 cd $HOME
-tmux new-session -d -s hello-rollkit
-tmux send-keys -t hello-rollkit 'docker run --platform linux/amd64 -p 26650:26657 -p 26659:26659 ghcr.io/celestiaorg/local-celestia-devnet:main' Enter
-tmux new-window -t hello-rollkit -n 'check-balance'
-tmux send-keys -t hello-rollkit:check-balance 'curl -X GET http://0.0.0.0:26659/balance' Enter
+tmux new-session -d -s gm-rollkit
+tmux send-keys -t gm-rollkit 'docker run --platform linux/amd64 -p 26650:26657 -p 26659:26659 ghcr.io/celestiaorg/local-celestia-devnet:main' Enter
+tmux new-window -t gm-rollkit -n 'check-balance'
+tmux send-keys -t gm-rollkit:check-balance 'curl -X GET http://0.0.0.0:26659/balance' Enter
 
 # set variables for the chain
 VALIDATOR_NAME=validator1
-CHAIN_ID=hello
-KEY_NAME=hello-key
-KEY_2_NAME=hello-key-2
+CHAIN_ID=gm
+KEY_NAME=gm-key
+KEY_2_NAME=gm-key-2
 CHAINFLAG="--chain-id ${CHAIN_ID}"
 TOKEN_AMOUNT="10000000000000000000000000stake"
 STAKING_AMOUNT="1000000000stake"
@@ -82,42 +82,48 @@ echo $NAMESPACE_ID
 DA_BLOCK_HEIGHT=$(curl http://0.0.0.0:26650/block | jq -r '.result.block.header.height')
 echo $DA_BLOCK_HEIGHT
 
-# build the hello chain with Rollkit
-cd $HOME/hello
+# build the gm chain with Rollkit
+cd $HOME/gm
 ignite chain build
 
 # reset any existing genesis/chain data
-hellod tendermint unsafe-reset-all
+gmd tendermint unsafe-reset-all
 
 # initialize the validator with the chain ID you set
-hellod init $VALIDATOR_NAME --chain-id $CHAIN_ID
+gmd init $VALIDATOR_NAME --chain-id $CHAIN_ID
 
 # add keys for key 1 and key 2 to keyring-backend test
-hellod keys add $KEY_NAME --keyring-backend test
+gmd keys add $KEY_NAME --keyring-backend test
 # TODO: pull the address here with bat and set value to send later
 
-hellod keys add $KEY_2_NAME --keyring-backend test
+gmd keys add $KEY_2_NAME --keyring-backend test
 # TODO: pull the address here with bat and set value to send later
 
 # add these as genesis accounts
-hellod add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
-hellod add-genesis-account $KEY_2_NAME $TOKEN_AMOUNT --keyring-backend test
+gmd add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
+gmd add-genesis-account $KEY_2_NAME $TOKEN_AMOUNT --keyring-backend test
 
 # set the staking amounts in the genesis transaction
-hellod gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
-hellod gentx $KEY_2_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
+gmd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
 
 # collect genesis transactions
-hellod collect-gentxs
+gmd collect-gentxs
 
 # start the chain
-tmux new-window -t hello-rollkit -n 'rollkit-rollup'
-tmux send-keys -t hello-rollkit:rollkit-rollup 'hellod start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"fee":6000,"gas_limit":6000000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT
-' Enter
+# tmux new-window -t gm-rollkit -n 'rollkit-rollup'
+# tmux send-keys -t gm-rollkit:rollkit-rollup 'gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"fee":6000,"gas_limit":6000000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT' Enter
 
-# make new window in hello-rollkit session for rollkit-node
-tmux new-window -t hello-rollkit -n 'rollkit-node'
+gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"fee":6000,"gas_limit":6000000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT
+
+# make new window in gm-rollkit session for rollkit-node
+tmux new-window -t gm-rollkit -n 'rollkit-node'
 
 # send transaction
+gmd tx bank send cosmos1ew08l47sra304z6vqn9trsy835x600dzqvdz82 cosmos1pgljtq3a549t70zc0fhl4kze2q3r2tllzt8x0y 42069stake --keyring-backend test -y
 
-# validate output
+# validate `code: 0`
+
+# query balance
+gmd query bank balances cosmos1ew08l47sra304z6vqn9trsy835x600dzqvdz82
+
+# validate output that the "amount" is 10000000000000000000042069
