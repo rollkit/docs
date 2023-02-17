@@ -3,8 +3,8 @@
 # reset
 cd $HOME
 tmux kill-session -t gm-rollkit
-rm -rf .celestia-light-mocha/
-rm -rf celestia-node
+# rm -rf .celestia-light-mocha/
+# rm -rf celestia-node
 rm -rf .gm
 rm -rf gm
 rm -rf go
@@ -22,25 +22,41 @@ sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 rm "go$ver.linux-amd64.tar.gz"
 
+# install Docker
+sudo apt-get update
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+sudo mkdir -m 0755 -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+docker
+
 # set path & check version
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 go version
 
 # install Celestia Node
-cd $HOME
-git clone https://github.com/celestiaorg/celestia-node.git
-cd $HOME/celestia-node/
-git checkout tags/v0.6.2-rc1
-make install
-make cel-key
+# cd $HOME
+# git clone https://github.com/celestiaorg/celestia-node.git
+# cd $HOME/celestia-node/
+# git checkout tags/v0.6.2-rc1
+# make install
+# make cel-key
 
 # create new key
 # export ADDRESS=$(./cel-key add my_celes_key --keyring-backend test --node.type light)
 # export PRIVATE_KEY=$(./cel-key export my_celes_key --unsafe --unarmored-hex --keyring-backend test --node.type light --p2p.network mocha)
 
 # log versions
-celestia version
+# celestia version
 
 # install ignite
 cd $HOME
@@ -61,10 +77,10 @@ go mod tidy
 go mod download
 
 # scaffold GM query
-ignite scaffold query gm --response text -y
+# ignite scaffold query gm --response text -y
 
 # add "gm world!" to query
-sed -i 's/\.QueryGmResponse{}, nil/.QueryGmResponse{Text: "gm world!"}, nil/g' x/gm/keeper/query_gm.go
+# sed -i 's/\.QueryGmResponse{}, nil/.QueryGmResponse{Text: "gm world!"}, nil/g' x/gm/keeper/query_gm.go
 
 # set up chain
 VALIDATOR_NAME=validator1
@@ -78,18 +94,17 @@ STAKING_AMOUNT="1000000000stake"
 ignite chain build
 
 # init chain and add genesis accounts
-gmd tendermint unsafe-reset-all
-gmd init $VALIDATOR_NAME --chain-id $CHAIN_ID
-gmd keys add $KEY_NAME --keyring-backend test
-gmd add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
-gmd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
-gmd collect-gentxs
+# gmd tendermint unsafe-reset-all
+# gmd init $VALIDATOR_NAME --chain-id $CHAIN_ID
+# gmd keys add $KEY_NAME --keyring-backend test
+# gmd add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
+# gmd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
+# gmd collect-gentxs
 
-# start light node
+# start local DA devnet
 cd $HOME
 tmux new-session -d -s gm-rollkit
-tmux send-keys -t gm-rollkit 'celestia light init --p2p.network mocha' Enter
-tmux send-keys -t gm-rollkit 'celestia light start --core.ip https://rpc-mocha.pops.one --core.grpc.port 9090 --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha' Enter
+tmux send-keys -t gm-rollkit 'docker run --platform linux/amd64 -p 26650:26657 -p 26659:26659 ghcr.io/celestiaorg/local-celestia-devnet:main' Enter
 
 # make new window in gm-rollkit session for rollkit-node
 tmux new-window -t gm-rollkit -n 'rollkit-node'
