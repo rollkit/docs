@@ -4,7 +4,7 @@ sidebar_label: CosmWasm tutorial
 description: Build a sovereign rollup with CosmWasm, Celestia, and Rollkit.
 ---
 
-# CosmWasm and Rollkit
+# CosmWasm rollup
 
 :::tip difficulty
 Intermediate
@@ -26,8 +26,9 @@ or let us know in our [Discord](https://discord.com/channels/638338779505229824/
 
 :::danger caution
 
-The script for this tutorial is built for Mocha Testnet.
-If you choose to use Arabica Devnet,
+The script for this tutorial is built for Celestia's
+[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet).
+If you choose to use Arabica devnet,
 you will need to modify the script manually.
 
 :::
@@ -151,9 +152,11 @@ make install
 
 ### Celestia node
 
-You will need a light node running with test tokens on Mocha Testnet in order
+You will need a light node running with test tokens on
+[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet) in order
 to complete this tutorial. Please complete the tutorial
-[here](https://docs.celestia.org/developers/node-tutorial), or start up your node.
+[here](https://docs.celestia.org/developers/node-tutorial),
+or start up yournode.
 
 ## Setting up your environment for CosmWasm on Celestia
 
@@ -167,13 +170,18 @@ We have a handy `init.sh` found in this repo
 
 We can copy it over to our directory with the following commands:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `wasmd` directory
 cd ..
-git clone https://github.com/celestiaorg/devrel-tools
-cp devrel-tools/cosmwasm/init.sh wasmd/
+# Clone the init.sh script
+git clone https://github.com/rollkit/docs.git --depth 1 --filter=blob:none --sparse docs/scripts/wasmd/init.sh
+# Copy the init.sh script to your PWD
+cp docs/scripts/wasmd/init.sh wasmd/
+# CD to PWD
 cd wasmd/
 ```
+<!-- markdownlint-enable MD013 -->
 
 This copies over our `init.sh` script to initialize our
 CosmWasm rollup.

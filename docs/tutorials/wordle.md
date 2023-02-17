@@ -31,7 +31,7 @@ or let us know in our [Discord](https://discord.com/channels/638338779505229824/
 
 :::danger caution
 The script for this tutorial is built for Celestia's
-[Mocha Testnet](https://docs.celestia.org/nodes/mocha).
+[Mocha testnet](https://docs.celestia.org/nodes/mocha).
 If you choose to use Arabica Devnet,
 you will need to modify the script manually.
 :::
@@ -591,13 +591,18 @@ We have a handy `init.sh` found in this repo
 
 We can copy it over to our directory with the following commands:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `wordle` directory
 cd ..
-git clone https://github.com/celestiaorg/devrel-tools
-cp devrel-tools/wordle/init.sh wordle/
+# Clone the init.sh script
+git clone https://github.com/rollkit/docs.git --depth 1 --filter=blob:none --sparse docs/scripts/wordle/init.sh
+# Copy the init.sh script to your PWD
+cp docs/scripts/wordle/init.sh wordle/
+# CD to PWD
 cd wordle/
 ```
+<!-- markdownlint-enable MD013 -->
 
 This copies over our `init.sh` script to initialize our
 Wordle Rollup.

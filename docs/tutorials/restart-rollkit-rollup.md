@@ -10,7 +10,7 @@ This guide will teach you how to restart your Rollkit rollup in the case that th
 
 ## Setup of this example
 
-In this example, we're using Celestia's [Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet/) and running an [Ethermint](./ethermint.md) chain. In this example, our Celestia DA light node ran out of Mocha TIA and we are unable to post new blocks to Celestia due to a [`Code: 19`](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go#L95) error. This error is defined by Cosmos SDK as:
+In this example, we're using Celestia's [Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet/) and running an [Ethermint](./ethermint.md) chain. In this example, our Celestia DA light node ran out of Mocha TIA and we are unable to post new blocks to Celestia due to a [`Code: 19`](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go#L95) error. This error is defined by Cosmos SDK as:
 
 ```go
 // ErrTxInMempoolCache defines an ABCI typed error where a tx already exists in the mempool.
@@ -52,7 +52,7 @@ You can stop your Ethermint chain (or other Rollkit rollup) by using `Control + 
 
 First, be sure that you are using the same Namespace ID as you were before your Celestia node ran out of tokens.
 
-Next, you'll need to fetch the current block height and set the variable accordingly for your start command. In this example, we're using Mocha Testnet on Celestia for DA and consensus:
+Next, you'll need to fetch the current block height and set the variable accordingly for your start command. In this example, we're using [Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet) on Celestia for DA and consensus:
 
 ```bash
 DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')

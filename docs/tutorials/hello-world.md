@@ -218,15 +218,18 @@ Download the `init.sh` script to start the chain:
 ```bash
 # From inside the `hello` directory
 cd ..
-git clone https://github.com/celestiaorg/devrel-tools
-cp devrel-tools/gm/init-local.sh hello/
+# Clone the `init.sh` script
+git clone https://github.com/rollkit/docs.git --depth 1 --filter=blob:none --sparse docs/scripts/hello/init.sh
+# Copy the `init.sh` script to your PWD
+cp docs/scripts/hello/init.sh hello/
+# CD to PWD
 cd hello/
 ```
 
-Run the `init-local.sh` script:
+Run the `init.sh` script:
 
 ```bash
-bash init-local.sh
+bash init.sh
 ```
 
 This will start your rollup, connected to the local Celestia devnet you have running.
