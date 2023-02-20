@@ -8,9 +8,8 @@ description: Description of the flow of the Rollkit transaction.
 
 Rollup users use a light node to communicate with the rollup P2P network for two primary reasons:
 
-- to submit transactions
-- to gossip headers
-- to gossip fraud proofs
+- submiting transactions
+- gossipping headers and fraud proofs
 
 :::caution note
 Light nodes are still a work in progress.
