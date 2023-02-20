@@ -11,31 +11,32 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <h1 className="hero__title">{siteConfig.tagline}</h1>
+        {/* <p className="hero__subtitle">{siteConfig.tagline}</p> */}
+        {/* <p className="hero__subtitle">Be free.</p> */}
         <div className={styles.buttons}>
            <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Learn More
+            Learn more
           </Link>
           {/* <Link
             className="front-page-link"
             to="/docs/intro/">
               <p className="button-heading">Intro</p>
-              Learn How Rollkit Works
+              Learn how Rollkit works
           </Link>
           <Link
             className="front-page-link"
-            to="/docs/core-concepts/">
+            to="/docs/rollkit-stack/">
               <p className="button-heading">Concepts</p>
-              Learn About Modular Rollups 
+              Learn about modular rollups 
           </Link>
           <Link
             className="front-page-link"
-            to="/docs/tutorials/gm-world/">
-               <p className="button-heading">Sovereign Chain</p>
-              Deploy a Rollup with Rollkit
+            to="/docs/tutorials/hello-world/">
+               <p className="button-heading">Build a rollup</p>
+              Deploy a rollup with Rollkit
           </Link> */}
         </div>
       </div>
