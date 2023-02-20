@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 sidebar_label: Transaction Flow
-description: Description of the flow of the Rollkit transaction.
+description: Description of the flow of a Rollkit transaction.
 ---
 
 # Transaction Flow
