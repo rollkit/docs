@@ -64,45 +64,45 @@ const config = {
           srcDark: 'img/rollkit-wht.svg'
         },
         items: [
-          // {
-          //   type: 'doc',
-          //   docId: 'intro',
-          //   position: 'left',
-          //   label: 'Introduction',
-          // },
           {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Docs',
-          },
-          {
-            href: '/docs/category/tutorials',
-            label: 'Tutorials',
-            position: 'left',
+            label: 'Intro',
           },
           // {
-          //   type: 'dropdown',
-          //   label: 'Docs',
+          //   type: 'doc',
+          //   docId: 'intro',
           //   position: 'left',
-          //   items: [
-          //     {
-          //       type: 'doc',
-          //       docId: 'rollkit-stack',
-          //       label: 'Rollkit stack',
-          //     },
-          //     {
-          //       type: 'doc',
-          //       docId: 'transaction-flow',
-          //       label: 'Transaction flow',
-          //     },
-          //     {
-          //       type: 'doc',
-          //       docId: 'tutorials/building-and-deploying-a-rollup',
-          //       label: 'Tutorials',
-          //     },
-          //   ],
+          //   label: 'Docs',
           // },
+          // {
+          //   href: '/docs/category/tutorials',
+          //   label: 'Tutorials',
+          //   position: 'left',
+          // },
+          {
+            type: 'dropdown',
+            label: 'Docs',
+            position: 'left',
+            items: [
+              {
+                type: 'doc',
+                docId: 'rollkit-stack',
+                label: 'Rollkit stack',
+              },
+              {
+                type: 'doc',
+                docId: 'transaction-flow',
+                label: 'Transaction flow',
+              },
+              {
+                type: 'doc',
+                docId: 'tutorials/building-and-deploying-a-rollup',
+                label: 'Tutorials',
+              },
+            ],
+          },
           {
             to: '/blog',
             position: 'right',
