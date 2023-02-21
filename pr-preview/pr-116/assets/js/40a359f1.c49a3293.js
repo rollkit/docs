@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[189],{9537:e=>{e.exports=JSON.parse('{"label":"Rollkit","permalink":"/pr-preview/pr-116/blog/tags/rollkit","allTagsPath":"/pr-preview/pr-116/blog/tags","count":1}')}}]);
