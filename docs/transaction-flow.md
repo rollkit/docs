@@ -1,10 +1,10 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 sidebar_label: Transaction Flow
 description: Description of the flow of the Rollkit transaction.
 ---
 
-# Transaction Flow
+# Transaction flow
 
 Rollup users use a light node to communicate with the rollup P2P network for two primary reasons:
 
