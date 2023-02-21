@@ -68,8 +68,19 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Introduction',
+            label: 'Intro',
           },
+          // {
+          //   type: 'doc',
+          //   docId: 'intro',
+          //   position: 'left',
+          //   label: 'Docs',
+          // },
+          // {
+          //   href: '/docs/category/tutorials',
+          //   label: 'Tutorials',
+          //   position: 'left',
+          // },
           {
             type: 'dropdown',
             label: 'Docs',
@@ -79,6 +90,11 @@ const config = {
                 type: 'doc',
                 docId: 'rollkit-stack',
                 label: 'Rollkit stack',
+              },
+              {
+                type: 'doc',
+                docId: 'transaction-flow',
+                label: 'Transaction flow',
               },
               {
                 type: 'doc',
