@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-sidebar_label: Hello World
+sidebar_label: Hello world
 description: Run your Rollkit rollup while connected to a local Celestia Data Availability network.
 ---
 
