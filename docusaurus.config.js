@@ -118,8 +118,8 @@ const config = {
               //   href: 'https://www.twitter.com/Rollkitdev',
               // },
               {
-                label: 'Discord',
-                href: 'https://discord.com/channels/638338779505229824/1065974175237414972'
+                label: 'Telegram',
+                href: 'https://t.me/rollkit'
               },
             ],
           },
