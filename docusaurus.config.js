@@ -121,6 +121,10 @@ const config = {
                 label: 'Telegram',
                 href: 'https://t.me/rollkit'
               },
+              {
+                label: 'Twitter',
+                href: 'https://twitter.com/Rollkitdev'
+              },
             ],
           },
           {
