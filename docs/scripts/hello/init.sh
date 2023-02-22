@@ -2,9 +2,9 @@
 
 # set variables for the chain
 VALIDATOR_NAME=validator1
-CHAIN_ID=gm
-KEY_NAME=gm-key
-KEY_2_NAME=gm-key-2
+CHAIN_ID=hello
+KEY_NAME=hello-key
+KEY_2_NAME=hello-key-2
 CHAINFLAG="--chain-id ${CHAIN_ID}"
 TOKEN_AMOUNT="10000000000000000000000000stake"
 STAKING_AMOUNT="1000000000stake"
@@ -21,29 +21,29 @@ echo $NAMESPACE_ID
 DA_BLOCK_HEIGHT=$(curl http://0.0.0.0:26650/block | jq -r '.result.block.header.height')
 echo $DA_BLOCK_HEIGHT
 
-# build the GM chain with Rollkit
+# build the hello chain with Rollkit
 ignite chain build
 
 # reset any existing genesis/chain data
-gmd tendermint unsafe-reset-all
+hellod tendermint unsafe-reset-all
 
 # initialize the validator with the chain ID you set
-gmd init $VALIDATOR_NAME --chain-id $CHAIN_ID
+hellod init $VALIDATOR_NAME --chain-id $CHAIN_ID
 
 # add keys for key 1 and key 2 to keyring-backend test
-gmd keys add $KEY_NAME --keyring-backend test
-gmd keys add $KEY_2_NAME --keyring-backend test
+hellod keys add $KEY_NAME --keyring-backend test
+hellod keys add $KEY_2_NAME --keyring-backend test
 
 # add these as genesis accounts
-gmd add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
-gmd add-genesis-account $KEY_2_NAME $TOKEN_AMOUNT --keyring-backend test
+hellod add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
+hellod add-genesis-account $KEY_2_NAME $TOKEN_AMOUNT --keyring-backend test
 
 # set the staking amounts in the genesis transaction
-gmd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
-gmd gentx $KEY_2_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-bakend test
+hellod gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
+hellod gentx $KEY_2_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
 
 # collect genesis transactions
-gmd collect-gentxs
+hellod collect-gentxs
 
 # start the chain
-gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"fee":6000,"gas_limit":6000000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT
+hellod start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"fee":6000,"gas_limit":6000000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT
