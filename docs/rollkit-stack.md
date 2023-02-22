@@ -127,7 +127,7 @@ Rollkit plans to support multiple different pluggable sequencer schemes:
 
 "Pure fork-choice rule" refers to any rollup without privileged sequencers, e.g. nodes defer to Celestia for ordering and apply a "first-come-first-serve" fork-choice rule.
 
-\* means implementation of this property is in progress.
+\* transactions can be force-included without sequencer's permission, but not instantly.
 
 ## State validity modes
 
