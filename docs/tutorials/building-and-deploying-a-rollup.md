@@ -30,7 +30,8 @@ You can get started with the following tutorials:
 
 - [Ethermint tutorial](https://rollkit.dev/docs/tutorials/ethermint)
 - [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
-- Coming soon - Fuelmint tutorial with Celestia
+- [Fuelmint tutorial with Celestia](https://docs.celestia.org/developers/fuelmint)
+- [Hyperlane + Celestia tutorial](https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane)
 
 ## Support
 
