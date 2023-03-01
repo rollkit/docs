@@ -120,14 +120,14 @@ Rollkit plans to support multiple different pluggable sequencer schemes:
 
 |                                | Deploy in one-click                  | Faster soft-confirmations than L1 | Control over rollup's transaction ordering | Atomic composability with other rollups | Censorship resistance | Implementation Status |
 |:--------------------------------:|:--------------------------------------:|:-----------------------------------:|:--------------------------------------------:|:-----------------------------------------:|:-----------------------:|:-----------------------:|
-| Centralized sequencer          | Requires spinning up a sequencer     | Yes ✅                               | Yes ✅                                        | No ❌                                      | Eventual* ⏳              | ✅ Implemented!          |
+| Centralized sequencer          | Requires spinning up a sequencer     | Yes ✅                               | Yes ✅                                        | No ❌                                      | Eventual ⏳*              | ✅ Implemented!          |
 | Decentralized sequencer        | Requires spinning up a sequencer set | Yes ✅                               | Yes ✅                                        | No ❌                                      | Real-time ⚡️             | Planned           |
 | Shared decentralized sequencer | Yes ✅                                  | Yes ✅                               | No ❌                                         | Yes ✅                                     | Real-time ⚡️             | Planned           |
 | Pure fork-choice rule          | Yes ✅                                  | No ❌                                | Maybe 🟡                                      | Maybe 🟡                                   | Eventual ⏳              | Planned           |
 
 "Pure fork-choice rule" refers to any rollup without privileged sequencers, e.g. nodes defer to the data availability layer for ordering and apply a "first-come-first-serve" fork-choice rule.
 
-\* means implementation of this property is in progress.
+\* implementation of this property is in progress.
 
 ## State validity modes
 
