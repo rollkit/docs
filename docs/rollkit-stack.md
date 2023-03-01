@@ -125,7 +125,7 @@ Rollkit plans to support multiple different pluggable sequencer schemes:
 | Shared decentralized sequencer | Yes ✅                                  | Yes ✅                               | No ❌                                         | Yes ✅                                     | Real-time ⚡️             | Planned           |
 | Pure fork-choice rule          | Yes ✅                                  | No ❌                                | Maybe 🟡                                      | Maybe 🟡                                   | Eventual ⏳              | Planned           |
 
-"Pure fork-choice rule" refers to any rollup without privileged sequencers, e.g. nodes defer to Celestia for ordering and apply a "first-come-first-serve" fork-choice rule.
+"Pure fork-choice rule" refers to any rollup without privileged sequencers, e.g. nodes defer to the data availability layer for ordering and apply a "first-come-first-serve" fork-choice rule.
 
 \* means implementation of this property is in progress.
 
