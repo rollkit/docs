@@ -217,13 +217,7 @@ Download the `init.sh` script to start the chain:
 
 ```bash
 # From inside the `hello` directory
-cd ..
-# Clone the `init.sh` script
-git clone https://github.com/rollkit/docs.git --depth 1 --filter=blob:none --sparse docs/scripts/hello/init.sh
-# Copy the `init.sh` script to your PWD
-cp docs/scripts/hello/init.sh hello/
-# CD to PWD
-cd hello/
+wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/hello/init.sh
 ```
 
 Run the `init.sh` script:
