@@ -166,7 +166,7 @@ that communicates between `wasmd` and Rollkit.
 ### Initializing CosmWasm rollup with a bash script
 
 We have a handy `init.sh` found in this repo
-[here](https://github.com/celestiaorg/devrel-tools).
+[here](https://github.com/rollkit/docs/tree/main/docs/scripts/cosmwasm).
 
 We can copy it over to our directory with the following commands:
 

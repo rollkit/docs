@@ -444,7 +444,7 @@ celestia light start --core.ip https://rpc-mocha.pops.one --gateway --gateway.ad
 ### 🗞️ Start the recipes rollup
 
 We have a handy `init.sh` found in this repo
-[here](https://github.com/celestiaorg/devrel-tools).
+[here](https://github.com/rollkit/docs/tree/main/docs/scripts/recipes).
 
 We can copy it over to our directory with the following commands:
 

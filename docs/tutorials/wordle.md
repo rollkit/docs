@@ -587,7 +587,7 @@ test, and launch your own sovereign rollup.
 ### Building and running wordle chain
 
 We have a handy `init.sh` found in this repo
-[here](https://github.com/celestiaorg/devrel-tools).
+[here](https://github.com/rollkit/docs/tree/main/docs/scripts/wordle).
 
 We can copy it over to our directory with the following commands:
 

@@ -495,7 +495,7 @@ brew install md5sha1sum
 :::
 
 We have a handy `init.sh` found in this repo
-[here](https://github.com/celestiaorg/devrel-tools).
+[here](https://github.com/rollkit/docs/tree/main/docs/scripts/gm).
 
 We can copy it over to our directory with the following commands:
 
