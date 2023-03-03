@@ -71,37 +71,14 @@ const config = {
             label: 'Intro',
           },
           // {
-          //   type: 'doc',
-          //   docId: 'intro',
-          //   position: 'left',
-          //   label: 'Docs',
-          // },
-          // {
           //   href: '/docs/category/tutorials',
           //   label: 'Tutorials',
           //   position: 'left',
           // },
           {
-            type: 'dropdown',
-            label: 'Docs',
+            to: '/docs/intro',
             position: 'left',
-            items: [
-              {
-                type: 'doc',
-                docId: 'rollkit-stack',
-                label: 'Rollkit stack',
-              },
-              {
-                type: 'doc',
-                docId: 'transaction-flow',
-                label: 'Transaction flow',
-              },
-              {
-                type: 'doc',
-                docId: 'tutorials/building-and-deploying-a-rollup',
-                label: 'Tutorials',
-              },
-            ],
+            label: 'Docs',
           },
           {
             to: '/blog',
@@ -113,10 +90,6 @@ const config = {
             label: 'Community',
             position: 'right',
             items: [
-              // {
-              //   label: 'Twitter',
-              //   href: 'https://www.twitter.com/Rollkitdev',
-              // },
               {
                 label: 'Telegram',
                 href: 'https://t.me/rollkit'
@@ -125,6 +98,10 @@ const config = {
                 label: 'Twitter',
                 href: 'https://twitter.com/Rollkitdev'
               },
+              // {
+              //   label: 'YouTube',
+              //   href: 'https://www.youtube.com/@rollkitdev'
+              // }
             ],
           },
           {
