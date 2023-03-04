@@ -33,44 +33,116 @@ An Ubuntu machine with:
 - Ubuntu 22.10
 - 4 core AMD CPU
 
-## Setup
+## Dependency setup
 
-### Install Yarn
+First, make sure to update and upgrade the OS:
 
 ```bash
-apt install yarn
+sudo apt update && sudo apt upgrade -y
 ```
 
-### Clone the repo
+These are essential packages that are necessary to execute many tasks like downloading files, compiling, and monitoring the nodes:
 
 ```bash
-git clone https://github.com/celestiaorg/optimism.git
-cd optimism
-git checkout bitcoin-da
+sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu snapd -y
 ```
 
-## Build and run the Bitcoin devnet
+Now, we will install the remaining dependencies.
+
+### Golang
+
+We will use golang to build and run the Ethermint chain. Install it for AMD with these commands:
 
 ```bash
-yarn && make build-ts
-make devnet-up
+ver="1.19.1" 
+cd $HOME 
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" 
+sudo rm -rf /usr/local/go 
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" 
+rm "go$ver.linux-amd64.tar.gz"
+```
+
+Set the path:
+
+```bash
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+### asdf
+
+Install `asdf` to allow us to intall a specific version of NPM easily:
+
+```bash
+cd $HOME
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2
+echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
+echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
+```
+
+Set the path:
+
+```bash
+export PATH=$PATH:~/.asdf/bin/
+```
+
+Check that it was installed:
+
+```bash
+asdf
+```
+
+### Node.js
+
+Install `nodejs 16.16.0`:
+
+```bash
+asdf plugin add nodejs
+asdf install nodejs 16.16.0
+asdf local nodejs 16.16.0
+source ~/.bashrc
+```
+
+Optional: you may need to update NPM:
+
+```bash
+npm install -g npm@9.5.1
+```
+
+### Foundry
+
+```bash
+curl -L https://foundry.paradigm.xyz/ | bash
+source /root/.bashrc
+```
+
+### Yarn
+
+Install yarn:
+
+```bash
+npm install -g yarn
+```
+
+### Docker compose
+
+<!-- Install [Docker](https://docs.docker.com/engine/install/ubuntu/) -->
+​
+Install docker-compose:
+
+```bash
+apt install docker-compose
+```
+
+### gcc
+
+```bash
+apt install gcc
 ```
 
 ### Install Bitcoin
 
 Running the rollup requires a local regtest Bitcoin node. You can set this up by running the following commands.
-
-Update the apt database repository:
-
-```bash
-sudo apt update
-```
-
-Install `snapd` and `make` on your system:
-
-```bash
-sudo apt install snapd make
-```
 
 Install Bitcoin Core:
 
