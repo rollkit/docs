@@ -16,7 +16,7 @@ Read more in our [blog post](../../../blog/sovereign-rollups-on-bitcoin).
 
 ![rollkit-bitcoin](../../static/img/bitcoin-rollkit/rollkit-bitcoin-1.png)
 
-### The bitkit stack
+### The stack
 
 Sovereign rollups on Bitcoin are made possible through a module that allows Rollkit rollups to use Bitcoin for data availability. This integration opens up possibilities for developers to create rollups with arbitrary execution environments that inherit Bitcoin’s data availability guarantees and security guarantees.
 
@@ -34,6 +34,27 @@ An Ubuntu machine with:
 - 4 core AMD CPU
 
 ## Setup
+
+### Install Yarn
+
+```bash
+apt install yarn
+```
+
+### Clone the repo
+
+```bash
+git clone https://github.com/celestiaorg/optimism.git
+cd optimism
+git checkout bitcoin-da
+```
+
+## Build and run the Bitcoin devnet
+
+```bash
+yarn && make build-ts
+make devnet-up
+```
 
 ### Install Bitcoin
 
