@@ -51,7 +51,7 @@ Now, we will install the remaining dependencies.
 
 ### Golang
 
-We will use golang to build and run the Ethermint chain. Install it for AMD with these commands:
+We will use golang to build and run our test networks. Install it for AMD with these commands:
 
 ```bash
 ver="1.19.1" 
@@ -106,7 +106,7 @@ source ~/.bashrc
 Optional: you may need to update NPM:
 
 ```bash
-npm install -g npm@9.5.1
+npm install -g npm@9.6.0
 ```
 
 ### Foundry
@@ -114,6 +114,12 @@ npm install -g npm@9.5.1
 ```bash
 curl -L https://foundry.paradigm.xyz/ | bash
 source /root/.bashrc
+```
+
+Run this to finish the installation of Foundry:
+
+```bash
+foundryup
 ```
 
 ### Yarn
@@ -131,13 +137,13 @@ npm install -g yarn
 Install docker-compose:
 
 ```bash
-apt install docker-compose
+apt install docker-compose -y
 ```
 
 ### gcc
 
 ```bash
-apt install gcc
+apt install gcc -y
 ```
 
 ### Install Bitcoin
@@ -154,100 +160,6 @@ Check version:
 
 ```bash
 bitcoin-core.cli --version
-```
-
-Set up the config for the regtest (local network):
-
-```bash
-bitcoin-core.daemon "-chain=regtest" "-rpcport=18332" "-rpcuser=rpcuser" "-rpcpassword=rpcpass" "-fallbackfee=0.000001" "-txindex=1"
-```
-
-Set up the config for the chain:
-
-```bash
-bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass createwallet w1
-```
-
-Your output will look like:
-
-```console
-{
-  "name": "w1",
-  "warning": ""
-}
-```
-
-Add this script and remember where you placed it, I am putting it in my root directory:
-
-```shell
-# Script to generate a new block every minute
-# Put this script at the root of your unpacked folder
-#!/bin/bash
-
-echo "Generating a block every minute. Press [CTRL+C] to stop.."
-
-address=`bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass getnewaddress`
-
-while :
-do
-        echo "Generate a new block `date '+%d/%m/%Y %H:%M:%S'`"
-        bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass generatetoaddress 1 $address
-        sleep 5
-done
-```
-
-I put my script in `~/generateblocks.sh` and need to give it permissions to run:
-
-```bash
-chmod +x ~/start.sh
-```
-
-Start generating blocks:
-
-```bash
-bash start.sh
-```
-
-Check the current block height:
-
-```bash
-bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass getblockcount
-```
-
-Your output will look similar to below:
-
-```bash
-4980
-```
-
-Set a variable for the common flags being used:
-
-```bash
-export FLAGS="-regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass"
-```
-
-Check the latest block hash:
-
-```bash
-bitcoin-core.cli $FLAGS getblockhash 4980
-```
-
-Your output will be the block hash of the height you first queried:
-
-```bash
-1d7e98aec3085b615c7c71659768fa42e774a87ab5981597e99794d240fb3db5
-```
-
-Now to get the block header, run the following command (be sure to replace the hash with yours):
-
-```bash
-bitcoin-core.cli $FLAGS getblockheader 1d7e98aec3085b615c7c71659768fa42e774a87ab5981597e99794d240fb3db5
-```
-
-Now to finish the exercise, query the height from the block header and the hash:
-
-```bash
-bitcoin-core.cli $FLAGS getblockheader 1d7e98aec3085b615c7c71659768fa42e774a87ab5981597e99794d240fb3db5 | jq '.height'
 ```
 
 ### Install Golang
@@ -288,14 +200,124 @@ Change into `hello` directory:
 cd hello
 ```
 
-## Install Rollkit
+## Local Bitcoin network
+
+Set up the config for the regtest (local network):
+
+```bash
+bitcoin-core.daemon "-chain=regtest" "-rpcport=18332" "-rpcuser=rpcuser" "-rpcpassword=rpcpass" "-fallbackfee=0.000001" "-txindex=1"
+```
+
+### Create a wallet for the chain
+
+```bash
+bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass createwallet w1
+```
+
+Your output will look like:
+
+```console
+{
+  "name": "w1",
+  "warning": ""
+}
+```
+
+### Start generating blocks
+
+Add this script and remember where you placed it, I am putting it in my root directory:
+
+```shell
+# Script to generate a new block every minute
+# Put this script at the root of your unpacked folder
+#!/bin/bash
+
+echo "Generating a block every minute. Press [CTRL+C] to stop.."
+
+address=`bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass getnewaddress`
+
+while :
+do
+        echo "Generate a new block `date '+%d/%m/%Y %H:%M:%S'`"
+        bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass generatetoaddress 1 $address
+        sleep 5
+done
+```
+
+I placed my script in `~/start.sh` and need to give it permissions to run:
+
+```bash
+chmod +x ~/start.sh
+```
+
+Start generating blocks:
+
+```bash
+bash start.sh
+```
+
+#### Block height
+
+Check the current block height:
+
+```bash
+bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass getblockcount
+```
+
+Your output will look similar to below:
+
+```bash
+4980
+```
+
+Set a variable for the common flags being used:
+
+```bash
+export FLAGS="-regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass"
+```
+
+#### Block hash
+
+Check the latest block hash:
+
+```bash
+bitcoin-core.cli $FLAGS getblockhash 4980
+```
+
+Your output will be the block hash of the height you first queried:
+
+```bash
+1d7e98aec3085b615c7c71659768fa42e774a87ab5981597e99794d240fb3db5
+```
+
+Set the block hash as a variable:
+
+```bash
+export HASH=1d7e98aec3085b615c7c71659768fa42e774a87ab5981597e99794d240fb3db5
+```
+
+#### Block header
+
+Now to get the block header, run the following command (be sure to replace the hash with yours):
+
+```bash
+bitcoin-core.cli $FLAGS getblockheader $HASH
+```
+
+Now to finish the exercise, query the height from the block header and the hash:
+
+```bash
+bitcoin-core.cli $FLAGS getblockheader $HASH | jq '.height'
+```
+
+<!-- ## Install Rollkit
 
 ```bash
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollmint-v0.5.0-no-fraud-proofs.0.20230302215518-6f11f14d9ba3
 go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/tendermint@v0.34.22-0.20230301013318-10369c684a5c
 go mod tidy
 go mod download
-```
+``` -->
 
 <!-- Download the script to start the rollup:
 
@@ -305,7 +327,7 @@ go mod download
 
 ## Start the rollup
 
-Add this `init.sh` script to the `hello` directory:
+<!-- Add this `init.sh` script to the `hello` directory:
 
 ```shell
 #!/bin/sh
@@ -348,14 +370,14 @@ hellod gentx $KEY_2_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend 
 hellod collect-gentxs
 
 # start the chain
-hellod start --rollkit.aggregator true --rollkit.da_layer bitcoin --rollkit.da_config='{"host":"http://localhost:18332","user":"rpcuser","pass":"rpcpass","httppostmode":"true","disabletls":"true"}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height 1
+hellod start --rollkit.aggregator true --rollkit.da_layer bitcoin --rollkit.da_config='{"host":"http://127.0.0.1:18332","user":"rpcuser","pass":"rpcpass","httppostmode":"true","disabletls":"true"}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height 1
 ```
 
 Run the script to start the rollup:
 
 ```bash
 bash init.sh
-```
+``` -->
 
 ## Running Ethermint
 
@@ -366,6 +388,12 @@ git clone https://github.com/celestiaorg/ethermint.git
 cd ethermint
 git checkout bitcoin
 make install
+```
+
+Initialize the chain:
+
+```bash
+bash init.sh
 ```
 
 Start the chain:
@@ -383,11 +411,16 @@ on your local development environment.
 Next, create a new project and change into the directory:
 
 ```bash
-forge init celestia-ethermint-app
-cd celestia-ethermint-app
+forge init bitcoin-ethermint-app
+cd bitcoin-ethermint-app
 ```
 
 Foundry has created an example smart contract located at `src/Counter.sol`.
+
+:::tip
+We will run the commands for the Foundry portion of this
+tutorial in the `~/bitcoin-ethermint-app/` directory.
+:::
 
 ### Updating the contract and tests
 
@@ -600,7 +633,7 @@ To do so, run the following script:
 
 ```bash
 forge script script/Counter.s.sol:CounterScript \
---rpc-url http://localhost:8545 --private-key $PRIVATE_KEY --broadcast
+--rpc-url http://127.0.0.1:8545 --private-key $PRIVATE_KEY --broadcast
 ```
 
 Set the contract address in the output as the `CONTRACT_ADDRESS` variable:
@@ -614,11 +647,11 @@ use `cast send` to test sending transactions to it:
 
 ```bash
 cast send $CONTRACT_ADDRESS "incrementCounter()" \
---rpc-url http://localhost:8545 --private-key $PRIVATE_KEY 
+--rpc-url http://127.0.0.1:8545 --private-key $PRIVATE_KEY 
 ```
 
 We can then perform read operations with `cast call`:
 
 ```bash
-cast call $CONTRACT_ADDRESS "getCount()(int)" --rpc-url http://localhost:8545
+cast call $CONTRACT_ADDRESS "getCount()(int)" --rpc-url http://127.0.0.1:8545
 ```
