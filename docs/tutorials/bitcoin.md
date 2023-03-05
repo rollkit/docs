@@ -65,7 +65,7 @@ source $HOME/.bash_profile
 go version
 ```
 
-### asdf
+<!-- ### asdf
 
 Install `asdf` to allow us to intall a specific version of NPM easily:
 
@@ -103,7 +103,7 @@ Optional: you may need to update NPM:
 
 ```bash
 npm install -g npm@9.6.0
-```
+``` -->
 
 ### Foundry
 
@@ -125,13 +125,13 @@ Run this to finish the installation of Foundry:
 foundryup
 ```
 
-### Yarn
+<!-- ### Yarn
 
 Install yarn:
 
 ```bash
 npm install -g yarn
-```
+``` -->
 
 <!-- ### Docker compose
 
@@ -346,8 +346,8 @@ Congratulations! Now that you have your Ethermint and Bitcoin rollup running, yo
 
 ### Initialize development environment
 
-First, be sure to
-[install Foundry](https://book.getfoundry.sh/getting-started/installation.html)
+First, be sure you have
+[installed Foundry](https://book.getfoundry.sh/getting-started/installation.html)
 on your local development environment.
 
 Next, create a new project and change into the directory:
