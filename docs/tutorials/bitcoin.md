@@ -44,7 +44,7 @@ sudo apt update && sudo apt upgrade -y
 These are essential packages that are necessary to execute many tasks like downloading files, compiling, and monitoring the nodes:
 
 ```bash
-sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu snapd -y
+sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu snapd npm -y
 ```
 
 Now, we will install the remaining dependencies.
@@ -54,19 +54,15 @@ Now, we will install the remaining dependencies.
 We will use golang to build and run our test networks. Install it for AMD with these commands:
 
 ```bash
-ver="1.19.1" 
-cd $HOME 
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" 
-sudo rm -rf /usr/local/go 
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" 
+ver="1.19.1"
+cd $HOME
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 rm "go$ver.linux-amd64.tar.gz"
-```
-
-Set the path:
-
-```bash
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
+go version
 ```
 
 ### asdf
@@ -111,8 +107,15 @@ npm install -g npm@9.6.0
 
 ### Foundry
 
+Install Foundry:
+
 ```bash
 curl -L https://foundry.paradigm.xyz/ | bash
+```
+
+Set the path:
+
+```bash
 source /root/.bashrc
 ```
 
@@ -130,21 +133,19 @@ Install yarn:
 npm install -g yarn
 ```
 
-### Docker compose
+<!-- ### Docker compose
 
-<!-- Install [Docker](https://docs.docker.com/engine/install/ubuntu/) -->
-​
 Install docker-compose:
 
 ```bash
 apt install docker-compose -y
-```
+``` -->
 
-### gcc
+<!-- ### gcc
 
 ```bash
 apt install gcc -y
-```
+``` -->
 
 ### Install Bitcoin
 
@@ -153,7 +154,7 @@ Running the rollup requires a local regtest Bitcoin node. You can set this up by
 Install Bitcoin Core:
 
 ```bash
-sudo snap install bitcoin-core
+sudo snap install bitcoin-core
 ```
 
 Check version:
@@ -162,21 +163,7 @@ Check version:
 bitcoin-core.cli --version
 ```
 
-### Install Golang
-
-```bash
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-go version
-```
-
-### Install Ignite CLI
+<!-- ### Install Ignite CLI
 
 ```bash
 curl https://get.ignite.com/cli! | bash
@@ -198,17 +185,19 @@ Change into `hello` directory:
 
 ```bash
 cd hello
-```
+``` -->
 
-## Local Bitcoin network
+## Running a local Bitcoin network
 
-Set up the config for the regtest (local network):
+Set up the config for regtest (local network):
 
 ```bash
 bitcoin-core.daemon "-chain=regtest" "-rpcport=18332" "-rpcuser=rpcuser" "-rpcpassword=rpcpass" "-fallbackfee=0.000001" "-txindex=1"
 ```
 
 ### Create a wallet for the chain
+
+Open up a new terminal and run the following to create a wallet:
 
 ```bash
 bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass createwallet w1
@@ -225,14 +214,23 @@ Your output will look like:
 
 ### Start generating blocks
 
+Now, generate a new address and mine 101 blocks:
+
+```bash
+export COINBASE=$(bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass getnewaddress)
+bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass generatetoaddress 101 $COINBASE
+```
+
+Next, we'll mine a block every second.
+
 Add this script and remember where you placed it, I am putting it in my root directory:
 
 ```shell
-# Script to generate a new block every minute
+# Script to generate a new block every second
 # Put this script at the root of your unpacked folder
 #!/bin/bash
 
-echo "Generating a block every minute. Press [CTRL+C] to stop.."
+echo "Generating a block every second. Press [CTRL+C] to stop.."
 
 address=`bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass getnewaddress`
 
@@ -240,17 +238,12 @@ while :
 do
         echo "Generate a new block `date '+%d/%m/%Y %H:%M:%S'`"
         bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass generatetoaddress 1 $address
-        sleep 5
+        sleep 1
 done
 ```
 
-I placed my script in `~/start.sh` and need to give it permissions to run:
-
-```bash
-chmod +x ~/start.sh
-```
-
-Start generating blocks:
+Run the following from where you placed your `start.sh` script.
+Start generating blocks by running:
 
 ```bash
 bash start.sh
@@ -310,83 +303,22 @@ Now to finish the exercise, query the height from the block header and the hash:
 bitcoin-core.cli $FLAGS getblockheader $HASH | jq '.height'
 ```
 
-<!-- ## Install Rollkit
+#### Restarting the local network
+
+In the case that you are starting your regtest network again, you can use the following command to clear the old chain history:
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollmint-v0.5.0-no-fraud-proofs.0.20230302215518-6f11f14d9ba3
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/tendermint@v0.34.22-0.20230301013318-10369c684a5c
-go mod tidy
-go mod download
-``` -->
-
-<!-- Download the script to start the rollup:
-
-```bash
-# after script is live
-``` -->
-
-## Start the rollup
-
-<!-- Add this `init.sh` script to the `hello` directory:
-
-```shell
-#!/bin/sh
-
-# set variables for the chain
-VALIDATOR_NAME=validator1
-CHAIN_ID=hello
-KEY_NAME=hello-key
-KEY_2_NAME=hello-key-2
-CHAINFLAG="--chain-id ${CHAIN_ID}"
-TOKEN_AMOUNT="10000000000000000000000000stake"
-STAKING_AMOUNT="1000000000stake"
-
-# create a random Namespace ID for your rollup to post blocks to
-NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
-echo $NAMESPACE_ID
-
-# build the hello chain with Rollkit
-ignite chain build
-
-# reset any existing genesis/chain data
-hellod tendermint unsafe-reset-all
-
-# initialize the validator with the chain ID you set
-hellod init $VALIDATOR_NAME --chain-id $CHAIN_ID
-
-# add keys for key 1 and key 2 to keyring-backend test
-hellod keys add $KEY_NAME --keyring-backend test
-hellod keys add $KEY_2_NAME --keyring-backend test
-
-# add these as genesis accounts
-hellod add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
-hellod add-genesis-account $KEY_2_NAME $TOKEN_AMOUNT --keyring-backend test
-
-# set the staking amounts in the genesis transaction
-hellod gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
-hellod gentx $KEY_2_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
-
-# collect genesis transactions
-hellod collect-gentxs
-
-# start the chain
-hellod start --rollkit.aggregator true --rollkit.da_layer bitcoin --rollkit.da_config='{"host":"http://127.0.0.1:18332","user":"rpcuser","pass":"rpcpass","httppostmode":"true","disabletls":"true"}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height 1
+rm -rf ${LOCATION OF .bitcoin folder}
 ```
 
-Run the script to start the rollup:
-
-```bash
-bash init.sh
-``` -->
-
-## Running Ethermint
+## Running the Ethermint rollup
 
 Clone Ethermint:
 
 ```bash
 git clone https://github.com/celestiaorg/ethermint.git
 cd ethermint
-git checkout bitcoin
+git checkout bitcoin-da
 make install
 ```
 
@@ -396,11 +328,21 @@ Initialize the chain:
 bash init.sh
 ```
 
+Set variables for starting the chain:
+
+```bash
+export NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
+```
+
+<!-- export DA_HEIGHT=$(bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser rpcpassword=rpcpass getblockcount) -->
+
 Start the chain:
 
 ```bash
 ethermintd start --rollkit.aggregator true --rollkit.da_layer bitcoin --rollkit.da_config='{"host":"127.0.0.1:18332","user":"rpcuser","pass":"rpcpass","http_post_mode":true,"disable_tls":true}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height 1
 ```
+
+Congratulations! Now that you have your Ethermint and Bitcoin rollup running, you're ready to deploy some smart contracts to the EVM!
 
 ### Initialize development environment
 
