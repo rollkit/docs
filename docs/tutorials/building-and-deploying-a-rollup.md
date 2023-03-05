@@ -24,11 +24,11 @@ You can get started with the following tutorials:
 ## Intermediate
 
 - [Wordle game](./wordle.md)
-- [CosmWasm tutorial](https://rollkit.dev/docs/tutorials/cosmwasm)
+- [CosmWasm rollup](https://rollkit.dev/docs/tutorials/cosmwasm)
 
 ## Advanced
 
-- [Ethermint tutorial](https://rollkit.dev/docs/tutorials/ethermint)
+- [Ethermint rollup](https://rollkit.dev/docs/tutorials/ethermint)
 - [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
 - [Fuelmint tutorial with Celestia](https://docs.celestia.org/developers/fuelmint)
 - [Hyperlane + Celestia tutorial](https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane)
