@@ -10,7 +10,7 @@ description: Last week, we introduced Rollkit, a modular framework for rollups. 
 
 Last week, we introduced Rollkit, a modular framework for rollups. Today, we are proud to announce that Rollkit is the first rollup framework to support sovereign rollups on Bitcoin. An early research implementation allows Rollkit rollups to use Bitcoin for data availability.
 
-Rollkit is opening the door for developers to create rollups with arbitrary execution environments that inherit Bitcoin’s data availability guarantees and security guarantees. With the new integration it is now possible to run the [EVM on Bitcoin as a Rollkit sovereign rollup](/docs/tutorials/bitcoin). Sovereign rollups on Bitcoin not only expand the possibilities for rollups, but also have the potential to help bootstrap a healthy blockspace fee market on Bitcoin, enabling a more sustainable security budget.
+Rollkit is opening the door for developers to create rollups with arbitrary execution environments that inherit Bitcoin’s data availability guarantees and re-org resistance. With the new integration it is now possible to run the [EVM on Bitcoin as a Rollkit sovereign rollup](/docs/tutorials/bitcoin). Sovereign rollups on Bitcoin not only expand the possibilities for rollups, but also have the potential to help bootstrap a healthy blockspace fee market on Bitcoin, enabling a more sustainable security budget.
 
 ## Tl;dr
 
@@ -20,9 +20,7 @@ Rollkit is opening the door for developers to create rollups with arbitrary exec
 
 ## Posting data on Bitcoin with Taproot
 
-On Feb. 1, 2023, the Luxor mining pool mined the largest Bitcoin block (#774628) ever, approximately 4 MB. Most of the blockspace was used to inscribe a Taproot Wizards NFT with [Ordinals](https://ordinals.com/), a project that implements NFTs on Bitcoin by publishing the image data on-chain. Bitcoin NFTs were made possible through the Taproot upgrade, which allowed the inscription of arbitrary data.
-
-Before the introduction of Taproot, data that could be inscribed in a Bitcoin single transaction was limited to 80 bytes. The Taproot upgrade increased the amount of data a transaction could inscribe, from 80 bytes to a full block’s worth of data (around 4MB). In short, it became easier to post big blobs of data to the Bitcoin blockchain.
+On Feb. 1, 2023, the Luxor mining pool mined the largest Bitcoin block (#774628) ever, approximately 4 MB. Most of the blockspace was used to inscribe a Taproot Wizards NFT with [Ordinals](https://ordinals.com/), a project that implements NFTs on Bitcoin by publishing the image data on-chain. Bitcoin NFTs used the Taproot upgrade to inscribe arbitrary data, which increased the amount of data a transaction could inscribe, to a full block’s worth of data (around 4MB). In short, it became easier to post big blobs of data to the Bitcoin blockchain.
 
 Since then, the usage of Ordinals for NFT inscriptions and Taproot utilization has [kicked off](https://dune.com/dataalways/ordinals). Eric Wall found that at the time of [his tweet](https://twitter.com/ercwl/status/1619671451417862145), posting data on Bitcoin was 7x cheaper than Ethereum. Now that there are thousands of inscriptions on Bitcoin, it has become clear that sovereign rollups and an ecosystem of dapps on Bitcoin could become a reality. The missing piece: a rollup framework for easily integrating Bitcoin as a data availability layer.
 
