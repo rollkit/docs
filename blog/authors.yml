@@ -1,29 +1,24 @@
 jcstein:
   name: Josh Stein
-  title: Solutions Engineer @ Celestia Labs
   url: https://github.com/jcstein
   image_url: https://github.com/jcstein.png
 
 AlCJoseph:
   name: Joseph Al-Chami
-  title: Product Manager @ Celestia Labs
   url: https://github.com/AlCJoseph
   image_url: https://github.com/AlCJoseph.png
 
 nashqueue:
   name: Gabriel Blaut
-  title: Research Engineer @ Celestia Labs
   url: https://github.com/nashqueue
   image_url: https://github.com/nashqueue.png
 
 alex-beckett:
   name: Alex Beckett
-  title: Marketing Lead @ Celestia Labs
   url: https://github.com/alex-beckett
   image_url: https://github.com/alex-beckett.png
 
 rollkit:
   name: Rollkit
-  title: The Rollkit team
   url: https://github.com/rollkit
   image_url: https://github.com/rollkit.png
