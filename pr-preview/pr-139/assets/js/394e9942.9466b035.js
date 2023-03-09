@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[946],{3936:e=>{e.exports=JSON.parse('[{"label":"Rollkit","permalink":"/pr-preview/pr-139/blog/tags/rollkit","count":2},{"label":"Bitcoin","permalink":"/pr-preview/pr-139/blog/tags/bitcoin","count":1},{"label":"Celestia","permalink":"/pr-preview/pr-139/blog/tags/celestia","count":1}]')}}]);
