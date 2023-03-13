@@ -238,12 +238,31 @@ List your keys:
 hellod keys list --keyring-backend test
 ```
 
-### Transactions
-
-Send a transaction:
+You should see an output like the following
 
 ```bash
-hellod tx bank send cosmos1xwpz06l484xlew98hu74g77wahwatelmz7xm6g cosmos1pgljtq3a549t70zc0fhl4kze2q3r2tllzt8x0y 42069stake --keyring-backend test
+- address: cosmos1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7
+  name: hello-key-2
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AlXXb6Op8DdwCejeYkGWbF4G3pDLDO+rYiVWKPKuvYaz"}'
+  type: local
+- address: cosmos13nf52x452c527nycahthqq4y9phcmvat9nejl2
+  name: hello-key
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AwigPerY+eeC2WAabA6iW1AipAQora5Dwmo1SnMnjavt"}'
+  type: local
+```
+
+### Transactions
+
+Now we can test sending a transaction from one of our keys to the other. We can do that with the following command:
+
+```bash
+hellod tx bank send [from_key_or_address] [to_address] [amount] [flags]
+```
+
+So using our information from the [keys](#keys) command, we can construct the transaction command like so to send 42069stake from one address to another:
+
+```bash
+hellod tx bank send cosmos1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7 cosmos13nf52x452c527nycahthqq4y9phcmvat9nejl2 42069stake --keyring-backend test
 ```
 
 You'll be prompted to accept the transaction:
@@ -296,7 +315,7 @@ txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
 Then, query your balance:
 
 ```bash
-hellod query bank balances cosmos1pgljtq3a549t70zc0fhl4kze2q3r2tllzt8x0y
+hellod query bank balances cosmos13nf52x452c527nycahthqq4y9phcmvat9nejl2
 ```
 
 This is the key that received the balance, so it should have increased past the initial `STAKING_AMOUNT`:
@@ -313,7 +332,7 @@ pagination:
 The other key, should have decreased in balance:
 
 ```bash
-hellod query bank balances cosmos1xwpz06l484xlew98hu74g77wahwatelmz7xm6g
+hellod query bank balances cosmos1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7
 ```
 
 Response:
