@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[2254],{4402:e=>{e.exports=JSON.parse('{"label":"Bitcoin","permalink":"/pr-preview/pr-142/blog/tags/bitcoin","allTagsPath":"/pr-preview/pr-142/blog/tags","count":1}')}}]);
