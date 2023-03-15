@@ -64,12 +64,6 @@ const config = {
           srcDark: 'img/rollkit-wht.svg'
         },
         items: [
-          {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Intro',
-          },
           // {
           //   href: '/docs/category/tutorials',
           //   label: 'Tutorials',
