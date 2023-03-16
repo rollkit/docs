@@ -25,7 +25,7 @@ You can learn more about Ethermint [here](https://docs.ethermint.zone).
 This tutorial will explore developing with Rollkit,
 which is still in Alpha stage. If you run into bugs, please write a Github
 [Issue ticket](https://github.com/rollkit/docs/issues/new)
-or let us know in our [Discord](https://discord.com/channels/638338779505229824/1065974175237414972).
+or let us know in our [Telegram](https://t.me/rollkit).
 :::
 
 :::danger caution

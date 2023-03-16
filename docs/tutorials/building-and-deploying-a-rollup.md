@@ -38,7 +38,7 @@ You can get started with the following tutorials:
 The tutorials will explore developing with Rollkit,
 which is still in Alpha stage. If you run into bugs, please write a Github
 [issue](https://github.com/rollkit/docs/issues/new)
-or let us know in our [Discord](https://discord.com/channels/638338779505229824/1065974175237414972).
+or let us know in our [Telegram](https://t.me/rollkit).
 Furthermore, while Rollkit allows you to build sovereign rollups
 on Celestia, it currently does not support fraud proofs yet and is
 therefore running in "pessimistic" mode, where nodes would need to
