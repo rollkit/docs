@@ -4,7 +4,7 @@ sidebar_label: Ethermint (EVM) tutorial
 description: Build a sovereign rollup with Ethermint (EVM + Cosmos SDK), Celestia and Rollkit
 ---
 
-# Ethermint (EVM) rollup
+# ⧫ Ethermint (EVM) rollup
 
 :::tip difficulty
 Advanced
@@ -44,13 +44,13 @@ In this tutorial, we will go over the following:
 * [Instantiate a local network for your Ethermint chain connected to Celestia](#setting-up-your-environment-for-ethermint-on-celestia)
 * [Deploying an Ethereum smart contract on your Ethermint Rollup with Foundry](#deploy-a-solidity-smart-contract-on-ethermint-sovereign-rollup-with-foundry)
 
-## Ethermint dependencies
+## 🛠️Ethermint dependencies
 
 This section will guide you through installing the dependencies
 you need for the deployment process of an Ethermint Sovereign Rollup
 on Celestia.
 
-### Hardware requirements
+### 💻Hardware requirements
 
 The following hardware minimum requirements are recommended for running
 the full storage node:
@@ -60,20 +60,20 @@ the full storage node:
 * Disk: 250 GB SSD Storage
 * Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
-### Setting up your Ethermint node
+### Ξ Setting up your Ethermint node
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
-### Golang dependency
+### 🏃Golang dependency
 
 The Golang version used for this tutorial is v1.18+
 
 If you are using a Linux distribution, you can install Golang
 by following our tutorial [here](https://docs.celestia.org/nodes/environment#install-golang).
 
-## Rollkit installation
+## 🧻Rollkit installation
 
-### ethermintd installation
+### 💎ethermintd installation
 
 Here, we are going to pull down the `ethermint` from the
 [Celestia repository](https://github.com/celestiaorg/ethermint).
@@ -94,12 +94,12 @@ command:
 ethermintd
 ```
 
-## Setting up your environment for Ethermint on Celestia
+## 💻Setting up your environment for Ethermint on Celestia
 
 Now the `ethermintd` binary is built, we need to setup a local network
 that communicates between `ethermintd` and Rollkit.
 
-### Run a Celestia light node
+### 🏃‍♂️Run a Celestia light node
 
 All sovereign rollups need to submit their transaction data to
 Celestia.
@@ -108,7 +108,7 @@ Here, we must first setup a Celestia Light Node with testnet tokens.
 
 You can do this by following this tutorial [here](https://docs.celestia.org/developers/node-tutorial).
 
-### Instantiating the Ethermint rollup
+### 🗞️Instantiating the Ethermint rollup
 
 With a Celestia Light Node running in one terminal session,
 we can proceed to generate the Ethermint rollup.
@@ -237,13 +237,13 @@ badger 2022/11/23 01:27:54 INFO: Set nextTxnTs to 0
 
 With that, we have kickstarted our `ethermintd` network!
 
-## Deploy a Solidity smart contract on Ethermint sovereign rollup with Foundry
+## 📃Deploy a Solidity smart contract on Ethermint sovereign rollup with Foundry
 
 In this guide you'll learn how to deploy a Solidity smart contract to
 the Ethermint chain you just instantiated on Celestia with
 [Foundry](https://github.com/foundry-rs/foundry).
 
-### About Foundry
+### 🔹 About Foundry
 
 Foundry is a portable, fast and modular toolkit for Ethereum application development.
 
@@ -260,9 +260,9 @@ We'll use all three to create, test, and deploy our Solidity project.
 
 > To learn more about Foundry, check out the [Foundry Book](https://book.getfoundry.sh).
 
-### Getting started
+### 🎬Getting started
 
-#### Initialize development environment
+#### 🛠️Initialize development environment
 
 First, be sure to
 [install Foundry](https://book.getfoundry.sh/getting-started/installation.html)
@@ -277,7 +277,7 @@ cd celestia-ethermint-app
 
 Foundry has created an example smart contract located at `src/Counter.sol`.
 
-#### Updating the contract and tests
+#### 📃Updating the contract and tests
 
 Let's update the contracts to include a basic counter example. Open the
 `Counter.sol` file in the `src` directory and add the following code:
@@ -386,7 +386,7 @@ Logs:
 Test result: ok. 3 passed; 0 failed; finished in 2.24ms
 ```
 
-#### Updating the deployment script
+#### 📒Updating the deployment script
 
 Now that we've tested the contract, let's try deploying it locally using
 [Solidity Scripting](https://book.getfoundry.sh/tutorials/solidity-scripting.html).
@@ -416,7 +416,7 @@ contract CounterScript is Script {
 Now we can use this script to deploy our smart contract to either a live or
 test network.
 
-#### Deploying locally
+#### 🏃‍♀️Deploying locally
 
 Next start Anvil, the local testnet:
 
@@ -467,7 +467,7 @@ We can then perform read operations with `cast call`:
 cast call $CONTRACT_ADDRESS "getCount()(int)" --rpc-url $RPC_URL
 ```
 
-#### Deploying to the Ethermint sovereign rollup
+#### Ξ Deploying to the Ethermint sovereign rollup
 
 Now that we've deployed and tested locally, we can deploy to our
 Ethermint chain.
