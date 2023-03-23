@@ -4,9 +4,9 @@ sidebar_label: Bitcoin rollup tutorial
 description: Build a sovereign rollup with Ethermint (EVM + Cosmos SDK), Bitcoin and Rollkit
 ---
 
-# Bitcoin rollup tutorial
+# ₿ Bitcoin rollup tutorial
 
-## Introduction
+## ☀️Introduction
 
 In this tutorial, we will explore how to use Rollkit to create sovereign rollups on Bitcoin. First, we will install Bitcoin Core to run a local testnet. Then, we will install and set up a Rollkit node to work with Bitcoin as a data availability layer. Lastly, we'll look at how to create a custom EVM execution environment and how to deploy a sovereign rollup on Bitcoin using Rollkit.
 
@@ -16,7 +16,7 @@ Read more in our [blog post](../../../blog/sovereign-rollups-on-bitcoin).
 
 ![rollkit-bitcoin](../../static/img/bitcoin-rollkit/rollkit-bitcoin-1.png)
 
-### The stack
+### 📖The stack
 
 Sovereign rollups on Bitcoin are made possible through a module that allows Rollkit rollups to use Bitcoin for data availability. This integration opens up possibilities for developers to create rollups with arbitrary execution environments that inherit Bitcoin’s data availability guarantees and security guarantees.
 
@@ -24,7 +24,7 @@ The Taproot upgrade and [Ordinals](https://ordinals.com/) usage of Bitcoin for p
 
 The goal of Rollkit is to make it easy to build and customize rollups, enabling developers to build sovereign rollups on Bitcoin or customize Rollkit with different execution environments and data availability layers.
 
-## Prerequisites
+## 💻 Prerequisites
 
 An Ubuntu machine with:
 
@@ -33,7 +33,7 @@ An Ubuntu machine with:
 - Ubuntu 22.10
 - 4 core AMD CPU
 
-## Dependency setup
+## 🛠️Dependency setup
 
 First, make sure to update and upgrade the OS:
 
@@ -49,7 +49,7 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential gi
 
 Now, we will install the remaining dependencies.
 
-### Golang
+### 🏃 Golang
 
 We will use golang to build and run our test networks. Install it for AMD with these commands:
 
@@ -88,7 +88,7 @@ Check that it was installed:
 asdf
 ```
 
-### Node.js
+### 💎Node.js
 
 Install `nodejs 16.16.0`:
 
@@ -105,7 +105,7 @@ Optional: you may need to update NPM:
 npm install -g npm@9.6.0
 ``` -->
 
-### Foundry
+### ✨Foundry
 
 Install Foundry:
 
@@ -125,7 +125,7 @@ Run this to finish the installation of Foundry:
 foundryup
 ```
 
-<!-- ### Yarn
+<!-- ### 💎Yarn
 
 Install yarn:
 
@@ -133,7 +133,7 @@ Install yarn:
 npm install -g yarn
 ``` -->
 
-<!-- ### Docker compose
+<!-- ### 👉Docker compose
 
 Install docker-compose:
 
@@ -141,13 +141,13 @@ Install docker-compose:
 apt install docker-compose -y
 ``` -->
 
-<!-- ### gcc
+<!-- ### 👉gcc
 
 ```bash
 apt install gcc -y
 ``` -->
 
-### Install Bitcoin
+### 💎Install Bitcoin
 
 Running the rollup requires a local regtest Bitcoin node. You can set this up by running the following commands.
 
@@ -187,7 +187,7 @@ Change into `hello` directory:
 cd hello
 ``` -->
 
-## Running a local Bitcoin network
+## 🏃‍♂️Running a local Bitcoin network
 
 Set up the config for regtest (local network):
 
@@ -195,7 +195,7 @@ Set up the config for regtest (local network):
 bitcoin-core.daemon "-chain=regtest" "-rpcport=18332" "-rpcuser=rpcuser" "-rpcpassword=rpcpass" "-fallbackfee=0.000001" "-txindex=1"
 ```
 
-### Create a wallet for the chain
+### 👛Create a wallet for the chain
 
 Open up a new terminal and run the following to create a wallet:
 
@@ -212,7 +212,7 @@ Your output will look like:
 }
 ```
 
-### Start generating blocks
+### 🎬Start generating blocks
 
 Now, generate a new address and mine 101 blocks:
 
@@ -249,7 +249,7 @@ Start generating blocks by running:
 bash start.sh
 ```
 
-#### Block height
+#### 🔲Block height
 
 Check the current block height:
 
@@ -269,7 +269,7 @@ Set a variable for the common flags being used:
 export FLAGS="-regtest -rpcport=18332 -rpcuser=rpcuser -rpcpassword=rpcpass"
 ```
 
-#### Block hash
+#### 🔲Block hash
 
 Check the latest block hash:
 
@@ -289,7 +289,7 @@ Set the block hash as a variable:
 export HASH=1d7e98aec3085b615c7c71659768fa42e774a87ab5981597e99794d240fb3db5
 ```
 
-#### Block header
+#### 🔲Block header
 
 Now to get the block header, run the following command (be sure to replace the hash with yours):
 
@@ -303,7 +303,7 @@ Now to finish the exercise, query the height from the block header and the hash:
 bitcoin-core.cli $FLAGS getblockheader $HASH | jq '.height'
 ```
 
-#### Restarting the local network
+#### 🎬Restarting the local network
 
 In the case that you are starting your regtest network again, you can use the following command to clear the old chain history:
 
@@ -311,7 +311,7 @@ In the case that you are starting your regtest network again, you can use the fo
 rm -rf ${LOCATION OF .bitcoin folder}
 ```
 
-## Running the Ethermint rollup
+## 🏃‍♀️Running the Ethermint rollup
 
 Clone Ethermint:
 
@@ -344,7 +344,7 @@ ethermintd start --rollkit.aggregator true --rollkit.da_layer bitcoin --rollkit.
 
 Congratulations! Now that you have your Ethermint and Bitcoin rollup running, you're ready to deploy some smart contracts to the EVM!
 
-### Initialize development environment
+### 🖥Initialize development environment
 
 First, be sure you have
 [installed Foundry](https://book.getfoundry.sh/getting-started/installation.html)
@@ -364,7 +364,7 @@ We will run the commands for the Foundry portion of this
 tutorial in the `~/bitcoin-ethermint-app/` directory.
 :::
 
-### Updating the contract and tests
+### 📒Updating the contract and tests
 
 Let's update the contracts to include a basic counter example. Open the
 `Counter.sol` file in the `src` directory and add the following code:
@@ -473,7 +473,7 @@ Logs:
 Test result: ok. 3 passed; 0 failed; finished in 2.24ms
 ```
 
-### Updating the deployment script
+### 📜Updating the deployment script
 
 Now that we've tested the contract, let's try deploying it locally using
 [Solidity Scripting](https://book.getfoundry.sh/tutorials/solidity-scripting.html).
@@ -503,7 +503,7 @@ contract CounterScript is Script {
 Now we can use this script to deploy our smart contract to either a live or
 test network.
 
-### Deploying locally
+### 🏃Deploying locally
 
 Next start Anvil, the local testnet:
 
@@ -554,7 +554,7 @@ We can then perform read operations with `cast call`:
 cast call $CONTRACT_ADDRESS "getCount()(int)" --rpc-url $RPC_URL
 ```
 
-### Deploying to the Ethermint sovereign rollup
+### 🏃Deploying to the Ethermint sovereign rollup
 
 Now that we've deployed and tested locally, we can deploy to our
 Ethermint chain.
