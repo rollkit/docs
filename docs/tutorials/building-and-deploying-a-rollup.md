@@ -4,7 +4,7 @@ sidebar_label: Building & deploying a rollup
 description: Build sovereign Cosmos-SDK and EVM applications.
 ---
 
-# Building a rollup and testnet deployment
+# 🧻Building a rollup and testnet deployment
 
 The following tutorials will help you get started building
 Cosmos-SDK and EVM applications that connect to Celestia's data availability
@@ -14,26 +14,26 @@ or Arabica devnet. We call those chains Sovereign Rollups.
 
 You can get started with the following tutorials:
 
-## Beginner
+## 🔰Beginner
 
 - [Hello world](./hello-world.md)
 - [GM world](./gm-world.md)
 - [Recipe book](./recipe-book.md)
 - [Restart your rollup](./restart-rollkit-rollup.md)
 
-## Intermediate
+## 🏃‍♂️Intermediate
 
 - [Wordle game](./wordle.md)
 - [CosmWasm rollup](https://rollkit.dev/docs/tutorials/cosmwasm)
 
-## Advanced
+## 💎Advanced
 
 - [Ethermint rollup](https://rollkit.dev/docs/tutorials/ethermint)
 - [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
 - [Fuelmint tutorial with Celestia](https://docs.celestia.org/developers/fuelmint)
 - [Hyperlane + Celestia tutorial](https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane)
 
-## Support
+## 💻Support
 
 The tutorials will explore developing with Rollkit,
 which is still in Alpha stage. If you run into bugs, please write a Github
