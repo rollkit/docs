@@ -8,7 +8,7 @@ description: Restart your Rollkit rollup safely
 
 This guide will teach you how to restart your Rollkit rollup in the case that the node that you are using to post blocks to your DA and consensus layer runs out of funds (tokens).
 
-## Setup of this example
+## 💻 Setup of this example
 
 In this example, we're using Celestia's [Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet/) and running an [Ethermint](./ethermint.md) chain. In this example, our Celestia DA light node ran out of Mocha TIA and we are unable to post new blocks to Celestia due to a [`Code: 19`](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go#L95) error. This error is defined by Cosmos SDK as:
 
