@@ -4,7 +4,7 @@ sidebar_label: Hello world
 description: Run your Rollkit rollup while connected to a local Celestia Data Availability network.
 ---
 
-# Hello world
+# 👋 Hello world
 
 :::tip difficulty
 Beginner
@@ -32,11 +32,11 @@ this process can be done on any machine of your choosing. We tested it out on a 
 - Disk: 25 GB SSD Storage
 - OS: Ubuntu 22.10 x64
 
-## Prerequisites
+## 💻 Prerequisites
 
 - Docker installed on your machine
 
-## Running local devnet with a Rollkit rollup
+## 🏠 Running local devnet with a Rollkit rollup
 
 First, run the [`local-celestia-devnet`](https://github.com/celestiaorg/local-celestia-devnet) by running the following command:
 
@@ -50,7 +50,7 @@ Port 26657 on the Docker container in this example will be mapped to the local p
 the Rollkit node, as we're running the devnet and node on one machine.
 :::
 
-## Query your balance
+## 🔎 Query your balance
 
 Open a new terminal instance. Check the balance on your account that you'll be using to post blocks to the
 local network, this will make sure you can post rollup blocks to your Celestia Devnet for DA & consensus:
@@ -108,7 +108,7 @@ Your result will now look like this, nice 🫡
 }
 ```
 
-## Start, stop, or remove your container
+## 🟢 Start, stop, or remove your container
 
 Find the Container ID that is running by using the command:
 
@@ -155,7 +155,7 @@ Here is an example:
 docker rm CONTAINER_ID_or_NAME
 ```
 
-## Scaffold your rollup
+## 🏗️ Scaffold your rollup
 
 Now that you have a Celestia devnet running, you are ready to install Golang. We will use Golang to build and run our Cosmos-SDK blockchain.
 
@@ -202,7 +202,7 @@ Change into the `hello` directory:
 cd hello
 ```
 
-## Install Rollkit
+## 🗞️ Install Rollkit
 
 ```bash
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.6.0-no-fraud-proofs
@@ -211,7 +211,7 @@ go mod tidy
 go mod download
 ```
 
-## Start your rollup
+## ▶️ Start your rollup
 
 Download the `init.sh` script to start the chain:
 
@@ -230,7 +230,7 @@ This will start your rollup, connected to the local Celestia devnet you have run
 
 Now let's explore a bit.
 
-### Keys
+### 🔑 Keys
 
 List your keys:
 
@@ -251,7 +251,7 @@ You should see an output like the following
   type: local
 ```
 
-### Transactions
+### 💸 Transactions
 
 Now we can test sending a transaction from one of our keys to the other. We can do that with the following command:
 
@@ -310,7 +310,7 @@ tx: null
 txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
 ```
 
-### Balances
+### ⚖️ Balances
 
 Then, query your balance:
 
