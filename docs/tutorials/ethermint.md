@@ -439,7 +439,8 @@ And set the RPC URL as an environment variable:
 export RPC_URL=http://127.0.0.1:9545
 ```
 
-We can now use the local RPC along with one of the private keys to deploy locally:
+We can now use the local RPC along with one of the private keys to
+deploy locally from the `celestia-ethermint-app` directory:
 
 ```bash
 forge script script/Counter.s.sol:CounterScript --fork-url \
@@ -484,7 +485,8 @@ PRIVATE_KEY=$(ethermintd keys unsafe-export-eth-key mykey --keyring-backend test
 
 Now, we can start deploying the smart contract to our Ethermint chain.
 
-To do so, run the following script:
+To do so, run the following script from the
+`celestia-ethermint-app` directory:
 
 ```bash
 forge script script/Counter.s.sol:CounterScript \
