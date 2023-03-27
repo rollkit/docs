@@ -27,9 +27,10 @@ or let us know in our [Telegram](https://t.me/rollkit).
 :::danger caution
 
 The script for this tutorial is built for Celestia's
-[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet).
-If you choose to use Arabica devnet,
+[Blockspacerace testnet](https://docs.celestia.org/nodes/blockspace-race).
+If you choose to use Mocha testnet,
 you will need to modify the script manually.
+Rollkit is not currently compatible with Arabica devnet.
 
 :::
 
@@ -153,10 +154,10 @@ make install
 ### Celestia node
 
 You will need a light node running with test tokens on
-[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet) in order
+[Blockspace race testnet](https://docs.celestia.org/nodes/blockspace-race) in order
 to complete this tutorial. Please complete the tutorial
 [here](https://docs.celestia.org/developers/node-tutorial),
-or start up yournode.
+or start up your node.
 
 ## Setting up your environment for CosmWasm on Celestia
 
@@ -220,7 +221,6 @@ TOKEN_AMOUNT="10000000000000000000000000uwasm"
 STAKING_AMOUNT=1000000000uwasm
 CHAINFLAG="--chain-id ${CHAIN_ID}"
 TXFLAG="--chain-id ${CHAIN_ID} --gas-prices 0uwasm --gas auto --gas-adjustment 1.3"
-NODEIP="--node http://127.0.0.1:26657"
 
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 echo $NAMESPACE_ID
