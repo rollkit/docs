@@ -140,15 +140,15 @@ First, we need to setup some environment variables.
 
 :::danger Networks
 
-The commands below are for Mocha. If you're using Arabica, you'll need to
-replace the RPC endpoint with [one for Arabica](https://docs.celestia.org/nodes/arabica-devnet#rpc-endpoints).
+The commands below are for Blockspace Race. If you're using Mocha or Arabica, you'll need to
+replace the RPC endpoint with [one for Arabica](https://docs.celestia.org/nodes/arabica-devnet#rpc-endpoints) or [one for Mocha](https://docs.celestia.org/nodes/mocha-testnet#rpc-endpoints).
 
 :::
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
-DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
+DA_BLOCK_HEIGHT=$(curl https://rpc-blockspacerace.pops.one/block | jq -r '.result.block.header.height')
 ```
 <!-- markdownlint-enable MD013 -->
 

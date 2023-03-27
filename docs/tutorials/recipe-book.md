@@ -435,7 +435,7 @@ Your start command should look similar to:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-celestia light start --core.ip https://rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
+celestia light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
 ```
 <!-- markdownlint-enable MD013 -->
 
