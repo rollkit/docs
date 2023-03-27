@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 sidebar_label: Building & deploying a rollup
-description: Build sovereign Cosmos-SDK and EVM applications.
+description: Build sovereign Cosmos-SDK and EVM applications
 ---
 
 # Building a rollup and testnet deployment

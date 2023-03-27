@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 sidebar_label: Recipe book tutorial
-description: Build a recipe book rollup with Ignite CLI, Celestia, and Rollkit.
+description: Build a recipe book rollup with Ignite CLI, Celestia, and Rollkit
 ---
 
 # 🥗 Recipe book rollup
