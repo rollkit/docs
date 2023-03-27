@@ -31,8 +31,8 @@ or let us know in our [Telegram](https://t.me/rollkit).
 :::danger caution
 
 The script for this tutorial is built for Celestia's
-[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet).
-If you choose to use Arabica Devnet,
+[Blockspacerace testnet](https://docs.celestia.org/nodes/blockspace-race).
+If you choose to use Mocha testnet or Arabica devnet,
 you will need to modify the script manually.
 
 :::
@@ -140,15 +140,15 @@ First, we need to setup some environment variables.
 
 :::danger Networks
 
-The commands below are for Mocha. If you're using Arabica, you'll need to
-replace the RPC endpoint with [one for Arabica](https://docs.celestia.org/nodes/arabica-devnet#rpc-endpoints).
+The commands below are for Blockspace Race. If you're using Mocha or Arabica, you'll need to
+replace the RPC endpoint with [one for Arabica](https://docs.celestia.org/nodes/arabica-devnet#rpc-endpoints) or [one for Mocha](https://docs.celestia.org/nodes/mocha-testnet#rpc-endpoints).
 
 :::
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
-DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
+DA_BLOCK_HEIGHT=$(curl https://rpc-blockspacerace.pops.one/block | jq -r '.result.block.header.height')
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -439,7 +439,8 @@ And set the RPC URL as an environment variable:
 export RPC_URL=http://127.0.0.1:9545
 ```
 
-We can now use the local RPC along with one of the private keys to deploy locally:
+We can now use the local RPC along with one of the private keys to
+deploy locally from the `celestia-ethermint-app` directory:
 
 ```bash
 forge script script/Counter.s.sol:CounterScript --fork-url \
@@ -484,7 +485,8 @@ PRIVATE_KEY=$(ethermintd keys unsafe-export-eth-key mykey --keyring-backend test
 
 Now, we can start deploying the smart contract to our Ethermint chain.
 
-To do so, run the following script:
+To do so, run the following script from the
+`celestia-ethermint-app` directory:
 
 ```bash
 forge script script/Counter.s.sol:CounterScript \

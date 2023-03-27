@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 sidebar_label: Recipe book tutorial
-description: Build a recipe book rollup with Ignite CLI, Celestia, and Rollkit.
+description: Build a recipe book rollup with Ignite CLI, Celestia, and Rollkit
 ---
 
 # 🥗 Recipe book rollup
@@ -35,8 +35,8 @@ or let us know in our [Telegram](https://t.me/rollkit).
 
 :::danger caution
 The script for this tutorial is built for Celestia's
-[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet).
-If you choose to use Arabica Devnet,
+[Blockspacerace testnet](https://docs.celestia.org/nodes/blockspace-race).
+If you choose to use Mocha testnet or Arabica devnet,
 you will need to modify the script manually.
 :::
 
@@ -69,7 +69,7 @@ cd recipes
 To swap out Tendermint for Rollkit, run the following commands:
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.6.0-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.7.1-no-fraud-proofs
 go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221202214355-3605c597500d
 go mod tidy
 go mod download
@@ -435,7 +435,7 @@ Your start command should look similar to:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-celestia light start --core.ip https://rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
+celestia light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
 ```
 <!-- markdownlint-enable MD013 -->
 

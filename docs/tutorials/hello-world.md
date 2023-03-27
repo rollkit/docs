@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 sidebar_label: Hello world
-description: Run your Rollkit rollup while connected to a local Celestia Data Availability network.
+description: Run your Rollkit rollup while connected to a local Celestia Data Availability network
 ---
 
 # 👋 Hello world
@@ -205,7 +205,7 @@ cd hello
 ## 🗞️ Install Rollkit
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.6.0-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.7.1-no-fraud-proofs
 go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221202214355-3605c597500d
 go mod tidy
 go mod download
@@ -259,10 +259,17 @@ Now we can test sending a transaction from one of our keys to the other. We can 
 hellod tx bank send [from_key_or_address] [to_address] [amount] [flags]
 ```
 
+Set your keys as variables to make it easier to add the address:
+
+```bash
+export KEY1=cosmos1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7
+export KEY2=cosmos13nf52x452c527nycahthqq4y9phcmvat9nejl2
+```
+
 So using our information from the [keys](#keys) command, we can construct the transaction command like so to send 42069stake from one address to another:
 
 ```bash
-hellod tx bank send cosmos1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7 cosmos13nf52x452c527nycahthqq4y9phcmvat9nejl2 42069stake --keyring-backend test
+hellod tx bank send $KEY1 $KEY2 42069stake --keyring-backend test
 ```
 
 You'll be prompted to accept the transaction:
@@ -284,8 +291,8 @@ body:
     amount:
     - amount: "42069"
       denom: stake
-    from_address: cosmos1xwpz06l484xlew98hu74g77wahwatelmz7xm6g
-    to_address: cosmos1pgljtq3a549t70zc0fhl4kze2q3r2tllzt8x0y
+    from_address: cosmos1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7
+    to_address: cosmos13nf52x452c527nycahthqq4y9phcmvat9nejl2
   non_critical_extension_options: []
   timeout_height: "0"
 signatures: []
@@ -315,7 +322,7 @@ txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
 Then, query your balance:
 
 ```bash
-hellod query bank balances cosmos13nf52x452c527nycahthqq4y9phcmvat9nejl2
+hellod query bank balances $KEY2
 ```
 
 This is the key that received the balance, so it should have increased past the initial `STAKING_AMOUNT`:
@@ -332,7 +339,7 @@ pagination:
 The other key, should have decreased in balance:
 
 ```bash
-hellod query bank balances cosmos1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7
+hellod query bank balances $KEY1
 ```
 
 Response:

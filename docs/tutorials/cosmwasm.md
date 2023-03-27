@@ -1,7 +1,7 @@
 ---
 sidebar_position: 6
 sidebar_label: CosmWasm tutorial
-description: Build a sovereign rollup with CosmWasm, Celestia, and Rollkit.
+description: Build a sovereign rollup with CosmWasm, Celestia, and Rollkit
 ---
 
 # 🗞️ CosmWasm rollup
@@ -27,8 +27,8 @@ or let us know in our [Telegram](https://t.me/rollkit).
 :::danger caution
 
 The script for this tutorial is built for Celestia's
-[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet).
-If you choose to use Arabica devnet,
+[Blockspacerace testnet](https://docs.celestia.org/nodes/blockspace-race).
+If you choose to use Mocha testnet or Arabica devnet,
 you will need to modify the script manually.
 
 :::
@@ -143,7 +143,7 @@ git clone https://github.com/CosmWasm/wasmd.git
 cd wasmd
 git fetch --tags
 git checkout v0.27.0
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.45.10-rollkit-v0.6.0-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.45.10-rollkit-v0.7.1-no-fraud-proofs
 go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221202214355-3605c597500d
 go mod tidy -compat=1.17
 go mod download
@@ -153,10 +153,10 @@ make install
 ### ✨ Celestia node
 
 You will need a light node running with test tokens on
-[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet) in order
+[Blockspace race testnet](https://docs.celestia.org/nodes/blockspace-race) in order
 to complete this tutorial. Please complete the tutorial
 [here](https://docs.celestia.org/developers/node-tutorial),
-or start up yournode.
+or start up your node.
 
 ## 🌌 Setting up your environment for CosmWasm on Celestia
 
@@ -220,7 +220,6 @@ TOKEN_AMOUNT="10000000000000000000000000uwasm"
 STAKING_AMOUNT=1000000000uwasm
 CHAINFLAG="--chain-id ${CHAIN_ID}"
 TXFLAG="--chain-id ${CHAIN_ID} --gas-prices 0uwasm --gas auto --gas-adjustment 1.3"
-NODEIP="--node http://127.0.0.1:26657"
 
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 echo $NAMESPACE_ID

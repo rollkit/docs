@@ -31,8 +31,8 @@ or let us know in our [Telegram](https://t.me/rollkit).
 
 :::danger caution
 The script for this tutorial is built for Celestia's
-[Mocha testnet](https://docs.celestia.org/nodes/mocha).
-If you choose to use Arabica Devnet,
+[Blockspacerace testnet](https://docs.celestia.org/nodes/blockspace-race).
+If you choose to use Mocha testnet or Arabica devnet,
 you will need to modify the script manually.
 :::
 
@@ -199,7 +199,7 @@ Rollkit on our codebase.
 Run the following command inside the `wordle` directory.
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.6.0-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.7.1-no-fraud-proofs
 go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221202214355-3605c597500d
 go mod tidy
 go mod download

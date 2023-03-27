@@ -10,7 +10,7 @@ TXFLAG="--chain-id ${CHAIN_ID} --gas-prices 0uwasm --gas auto --gas-adjustment 1
 
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 echo $NAMESPACE_ID
-DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
+DA_BLOCK_HEIGHT=$(curl https://rpc-blockspacerace.pops.one/block | jq -r '.result.block.header.height')
 echo $DA_BLOCK_HEIGHT
 
 rm -rf "$HOME"/.wasmd
