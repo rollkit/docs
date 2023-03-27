@@ -36,9 +36,8 @@ or let us know in our [Telegram](https://t.me/rollkit).
 :::danger caution
 The script for this tutorial is built for Celestia's
 [Blockspacerace testnet](https://docs.celestia.org/nodes/blockspace-race).
-If you choose to use Mocha testnet,
+If you choose to use Mocha testnet or Arabica devnet,
 you will need to modify the script manually.
-Rollkit is not currently compatible with Arabica devnet.
 :::
 
 ## 💻 Prerequisites
