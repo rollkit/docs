@@ -885,3 +885,6 @@ text: gm world!
 ![4.png](../../static/img/tutorials/gm/4.png)
 
 Congratulations 🎉 you've successfully built your first rollup and queried it!
+
+If you're interested in looking at the demo repository
+for this tutorial, you can at [https://github.com/rollkit/gm](https://github.com/rollkit/gm).
