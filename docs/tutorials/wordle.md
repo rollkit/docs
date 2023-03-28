@@ -5,10 +5,6 @@ description: Get started with Ignite CLI, Celestia and Rollkit
 
 # 🕹️ Wordle app
 
-:::tip difficulty
-Intermediate
-:::
-
 ![wordle-app](../../static/img/tutorials/wordle/wordle.png)
 
 This tutorial guide will go over building a cosmos-sdk app

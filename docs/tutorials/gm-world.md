@@ -5,23 +5,27 @@ description: Build a sovereign rollup with Ignite CLI, Celestia and Rollkit loca
 
 # GM world rollup
 
-:::tip difficulty
-Beginner
-:::
-
 ## ☀️ Introduction
 
-In this tutorial, we will build a sovereign `gm world` rollup using Rollkit
+In this tutorial, we will build a sovereign `gm-world` rollup using Rollkit
 and Celestia’s data availability and consensus layer to submit Rollkit blocks.
 
-This tutorial will cover setting up a Celestia Light Node, Ignite CLI, and
-building a Cosmos-SDK application-specific rollup blockchain on top of
-Celestia.
+This tutorial will cover setting up Ignite CLI,
+building a Cosmos-SDK application-specific rollup blockchain,
+and posting data to Celestia.
+First, we will test on a local DA network and then we will deploy to a live
+testnet.
 
 The [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) is a framework for
 building blockchain applications. The Cosmos Ecosystem uses
 [Inter-Blockchain Communication (IBC)](https://github.com/cosmos/ibc-go)
 to allow blockchains to communicate with one another.
+
+The development journey for your rollup will look something like this:
+
+1. Run your rollup and post DA to a local devnet, and make sure everything works as expected ([Part one](#part-one))
+2. Deploy the rollup, posting to a DA testnet ([Part two](#part-two)). Confirm again that everything is functioning properly
+3. Finally, deploy your rollup to the DA Layer's mainnet
 
 :::tip note
 This tutorial will explore developing with Rollkit,
@@ -30,7 +34,7 @@ which is still in Alpha stage. If you run into bugs, please write a Github
 or let us know in our [Telegram](https://t.me/rollkit).
 :::
 
-:::danger caution
+:::caution caution
 The script for this tutorial is built for Celestia's
 [Blockspacerace testnet](https://docs.celestia.org/nodes/blockspace-race).
 If you choose to use Mocha testnet or Arabica devnet,
@@ -39,19 +43,13 @@ you will need to modify the script manually.
 
 ## Part one
 
-:::caution Note
-Part one of the tutorial has only been tested on an AMD machine running Ubuntu 22.10 x64.
-:::
-
 This tutorial will teach developers how to easily run a local data availability (DA) devnet on their own machine (or in the cloud).
 Running a local devnet for DA to test your rollup is the recommended first step before deploying to a testnet.
 This eliminates the need for testnet tokens and deploying to a testnet until you are ready.
 
-The development journey for your rollup will look something like this:
-
-1. Run your rollup and post DA to a local devnet, and make sure everything works as expected
-2. Deploy the rollup, posting to a DA testnet. Confirm again that everything is functioning properly
-3. Finally, deploy your rollup to the DA Layer's mainnet
+:::caution Note
+Part one of the tutorial has only been tested on an AMD machine running Ubuntu 22.10 x64.
+:::
 
 Whether you're a developer simply testing things on your laptop or using a virtual machine in the cloud,
 this process can be done on any machine of your choosing. We tested it out on a machine with the following specs:
@@ -63,7 +61,7 @@ this process can be done on any machine of your choosing. We tested it out on a 
 
 ### 💻 Prerequisites
 
-- Docker installed on your machine
+- [Docker](https://docs.docker.com/get-docker) installed on your machine
 
 ### 🏠 Running local devnet with a Rollkit rollup
 

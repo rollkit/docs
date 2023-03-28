@@ -5,10 +5,6 @@ description: Build a sovereign rollup with Ethermint (EVM + Cosmos SDK), Celesti
 
 # ⧫ Ethermint (EVM) rollup
 
-:::tip difficulty
-Advanced
-:::
-
 Ethermint is a Comsos-SDK library that integrates an EVM compiler
 from Geth.
 
