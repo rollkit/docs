@@ -23,9 +23,9 @@ to allow blockchains to communicate with one another.
 
 The development journey for your rollup will look something like this:
 
-1. Run your rollup and post DA to a local devnet, and make sure everything works as expected ([Part one](#part-one))
-2. Deploy the rollup, posting to a DA testnet ([Part two](#part-two)). Confirm again that everything is functioning properly
-3. Finally, deploy your rollup to the DA Layer's mainnet
+1. [Part one](#part-one): Run your rollup and post DA to a local devnet, and make sure everything works as expected
+2. [Part two](#part-two): Deploy the rollup, posting to a DA testnet. Confirm again that everything is functioning properly
+3. Coming soon: Deploy your rollup to the DA layer's mainnet
 
 :::tip note
 This tutorial will explore developing with Rollkit,
@@ -35,16 +35,22 @@ or let us know in our [Telegram](https://t.me/rollkit).
 :::
 
 :::caution caution
-The script for this tutorial is built for Celestia's
+The scripts for this tutorial are built for Celestia's
 [Blockspacerace testnet](https://docs.celestia.org/nodes/blockspace-race).
 If you choose to use Mocha testnet or Arabica devnet,
 you will need to modify the script manually.
 :::
 
+## 🤔 What is GM?
+
+GM means good morning. It's GM o'clock somewhere, so there's never a bad time
+to say GM, Gm, or gm. You can think of "GM" as the new version of
+"hello world".
+
 ## Part one
 
-This tutorial will teach developers how to easily run a local data availability (DA) devnet on their own machine (or in the cloud).
-Running a local devnet for DA to test your rollup is the recommended first step before deploying to a testnet.
+This part of the tutorial will teach developers how to easily run a local data availability (DA) devnet on their own machine (or in the cloud).
+**Running a local devnet for DA to test your rollup is the recommended first step before deploying to a testnet.**
 This eliminates the need for testnet tokens and deploying to a testnet until you are ready.
 
 :::caution Note
@@ -86,7 +92,9 @@ local network, this will make sure you can post rollup blocks to your Celestia D
 curl -X GET http://0.0.0.0:26659/balance
 ```
 
-You will see something like this, denoting your balance in TIA x 10^(-6):
+<!-- markdownlint-disable MD033 -->
+You will see something like this, denoting your balance in TIA x 10<sup>-6</sup>:
+<!-- markdownlint-enable MD033 -->
 
 ```bash
 {"denom":"utia","amount":"999995000000000"}
@@ -182,15 +190,19 @@ Here is an example:
 docker rm CONTAINER_ID_or_NAME
 ```
 
-### 🏗️ Scaffold your rollup
+### 🏗️ Building your sovereign rollup
 
 Now that you have a Celestia devnet running, you are ready to install Golang. We will use Golang to build and run our Cosmos-SDK blockchain.
+
+The Ignite CLI comes with scaffolding commands to make development of
+blockchains quicker by creating everything that is needed to start a new
+Cosmos SDK blockchain.
 
 [Install Golang](https://docs.celestia.org/nodes/environment#install-golang) (*these commands are for amd64/linux*):
 
 ```bash
-ver="1.19.1"
 cd $HOME
+ver="1.19.1"
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
@@ -217,19 +229,57 @@ Check your version:
 ignite version
 ```
 
-Scaffold the chain:
+Open a new tab or window in your terminal and run this command to
+scaffold your rollup. Scaffold the chain:
 
 ```bash
-ignite scaffold chain hello
+cd $HOME
+ignite scaffold chain gm --address-prefix gm
 ```
 
-Change into the `hello` directory:
+:::tip
+The `--address-prefix gm` flag will change the address prefix from `cosmos` to `gm`. Read more on the [Cosmos docs](https://docs.cosmos.network/v0.46/basics/accounts.html).
+:::
+
+The response will look similar to below:
 
 ```bash
-cd hello
+jcs @ ~ % ignite scaffold chain gm
+
+⭐️ Successfully created a new blockchain 'gm'.
+👉 Get started with the following commands:
+
+ % cd gm
+ % ignite chain serve
+
+Documentation: https://docs.ignite.com
 ```
+
+This command has created a Cosmos SDK blockchain in the `gm` directory. The
+`gm` directory contains a fully functional blockchain. The following standard
+Cosmos SDK [modules](https://docs.cosmos.network/main/modules) have been
+imported:
+
+- `staking` - for delegated Proof-of-Stake (PoS) consensus mechanism
+- `bank` - for fungible token transfers between accounts
+- `gov` - for on-chain governance
+- `mint` - for minting new units of staking token
+- `nft` - for creating, transferring, and updating NFTs
+- and [more](https://docs.cosmos.network/main/architecture/adr-043-nft-module.html)
+
+Change to the `gm` directory:
+
+```bash
+cd gm
+```
+
+You can learn more about the `gm` directory’s file structure [here](https://docs.ignite.com/guide/hello#blockchain-directory-structure).
+Most of our work in this tutorial will happen in the `x` directory.
 
 ### 🗞️ Install Rollkit
+
+To swap out Tendermint for Rollkit, run the following command
+from inside the `gm` directory:
 
 ```bash
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.7.2-no-fraud-proofs
@@ -243,14 +293,14 @@ go mod download
 Download the `init.sh` script to start the chain:
 
 ```bash
-# From inside the `hello` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/hello/init.sh
+# From inside the `gm` directory
+wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/gm/init-local.sh
 ```
 
-Run the `init.sh` script:
+Run the `init-local.sh` script:
 
 ```bash
-bash init.sh
+bash init-local.sh
 ```
 
 This will start your rollup, connected to the local Celestia devnet you have running.
@@ -262,18 +312,18 @@ Now let's explore a bit.
 List your keys:
 
 ```bash
-hellod keys list --keyring-backend test
+gmd keys list --keyring-backend test
 ```
 
 You should see an output like the following
 
 ```bash
-- address: cosmos1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7
-  name: hello-key-2
+- address: gm1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7
+  name: gm-key-2
   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AlXXb6Op8DdwCejeYkGWbF4G3pDLDO+rYiVWKPKuvYaz"}'
   type: local
-- address: cosmos13nf52x452c527nycahthqq4y9phcmvat9nejl2
-  name: hello-key
+- address: gm13nf52x452c527nycahthqq4y9phcmvat9nejl2
+  name: gm-key
   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AwigPerY+eeC2WAabA6iW1AipAQora5Dwmo1SnMnjavt"}'
   type: local
 ```
@@ -283,20 +333,20 @@ You should see an output like the following
 Now we can test sending a transaction from one of our keys to the other. We can do that with the following command:
 
 ```bash
-hellod tx bank send [from_key_or_address] [to_address] [amount] [flags]
+gmd tx bank send [from_key_or_address] [to_address] [amount] [flags]
 ```
 
 Set your keys as variables to make it easier to add the address:
 
 ```bash
-export KEY1=cosmos1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7
-export KEY2=cosmos13nf52x452c527nycahthqq4y9phcmvat9nejl2
+export KEY1=gm1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7
+export KEY2=gm13nf52x452c527nycahthqq4y9phcmvat9nejl2
 ```
 
 So using our information from the [keys](#keys) command, we can construct the transaction command like so to send 42069stake from one address to another:
 
 ```bash
-hellod tx bank send $KEY1 $KEY2 42069stake --keyring-backend test
+gmd tx bank send $KEY1 $KEY2 42069stake --keyring-backend test
 ```
 
 You'll be prompted to accept the transaction:
@@ -318,8 +368,8 @@ body:
     amount:
     - amount: "42069"
       denom: stake
-    from_address: cosmos1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7
-    to_address: cosmos13nf52x452c527nycahthqq4y9phcmvat9nejl2
+    from_address: gm1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7
+    to_address: gm13nf52x452c527nycahthqq4y9phcmvat9nejl2
   non_critical_extension_options: []
   timeout_height: "0"
 signatures: []
@@ -349,7 +399,7 @@ txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
 Then, query your balance:
 
 ```bash
-hellod query bank balances $KEY2
+gmd query bank balances $KEY2
 ```
 
 This is the key that received the balance, so it should have increased past the initial `STAKING_AMOUNT`:
@@ -366,7 +416,7 @@ pagination:
 The other key, should have decreased in balance:
 
 ```bash
-hellod query bank balances $KEY1
+gmd query bank balances $KEY1
 ```
 
 Response:
@@ -381,12 +431,6 @@ pagination:
 ```
 
 ## Part two
-
-### 🤔 What is GM?
-
-GM means good morning. It's GM o'clock somewhere, so there's never a bad time
-to say GM, Gm, or gm. You can think of "GM" as the new version of
-"hello world".
 
 ### 🛠️ Setup
 
@@ -406,6 +450,13 @@ import TabItem from '@theme/TabItem';
 <Tabs groupId="network">
 <TabItem value="linux" label="Linux">
 
+:::tip
+If you already installed Ignite and Golang in [Part one](#part-one), feel free to skip to the [next section](#run-a-celestia-light-node).
+
+Be sure to use the same testnet installation instructions through this
+entire tutorial.
+:::
+
 #### 🏃 Install Golang on Linux
 
 [Celestia-App](https://github.com/celestiaorg/celestia-app),
@@ -413,11 +464,6 @@ import TabItem from '@theme/TabItem';
 and [Cosmos-SDK](https://github.com/cosmos/cosmos-sdk) are
 written in the Golang programming language. You will need
 Golang to build and run them.
-
-:::tip
-Be sure to use the same testnet installation instructions through this
-entire tutorial
-:::
 
 You can [install Golang here](https://docs.celestia.org/nodes/environment#install-golang).
 
@@ -499,6 +545,13 @@ Is on Gitpod: false
 </TabItem>
 <TabItem value="mac" label="Mac">
 
+:::tip
+If you already installed Ignite and Golang in [Part one](#part-one), feel free to skip to the [next section](#run-a-celestia-light-node).
+
+Be sure to use the same testnet installation instructions through this
+entire tutorial.
+:::
+
 #### 🏃 Install Golang on macOS
 
 [Celestia-App](https://github.com/celestiaorg/celestia-app),
@@ -506,11 +559,6 @@ Is on Gitpod: false
 and [Cosmos-SDK](https://github.com/cosmos/cosmos-sdk) are
 written in the Golang programming language. You will need
 Golang to build and run them.
-
-:::tip
-Be sure to use the same testnet installation instructions through this
-entire tutorial
-:::
 
 You can [install Golang here](https://docs.celestia.org/nodes/environment#install-golang).
 
@@ -629,64 +677,6 @@ find instructions to install and run the node [here](https://docs.celestia.org/n
 After you have Go and Ignite CLI installed, and your Celestia Light
 Node running on your machine, you're ready to build, test, and launch your own
 sovereign rollup.
-
-### 🗞 Building a sovereign rollup
-
-The Ignite CLI comes with scaffolding commands to make development of
-blockchains quicker by creating everything that is needed to start a new
-Cosmos SDK blockchain.
-
-Open a new tab or window in your terminal and run this command to scaffold your rollup:
-
-```bash
-ignite scaffold chain gm
-```
-
-The response will look similar to below:
-
-```bash
-jcs @ ~ % ignite scaffold chain gm
-
-⭐️ Successfully created a new blockchain 'gm'.
-👉 Get started with the following commands:
-
- % cd gm
- % ignite chain serve
-
-Documentation: https://docs.ignite.com
-```
-
-This command has created a Cosmos SDK blockchain in the `gm` directory. The
-`gm` directory contains a fully functional blockchain. The following standard
-Cosmos SDK [modules](https://docs.cosmos.network/main/modules) have been
-imported:
-
-- `staking` - for delegated Proof-of-Stake (PoS) consensus mechanism
-- `bank` - for fungible token transfers between accounts
-- `gov` - for on-chain governance
-- `mint` - for minting new units of staking token
-- `nft` - for creating, transferring, and updating NFTs
-- and [more](https://docs.cosmos.network/main/architecture/adr-043-nft-module.html)
-
-Change to the `gm` directory:
-
-```bash
-cd gm
-```
-
-You can learn more about the `gm` directory’s file structure [here](https://docs.ignite.com/guide/hello#blockchain-directory-structure).
-Most of our work in this tutorial will happen in the `x` directory.
-
-#### 💎 Installing Rollkit
-
-To swap out Tendermint for Rollkit, run the following command:
-
-```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.7.2-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221202214355-3605c597500d
-go mod tidy
-go mod download
-```
 
 ### 💬 Say gm world
 
@@ -838,7 +828,7 @@ brew install md5sha1sum
 
 :::
 
-We have a handy `init.sh` found in this repo
+We have a handy `init-testnet.sh` found in this repo
 [here](https://github.com/rollkit/docs/tree/main/docs/scripts/gm).
 
 We can copy it over to our directory with the following commands:
@@ -846,23 +836,34 @@ We can copy it over to our directory with the following commands:
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `gm` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/gm/init.sh
+wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/gm/init-testnet.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
-This copies over our `init.sh` script to initialize our
-gm rollup.
+This copies over our `init-testnet.sh` script to initialize our
+`gm` rollup.
 
 You can view the contents of the script to see how we
 initialize the gm rollup.
 
-You can initialize the script with the following command:
+##### Clear previous chain history
+
+Before starting the rollup, we need to remove the old project folders:
 
 ```bash
-bash init.sh
+cd $HOME
+rm -r go/bin/gmd && rm -rf .gm
 ```
 
-With that, we have kickstarted our `gmd` network!
+##### Start the new chain
+
+Now, you can initialize the script with the following command:
+
+```bash
+bash init-testnet.sh
+```
+
+With that, we have kickstarted our second `gmd` network!
 
 The `query` command has also scaffolded
 `x/gm/client/cli/query_gm.go` that
