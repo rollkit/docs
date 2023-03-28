@@ -1,5 +1,4 @@
 ---
-sidebar_position: 1
 sidebar_label: Building & deploying a rollup
 description: Build sovereign Cosmos-SDK and EVM applications
 ---
@@ -16,7 +15,6 @@ You can get started with the following tutorials:
 
 ## 🔰 Beginner
 
-- [Hello world](./hello-world.md)
 - [GM world](./gm-world.md)
 - [Recipe book](./recipe-book.md)
 - [Restart your rollup](./restart-rollkit-rollup.md)

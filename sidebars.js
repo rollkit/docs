@@ -38,11 +38,6 @@ const sidebars = {
           },
           { 
             type: "doc", 
-            label: "Hello world", 
-            id: "tutorials/hello-world" 
-          },
-          { 
-            type: "doc", 
             label: "GM world", 
             id: "tutorials/gm-world" 
           },

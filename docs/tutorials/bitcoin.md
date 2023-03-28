@@ -1,5 +1,4 @@
 ---
-sidebar_position: 8
 sidebar_label: Bitcoin rollup tutorial
 description: Build a sovereign rollup with Ethermint (EVM + Cosmos SDK), Bitcoin and Rollkit
 ---

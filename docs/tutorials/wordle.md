@@ -1,14 +1,9 @@
 ---
-sidebar_position: 5
 sidebar_label: Wordle tutorial
 description: Get started with Ignite CLI, Celestia and Rollkit
 ---
 
 # 🕹️ Wordle app
-
-:::tip difficulty
-Intermediate
-:::
 
 ![wordle-app](../../static/img/tutorials/wordle/wordle.png)
 

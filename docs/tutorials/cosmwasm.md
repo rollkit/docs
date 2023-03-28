@@ -1,14 +1,9 @@
 ---
-sidebar_position: 6
 sidebar_label: CosmWasm tutorial
 description: Build a sovereign rollup with CosmWasm, Celestia, and Rollkit
 ---
 
 # 🗞️ CosmWasm rollup
-
-:::tip difficulty
-Intermediate
-:::
 
 CosmWasm is a smart contracting platform built for the Cosmos
 ecosystem by making use of [WebAssembly](https://webassembly.org) (Wasm)
