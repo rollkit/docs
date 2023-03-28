@@ -15,7 +15,6 @@ You can get started with the following tutorials:
 
 ## 🔰 Beginner
 
-- [Hello world](./hello-world.md)
 - [GM world](./gm-world.md)
 - [Recipe book](./recipe-book.md)
 - [Restart your rollup](./restart-rollkit-rollup.md)
