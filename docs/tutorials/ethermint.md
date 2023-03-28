@@ -1,5 +1,4 @@
 ---
-sidebar_position: 7
 sidebar_label: Ethermint (EVM) tutorial
 description: Build a sovereign rollup with Ethermint (EVM + Cosmos SDK), Celestia and Rollkit
 ---

@@ -1,5 +1,4 @@
 ---
-sidebar_position: 3
 sidebar_label: GM world tutorial
 description: Build a sovereign rollup with Ignite CLI, Celestia and Rollkit
 ---
