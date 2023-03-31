@@ -93,11 +93,6 @@ const sidebars = {
           },
           {
             type: "link",
-            label: 'Fuelmint tutorial with Celestia',
-            href: 'https://docs.celestia.org/developers/fuelmint'
-          },
-          {
-            type: "link",
             label: 'Hyperlane + Celestia tutorial',
             href: 'https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane'
           },
