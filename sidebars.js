@@ -29,7 +29,7 @@ const sidebars = {
         link: {
           type: 'generated-index',
         },
-        collapsed: false,
+        collapsed: true,
         items: [
           { 
             type: "doc", 
@@ -59,7 +59,7 @@ const sidebars = {
         link: {
           type: 'generated-index'
         },
-        collapsed: false,
+        collapsed: true,
         items: [
           {
             type: "doc",
@@ -79,7 +79,7 @@ const sidebars = {
         link: {
           type: 'generated-index'
         },
-        collapsed: false,
+        collapsed: true,
         items: [
           {
             type: "doc",
