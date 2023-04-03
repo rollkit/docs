@@ -273,7 +273,7 @@ Change to the `gm` directory:
 cd gm
 ```
 
-You can learn more about the `gm` directory’s file structure [here](https://docs.ignite.com/guide/hello#blockchain-directory-structure).
+You can learn more about the `gm` directory’s file structure [here](https://docs.ignite.com/v0.25.2/guide/hello#blockchain-directory-structure).
 Most of our work in this tutorial will happen in the `x` directory.
 
 ### 🗞️ Install Rollkit
@@ -484,7 +484,7 @@ curl https://get.ignite.com/cli! | bash
 :::tip
 ✋ On some machines, you may run into permissions errors like the one below.
 You can resolve this error by following the guidance
-[here](https://docs.ignite.com/guide/install#write-permission) or below.
+[here](https://docs.ignite.com/v0.25.2/guide/install#write-permission) or below.
 :::
 
 ```bash
@@ -579,7 +579,7 @@ curl https://get.ignite.com/cli! | bash
 :::tip
 ✋ On some machines, you may run into permissions errors like the one below.
 You can resolve this error by following the guidance
-[here](https://docs.ignite.com/guide/install#write-permission) or below.
+[here](https://docs.ignite.com/v0.25.2/guide/install#write-permission) or below.
 :::
 
 ```bash
