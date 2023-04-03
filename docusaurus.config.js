@@ -92,10 +92,14 @@ const config = {
                 label: 'Twitter',
                 href: 'https://twitter.com/Rollkitdev'
               },
-              // {
-              //   label: 'YouTube',
-              //   href: 'https://www.youtube.com/@rollkitdev'
-              // }
+              {
+                label: 'Google Calendar',
+                href: 'https://calendar.google.com/calendar/u/0/r?cid=c_11a8d6a470ca9c07b131ab1ea213ac124a3061a9d6986bb208d88afbcc4bb3d2@group.calendar.google.com'
+              },
+              {
+                label: 'YouTube',
+                href: 'https://www.youtube.com/@RollkitDev'
+              }
             ],
           },
           {

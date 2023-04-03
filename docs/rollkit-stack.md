@@ -49,7 +49,7 @@ It's important to keep in mind that there is no direct correlation between the D
 #### Celestia
 
 Celestia is an example of a data availability integration implemented for Rollkit.
-It's using the [Celestia Node gateway API](https://docs.celestia.org/developers/node-api/)
+It's using the [Celestia Node Gateway API](https://docs.celestia.org/developers/node-gateway-docs/)
 via the [`celestiaorg/go-cnc`](https://github.com/celestiaorg/go-cnc) package.
 To deploy a Rollkit rollup on Celestia you also have to [run a Celestia light node](https://docs.celestia.org/developers/node-tutorial/).
 
