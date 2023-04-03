@@ -38,10 +38,10 @@ in Cosmos-SDK, we recommend you go over the following tutorials
 in Ignite to understand all the different components in Cosmos-SDK before
 proceeding with this tutorial.
 
-* [GM World](./gm-world.md) or [Hello, World](https://docs.ignite.com/guide/hello)
-* [Recipe Book](./recipe-book.md) or [Blog and Module Basics](https://docs.ignite.com/guide/blog)
-* [Nameservice Tutorial](https://docs.ignite.com/guide/nameservice)
-* [Scavenger Hunt](https://docs.ignite.com/guide/scavenge)
+* [GM World](./gm-world.md) or [Hello, World](https://docs.ignite.com/guide/hello/scaffolding)
+* [Recipe Book](./recipe-book.md) or [Blog and Module Basics](https://docs.ignite.com/guide/blog/intro)
+* [Nameservice Tutorial](https://docs.ignite.com/v0.25.2/guide/nameservice)
+* [Scavenger Hunt](https://docs.ignite.com/v0.25.2/guide/scavenge)
 
 You do not have to do those guides in order to follow this Wordle tutorial,
 but doing so helps you understand the architecture of Cosmos-SDK better.
@@ -180,7 +180,7 @@ your cosmos-sdk blockchain.
 | readme.md      | A readme file for your sovereign application-specific blockchain project.
 
 Going over each one is outside the scope of this guide, but we encourage you
-to read about it [here](https://docs.ignite.com/kb).
+to read about it [here](https://docs.ignite.com/v0.25.2/kb).
 
 Most of the tutorial work will happen inside the `x` directory.
 
@@ -207,7 +207,7 @@ let's build the Wordle app!
 
 For the Wordle module, we can add dependencies offered by Cosmos-SDK.
 
-From the Cosmos-SDK docs, a [module](https://docs.ignite.com/guide/nameservice#cosmos-sdk-modules)
+From the Cosmos-SDK docs, a [module](https://docs.ignite.com/v0.25.2/guide/nameservice#cosmos-sdk-modules)
 is defined as the following:
 
 > In a Cosmos SDK blockchain, application-specific logic
