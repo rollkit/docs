@@ -79,4 +79,4 @@ tmux send-keys -t gm-rollkit 'docker run --platform linux/amd64 -p 26650:26657 -
 tmux new-window -t gm-rollkit -n 'rollkit-node'
 
 # start rollkit node
-gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"fee":6000,"gas_limit":6000000}' --rollkit.namespace_id $(echo $RANDOM | md5sum | head -c 16; echo;) --rollkit.da_start_height $(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
+gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"fee":6000,"gas_limit":6000000}' --rollkit.namespace_id $(openssl rand -hex 8) --rollkit.da_start_height $(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')

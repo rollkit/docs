@@ -330,7 +330,7 @@ bash init.sh
 Set variables for starting the chain:
 
 ```bash
-export NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
+export NAMESPACE_ID=$(openssl rand -hex 8)
 ```
 
 <!-- export DA_HEIGHT=$(bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser rpcpassword=rpcpass getblockcount) -->

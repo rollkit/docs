@@ -111,17 +111,6 @@ we can proceed to generate the Ethermint rollup.
 In the `ethermint` directory, we have a helpful bash script that
 allows you to instantiate a local Ethermint sovereign rollup on Celestia.
 
-:::danger caution
-
-If you are on macOS, you will need to install md5sha1sum before starting your
-rollup:
-
-```bash
-brew install md5sha1sum
-```
-
-:::
-
 Run the following:
 
 ```bash
@@ -142,7 +131,7 @@ replace the RPC endpoint with [one for Arabica](https://docs.celestia.org/nodes/
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
+NAMESPACE_ID=$(openssl rand -hex 8)
 DA_BLOCK_HEIGHT=$(curl https://rpc-blockspacerace.pops.one/block | jq -r '.result.block.header.height')
 ```
 <!-- markdownlint-enable MD013 -->

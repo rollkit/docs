@@ -178,17 +178,6 @@ CosmWasm rollup.
 You can view the contents of the script to see how we
 initialize the CosmWasm Rollup.
 
-:::danger caution
-
-If you are on macOS, you will need to install md5sha1sum before starting your
-rollup:
-
-```bash
-brew install md5sha1sum
-```
-
-:::
-
 You can initialize the script with the following command:
 
 ```bash
@@ -216,7 +205,7 @@ STAKING_AMOUNT=1000000000uwasm
 CHAINFLAG="--chain-id ${CHAIN_ID}"
 TXFLAG="--chain-id ${CHAIN_ID} --gas-prices 0uwasm --gas auto --gas-adjustment 1.3"
 
-NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
+NAMESPACE_ID=$(openssl rand -hex 8)
 echo $NAMESPACE_ID
 DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
 echo $DA_BLOCK_HEIGHT

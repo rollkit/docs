@@ -464,13 +464,6 @@ and change `FlagDisableIAVLFastNode` to `FlagIAVLFastNode`:
 baseapp.SetIAVLFastNode(cast.ToBool(appOpts.Get(server.FlagIAVLFastNode))),
 ```
 
-If you are on macOS, you will need to install md5sha1sum before starting your
-rollup:
-
-```bash
-brew install md5sha1sum
-```
-
 :::
 
 🟢 From your project working directory (`recipes/`), start the chain with:
