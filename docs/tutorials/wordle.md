@@ -607,13 +607,6 @@ and change `FlagIAVLFastNode` to `FlagDisableIAVLFastNode`:
 baseapp.SetIAVLDisableFastNode(cast.ToBool(appOpts.Get(server.FlagDisableIAVLFastNode))),
 ```
 
-If you are on macOS, you will need to install md5sha1sum before starting your
-rollup:
-
-```bash
-brew install md5sha1sum
-```
-
 :::
 
 You can initialize the script with the following command:

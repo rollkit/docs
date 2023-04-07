@@ -820,12 +820,6 @@ Before starting our rollup, we'll need to find and change
 baseapp.SetIAVLDisableFastNode(cast.ToBool(appOpts.Get(server.FlagDisableIAVLFastNode))),
 ```
 
-Also, if you are on macOS, you will need to install md5sha1sum:
-
-```bash
-brew install md5sha1sum
-```
-
 :::
 
 We have a handy `init-testnet.sh` found in this repo

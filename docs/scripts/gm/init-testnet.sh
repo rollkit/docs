@@ -7,7 +7,7 @@ CHAINFLAG="--chain-id ${CHAIN_ID}"
 TOKEN_AMOUNT="10000000000000000000000000stake"
 STAKING_AMOUNT="1000000000stake"
 
-NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
+NAMESPACE_ID=$(openssl rand -hex 8)
 echo $NAMESPACE_ID
 DA_BLOCK_HEIGHT=$(curl https://rpc-blockspacerace.pops.one/block | jq -r '.result.block.header.height')
 echo $DA_BLOCK_HEIGHT
