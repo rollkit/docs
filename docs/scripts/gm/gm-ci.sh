@@ -127,3 +127,7 @@ gmd tx bank send cosmos1ew08l47sra304z6vqn9trsy835x600dzqvdz82 cosmos1pgljtq3a54
 gmd query bank balances cosmos1ew08l47sra304z6vqn9trsy835x600dzqvdz82
 
 # validate output that the "amount" is 10000000000000000000042069
+
+# validate that data was posted to Celestia, query the namespace at that block height and check the data
+
+# check that the `daHeight~=[DA_BLOCK_HEIGHT]
