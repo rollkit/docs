@@ -73,7 +73,7 @@ ignite chain build
 # start local DA devnet
 cd $HOME
 tmux new-session -d -s gm-rollkit
-tmux send-keys -t gm-rollkit 'docker run --platform linux/amd64 -p 26650:26657 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.8.2' Enter
+tmux send-keys -t gm-rollkit 'docker run --platform linux/amd64 -p 26650:26657 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.9.1' Enter
 
 # make new window in gm-rollkit session for rollkit-node
 tmux new-window -t gm-rollkit -n 'rollkit-node'

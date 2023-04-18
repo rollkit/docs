@@ -74,7 +74,7 @@ this process can be done on any machine of your choosing. We tested it out on a 
 First, run the [`local-celestia-devnet`](https://github.com/rollkit/local-celestia-devnet) by running the following command:
 
 ```bash
-docker run --platform linux/amd64 -p 26650:26657 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.8.2
+docker run --platform linux/amd64 -p 26650:26657 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.9.1
 ```
 
 :::tip
@@ -167,7 +167,7 @@ This will give you an output similar to this:
 
 ```bash
 CONTAINER ID   IMAGE                                            COMMAND            CREATED         STATUS         PORTS                                                                                                                         NAMES
-d9af68de54e4   ghcr.io/rollkit/local-celestia-devnet:v0.8.2   "/entrypoint.sh"   5 minutes ago   Up 2 minutes   1317/tcp, 9090/tcp, 0.0.0.0:26657->26657/tcp, :::26657->26657/tcp, 26656/tcp, 0.0.0.0:26659->26659/tcp, :::26659->26659/tcp   musing_matsumoto
+d9af68de54e4   ghcr.io/rollkit/local-celestia-devnet:v0.9.1   "/entrypoint.sh"   5 minutes ago   Up 2 minutes   1317/tcp, 9090/tcp, 0.0.0.0:26657->26657/tcp, :::26657->26657/tcp, 26656/tcp, 0.0.0.0:26659->26659/tcp, :::26659->26659/tcp   musing_matsumoto
 ```
 
 In this example, you can restart the container using either its container ID (`d9af68de54e4`) or name (`musing_matsumoto`). To restart the container, run:
