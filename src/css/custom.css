@@ -33,7 +33,7 @@
   --ifm-color-primary-darkest: #0b83d9;
   --ifm-color-primary-light: #0c8dea;
   --ifm-color-primary-lighter: #1496f2;
-  --ifm-color-primary-lightest: #259df3;
+  --ifm-color-primary-lightest: #ffffff;
   --ifm-code-font-size: 95%;
 }
 
@@ -45,7 +45,7 @@
   --ifm-color-primary-darkest: #89caf8;
   --ifm-color-primary-light: #9ad2f9;
   --ifm-color-primary-lighter: #abd9fa;
-  --ifm-color-primary-lightest: #bce1fb;
+  --ifm-color-primary-lightest: #000000;
 
   .front-page-link {
     background-color: #000000;
@@ -75,7 +75,7 @@ p, li {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: #ffffff;
+  background-color: var(--ifm-color-primary-lightest);
   padding: 0px 23px;
   text-decoration: none;
   width: 300px;
