@@ -78,7 +78,6 @@ docker run --platform linux/amd64 -p 26650:26657 -p 26659:26659 ghcr.io/rollkit/
 ```
 
 :::tip
-The above command is different than the command in the [Running a Local Celestia Devnet](http://docs.celestia.org/nodes/local-devnet/) tutorial by Celestia Labs.
 Port 26657 on the Docker container in this example will be mapped to the local port 26650. This is to avoid clashing ports with
 the Rollkit node, as we're running the devnet and node on one machine.
 :::
