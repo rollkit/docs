@@ -34,7 +34,7 @@ function HomepageHeader() {
           </Link>
           <Link
             className="front-page-link"
-            to="/docs/tutorials/hello-world/">
+            to="/docs/tutorials/gm-world/">
                <p className="button-heading">Build a rollup</p>
               Deploy a rollup with Rollkit
           </Link>
