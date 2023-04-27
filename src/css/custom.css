@@ -46,20 +46,20 @@
   --ifm-color-primary-light: #9ad2f9;
   --ifm-color-primary-lighter: #abd9fa;
   --ifm-color-primary-lightest: #000000;
+}
 
-  .front-page-link {
-    background-color: #000000;
-    color: #ffffff;
-    border: 1px solid rgba(0, 0, 0, .1);
-    box-shadow: rgba(255, 255, 255, 1) 0px 4px 12px;
-  }
+[data-theme='dark'] .front-page-link {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, .1);
+  box-shadow: rgba(255, 255, 255, 1) 0px 4px 12px;
+}
 
-  .front-page-link:hover {
-    border: 1px solid rgba(255, 255, 255, .3);
-    box-shadow: rgba(0, 0, 0, .5) 0px 4px 12px;
-    color: white;
-    text-decoration: none;
-  }
+[data-theme='dark'] .front-page-link:hover {
+  border: 1px solid rgba(255, 255, 255, .3);
+  box-shadow: rgba(0, 0, 0, .5) 0px 4px 12px;
+  color: white;
+  text-decoration: none;
 }
 
 a {
