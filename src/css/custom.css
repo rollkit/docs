@@ -51,8 +51,8 @@
 [data-theme='dark'] .front-page-link {
   background-color: #000000;
   color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, .1);
-  box-shadow: rgba(255, 255, 255, 1) 0px 4px 12px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: rgba(0, 0, 0, 1) 0px 4px 12px;
 }
 
 [data-theme='dark'] .front-page-link:hover {
@@ -82,8 +82,8 @@ p, li {
   margin: 0px 8px;
   border-radius: 7px;
   transition: all .35s;
-  border: 1px solid rgba(255, 255, 255, .1);
-  box-shadow: rgba(0, 0, 0, 1) 0px 4px 12px;
+  border: 1px solid rgba(0, 0, 0, .1);
+  box-shadow: rgba(255, 255, 255, 1) 0px 4px 12px;
   font-weight: 600;
   color: black;
   text-align: left;
