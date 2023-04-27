@@ -33,7 +33,7 @@
   --ifm-color-primary-darkest: #0b83d9;
   --ifm-color-primary-light: #0c8dea;
   --ifm-color-primary-lighter: #1496f2;
-  --ifm-color-primary-lightest: #259df3;
+  --ifm-color-primary-lightest: #ffffff;
   --ifm-code-font-size: 95%;
 }
 
@@ -45,7 +45,21 @@
   --ifm-color-primary-darkest: #89caf8;
   --ifm-color-primary-light: #9ad2f9;
   --ifm-color-primary-lighter: #abd9fa;
-  --ifm-color-primary-lightest: #bce1fb;
+  --ifm-color-primary-lightest: #000000;
+}
+
+[data-theme='dark'] .front-page-link {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: rgba(0, 0, 0, 1) 0px 4px 12px;
+}
+
+[data-theme='dark'] .front-page-link:hover {
+  border: 1px solid rgba(255, 255, 255, .3);
+  box-shadow: rgba(0, 0, 0, .5) 0px 4px 12px;
+  color: white;
+  text-decoration: none;
 }
 
 a {
@@ -61,25 +75,25 @@ p, li {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: rgb(2, 62, 138);
+  background-color: #ffffff;
   padding: 0px 23px;
   text-decoration: none;
   width: 300px;
   margin: 0px 8px;
   border-radius: 7px;
   transition: all .35s;
-  border: 1px solid rgba(255, 255, 255, .1);
-  box-shadow: rgba(2, 62, 138, 1) 0px 4px 12px;
+  border: 1px solid rgba(0, 0, 0, .1);
+  box-shadow: rgba(255, 255, 255, 1) 0px 4px 12px;
   font-weight: 600;
-  color: white;
+  color: black;
   text-align: left;
   height: 115px;
 }
 
 .front-page-link:hover {
-  border: 1px solid rgba(255, 255, 255, .3);
-  box-shadow: rgba(2, 62, 138, .5) 0px 4px 12px;
-  color: white;
+  border: 1px solid rgba(0, 0, 0, .3);
+  box-shadow: rgba(255, 255, 255, .5) 0px 4px 12px;
+  color: black;
   text-decoration: none;
 }
 
