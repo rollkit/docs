@@ -1,15 +1,56 @@
-# Using Rollkit
+---
+sidebar_label: Using Rollkit CLI
+description: How to use the Rollkit command line interface (CLI)
+---
 
-This is a guide to using the `rollkit` program from the command line.
+# Using Rollkit CLI
+
+This is a guide to using `rollkit` software from the command line.
 It assumes only that you have the `rollkit` binary installed and have
-some rudimentary idea of what Rollkit and ABCI are.
+a basic understanding of what [Rollkit](https://rollkit.dev/) and
+[ABCI](https://github.com/cometbft/cometbft/tree/main/abci#application-blockchain-interface-abci)
+are.
 
 You can see the help menu with `rollkit --help`, and the version
 number with `rollkit version`.
 
+## About the CLI
+
+The Rollkit CLI is a tool that allows you to run different kinds of nodes for a
+Rollkit network while also helping you generate the required configuration files.
+
+## Installing the CLI
+
+### Install
+
+NOTE: Requires Go version >= 1.19.
+
+If you have not already cloned the `rollkit/rollkit` repo, you will need to.
+To install `rollkit`, simply run the following command at the root of the
+Rollkit repo:
+
+```bash
+go install ./cmd/rollkit
+```
+
+The latest Rollkit is now installed. You can verify the installation by running:
+
+```bash
+rollkit version
+```
+
+### Reinstall
+
+If you have Rollkit installed, and you make updates that you want to test,
+simply run:
+
+```bash
+go install ./cmd/rollkit
+```
+
 ## Directory Root
 
-The default directory for blockchain data is `~/.rollkit`. Override
+The default directory for blockchain data is `$HOME/.rollkit`. Override
 this by setting the `RKHOME` environment variable.
 
 ## Initialize
@@ -28,8 +69,8 @@ with one sequencer.
 ### Genesis
 
 The `genesis.json` file in `$RKHOME/config/` defines the initial
-Rollkit state (similar to Tendermint Core state) upon genesis of the blockchain ([see
-definition](https://github.com/tendermint/tendermint/blob/v0.34.x/types/genesis.go)).
+Rollkit state (similar to Comet BFT state) upon genesis of the blockchain ([see
+definition](https://github.com/cometbft/cometbft/blob/main/types/genesis.go)).
 
 #### Fields
 
@@ -39,7 +80,7 @@ definition](https://github.com/tendermint/tendermint/blob/v0.34.x/types/genesis.
   chain IDs, you will have a bad time. The ChainID must be less than 50 symbols.
 - `initial_height`: Height at which Rollkit should begin at. If a blockchain is conducting a network upgrade,
     starting from the stopped height brings uniqueness to previous heights.
-- `consensus_params` [spec](https://github.com/tendermint/tendermint/blob/v0.34.x/spec/core/data_structures.md#consensusparams)
+- `consensus_params` [spec](https://github.com/cometbft/cometbft/blob/main/spec/core/data_structures.md#consensusparams)
   - `block`
     - `max_bytes`: Max block size, in bytes.
     - `max_gas`: Max gas per block.
@@ -75,7 +116,7 @@ definition](https://github.com/tendermint/tendermint/blob/v0.34.x/types/genesis.
 
 > :warning: **ChainID must be unique to every blockchain. Reusing old chainID can cause issues**
 
-#### Sample genesis.json
+#### Sample `genesis.json`
 
 ```json
 {
@@ -127,6 +168,7 @@ By default, Rollkit will try to connect to an ABCI application on
 another window. If you don't, kill Rollkit and run an in-process version of
 the `kvstore` app:
 
+
 ```bash
 rollkit node --proxy_app=kvstore --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"fee":6000,"gas_limit":6000000}' --rollkit.namespace_id $NAMESPACE_ID
 ```
@@ -150,19 +192,19 @@ You can find out what flags are supported by running `rollkit node --help`.
 To send a transaction, use `curl` to make requests to the Rollkit RPC
 server, for example:
 
-```sh
+```bash
 curl http://localhost:26657/broadcast_tx_commit?tx=\"abcd\"
 ```
 
 We can see the chain's status at the `/status` end-point:
 
-```sh
+```bash
 curl http://localhost:26657/status | json_pp
 ```
 
-and the `latest_app_hash` in particular:
+And the `latest_app_hash` in particular:
 
-```sh
+```bash
 curl http://localhost:26657/status | json_pp | grep latest_app_hash
 ```
 
@@ -218,9 +260,9 @@ which sends the same 4 byte transaction: \[01 02 03 04\].
 
 Note that raw hex cannot be used in `POST` transactions.
 
-## Reset
+<!-- ## Reset
 
-TODO
+TODO -->
 
 ## Configuration
 
@@ -233,13 +275,13 @@ Notable options include the socket address of the application
 
 Some fields from the config file can be overwritten with flags.
 
-## No Empty Blocks
+<!-- ## No Empty Blocks
 
-TODO
+TODO -->
 
-## Lazy Sequencing
+<!-- ## Lazy Sequencing
 
-TODO
+TODO -->
 
 ## Broadcast API
 
@@ -282,7 +324,7 @@ as nodes with the tx in their mempool may crash before they get to propose.
 ## Rollkit Networks
 
 When `rollkit init` is run, both a `genesis.json` and
-`priv_validator_key.json` are created in `~/.rollkit/config`. The
+`priv_validator_key.json` are created in `$HOME/.rollkit/config`. The
 `genesis.json` might look like:
 
 ```json
@@ -330,9 +372,9 @@ conflicting messages.
 Note also that the `pub_key` (the public key) in the
 `priv_validator_key.json` is also present in the `genesis.json`.
 
-### Adding a Non-Sequencer
+<!-- ### Adding a Non-Sequencer
 
-TODO
+TODO -->
 
 ### Local Network
 
@@ -341,6 +383,6 @@ fields in the `config.toml` (or using the flags) so that the listening
 addresses of the various sockets don't conflict. Additionally, you must set
 `addr_book_strict=false` in the `config.toml`.
 
-### Upgrading
+<!-- ### Upgrading
 
-TODO
+TODO -->

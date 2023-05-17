@@ -33,6 +33,11 @@ const sidebars = {
         items: [
           { 
             type: "doc", 
+            label: "Using Rollkit CLI", 
+            id: "tutorials/using-rollkit-cli" 
+          },
+          { 
+            type: "doc", 
             label: "Building and deploying a rollup", 
             id: "tutorials/building-and-deploying-a-rollup" 
           },
