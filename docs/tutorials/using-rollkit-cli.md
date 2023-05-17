@@ -168,7 +168,6 @@ By default, Rollkit will try to connect to an ABCI application on
 another window. If you don't, kill Rollkit and run an in-process version of
 the `kvstore` app:
 
-
 ```bash
 rollkit node --proxy_app=kvstore --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"fee":6000,"gas_limit":6000000}' --rollkit.namespace_id $NAMESPACE_ID
 ```
