@@ -297,14 +297,14 @@ Part one of the tutorial has only been tested on an AMD machine running Ubuntu 2
 Whether you're a developer simply testing things on your laptop or using a virtual machine in the cloud,
 this process can be done on any machine of your choosing. We tested out the Devnet section (Part one) on a machine with the following specs:
 
-- Memory: 1 GB RAM
-- CPU: Single Core AMD
-- Disk: 25 GB SSD Storage
-- OS: Ubuntu 22.10 x64
+* Memory: 1 GB RAM
+* CPU: Single Core AMD
+* Disk: 25 GB SSD Storage
+* OS: Ubuntu 22.10 x64
 
 ### 💻 Prerequisites
 
-- [Docker](https://docs.docker.com/get-docker) installed on your machine
+* [Docker](https://docs.docker.com/get-docker) installed on your machine
 
 ### 🏠 Running local devnet with a Rollkit rollup
 
@@ -496,12 +496,12 @@ This command has created a Cosmos SDK blockchain in the `gm` directory. The
 Cosmos SDK [modules](https://docs.cosmos.network/main/modules) have been
 imported:
 
-- `staking` - for delegated Proof-of-Stake (PoS) consensus mechanism
-- `bank` - for fungible token transfers between accounts
-- `gov` - for on-chain governance
-- `mint` - for minting new units of staking token
-- `nft` - for creating, transferring, and updating NFTs
-- and [more](https://docs.cosmos.network/main/architecture/adr-043-nft-module.html)
+* `staking` - for delegated Proof-of-Stake (PoS) consensus mechanism
+* `bank` - for fungible token transfers between accounts
+* `gov` - for on-chain governance
+* `mint` - for minting new units of staking token
+* `nft` - for creating, transferring, and updating NFTs
+* and [more](https://docs.cosmos.network/main/architecture/adr-043-nft-module.html)
 
 Change to the `gm` directory:
 
@@ -683,8 +683,8 @@ sovereign rollup.
 Now, we're going to get our blockchain to say `gm world!` - in order to do so
 you need to make the following changes:
 
-- Modify a protocol buffer file
-- Create a keeper query function that returns data
+* Modify a protocol buffer file
+* Create a keeper query function that returns data
 
 Protocol buffer files contain proto RPC calls that define Cosmos SDK queries
 and message handlers, and proto messages that define Cosmos SDK types. The RPC
@@ -742,17 +742,17 @@ service Query {
 
 The `Gm` RPC for the `Query` service:
 
-- is responsible for returning a `text` string
-- Accepts request parameters (`QueryGmRequest`)
-- Returns response of type `QueryGmResponse`
-- The `option` defines the endpoint that is used by gRPC to generate an HTTP API
+* is responsible for returning a `text` string
+* Accepts request parameters (`QueryGmRequest`)
+* Returns response of type `QueryGmResponse`
+* The `option` defines the endpoint that is used by gRPC to generate an HTTP API
 
 #### 📨 Query request and response types
 
 In the same file, we will find:
 
-- `QueryGmRequest` is empty because it does not require parameters
-- `QueryGmResponse` contains `text` that is returned from the chain
+* `QueryGmRequest` is empty because it does not require parameters
+* `QueryGmResponse` contains `text` that is returned from the chain
 
 ```protobuf title="gm/proto/gm/gm/query.proto"
 message QueryGmRequest {
@@ -785,10 +785,10 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 
 The `Gm` function performs the following actions:
 
-- Makes a basic check on the request and throws an error if it’s `nil`
-- Stores context in a `ctx` variable that contains information about the
+* Makes a basic check on the request and throws an error if it’s `nil`
+* Stores context in a `ctx` variable that contains information about the
 environment of the request
-- Returns a response of type `QueryGmResponse`
+* Returns a response of type `QueryGmResponse`
 
 Currently, the response is empty and you'll need to update the keeper function.
 
