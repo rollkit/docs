@@ -293,7 +293,7 @@ Download the `init.sh` script to start the chain:
 
 ```bash
 # From inside the `gm` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/gm/init-local.sh
+wget https://github.com/rollkit/docs/blob/main/docs/scripts/gm/init-local.sh
 ```
 
 Run the `init-local.sh` script:
