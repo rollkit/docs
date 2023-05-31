@@ -74,6 +74,8 @@ Follow the instructions at the end of the output to start your app:
 cd ./gm-world && yarn dev
 ```
 
+![cca-3.png](../../static/img/tutorials/gm/cca-3.png)
+
 ## Adding your GM portal chain to the config
 
 First, we'll need to make some changes with the default config.
