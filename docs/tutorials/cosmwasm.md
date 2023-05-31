@@ -28,7 +28,7 @@ you will need to modify the script manually.
 
 :::
 
-You can learn more about CosmWasm [here](https://docs.cosmwasm.com/docs/1.0).
+You can learn more about CosmWasm [here](https://docs.cosmwasm.com/docs/).
 
 In this tutorial, we will going over the following:
 
