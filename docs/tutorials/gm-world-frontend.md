@@ -278,8 +278,8 @@ updated icons.
 
 ![cca-2.png](../../static/img/tutorials/gm/cca-2.png)
 
-## TODO
+<!-- ## TODO
 
 * edit chain denom/token
 * show how to connect wallet and display balance in Keplr
-* any other suggestions
+* any other suggestions -->
