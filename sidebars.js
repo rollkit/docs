@@ -41,6 +41,11 @@ const sidebars = {
             label: "GM world", 
             id: "tutorials/gm-world" 
           },
+          { 
+            type: "doc", 
+            label: "GM world frontend", 
+            id: "tutorials/gm-world-frontend" 
+          },
           {
             type: "doc",
             label: "Recipe book",
