@@ -430,42 +430,8 @@ docker rm CONTAINER_ID_or_NAME
 
 Now that you have a Celestia devnet running, you are ready to install Golang. We will use Golang to build and run our Cosmos-SDK blockchain.
 
-The Ignite CLI comes with scaffolding commands to make development of
-blockchains quicker by creating everything that is needed to start a new
-Cosmos SDK blockchain.
 
-[Install Golang](https://docs.celestia.org/nodes/environment#install-golang) (*these commands are for amd64/linux*):
-
-```bash
-cd $HOME
-ver="1.19.1"
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-go version
-```
-
-Now, use the following command to install Ignite CLI:
-
-```bash
-curl https://get.ignite.com/cli! | bash
-```
-
-:::tip
-If you have issues with installation, the full guide can be found [here](https://get.ignite.com/cli) or on [docs.ignite.com](https://docs.ignite.com).
-The above command was tested on `amd64/linux`.
-:::
-
-Check your version:
-
-```bash
-ignite version
-```
-
-Open a new tab or window in your terminal and run this command to
+Assuming you have installed Golang and the Ignite CLI from the previous secitons, open a new tab or window in your terminal and run this command to
 scaffold your rollup. Scaffold the chain:
 
 ```bash
