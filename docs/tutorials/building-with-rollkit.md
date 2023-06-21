@@ -24,7 +24,6 @@ cd rollkit
 go build -v ./...
 ```
 
-
 ## Building on Celestia
 
 There are currently 2 ways to build on Celestia:
