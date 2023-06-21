@@ -24,6 +24,11 @@ const sidebars = {
       collapsed: false,
       items: [
       {
+        type: "doc",
+        label: "Building with Rollkit",
+        id: "tutorials/building-with-rollkit",
+      },
+      {
         type: "category",
         label: "Beginner",
         link: {
