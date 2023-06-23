@@ -7,9 +7,9 @@ CHAINFLAG="--chain-id ${CHAIN_ID}"
 TOKEN_AMOUNT="10000000000000000000000000stake"
 STAKING_AMOUNT="1000000000stake"
 
-NAMESPACE_ID=$(openssl rand -hex 8)
+NAMESPACE_ID=$(openssl rand -hex 10)
 echo $NAMESPACE_ID
-DA_BLOCK_HEIGHT=$(curl https://rpc-blockspacerace.pops.one/block | jq -r '.result.block.header.height')
+DA_BLOCK_HEIGHT=$(curl https://rpc-arabica-8.consensus.celestia-arabica.com/block |jq -r '.result.block.header.height')
 echo $DA_BLOCK_HEIGHT
 
 ignite chain build
