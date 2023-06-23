@@ -70,7 +70,7 @@ ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit
 In order to save your TIA, we also recommend stopping the chain with `Control + C`, changing the gas fee back to the default (in our case, 6000 utia), fetching current block height, and restarting the chain:
 
 ```bash
-ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6000}' --rollkit.namespace_id 8BE3175CBF305BC2 --rollkit.da_start_height $DA_BLOCK_HEIGHT
+ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6000000}' --rollkit.namespace_id 8BE3175CBF305BC2 --rollkit.da_start_height $DA_BLOCK_HEIGHT
 ```
 
 🎊 Congrats! You've successfully restarted your Rollkit rollup after running out of TIA.
