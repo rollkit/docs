@@ -518,12 +518,30 @@ Most of our work in this tutorial will happen in the `x` directory.
 To swap out Tendermint for Rollkit, run the following command
 from inside the `gm` directory:
 
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="local-devnet" label="Local Devnet">
+
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.7.3-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221202214355-3605c597500d
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.8.1-no-fraud-proofs
+go mod edit -replace github.com/cometbft/cometbft=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
 go mod tidy
 go mod download
 ```
+
+</TabItem>
+<TabItem value="arabica" label="Arabica Devnet">
+
+```bash
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.8.2-rc0-no-fraud-proofs
+go mod edit -replace github.com/cometbft/cometbft=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
+go mod tidy
+go mod download
+```
+
+</TabItem>
+</Tabs>
+````
 
 ### ▶️ Start your rollup
 
