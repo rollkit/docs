@@ -165,7 +165,7 @@ bitcoin-core.cli --version
 <!-- ### Install Ignite CLI
 
 ```bash
-curl https://get.ignite.com/cli! | bash
+curl https://get.ignite.com/cli@v0.26.1! | bash
 ```
 
 Check version:

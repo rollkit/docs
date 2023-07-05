@@ -108,7 +108,7 @@ You can read more about Ignite [here](https://docs.ignite.com).
 To install Ignite, you can run this command in your terminal:
 
 ```bash
-curl https://get.ignite.com/cli | bash
+curl https://get.ignite.com/cli@v0.26.1! | bash
 sudo mv ignite /usr/local/bin/
 ```
 
