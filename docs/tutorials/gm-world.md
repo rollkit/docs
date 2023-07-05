@@ -51,7 +51,7 @@ to say GM, Gm, or gm. You can think of "GM" as the new version of
 
 * Operating systems: GNU/Linux or macOS
 * [Golang](https://go.dev)
-* [Ignite CLI v0.25.1](https://github.com/ignite/cli)
+* [Ignite CLI v0.26.1](https://github.com/ignite/cli)
 * [Homebrew](https://brew.sh)
 * [wget](https://www.gnu.org/software/wget)
 * [jq](https://stedolan.github.io/jq)
