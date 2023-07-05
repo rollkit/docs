@@ -51,7 +51,7 @@ to say GM, Gm, or gm. You can think of "GM" as the new version of
 
 * Operating systems: GNU/Linux or macOS
 * [Golang](https://go.dev)
-* [Ignite CLI v0.25.1](https://github.com/ignite/cli)
+* [Ignite CLI v0.26.1](https://github.com/ignite/cli)
 * [Homebrew](https://brew.sh)
 * [wget](https://www.gnu.org/software/wget)
 * [jq](https://stedolan.github.io/jq)
@@ -110,7 +110,7 @@ jcs @ ~ % curl https://get.ignite.com/cli@v0.26.1! | bash
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  3967    0  3967    0     0  16847      0 --:--:-- --:--:-- --:--:-- 17475
-Installing ignite v0.25.1.....
+Installing ignite v0.26.1.....
 ######################################################################## 100.0%
 mv: rename ./ignite to /usr/local/bin/ignite: Permission denied
 ============
@@ -129,7 +129,7 @@ A successful installation will return something similar the response below:
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  3967    0  3967    0     0  15586      0 --:--:-- --:--:-- --:--:-- 15931
-Installing ignite v0.25.1.....
+Installing ignite v0.26.1.....
 ######################################################################## 100.0%
 Installed at /usr/local/bin/ignite
 ```
@@ -144,7 +144,7 @@ The response that you receive should look something like this:
 
 ```bash
 jcs @ ~ % ignite version
-Ignite CLI version: v0.25.1
+Ignite CLI version: v0.26.1
 Ignite CLI build date: 2022-10-20T15:52:00Z
 Ignite CLI source hash: cc393a9b59a8792b256432fafb472e5ac0738f7c
 Cosmos SDK version: v0.46.3
@@ -206,7 +206,7 @@ jcs @ ~ % curl https://get.ignite.com/cli@v0.26.1! | bash
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  3967    0  3967    0     0  16847      0 --:--:-- --:--:-- --:--:-- 17475
-Installing ignite v0.25.1.....
+Installing ignite v0.26.1.....
 ######################################################################## 100.0%
 mv: rename ./ignite to /usr/local/bin/ignite: Permission denied
 ============
@@ -225,7 +225,7 @@ A successful installation will return something similar the response below:
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  3967    0  3967    0     0  15586      0 --:--:-- --:--:-- --:--:-- 15931
-Installing ignite v0.25.1.....
+Installing ignite v0.26.1.....
 ######################################################################## 100.0%
 Installed at /usr/local/bin/ignite
 ```
@@ -240,17 +240,18 @@ The response that you receive should look something like this:
 
 ```bash
 jcs @ ~ % ignite version
-Ignite CLI version: v0.25.1
-Ignite CLI build date: 2022-10-20T15:52:00Z
-Ignite CLI source hash: cc393a9b59a8792b256432fafb472e5ac0738f7c
-Cosmos SDK version: v0.46.3
-Your OS: darwin
-Your arch: arm64
-Your Node.js version: v18.10.0
-Your go version: go version go1.19.2 darwin/arm64
-Your uname -a: Darwin Joshs-MacBook-Air.local 21.6.0 Darwin Kernel Version 21.6.0: Mon Aug 22 20:20:07 PDT 2022; root:xnu-8020.140.49~2/RELEASE_ARM64_T8110 arm64
-Your cwd: /Users/joshstein
-Is on Gitpod: false
+Ignite CLI version:  v0.26.1
+Ignite CLI build date:  2023-01-24T18:50:18Z
+Ignite CLI source hash:  d2a2e287c176ba010557f0b8fbaa198cdeee928d
+Ignite CLI config version: v1
+Cosmos SDK version:  v0.46.7
+Your OS:   darwin
+Your arch:   arm64
+Your Node.js version:  v16.15.1
+Your go version:  go version go1.20.2 darwin/arm64
+Your uname -a:   Darwin Joshs-Air 22.5.0 Darwin Kernel Version 22.5.0: Thu Jun  8 22:21:34 PDT 2023; root:xnu-8796.121.3~7/RELEASE_ARM64_T8112 arm64
+Your cwd:   /Users/joshstein
+Is on Gitpod:   false
 ```
 
 #### 🍺 Install Homebrew on macOS
