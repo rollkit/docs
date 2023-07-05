@@ -93,7 +93,7 @@ sudo mkdir -p -m 775 /usr/local/bin
 Run this command in your terminal to install Ignite CLI:
 
 ```bash
-curl https://get.ignite.com/cli! | bash
+curl https://get.ignite.com/cli@v0.26.1! | bash
 ```
 
 :::tip
@@ -104,7 +104,7 @@ You can resolve this error by following the guidance
 
 ```bash
 # Error
-jcs @ ~ % curl https://get.ignite.com/cli! | bash
+jcs @ ~ % curl https://get.ignite.com/cli@v0.26.1! | bash
 
 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -120,7 +120,7 @@ Error: mv failed
 The following command will resolve the permissions error:
 
 ```bash
-sudo curl https://get.ignite.com/cli! | sudo bash
+sudo curl https://get.ignite.com/cli@v0.26.1! | sudo bash
 ```
 
 A successful installation will return something similar the response below:
@@ -189,7 +189,7 @@ sudo mkdir -p -m 775 /usr/local/bin
 Run this command in your terminal to install Ignite CLI:
 
 ```bash
-curl https://get.ignite.com/cli! | bash
+curl https://get.ignite.com/cli@v0.26.1! | bash
 ```
 
 :::tip
@@ -200,7 +200,7 @@ You can resolve this error by following the guidance
 
 ```bash
 # Error
-jcs @ ~ % curl https://get.ignite.com/cli! | bash
+jcs @ ~ % curl https://get.ignite.com/cli@v0.26.1! | bash
 
 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -216,7 +216,7 @@ Error: mv failed
 The following command will resolve the permissions error:
 
 ```bash
-sudo curl https://get.ignite.com/cli! | sudo bash
+sudo curl https://get.ignite.com/cli@v0.26.1! | sudo bash
 ```
 
 A successful installation will return something similar the response below:
@@ -451,7 +451,7 @@ go version
 Now, use the following command to install Ignite CLI:
 
 ```bash
-curl https://get.ignite.com/cli! | bash
+curl https://get.ignite.com/cli@v0.26.1! | bash
 ```
 
 :::tip

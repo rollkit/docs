@@ -44,7 +44,7 @@ go version
 # install ignite
 cd $HOME
 sudo mkdir -p -m 775 /usr/local/bin
-sudo curl https://get.ignite.com/cli! | sudo bash
+sudo curl https://get.ignite.com/cli@v0.26.1! | sudo bash
 ignite version
 
 # scaffold GM chain
