@@ -4,6 +4,7 @@
 VALIDATOR_NAME=validator1
 CHAIN_ID=gm
 KEY_NAME=gm-key
+KEY_2_NAME=gm-key-2
 CHAINFLAG="--chain-id ${CHAIN_ID}"
 TOKEN_AMOUNT="10000000000000000000000000stake"
 STAKING_AMOUNT="1000000000stake"
@@ -16,7 +17,7 @@ echo $NAMESPACE_ID
 # an RPC endpoint provided by Celestia Labs. The RPC endpoint is
 # to allow users to interact with Celestia's core network by querying
 # the node's state and broadcasting transactions on the Celestia
-# network.
+# network. This is for Arabica, if using another network, change the RPC.
 DA_BLOCK_HEIGHT=$(curl https://rpc-arabica-9.consensus.celestia-arabica.com/block |jq -r '.result.block.header.height')
 echo $DA_BLOCK_HEIGHT
 
@@ -45,6 +46,7 @@ gmd collect-gentxs
 
 # export the Celestia light node's auth token to allow you to submit
 # PayForBlobs to Celestia's data availability network
+# this is for Arabica, if using another network, change the network name
 export AUTH_TOKEN=$(celestia light auth write --p2p.network arabica)
 
 # start the chain

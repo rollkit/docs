@@ -26,9 +26,7 @@ or let us know in our [Telegram](https://t.me/rollkit).
 
 :::danger caution
 The script for this tutorial is built for Celestia's
-[Blockspacerace testnet](https://docs.celestia.org/nodes/blockspace-race).
-If you choose to use Mocha testnet or Arabica devnet,
-you will need to modify the script manually.
+[Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
 :::
 
 ## 💻 Pre-requisites
@@ -619,16 +617,6 @@ Wordle Rollup.
 
 You can view the contents of the script to see how we
 initialize the Wordle Rollup.
-
-:::danger caution
-On some machines, before starting our rollup, we'll need to find
-and change `FlagIAVLFastNode` to `FlagDisableIAVLFastNode`:
-
-```go title="wordle/cmd/wordled/cmd/root.go"
-baseapp.SetIAVLDisableFastNode(cast.ToBool(appOpts.Get(server.FlagDisableIAVLFastNode))),
-```
-
-:::
 
 You can initialize the script with the following command:
 
