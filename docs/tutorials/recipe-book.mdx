@@ -71,7 +71,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="local-devnet" label="Local Devnet">
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.8.1-fix-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.9.0-no-fraud-proofs
 go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
 go mod tidy
 go mod download
@@ -81,7 +81,7 @@ go mod download
 <TabItem value="arabica" label="Arabica Devnet">
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.8.2-rc0-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.9.0-no-fraud-proofs
 go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
 go mod tidy
 go mod download
