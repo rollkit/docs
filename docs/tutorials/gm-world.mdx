@@ -312,13 +312,29 @@ this process can be done on any machine of your choosing. We tested out the Devn
 First, run the [`local-celestia-devnet`](https://github.com/rollkit/local-celestia-devnet) by running the following command:
 
 ```bash
-docker run --platform linux/amd64 -p 26650:26657 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc6
+docker run --platform linux/amd64 -p 26657:26657 -p 26659:26659 -p 26658:26658 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc6
 ```
 
-:::tip
-Port 26657 on the Docker container in this example will be mapped to the local port 26650. This is to avoid clashing ports with
-the Rollkit node, as we're running the devnet and node on one machine.
-:::
+When passing the `--rollkit.da_config` flag later in the tutorial,
+it will require `auth_token` to be passed in. The auth token with
+write permission is required to submit blobs and can be obtained
+from the logs on local-celestia-devnet before the bridge node starts.
+
+```bash
+WARNING: Keep this auth token secret **DO NOT** log this auth token outside of development. CELESTIA_NODE_AUTH_TOKEN=
+
+WARNING: Celestia custom network specified. Only use this option if the node is freshly created and initialized.
+**DO NOT** run a custom network over an already-existing node store!
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.a_-CStbScoe_ot8Z1K9YaccvhngeieiSBdgO4uObuvI
+```
+
+The auth token is the last string, which you can now set as a variable.
+(It's long, so don't forget to copy the whole thing!):
+
+```bash
+export AUTH_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.a_-CStbScoe_ot8Z1K9YaccvhngeieiSBdgO4uObuvI
+```
 
 ### 🔎 Query your balance
 
@@ -378,53 +394,6 @@ Your result will now look like this, nice 🫡
   "denom": "utia",
   "amount": "999995000000000"
 }
-```
-
-### 🟢 Start, stop, or remove your container
-
-Find the Container ID that is running by using the command:
-
-```bash
-docker ps
-```
-
-Then stop the container:
-
-```bash
-docker stop CONTAINER_ID_or_NAME
-```
-
-You can obtain the container ID or name of a stopped container using the `docker ps -a` command, which will list all containers (running and stopped) and their details. For example:
-
-```bash
-docker ps -a
-```
-
-This will give you an output similar to this:
-
-```bash
-CONTAINER ID   IMAGE                                            COMMAND            CREATED         STATUS         PORTS                                                                                                                         NAMES
-d9af68de54e4   ghcr.io/rollkit/local-celestia-devnet:v0.9.1   "/entrypoint.sh"   5 minutes ago   Up 2 minutes   1317/tcp, 9090/tcp, 0.0.0.0:26657->26657/tcp, :::26657->26657/tcp, 26656/tcp, 0.0.0.0:26659->26659/tcp, :::26659->26659/tcp   musing_matsumoto
-```
-
-In this example, you can restart the container using either its container ID (`d9af68de54e4`) or name (`musing_matsumoto`). To restart the container, run:
-
-```bash
-docker start d9af68de54e4
-```
-
-or
-
-```bash
-docker start musing_matsumoto
-```
-
-If you ever would like to remove the container, you can use the `docker rm` command followed by the container ID or name.
-
-Here is an example:
-
-```bash
-docker rm CONTAINER_ID_or_NAME
 ```
 
 ### 🏗️ Building your sovereign rollup
@@ -688,15 +657,77 @@ pagination:
 
 ## Part two
 
+### 🛑 Stopping our local devnet rollup
+
+First, you will need to stop your current devnet version of the gm rollup.
+Follow instructions to stop the container below.
+
+Find the Container ID that is running by using the command:
+
+```bash
+docker ps
+```
+
+Then stop the container:
+
+```bash
+docker stop CONTAINER_ID_or_NAME
+```
+
+#### 🟢 Restarting your container
+
+Optionally, if you'd like to restart your container, you can use the `docker start` command followed by the container ID or name.
+
+You can obtain the container ID or name of a stopped container using the `docker ps -a` command, which will list all containers (running and stopped) and their details. For example:
+
+```bash
+docker ps -a
+```
+
+This will give you an output similar to this:
+
+```bash
+CONTAINER ID   IMAGE                                            COMMAND            CREATED         STATUS         PORTS                                                                                                                         NAMES
+d9af68de54e4   ghcr.io/rollkit/local-celestia-devnet:v0.9.1   "/entrypoint.sh"   5 minutes ago   Up 2 minutes   1317/tcp, 9090/tcp, 0.0.0.0:26657->26657/tcp, :::26657->26657/tcp, 26656/tcp, 0.0.0.0:26659->26659/tcp, :::26659->26659/tcp   musing_matsumoto
+```
+
+In this example, you can restart the container using either its container ID (`d9af68de54e4`) or name (`musing_matsumoto`). To restart the container, run:
+
+```bash
+docker start d9af68de54e4
+```
+
+or
+
+```bash
+docker start musing_matsumoto
+```
+
+#### 🗑️ Removing your container
+
+If you ever would like to remove the container, you can use the `docker rm` command followed by the container ID or name.
+
+Here is an example:
+
+```bash
+docker rm CONTAINER_ID_or_NAME
+```
+
 ### 🪶 Run a Celestia light node
 
-Follow instructions to install and start your Celestia Data Availalbility
-layer Light Node selecting the network that you had previously used. You can
+Follow instructions to install and start your Celestia data availability
+layer light node selecting the Arabica network. You can
 find instructions to install and run the node [here](https://docs.celestia.org/nodes/light-node).
 
 After you have Go and Ignite CLI installed, and your Celestia Light
 Node running on your machine, you're ready to build, test, and launch your own
 sovereign rollup.
+
+An example start command on `arabica-9` would look like this:
+
+```bash
+celestia light start --core.ip consensus-full-arabica-9.celestia-arabica.com --p2p.network arabica
+```
 
 ### 💬 Say gm world
 
@@ -832,16 +863,6 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 
 #### 🟢 Start your sovereign rollup
 
-:::danger caution
-Before starting our rollup, we'll need to find and change
-`FlagIAVLFastNode` to `FlagDisableIAVLFastNode`:
-
-```go title="gm/cmd/gmd/cmd/root.go"
-baseapp.SetIAVLDisableFastNode(cast.ToBool(appOpts.Get(server.FlagDisableIAVLFastNode))),
-```
-
-:::
-
 We have a handy `init-testnet.sh` found in this repo
 [here](https://github.com/rollkit/docs/tree/main/docs/scripts/gm).
 
@@ -865,8 +886,7 @@ initialize the gm rollup.
 Before starting the rollup, we need to remove the old project folders:
 
 ```bash
-cd $HOME
-rm -r go/bin/gmd && rm -rf .gm
+rm -r $HOME/go/bin/gmd && rm -rf $HOME/.gm
 ```
 
 ##### Start the new chain
