@@ -14,7 +14,7 @@ you to write and read data to and from your application-specific
 blockchain. The end user will be able to submit new
 recipes and read them from the blockchain.
 
-In the [`GM World` tutorial](./gm-world.md), we defined a
+In the [`GM World` tutorial](./gm-world.mdx), we defined a
 new API endpoint and modified a keeper query function
 to return static data. In this tutorial, we will be
 modifying the state with transactions (Cosmos SDK messages)
@@ -30,14 +30,12 @@ or let us know in our [Telegram](https://t.me/rollkit).
 
 :::danger caution
 The script for this tutorial is built for Celestia's
-[Blockspacerace testnet](https://docs.celestia.org/nodes/blockspace-race).
-If you choose to use Mocha testnet or Arabica devnet,
-you will need to modify the script manually.
+[Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
 :::
 
 ## 💻 Prerequisites
 
-- [GM World Tutorial](./gm-world.md)
+- [GM World tutorial](./gm-world.mdx)
 
 ## 🏗 Scaffolding your rollup
 
@@ -63,12 +61,33 @@ cd recipes
 
 To swap out Tendermint for Rollkit, run the following commands:
 
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="network">
+<TabItem value="local-devnet" label="Local Devnet">
+
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.7.3-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221202214355-3605c597500d
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.9.0-no-fraud-proofs
+go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
 go mod tidy
 go mod download
 ```
+
+</TabItem>
+<TabItem value="arabica" label="Arabica Devnet">
+
+```bash
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.9.0-no-fraud-proofs
+go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
+go mod tidy
+go mod download
+```
+
+</TabItem>
+</Tabs>
+````
 
 ## 💬 Message types
 
@@ -430,7 +449,7 @@ Your start command should look similar to:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-celestia light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
+celestia light start --core.ip consensus-full-arabica-9.celestia-arabica.com --p2p.network arabica
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -455,16 +474,6 @@ Recipes Rollup.
 
 You can view the contents of the script to see how we
 initialize the Recipes Rollup.
-
-:::danger caution
-Before starting our rollup, we'll need to find
-and change `FlagDisableIAVLFastNode` to `FlagIAVLFastNode`:
-
-```go title="recipes/cmd/recipesd/cmd/root.go"
-baseapp.SetIAVLFastNode(cast.ToBool(appOpts.Get(server.FlagIAVLFastNode))),
-```
-
-:::
 
 🟢 From your project working directory (`recipes/`), start the chain with:
 

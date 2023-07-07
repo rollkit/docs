@@ -5,6 +5,10 @@ description: Build a sovereign rollup with Ethermint (EVM + Cosmos SDK), Celesti
 
 # ⧫ Ethermint (EVM) rollup
 
+:::warning
+This tutorial has not yet been updated for the latest versions of Rollkit.
+:::
+
 Ethermint is a Comsos-SDK library that integrates an EVM compiler
 from Geth.
 
@@ -24,12 +28,8 @@ or let us know in our [Telegram](https://t.me/rollkit).
 :::
 
 :::danger caution
-
 The script for this tutorial is built for Celestia's
-[Blockspacerace testnet](https://docs.celestia.org/nodes/blockspace-race).
-If you choose to use Mocha testnet or Arabica devnet,
-you will need to modify the script manually.
-
+[Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
 :::
 
 In this tutorial, we will go over the following:
@@ -124,15 +124,14 @@ First, we need to setup some environment variables.
 
 :::danger Networks
 
-The commands below are for Blockspace Race. If you're using Mocha or Arabica, you'll need to
-replace the RPC endpoint with [one for Arabica](https://docs.celestia.org/nodes/arabica-devnet#rpc-endpoints) or [one for Mocha](https://docs.celestia.org/nodes/mocha-testnet#rpc-endpoints).
-
+The commands below are for Arabica Devnet. If you're using Mocha, you'll need to
+replace the RPC endpoint with [one for Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet#rpc-endpoints).
 :::
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 NAMESPACE_ID=$(openssl rand -hex 8)
-DA_BLOCK_HEIGHT=$(curl https://rpc-blockspacerace.pops.one/block | jq -r '.result.block.header.height')
+DA_BLOCK_HEIGHT=$(curl https://rpc-arabica-9.consensus.celestia-arabica.com/block |jq -r '.result.block.header.height')
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -146,7 +145,7 @@ With this setup complete, we can now start our Ethermint Rollup:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT 
+ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":8000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT 
 ```
 <!-- markdownlint-enable MD013 -->
 

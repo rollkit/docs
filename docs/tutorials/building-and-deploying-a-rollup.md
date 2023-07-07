@@ -15,18 +15,18 @@ You can get started with the following tutorials:
 
 ## 🔰 Beginner
 
-- [GM world](./gm-world.md)
-- [Recipe book](./recipe-book.md)
+- [GM world](./gm-world.mdx)
+- [Recipe book](./recipe-book.mdx)
 - [Restart your rollup](./restart-rollkit-rollup.md)
 
 ## 🏃‍♂️ Intermediate
 
-- [Wordle game](./wordle.md)
-- [CosmWasm rollup](https://rollkit.dev/docs/tutorials/cosmwasm)
+- [Wordle game](./wordle.mdx)
+- [CosmWasm rollup](./cosmwasm.mdx)
 
 ## 💎 Advanced
 
-- [Ethermint rollup](https://rollkit.dev/docs/tutorials/ethermint)
+- [Ethermint rollup](./ethermint.md)
 - [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
 - [Hyperlane + Celestia tutorial](https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane)
 

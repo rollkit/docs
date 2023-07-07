@@ -26,9 +26,7 @@ or let us know in our [Telegram](https://t.me/rollkit).
 
 :::danger caution
 The script for this tutorial is built for Celestia's
-[Blockspacerace testnet](https://docs.celestia.org/nodes/blockspace-race).
-If you choose to use Mocha testnet or Arabica devnet,
-you will need to modify the script manually.
+[Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
 :::
 
 ## 💻 Pre-requisites
@@ -38,8 +36,8 @@ in Cosmos-SDK, we recommend you go over the following tutorials
 in Ignite to understand all the different components in Cosmos-SDK before
 proceeding with this tutorial.
 
-* [GM World](./gm-world.md) or [Hello, World](https://docs.ignite.com/guide/hello/scaffolding)
-* [Recipe Book](./recipe-book.md) or [Blog and Module Basics](https://docs.ignite.com/guide/blog/intro)
+* [GM World](./gm-world.mdx) or [Hello, World](https://docs.ignite.com/guide/hello/scaffolding)
+* [Recipe Book](./recipe-book.mdx) or [Blog and Module Basics](https://docs.ignite.com/guide/blog/intro)
 * [Nameservice Tutorial](https://docs.ignite.com/v0.25.2/guide/nameservice)
 * [Scavenger Hunt](https://docs.ignite.com/v0.25.2/guide/scavenge)
 
@@ -193,12 +191,33 @@ Rollkit on our codebase.
 
 Run the following command inside the `wordle` directory.
 
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="network">
+<TabItem value="local-devnet" label="Local Devnet">
+
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.7.3-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221202214355-3605c597500d
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.9.0-no-fraud-proofs
+go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
 go mod tidy
 go mod download
 ```
+
+</TabItem>
+<TabItem value="arabica" label="Arabica Devnet">
+
+```bash
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.9.0-no-fraud-proofs
+go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
+go mod tidy
+go mod download
+```
+
+</TabItem>
+</Tabs>
+````
 
 With that, we have Rollkit changes added to the project directory. Now,
 let's build the Wordle app!
@@ -598,16 +617,6 @@ Wordle Rollup.
 
 You can view the contents of the script to see how we
 initialize the Wordle Rollup.
-
-:::danger caution
-On some machines, before starting our rollup, we'll need to find
-and change `FlagIAVLFastNode` to `FlagDisableIAVLFastNode`:
-
-```go title="wordle/cmd/wordled/cmd/root.go"
-baseapp.SetIAVLDisableFastNode(cast.ToBool(appOpts.Get(server.FlagDisableIAVLFastNode))),
-```
-
-:::
 
 You can initialize the script with the following command:
 

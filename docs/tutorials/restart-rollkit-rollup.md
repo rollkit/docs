@@ -62,15 +62,15 @@ DA_BLOCK_HEIGHT=$(curl https://rpc-blockspacerace.pops.one/block | jq -r '.resul
 To reiterate, before restarting the chain, you will need to increase the gas fee in order to avoid a `Code: 19` error:
 
 ```bash
-ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6900}' --rollkit.namespace_id 8BE3175CBF305BC2 --rollkit.da_start_height $DA_BLOCK_HEIGHT
+ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":8900}' --rollkit.namespace_id 8BE3175CBF305BC2 --rollkit.da_start_height $DA_BLOCK_HEIGHT
 ```
 
 ### 🛢️ Reduce gas fee & restart again
 
-In order to save your TIA, we also recommend stopping the chain with `Control + C`, changing the gas fee back to the default (in our case, 6000 utia), fetching current block height, and restarting the chain:
+In order to save your TIA, we also recommend stopping the chain with `Control + C`, changing the gas fee back to the default (in our case, 8000 utia), fetching current block height, and restarting the chain:
 
 ```bash
-ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6000}' --rollkit.namespace_id 8BE3175CBF305BC2 --rollkit.da_start_height $DA_BLOCK_HEIGHT
+ethermintd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":8000}' --rollkit.namespace_id 8BE3175CBF305BC2 --rollkit.da_start_height $DA_BLOCK_HEIGHT
 ```
 
 🎊 Congrats! You've successfully restarted your Rollkit rollup after running out of TIA.
