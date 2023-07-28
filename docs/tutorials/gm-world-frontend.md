@@ -1,12 +1,7 @@
----
-sidebar_label: GM world frontend tutorial
-description: Build a frontend for your Rollkit rollup locally.
----
-
-# GM world frontend tutorial
+# GM World frontend tutorial
 
 In this tutorial, we'll learn how to use [Cosmology](https://cosmology.tech/) to
-create a frontend for our [GM world](../gm-world) rollup.
+create a frontend for our [GM World](/docs/tutorials/gm-world) rollup.
 
 Cosmology enables developers to build web3 apps in the Interchain Ecosystem.
 With Cosmology, it's simple to begin building apps that communicate with
@@ -19,10 +14,21 @@ In the end, you'll have something that looks like this
 [demo](https://rollkit-frontend.vercel.app)
 ([repo](https://github.com/jcstein/rollkit-frontend)).
 
+## 📋 Table of contents for this tutorial {#toc}
+
+The following tutorial is broken down into the following
+sections:
+
+::: details Table of contents
+
+[[toc]]
+
+:::
+
 ## Getting started
 
 In order to complete this tutorial you will need to have completed
-the [GM world tutorial](../gm-world). This requires a running rollup
+the [GM World tutorial](/docs/tutorials/gm-world). This requires a running rollup
 on your local machine.
 
 ## Setting up the frontend
@@ -74,7 +80,7 @@ Follow the instructions at the end of the output to start your app:
 cd ./gm-world && yarn dev
 ```
 
-![cca-3.png](../../static/img/tutorials/gm/cca-3.png)
+![cca-3.png](/gm/cca-3.png)
 
 ## Adding your GM portal chain to the config
 
@@ -257,7 +263,7 @@ What features do you want to add now?
 You may notice that the icons for Celestia testnets are not loading,
 this is due to an outdated version of the chain registry.
 
-![cca.png](../../static/img/tutorials/gm/cca.png)
+![cca.png](/gm/cca.png)
 
 To update
 these, you can use your terminal:
@@ -278,7 +284,7 @@ Now use enter to upgrade the dependencies!
 Head back to your frontend and take a look, you should see the
 updated icons.
 
-![cca-2.png](../../static/img/tutorials/gm/cca-2.png)
+![cca-2.png](/gm/cca-2.png)
 
 <!-- ## TODO
 
