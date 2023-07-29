@@ -10,15 +10,15 @@ You can get started with the following tutorials:
 
 ## 1. Beginner {#beginner}
 
-- [GM World](/docs/tutorials/gm-world)
-- [GM World frontend](/docs/tutorials/gm-world-frontend)
-- [Recipe Book](/docs/tutorials/recipe-book)
-- [Restart your rollup](/docs/tutorials/restart-rollup)
+- [GM World](/tutorials/gm-world)
+- [GM World frontend](/tutorials/gm-world-frontend)
+- [Recipe Book](/tutorials/recipe-book)
+- [Restart your rollup](/tutorials/restart-rollup)
 
 ## 2️. Intermediate {#intermediate}
 
-- [Wordle game](/docs/tutorials/wordle)
-- [CosmWasm rollup](/docs/tutorials/cosmwasm)
+- [Wordle game](/tutorials/wordle)
+- [CosmWasm rollup](/tutorials/cosmwasm)
 
 ## 3️. Advanced {#advanced}
 

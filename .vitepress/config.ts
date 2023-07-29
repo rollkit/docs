@@ -12,7 +12,7 @@ export default withMermaid({
   lastUpdated: true,
   cleanUrls: true,
   ignoreDeadLinks: true,
-  // base: '/rollkit-vitepress/',
+  base: '/',
   
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
@@ -32,12 +32,22 @@ export default withMermaid({
     ['meta', { name: 'apple-mobile-web-app-title', content: 'Rollkit' }],
     [
       'script',
+      {},
+      `
+      window.chatbaseConfig = {
+        chatbotId: "sw0sRxREFEQLTdqwC_Fbe",
+      }
+      `
+    ],
+    ['script', { src: 'https://www.chatbase.co/embed.min.js', id: 'sw0sRxREFEQLTdqwC_Fbe', defer: true }],
+    [
+      'script',
       {
         src: 'https://plausible.io/js/script.js',
         'data-domain': 'rollkit-vitepress.vercel.app',
         defer: ''
       }
-    ]
+    ],
   ],
 
   appearance: 'dark',
@@ -56,11 +66,11 @@ export default withMermaid({
     },
 
     sidebar: {
-      '/docs': sidebarHome(),
+      '/': sidebarHome(),
     },
 
     editLink: {
-      pattern: 'https://github.com/jcstein/rollkit-vitepress/edit/main/docs/:path',
+      pattern: 'https://github.com/jcstein/rollkit-vitepress/edit/main/:path',
       text: 'Edit this page on GitHub'
     },
 
@@ -83,8 +93,8 @@ export default withMermaid({
 function nav() {
   return [
     { text: 'Home', link: '/' },
-    { text: 'Intro', link: '/docs/about/intro'},
-    { text: 'Tutorials', link: '/docs/tutorials/rollup-starter' },
+    { text: 'Intro', link: '/reference/intro'},
+    { text: 'Tutorials', link: '/tutorials/rollup-starter' },
   ]
 }
 
@@ -94,24 +104,24 @@ function sidebarHome() {
       text: 'Introduction',
       collapsed: false,
       items: [
-        { text: 'Introduction to Rollkit', link: '/docs/about/intro'},
-        { text: 'About Rollkit', link: '/docs/about/about' },
+        { text: 'Introduction to Rollkit', link: '/reference/intro'},
+        { text: 'About Rollkit', link: '/reference/about' },
       ]
     },
     {
       text: 'Reference',
       collapsed: false,
       items: [
-        { text: 'Rollkit stack', link: '/docs/reference/stack' },
-        { text: 'Transaction flow', link: '/docs/reference/transaction-flow' },
-        { text: 'Building with Rollkit', link: '/docs/reference/building-with-rollkit'},
-        { text: 'Building and deploying a rollup', link: '/docs/reference/building-and-deploying-a-rollup'},
+        { text: 'Rollkit stack', link: '/reference/stack' },
+        { text: 'Transaction flow', link: '/reference/transaction-flow' },
+        { text: 'Building with Rollkit', link: '/reference/building-with-rollkit'},
+        { text: 'Building and deploying a rollup', link: '/reference/building-and-deploying-a-rollup'},
         {
           text: 'Rollup Wiki',
           collapsed: false,
           items: [
-            { text: 'A-Z', link: '/docs/reference/rollup-wiki' },
-            // { text: 'Basic Rollup', link: '/docs/reference/basic-rollup' },
+            { text: 'A-Z', link: '/reference/rollup-wiki' },
+            // { text: 'Basic Rollup', link: '/reference/basic-rollup' },
           ]
         },
       ]
@@ -124,20 +134,20 @@ function sidebarHome() {
           text: 'Beginner',
           collapsed: true,
           items: [
-            // { text: 'Starter Rollup with Docker', link: '/docs/tutorials/rollup-docker'},
-            { text: 'Rollup Starter', link: '/docs/tutorials/rollup-starter'},
-            { text: 'GM World rollup', link: '/docs/tutorials/gm-world'},
-            { text: 'GM World frontend', link: '/docs/tutorials/gm-world-frontend'},
-            { text: 'Recipe Book rollup', link: '/docs/tutorials/recipe-book'},
-            { text: 'How to restart your rollup', link: '/docs/tutorials/restart-rollup'},
+            // { text: 'Starter Rollup with Docker', link: '/tutorials/rollup-docker'},
+            { text: 'Rollup Starter', link: '/tutorials/rollup-starter'},
+            { text: 'GM World rollup', link: '/tutorials/gm-world'},
+            { text: 'GM World frontend', link: '/tutorials/gm-world-frontend'},
+            { text: 'Recipe Book rollup', link: '/tutorials/recipe-book'},
+            { text: 'How to restart your rollup', link: '/tutorials/restart-rollup'},
           ]
         },
         {
           text: 'Intermediate',
           collapsed: true,
           items: [
-            { text: 'Wordle app', link: '/docs/tutorials/wordle'},
-            { text: 'CosmWasm rollup', link: '/docs/tutorials/cosmwasm'},
+            { text: 'Wordle app', link: '/tutorials/wordle'},
+            { text: 'CosmWasm rollup', link: '/tutorials/cosmwasm'},
 
           ]
         },
