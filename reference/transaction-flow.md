@@ -11,27 +11,34 @@ Light nodes are still a work in progress.
 
 Here's what the typical transaction flow looks like:
 
-## Transaction submission and validation
+## Transaction submission
 
 ```mermaid
 sequenceDiagram
     participant User
     participant LightNode
     participant FullNode
-    participant Sequencer
-
+    
     User->>LightNode: Submit Transaction
     LightNode->>FullNode: Gossip Transaction
     FullNode-->>User: Refuse (if invalid)
+```
+
+## Transaction validation and processing
+
+```mermaid
+sequenceDiagram
+    participant FullNode
+    participant Sequencer
+
     FullNode->>FullNode: Check Validity
     FullNode->>FullNode: Add to Mempool (if valid)
     FullNode-->>User: Transaction Processed (if valid)
     FullNode->>Sequencer: Inform about Valid Transaction
     Sequencer->>DALayer: Add to Rollup Block
-
 ```
 
-## Block processing and fraud proofs
+## Block processing
 
 ```mermaid
 sequenceDiagram
@@ -42,6 +49,16 @@ sequenceDiagram
     DALayer->>RollupChain: Update State
     DALayer->>FullNode: Download & Validate Block
     FullNode->>FullNode: Generate Fraud Proofs (if invalid)
+```
+
+## Fraud proof gossip and forking
+
+```mermaid
+sequenceDiagram
+    participant FullNode
+    participant LightNode
+    participant RollupChain
+
     FullNode->>LightNode: Gossip Fraud Proofs (if invalid)
     RollupChain->>RollupChain: Halt & Decide to Fork (if invalid)
     RollupChain->>DALayer: Submit New Block (after fork)
