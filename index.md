@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Home"
+  name: "Rollkit"
   text: "The open modular framework for sovereign rollups"
   tagline: Build Rollups with interchangeable software to preserve sovereignty
   image:
