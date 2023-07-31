@@ -1,6 +1,8 @@
 # Rollup Starter
 
-This is the first-stop for developers building on Rollkit.
+This is the first-stop for developers building on Rollkit. In this tutorial,
+you will learn how to build a Rollkit rollup that uses a local Celestia devnet
+for consensus and data availability.
 
 ## Prerequisites
 
