@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: npm
-      - run: npm install --frozen-lockfile
-      - run: npm run lint --disable MD013
-      - run: npm run lint-mdx
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint --disable MD013
+      - run: yarn lint-mdx
