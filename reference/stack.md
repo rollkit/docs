@@ -29,8 +29,8 @@ graph TD
 
 ### ABCI interface
 
-Rollkit is a fully functional Application BlockChain Interface (ABCI) client software. It can be used as a Tendermint replacement for any ABCI application.
-Thanks to this compatibility, you can use tools like [abci-cli](https://docs.tendermint.com/v0.34/app-dev/abci-cli.html) to test and debug your rollup.
+Rollkit is a fully functional Application BlockChain Interface (ABCI) client software. It can be used as a CometBFT replacement for any ABCI application.
+Thanks to this compatibility, you can use tools like [abci-cli](https://docs.cometbft.com/v0.37/app-dev/abci-cli) to test and debug your rollup.
 
 #### Cosmos SDK
 
@@ -40,7 +40,7 @@ Rollkit-enabled version, which can be found
 at the [`rollkit/cosmos-sdk`](https://github.com/rollkit/cosmos-sdk) repository.
 
 Note the [`rollkit/cosmos-sdk`](https://github.com/rollkit/cosmos-sdk) repository follows the release branches of
-upstream Cosmos SDK, but with the bonus of using Rollkit instead of Tendermint
+upstream Cosmos SDK, but with the bonus of using Rollkit instead of CometBFT
 as the ABCI client.
 
 And don't forget to replace another dependency, `tendermint`, with
@@ -51,7 +51,7 @@ the methods needed for state fraud proofs.
 
 [Data availability (DA)](https://github.com/rollkit/rollkit/tree/main/da) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA layer. New implementations can be plugged in programmatically, without a need to fork Rollkit.
 
-The `DataAvailabilityLayerClient` interface includes essential lifecycle methods (`Init`, `Start`, `Stop`) as well as data availability methods (`SubmitBlock`, `CheckBlockAvailability`).
+The `DataAvailabilityLayerClient` interface includes essential lifecycle methods (`Init`, `Start`, `Stop`) as well as data availability methods (`SubmitBlocks`, `RetrieveBlocks`).
 
 The `BlockRetriever` interface serves to enable syncing of full nodes from the data availability layer.
 It's important to keep in mind that there is no direct correlation between the DA layer block height and the rollup height. Each DA layer block may contain an arbitrary number of rollup blocks.
@@ -60,31 +60,33 @@ It's important to keep in mind that there is no direct correlation between the D
 
 Celestia is an example of a data availability integration implemented for Rollkit.
 It's using the [Celestia Node Gateway API](https://docs.celestia.org/developers/node-gateway-docs/)
-via the [`celestiaorg/go-cnc`](https://github.com/celestiaorg/go-cnc) package.
+via the [`rollkit/celestia-openrpc`](https://github.com/rollkit/celestia-openrpc) package.
 To deploy a Rollkit rollup on Celestia you also have to [run a Celestia light node](https://docs.celestia.org/developers/node-tutorial/).
+
+Use of other data availability (DA) layers is also supported by Rollkit, and research integrations for Bitcoin, Mock, gRPC are works in progress.
 
 ## Node components
 
 ### Mempool
 
-The [mempool](https://github.com/rollkit/rollkit/tree/main/mempool) is inspired by the Tendermint mempool. By default, transactions are handled in a First Come, First Served (FCFS) manner. Ordering of transactions can be implemented on the application level; currently this is possible by returning a priority on `CheckTx`, and once we support ABCI++ it is also possible via `PrepareProposal` and the [application mempool](https://docs.cosmos.network/v0.47/building-apps/app-mempool).
+The [mempool](https://github.com/rollkit/rollkit/tree/main/mempool) is inspired by the CometBFT mempool. By default, transactions are handled in a First Come, First Served (FCFS) manner. Ordering of transactions can be implemented on the application level; currently this is possible by returning a priority on `CheckTx`, and once we support ABCI++ it is also possible via `PrepareProposal` and the [application mempool](https://docs.cosmos.network/v0.47/building-apps/app-mempool).
 
 ### Block manager
 
-The [block manager](https://github.com/rollkit/rollkit/tree/main/block) contains Go routines `AggregationLoop`, `RetrieveLoop`, and `SyncLoop` that communicate through Go channels. These Go routines are ran when a Rollkit node starts up (`OnStart`). Only the sequencer nodes run `AggregationLoop` which controls the frequency of block production for a rollup with a timer as per the `BlockTime` in `BlockManager`.
+The [block manager](https://github.com/rollkit/rollkit/tree/main/block) contains routines `AggregationLoop`, `RetrieveLoop`, and `SyncLoop` that communicate through Go channels. These Go routines are ran when a Rollkit node starts up (`OnStart`). Only the sequencer nodes run `AggregationLoop` which controls the frequency of block production for a rollup with a timer as per the `BlockTime` in `BlockManager`.
 
 All nodes run `SyncLoop` which looks for the following operations:
 
 - **Receive block headers**: block headers are received through a channel `HeaderInCh` and Rollkit nodes attempt to verify the block with the corresponding block data.
 - **Receive block data**: block bodies are received through a channel `blockInCh` and Rollkit nodes attempt to verify the block.
-- **Receive state fraud proofs**: state fraud proofs are received through a channel `FraudProofInCh` and Rollkit nodes attempt to verify them. Note that we plan to make this configurable for full nodes since full nodes also produce state fraud proofs on their own.
+<!-- - **Receive state fraud proofs**: state fraud proofs are received through a channel `FraudProofInCh` and Rollkit nodes attempt to verify them. Note that we plan to make this configurable for full nodes since full nodes also produce state fraud proofs on their own. -->
 - Signal `RetrieveLoop` with timer as per the `DABlockTime` in `BlockManager`.
 
 All nodes also run `RetrieveLoop` which is responsible for interacting with the data availability layer. It checks the last updated `DAHeight` to retrieve a block with timer `DABlockTime` signaled by `SyncLoop`. Note that the start height of the DA layer for the rollup, `DAStartHeight`, is configurable in `BlockManager`.
 
 ### RPC
 
-Rollkit's [RPC](https://github.com/rollkit/rollkit/tree/main/rpc) fully implements the [Tendermint RPC](https://docs.tendermint.com/v0.34/rpc) interfaces and APIs for querying:
+Rollkit's [RPC](https://github.com/rollkit/rollkit/tree/main/rpc) fully implements the [CometBFT RPC](https://docs.cometbft.com/v0.37/spec/rpc/) interfaces and APIs for querying:
 
 - **Information about the rollup node**: information such as node's health, status, and network info.
 - **The rollup blockchain**: getting information about the rollup blockchain such as blocks and block headers.
@@ -156,7 +158,7 @@ Overall, state fraud proofs will enable trust-minimization between full nodes an
 
 Note that Rollkit state fraud proofs are still a work in progress and will require new methods on top of ABCI, specifically, `GenerateFraudProof`, `VerifyFraudProof`, and `GetAppHash`.
 
-You can find current detailed design and the remaining work needed to push state fraud proofs towards completion in this [Architecture Decision Record (ADR)](https://github.com/rollkit/rollkit/blob/manav/state_fraud_proofs_adr/docs/lazy-adr/adr-009-state-fraud-proofs.md).
+You can find current detailed design and the remaining work needed to push state fraud proofs towards completion in this [Architecture Decision Record (ADR)](https://github.com/rollkit/rollkit/blob/main/docs/lazy-adr/adr-009-state-fraud-proofs.md).
 
 ### Validity (ZK proofs)
 

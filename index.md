@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: Starter Rollup
-      link: /tutorials/starter-rollup
+      link: /tutorials/gm-world
     - theme: alt
       text: Introduction
       link: /reference/intro
@@ -32,6 +32,6 @@ features:
     icon: ⚙️
   - title: Easy to deploy
     details: Deploy a rollup with only a few command lines
-    link: /tutorials/starter-rollup
+    link: /tutorials/gm-world
     icon: 🛸
 ---

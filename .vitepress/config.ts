@@ -12,7 +12,7 @@ export default withMermaid({
   lastUpdated: true,
   cleanUrls: true,
   ignoreDeadLinks: true,
-  base: '/',
+  base: '/rollkit-vitepress/',
   
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
@@ -70,7 +70,7 @@ export default withMermaid({
     },
 
     editLink: {
-      pattern: 'https://github.com/jcstein/rollkit-vitepress/edit/main/:path',
+      pattern: 'https://github.com/rollkit/docs/edit/main/:path',
       text: 'Edit this page on GitHub'
     },
 
@@ -81,7 +81,7 @@ export default withMermaid({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/jcstein/rollkit-vitepress' },
+      { icon: 'github', link: 'https://github.com/rollkit/docs' },
       { icon: 'twitter', link: 'https://twitter.com/RollkitDev' },
       { icon: { svg: telegramSVG }, link: 'https://t.me/rollkit' }
     ]
@@ -94,7 +94,7 @@ function nav() {
   return [
     { text: 'Home', link: '/' },
     { text: 'Intro', link: '/reference/intro'},
-    { text: 'Tutorials', link: '/tutorials/starter-rollup' },
+    { text: 'Tutorials', link: '/tutorials/gm-world' },
   ]
 }
 
@@ -135,7 +135,7 @@ function sidebarHome() {
           collapsed: true,
           items: [
             // { text: 'Starter Rollup with Docker', link: '/tutorials/rollup-docker'},
-            { text: 'Starter Rollup', link: '/tutorials/starter-rollup'},
+            // { text: 'Starter Rollup', link: '/tutorials/starter-rollup'},
             { text: 'GM World rollup', link: '/tutorials/gm-world'},
             { text: 'GM World frontend', link: '/tutorials/gm-world-frontend'},
             { text: 'Recipe Book rollup', link: '/tutorials/recipe-book'},
