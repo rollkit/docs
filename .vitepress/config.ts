@@ -12,7 +12,7 @@ export default withMermaid({
   lastUpdated: true,
   cleanUrls: true,
   ignoreDeadLinks: true,
-  base: '/rollkit-vitepress/',
+  base: '/',
   
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
