@@ -11,14 +11,14 @@ head:
       content: Rollkit
   - - meta
     - name: og:image
-      content: ../../lets-roll.jpg
+      content: /lets-roll.jpg
 ---
 
 # Let's Roll - Rollkit's community call
 
 By Joseph Al-Chami
 
-![Rollkit blog cover](../../lets-roll.jpg)
+![Rollkit blog cover](/lets-roll.jpg)
 _Originally published on 8 March 2023_
 
 Last Sunday, we released the first [research implementation](https://rollkit.dev/blog/sovereign-rollups-on-bitcoin-with-rollkit) that allows Rollkit rollups to use Bitcoin for data availability.

@@ -11,7 +11,7 @@ head:
       content: Rollkit, Celestia
   - - meta
     - name: og:image
-      content: ../../introducing-rollkit/rollkit-blog-cover.png
+      content: /introducing-rollkit/rollkit-blog-cover.png
 ---
 
 # Introducing Rollkit: a modular rollup framework
@@ -20,7 +20,7 @@ By Alex Beckett and Joseph Al-Chami
 
 _The original version of this blog post can be found on the [Celestia blog](https://blog.celestia.org/introducing-rollkit-a-modular-rollup-framework/)._
 
-![Rollkit blog cover](../../introducing-rollkit/rollkit-blog-cover.png)
+![Rollkit blog cover](/introducing-rollkit/rollkit-blog-cover.png)
 _Originally published on 21 February 2023_
 
 Today, we’re pleased to introduce Rollkit, previously known as Rollmint. Rollkit is a modular rollup framework that gives developers the freedom to deploy rollups throughout the modular stack, opening new possibilities for rapid experimentation and innovation.
@@ -47,7 +47,7 @@ In order to deploy a new layer 1 chain, a developer must gather a set of validat
 
 Rollups are the answer to this problem. Rollups provide similar advantages as a layer 1 blockchain but reduce the overhead of deploying and maintaining your own chain.
 
-![Rollkit comparison table](../../introducing-rollkit/comparison-table.png)
+![Rollkit comparison table](/introducing-rollkit/comparison-table.png)
 
 Rollups provide similar benefits to blockchain developers that cloud infrastructure provides for traditional web developers. Deploying a new layer 1 blockchain is like maintaining a physical server, slow and expensive. Rollups remove the need for blockchain developers to launch and maintain their own layer 1s to deploy their own chain.
 
@@ -59,7 +59,7 @@ In the spirit of modularity, Rollkit’s long-term vision is to give developers 
 
 In a rapidly evolving industry like blockchain, time to market and the ability to rapidly experiment and innovate are critical. Rollkit’s customizable stack will enable developers to bring their products to market faster and with more flexibility.
 
-![Rollkit lego image](../../introducing-rollkit/rollkit-lego.png)
+![Rollkit lego image](/introducing-rollkit/rollkit-lego.png)
 
 ### Execution environments
 

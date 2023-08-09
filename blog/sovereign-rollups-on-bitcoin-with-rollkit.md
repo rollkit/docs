@@ -11,14 +11,14 @@ head:
       content: Rollkit, Celestia
   - - meta
     - name: og:image
-      content: ../../introducing-rollkit/rollkit-blog-cover.png
+      content: /introducing-rollkit/rollkit-blog-cover.png
 ---
 
 # Sovereign rollups on Bitcoin with Rollkit
 
 By Rollkit
 
-![rollkit-bitcoin](../../bitcoin-rollkit/rollkit-bitcoin.png)
+![rollkit-bitcoin](/bitcoin-rollkit/rollkit-bitcoin.png)
 _Originally published on 5 March 2023_
 
 Last week, we introduced Rollkit, a modular framework for rollups. Today, we are proud to announce that Rollkit is the first rollup framework to support sovereign rollups on Bitcoin. An early research implementation allows Rollkit rollups to use Bitcoin for data availability.
@@ -43,7 +43,7 @@ Since then, the usage of Ordinals for NFT inscriptions and Taproot utilization h
 
 Rollkit is a modular framework for rollups, where developers can plug-in custom execution layers and data availability layers. Initially, Rollkit only supported Celestia as an option for data availability and consensus. Now, Bitcoin is an option, thanks to an early research implementation of a Bitcoin data availability module for Rollkit. In this case, sovereign rollups manage their own execution and settlement while offloading consensus and data availability to Bitcoin.
 
-![rollkit-bitcoin-rollup](../../bitcoin-rollkit/rollkit-bitcoin-1.png)
+![rollkit-bitcoin-rollup](/bitcoin-rollkit/rollkit-bitcoin-1.png)
 
 ## How Rollkit posts data to Bitcoin
 
@@ -53,7 +53,7 @@ Rollkit was built with modularity at its core. It has a data availability interf
 
 After implementing the Taproot reader/writer interface for Bitcoin (`bitcoin-da`), adding it as a data availability module for Rollkit took less than a day. We mostly only had to implement the `SubmitBlock` and `RetrieveBlocks` functions for Rollkit to call the `Read` and `Write` methods in `bitcoin-da`.
 
-![rollkit-bitcoin-rollup-2](../../bitcoin-rollkit/rollkit-bitcoin-2.png)
+![rollkit-bitcoin-rollup-2](/bitcoin-rollkit/rollkit-bitcoin-2.png)
 
 ## EVM on Bitcoin demo
 
