@@ -95,6 +95,7 @@ function nav() {
     { text: 'Home', link: '/' },
     { text: 'Intro', link: '/reference/intro'},
     { text: 'Tutorials', link: '/tutorials/gm-world' },
+    { text: 'Blog', link: '/blog/introducing-rollkit' },
   ]
 }
 
@@ -160,6 +161,15 @@ function sidebarHome() {
 
           ]
         }
+      ]
+    },
+    {
+      text: 'Blog',
+      collapsed: false,
+      items: [
+        { text: 'Introducing Rollkit', link: '/blog/introducing-rollkit' },
+        { text: 'Sovereign rollups on Bitcoin with Rollkit', link: '/blog/sovereign-rollups-on-bitcoin-with-rollkit' },
+        { text: "Let's Roll - Rollkit's Community Call", link: '/blog/lets-roll-community-call' },
       ]
     }
   ]
