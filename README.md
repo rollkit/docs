@@ -27,10 +27,10 @@ Please ensure to review the detailed Contribution Guidelines above before making
 
 ## Directory Structure
 
-/tutorials: Step-by-step instructions to help users build their own rollups with Rollkit.
-/reference: Technical reference materials, such as configuration options and details about the Rollkit stack.
-/guides [WIP]: In-depth articles that cover specific topics in detail.
-/public: Images, diagrams, and other media files used in the documentation.
+* /tutorials: Step-by-step instructions to help users build their own rollups with Rollkit.
+* /reference: Technical reference materials, such as configuration options and details about the Rollkit stack.
+* /guides [WIP]: In-depth articles that cover specific topics in detail.
+* /public: Images, diagrams, and other media files used in the documentation.
 
 ## Feedback & Suggestions
 
