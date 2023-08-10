@@ -4,7 +4,7 @@
 
 This tutorial guide will go over building a cosmos-sdk app
 for Rollkit, the Sovereign-Rollup implementation of
-Tendermint, for the popular game [Wordle](https://www.nytimes.com/games/wordle/index.html).
+CometBFT, for the popular game [Wordle](https://www.nytimes.com/games/wordle/index.html).
 
 This tutorial will go over how to setup Rollkit
 in the Ignite CLI and use it to build the game.
@@ -188,14 +188,14 @@ Run the following command inside the `wordle` directory.
 
 ```bash [local-celestia-devnet]
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.1-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
+go mod edit -replace github.com/cometbft/cometbft=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
 go mod tidy
 go mod download
 ```
 
 ```bash [Arabica Devnet]
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.1-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
+go mod edit -replace github.com/cometbft/cometbft=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
 go mod tidy
 go mod download
 ```
@@ -344,7 +344,7 @@ import (
   sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
   "time"
   "unicode"
-  "github.com/tendermint/tendermint/crypto"
+  "github.com/cometbft/cometbft/crypto"
 )
 
 func (k msgServer) SubmitWordle(goCtx context.Context, msg *types.MsgSubmitWordle) (*types.MsgSubmitWordleResponse, error) {
@@ -438,7 +438,7 @@ import (
   sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
   "strconv"
   "time"
-  "github.com/tendermint/tendermint/crypto"
+  "github.com/cometbft/cometbft/crypto"
 )
 
 func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess) (*types.MsgSubmitGuessResponse, error) {
@@ -618,7 +618,7 @@ wordled tx wordle submit-wordle giant --from wordle-key --keyring-backend test -
 <!-- markdownlint-enable MD013 -->
 
 > NOTE: We are submitting a transaction asynchronously due to avoiding
-  any timeout errors. With Rollkit as a replacement to Tendermint, we
+  any timeout errors. With Rollkit as a replacement to CometBFT, we
   need to wait for Celestia's Data-Availability network to ensure a block
   was included from Wordle, before proceeding to the next block. Currently,
   in Rollkit, the single aggregator is not moving forward with the next block

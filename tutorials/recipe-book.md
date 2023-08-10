@@ -65,20 +65,20 @@ cd recipes
 
 ### 💎 Installing Rollkit {#installing-rollkit}
 
-To swap out Tendermint for Rollkit, run the following commands:
+To swap out CometBFT for Rollkit, run the following commands:
 
 ::: code-group
 
 ```bash [local-celestia-devnet]
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.1-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
+go mod edit -replace github.com/cometbft/cometbft=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
 go mod tidy
 go mod download
 ```
 
 ```bash [Arabica Devnet]
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.1-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
+go mod edit -replace github.com/cometbft/cometbft=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
 go mod tidy
 go mod download
 ```

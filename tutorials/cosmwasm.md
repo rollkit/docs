@@ -123,8 +123,8 @@ Find the right instructions specific for
 
 ### 💻 Wasmd installation {#wasmd-installation}
 
-Here, we are going to pull down the `wasmd` repository and replace Tendermint
-with Rollkit. Rollkit is a drop-in replacement for Tendermint that allows
+Here, we are going to pull down the `wasmd` repository and replace CometBFT
+with Rollkit. Rollkit is a drop-in replacement for CometBFT that allows
 Cosmos-SDK applications to connect to Celestia's data availability network.
 
 ::: code-group
@@ -135,7 +135,7 @@ cd wasmd
 git fetch --tags
 git checkout v0.27.0
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.45.16-rollkit-v0.9.0-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013001-2968c8b8b121
+go mod edit -replace github.com/cometbft/cometbft=github.com/rollkit/cometbft@v0.0.0-20230524013001-2968c8b8b121
 go mod tidy -compat=1.17
 go mod download
 make install
@@ -147,7 +147,7 @@ cd wasmd
 git fetch --tags
 git checkout v0.27.0
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.45.16-rollkit-v0.9.0-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013001-2968c8b8b121
+go mod edit -replace github.com/cometbft/cometbft=github.com/rollkit/cometbft@v0.0.0-20230524013001-2968c8b8b121
 go mod tidy -compat=1.17
 go mod download
 make install
