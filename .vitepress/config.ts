@@ -109,6 +109,7 @@ function sidebarHome() {
       items: [
         { text: 'Introduction to Rollkit', link: '/reference/intro'},
         { text: 'About Rollkit', link: '/reference/about' },
+        { text: 'Building with Rollkit', link: '/reference/building-with-rollkit'},
       ]
     },
     {
@@ -117,7 +118,6 @@ function sidebarHome() {
       items: [
         { text: 'Rollkit stack', link: '/reference/stack' },
         { text: 'Transaction flow', link: '/reference/transaction-flow' },
-        { text: 'Building with Rollkit', link: '/reference/building-with-rollkit'},
         { text: 'Building and deploying a rollup', link: '/reference/building-and-deploying-a-rollup'},
         {
           text: 'Rollup Wiki',
