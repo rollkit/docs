@@ -32,6 +32,6 @@ features:
     icon: ⚙️
   - title: Easy to deploy
     details: Deploy a rollup with only a few command lines
-    link: /tutorials/gm-world
+    link: /reference/building-with-rollkit
     icon: 🛸
 ---
