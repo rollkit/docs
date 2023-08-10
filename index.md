@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "Rollkit"
   text: "The open modular framework for sovereign rollups"
-  tagline: Build Rollups with interchangeable software to preserve sovereignty
+  tagline: Build rollups with interchangeable software to preserve sovereignty
   image:
     src: /logo-big.svg
     alt: Rollkit
