@@ -171,14 +171,14 @@ that communicates between `wasmd` and Rollkit.
 ### 🗞️ Initializing CosmWasm rollup with a bash script {#initialize-rollup}
 
 We have a handy `init.sh` found in this repo
-[here](https://github.com/rollkit/docs/tree/main/docs/scripts/cosmwasm).
+[here](https://github.com/rollkit/docs/blob/main/scripts/cosmwasm/init.sh).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `wasmd` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/cosmwasm/init.sh
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/cosmwasm/init.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -202,7 +202,7 @@ You can skip this section, but it is important to know
 how Rollkit is initializing the cosmwasm rollup.
 
 View the script
-[here](https://github.com/rollkit/docs/tree/main/docs/scripts/cosmwasm/init.sh).
+[here](https://github.com/rollkit/docs/blob/main/scripts/cosmwasm/init.sh).
 
 ## 📒 Contract deployment on CosmWasm with Rollkit {#contract-deployment-on-cosmwasm}
 
