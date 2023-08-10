@@ -10,7 +10,6 @@ A modular framework for rollups, with an ABCI-compatible client interface. For m
 | Codecov | [![codecov](https://codecov.io/gh/rollkit/rollkit/branch/main/graph/badge.svg?token=CWGA4RLDS9)](https://codecov.io/gh/rollkit/rollkit) |
 | GoDoc | [![GoDoc](https://godoc.org/github.com/rollkit/rollkit?status.svg)](https://godoc.org/github.com/rollkit/rollkit) |
 
-
 ## Building From Source
 
 Requires Go version >= 1.19.
