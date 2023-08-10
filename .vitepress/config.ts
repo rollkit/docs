@@ -65,6 +65,7 @@ export default withMermaid({
 
     search: {
       provider: 'local',
+      detailedView: 'true',
     },
 
     sidebar: {
