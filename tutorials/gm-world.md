@@ -507,7 +507,7 @@ Download the `init.sh` script to start the chain:
 
 ```bash
 # From inside the `gm` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/gm/init-local.sh
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.sh
 ```
 
 Run the `init-local.sh` script:
@@ -849,14 +849,14 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 #### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
 
 We have a handy `init-testnet.sh` found in this repo
-[here](https://github.com/rollkit/docs/tree/main/docs/scripts/gm).
+[here](https://github.com/rollkit/docs/tree/main/scripts/gm).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `gm` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/gm/init-testnet.sh
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-testnet.sh
 ```
 <!-- markdownlint-enable MD013 -->
 

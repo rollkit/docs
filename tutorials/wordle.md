@@ -584,14 +584,14 @@ test, and launch your own sovereign rollup.
 ### 🟢 Building and running wordle chain {#build-and-run-wordle-chain}
 
 We have a handy `init.sh` found in this repo
-[here](https://github.com/rollkit/docs/tree/main/docs/scripts/wordle).
+[here](https://github.com/rollkit/docs/tree/main/scripts/wordle).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `wordle` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/wordle/init.sh
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/wordle/init.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
