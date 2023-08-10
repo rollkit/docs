@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[535],{5641:l=>{l.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Sovereign rollups on Bitcoin with Rollkit","permalink":"/blog/sovereign-rollups-on-bitcoin"},{"title":"Introducing Rollkit: a modular rollup framework","permalink":"/blog/introducing-rollkit"}]}')}}]);

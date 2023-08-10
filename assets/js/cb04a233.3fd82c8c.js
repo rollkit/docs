@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[9566],{3411:t=>{t.exports=JSON.parse('{"title":"Advanced","slug":"/category/advanced","permalink":"/docs/category/advanced","navigation":{"previous":{"title":"CosmWasm tutorial","permalink":"/docs/tutorials/cosmwasm"},"next":{"title":"Ethermint (EVM) tutorial","permalink":"/docs/tutorials/ethermint"}}}')}}]);
