@@ -454,14 +454,14 @@ celestia light start --core.ip consensus-full-arabica-9.celestia-arabica.com --p
 ### 🗞️ Start the recipes rollup {#start-recipes-rollup}
 
 We have a handy `init.sh` found in this repo
-[here](https://github.com/rollkit/docs/tree/main/docs/scripts/recipes).
+[here](https://github.com/rollkit/docs/tree/main/scripts/recipes).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `recipes` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/recipes/init.sh
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/recipes/init.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
