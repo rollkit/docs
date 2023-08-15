@@ -89,3 +89,33 @@
   --docsearch-primary-color: var(--vp-c-brand) !important;
 }
 
+.layout-top {
+  background-color: #96feea;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 1rem;
+}
+
+.dark .layout-top {
+  background-color: #000000;
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  background: #00B590;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 18px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.dark .close-button {
+  background: #00B590;
+}
