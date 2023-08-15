@@ -46,10 +46,10 @@ export default {
       'layout-top': () => 
         showBanner.value 
         ? h('div', { class: 'banner-bar' }, [
-            'This site is under construction 🏗️',
-            h('button', { class: 'close-button', onClick: closeBanner }, '×')
-          ])
-        : null
+          'This site is under construction 🏗️',
+          h('button', { class: 'close-button', onClick: closeBanner }, '×')
+        ])
+      : null
     })
   },
 }
