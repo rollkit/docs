@@ -41,11 +41,11 @@ export default {
     return h(Theme.Layout, null, {
       'layout-top': () => 
         showBanner.value 
-        ? h('div', { class: 'layout-top' }, [
-            'This site is under construction 🏗️',
-            h('button', { class: 'close-button', onClick: closeBanner }, 'X')
-          ]) 
-        : null
+        ? h('div', { class: 'notification-bar' }, [
+          'This site is under construction 🏗️',
+          h('button', { class: 'close-button', onClick: closeBanner }, '×')
+        ])
+      : null
     })
   },
 }

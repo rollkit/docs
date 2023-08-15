@@ -100,22 +100,40 @@
   background-color: #000000;
 }
 
+.notification-bar {
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 10px 20px;
+  position: relative;
+  font-size: 1rem;
+}
+
 .close-button {
   position: absolute;
-  top: 5px;
-  right: 10px;
+  top: 50%;
+  right: 20px;
   cursor: pointer;
-  background: #00B590;
+  background: none;
   border: none;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  line-height: 18px;
-  text-align: center;
-  color: white;
-  font-weight: bold;
+  font-size: 16px;
+  color: #888;
+  transform: translateY(-50%);
+  transition: color 0.3s ease-in-out;
+}
+
+.close-button:hover {
+  color: #555;
+}
+
+.dark .notification-bar {
+  background-color: #333;
 }
 
 .dark .close-button {
-  background: #00B590;
+  color: #aaa;
+}
+
+.dark .close-button:hover {
+  color: #ddd;
 }
