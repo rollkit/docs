@@ -8,7 +8,7 @@ By the end of this tutorial, you will have a good understanding of how Rollkit w
 
 Read more in our [blog post](../../../blog/sovereign-rollups-on-bitcoin).
 
-![rollkit-bitcoin](../../static/img/bitcoin-rollkit/rollkit-bitcoin-1.png)
+![rollkit-bitcoin](/bitcoin-rollkit/rollkit-bitcoin-1.png)
 
 ### 📖 The stack
 
@@ -306,6 +306,10 @@ rm -rf ${LOCATION OF .bitcoin folder}
 ```
 
 ## 🏃‍♀️ Running the Ethermint rollup
+
+:::danger
+Ethermint has been deprecated.
+:::
 
 Clone Ethermint:
 
