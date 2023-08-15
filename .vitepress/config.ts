@@ -46,9 +46,9 @@ export default withMermaid({
     [
       'script',
       {
-        src: 'https://plausible.io/js/script.js',
-        'data-domain': 'rollkit-vitepress.vercel.app',
-        defer: ''
+        src: 'https://plausible.celestia.org/js/plausible.js',
+        'data-domain': 'rollkit.dev',
+        defer: true,
       }
     ],
   ],
