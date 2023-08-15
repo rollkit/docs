@@ -308,7 +308,7 @@ rm -rf ${LOCATION OF .bitcoin folder}
 ## 🏃‍♀️ Running the Ethermint rollup
 
 :::danger
-Ethermint has been deprecated.
+The Ethermint tutorial is currently not supported.
 :::
 
 Clone Ethermint:
