@@ -43,6 +43,7 @@ export default {
     }
 
     return h(Theme.Layout, null, {
+      // https://vitepress.dev/guide/extending-default-theme#layout-slots
       'layout-top': () => 
         showBanner.value 
         ? h('div', { class: 'banner-bar' }, [
@@ -52,4 +53,7 @@ export default {
       : null
     })
   },
+  enhanceApp({ app, router, siteData }) {
+    // ...
+  }
 }
