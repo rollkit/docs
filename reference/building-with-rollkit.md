@@ -35,8 +35,8 @@ There are currently 2 ways to build on Celestia:
 
 | rollkit/cosmos-sdk                          | rollkit/cometbft                   | rollkit    |
 |---------------------------------------------|------------------------------------|------------|
-| v0.47.3-rollkit-v0.10.1-no-fraud-proofs     | v0.0.0-20230524013049-75272ebaee38 | v0.10.1     |
-| v0.45.16-rollkit-v0.10.1-no-fraud-proofs     | v0.0.0-20230524013001-2968c8b8b121 | v0.10.1     |
+| v0.47.3-rollkit-v0.10.1-no-fraud-proofs     | v0.37.2 | v0.10.1     |
+| v0.45.16-rollkit-v0.10.1-no-fraud-proofs     | v0.37.2 | v0.10.1     |
 
 ### Local Development Environment
 
