@@ -19,7 +19,7 @@ from when you ran the `init-local.sh` or script.
 
 They will be printed before your chain starts:
 
-```log
+```txt
 ______         _  _  _     _  _
 | ___ \       | || || |   (_)| |
 | |_/ /  ___  | || || | __ _ | |_

@@ -1,5 +1,5 @@
 CHAIN_ID=gm
-BASE_DIR="$HOME/.fn_gm"
+BASE_DIR="$HOME/.gm_fn"
 
 rm -rf $BASE_DIR
 
