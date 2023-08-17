@@ -51,7 +51,7 @@ export default withMermaid({
     ['meta', { name: 'msapplication-TileColor', content: '#fff' }],
     ['meta', { name: 'theme-color', content: '#fff' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' }],
-    ['meta', { property: 'og:title', content: 'Rollkit' }],
+    ['meta', { property: 'og:title', content: ':title' }],
     ['meta', { property: 'og:description', content: 'The open modular framework for sovereign rollups.' }],
     ['meta', { property: 'description', content: 'The open modular framework for sovereign rollups.' }],
     ['meta', { httpEquiv: 'Content-Language', content: 'en' }],
