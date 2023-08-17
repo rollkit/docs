@@ -81,8 +81,6 @@ export default withMermaid({
     ],
   ],
 
-  appearance: 'dark',
-
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: nav(),
