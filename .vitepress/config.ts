@@ -10,7 +10,6 @@ const { BASE: base = "/" } = process.env;
 export default withMermaid({
   lang: 'en-US',
   title: "Rollkit",
-  titleTemplate: ':title',
   description: "The open modular framework for sovereign rollups.",
   lastUpdated: true,
   cleanUrls: true,
