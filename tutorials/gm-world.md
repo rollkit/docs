@@ -61,7 +61,6 @@ to say GM, Gm, or gm. You can think of "GM" as the new version of
 * [jq](https://stedolan.github.io/jq)
 * [A Celestia Light Node](https://docs.celestia.org/nodes/light-node)
 
-
 ::: tip
 If you are only planning to complete [Part One](#part-one),
 feel free to skip to the [Part Two](#part-two).
@@ -330,8 +329,11 @@ The auth token is the last string, which you can now set as a variable.
 (It's long, so don't forget to copy the whole thing!):
 
 ```bash
-export AUTH_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.a_-CStbScoe_ot8Z1K9YaccvhngeieiSBdgO4uObuvI
+echo "AUTH_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.a_-CStbScoe_ot8Z1K9YaccvhngeieiSBdgO4uObuvI" > $HOME/auth_token.txt
 ```
+
+We're saving this in a file because we will add it in the
+script [later](#start-your-rollup).
 
 ### 🔎 Query your balance {#query-your-balance}
 
@@ -513,11 +515,19 @@ replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alp
 
 ### ▶️ Start your rollup {#start-your-rollup}
 
-Download the `init.sh` script to start the chain:
+Download the `init-local.sh` script to start the chain:
 
 ```bash
 # From inside the `gm` directory
 wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.sh
+```
+
+Next, you'll need to set the auth token in the `init-local.sh` script:
+
+```bash
+# store your auth token for local-celestia-devnet from $HOME/auth_token.txt
+AUTH_TOKEN="your-auth-token" // [!code --]
+AUTH_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.eGomBzJoIEZdQyFyYtbW52ManZx4hWT6k6opvg4GPHw" // [!code ++]
 ```
 
 Run the `init-local.sh` script:
@@ -539,6 +549,8 @@ chain history and binary:
 rm -rf $HOME/.gm
 rm $HOME/go/bin
 ```
+
+:::
 
 #### 🔑 Keys {#keys}
 
@@ -790,9 +802,9 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/gm/gm/params";
   }
-	rpc Gm(QueryGmRequest) returns (QueryGmResponse) {
-		option (google.api.http).get = "/gm/gm/gm";
-	}
+ rpc Gm(QueryGmRequest) returns (QueryGmResponse) {
+  option (google.api.http).get = "/gm/gm/gm";
+ }
 }
 ```
 
@@ -927,3 +939,8 @@ Congratulations 🎉 you've successfully built your first rollup and queried it!
 
 If you're interested in looking at the demo repository
 for this tutorial, you can at [https://github.com/rollkit/gm](https://github.com/rollkit/gm).
+
+## Next steps
+
+If you're interested in setting up a full node alongside your sequencer,
+see the [Full and sequencer node rollup setup](./full-and-sequencer-node) tutorial.
