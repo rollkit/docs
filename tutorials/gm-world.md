@@ -309,7 +309,7 @@ this process can be done on any machine of your choosing. We tested out the Devn
 First, run the [`local-celestia-devnet`](https://github.com/rollkit/local-celestia-devnet) by running the following command:
 
 ```bash
-docker run --platform linux/amd64 -p 26657:26657 -p 26659:26659 -p 26658:26658 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc8
+docker run --platform linux/amd64 -p 26657:26657 -p 26658:26658 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc8
 ```
 
 When passing the `--rollkit.da_config` flag later in the tutorial,
@@ -447,6 +447,10 @@ The `--address-prefix gm` flag will change the address prefix from `cosmos` to `
 
 The response will look similar to below:
 
+::: warning
+Do not run `ignite chain serve` as we will build the chain later in the tutorial.
+:::
+
 ```bash
 jcs @ ~ % ignite scaffold chain gm --address-prefix gm
 
@@ -501,6 +505,12 @@ go mod download
 
 :::
 
+Add this to the bottom of your `gm/go.mod` file:
+
+```go
+replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
+```
+
 ### ▶️ Start your rollup {#start-your-rollup}
 
 Download the `init.sh` script to start the chain:
@@ -519,6 +529,16 @@ bash init-local.sh
 This will start your rollup, connected to the local Celestia devnet you have running.
 
 Now let's explore a bit.
+
+::: tip
+
+If you are restarting your rollup, you'll need to clear the old
+chain history and binary:
+
+```bash
+rm -rf $HOME/.gm
+rm $HOME/go/bin
+```
 
 #### 🔑 Keys {#keys}
 
