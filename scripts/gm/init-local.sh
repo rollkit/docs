@@ -9,9 +9,11 @@ CHAINFLAG="--chain-id ${CHAIN_ID}"
 TOKEN_AMOUNT="10000000000000000000000000stake"
 STAKING_AMOUNT="1000000000stake"
 
+# store your auth token for local-celestia-devnet
+AUTH_TOKEN="your-auth-token"
+
 # create a random Namespace ID for your rollup to post blocks to
 NAMESPACE_ID=$(openssl rand -hex 10)
-echo $NAMESPACE_ID
 
 # query the DA Layer start height, in this case we are querying
 # our local devnet at port 26657, the RPC. The RPC endpoint is
@@ -19,7 +21,41 @@ echo $NAMESPACE_ID
 # the node's state and broadcasting transactions on the Celestia
 # network. The default port is 26657.
 DA_BLOCK_HEIGHT=$(curl http://0.0.0.0:26657/block | jq -r '.result.block.header.height')
-echo $DA_BLOCK_HEIGHT
+
+# rollkit logo
+cat <<'EOF'
+
+                 :=+++=.                
+              -++-    .-++:             
+          .=+=.           :++-.         
+       -++-                  .=+=: .    
+   .=+=:                        -%@@@*  
+  +%-                       .=#@@@@@@*  
+    -++-                 -*%@@@@@@%+:   
+       .=*=.         .=#@@@@@@@%=.      
+      -++-.-++:    =*#@@@@@%+:.-++-=-   
+  .=+=.       :=+=.-: @@#=.   .-*@@@@%  
+  =*=:           .-==+-    :+#@@@@@@%-  
+     :++-               -*@@@@@@@#=:    
+        =%+=.       .=#@@@@@@@#%:       
+     -++:   -++-   *+=@@@@%+:   =#*##-  
+  =*=.         :=+=---@*=.   .=*@@@@@%  
+  .-+=:            :-:    :+%@@@@@@%+.  
+      :=+-             -*@@@@@@@#=.     
+         .=+=:     .=#@@@@@@%*-         
+             -++-  *=.@@@#+:            
+                .====+*-.  
+
+   ______         _  _  _     _  _   
+   | ___ \       | || || |   (_)| |  
+   | |_/ /  ___  | || || | __ _ | |_ 
+   |    /  / _ \ | || || |/ /| || __|
+   | |\ \ | (_) || || ||   < | || |_ 
+   \_| \_| \___/ |_||_||_|\_\|_| \__|
+EOF
+
+# echo variables for the chain
+echo -e "\n\n\n\n\n Your NAMESPACE_ID is $NAMESPACE_ID \n\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n\n\n\n\n"
 
 # build the gm chain with Rollkit
 ignite chain build

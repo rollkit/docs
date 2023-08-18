@@ -55,12 +55,11 @@ to say GM, Gm, or gm. You can think of "GM" as the new version of
 
 * Operating systems: GNU/Linux or macOS
 * [Golang](https://go.dev)
-* [Ignite CLI v0.26.1](https://github.com/ignite/cli)
+* [Ignite CLI v0.27.1](https://github.com/ignite/cli)
 * [Homebrew](https://brew.sh)
 * [wget](https://www.gnu.org/software/wget)
 * [jq](https://stedolan.github.io/jq)
 * [A Celestia Light Node](https://docs.celestia.org/nodes/light-node)
-
 
 ::: tip
 If you are only planning to complete [Part One](#part-one),
@@ -93,7 +92,7 @@ sudo mkdir -p -m 775 /usr/local/bin
 Run this command in your terminal to install Ignite CLI:
 
 ```bash
-curl https://get.ignite.com/cli@v0.26.1! | bash
+curl https://get.ignite.com/cli@v0.27.1! | bash
 ```
 
 ::: tip
@@ -104,13 +103,13 @@ You can resolve this error by following the guidance
 
 ```bash
 # Error
-jcs @ ~ % curl https://get.ignite.com/cli@v0.26.1! | bash
+jcs @ ~ % curl https://get.ignite.com/cli@v0.27.1! | bash
 
 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  3967    0  3967    0     0  16847      0 --:--:-- --:--:-- --:--:-- 17475
-Installing ignite v0.26.1..... // [!code focus]
+Installing ignite v0.27.1..... // [!code focus]
 ######################################################################## 100.0% // [!code focus]
 mv: rename ./ignite to /usr/local/bin/ignite: Permission denied // [!code focus]
 ============ // [!code focus]
@@ -120,7 +119,7 @@ Error: mv failed // [!code focus]
 The following command will resolve the permissions error:
 
 ```bash
-sudo curl https://get.ignite.com/cli@v0.26.1! | sudo bash
+sudo curl https://get.ignite.com/cli@v0.27.1! | sudo bash
 ```
 
 A successful installation will return something similar the response below:
@@ -128,9 +127,10 @@ A successful installation will return something similar the response below:
 ```bash
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100  3967    0  3967    0     0  15586      0 --:--:-- --:--:-- --:--:-- 15931
-Installing ignite v0.26.1..... // [!code focus]
+100  4073    0  4073    0     0   4363      0 --:--:-- --:--:-- --:--:--  4379
+Installing ignite v0.27.1..... // [!code focus]
 ######################################################################## 100.0% // [!code focus]
+Password:
 Installed at /usr/local/bin/ignite // [!code focus]
 ```
 
@@ -144,17 +144,18 @@ The response that you receive should look something like this:
 
 ```bash
 jcs @ ~ % ignite version // [!code focus]
-Ignite CLI version: v0.26.1 // [!code focus]
-Ignite CLI build date: 2022-10-20T15:52:00Z
-Ignite CLI source hash: cc393a9b59a8792b256432fafb472e5ac0738f7c
-Cosmos SDK version: v0.46.3
-Your OS: darwin
-Your arch: arm64
-Your Node.js version: v18.10.0
-Your go version: go version go1.19.2 darwin/arm64
-Your uname -a: Darwin Joshs-MacBook-Air.local 21.6.0 Darwin Kernel Version 21.6.0: Mon Aug 22 20:20:07 PDT 2022; root:xnu-8020.140.49~2/RELEASE_ARM64_T8110 arm64
-Your cwd: /Users/joshstein
-Is on Gitpod: false
+Ignite CLI version: v0.27.1 // [!code focus]
+Ignite CLI build date: 2023-06-13T13:42:09Z
+Ignite CLI source hash: 4acd1f185afb6d8d1a837e54f04c091121cfae01
+Ignite CLI config version: v1
+Cosmos SDK version: v0.47.3
+Your OS:  darwin
+Your arch:  arm64
+Your Node.js version: v20.4.0
+Your go version: go version go1.20.2 darwin/arm64
+Your uname -a:  Darwin Joshs-MacBook-Air.local 22.5.0 Darwin Kernel Version 22.5.0: Thu Jun  8 22:21:34 PDT 2023; root:xnu-8796.121.3~7/RELEASE_ARM64_T8112 arm64
+Your cwd:  /Users/joshstein
+Is on Gitpod:  false
 ```
 
 ## macOS setup
@@ -188,7 +189,7 @@ sudo mkdir -p -m 775 /usr/local/bin
 Run this command in your terminal to install Ignite CLI:
 
 ```bash
-curl https://get.ignite.com/cli@v0.26.1! | bash
+curl https://get.ignite.com/cli@v0.27.1! | bash
 ```
 
 ::: tip
@@ -199,13 +200,13 @@ You can resolve this error by following the guidance
 
 ```bash
 # Error
-jcs @ ~ % curl https://get.ignite.com/cli@v0.26.1! | bash
+jcs @ ~ % curl https://get.ignite.com/cli@v0.27.1! | bash
 
 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  3967    0  3967    0     0  16847      0 --:--:-- --:--:-- --:--:-- 17475
-Installing ignite v0.26.1..... // [!code focus]
+Installing ignite v0.27.1..... // [!code focus]
 ######################################################################## 100.0% // [!code focus]
 mv: rename ./ignite to /usr/local/bin/ignite: Permission denied // [!code focus]
 ============ // [!code focus]
@@ -215,7 +216,7 @@ Error: mv failed // [!code focus]
 The following command will resolve the permissions error:
 
 ```bash
-sudo curl https://get.ignite.com/cli@v0.26.1! | sudo bash
+sudo curl https://get.ignite.com/cli@v0.27.1! | sudo bash
 ```
 
 A successful installation will return something similar the response below:
@@ -224,7 +225,7 @@ A successful installation will return something similar the response below:
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  3967    0  3967    0     0  15586      0 --:--:-- --:--:-- --:--:-- 15931
-Installing ignite v0.26.1..... // [!code focus]
+Installing ignite v0.27.1..... // [!code focus]
 ######################################################################## 100.0% // [!code focus]
 Installed at /usr/local/bin/ignite // [!code focus]
 ```
@@ -239,18 +240,18 @@ The response that you receive should look something like this:
 
 ```bash
 jcs @ ~ % ignite version // [!code focus]
-Ignite CLI version:  v0.26.1 // [!code focus]
-Ignite CLI build date:  2023-01-24T18:50:18Z
-Ignite CLI source hash:  d2a2e287c176ba010557f0b8fbaa198cdeee928d
+Ignite CLI version:  v0.27.1
+Ignite CLI build date:  2023-06-13T13:42:09Z
+Ignite CLI source hash:  4acd1f185afb6d8d1a837e54f04c091121cfae01
 Ignite CLI config version: v1
-Cosmos SDK version:  v0.46.7
+Cosmos SDK version:  v0.47.3
 Your OS:   darwin
 Your arch:   arm64
-Your Node.js version:  v16.15.1
+Your Node.js version:  v20.4.0
 Your go version:  go version go1.20.2 darwin/arm64
-Your uname -a:   Darwin Joshs-Air 22.5.0 Darwin Kernel Version 22.5.0: Thu Jun  8 22:21:34 PDT 2023; root:xnu-8796.121.3~7/RELEASE_ARM64_T8112 arm64
-Your cwd:   /Users/joshstein
-Is on Gitpod:   false
+Your uname -a:   Darwin Joshs-MacBook-Air.local 22.5.0 Darwin Kernel Version 22.5.0: Thu Jun  8 22:21:34 PDT 2023; root:xnu-8796.121.3~7/RELEASE_ARM64_T8112 arm64
+Your cwd:  /Users/joshstein
+Is on Gitpod:  false
 ```
 
 ### 🍺 Install Homebrew on macOS {#install-homebrew-mac}
@@ -307,7 +308,7 @@ this process can be done on any machine of your choosing. We tested out the Devn
 First, run the [`local-celestia-devnet`](https://github.com/rollkit/local-celestia-devnet) by running the following command:
 
 ```bash
-docker run --platform linux/amd64 -p 26657:26657 -p 26659:26659 -p 26658:26658 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc8
+docker run --platform linux/amd64 -p 26657:26657 -p 26658:26658 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc8
 ```
 
 When passing the `--rollkit.da_config` flag later in the tutorial,
@@ -328,8 +329,11 @@ The auth token is the last string, which you can now set as a variable.
 (It's long, so don't forget to copy the whole thing!):
 
 ```bash
-export AUTH_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.a_-CStbScoe_ot8Z1K9YaccvhngeieiSBdgO4uObuvI
+echo "AUTH_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.a_-CStbScoe_ot8Z1K9YaccvhngeieiSBdgO4uObuvI" > $HOME/auth_token.txt
 ```
+
+We're saving this in a file because we will add it in the
+script [later](#start-your-rollup).
 
 ### 🔎 Query your balance {#query-your-balance}
 
@@ -417,7 +421,7 @@ Now, use the following command to install Ignite CLI, if you
 have not already:
 
 ```bash
-curl https://get.ignite.com/cli@v0.26.1! | bash
+curl https://get.ignite.com/cli@v0.27.1! | bash
 ```
 
 ::: tip
@@ -444,6 +448,10 @@ The `--address-prefix gm` flag will change the address prefix from `cosmos` to `
 :::
 
 The response will look similar to below:
+
+::: warning
+Do not run `ignite chain serve` as we will build the chain later in the tutorial.
+:::
 
 ```bash
 jcs @ ~ % ignite scaffold chain gm --address-prefix gm
@@ -475,26 +483,26 @@ Change to the `gm` directory:
 cd gm
 ```
 
-You can learn more about the `gm` directory’s file structure [here](https://docs.ignite.com/v0.25.2/guide/hello#blockchain-directory-structure).
+You can learn more about the `gm` directory’s file structure [here](https://docs.ignite.com/v0.27.1/guide/hello#blockchain-directory-structure).
 Most of our work in this tutorial will happen in the `x` directory.
 
 ### 🗞️ Install Rollkit {#install-rollkit}
 
-To swap out Tendermint for Rollkit, run the following command
+To swap out CometBFT for Rollkit, run the following command
 from inside the `gm` directory:
 
 ::: code-group
 
 ```bash [local-celestia-devnet]
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.9.0-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.2-no-fraud-proofs
+go mod edit -replace github.com/gogo/protobuf=github.com/regen-network/protobuf@v1.3.3-alpha.regen.1
 go mod tidy
 go mod download
 ```
 
 ```bash [Arabica Devnet]
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.9.0-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.2-no-fraud-proofs
+go mod edit -replace github.com/gogo/protobuf=github.com/regen-network/protobuf@v1.3.3-alpha.regen.1
 go mod tidy
 go mod download
 ```
@@ -503,11 +511,19 @@ go mod download
 
 ### ▶️ Start your rollup {#start-your-rollup}
 
-Download the `init.sh` script to start the chain:
+Download the `init-local.sh` script to start the chain:
 
 ```bash
 # From inside the `gm` directory
 wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.sh
+```
+
+Next, you'll need to set the auth token in the `init-local.sh` script:
+
+```bash
+# store your auth token for local-celestia-devnet from $HOME/auth_token.txt
+AUTH_TOKEN="your-auth-token" // [!code --]
+AUTH_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.eGomBzJoIEZdQyFyYtbW52ManZx4hWT6k6opvg4GPHw" // [!code ++]
 ```
 
 Run the `init-local.sh` script:
@@ -519,6 +535,18 @@ bash init-local.sh
 This will start your rollup, connected to the local Celestia devnet you have running.
 
 Now let's explore a bit.
+
+::: tip
+
+If you are restarting your rollup, you'll need to clear the old
+chain history and binary:
+
+```bash
+rm -rf $HOME/.gm
+rm $HOME/go/bin
+```
+
+:::
 
 #### 🔑 Keys {#keys}
 
@@ -770,9 +798,9 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/gm/gm/params";
   }
-	rpc Gm(QueryGmRequest) returns (QueryGmResponse) {
-		option (google.api.http).get = "/gm/gm/gm";
-	}
+ rpc Gm(QueryGmRequest) returns (QueryGmResponse) {
+  option (google.api.http).get = "/gm/gm/gm";
+ }
 }
 ```
 
@@ -907,3 +935,8 @@ Congratulations 🎉 you've successfully built your first rollup and queried it!
 
 If you're interested in looking at the demo repository
 for this tutorial, you can at [https://github.com/rollkit/gm](https://github.com/rollkit/gm).
+
+## Next steps
+
+If you're interested in setting up a full node alongside your sequencer,
+see the [Full and sequencer node rollup setup](./full-and-sequencer-node) tutorial.

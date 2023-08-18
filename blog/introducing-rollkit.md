@@ -25,7 +25,7 @@ _Originally published on 21 February 2023_
 
 Today, we’re pleased to introduce Rollkit, previously known as Rollmint. Rollkit is a modular rollup framework that gives developers the freedom to deploy rollups throughout the modular stack, opening new possibilities for rapid experimentation and innovation.
 
-Rollkit provides a modular node for running rollups on top of a data availability layer. It exposes an ABCI-compatible client interface that can be used as a replacement for Tendermint for any [ABCI](https://github.com/informalsystems/tendermint/tree/main/abci)-compatible blockchain app, including Cosmos chains.
+Rollkit provides a modular node for running rollups on top of a data availability layer. It exposes an ABCI-compatible client interface that can be used as a replacement for CometBFT for any [ABCI](https://github.com/cometbft/cometbft/tree/main/abci)-compatible blockchain app, including Cosmos chains.
 
 In development since 2021, Rollkit is now emerging as neutral and independent from the Celestia blockchain. Rollkit will serve as a community-led public good for the modular ecosystem going forward, with its own docs site at [rollkit.dev](/).
 
@@ -39,7 +39,7 @@ In development since 2021, Rollkit is now emerging as neutral and independent fr
 
 Deploying your decentralized application as a smart contract on a shared blockchain means it will share computational resources and is restricted to that blockchain's execution environment. This limits your application's scalability and flexibility.
 
-For that reason, many developers have turned to launching their own layer 1 chains using tools like Tendermint and the Cosmos SDK. However, deploying a new layer 1 chain presents its own set of complex challenges and trade-offs.
+For that reason, many developers have turned to launching their own layer 1 chains using tools like CometBFT and the Cosmos SDK. However, deploying a new layer 1 chain presents its own set of complex challenges and trade-offs.
 
 In order to deploy a new layer 1 chain, a developer must gather a set of validators to secure the chain, issue a token to compensate these validators, and continuously maintain the network infrastructure. This represents a huge cost in social coordination, time, capital and expertise. This cost prevents many developers from launching their own chains and innovation from progressing as quickly as it could.
 
@@ -51,7 +51,7 @@ Rollups are the answer to this problem. Rollups provide similar advantages as a 
 
 Rollups provide similar benefits to blockchain developers that cloud infrastructure provides for traditional web developers. Deploying a new layer 1 blockchain is like maintaining a physical server, slow and expensive. Rollups remove the need for blockchain developers to launch and maintain their own layer 1s to deploy their own chain.
 
-With Rollkit, developers no longer have to worry about the complex challenges of deploying a new blockchain. Rollkit will do for rollup chains what Tendermint did for layer 1 chains. The way it works is that rollups leverage an underlying layer for consensus, so that developers don’t need to build their own consensus networks. Rollkit rollups inherit security from the data availability layer, eliminating the need for a full set of validators and reducing the technical barrier for developers.
+With Rollkit, developers no longer have to worry about the complex challenges of deploying a new blockchain. Rollkit will do for rollup chains what CometBFT did for layer 1 chains. The way it works is that rollups leverage an underlying layer for consensus, so that developers don’t need to build their own consensus networks. Rollkit rollups inherit security from the data availability layer, eliminating the need for a full set of validators and reducing the technical barrier for developers.
 
 ## Vision for Rollkit
 
