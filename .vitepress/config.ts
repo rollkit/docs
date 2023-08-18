@@ -150,7 +150,7 @@ function sidebarHome() {
           text: 'Rollup Wiki',
           collapsed: false,
           items: [
-            { text: 'A-Z', link: '/reference/rollup-wiki' },
+            { text: 'A-Z glossary', link: '/reference/rollup-glossary' },
             // { text: 'Basic Rollup', link: '/reference/basic-rollup' },
           ]
         },
