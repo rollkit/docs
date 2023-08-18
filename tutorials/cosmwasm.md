@@ -7,6 +7,10 @@ exploring how to integrate CosmWasm with Celestia's
 [data availability layer](https://docs.celestia.org/concepts/how-celestia-works/data-availability-layer)
 using Rollkit.
 
+::: warning
+This tutorial is being updated.
+:::
+
 ::: tip
 This tutorial will explore developing with Rollkit,
 which is still in Alpha stage. If you run into bugs, please write a Github
