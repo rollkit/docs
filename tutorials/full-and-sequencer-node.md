@@ -3,6 +3,15 @@
 This guide will cover how to set up the GM World rollup example as
 a multi-node network using a full and sequencer node.
 
+## About
+
+This guide is using a new feature released in v0.10.2 that
+uses [go-header](https://github.com/celestiaorg/go-header),
+which uses libp2p that syncs blocks over a peer-to-peer (p2p)
+network.
+
+This is the same way that celestia-node syncs blocks over p2p.
+
 ## Prerequisites
 
 First, you'll need to complete the [GM World](./gm-world) tutorial.
@@ -33,6 +42,8 @@ ______         _  _  _     _  _
  Your DA_BLOCK_HEIGHT is 5 // [!code focus]
 ```
 
+### Clone the script
+
 Now, clone the script for the full node:
 
 ```bash
@@ -40,6 +51,8 @@ Now, clone the script for the full node:
 cd $HOME/gm
 wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-full-node.sh
 ```
+
+### Set namespace and DA height
 
 Next, you can open the script and set your namespace and DA height from above:
 
@@ -51,6 +64,8 @@ NAMESPACE_ID="31e2c345c895c3577bea" // [!code ++]
 P2P_ID="your-p2p-id"
 AUTH_TOKEN="your-auth-token"
 ```
+
+### Update the p2p address
 
 Next, we'll update the p2p address.
 
@@ -81,6 +96,8 @@ P2P_ID="12D3KooWCmfJLkQjZUArWpNUDJSezeFiLYzCULXe1dEKY6ZpXZpk" // [!code ++]
 AUTH_TOKEN="your-auth-token"
 ```
 
+### Set auth token
+
 Now, set your `AUTH_TOKEN` from the local-celestia-devnet. You can
 find this in the `init-local.sh` script that you used to start the
 gmd sequencer:
@@ -92,6 +109,8 @@ P2P_ID="12D3KooWCmfJLkQjZUArWpNUDJSezeFiLYzCULXe1dEKY6ZpXZpk"
 AUTH_TOKEN="your-auth-token" // [!code --]
 AUTH_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.eGomBzJoIEZdQyFyYtbW52ManZx4hWT6k6opvg4GPHw" // [!code ++]
 ```
+
+## Start the full node
 
 Open a new terminal to run your full node and run the script:
 
