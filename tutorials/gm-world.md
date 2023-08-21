@@ -543,7 +543,7 @@ chain history and binary:
 
 ```bash
 rm -rf $HOME/.gm
-rm $HOME/go/bin
+rm $HOME/go/bin/gmd
 ```
 
 :::
