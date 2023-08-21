@@ -588,8 +588,15 @@ So using our information from the [keys](#keys) command, we can construct the tr
 <!-- markdownlint-enable MD051 -->
 
 ```bash
-gmd tx bank send $KEY1 $KEY2 42069stake --keyring-backend test
+gmd tx bank send $KEY1 $KEY2 42069stake --keyring-backend test \
+--node tcp://127.0.0.1:36657
 ```
+
+::: tip
+We're using the `--node [ip:port]` flag to point to port 36657, which is
+the custom port we used in the `init-local.sh` script to avoid
+clashing with 26657 on local-celestia-devnet.
+:::
 
 You'll be prompted to accept the transaction:
 
@@ -641,7 +648,7 @@ txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
 Then, query your balance:
 
 ```bash
-gmd query bank balances $KEY2
+gmd query bank balances $KEY2 --node tcp://127.0.0.1:36657
 ```
 
 This is the key that received the balance, so it should have increased past the initial `STAKING_AMOUNT`:
@@ -658,7 +665,7 @@ pagination:
 The other key, should have decreased in balance:
 
 ```bash
-gmd query bank balances $KEY1
+gmd query bank balances $KEY1 --node tcp://127.0.0.1:36657
 ```
 
 Response:
@@ -900,6 +907,16 @@ Before starting the rollup, we need to remove the old project folders:
 
 ```bash
 rm -r $HOME/go/bin/gmd && rm -rf $HOME/.gm
+```
+
+##### Set the auth token for your light node
+
+You will also need to set the auth token for your Celestia light node
+before running the rollup. In the terminal that you will run the
+`init-testnet.sh` script in, run the following:
+
+```bash
+export AUTH_TOKEN=$(celestia light auth admin --p2p.network arabica)
 ```
 
 ##### Start the new chain {#start-the-new-chain}
