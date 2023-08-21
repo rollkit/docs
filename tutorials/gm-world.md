@@ -460,7 +460,7 @@ jcs @ ~ % ignite scaffold chain gm --address-prefix gm
 👉 Get started with the following commands: // [!code focus]
 
  % cd gm // [!code focus]
- % ignite chain serve // [!code focus]
+ % ignite chain serve
 
 Documentation: https://docs.ignite.com
 ```
