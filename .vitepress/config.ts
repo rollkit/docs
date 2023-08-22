@@ -51,7 +51,7 @@ export default withMermaid({
     ['meta', { name: 'theme-color', content: '#fff' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' }],
     // ['meta', { property: 'og:title', content: 'Rollkit' }],
-    ['meta', { property: 'og:description', content: 'The open modular framework for sovereign rollups.' }],
+    // ['meta', { property: 'og:description', content: 'The open modular framework for sovereign rollups.' }],
     ['meta', { property: 'description', content: 'The open modular framework for sovereign rollups.' }],
     ['meta', { httpEquiv: 'Content-Language', content: 'en' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
@@ -126,6 +126,11 @@ export default withMermaid({
           pageData.frontmatter.layout === 'home'
             ? `Rollkit`
             : `${pageData.title} | Rollkit`,
+      },
+      {
+        name: 'og:description',
+        content:
+          pageData.frontmatter.layout === `${pageData.description}`,
       },
     ]);
   },
