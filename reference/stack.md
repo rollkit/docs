@@ -43,8 +43,8 @@ Note the [`rollkit/cosmos-sdk`](https://github.com/rollkit/cosmos-sdk) repositor
 upstream Cosmos SDK, but with the bonus of using Rollkit instead of CometBFT
 as the ABCI client.
 
-And don't forget to replace another dependency, `tendermint`, with
-[`rollkit/tendermint`](https://github.com/rollkit/tendermint), which has an enhanced ABCI interface that includes
+And don't forget to replace another dependency, `CometBFT`, with
+[`rollkit/cometbft`](https://github.com/rollkit/cometbft), which has an enhanced ABCI interface that includes
 the methods needed for state fraud proofs.
 
 ### Data availability

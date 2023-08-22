@@ -10,6 +10,7 @@ const { BASE: base = "/" } = process.env;
 export default withMermaid({
   lang: 'en-US',
   title: "Rollkit",
+  titleTemplate: ':title',
   description: "The open modular framework for sovereign rollups.",
   lastUpdated: true,
   cleanUrls: true,
@@ -19,6 +20,34 @@ export default withMermaid({
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
     ['link', { rel: 'icon', href: '/favicon.png', type: 'image/png' }],
+    [
+      'link',
+      {
+        rel: 'icon',
+        type: 'image/svg+xml',
+        href: '/favicon-dark.svg',
+        media: '(prefers-color-scheme: dark)',
+      },
+    ],
+    [
+      'link',
+      {
+        rel: 'icon',
+        type: 'image/png',
+        href: '/favicon-dark.png',
+        media: '(prefers-color-scheme: dark)',
+      },
+    ],
+    ['link', { rel: 'shortcut icon', href: '/favicon.ico', type: 'image/x-icon' }],
+    [
+      'link',
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon-dark.ico',
+        media: '(prefers-color-scheme: dark)',
+      },
+    ],
     ['meta', { name: 'msapplication-TileColor', content: '#fff' }],
     ['meta', { name: 'theme-color', content: '#fff' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' }],
@@ -45,14 +74,12 @@ export default withMermaid({
     [
       'script',
       {
-        src: 'https://plausible.io/js/script.js',
-        'data-domain': 'rollkit-vitepress.vercel.app',
-        defer: ''
+        src: 'https://plausible.celestia.org/js/plausible.js',
+        'data-domain': 'rollkit.dev',
+        defer: true,
       }
     ],
   ],
-
-  appearance: 'dark',
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -126,7 +153,7 @@ function sidebarHome() {
           text: 'Rollup Wiki',
           collapsed: false,
           items: [
-            { text: 'A-Z', link: '/reference/rollup-wiki' },
+            { text: 'A-Z glossary', link: '/reference/rollup-glossary' },
             // { text: 'Basic Rollup', link: '/reference/basic-rollup' },
           ]
         },
@@ -161,11 +188,21 @@ function sidebarHome() {
           text: 'Advanced',
           collapsed: true,
           items: [
+            { text: 'Full and sequencer node rollup setup', link: '/tutorials/full-and-sequencer-node'},
             { text: 'Full-stack modular dapp with Celestia', link: 'https://docs.celestia.org/developers/full-stack-modular-development-guide'},
             { text: 'Hyperlane + Celestia tutorial', link: 'https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane'},
 
           ]
-        }
+        },
+        {
+          text: 'Guides',
+          collapsed: false,
+          items: [
+            { text: 'How to change speed of block production', link: '/tutorials/block-times'},
+            { text: 'How to use lazy sequencing (aggregation)', link: '/tutorials/lazy-sequencing'},
+
+          ]
+        },
       ]
     },
     {

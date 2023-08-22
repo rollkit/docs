@@ -7,6 +7,10 @@ exploring how to integrate CosmWasm with Celestia's
 [data availability layer](https://docs.celestia.org/concepts/how-celestia-works/data-availability-layer)
 using Rollkit.
 
+::: warning
+This tutorial is being updated.
+:::
+
 ::: tip
 This tutorial will explore developing with Rollkit,
 which is still in Alpha stage. If you run into bugs, please write a Github
@@ -123,8 +127,8 @@ Find the right instructions specific for
 
 ### 💻 Wasmd installation {#wasmd-installation}
 
-Here, we are going to pull down the `wasmd` repository and replace Tendermint
-with Rollkit. Rollkit is a drop-in replacement for Tendermint that allows
+Here, we are going to pull down the `wasmd` repository and replace CometBFT
+with Rollkit. Rollkit is a drop-in replacement for CometBFT that allows
 Cosmos-SDK applications to connect to Celestia's data availability network.
 
 ::: code-group

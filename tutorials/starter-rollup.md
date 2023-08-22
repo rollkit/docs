@@ -22,7 +22,7 @@ git clone https://github.com/rollkit/gm-starter.git && cd gm-starter
 In a second terminal instance, start the local-celestia-devnet:
 
 ```bash
-docker run --platform linux/amd64 -p 26657:26657 -p 26659:26659 -p 26658:26658 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc8
+docker run --platform linux/amd64 -p 26657:26657 -p 26658:26658 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc8
 ```
 
 When passing the `--rollkit.da_config` flag later in the tutorial, it will require `auth_token`` to be passed in. The auth token with write permission is required to submit blobs and can be obtained from the logs on local-celestia-devnet before the bridge node starts.
