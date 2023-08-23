@@ -62,7 +62,6 @@ to say GM, Gm, or gm. You can think of "GM" as the new version of
 * [Ignite CLI v0.27.1](https://github.com/ignite/cli)
 * [Homebrew](https://brew.sh)
 * [wget](https://www.gnu.org/software/wget)
-* [jq](https://stedolan.github.io/jq)
 * [A Celestia Light Node](https://docs.celestia.org/nodes/light-node)
 
 ::: tip
@@ -276,13 +275,12 @@ Be sure to run the commands similar to the output below from the successful inst
     eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-### 🏃 Install wget and jq on macOS {#install-wget-jq-mac}
+### 🏃 Install wget on macOS {#install-wget-mac}
 
-wget is an Internet file retriever and jq is a lightweight and flexible
-command-line JSON processor.
+wget is an Internet file retriever:
 
 ```bash
-brew install wget && brew install jq
+brew install wget
 ```
 
 ## Part One
@@ -318,84 +316,46 @@ docker run --platform linux/amd64 -p 26657:26657 -p 26658:26658 -p 26659:26659 g
 When passing the `--rollkit.da_config` flag later in the tutorial,
 it will require `auth_token` to be passed in. The auth token with
 write permission is required to submit blobs and can be obtained
-from the logs on local-celestia-devnet before the bridge node starts.
+with the following command once your local-celestia-devnet is running:
 
 ```bash
-WARNING: Keep this auth token secret **DO NOT** log this auth token outside of development. CELESTIA_NODE_AUTH_TOKEN=
-
-WARNING: Celestia custom network specified. Only use this option if the node is freshly created and initialized.
-**DO NOT** run a custom network over an already-existing node store!
-
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.a_-CStbScoe_ot8Z1K9YaccvhngeieiSBdgO4uObuvI // [!code focus]
+docker exec $(docker ps -q)  celestia bridge --node.store /bridge  auth admin
 ```
 
-The auth token is the last string, which you can now set as a variable.
-(It's long, so don't forget to copy the whole thing!):
+This will give you the local-celestia-devnet bridge node auth token. This
+assumes that there is only one container, otherwise you can pass the container
+name.
 
-```bash
-echo "AUTH_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.a_-CStbScoe_ot8Z1K9YaccvhngeieiSBdgO4uObuvI" > $HOME/auth_token.txt
-```
-
-We're saving this in a file because we will add it in the
-script [later](#start-your-rollup).
+We'll use the variable later on to start our rollup.
 
 ### 🔎 Query your balance {#query-your-balance}
 
 Open a new terminal instance. Check the balance on your account that you'll be using to post blocks to the
-local network, this will make sure you can post rollup blocks to your Celestia Devnet for DA & consensus:
+local network, this will make sure you can post rollup blocks to your Celestia Devnet for DA & consensus.
+
+First, set your auth token:
 
 ```bash
-curl -X GET http://0.0.0.0:26659/balance
+export CELESTIA_NODE_AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /bridge  auth admin)
 ```
 
+Next, check your balance:
+
+```bash
+docker exec $(docker ps -q) celestia rpc state Balance --auth $CELESTIA_NODE_AUTH_TOKEN
+```
 <!-- markdownlint-disable MD033 -->
 You will see something like this, denoting your balance in TIA x 10<sup>-6</sup>:
 <!-- markdownlint-enable MD033 -->
 
 ```bash
-{"denom":"utia","amount":"999995000000000"}
-```
-
-If you want to be able to transpose your JSON results in a nicer format, you can install [`jq`](https://stedolan.github.io/jq/):
-
-```bash
-sudo apt install jq
-```
-
-::: tip
-We'll need `jq` later, so install it!
-:::
-
-Then run this to prettify the result:
-
-```bash
-curl -X GET http://0.0.0.0:26659/balance | jq
-```
-
-Here's what my response was when I wrote this:
-
-```bash
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100    43  100    43    0     0   1730      0 --:--:-- --:--:-- --:--:--  1791
-{ // [!code focus]
-  "denom": "utia", // [!code focus]
-  "amount": "999995000000000" // [!code focus]
-} // [!code focus]
-```
-
-If you want to clean it up some more, you can use the `-s` option to run `curl` in silent mode and not print the progress metrics:
-
-```bash
-curl -s -X GET http://0.0.0.0:26659/balance | jq
-```
-
-Your result will now look like this, nice 🫡
-
-```bash
 {
-  "denom": "utia",
-  "amount": "999995000000000"
+  "jsonrpc": "2.0",
+  "result": {
+    "denom": "utia",
+    "amount": "999995000000000"
+  },
+  "id": 1
 }
 ```
 
@@ -411,7 +371,7 @@ Cosmos SDK blockchain.
 
 ```bash
 cd $HOME
-ver="1.19.1"
+ver="1.20.2"
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
@@ -522,12 +482,17 @@ Download the `init-local.sh` script to start the chain:
 wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.sh
 ```
 
-Next, you'll need to set the auth token in the `init-local.sh` script:
+Next, you'll need to set the auth token in your terminal to be consumed by
+your `init-local.sh` script.
+
+In the terminal that you will run the script in, set the auth token for the
+local-celestia-devnet. This is so that you can post data to the local DA.
+
+Remember that the following command assumes that there is only one container,
+otherwise you can pass the container name.
 
 ```bash
-# store your auth token for local-celestia-devnet from $HOME/auth_token.txt
-AUTH_TOKEN="your-auth-token" // [!code --]
-AUTH_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.eGomBzJoIEZdQyFyYtbW52ManZx4hWT6k6opvg4GPHw" // [!code ++]
+export AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /bridge  auth admin)
 ```
 
 Run the `init-local.sh` script:
