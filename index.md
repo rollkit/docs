@@ -29,10 +29,10 @@ features:
     icon: 📈
   - title: Flexible
     details: Freedom to configure the execution environment and other components
-    link: /reference/about
+    link: /reference/building-with-rollkit
     icon: ⚙️
   - title: Easy to deploy
     details: Deploy a rollup with only a few command lines
-    link: /tutorials/gm-world
+    link: /tutorials/overview
     icon: 🛸
 ---
