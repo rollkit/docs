@@ -96,7 +96,7 @@ P2P_ID="12D3KooWCmfJLkQjZUArWpNUDJSezeFiLYzCULXe1dEKY6ZpXZpk" // [!code ++]
 
 ### Set auth token
 
-When passing the `--rollkit.da_config` flag, it will require `auth_token`
+When passing the `--rollkit.da_config` flag, it will require `AUTH_TOKEN`
 to be passed in. The auth token with write permission is required to
 submit blobs and can be set with the following command once your
 local-celestia-devnet is running:
