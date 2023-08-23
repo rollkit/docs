@@ -1,3 +1,7 @@
+---
+description: Build a sovereign rollup with Ignite CLI, Celestia and Rollkit locally and on a testnet
+---
+
 # GM World rollup
 
 ## ☀️ Introduction {#introduction}
