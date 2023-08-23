@@ -10,7 +10,6 @@ cp -R "$HOME/.gm/config/genesis.json" "$BASE_DIR/config/genesis.json"
 DA_BLOCK_HEIGHT=your-block-height
 NAMESPACE_ID="your-namespace"
 P2P_ID="your-p2p-id"
-AUTH_TOKEN="your-auth-token"
 
 # rollkit logo
 cat <<'EOF'
