@@ -142,9 +142,10 @@ export default withMermaid({
 function nav() {
   return [
     { text: 'Home', link: '/' },
-    { text: 'Intro', link: '/reference/intro'},
-    { text: 'Tutorials', link: '/tutorials/gm-world' },
-    { text: 'Blog', link: '/blog/introducing-rollkit' },
+    { text: 'Intro', link: '/learn/intro'},
+    { text: 'Learn', link: '/learn/overview' },
+    { text: 'Tutorials', link: '/tutorials/overview' },
+    { text: 'Blog', link: '/blog/introducing-rollkit' }
   ]
 }
 
@@ -152,34 +153,35 @@ function sidebarHome() {
   return [      
     {
       text: 'Introduction',
-      collapsed: false,
+      collapsed: true,
       items: [
-        { text: 'Introduction to Rollkit', link: '/reference/intro'},
-        { text: 'About Rollkit', link: '/reference/about' },
+        { text: 'Introduction to Rollkit', link: '/learn/intro'},
+        { text: 'About Rollkit', link: '/learn/about' },
       ]
     },
     {
-      text: 'Reference',
-      collapsed: false,
+      text: 'Learn',
+      collapsed: true,
       items: [
-        { text: 'Rollkit stack', link: '/reference/stack' },
-        { text: 'Transaction flow', link: '/reference/transaction-flow' },
-        { text: 'Building with Rollkit', link: '/reference/building-with-rollkit'},
-        { text: 'Building and deploying a rollup', link: '/reference/building-and-deploying-a-rollup'},
+        { text: 'Overview', link: '/learn/overview'},
+        { text: 'Rollkit stack', link: '/learn/stack' },
+        { text: 'Transaction flow', link: '/learn/transaction-flow' },
+        { text: 'Building with Rollkit', link: '/learn/building-with-rollkit'},
         {
           text: 'Rollup Wiki',
-          collapsed: false,
+          collapsed: true,
           items: [
-            { text: 'A-Z glossary', link: '/reference/rollup-glossary' },
-            // { text: 'Basic Rollup', link: '/reference/basic-rollup' },
+            { text: 'A-Z glossary', link: '/learn/rollup-glossary' },
+            // { text: 'Basic Rollup', link: '/learn/basic-rollup' },
           ]
         },
       ]
     },
     {
       text: 'Tutorials',
-      collapsed: false,
+      collapsed: true,
       items: [
+        { text: 'Overview', link: '/tutorials/overview'},
         {
           text: 'Beginner',
           collapsed: true,
@@ -213,7 +215,7 @@ function sidebarHome() {
         },
         {
           text: 'Guides',
-          collapsed: false,
+          collapsed: true,
           items: [
             { text: 'How to change speed of block production', link: '/tutorials/block-times'},
             { text: 'How to use lazy sequencing (aggregation)', link: '/tutorials/lazy-sequencing'},
@@ -224,8 +226,9 @@ function sidebarHome() {
     },
     {
       text: 'Blog',
-      collapsed: false,
+      collapsed: true,
       items: [
+        { text: 'Overview', link: '/blog/overview'},
         { text: 'Introducing Rollkit', link: '/blog/introducing-rollkit' },
         { text: 'Sovereign rollups on Bitcoin with Rollkit', link: '/blog/sovereign-rollups-on-bitcoin-with-rollkit' },
         { text: "Let's Roll - Rollkit's Community Call", link: '/blog/lets-roll-community-call' },

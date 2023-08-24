@@ -77,7 +77,7 @@ Rollkit will support a multitude of proof schemes to ensure the execution of you
 
 Rollkit will allow you to build a diverse range of rollups, including sovereign rollups, settlement rollups and settled rollups.
 
-Rollkit is in an early stage of development and many features remain to be built to reach this vision. In its [current state](/reference/stack), Rollkit rollups are [sovereign rollups](https://blog.celestia.org/sovereign-rollup-chains) with single sequencers, with support for a pessimistic mode and a [work-in-progress optimistic mode](https://github.com/rollkit/rollkit/blob/manav/state_fraud_proofs_adr/docs/lazy-adr/adr-009-state-fraud-proofs.md). [Integration tutorials](/reference/building-with-rollkit) are ready and available with Cosmos SDK, Ethermint, and CosmWasm.
+Rollkit is in an early stage of development and many features remain to be built to reach this vision. In its [current state](/learn/stack), Rollkit rollups are [sovereign rollups](https://blog.celestia.org/sovereign-rollup-chains) with single sequencers, with support for a pessimistic mode and a [work-in-progress optimistic mode](https://github.com/rollkit/rollkit/blob/manav/state_fraud_proofs_adr/docs/lazy-adr/adr-009-state-fraud-proofs.md). [Integration tutorials](/learn/building-with-rollkit) are ready and available with Cosmos SDK, Ethermint, and CosmWasm.
 
 We invite the community to collaborate with us to build new features. Each new team that joins the growing Rollkit community brings more firepower to ship new features that we all benefit from. This is the power of modularity in action.
 
