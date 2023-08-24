@@ -19,34 +19,7 @@ export default withMermaid({
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
     ['link', { rel: 'icon', href: '/favicon.png', type: 'image/png' }],
-    [
-      'link',
-      {
-        rel: 'icon',
-        type: 'image/svg+xml',
-        href: '/favicon-dark.svg',
-        media: '(prefers-color-scheme: dark)',
-      },
-    ],
-    [
-      'link',
-      {
-        rel: 'icon',
-        type: 'image/png',
-        href: '/favicon-dark.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-    ],
     ['link', { rel: 'shortcut icon', href: '/favicon.ico', type: 'image/x-icon' }],
-    [
-      'link',
-      {
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: '/favicon-dark.ico',
-        media: '(prefers-color-scheme: dark)',
-      },
-    ],
     ['meta', { name: 'msapplication-TileColor', content: '#fff' }],
     ['meta', { name: 'theme-color', content: '#fff' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' }],
