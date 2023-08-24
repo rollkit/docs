@@ -142,15 +142,10 @@ export default withMermaid({
 function nav() {
   return [
     { text: 'Home', link: '/' },
-    {
-      text: 'Get Started',
-        items: [
-          { text: 'Intro', link: '/reference/intro'},
-          { text: 'Reference', link: '/reference/overview' },
-          { text: 'Tutorials', link: '/tutorials/overview' },
-          { text: 'Blog', link: '/blog/introducing-rollkit' },
-        ],   
-    },
+    { text: 'Intro', link: '/learn/intro'},
+    { text: 'Learn', link: '/learn/overview' },
+    { text: 'Tutorials', link: '/tutorials/overview' },
+    { text: 'Blog', link: '/blog/introducing-rollkit' }
   ]
 }
 
@@ -160,24 +155,24 @@ function sidebarHome() {
       text: 'Introduction',
       collapsed: true,
       items: [
-        { text: 'Introduction to Rollkit', link: '/reference/intro'},
-        { text: 'About Rollkit', link: '/reference/about' },
+        { text: 'Introduction to Rollkit', link: '/learn/intro'},
+        { text: 'About Rollkit', link: '/learn/about' },
       ]
     },
     {
-      text: 'Reference',
+      text: 'Learn',
       collapsed: true,
       items: [
-        { text: 'Overview', link: '/reference/overview'},
-        { text: 'Rollkit stack', link: '/reference/stack' },
-        { text: 'Transaction flow', link: '/reference/transaction-flow' },
-        { text: 'Building with Rollkit', link: '/reference/building-with-rollkit'},
+        { text: 'Overview', link: '/learn/overview'},
+        { text: 'Rollkit stack', link: '/learn/stack' },
+        { text: 'Transaction flow', link: '/learn/transaction-flow' },
+        { text: 'Building with Rollkit', link: '/learn/building-with-rollkit'},
         {
           text: 'Rollup Wiki',
           collapsed: true,
           items: [
-            { text: 'A-Z glossary', link: '/reference/rollup-glossary' },
-            // { text: 'Basic Rollup', link: '/reference/basic-rollup' },
+            { text: 'A-Z glossary', link: '/learn/rollup-glossary' },
+            // { text: 'Basic Rollup', link: '/learn/basic-rollup' },
           ]
         },
       ]

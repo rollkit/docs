@@ -20,19 +20,19 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 
 ### Introduction
 
-- [Introduction to Rollkit](/reference/intro)
-- [About Rollkit](/reference/about)
+- [Introduction to Rollkit](/learn/intro)
+- [About Rollkit](/learn/about)
 
-### Reference
+### learn
 
-- [Overview](/reference/overview)
-- [Rollkit stack](/reference/stack)
-- [Transaction flow](/reference/transaction-flow)
-- [Building with Rollkit](/reference/building-with-rollkit)
+- [Overview](/learn/overview)
+- [Rollkit stack](/learn/stack)
+- [Transaction flow](/learn/transaction-flow)
+- [Building with Rollkit](/learn/building-with-rollkit)
 
 #### Rollup Wiki
 
-- [A-Z glossary](/reference/rollup-glossary)
+- [A-Z glossary](/learn/rollup-glossary)
 
 ### Tutorials
 

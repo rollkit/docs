@@ -2,7 +2,7 @@
 description: This page provides an overview of the key concepts and guides related to Rollkit. It serves as a reference for understanding the Rollkit stack, transaction flow, building with Rollkit, and more.
 ---
 
-# Reference
+# Learn
 
 This category provides an overview of the key concepts and guides related to
 Rollkit. It serves as a reference for understanding the Rollkit stack,
@@ -10,8 +10,8 @@ transaction flow, building with Rollkit, a glossary, and more.
 
 ## Table of Contents
 
-- [Rollkit Stack](/reference/stack)
-- [Transaction Flow](/reference/transaction-flow)
-- [Building with Rollkit](/reference/building-with-rollkit)
+- [Rollkit Stack](/learn/stack)
+- [Transaction Flow](/learn/transaction-flow)
+- [Building with Rollkit](/learn/building-with-rollkit)
 - Rollup Wiki
-  - [A-Z Glossary](/reference/rollup-glossary)
+  - [A-Z Glossary](/learn/rollup-glossary)

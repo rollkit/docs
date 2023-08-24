@@ -4,9 +4,9 @@ A wiki of terms to define different Rollup designs and terminology:
 
 <!-- **Types of Rollup Designs:**
 
-* [Basic Rollup](/reference/basic-rollup)
-* [Based Pessimistic Rollup](/reference/based-pessimistic-rollup)
-* [Pessimistic Rollup with a Shared Sequencer](/reference/pessimistic-rollup-with-a-shared-sequencer)
+* [Basic Rollup](/learn/basic-rollup)
+* [Based Pessimistic Rollup](/learn/based-pessimistic-rollup)
+* [Pessimistic Rollup with a Shared Sequencer](/learn/pessimistic-rollup-with-a-shared-sequencer)
 * Pessimistic Rollup with Based and Shared Sequencing
 * Based Rollup with a Centralized Sequencer
 * Optimistic Rollup with a Centralized Header Producer

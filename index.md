@@ -16,20 +16,20 @@ hero:
       link: /tutorials/gm-world
     - theme: alt
       text: Introduction
-      link: /reference/intro
+      link: /learn/intro
 
 features:
   - title: Shared security
     details: Rollups inherit security from the consensus and data availability layer
-    link: /reference/about#why-rollkit
+    link: /learn/about#why-rollkit
     icon: 🔐
   - title: Scalable
     details: With off-chain execution, rollups have their own dedicated computational resources
-    link: /reference/stack
+    link: /learn/stack
     icon: 📈
   - title: Flexible
     details: Freedom to configure the execution environment and other components
-    link: /reference/building-with-rollkit
+    link: /learn/building-with-rollkit
     icon: ⚙️
   - title: Easy to deploy
     details: Deploy a rollup with only a few command lines
