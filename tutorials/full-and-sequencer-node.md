@@ -22,9 +22,9 @@ in [Part One](./gm-world#part-one).
 ## Getting started
 
 For running a full node, you will need to update `NAMESPACE_ID`,
-`DA_HEIGHT`, `P2P_ID`, and `AUTH_TOKEN` manually. You can retrieve
+`DA_HEIGHT`, and `P2P_ID` manually. You can retrieve
 namespace and height from your terminal output
-from when you ran the `init-local.sh` or script.
+from when you ran the `init-local.sh` script.
 
 They will be printed before your chain starts:
 
@@ -62,7 +62,6 @@ DA_BLOCK_HEIGHT=5 // [!code ++]
 NAMESPACE_ID="your-namespace" // [!code --]
 NAMESPACE_ID="31e2c345c895c3577bea" // [!code ++]
 P2P_ID="your-p2p-id"
-AUTH_TOKEN="your-auth-token"
 ```
 
 ### Update the p2p address
@@ -93,26 +92,26 @@ DA_BLOCK_HEIGHT=5
 NAMESPACE_ID="31e2c345c895c3577bea"
 P2P_ID="your-p2p-id" // [!code --]
 P2P_ID="12D3KooWCmfJLkQjZUArWpNUDJSezeFiLYzCULXe1dEKY6ZpXZpk" // [!code ++]
-AUTH_TOKEN="your-auth-token"
 ```
 
 ### Set auth token
 
-Now, set your `AUTH_TOKEN` from the local-celestia-devnet. You can
-find this in the `init-local.sh` script that you used to start the
-gmd sequencer:
+When passing the `--rollkit.da_config` flag, it will require `AUTH_TOKEN`
+to be passed in. The auth token with write permission is required to
+submit blobs and can be set with the following command once your
+local-celestia-devnet is running:
 
 ```bash
-DA_BLOCK_HEIGHT=5
-NAMESPACE_ID="31e2c345c895c3577bea"
-P2P_ID="12D3KooWCmfJLkQjZUArWpNUDJSezeFiLYzCULXe1dEKY6ZpXZpk"
-AUTH_TOKEN="your-auth-token" // [!code --]
-AUTH_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.eGomBzJoIEZdQyFyYtbW52ManZx4hWT6k6opvg4GPHw" // [!code ++]
+export AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /bridge  auth admin)
 ```
+
+This will set the local-celestia-devnet bridge node auth token. This
+assumes that there is only one container, otherwise you can pass the container
+name.
 
 ## Start the full node
 
-Open a new terminal to run your full node and run the script:
+Now run your full node with the script:
 
 ```bash
 # from the gm directory
