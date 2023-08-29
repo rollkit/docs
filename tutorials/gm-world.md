@@ -361,7 +361,8 @@ You will see something like this, denoting your balance in TIA x 10<sup>-6</sup>
 
 ### 🏗️ Building your sovereign rollup {#building-your-sovereign-rollup}
 
-Now that you have a Celestia devnet running, you are ready to install Golang. We will use Golang to build and run our Cosmos-SDK blockchain.
+Now that you have a Celestia devnet running, we are ready to use Golang
+to build and run our Cosmos-SDK blockchain.
 
 The Ignite CLI comes with scaffolding commands to make development of
 blockchains quicker by creating everything that is needed to start a new
