@@ -367,32 +367,6 @@ The Ignite CLI comes with scaffolding commands to make development of
 blockchains quicker by creating everything that is needed to start a new
 Cosmos SDK blockchain.
 
-[Install Golang](https://docs.celestia.org/nodes/environment#install-golang) (*these commands are for amd64/linux*):
-
-```bash
-cd $HOME
-ver="1.20.2"
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-go version
-```
-
-Now, use the following command to install Ignite CLI, if you
-have not already:
-
-```bash
-curl https://get.ignite.com/cli@v0.27.1! | bash
-```
-
-::: tip
-If you have issues with installation, the full guide can be found [here](https://get.ignite.com/cli) or on [docs.ignite.com](https://docs.ignite.com).
-The above command was tested on `amd64/linux`.
-:::
-
 Check your version:
 
 ```bash
@@ -564,7 +538,12 @@ gmd tx bank send $KEY1 $KEY2 42069stake --keyring-backend test \
 ::: tip
 We're using the `--node [ip:port]` flag to point to port 36657, which is
 the custom port we used in the `init-local.sh` script to avoid
-clashing with 26657 on local-celestia-devnet.
+clashing with 26657 on local-celestia-devnet. We set it here:
+
+```bash
+--rpc.laddr tcp://127.0.0.1:36657
+```
+
 :::
 
 You'll be prompted to accept the transaction:

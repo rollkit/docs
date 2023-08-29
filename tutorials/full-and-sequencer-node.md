@@ -77,9 +77,9 @@ beginning with 12D:
 3:55PM INF service start impl=RPC module=server msg={}
 3:55PM INF service start impl=Node module=server msg={}
 3:55PM INF starting P2P client module=server
-3:55PM INF serving HTTP listen address={"IP":"127.0.0.1","Port":26657,"Zone":""} module=server
-3:55PM INF listening on address=/ip4/10.0.0.171/tcp/26656/p2p/12D3KooWCmfJLkQjZUArWpNUDJSezeFiLYzCULXe1dEKY6ZpXZpk module=p2p // [!code focus]
-3:55PM INF listening on address=/ip4/127.0.0.1/tcp/26656/p2p/12D3KooWCmfJLkQjZUArWpNUDJSezeFiLYzCULXe1dEKY6ZpXZpk module=p2p // [!code focus]
+3:55PM INF serving HTTP listen address={"IP":"127.0.0.1","Port":36657,"Zone":""} module=server
+3:55PM INF listening on address=/ip4/10.0.0.171/tcp/36656/p2p/12D3KooWCmfJLkQjZUArWpNUDJSezeFiLYzCULXe1dEKY6ZpXZpk module=p2p // [!code focus]
+3:55PM INF listening on address=/ip4/127.0.0.1/tcp/36656/p2p/12D3KooWCmfJLkQjZUArWpNUDJSezeFiLYzCULXe1dEKY6ZpXZpk module=p2p // [!code focus]
 3:55PM INF no seed nodes - only listening for connections module=p2p
 3:55PM INF starting Celestia Data Availability Layer Client baseURL=http://localhost:26658 module=da_client
 ```
