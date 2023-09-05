@@ -4,7 +4,7 @@
 
 This tutorial guide will go over building a cosmos-sdk app
 for Rollkit, the Sovereign-Rollup implementation of
-Tendermint, for the popular game [Wordle](https://www.nytimes.com/games/wordle/index.html).
+CometBFT, for the popular game [Wordle](https://www.nytimes.com/games/wordle/index.html).
 
 This tutorial will go over how to setup Rollkit
 in the Ignite CLI and use it to build the game.
@@ -99,7 +99,7 @@ You can read more about Ignite [here](https://docs.ignite.com).
 To install Ignite, you can run this command in your terminal:
 
 ```bash
-curl https://get.ignite.com/cli@v0.26.1! | bash
+curl https://get.ignite.com/cli@v0.27.1! | bash
 sudo mv ignite /usr/local/bin/
 ```
 
@@ -187,15 +187,15 @@ Run the following command inside the `wordle` directory.
 ::: code-group
 
 ```bash [local-celestia-devnet]
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.9.0-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.2-no-fraud-proofs
+go mod edit -replace github.com/gogo/protobuf=github.com/regen-network/protobuf@v1.3.3-alpha.regen.1
 go mod tidy
 go mod download
 ```
 
 ```bash [Arabica Devnet]
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.9.0-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.2-no-fraud-proofs
+go mod edit -replace github.com/gogo/protobuf=github.com/regen-network/protobuf@v1.3.3-alpha.regen.1
 go mod tidy
 go mod download
 ```
@@ -344,7 +344,7 @@ import (
   sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
   "time"
   "unicode"
-  "github.com/tendermint/tendermint/crypto"
+  "github.com/cometbft/cometbft/crypto"
 )
 
 func (k msgServer) SubmitWordle(goCtx context.Context, msg *types.MsgSubmitWordle) (*types.MsgSubmitWordleResponse, error) {
@@ -438,7 +438,7 @@ import (
   sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
   "strconv"
   "time"
-  "github.com/tendermint/tendermint/crypto"
+  "github.com/cometbft/cometbft/crypto"
 )
 
 func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess) (*types.MsgSubmitGuessResponse, error) {
@@ -584,14 +584,14 @@ test, and launch your own sovereign rollup.
 ### 🟢 Building and running wordle chain {#build-and-run-wordle-chain}
 
 We have a handy `init.sh` found in this repo
-[here](https://github.com/rollkit/docs/tree/main/docs/scripts/wordle).
+[here](https://github.com/rollkit/docs/tree/main/scripts/wordle).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `wordle` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/wordle/init.sh
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/wordle/init.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -618,7 +618,7 @@ wordled tx wordle submit-wordle giant --from wordle-key --keyring-backend test -
 <!-- markdownlint-enable MD013 -->
 
 > NOTE: We are submitting a transaction asynchronously due to avoiding
-  any timeout errors. With Rollkit as a replacement to Tendermint, we
+  any timeout errors. With Rollkit as a replacement to CometBFT, we
   need to wait for Celestia's Data-Availability network to ensure a block
   was included from Wordle, before proceeding to the next block. Currently,
   in Rollkit, the single aggregator is not moving forward with the next block

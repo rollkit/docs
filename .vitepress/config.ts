@@ -8,199 +8,233 @@ const { BASE: base = "/" } = process.env;
 
 // https://vitepress.dev/reference/site-config
 export default withMermaid({
-  lang: "en-US",
+  lang: 'en-US',
   title: "Rollkit",
   description: "The open modular framework for sovereign rollups.",
   lastUpdated: true,
   cleanUrls: true,
   ignoreDeadLinks: true,
   base: base,
-
+  
   head: [
-    ["link", { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
-    ["link", { rel: "icon", href: "/favicon.png", type: "image/png" }],
-    ["meta", { name: "msapplication-TileColor", content: "#fff" }],
-    ["meta", { name: "theme-color", content: "#fff" }],
+    ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'icon', href: '/favicon.png', type: 'image/png' }],
+    // [
+    //   'link',
+    //   {
+    //     rel: 'icon',
+    //     type: 'image/svg+xml',
+    //     href: '/favicon-dark.svg',
+    //     media: '(prefers-color-scheme: dark)',
+    //   },
+    // ],
+    // [
+    //   'link',
+    //   {
+    //     rel: 'icon',
+    //     type: 'image/png',
+    //     href: '/favicon-dark.png',
+    //     media: '(prefers-color-scheme: dark)',
+    //   },
+    // ],
+    ['link', { rel: 'shortcut icon', href: '/favicon.ico', type: 'image/x-icon' }],
+    // [
+    //   'link',
+    //   {
+    //     rel: 'icon',
+    //     type: 'image/x-icon',
+    //     href: '/favicon-dark.ico',
+    //     media: '(prefers-color-scheme: dark)',
+    //   },
+    // ],
+    ['meta', { name: 'msapplication-TileColor', content: '#fff' }],
+    ['meta', { name: 'theme-color', content: '#fff' }],
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' }],
+    // ['meta', { property: 'og:title', content: 'Rollkit' }],
+    // ['meta', { property: 'og:description', content: 'The open modular framework for sovereign rollups.' }],
+    ['meta', { property: 'description', content: 'The open modular framework for sovereign rollups.' }],
+    ['meta', { httpEquiv: 'Content-Language', content: 'en' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:image', content: '/Rollkit-og.png' }],
+    ['meta', { name: 'twitter:site:domain', content: 'rollkit.dev' }],
+    ['meta', { name: 'twitter:url', content: 'https://rollkit.dev' }],
+    ['meta', { name: 'og:image', content: '/Rollkit-og.png' }],
+    ['meta', { name: 'apple-mobile-web-app-title', content: 'Rollkit' }],
     [
-      "meta",
-      {
-        name: "viewport",
-        content:
-          "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
-      },
-    ],
-    ["meta", { property: "og:title", content: "Rollkit" }],
-    [
-      "meta",
-      {
-        property: "og:description",
-        content: "The open modular framework for sovereign rollups.",
-      },
-    ],
-    [
-      "meta",
-      {
-        property: "description",
-        content: "The open modular framework for sovereign rollups.",
-      },
-    ],
-    ["meta", { httpEquiv: "Content-Language", content: "en" }],
-    ["meta", { name: "twitter:card", content: "summary_large_image" }],
-    ["meta", { name: "twitter:image", content: "/Rollkit-og.png" }],
-    ["meta", { name: "twitter:site:domain", content: "rollkit.dev" }],
-    ["meta", { name: "twitter:url", content: "https://rollkit.dev" }],
-    ["meta", { name: "og:image", content: "/Rollkit-og.png" }],
-    ["meta", { name: "apple-mobile-web-app-title", content: "Rollkit" }],
-    [
-      "script",
+      'script',
       {},
       `
       window.chatbaseConfig = {
         chatbotId: "sw0sRxREFEQLTdqwC_Fbe",
       }
-      `,
+      `
     ],
+    ['script', { src: 'https://www.chatbase.co/embed.min.js', id: 'sw0sRxREFEQLTdqwC_Fbe', defer: true }],
     [
-      "script",
+      'script',
       {
-        src: "https://www.chatbase.co/embed.min.js",
-        id: "sw0sRxREFEQLTdqwC_Fbe",
+        src: 'https://plausible.celestia.org/js/plausible.js',
+        'data-domain': 'rollkit.dev',
         defer: true,
-      },
-    ],
-    [
-      "script",
-      {
-        src: "https://plausible.io/js/script.js",
-        "data-domain": "rollkit-vitepress.vercel.app",
-        defer: "",
-      },
+      }
     ],
   ],
-
-  appearance: "dark",
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: nav(),
-
+    
     footer: {
-      message: "Released under the APACHE-2.0 License",
-      copyright: "Copyright © 2023 Rollkit",
+      message: 'Released under the APACHE-2.0 License',
+      copyright: 'Copyright © 2023 Rollkit'
     },
 
     search: {
-      provider: "local",
+      provider: 'local',
+      options: {
+        detailedView: true
+      }
     },
 
     sidebar: {
-      "/": sidebarHome(),
+      '/': sidebarHome(),
     },
 
     editLink: {
-      pattern: "https://github.com/rollkit/docs/edit/main/:path",
-      text: "Edit this page on GitHub",
+      pattern: 'https://github.com/rollkit/docs/edit/main/:path',
+      text: 'Edit this page on GitHub'
     },
 
     logo: {
-      alt: "Rollkit Logo",
-      light: "/logo.svg",
-      dark: "/logo-dark.svg",
+      alt: 'Rollkit Logo',
+      light: '/logo.svg',
+      dark: '/logo-dark.svg'
     },
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/rollkit/docs" },
-      { icon: "twitter", link: "https://twitter.com/RollkitDev" },
-      { icon: { svg: telegramSVG }, link: "https://t.me/rollkit" },
-    ],
+      { icon: 'github', link: 'https://github.com/rollkit/docs' },
+      { icon: 'twitter', link: 'https://twitter.com/RollkitDev' },
+      { icon: { svg: telegramSVG }, link: 'https://t.me/rollkit' }
+    ]
+
+  
   },
-});
+  transformPageData(pageData) {
+    pageData.frontmatter.head ??= [];
+    pageData.frontmatter.head.push([
+      'meta',
+      {
+        name: 'og:title',
+        content:
+          pageData.frontmatter.layout === 'home'
+            ? `Rollkit`
+            : `${pageData.title} | Rollkit`,
+      },
+      {
+        name: 'og:description',
+        content:
+          pageData.frontmatter.layout === `${pageData.description}`,
+      },
+    ]);
+  },
+})
 
 function nav() {
   return [
-    { text: "Home", link: "/" },
-    { text: "Intro", link: "/reference/intro" },
-    { text: "Tutorials", link: "/tutorials/gm-world" },
-  ];
+    { text: 'Home', link: '/' },
+    { text: 'Intro', link: '/learn/intro'},
+    { text: 'Learn', link: '/learn/overview' },
+    { text: 'Tutorials', link: '/tutorials/overview' },
+    { text: 'Blog', link: '/blog/introducing-rollkit' }
+  ]
 }
 
 function sidebarHome() {
-  return [
+  return [      
     {
-      text: "Introduction",
-      collapsed: false,
+      text: 'Introduction',
+      collapsed: true,
       items: [
-        { text: "Introduction to Rollkit", link: "/reference/intro" },
-        { text: "About Rollkit", link: "/reference/about" },
-      ],
+        { text: 'Introduction to Rollkit', link: '/learn/intro'},
+        { text: 'About Rollkit', link: '/learn/about' },
+      ]
     },
     {
-      text: "Reference",
-      collapsed: false,
+      text: 'Learn',
+      collapsed: true,
       items: [
-        { text: "Rollkit stack", link: "/reference/stack" },
-        { text: "Transaction flow", link: "/reference/transaction-flow" },
+        { text: 'Overview', link: '/learn/overview'},
+        { text: 'Rollkit stack', link: '/learn/stack' },
+        { text: 'Transaction flow', link: '/learn/transaction-flow' },
+        { text: 'Building with Rollkit', link: '/learn/building-with-rollkit'},
         {
-          text: "Building with Rollkit",
-          link: "/reference/building-with-rollkit",
-        },
-        {
-          text: "Building and deploying a rollup",
-          link: "/reference/building-and-deploying-a-rollup",
-        },
-        {
-          text: "Rollup Wiki",
-          collapsed: false,
+          text: 'Rollup Wiki',
+          collapsed: true,
           items: [
-            { text: "A-Z", link: "/reference/rollup-wiki" },
-            // { text: 'Basic Rollup', link: '/reference/basic-rollup' },
-          ],
+            { text: 'A-Z glossary', link: '/learn/rollup-glossary' },
+            // { text: 'Basic Rollup', link: '/learn/basic-rollup' },
+          ]
         },
-      ],
+      ]
     },
     {
-      text: "Tutorials",
-      collapsed: false,
+      text: 'Tutorials',
+      collapsed: true,
       items: [
+        { text: 'Overview', link: '/tutorials/overview'},
         {
-          text: "Beginner",
+          text: 'Beginner',
           collapsed: true,
           items: [
             // { text: 'Starter Rollup with Docker', link: '/tutorials/rollup-docker'},
             // { text: 'Starter Rollup', link: '/tutorials/starter-rollup'},
-            { text: "GM World rollup", link: "/tutorials/gm-world" },
-            { text: "GM World frontend", link: "/tutorials/gm-world-frontend" },
-            { text: "Recipe Book rollup", link: "/tutorials/recipe-book" },
-            {
-              text: "How to restart your rollup",
-              link: "/tutorials/restart-rollup",
-            },
-          ],
+            { text: 'GM World rollup', link: '/tutorials/gm-world'},
+            { text: 'GM World frontend', link: '/tutorials/gm-world-frontend'},
+            { text: 'Recipe Book rollup', link: '/tutorials/recipe-book'},
+            { text: 'How to restart your rollup', link: '/tutorials/restart-rollup'},
+          ]
         },
         {
-          text: "Intermediate",
+          text: 'Intermediate',
+          collapsed: true,
+          items: [
+            { text: 'Wordle app', link: '/tutorials/wordle'},
+            { text: 'CosmWasm rollup', link: '/tutorials/cosmwasm'},
+
+          ]
+        },
+        {
+          text: 'Advanced',
           collapsed: true,
           items: [
             { text: "Wordle app", link: "/tutorials/wordle" },
             { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
             { text: "Polaris EVM rollup", link: "/tutorials/polaris-evm" },
-          ],
+            { text: 'Full and sequencer node rollup setup', link: '/tutorials/full-and-sequencer-node'},
+            { text: 'Full-stack modular dapp with Celestia', link: 'https://docs.celestia.org/developers/full-stack-modular-development-guide'},
+            { text: 'Hyperlane + Celestia tutorial', link: 'https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane'},
+          ]
         },
         {
-          text: "Advanced",
+          text: 'Guides',
           collapsed: true,
           items: [
-            {
-              text: "Full-stack modular dapp with Celestia",
-              link: "https://docs.celestia.org/developers/full-stack-modular-development-guide",
-            },
-            {
-              text: "Hyperlane + Celestia tutorial",
-              link: "https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane",
-            },
-          ],
+            { text: 'How to change speed of block production', link: '/tutorials/block-times'},
+            { text: 'How to use lazy sequencing (aggregation)', link: '/tutorials/lazy-sequencing'},
+
+          ]
         },
-      ],
+      ]
     },
-  ];
+    {
+      text: 'Blog',
+      collapsed: true,
+      items: [
+        { text: 'Overview', link: '/blog/overview'},
+        { text: 'Introducing Rollkit', link: '/blog/introducing-rollkit' },
+        { text: 'Sovereign rollups on Bitcoin with Rollkit', link: '/blog/sovereign-rollups-on-bitcoin-with-rollkit' },
+        { text: "Let's Roll - Rollkit's Community Call", link: '/blog/lets-roll-community-call' },
+      ]
+    }
+  ]
 }

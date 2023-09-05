@@ -7,6 +7,10 @@ exploring how to integrate CosmWasm with Celestia's
 [data availability layer](https://docs.celestia.org/concepts/how-celestia-works/data-availability-layer)
 using Rollkit.
 
+::: warning
+This tutorial is being updated.
+:::
+
 ::: tip
 This tutorial will explore developing with Rollkit,
 which is still in Alpha stage. If you run into bugs, please write a Github
@@ -123,8 +127,8 @@ Find the right instructions specific for
 
 ### 💻 Wasmd installation {#wasmd-installation}
 
-Here, we are going to pull down the `wasmd` repository and replace Tendermint
-with Rollkit. Rollkit is a drop-in replacement for Tendermint that allows
+Here, we are going to pull down the `wasmd` repository and replace CometBFT
+with Rollkit. Rollkit is a drop-in replacement for CometBFT that allows
 Cosmos-SDK applications to connect to Celestia's data availability network.
 
 ::: code-group
@@ -171,14 +175,14 @@ that communicates between `wasmd` and Rollkit.
 ### 🗞️ Initializing CosmWasm rollup with a bash script {#initialize-rollup}
 
 We have a handy `init.sh` found in this repo
-[here](https://github.com/rollkit/docs/tree/main/docs/scripts/cosmwasm).
+[here](https://github.com/rollkit/docs/blob/main/scripts/cosmwasm/init.sh).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `wasmd` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/cosmwasm/init.sh
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/cosmwasm/init.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -202,7 +206,7 @@ You can skip this section, but it is important to know
 how Rollkit is initializing the cosmwasm rollup.
 
 View the script
-[here](https://github.com/rollkit/docs/tree/main/docs/scripts/cosmwasm/init.sh).
+[here](https://github.com/rollkit/docs/blob/main/scripts/cosmwasm/init.sh).
 
 ## 📒 Contract deployment on CosmWasm with Rollkit {#contract-deployment-on-cosmwasm}
 

@@ -65,20 +65,20 @@ cd recipes
 
 ### 💎 Installing Rollkit {#installing-rollkit}
 
-To swap out Tendermint for Rollkit, run the following commands:
+To swap out CometBFT for Rollkit, run the following commands:
 
 ::: code-group
 
 ```bash [local-celestia-devnet]
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.9.0-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.2-no-fraud-proofs
+go mod edit -replace github.com/gogo/protobuf=github.com/regen-network/protobuf@v1.3.3-alpha.regen.1
 go mod tidy
 go mod download
 ```
 
 ```bash [Arabica Devnet]
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.13-rollkit-v0.9.0-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013049-75272ebaee38
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.2-no-fraud-proofs
+go mod edit -replace github.com/gogo/protobuf=github.com/regen-network/protobuf@v1.3.3-alpha.regen.1
 go mod tidy
 go mod download
 ```
@@ -454,14 +454,14 @@ celestia light start --core.ip consensus-full-arabica-9.celestia-arabica.com --p
 ### 🗞️ Start the recipes rollup {#start-recipes-rollup}
 
 We have a handy `init.sh` found in this repo
-[here](https://github.com/rollkit/docs/tree/main/docs/scripts/recipes).
+[here](https://github.com/rollkit/docs/tree/main/scripts/recipes).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `recipes` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/docs/scripts/recipes/init.sh
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/recipes/init.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
