@@ -431,7 +431,7 @@ func (k Keeper) Dishes(c context.Context, req *types.QueryDishesRequest) (*types
 
 ### ✨ Run a Celestia light node {#run-celestia-light-node}
 
-Follow instructions to install and start your Celestia Data Availalbility
+Follow instructions to install and start your Celestia Data Availability
 layer Light Node selecting the network that you previously used. You can
 find instructions to install and run the node [here](https://docs.celestia.org/nodes/light-node).
 
@@ -487,7 +487,7 @@ when prompted, confirm the transaction by entering `y`:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinagrette" --from recipes-key --keyring-backend test
+recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinaigrette" --from recipes-key --keyring-backend test
 ```
 <!-- markdownlint-enable MD013 -->
 
