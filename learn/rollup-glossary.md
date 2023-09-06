@@ -54,7 +54,7 @@ Rollup data is either a batch of transactions or the state difference between tr
 
 ### Rollup Header
 
-is metadata about the block which at minimum includes a commitment to the transactions in that blocks.
+is metadata about the block which at minimum includes a commitment to the transactions in that block.
 
 ### Rollups
 
