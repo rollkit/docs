@@ -1,13 +1,24 @@
 # Polaris EVM and Rollkit
 
+This tutorial provides step-by-step instructions for running the
+Polaris EVM using Rollkit. Polaris EVM is a version of the
+Ethereum Virtual Machine (EVM) that is designed to run Berachain.
+This version has been modified to use Celestia as a data availability
+layer. This integration uses a local-celestia-devnet. Rollkit
+is used to deploy a Polaris EVM rollup without needing to set up a data
+availability and consensus network.
+
 ## Prerequisites
+
+Before you can run Polaris EVM using Rollkit, you need to have the
+following software installed on your machine:
 
 * Docker running on your machine
 * Go version 1.20.2
 
 ## Clone the repo
 
-First, clone the Polaris repository and install Rollkit dependencies:
+To get started, clone the Polaris repository and switch to the Rollkit branch:
 
 ```bash
 cd $HOME
@@ -17,19 +28,26 @@ cd polaris && git checkout rollkit
 
 ## Run a local-celestia-devnet
 
-In a second terminal instance, start the local-celestia-devnet:
+Before you can start Polaris EVM, you need to start a
+local-celestia-devnet instance in a separate terminal:
 
 ```bash
-docker run --platform linux/amd64 -p 36657:26657 -p 36659:26659 -p 36658:26658 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc8
+docker run --platform linux/amd64 -p 26657:26657 -p 26658:26658 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc8
+```
+
+## Install Foundry
+
+```bash
+curl -L https://foundry.paradigm.xyz | bash
 ```
 
 ## Start the Polaris EVM using Rollkit
 
-Then start the chain:
+Then start the chain in your first terminal:
 
 ```bash
-foundryup
-cd polaris && mage start
+cd $HOME/polaris && foundryup
+mage start
 ```
 
 ## Congratulations
