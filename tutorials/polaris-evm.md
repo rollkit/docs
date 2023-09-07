@@ -23,14 +23,6 @@ In a second terminal instance, start the local-celestia-devnet:
 docker run --platform linux/amd64 -p 36657:26657 -p 36659:26659 -p 36658:26658 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc8
 ```
 
-When passing the `--rollkit.da_config` flag later in the tutorial, it will require `auth_token`` to be passed in. The auth token with write permission is required to submit blobs and can be obtained programmatically on the local-celestia-devnet bridge node.
-
-In your original terminal, you can view the auth token with:
-
-```bash
-docker exec $(docker ps -q) celestia bridge --node.store /bridge  auth admin
-```
-
 ## Start the Polaris EVM using Rollkit
 
 Then start the chain:
