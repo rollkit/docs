@@ -41,7 +41,7 @@ Each Full Node has to execute all transactions. There are no Light Nodes in this
 
 ## Censorship Resistance
 
-Lets assume $L_{ss}$ is the liveness of the Shared Sequencer and the $L_{da}$ is the liveness of the DA-Layer. Then the liveness of this scheme is $L = Min[L_{ss},L_{da}]$ saying if one of the Systems has a liveness failure the Rollup has a liveness failure. If the Shared Sequencer fails than we cannot proceed with the Rollup. If the DA-Layer fails we could continue with the Shared Sequencers Soft Commitments. We would inherit the consensuses and data-availability from the Shared Sequencer which would be worse than the original Data-Availability Layer.
+Lets assume $L_{ss}$ is the liveness of the Shared Sequencer and the $L_{da}$ is the liveness of the DA-Layer. Then the liveness of this scheme is $L = Min[L_{ss},L_{da}]$ saying if one of the Systems has a liveness failure the Rollup has a liveness failure. If the Shared Sequencer fails then we cannot proceed with the Rollup. If the DA-Layer fails we could continue with the Shared Sequencers Soft Commitments. We would inherit the consensuses and data-availability from the Shared Sequencer which would be worse than the original Data-Availability Layer.
 
 ## Liveness
 

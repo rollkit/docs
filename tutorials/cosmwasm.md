@@ -240,8 +240,8 @@ Because we are deploying the compiled smart contract to `wasmd`,
 we want it to be as small as possible.
 
 <!-- markdownlint-disable MD051 -->
-The CosmWasm team provides a tool called `rust-optimizer` which weneed
-[Docker](#docker-installation) for in order to compile.
+The CosmWasm team provides a tool called `rust-optimizer`, which requires
+[Docker](#docker-installation) in order to compile.
 <!-- markdownlint-enable MD051 -->
 
 Run the following command in the `~/cw-contracts/contracts/nameservice`

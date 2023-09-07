@@ -125,7 +125,7 @@ The following command will resolve the permissions error:
 sudo curl https://get.ignite.com/cli@v0.27.1! | sudo bash
 ```
 
-A successful installation will return something similar the response below:
+A successful installation will return something similar to the response below:
 
 ```bash
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
