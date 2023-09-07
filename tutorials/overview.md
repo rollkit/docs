@@ -24,6 +24,7 @@ In this section, you'll find:
 * Intermediate
   * [Wordle app](/tutorials/wordle)
   * [CosmWasm rollup](/tutorials/cosmwasm)
+  * [Polaris EVM rollup](/tutorials/polaris-evm)
 * Advanced
   * [Full and sequencer node rollup setup](/tutorials/full-and-sequencer-node)
   * [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)

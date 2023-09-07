@@ -198,18 +198,15 @@ function sidebarHome() {
           text: 'Intermediate',
           collapsed: true,
           items: [
-            { text: 'Wordle app', link: '/tutorials/wordle'},
-            { text: 'CosmWasm rollup', link: '/tutorials/cosmwasm'},
-
+            { text: "Wordle app", link: "/tutorials/wordle" },
+            { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
+            { text: "Polaris EVM rollup", link: "/tutorials/polaris-evm" },
           ]
         },
         {
           text: 'Advanced',
           collapsed: true,
           items: [
-            { text: "Wordle app", link: "/tutorials/wordle" },
-            { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
-            { text: "Polaris EVM rollup", link: "/tutorials/polaris-evm" },
             { text: 'Full and sequencer node rollup setup', link: '/tutorials/full-and-sequencer-node'},
             { text: 'Full-stack modular dapp with Celestia', link: 'https://docs.celestia.org/developers/full-stack-modular-development-guide'},
             { text: 'Hyperlane + Celestia tutorial', link: 'https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane'},
