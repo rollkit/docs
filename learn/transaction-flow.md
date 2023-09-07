@@ -2,7 +2,7 @@
 
 Rollup users use a light node to communicate with the rollup P2P network for two primary reasons:
 
-- submiting transactions
+- submitting transactions
 - gossipping headers and fraud proofs
 
 ::: warning

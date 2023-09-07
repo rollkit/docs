@@ -1,6 +1,6 @@
 # How to use lazy sequencing (aggregation)
 
-In this guide, we'll go over how to how to use lazy sequencing.
+In this guide, we'll go over how to use lazy sequencing.
 
 This feature was introduced in Rollkit v0.7.0 and allows rollup
 operators to wait for transactions to build blocks. This prevents

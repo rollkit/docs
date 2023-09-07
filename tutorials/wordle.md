@@ -573,7 +573,7 @@ compile the blockchain and take it out for a test drive.
 ### 🪶 Run a Celestia light node {#run-celestia-light-node}
 
 Follow instructions to install and start your Celestia Data
-Availalbility layer Light Node selecting the network that
+Availability layer Light Node selecting the network that
 you had previously used. You can find instructions to install
 and run the node [here](https://docs.celestia.org/nodes/light-node).
 
@@ -617,7 +617,7 @@ wordled tx wordle submit-wordle giant --from wordle-key --keyring-backend test -
 ```
 <!-- markdownlint-enable MD013 -->
 
-> NOTE: We are submitting a transaction asynchronously due to avoiding
+> NOTE: We are submitting a transaction asynchronously to avoid
   any timeout errors. With Rollkit as a replacement to CometBFT, we
   need to wait for Celestia's Data-Availability network to ensure a block
   was included from Wordle, before proceeding to the next block. Currently,
