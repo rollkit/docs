@@ -14,7 +14,7 @@ Before you can run Polaris EVM using Rollkit, you need to have the
 following software installed on your machine:
 
 * Docker running on your machine
-* Go version 1.20.2
+* Go version 1.21.0
 
 ## Clone the repo
 
