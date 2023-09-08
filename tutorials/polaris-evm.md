@@ -16,6 +16,15 @@ following software installed on your machine:
 * Docker running on your machine
 * Go version 1.21.0
 
+## Run a local-celestia-devnet
+
+Before you can start Polaris EVM, you need to start a
+local-celestia-devnet instance in a separate terminal:
+
+```bash
+docker run --platform linux/amd64 -p 26657:26657 -p 26658:26658 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc8
+```
+
 ## Clone the repo
 
 To get started, clone the Polaris repository and switch to the Rollkit branch:
@@ -24,15 +33,6 @@ To get started, clone the Polaris repository and switch to the Rollkit branch:
 cd $HOME
 git clone https://github.com/berachain/polaris.git
 cd polaris && git checkout rollkit
-```
-
-## Run a local-celestia-devnet
-
-Before you can start Polaris EVM, you need to start a
-local-celestia-devnet instance in a separate terminal:
-
-```bash
-docker run --platform linux/amd64 -p 26657:26657 -p 26658:26658 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc8
 ```
 
 ## Install Foundry
