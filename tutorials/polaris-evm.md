@@ -10,6 +10,14 @@ layer. This integration uses a local-celestia-devnet. Rollkit
 is used to deploy a Polaris EVM rollup without needing to set up a data
 availability and consensus network.
 
+::: warning
+
+This tutorial is for research purposes only. The integration between
+Polaris EVM and Rollkit is experimental and not intended for production
+use. Use at your own risk.
+
+:::
+
 ## Prerequisites
 
 Before you can run Polaris EVM using Rollkit, you need to have the
