@@ -191,6 +191,7 @@ First, you will need to change the contract address on  `gm-portal/frontend/src/
 cd $HOME
 cp gm-portal/contracts/out/GmPortal.sol/GmPortal.json gm-portal/frontend
 ```
+
 :::
 
 ### Interact with the frontend
@@ -211,3 +212,48 @@ you may need to set it again._
 Now, login with your wallet that you funded, and post a ooga booga on your ooga booga portal!
 
 ![polaris-evm](/polaris-evm/polaris-evm.png)
+
+## Running Polaris EVM with a Celestia light node
+
+In this portion of the tutorial, we will go over running Polaris x Rollkit using
+a Celestia light node to post data to Arabica devnet.
+
+::: tip
+Before using RPC methods through the CLI, you'll need to set your
+[auth token](https://docs.celestia.org/developers/node-tutorial/#auth-token-).
+:::
+
+In order to successfully **post and retrieve** data to and from Celestia's
+Arabica devnet, your light node will need to be fully synced. You can check
+the status by using the
+[`das.SamplingStats` method](https://docs.celestia.org/api/v0.11.0-rc13/#daser.SamplingStats) using
+[the CLI](https://docs.celestia.org/developers/node-tutorial/#get-data-availability-sampler-stats).
+
+Your node will also need to be funded with Arabica devnet TIA, which you
+can obtain by
+[retrieving your account address](https://docs.celestia.org/developers/node-tutorial/#get-your-account-address)
+and visiting the [faucet](https://docs.celestia.org/nodes/arabica-devnet/#arabica-devnet-faucet).
+
+### Start your light node
+
+First, you'll need to start your light node, connected to a consensus
+core endpoint. This will allow you to post data to the network.
+
+Start the node:
+
+```bash
+celestia light start --core.ip consensus-validator.celestia-arabica-10.com --p2p.network arabica
+```
+
+### Start Polaris EVM
+
+Change into the Polaris directory in another terminal:
+
+```bash
+cd $HOME/polaris
+git checkout rollkit_v0.11.0-rc13-celestia-node
+mage start
+```
+
+Congratulations! Your light node is now posting your rollup's data to
+Celestia's Arabica devnet.
