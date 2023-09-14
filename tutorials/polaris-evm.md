@@ -232,7 +232,7 @@ the status by using the
 Your node will also need to be funded with Arabica devnet TIA, which you
 can obtain by
 [retrieving your account address](https://docs.celestia.org/developers/node-tutorial/#get-your-account-address)
-and visiting the [faucet](https://docs.celestia.org/nodes/arabica-devnet/#arabica-devnet-faucet).
+and visiting a [faucet](https://docs.celestia.org/nodes/arabica-devnet/#arabica-devnet-faucet).
 
 ### Start your light node
 
