@@ -422,7 +422,7 @@ Change to the `gm` directory:
 cd gm
 ```
 
-You can learn more about the `gm` directory’s file structure [here](https://docs.ignite.com/v0.27.1/guide/hello#blockchain-directory-structure).
+You can learn more about the `gm` directory’s file structure [here](https://docs.ignite.com/v0.25.2/guide/hello#blockchain-directory-structure).
 Most of our work in this tutorial will happen in the `x` directory.
 
 ### 🗞️ Install Rollkit {#install-rollkit}
