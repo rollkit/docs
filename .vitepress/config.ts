@@ -230,7 +230,7 @@ function sidebarHome() {
       items: [
         { text: 'Overview', link: '/blog/overview'},
         { text: 'Introducing Rollkit', link: '/blog/introducing-rollkit' },
-        { text: 'Sovereign rollups on Bitcoin with Rollkit', link: '/blog/sovereign-rollups-on-bitcoin-with-rollkit' },
+        { text: 'Sovereign rollups on Bitcoin with Rollkit', link: '/blog/sovereign-rollups-on-bitcoin' },
         { text: "Let's Roll - Rollkit's Community Call", link: '/blog/lets-roll-community-call' },
       ]
     }
