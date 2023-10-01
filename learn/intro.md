@@ -65,5 +65,5 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 
 - [Overview](/blog/overview)
 - [Introducing Rollkit](/blog/introducing-rollkit)
-- [Sovereign rollups on Bitcoin with Rollkit](/blog/sovereign-rollups-on-bitcoin-with-rollkit)
+- [Sovereign rollups on Bitcoin with Rollkit](/blog/sovereign-rollups-on-bitcoin)
 - ["Let's Roll - Rollkit's Community Call"](/blog/lets-roll-community-call)
