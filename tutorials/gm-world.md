@@ -310,7 +310,7 @@ this process can be done on any machine of your choosing. We tested out the Devn
 First, run the [`local-celestia-devnet`](https://github.com/rollkit/local-celestia-devnet) by running the following command:
 
 ```bash
-docker run --platform linux/amd64 -p 26657:26657 -p 26658:26658 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc8
+docker run -i -t --platform linux/amd64 -p 26657:26657 -p 26658:26658 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc12
 ```
 
 When passing the `--rollkit.da_config` flag later in the tutorial,
