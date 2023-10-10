@@ -102,7 +102,7 @@ submit blobs and can be set with the following command once your
 local-celestia-devnet is running:
 
 ```bash
-export AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /bridge  auth admin)
+export AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin)
 ```
 
 This will set the local-celestia-devnet bridge node auth token. This
