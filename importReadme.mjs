@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 const filesToImport = [
   {
-    url: 'https://raw.githubusercontent.com/jcstein/rollmint/main/README.md',
+    url: 'https://raw.githubusercontent.com/rollkit/rollkit/main/README.md',
     fileName: 'building-with-rollkit.md',
   },
 ];
