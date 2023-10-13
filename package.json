@@ -2,12 +2,16 @@
   "scripts": {
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "docs:preview": "vitepress preview",
+    "import-readme": "node importReadme.mjs"
   },
   "devDependencies": {
     "i": "^0.3.7",
     "mermaid": "^10.3.0",
     "vitepress": "1.0.0-rc.4",
     "vitepress-plugin-mermaid": "^2.0.13"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
   }
 }
