@@ -21,7 +21,7 @@ By Joseph Al-Chami
 ![Rollkit blog cover](/lets-roll.jpg)
 _Originally published on 8 March 2023_
 
-Last Sunday, we released the first [research implementation](https://rollkit.dev/blog/sovereign-rollups-on-bitcoin-with-rollkit) that allows Rollkit rollups to use Bitcoin for data availability.
+Last Sunday, we released the first [research implementation](https://rollkit.dev/blog/sovereign-rollups-on-bitcoin) that allows Rollkit rollups to use Bitcoin for data availability.
 
 [This announcement](https://twitter.com/RollkitDev/status/1632438374513676288) has sparked a lot of curiosity and excitement in the community. Many developers are starting to imagine what the future of sovereign rollups could look like on Bitcoin and other data availability layers. They’re looking for ways to innovate using this integration, to replicate it on other layer 1 blockchains, to identify challenges and to suggest improvements.
 

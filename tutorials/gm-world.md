@@ -310,7 +310,7 @@ this process can be done on any machine of your choosing. We tested out the Devn
 First, run the [`local-celestia-devnet`](https://github.com/rollkit/local-celestia-devnet) by running the following command:
 
 ```bash
-docker run --platform linux/amd64 -p 26657:26657 -p 26658:26658 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc8
+docker run -i -t --platform linux/amd64 -p 26657:26657 -p 26658:26658 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc12
 ```
 
 When passing the `--rollkit.da_config` flag later in the tutorial,
@@ -319,7 +319,7 @@ write permission is required to submit blobs and can be obtained
 with the following command once your local-celestia-devnet is running:
 
 ```bash
-docker exec $(docker ps -q)  celestia bridge --node.store /bridge  auth admin
+docker exec $(docker ps -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin
 ```
 
 This will give you the local-celestia-devnet bridge node auth token. This
@@ -336,7 +336,7 @@ local network, this will make sure you can post rollup blocks to your Celestia D
 First, set your auth token:
 
 ```bash
-export CELESTIA_NODE_AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /bridge  auth admin)
+export CELESTIA_NODE_AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin)
 ```
 
 Next, check your balance:
@@ -467,7 +467,7 @@ Remember that the following command assumes that there is only one container,
 otherwise you can pass the container name.
 
 ```bash
-export AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /bridge  auth admin)
+export AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin)
 ```
 
 Run the `init-local.sh` script:
