@@ -1,69 +1,129 @@
-# Introduction to Rollkit
+# Rollkit
 
-Welcome to the Rollkit docs. We're happy you made it here!
+A modular framework for rollups, with an ABCI-compatible client interface. For more in-depth information about Rollkit, please visit our [website](https://rollkit.dev).
 
-Rollkit is the open modular framework for sovereign rollups.
+<!-- markdownlint-disable MD013 -->
+[![build-and-test](https://github.com/rollkit/rollkit/actions/workflows/test.yml/badge.svg)](https://github.com/rollkit/rollkit/actions/workflows/test.yml)  
+[![golangci-lint](https://github.com/rollkit/rollkit/actions/workflows/lint.yml/badge.svg)](https://github.com/rollkit/rollkit/actions/workflows/lint.yml)  
+[![Go Report Card](https://goreportcard.com/badge/github.com/rollkit/rollkit)](https://goreportcard.com/report/github.com/rollkit/rollkit)  
+[![codecov](https://codecov.io/gh/rollkit/rollkit/branch/main/graph/badge.svg?token=CWGA4RLDS9)](https://codecov.io/gh/rollkit/rollkit)  
+[![GoDoc](https://godoc.org/github.com/rollkit/rollkit?status.svg)](https://godoc.org/github.com/rollkit/rollkit)
+<!-- markdownlint-enable MD013 -->
 
-Our mission is to empower developers to quickly innovate and create entire new classes of rollups with minimal tradeoffs.
+## Building from source
 
-We're setting the bar high for developers' flexibility and ability to customize rollups however they see fit.
+Requires Go version >= 1.20.
 
-::: tip
-In order to use Rollkit, it's important to have some
-familiarity with Cosmos SDK. You can get up to speed
-on Cosmos SDK by visiting their [official documentation page](https://docs.cosmos.network/main).
+To build:
 
-If you're familiar with Rollkit, you may want to skip to the [tutorials section](/tutorials/gm-world).
-:::
+```sh
+git clone https://github.com/rollkit/rollkit.git
+cd rollkit
+go build -v ./...
+```
 
-## Table of Contents
+## Building with Rollkit
 
-### Introduction
+While Rollkit is a modular framework that aims to be compatible with a wide
+range of data availability layers, settlement layers, and execution
+environments, the most supported development environment is building on Celestia
+as a data availability layer.
 
-- [Introduction to Rollkit](/learn/intro)
-- [About Rollkit](/learn/about)
+### Building on Celestia
 
-### learn
+There are currently 2 ways to build on Celestia:
 
-- [Overview](/learn/overview)
-- [Rollkit stack](/learn/stack)
-- [Transaction flow](/learn/transaction-flow)
-- [Building with Rollkit](/learn/building-with-rollkit)
+1. Using a local development environment with [local-celestia-devnet](https://github.com/rollkit/local-celestia-devnet)
+1. Using the Arabica or Mocha Celestia testnet
 
-#### Rollup Wiki
+#### Compatibility
 
-- [A-Z glossary](/learn/rollup-glossary)
+| network               | rollkit | celestia-node | celestia-app |
+| --------------------- | ------- | ------------- | ------------ |
+| local-celestia-devnet | v0.10.4 | v0.11.0-rc12  | v1.0.0-rc14  |
+| arabica               | v0.10.4 | v0.11.0-rc13  | v1.0.0-rc14  |
 
-### Tutorials
+<!-- markdownlint-disable MD013 -->
+| rollkit/cosmos-sdk                                                                                                                                      | rollkit/cometbft | rollkit                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | -------------------------------------------------------------------------- |
+| [v0.47.3-rollkit-v0.10.4-no-fraud-proofs](https://github.com/rollkit/cosmos-sdk/releases/tag/v0.47.3-rollkit-v0.10.4-no-fraud-proofs)                   | v0.37.2          | [v0.10.4](https://github.com/rollkit/rollkit/releases/tag/v0.10.4)         |
+| [v0.50.0-rc.0-rollkit-v0.11.0-rc1-no-fraud-proofs](https://github.com/rollkit/cosmos-sdk/releases/tag/v0.50.0-rc.0-rollkit-v0.11.0-rc1-no-fraud-proofs) | v0.38.0-rc3      | [v0.11.0-rc1](https://github.com/rollkit/rollkit/releases/tag/v0.11.0-rc1) |
+<!-- markdownlint-enable MD013 -->
 
-- [Overview](/tutorials/overview)
+#### Local development environment
 
-#### Beginner
+The Rollkit v0.10.4 release is compatible with the
+[local-celestia-devnet](https://github.com/rollkit/local-celestia-devnet) [v0.11.0-rc12](https://github.com/rollkit/local-celestia-devnet/releases/tag/v0.11.0-rc12)
+release. This version combination is compatible with celestia-app
+[v1.0.0-rc14](https://github.com/celestiaorg/celestia-app/releases/tag/v1.0.0-rc14)
+and celestia-node
+[v0.11.0-rc12](https://github.com/celestiaorg/celestia-node/releases/tag/v0.11.0-rc8).
 
-- [GM World rollup](/tutorials/gm-world)
-- [GM World frontend](/tutorials/gm-world-frontend)
-- [Recipe Book rollup](/tutorials/recipe-book)
-- [How to restart your rollup](/tutorials/restart-rollup)
+#### Arabica devnet and Mocha testnet
 
-#### Intermediate
+The Rollkit v0.10.4 release is compatible with
+[arabica-10](https://docs.celestia.org/nodes/arabica-devnet/) devnet
+[mocha-4](https://docs.celestia.org/nodes/mocha-testnet/) testnet which are running
+celestia-app
+[v1.0.0-rc14](https://github.com/celestiaorg/celestia-app/releases/tag/v1.0.0-rc14)
+and celestia-node
+[v0.11.0-rc12](https://github.com/celestiaorg/celestia-node/releases/tag/v0.11.0-rc8).
 
-- [Wordle app](/tutorials/wordle)
-- [CosmWasm rollup](/tutorials/cosmwasm)
+#### Cometbft v0.38.x and Cosmos-SDK v0.50.x
 
-#### Advanced
+The Rollkit v0.11.0-rc1 release is compatible with Cometbft v0.38.0-rc3 and Cosmos-SDK
+v0.50.0-rc.0. However, there is no support by ignite for launching a compatible app
+(e.g. gm app) and Rollkit is working on building a gm app for testing this
+release (WIP).
 
-- [Full and sequencer node rollup setup](/tutorials/full-and-sequencer-node)
-- [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
-- [Hyperlane + Celestia tutorial](https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane)
+### Tools
 
-### Guides
+1. Install [golangci-lint](https://golangci-lint.run/usage/install/)
+1. Install [markdownlint](https://github.com/DavidAnson/markdownlint)
+1. Install [hadolint](https://github.com/hadolint/hadolint)
+1. Install [yamllint](https://yamllint.readthedocs.io/en/stable/quickstart.html)
 
-- [How to change speed of block production](/tutorials/block-times)
-- [How to use lazy sequencing (aggregation)](/tutorials/lazy-sequencing)
+## Helpful commands
 
-### Blog
+```sh
+# Run unit tests
+make test
 
-- [Overview](/blog/overview)
-- [Introducing Rollkit](/blog/introducing-rollkit)
-- [Sovereign rollups on Bitcoin with Rollkit](/blog/sovereign-rollups-on-bitcoin)
-- ["Let's Roll - Rollkit's Community Call"](/blog/lets-roll-community-call)
+# Generate protobuf files (requires Docker)
+make proto-gen
+
+# Run linters (requires golangci-lint, markdownlint, hadolint, and yamllint)
+make lint
+
+# Lint protobuf files (requires Docker and buf)
+make proto-lint
+
+```
+
+## Contributing
+
+We welcome your contributions! Everyone is welcome to contribute, whether it's
+in the form of code, documentation, bug reports, feature
+requests, or anything else.
+
+If you're looking for issues to work on, try looking at the
+[good first issue list](https://github.com/rollkit/rollkit/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
+Issues with this tag are suitable for a new external contributor and is a great
+way to find something you can help with!
+
+See
+[the contributing guide](https://github.com/rollkit/rollkit/blob/main/CONTRIBUTING.md)
+for more details.
+
+Please join our
+[Community Discord](https://discord.com/invite/YsnTPcSfWQ)
+to ask questions, discuss your ideas, and connect with other contributors.
+
+## Dependency graph
+
+To see our progress and a possible future of Rollkit visit our [Dependency
+Graph](https://github.com/rollkit/rollkit/blob/main/specs/src/specs/rollkit-dependency-graph.md).
+
+## Code of Conduct
+
+See our Code of Conduct [here](https://docs.celestia.org/community/coc).

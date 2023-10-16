@@ -29,7 +29,7 @@ features:
     icon: 📈
   - title: Flexible
     details: Freedom to configure the execution environment and other components
-    link: /learn/building-with-rollkit
+    link: /learn/intro
     icon: ⚙️
   - title: Easy to deploy
     details: Deploy a rollup with only a few command lines
