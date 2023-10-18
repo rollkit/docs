@@ -342,7 +342,7 @@ export CELESTIA_NODE_AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge -
 Next, check your balance:
 
 ```bash
-docker exec $(docker ps -q) celestia rpc state Balance --auth $CELESTIA_NODE_AUTH_TOKEN
+docker exec $(docker ps -q) celestia state balance --token $CELESTIA_NODE_AUTH_TOKEN
 ```
 <!-- markdownlint-disable MD033 -->
 You will see something like this, denoting your balance in TIA x 10<sup>-6</sup>:
@@ -350,12 +350,10 @@ You will see something like this, denoting your balance in TIA x 10<sup>-6</sup>
 
 ```bash
 {
-  "jsonrpc": "2.0",
   "result": {
     "denom": "utia",
-    "amount": "999995000000000"
-  },
-  "id": 1
+    "amount": "999994999970000"
+  }
 }
 ```
 
