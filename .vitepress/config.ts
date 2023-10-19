@@ -157,6 +157,7 @@ function sidebarHome() {
       items: [
         { text: 'Introduction to Rollkit', link: '/learn/intro'},
         { text: 'About Rollkit', link: '/learn/about' },
+        { text: 'Readme', link: '/learn/readme' },
       ]
     },
     {
@@ -166,7 +167,6 @@ function sidebarHome() {
         { text: 'Overview', link: '/learn/overview'},
         { text: 'Rollkit stack', link: '/learn/stack' },
         { text: 'Transaction flow', link: '/learn/transaction-flow' },
-        { text: 'Building with Rollkit', link: '/learn/building-with-rollkit'},
         {
           text: 'Rollup Wiki',
           collapsed: true,
