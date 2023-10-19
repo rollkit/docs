@@ -107,12 +107,6 @@ chainRecords
       .map((chainRecord) => {
 ```
 
-In `configs/defaults.ts` change `defaultChainName` to:
-
-```tsx
-export const defaultChainName = 'gmrollup';
-```
-
 Now you're ready to see only the chains you've selected, but first, we need
 to set up the config for `gmrollup`!
 
@@ -273,11 +267,9 @@ cd $HOME && cd gm-world
 yarn upgrade-interactive --latest
 ```
 
-Select `@chain-registry/types` by using arrow keys and the spacebar
-to select it. Do the same with `@cosmos-kit/core`, `@cosmos-kit
-cosmostation`, `@cosmos-kit/keplr`, `@cosmos-kit/leap`,
-`@cosmos-kit/react`, `@chain-registry/cosmostation` and
-`chain-registry`.
+Use arrow keys and the spacebar to select it`@cosmos-kit/core`,
+`@cosmos-kit/cosmostation`, `@cosmos-kit/keplr`, `@cosmos-kit/leap`
+and `@cosmos-kit/react`.
 
 Now use enter to upgrade the dependencies!
 

@@ -310,7 +310,7 @@ this process can be done on any machine of your choosing. We tested out the Devn
 First, run the [`local-celestia-devnet`](https://github.com/rollkit/local-celestia-devnet) by running the following command:
 
 ```bash
-docker run -i -t --platform linux/amd64 -p 26657:26657 -p 26658:26658 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.11.0-rc12
+docker run -i -t --platform linux/amd64 -p 26657:26657 -p 26658:26658 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.11.0
 ```
 
 When passing the `--rollkit.da_config` flag later in the tutorial,
@@ -342,7 +342,7 @@ export CELESTIA_NODE_AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge -
 Next, check your balance:
 
 ```bash
-docker exec $(docker ps -q) celestia rpc state Balance --auth $CELESTIA_NODE_AUTH_TOKEN
+docker exec $(docker ps -q) celestia state balance --token $CELESTIA_NODE_AUTH_TOKEN
 ```
 <!-- markdownlint-disable MD033 -->
 You will see something like this, denoting your balance in TIA x 10<sup>-6</sup>:
@@ -350,12 +350,10 @@ You will see something like this, denoting your balance in TIA x 10<sup>-6</sup>
 
 ```bash
 {
-  "jsonrpc": "2.0",
   "result": {
     "denom": "utia",
-    "amount": "999995000000000"
-  },
-  "id": 1
+    "amount": "999994999970000"
+  }
 }
 ```
 
@@ -433,14 +431,14 @@ from inside the `gm` directory:
 ::: code-group
 
 ```bash [local-celestia-devnet]
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.2-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.5-no-fraud-proofs
 go mod edit -replace github.com/gogo/protobuf=github.com/regen-network/protobuf@v1.3.3-alpha.regen.1
 go mod tidy
 go mod download
 ```
 
 ```bash [Arabica Devnet]
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.2-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.5-no-fraud-proofs
 go mod edit -replace github.com/gogo/protobuf=github.com/regen-network/protobuf@v1.3.3-alpha.regen.1
 go mod tidy
 go mod download
