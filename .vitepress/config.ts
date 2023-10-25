@@ -15,6 +15,9 @@ export default withMermaid({
   cleanUrls: true,
   ignoreDeadLinks: true,
   base: base,
+  sitemap: {
+    hostname: "https://rollkit.dev",
+  },
   
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
