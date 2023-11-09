@@ -42,7 +42,7 @@ To get started, clone the Polaris repository and switch to the Rollkit branch:
 ```bash
 cd $HOME
 git clone https://github.com/berachain/polaris.git
-cd polaris && git checkout rollkit-main
+cd polaris && git checkout 602ecc9
 ```
 
 ## Install Foundry
