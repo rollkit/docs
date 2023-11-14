@@ -86,6 +86,9 @@ export default withMermaid({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: nav(),
+    outline: {
+      level: "deep",
+    },
     
     footer: {
       message: 'Released under the APACHE-2.0 License',
