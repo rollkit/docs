@@ -329,7 +329,7 @@ bash init.sh
 Set variables for starting the chain:
 
 ```bash
-export NAMESPACE_ID=$(openssl rand -hex 8)
+export NAMESPACE=$(openssl rand -hex 8)
 ```
 
 <!-- export DA_HEIGHT=$(bitcoin-core.cli -regtest -rpcport=18332 -rpcuser=rpcuser rpcpassword=rpcpass getblockcount) -->
@@ -337,7 +337,7 @@ export NAMESPACE_ID=$(openssl rand -hex 8)
 Start the chain:
 
 ```bash
-ethermintd start --rollkit.aggregator true --rollkit.da_layer bitcoin --rollkit.da_config='{"host":"127.0.0.1:18332","user":"rpcuser","pass":"rpcpass","http_post_mode":true,"disable_tls":true}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height 1
+ethermintd start --rollkit.aggregator true --rollkit.da_layer bitcoin --rollkit.da_config='{"host":"127.0.0.1:18332","user":"rpcuser","pass":"rpcpass","http_post_mode":true,"disable_tls":true}' --rollkit.namespace_id $NAMESPACE --rollkit.da_start_height 1
 ```
 
 Congratulations! Now that you have your Ethermint and Bitcoin rollup running, you're ready to deploy some smart contracts to the EVM!

@@ -11,8 +11,8 @@ STAKING_AMOUNT="1000000000stake"
 
 # use a custom namespace ID for your chain
 # this example uses "rollkit" in hexadecimal
-NAMESPACE_ID=000000726f6c6c6b6974
-echo $NAMESPACE_ID
+NAMESPACE=000000726f6c6c6b6974
+echo $NAMESPACE
 
 # query the DA Layer start height, in this case we are querying
 # an RPC endpoint provided by Celestia Labs. The RPC endpoint is
@@ -51,4 +51,4 @@ gmd collect-gentxs
 AUTH_TOKEN=$(celestia light auth write)
 
 # start the chain
-gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26658","timeout":60000000000,"fee":600000,"gas_limit":6000000,"auth_token":"'$AUTH_TOKEN'"}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT --rollkit.lazy_aggregator
+gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26658","timeout":60000000000,"fee":600000,"gas_limit":6000000,"auth_token":"'$AUTH_TOKEN'"}' --rollkit.namespace_id $NAMESPACE --rollkit.da_start_height $DA_BLOCK_HEIGHT --rollkit.lazy_aggregator
