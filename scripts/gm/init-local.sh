@@ -77,6 +77,13 @@ gmd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
 # collect genesis transactions
 gmd collect-gentxs
 
+
+# copy centralized sequencer address into genesis.json
+# Note: validator and sequencer are used interchangeably here
+ADDRESS=$(jq -r '.address' ~/.gm/config/priv_validator_key.json)
+PUB_KEY=$(jq -r '.pub_key' ~/.gm/config/priv_validator_key.json)
+jq --argjson pubKey "$PUB_KEY" '. + {"validators": [{"address": "'$ADDRESS'", "pub_key": $pubKey, "power": "1000", "name": "Rollkit Sequencer"}]}' ~/.gm/config/genesis.json > temp.json && mv temp.json ~/.gm/config/genesis.json
+
 # start the chain
 gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26658","timeout":60000000000,"fee":600000,"gas_limit":6000000,"auth_token":"'$AUTH_TOKEN'"}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --p2p.laddr "0.0.0.0:36656"
 
