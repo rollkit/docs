@@ -21,7 +21,7 @@ in [Part One](./gm-world#part-one).
 
 ## Getting started
 
-For running a full node, you will need to update `NAMESPACE_ID`,
+For running a full node, you will need to update `NAMESPACE`,
 `DA_HEIGHT`, and `P2P_ID` manually. You can retrieve
 namespace and height from your terminal output
 from when you ran the `init-local.sh` script.
@@ -37,7 +37,7 @@ ______         _  _  _     _  _
 \_| \_| \___/ |_||_||_|\_\|_| \__|
 
 
- Your NAMESPACE_ID is 31e2c345c895c3577bea // [!code focus]
+ Your NAMESPACE is 31e2c345c895c3577bea // [!code focus]
 
  Your DA_BLOCK_HEIGHT is 5 // [!code focus]
 ```
@@ -59,8 +59,8 @@ Next, you can open the script and set your namespace and DA height from above:
 ```sh
 DA_BLOCK_HEIGHT=your-block-height // [!code --]
 DA_BLOCK_HEIGHT=5 // [!code ++]
-NAMESPACE_ID="your-namespace" // [!code --]
-NAMESPACE_ID="31e2c345c895c3577bea" // [!code ++]
+NAMESPACE="your-namespace" // [!code --]
+NAMESPACE="31e2c345c895c3577bea" // [!code ++]
 P2P_ID="your-p2p-id"
 ```
 
@@ -89,7 +89,7 @@ for your script to use:
 
 ```bash
 DA_BLOCK_HEIGHT=5
-NAMESPACE_ID="31e2c345c895c3577bea"
+NAMESPACE="31e2c345c895c3577bea"
 P2P_ID="your-p2p-id" // [!code --]
 P2P_ID="12D3KooWCmfJLkQjZUArWpNUDJSezeFiLYzCULXe1dEKY6ZpXZpk" // [!code ++]
 ```
