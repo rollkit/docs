@@ -22,9 +22,9 @@ to allow blockchains to communicate with one another.
 
 The development journey for your rollup will look something like this:
 
-1. [Part One](#part-one): Run your rollup and post DA to a local devnet, and make sure everything works as expected
-2. [Part Two](#part-two): Deploy the rollup, posting to a DA testnet. Confirm again that everything is functioning properly
-3. Coming soon: Deploy your rollup to the DA layer's mainnet
+1. [Part one](#part-one): Run your rollup and post DA to a local devnet, and make sure everything works as expected
+2. [Part two](#part-two): Deploy the rollup, posting to a DA testnet. Confirm again that everything is functioning properly
+3. [Part three](#part-three): Deploy your rollup to the DA layer's mainnet
 
 ::: tip
 This tutorial will explore developing with Rollkit,
@@ -65,8 +65,8 @@ to say GM, Gm, or gm. You can think of "GM" as the new version of
 * [A Celestia Light Node](https://docs.celestia.org/nodes/light-node)
 
 ::: tip
-If you are only planning to complete [Part One](#part-one),
-feel free to skip to the [Part Two](#part-two).
+If you are only planning to complete [part one](#part-one),
+feel free to skip to the [part two](#part-two).
 
 Be sure to use the same testnet installation instructions through this
 entire tutorial.
@@ -164,8 +164,8 @@ Is on Gitpod:  false
 ## macOS setup
 
 ::: tip
-If you are only planning to complete [Part One](#part-one),
-feel free to skip to the [Part Two](#part-two).
+If you are only planning to complete [part one](#part-one),
+feel free to skip to the [part two](#part-two).
 
 Be sure to use the same testnet installation instructions through this
 entire tutorial.
@@ -283,18 +283,18 @@ wget is an Internet file retriever:
 brew install wget
 ```
 
-## Part One
+## Part one
 
 This part of the tutorial will teach developers how to easily run a local data availability (DA) devnet on their own machine (or in the cloud).
 **Running a local devnet for DA to test your rollup is the recommended first step before deploying to a testnet.**
 This eliminates the need for testnet tokens and deploying to a testnet until you are ready.
 
 ::: warning
-Part One of the tutorial has only been tested on an AMD machine running Ubuntu 22.10 x64.
+Part one of the tutorial has only been tested on an AMD machine running Ubuntu 22.10 x64.
 :::
 
 Whether you're a developer simply testing things on your laptop or using a virtual machine in the cloud,
-this process can be done on any machine of your choosing. We tested out the Devnet section (Part One) on a machine with the following specs:
+this process can be done on any machine of your choosing. We tested out the Devnet section (part one) on a machine with the following specs:
 
 * Memory: 1 GB RAM
 * CPU: Single Core AMD
@@ -626,63 +626,7 @@ pagination:
   total: "0"
 ```
 
-## Part Two
-
-### 🛑 Stopping our local devnet rollup {#stop-your-local-devnet}
-
-First, you will need to stop your current devnet version of the gm rollup.
-Follow instructions to stop the container below.
-
-Find the Container ID that is running by using the command:
-
-```bash
-docker ps
-```
-
-Then stop the container:
-
-```bash
-docker stop CONTAINER_ID_or_NAME
-```
-
-#### 🟢 Restarting your container {#restart-your-container}
-
-Optionally, if you'd like to restart your container, you can use the `docker start` command followed by the container ID or name.
-
-You can obtain the container ID or name of a stopped container using the `docker ps -a` command, which will list all containers (running and stopped) and their details. For example:
-
-```bash
-docker ps -a
-```
-
-This will give you an output similar to this:
-
-```bash
-CONTAINER ID   IMAGE                                            COMMAND            CREATED         STATUS         PORTS                                                                                                                         NAMES
-d9af68de54e4   ghcr.io/rollkit/local-celestia-devnet:v0.9.1   "/entrypoint.sh"   5 minutes ago   Up 2 minutes   1317/tcp, 9090/tcp, 0.0.0.0:26657->26657/tcp, :::26657->26657/tcp, 26656/tcp, 0.0.0.0:26659->26659/tcp, :::26659->26659/tcp   musing_matsumoto
-```
-
-In this example, you can restart the container using either its container ID (`d9af68de54e4`) or name (`musing_matsumoto`). To restart the container, run:
-
-```bash
-docker start d9af68de54e4
-```
-
-or
-
-```bash
-docker start musing_matsumoto
-```
-
-#### 🗑️ Removing your container {#removing-your-container}
-
-If you ever would like to remove the container, you can use the `docker rm` command followed by the container ID or name.
-
-Here is an example:
-
-```bash
-docker rm CONTAINER_ID_or_NAME
-```
+## Part two
 
 ### 🪶 Run a Celestia light node {#run-celestia-node}
 
@@ -899,6 +843,42 @@ Congratulations 🎉 you've successfully built your first rollup and queried it!
 
 If you're interested in looking at the demo repository
 for this tutorial, you can at [https://github.com/rollkit/gm](https://github.com/rollkit/gm).
+
+## Part three
+
+In this section, we will cover how to deploy to Celestia's Mainnet Beta.
+
+For this portion, you will need to stop the rollup that you have
+running from above using `Control + C` in the terminal.
+
+1. Start your Celestia light node with state access
+(using the `--core.ip string` flag), this time on `celestia`,
+which is the chain ID for Mainnet Beta.
+
+    ```bash
+    celestia light start --core.ip rpc.celestia.pops.one
+    ```
+
+2. Download the script for deploying to Celestia's Mainnet Beta:
+
+    <!-- markdownlint-disable MD013 -->
+    ```bash
+    # From inside the `gm` directory
+    wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-mainnet.sh
+    ```
+    <!-- markdownlint-enable MD013 -->
+
+3. Ensure that the account for your light node is funded.
+
+4. Run the `init-mainnet.sh` script:
+
+    ```bash
+    bash init-mainnet.sh
+    ```
+
+5. Watch as your rollup posts blocks to Celestia!
+
+To deploy to a different DA layer, modify the script to fit your architecture.
 
 ## Next steps
 
