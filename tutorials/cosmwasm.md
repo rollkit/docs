@@ -36,17 +36,6 @@ How to write the Rust smart contract for Nameservice is outside the scope of
 this tutorial. In the future we will add more tutorials for writing CosmWasm
 smart contracts for Celestia.
 
-## 📋 Table of contents for this tutorial {#toc}
-
-The following tutorial is broken down into the following
-sections:
-
-::: details Table of contents
-
-[[toc]]
-
-:::
-
 ## 💻 CosmWasm dependency installations {#dependencies}
 
 ### 🛠️ Environment setup {#environment}
