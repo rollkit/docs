@@ -83,7 +83,7 @@ gmd collect-gentxs
 AUTH_TOKEN=$(celestia light auth write)
 
 # create a restart-local.sh file to restart the chain later
-rm restart-local.sh
+[ -f restart-local.sh ] && rm restart-local.sh
 echo "DA_BLOCK_HEIGHT=$DA_BLOCK_HEIGHT" >> restart-local.sh
 echo "NAMESPACE_ID=$NAMESPACE" >> restart-local.sh
 echo "AUTH_TOKEN=$AUTH_TOKEN" >> restart-local.sh
