@@ -14,17 +14,6 @@ In the end, you'll have something that looks like this
 [demo](https://rollkit-frontend.vercel.app)
 ([repo](https://github.com/jcstein/rollkit-frontend)).
 
-## 📋 Table of contents for this tutorial {#toc}
-
-The following tutorial is broken down into the following
-sections:
-
-::: details Table of contents
-
-[[toc]]
-
-:::
-
 ## Getting started
 
 In order to complete this tutorial you will need to have completed

@@ -40,17 +40,6 @@ The script for this tutorial is built for Celestia's
 [Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
 :::
 
-## 📋 Table of contents for this tutorial {#toc}
-
-The following tutorial is broken down into the following
-sections:
-
-::: details Table of contents
-
-[[toc]]
-
-:::
-
 ## 🤔 What is GM? {#what-is-gm}
 
 GM means good morning. It's GM o'clock somewhere, so there's never a bad time

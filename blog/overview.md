@@ -6,7 +6,7 @@ description: This page provides an overview of all the blog posts. It serves as 
 
 Welcome to our blog! Here, you'll find a variety of articles on a range of topics. Use this overview to navigate through our content.
 
-## Table of Contents
+## Table of contents
 
 - [Introducing Rollkit](/blog/introducing-rollkit)
 - [Sovereign rollups on Bitcoin with Rollkit](/blog/sovereign-rollups-on-bitcoin)

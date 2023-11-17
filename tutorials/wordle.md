@@ -26,17 +26,6 @@ The script for this tutorial is built for Celestia's
 [Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
 :::
 
-## 📋 Table of contents for this tutorial {#toc}
-
-The following tutorial is broken down into the following
-sections:
-
-::: details Table of contents
-
-[[toc]]
-
-:::
-
 ## 💻 Pre-requisites {#prerequisites}
 
 Given this tutorial is targeted for developers who are experienced
