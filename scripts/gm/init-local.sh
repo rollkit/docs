@@ -10,7 +10,7 @@ TOKEN_AMOUNT="10000000000000000000000000stake"
 STAKING_AMOUNT="1000000000stake"
 
 # create a random Namespace ID for your rollup to post blocks to
-NAMESPACE=$(openssl rand -hex 10)
+NAMESPACE=$(openssl rand -hex 8)
 
 # query the DA Layer start height, in this case we are querying
 # our local devnet at port 26657, the RPC. The RPC endpoint is

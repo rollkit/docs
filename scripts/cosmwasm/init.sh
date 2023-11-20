@@ -10,7 +10,7 @@ CHAINFLAG="--chain-id ${CHAIN_ID}"
 TXFLAG="--chain-id ${CHAIN_ID} --gas-prices 0uwasm --gas auto --gas-adjustment 1.3"
 
 # create a random Namespace ID for your rollup to post blocks to
-NAMESPACE=$(openssl rand -hex 10)
+NAMESPACE=$(openssl rand -hex 8)
 echo $NAMESPACE
 
 # query the DA Layer start height, in this case we are querying
