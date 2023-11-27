@@ -4,17 +4,6 @@ This page will cover the main components of Rollkit.
 
 Rollup sequencer nodes collect transactions from users, aggregate them into blocks, and post the blocks onto a data availability (DA) layer (such as Celestia) to be ordered and finalized. Full nodes execute and verify rollup blocks, and in the case of an optimistic rollup, propagate fraud proofs when needed. Light clients will receive headers, verify proofs (fraud, zk, etc), and authenticate trust-minimized queries about the state.
 
-## 📋 Table of contents for this page {#toc}
-
-The following page is broken down into the following
-sections:
-
-::: details Table of contents
-
-[[toc]]
-
-:::
-
 ## Application structure
 
 ```mermaid

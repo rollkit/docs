@@ -17,22 +17,13 @@ This tutorial will explore developing with Rollkit,
 which is still in Alpha stage. If you run into bugs, please write a Github
 [Issue ticket](https://github.com/rollkit/docs/issues/new)
 or let us know in our [Telegram](https://t.me/rollkit).
+
+Learn how to [restart your rollup](restart-rollup.md).
 :::
 
 ::: warning
 The script for this tutorial is built for Celestia's
 [Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
-:::
-
-## 📋 Table of contents for this tutorial {#toc}
-
-The following tutorial is broken down into the following
-sections:
-
-::: details Table of contents
-
-[[toc]]
-
 :::
 
 ## 💻 Pre-requisites {#prerequisites}

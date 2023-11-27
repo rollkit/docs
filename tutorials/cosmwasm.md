@@ -7,20 +7,18 @@ exploring how to integrate CosmWasm with Celestia's
 [data availability layer](https://docs.celestia.org/concepts/how-celestia-works/data-availability-layer)
 using Rollkit.
 
-::: warning
-This tutorial is being updated.
-:::
-
 ::: tip
 This tutorial will explore developing with Rollkit,
 which is still in Alpha stage. If you run into bugs, please write a Github
 [Issue ticket](https://github.com/rollkit/docs/issues/new)
 or let us know in our [Telegram](https://t.me/rollkit).
+
+Learn how to [restart your rollup](restart-rollup.md).
 :::
 
 ::: warning
 The script for this tutorial is built for Celestia's
-[Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
+[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet).
 :::
 
 You can learn more about CosmWasm [here](https://docs.cosmwasm.com/docs/).
@@ -34,17 +32,6 @@ How to write the Rust smart contract for Nameservice is outside the scope of
 this tutorial. In the future we will add more tutorials for writing CosmWasm
 smart contracts for Celestia.
 
-## 📋 Table of contents for this tutorial {#toc}
-
-The following tutorial is broken down into the following
-sections:
-
-::: details Table of contents
-
-[[toc]]
-
-:::
-
 ## 💻 CosmWasm dependency installations {#dependencies}
 
 ### 🛠️ Environment setup {#environment}
@@ -55,7 +42,7 @@ tools. You can follow the guide on installing them
 
 ### 🏃 Golang dependency {#install-golang}
 
-The Golang version used for this tutorial is v1.18+
+The Golang version used for this tutorial is v1.19+
 
 You can install Golang
 by following our tutorial [here](https://docs.celestia.org/nodes/environment#install-golang).
@@ -108,10 +95,11 @@ Your output should look similar to below:
 info: using existing install for 'stable-aarch64-apple-darwin'
 info: default toolchain set to 'stable-aarch64-apple-darwin'
 
-  stable-aarch64-apple-darwin unchanged - rustc 1.65.0 (897e37553 2022-11-02)
-  
-cargo 1.65.0 (4bc8f24d3 2022-10-20)
+  stable-aarch64-apple-darwin unchanged - rustc 1.74.0 (79e9716c9 2023-11-13)
+
+cargo 1.74.0 (ecb9851af 2023-10-18)
 aarch64-apple-darwin
+wasm32-unknown-unknown
 info: downloading component 'rust-std' for 'wasm32-unknown-unknown'
 info: installing component 'rust-std' for 'wasm32-unknown-unknown'
 ```
@@ -131,41 +119,23 @@ Here, we are going to pull down the `wasmd` repository and replace CometBFT
 with Rollkit. Rollkit is a drop-in replacement for CometBFT that allows
 Cosmos-SDK applications to connect to Celestia's data availability network.
 
-::: code-group
-
-```bash [local-celestia-devnet]
+```bash
 git clone https://github.com/CosmWasm/wasmd.git
 cd wasmd
-git fetch --tags
-git checkout v0.27.0
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.45.16-rollkit-v0.9.0-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013001-2968c8b8b121
+git checkout tags/v0.45.0
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.3-rollkit-v0.10.5-no-fraud-proofs
+go mod edit -replace github.com/gogo/protobuf=github.com/regen-network/protobuf@v1.3.3-alpha.regen.1
 go mod tidy -compat=1.17
 go mod download
 make install
 ```
-
-```bash [Arabica Devnet]
-git clone https://github.com/CosmWasm/wasmd.git
-cd wasmd
-git fetch --tags
-git checkout v0.27.0
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.45.16-rollkit-v0.9.0-no-fraud-proofs
-go mod edit -replace github.com/tendermint/tendermint=github.com/rollkit/cometbft@v0.0.0-20230524013001-2968c8b8b121
-go mod tidy -compat=1.17
-go mod download
-make install
-```
-
-:::
 
 ### ✨ Celestia node {#celestia-node}
 
 You will need a light node running with test tokens on
-[Blockspace race testnet](https://docs.celestia.org/nodes/blockspace-race) in order
-to complete this tutorial. Please complete the tutorial
-[here](https://docs.celestia.org/developers/node-tutorial),
-or start up your node.
+[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet) in order
+to complete this tutorial. Complete [the tutorial](https://docs.celestia.org/developers/node-tutorial)
+and start up your node.
 
 ## 🌌 Setting up your environment for CosmWasm on Celestia {#setting-up-environment-on-celestia}
 
@@ -272,7 +242,6 @@ This will place the optimized Wasm bytecode at `artifacts/cw_nameservice.wasm`.
 Let's now deploy our smart contract!
 
 Run the following in the `~/cw-contracts/contracts/nameservice` directory:
-
 
 ::: code-group
 

@@ -9,8 +9,8 @@ TOKEN_AMOUNT="10000000000000000000000000stake"
 STAKING_AMOUNT="1000000000stake"
 
 # create a random Namespace ID for your rollup to post blocks to
-NAMESPACE_ID=$(openssl rand -hex 10)
-echo $NAMESPACE_ID
+NAMESPACE=$(openssl rand -hex 8)
+echo $NAMESPACE
 
 # query the DA Layer start height, in this case we are querying
 # an RPC endpoint provided by Celestia Labs. The RPC endpoint is
@@ -53,4 +53,4 @@ jq --argjson pubKey "$PUB_KEY" '. + {"validators": [{"address": "'$ADDRESS'", "p
 export AUTH_TOKEN=$(celestia light auth write --p2p.network arabica)
 
 # start the chain
-recipesd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26658","timeout":60000000000,"fee":600000,"gas_limit":6000000,"auth_token":"'$AUTH_TOKEN'"}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT
+recipesd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26658","timeout":60000000000,"fee":600000,"gas_limit":6000000,"auth_token":"'$AUTH_TOKEN'"}' --rollkit.namespace_id $NAMESPACE --rollkit.da_start_height $DA_BLOCK_HEIGHT

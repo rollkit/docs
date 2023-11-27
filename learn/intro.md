@@ -16,7 +16,7 @@ on Cosmos SDK by visiting their [official documentation page](https://docs.cosmo
 If you're familiar with Rollkit, you may want to skip to the [tutorials section](/tutorials/gm-world).
 :::
 
-## Table of Contents
+## Table of contents
 
 ### Introduction
 
