@@ -49,6 +49,12 @@ wasmd genesis gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-bac
 # collect gentxs
 wasmd genesis collect-gentxs
 
+# copy centralized sequencer address into genesis.json
+# Note: validator and sequencer are used interchangeably here
+ADDRESS=$(jq -r '.address' ~/.wasm/config/priv_validator_key.json)
+PUB_KEY=$(jq -r '.pub_key' ~/.wasm/config/priv_validator_key.json)
+jq --argjson pubKey "$PUB_KEY" '. + {"validators": [{"address": "'$ADDRESS'", "pub_key": $pubKey, "power": "1000", "name": "Rollkit Sequencer"}]}' ~/.wasm/config/genesis.json > temp.json && mv temp.json ~/.wasm/config/genesis.json
+
 # generate an authorization token for the light client using the celestia binary
 # this is for Arabica, if using another network, change the network name
 export AUTH_TOKEN=$(celestia light auth write --p2p.network mocha)
