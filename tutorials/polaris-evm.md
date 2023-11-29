@@ -38,7 +38,7 @@ To get started, clone the Polaris repository and switch to the Rollkit branch:
 ```bash
 cd $HOME
 git clone https://github.com/berachain/polaris.git
-cd polaris && git checkout rollkit-main
+cd polaris && git checkout rollkit-stable
 ```
 
 ## Install Foundry
@@ -248,7 +248,7 @@ celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 First, ensure you're on the correct branch of Polaris:
 
 ```bash
-cd $HOME/polaris && git checkout rollkit-main
+cd $HOME/polaris && git checkout rollkit-stable
 ```
 
 Before starting your rollup, you'll want to make changes in `$HOME/polaris/e2e/testapp/entrypoint.sh`.
