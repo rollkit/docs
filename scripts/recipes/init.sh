@@ -47,7 +47,7 @@ ADDRESS=$(jq -r '.address' ~/.recipes/config/priv_validator_key.json)
 PUB_KEY=$(jq -r '.pub_key' ~/.recipes/config/priv_validator_key.json)
 jq --argjson pubKey "$PUB_KEY" '. + {"validators": [{"address": "'$ADDRESS'", "pub_key": $pubKey, "power": "1000", "name": "Rollkit Sequencer"}]}' ~/.recipes/config/genesis.json > temp.json && mv temp.json ~/.recipes/config/genesis.json
 
-# export the Celestia light node's auth token to allow you to submit
+# export the Celestia Light node's auth token to allow you to submit
 # PayForBlobs to Celestia's data availability network
 # this is for Arabica, if using another network, change the network name
 export AUTH_TOKEN=$(celestia light auth write --p2p.network arabica)
