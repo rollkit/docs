@@ -77,12 +77,6 @@ gmd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
 # collect genesis transactions
 gmd collect-gentxs
 
-# copy centralized sequencer address into genesis.json
-# Note: validator and sequencer are used interchangeably here
-ADDRESS=$(jq -r '.address' ~/.gm/config/priv_validator_key.json)
-PUB_KEY=$(jq -r '.pub_key' ~/.gm/config/priv_validator_key.json)
-jq --argjson pubKey "$PUB_KEY" '. + {"validators": [{"address": "'$ADDRESS'", "pub_key": $pubKey, "power": "1000", "name": "Rollkit Sequencer"}]}' ~/.gm/config/genesis.json > temp.json && mv temp.json ~/.gm/config/genesis.json
-
 # export the Celestia light node's auth token to allow you to submit
 # PayForBlobs to Celestia's data availability network
 # this is for Arabica, if using another network, change the network name
