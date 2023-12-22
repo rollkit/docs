@@ -17,21 +17,21 @@ that best suit your needs.
 In this section, you'll find:
 
 * Beginner
-  * [GM World rollup](/tutorials/gm-world)
-  * [GM World frontend](/tutorials/gm-world-frontend)
-  * [Recipe Book rollup](/tutorials/recipe-book)
-  * [How to restart your rollup](/tutorials/restart-rollup)
+  * [GM World rollup](/tutorials/gm-world.md)
+  * [GM World frontend](/tutorials/gm-world-frontend.md)
+  * [Recipe Book rollup](/tutorials/recipe-book.md)
+  * [How to restart your rollup](/tutorials/restart-rollup.md)
 * Intermediate
-  * [Wordle app](/tutorials/wordle)
-  * [CosmWasm rollup](/tutorials/cosmwasm)
-  * [Polaris EVM rollup](/tutorials/polaris-evm)
+  * [Wordle app](/tutorials/wordle.md)
+  * [CosmWasm rollup](/tutorials/cosmwasm.md)
+  * [Polaris EVM rollup](/tutorials/polaris-evm.md)
 * Advanced
-  * [Full and sequencer node rollup setup](/tutorials/full-and-sequencer-node)
+  * [Full and sequencer node rollup setup](/tutorials/full-and-sequencer-node.md)
   * [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
-  * [Hyperlane + Celestia tutorial](https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane)
+  * [Hyperlane + Celestia tutorial](https://docs.hyperlane.xyz/docs/deploy-hyperlane)
 * Guides
-  * [How to change speed of block production](/tutorials/block-times)
-  * [How to use lazy sequencing (aggregation)](/tutorials/lazy-sequencing)
+  * [How to change speed of block production](/tutorials/block-times.md)
+  * [How to use lazy sequencing (aggregation)](/tutorials/lazy-sequencing.md)
 
 ## 💻 Support {#support}
 
