@@ -310,7 +310,7 @@ write permission is required to submit blobs and can be obtained
 with the following command once your local-celestia-devnet is running:
 
 ```bash
-docker exec $(docker ps -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin
+docker exec $(docker ps -q)  celestia-da bridge --node.store /home/celestia/bridge/ auth admin
 ```
 
 This will give you the local-celestia-devnet bridge node auth token. This
