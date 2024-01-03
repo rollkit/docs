@@ -9,9 +9,6 @@ CHAINFLAG="--chain-id ${CHAIN_ID}"
 TOKEN_AMOUNT="10000000000000000000000000stake"
 STAKING_AMOUNT="1000000000stake"
 
-# create a random Namespace ID for your rollup to post blocks to
-NAMESPACE=$(openssl rand -hex 8)
-
 # query the DA Layer start height, in this case we are querying
 # our local devnet at port 26657, the RPC. The RPC endpoint is
 # to allow users to interact with Celestia's nodes by querying
@@ -52,7 +49,7 @@ cat <<'EOF'
 EOF
 
 # echo variables for the chain
-echo -e "\n\n\n\n\n Your NAMESPACE is $NAMESPACE \n\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n\n\n\n\n"
+echo -e "\n\n\n\n\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n\n\n\n\n"
 
 # build the gm chain with Rollkit
 ignite chain build
@@ -68,36 +65,29 @@ gmd keys add $KEY_NAME --keyring-backend test
 gmd keys add $KEY_2_NAME --keyring-backend test
 
 # add these as genesis accounts
-gmd add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
-gmd add-genesis-account $KEY_2_NAME $TOKEN_AMOUNT --keyring-backend test
+gmd genesis add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
+gmd genesis add-genesis-account $KEY_2_NAME $TOKEN_AMOUNT --keyring-backend test
 
 # set the staking amounts in the genesis transaction
-gmd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
+gmd genesis gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
 
 # collect genesis transactions
-gmd collect-gentxs
+gmd genesis collect-gentxs
 
 # copy centralized sequencer address into genesis.json
 # Note: validator and sequencer are used interchangeably here
 ADDRESS=$(jq -r '.address' ~/.gm/config/priv_validator_key.json)
 PUB_KEY=$(jq -r '.pub_key' ~/.gm/config/priv_validator_key.json)
-jq --argjson pubKey "$PUB_KEY" '. + {"validators": [{"address": "'$ADDRESS'", "pub_key": $pubKey, "power": "1000", "name": "Rollkit Sequencer"}]}' ~/.gm/config/genesis.json > temp.json && mv temp.json ~/.gm/config/genesis.json
-
-# export the Celestia light node's auth token to allow you to submit
-# PayForBlobs to Celestia's data availability network
-# this is for Arabica, if using another network, change the network name
-AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin)
+jq --argjson pubKey "$PUB_KEY" '.consensus["validators"]=[{"address": "'$ADDRESS'", "pub_key": $pubKey, "power": "1000", "name": "Rollkit Sequencer"}]' ~/.gm/config/genesis.json > temp.json && mv temp.json ~/.gm/config/genesis.json
 
 # create a restart-local.sh file to restart the chain later
 [ -f restart-local.sh ] && rm restart-local.sh
 echo "DA_BLOCK_HEIGHT=$DA_BLOCK_HEIGHT" >> restart-local.sh
-echo "NAMESPACE=$NAMESPACE" >> restart-local.sh
-echo "AUTH_TOKEN=$AUTH_TOKEN" >> restart-local.sh
 
-echo "gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{\"base_url\":\"http://localhost:26658\",\"timeout\":60000000000,\"fee\":600000,\"gas_limit\":6000000,\"auth_token\":\"'\$AUTH_TOKEN'\"}' --rollkit.namespace_id \$NAMESPACE --rollkit.da_start_height \$DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --p2p.laddr \"0.0.0.0:36656\"" >> restart-local.sh
+echo "gmd start --rollkit.aggregator true --rollkit.da_address=":26650" --rollkit.da_start_height \$DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --p2p.laddr \"0.0.0.0:36656\"" >> restart-local.sh
 
 # start the chain
-gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26658","timeout":60000000000,"fee":600000,"gas_limit":6000000,"auth_token":"'$AUTH_TOKEN'"}' --rollkit.namespace_id $NAMESPACE --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --p2p.laddr "0.0.0.0:36656"
+gmd start --rollkit.aggregator true --rollkit.da_address=":26650" --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --p2p.laddr "0.0.0.0:36656"
 
 # uncomment the next command if you are using lazy aggregation
-# gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26658","timeout":60000000000,"fee":600000,"gas_limit":6000000,"auth_token":"'$AUTH_TOKEN'"}' --rollkit.namespace_id $NAMESPACE --rollkit.da_start_height $DA_BLOCK_HEIGHT --rollkit.lazy_aggregator
+# gmd start --rollkit.aggregator true --rollkit.da_address=":26650" --rollkit.da_start_height $DA_BLOCK_HEIGHT --rollkit.lazy_aggregator
