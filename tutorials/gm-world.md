@@ -308,11 +308,12 @@ docker run -t -i \
 
 The docker image automatically creates a NAMESPACE_ID (as shown below) while starting the celestia-da server. If you want to set your own NAMESPACE_ID, set the env variable `CELESTIA_NAMESPACE`.
 
-```
+```bash
 CELESTIA_NAMESPACE=0000$(openssl rand -hex 8)
 ```
 
-The port `26650` is where the celestia-da server is run (which also runs celestia bridge node). <ADD MORE DETAILS>
+The port `26650` is where the celestia-da server is run
+(which also runs a Celestia DA bridge node).
 
 ### 🔎 Query your balance {#query-your-balance}
 
@@ -322,13 +323,13 @@ local network, this will make sure you can post rollup blocks to your Celestia D
 First, set your auth token:
 
 ```bash
-export CELESTIA_NODE_AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin)
+export CELESTIA_NODE_AUTH_TOKEN=$(docker exec $(docker ps -f ancestor=ghcr.io/rollkit/local-celestia-devnet:v0.12.5 -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin)
 ```
 
 Next, check your balance:
 
 ```bash
-docker exec $(docker ps -q) celestia state balance --token $CELESTIA_NODE_AUTH_TOKEN
+docker exec $(docker ps -f ancestor=ghcr.io/rollkit/local-celestia-devnet:v0.12.5 -q) celestia state balance --token $CELESTIA_NODE_AUTH_TOKEN
 ```
 <!-- markdownlint-disable MD033 -->
 You will see something like this, denoting your balance in TIA x 10<sup>-6</sup>:
@@ -449,7 +450,7 @@ Remember that the following command assumes that there is only one container,
 otherwise you can pass the container name.
 
 ```bash
-export AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin)
+export AUTH_TOKEN=$(docker exec $(docker ps -f ancestor=ghcr.io/rollkit/local-celestia-devnet:v0.12.1 -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin)
 ```
 
 Run the `init-local.sh` script:
