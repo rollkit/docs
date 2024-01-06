@@ -28,8 +28,59 @@ sovereign rollup.
 An example start command on `arabica-9` would look like this:
 
 ```bash
-celestia light start --core.ip consensus-full-arabica-9.celestia-arabica.com --p2p.network arabica
+celestia light start --p2p.network arabica \
+  --core.ip validator-1.celestia-arabica-11.com
 ```
+
+#### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
+
+We have a handy `init-testnet.sh` found in this repo
+[here](https://github.com/rollkit/docs/tree/main/scripts/gm).
+
+We can copy it over to our directory with the following commands:
+
+<!-- markdownlint-disable MD013 -->
+```bash
+# From inside the `gm` directory
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-testnet.sh
+```
+<!-- markdownlint-enable MD013 -->
+
+This copies over our `init-testnet.sh` script to initialize our
+`gm` rollup.
+
+You can view the contents of the script to see how we
+initialize the gm rollup.
+
+##### Clear previous chain history
+
+Before starting the rollup, we need to remove the old project folders:
+
+```bash
+rm -r $HOME/go/bin/gmd && rm -rf $HOME/.gm
+```
+
+##### Set the auth token for your light node
+
+You will also need to set the auth token for your Celestia light node
+before running the rollup. In the terminal that you will run the
+`init-testnet.sh` script in, run the following:
+
+```bash
+export AUTH_TOKEN=$(celestia light auth admin --p2p.network arabica)
+```
+
+##### Start the new chain {#start-the-new-chain}
+
+Now, you can initialize the script with the following command:
+
+```bash
+bash init-testnet.sh
+```
+
+With that, we have kickstarted our second `gmd` network!
+
+## Optional: Add a "GM world" query
 
 ### 💬 Say gm world {#say-gm-world}
 
@@ -159,58 +210,17 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 <!-- markdownlint-enable MD010 -->
 <!-- markdownlint-enable MD013 -->
 
-#### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
-
-We have a handy `init-testnet.sh` found in this repo
-[here](https://github.com/rollkit/docs/tree/main/scripts/gm).
-
-We can copy it over to our directory with the following commands:
-
-<!-- markdownlint-disable MD013 -->
-```bash
-# From inside the `gm` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-testnet.sh
-```
-<!-- markdownlint-enable MD013 -->
-
-This copies over our `init-testnet.sh` script to initialize our
-`gm` rollup.
-
-You can view the contents of the script to see how we
-initialize the gm rollup.
-
-##### Clear previous chain history
-
-Before starting the rollup, we need to remove the old project folders:
-
-```bash
-rm -r $HOME/go/bin/gmd && rm -rf $HOME/.gm
-```
-
-##### Set the auth token for your light node
-
-You will also need to set the auth token for your Celestia light node
-before running the rollup. In the terminal that you will run the
-`init-testnet.sh` script in, run the following:
-
-```bash
-export AUTH_TOKEN=$(celestia light auth admin --p2p.network arabica)
-```
-
-##### Start the new chain {#start-the-new-chain}
-
-Now, you can initialize the script with the following command:
-
-```bash
-bash init-testnet.sh
-```
-
-With that, we have kickstarted our second `gmd` network!
-
 The `query` command has also scaffolded
 `x/gm/client/cli/query_gm.go` that
 implements a CLI equivalent of the gm query and mounted this command in
 `x/gm/client/cli/query.go`.
+
+#### Restart your rollup
+
+[Restart your rollup](./restart-rollup.md)
+so that you can now run it with the gm query.
+
+#### Query your rollup
 
 In a separate window, run the following command:
 
@@ -226,12 +236,9 @@ text: gm world!
 
 ![gm.png](/gm/gm.png)
 
-Congratulations 🎉 you've successfully built your first rollup and queried it!
-
-If you're interested in looking at the demo repository
-for this tutorial, you can at [https://github.com/rollkit/gm](https://github.com/rollkit/gm).
-
 ## Next steps
+
+Congratulations 🎉 you've successfully built your first rollup and queried it!
 
 In the next tutorial, you'll learn how to post data to Celestia's
 Mainnet Beta.
