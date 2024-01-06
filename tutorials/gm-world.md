@@ -6,7 +6,7 @@ description: Build a sovereign rollup with Ignite CLI, Celestia and Rollkit loca
 
 ## Building a rollup locally
 
-### ☀️ Introduction {#introduction}
+### 🌅 Introduction {#introduction}
 
 This tutorial will guide you through building a sovereign `gm-world` rollup using Rollkit,
 using Celestia’s data availability and consensus layer to submit Rollkit blocks.
@@ -49,6 +49,8 @@ to say GM, Gm, or gm. You can think of "GM" as the new version of
 * [Homebrew](https://brew.sh)
 * [wget](https://www.gnu.org/software/wget)
 * [A Celestia Light Node](https://docs.celestia.org/nodes/light-node)
+
+Next, head either to [Linux setup](#linux-setup) or [MacOS setup](#macos-setup).
 
 ## Linux setup
 
@@ -139,6 +141,8 @@ Your uname -a:  Darwin Joshs-MacBook-Air.local 22.5.0 Darwin Kernel Version 22.5
 Your cwd:  /Users/joshstein
 Is on Gitpod:  false
 ```
+
+Your development environment is setup! Now, head to [part one](#part-one).
 
 ## macOS setup
 
@@ -255,6 +259,8 @@ wget is an Internet file retriever:
 brew install wget
 ```
 
+Your development environment is setup! Now, head to [part one](#part-one).
+
 ## Part one
 
 This part of the tutorial will teach developers how to easily run a local data availability (DA) devnet on their own machine (or in the cloud).
@@ -299,35 +305,6 @@ CELESTIA_NAMESPACE=0000$(openssl rand -hex 8)
 The port `26650` is where the
 [celestia-da](https://github.com/rollkit/celestia-da) server is run
 (which also runs a Celestia DA bridge node).
-
-### 🔎 Query your balance {#query-your-balance}
-
-Open a new terminal instance. Check the balance on your account that you'll be using to post blocks to the
-local network, this will make sure you can post rollup blocks to your Celestia Devnet for DA & consensus.
-
-First, set your auth token:
-
-```bash
-export CELESTIA_NODE_AUTH_TOKEN=$(docker exec $(docker ps -f ancestor=ghcr.io/rollkit/local-celestia-devnet:v0.12.5 -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin)
-```
-
-Next, check your balance:
-
-```bash
-docker exec $(docker ps -f ancestor=ghcr.io/rollkit/local-celestia-devnet:v0.12.5 -q) celestia state balance --token $CELESTIA_NODE_AUTH_TOKEN
-```
-<!-- markdownlint-disable MD033 -->
-You will see something like this, denoting your balance in TIA x 10<sup>-6</sup>:
-<!-- markdownlint-enable MD033 -->
-
-```bash
-{
-  "result": {
-    "denom": "utia",
-    "amount": "999994999970000"
-  }
-}
-```
 
 ### 🏗️ Building your sovereign rollup {#building-your-sovereign-rollup}
 
@@ -400,21 +377,11 @@ Most of our work in this tutorial will happen in the `x` directory.
 To swap out CometBFT for Rollkit, run the following command
 from inside the `gm` directory:
 
-::: code-group
-
-```bash [local-celestia-devnet]
+```bash
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.9-no-fraud-proofs
 go mod tidy
 go mod download
 ```
-
-```bash [Arabica Devnet]
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.9-no-fraud-proofs
-go mod tidy
-go mod download
-```
-
-:::
 
 ### ▶️ Start your rollup {#start-your-rollup}
 
@@ -423,19 +390,6 @@ Download the `init-local.sh` script to start the chain:
 ```bash
 # From inside the `gm` directory
 wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.sh
-```
-
-Next, you'll need to set the auth token in your terminal to be consumed by
-your `init-local.sh` script.
-
-In the terminal that you will run the script in, set the auth token for the
-local-celestia-devnet. This is so that you can post data to the local DA.
-
-Remember that the following command assumes that there is only one container,
-otherwise you can pass the container name.
-
-```bash
-export AUTH_TOKEN=$(docker exec $(docker ps -f ancestor=ghcr.io/rollkit/local-celestia-devnet:v0.12.1 -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin)
 ```
 
 Run the `init-local.sh` script:
@@ -501,7 +455,7 @@ So using our information from the [keys](#keys) command, we can construct the tr
 
 ```bash
 gmd tx bank send $KEY1 $KEY2 42069stake --keyring-backend test \
---node tcp://127.0.0.1:36657
+--node tcp://127.0.0.1:36657 --chain-id gm
 ```
 
 ::: tip
