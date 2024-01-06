@@ -60,14 +60,30 @@ Before starting the rollup, we need to remove the old project folders:
 rm -r $HOME/go/bin/gmd && rm -rf $HOME/.gm
 ```
 
-##### Set the auth token for your light node
+##### Run celestia-da
 
-You will also need to set the auth token for your Celestia light node
-before running the rollup. In the terminal that you will run the
-`init-testnet.sh` script in, run the following:
+First you will need to fully sync and fund a light node
+on arabica-11, and then use celestia-da to connect
+to Rollkit. Your node will not need to be running
+when you start celestia-da.
+
+To start celestia-da, run this:
 
 ```bash
-export AUTH_TOKEN=$(celestia light auth admin --p2p.network arabica)
+docker run -d \
+-e NODE_TYPE=light \
+-e P2P_NETWORK=arabica \
+-p 26650:26650 \
+-p 26658:26658 \
+-p 26659:26659 \
+-v $HOME/.celestia-light-arabica-11/:/home/celestia/.celestia-light-arabica-11/ \
+ghcr.io/rollkit/celestia-da:339de43 \
+celestia-da light start \
+--p2p.network=arabica \
+--da.grpc.namespace=000008e5f679bf7116cb \
+--da.grpc.listen=0.0.0.0:26650 \
+--core.ip validator-1.celestia-arabica-11.com \
+--gateway
 ```
 
 ##### Start the new chain {#start-the-new-chain}

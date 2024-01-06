@@ -17,10 +17,6 @@ STAKING_AMOUNT="1000000000stake"
 DA_BLOCK_HEIGHT=$(curl https://rpc.celestia-arabica-11.com/block | jq -r '.result.block.header.height')
 echo -e "\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n"
 
-# create a random Namespace ID for your rollup to post blocks to
-CELESTIA_NAMESPACE=0000$(openssl rand -hex 8)
-echo -e "\n Your CELESTIA_NAMESPACE is $CELESTIA_NAMESPACE \n"
-
 # build the gm chain with Rollkit
 ignite chain build
 
@@ -49,11 +45,6 @@ gmd genesis collect-gentxs
 ADDRESS=$(jq -r '.address' ~/.gm/config/priv_validator_key.json)
 PUB_KEY=$(jq -r '.pub_key' ~/.gm/config/priv_validator_key.json)
 jq --argjson pubKey "$PUB_KEY" '.consensus["validators"]=[{"address": "'$ADDRESS'", "pub_key": $pubKey, "power": "1000", "name": "Rollkit Sequencer"}]' ~/.gm/config/genesis.json > temp.json && mv temp.json ~/.gm/config/genesis.json
-
-# export the Celestia light node's auth token to allow you to submit
-# PayForBlobs to Celestia's data availability network
-# this is for Arabica, if using another network, change the network name
-export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network arabica)
 
 # create a restart-testnet.sh file to restart the chain later
 [ -f restart-testnet.sh ] && rm restart-testnet.sh
