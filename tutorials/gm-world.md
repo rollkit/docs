@@ -2,9 +2,11 @@
 description: Build a sovereign rollup with Ignite CLI, Celestia and Rollkit locally and on a testnet
 ---
 
-# GM world rollup
+# GM world rollup: Part one
 
-## ☀️ Introduction {#introduction}
+## Building a rollup locally
+
+### ☀️ Introduction {#introduction}
 
 In this tutorial, we will build a sovereign `gm-world` rollup using Rollkit
 and Celestia’s data availability and consensus layer to submit Rollkit blocks.
