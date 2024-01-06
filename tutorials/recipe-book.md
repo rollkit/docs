@@ -9,7 +9,7 @@ you to write and read data to and from your application-specific
 blockchain. The end user will be able to submit new
 recipes and read them from the blockchain.
 
-In the [`GM World` tutorial](/tutorials/gm-world), we defined a
+In the [`GM world` tutorial](/tutorials/gm-world), we defined a
 new API endpoint and modified a keeper query function
 to return static data. In this tutorial, we will be
 modifying the state with transactions (Cosmos SDK messages)
@@ -32,7 +32,7 @@ The script for this tutorial is built for Celestia's
 
 ## 💻 Prerequisites {#prerequisites}
 
-- [GM World tutorial](/tutorials/gm-world)
+- [GM world tutorial](/tutorials/gm-world)
 
 ## 🏗 Scaffolding your rollup {#scaffolding-your-rollup}
 
