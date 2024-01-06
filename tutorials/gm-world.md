@@ -8,25 +8,23 @@ description: Build a sovereign rollup with Ignite CLI, Celestia and Rollkit loca
 
 ### ☀️ Introduction {#introduction}
 
-In this tutorial, we will build a sovereign `gm-world` rollup using Rollkit
-and Celestia’s data availability and consensus layer to submit Rollkit blocks.
+This tutorial will guide you through building a sovereign `gm-world` rollup using Rollkit,
+using Celestia’s data availability and consensus layer to submit Rollkit blocks.
 
-This tutorial will cover setting up Ignite CLI,
+We'll cover setting up Ignite CLI,
 building a Cosmos-SDK application-specific rollup blockchain,
 and posting data to Celestia.
-First, we will test on a local DA network and then we will deploy to a live
-testnet.
+First, we will test on a local DA network, then to a live
+testnet, and lastly to mainnet.
+
+1. Part one (This page): Run your rollup and post DA to a local devnet, and make sure everything works as expected.
+2. [Part two](./gm-world-testnet.md): Deploy the rollup, posting to a DA testnet. Confirm again that everything is functioning properly.
+3. [Part three](./gm-world-mainnet.md): Deploy your rollup to the DA layer's mainnet.
 
 The [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) is a framework for
 building blockchain applications. The Cosmos Ecosystem uses
 [Inter-Blockchain Communication (IBC)](https://github.com/cosmos/ibc-go)
 to allow blockchains to communicate with one another.
-
-The development journey for your rollup will look something like this:
-
-1. Part one(This page): Run your rollup and post DA to a local devnet, and make sure everything works as expected
-2. [Part two](./gm-world-testnet.md): Deploy the rollup, posting to a DA testnet. Confirm again that everything is functioning properly
-3. [Part three](./gm-world-mainnet.md): Deploy your rollup to the DA layer's mainnet
 
 ::: tip
 This tutorial will explore developing with Rollkit,
@@ -35,11 +33,6 @@ which is still in Alpha stage. If you run into bugs, please write a Github
 or let us know in our [Telegram](https://t.me/rollkit).
 
 Learn how to [restart your rollup](restart-rollup.md).
-:::
-
-::: warning
-The script for this tutorial is built for Celestia's
-[Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
 :::
 
 ## 🤔 What is GM? {#what-is-gm}
@@ -56,14 +49,6 @@ to say GM, Gm, or gm. You can think of "GM" as the new version of
 * [Homebrew](https://brew.sh)
 * [wget](https://www.gnu.org/software/wget)
 * [A Celestia Light Node](https://docs.celestia.org/nodes/light-node)
-
-::: tip
-If you are only planning to complete [part one](#part-one),
-feel free to skip to the [part two](#part-two).
-
-Be sure to use the same testnet installation instructions through this
-entire tutorial.
-:::
 
 ## Linux setup
 
@@ -95,7 +80,6 @@ curl https://get.ignite.com/cli@v28.1.0! | bash
 ✋ On some machines, you may run into permissions errors like the one below.
 You can resolve this error by following the guidance
 [here](https://docs.ignite.com/v0.25.2/guide/install#write-permission) or below.
-:::
 
 ```bash
 # Error
@@ -117,6 +101,8 @@ The following command will resolve the permissions error:
 ```bash
 sudo curl https://get.ignite.com/cli@v28.1.0! | bash
 ```
+
+:::
 
 A successful installation will return something similar to the response below:
 
@@ -156,14 +142,6 @@ Is on Gitpod:  false
 
 ## macOS setup
 
-::: tip
-If you are only planning to complete [part one](#part-one),
-feel free to skip to the [part two](#part-two).
-
-Be sure to use the same testnet installation instructions through this
-entire tutorial.
-:::
-
 ### 🏃 Install Golang on macOS {#install-golang-mac}
 
 [Celestia-App](https://github.com/celestiaorg/celestia-app),
@@ -192,7 +170,6 @@ curl https://get.ignite.com/cli@v28.1.0! | bash
 ✋ On some machines, you may run into permissions errors like the one below.
 You can resolve this error by following the guidance
 [here](https://docs.ignite.com/v0.25.2/guide/install#write-permission) or below.
-:::
 
 ```bash
 # Error
@@ -214,6 +191,8 @@ The following command will resolve the permissions error:
 ```bash
 sudo curl https://get.ignite.com/cli@v28.1.0! | sudo bash
 ```
+
+:::
 
 A successful installation will return something similar the response below:
 
@@ -308,13 +287,17 @@ docker run -t -i \
     ghcr.io/rollkit/local-celestia-devnet:v0.12.5
 ```
 
-The docker image automatically creates a NAMESPACE_ID (as shown below) while starting the celestia-da server. If you want to set your own NAMESPACE_ID, set the env variable `CELESTIA_NAMESPACE`.
+The docker image automatically creates a `NAMESPACE_ID`
+(as shown below) while starting the celestia-da server.
+If you want to set your own `NAMESPACE_ID`, set the env variable
+`CELESTIA_NAMESPACE`.
 
 ```bash
 CELESTIA_NAMESPACE=0000$(openssl rand -hex 8)
 ```
 
-The port `26650` is where the celestia-da server is run
+The port `26650` is where the
+[celestia-da](https://github.com/rollkit/celestia-da) server is run
 (which also runs a Celestia DA bridge node).
 
 ### 🔎 Query your balance {#query-your-balance}

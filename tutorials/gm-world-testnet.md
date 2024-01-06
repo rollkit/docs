@@ -4,6 +4,11 @@
 This tutorial is under construction. 🏗️
 :::
 
+::: warning
+The script for this tutorial is built for Celestia's
+[Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
+:::
+
 ## Deploying to a Celestia testnet
 
 This tutorial is part two of the GM world rollup tutorials. In this tutorial,

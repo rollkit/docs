@@ -17,7 +17,7 @@ This is the same way that celestia-node syncs blocks over p2p.
 First, you'll need to complete the [GM world](./gm-world) tutorial.
 
 In this demo, we'll be using the local-celestia-devnet setup used
-in [Part One](./gm-world#part-one).
+in [part one](./gm-world).
 
 ## Getting started
 
