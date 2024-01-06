@@ -17,8 +17,8 @@ that best suit your needs.
 In this section, you'll find:
 
 * Beginner
-  * [GM World rollup](/tutorials/gm-world.md)
-  * [GM World frontend](/tutorials/gm-world-frontend.md)
+  * [GM world rollup](/tutorials/gm-world.md)
+  * [GM world frontend](/tutorials/gm-world-frontend.md)
   * [Recipe Book rollup](/tutorials/recipe-book.md)
   * [How to restart your rollup](/tutorials/restart-rollup.md)
 * Intermediate

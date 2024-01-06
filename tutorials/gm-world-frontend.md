@@ -1,7 +1,7 @@
-# GM World frontend tutorial
+# GM world frontend tutorial
 
 In this tutorial, we'll learn how to use [Cosmology](https://cosmology.tech/) to
-create a frontend for our [GM World](/tutorials/gm-world) rollup.
+create a frontend for our [GM world](/tutorials/gm-world) rollup.
 
 Cosmology enables developers to build web3 apps in the Interchain Ecosystem.
 With Cosmology, it's simple to begin building apps that communicate with
@@ -17,7 +17,7 @@ In the end, you'll have something that looks like this
 ## Getting started
 
 In order to complete this tutorial you will need to have completed
-the [GM World tutorial](/tutorials/gm-world). This requires a running rollup
+the [GM world tutorial](/tutorials/gm-world). This requires a running rollup
 on your local machine.
 
 ## Setting up the frontend
