@@ -32,6 +32,32 @@ celestia light start --p2p.network arabica \
   --core.ip validator-1.celestia-arabica-11.com
 ```
 
+#### OR Run celestia-da
+
+First you will need to fully sync and fund a light node
+on arabica-11, and then use celestia-da to connect
+to Rollkit. Your node will not need to be running
+when you start celestia-da.
+
+To start celestia-da, run this:
+
+```bash
+docker run -d \
+-e NODE_TYPE=light \
+-e P2P_NETWORK=arabica \
+-p 26650:26650 \
+-p 26658:26658 \
+-p 26659:26659 \
+-v $HOME/.celestia-light-arabica-11/:/home/celestia/.celestia-light-arabica-11/ \
+ghcr.io/rollkit/celestia-da:339de43 \
+celestia-da light start \
+--p2p.network=arabica \
+--da.grpc.namespace=000008e5f679bf7116cb \
+--da.grpc.listen=0.0.0.0:26650 \
+--core.ip validator-1.celestia-arabica-11.com \
+--gateway
+```
+
 #### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
 
 We have a handy `init-testnet.sh` found in this repo
@@ -58,32 +84,6 @@ Before starting the rollup, we need to remove the old project folders:
 
 ```bash
 rm -r $HOME/go/bin/gmd && rm -rf $HOME/.gm
-```
-
-##### Run celestia-da
-
-First you will need to fully sync and fund a light node
-on arabica-11, and then use celestia-da to connect
-to Rollkit. Your node will not need to be running
-when you start celestia-da.
-
-To start celestia-da, run this:
-
-```bash
-docker run -d \
--e NODE_TYPE=light \
--e P2P_NETWORK=arabica \
--p 26650:26650 \
--p 26658:26658 \
--p 26659:26659 \
--v $HOME/.celestia-light-arabica-11/:/home/celestia/.celestia-light-arabica-11/ \
-ghcr.io/rollkit/celestia-da:339de43 \
-celestia-da light start \
---p2p.network=arabica \
---da.grpc.namespace=000008e5f679bf7116cb \
---da.grpc.listen=0.0.0.0:26650 \
---core.ip validator-1.celestia-arabica-11.com \
---gateway
 ```
 
 ##### Start the new chain {#start-the-new-chain}
