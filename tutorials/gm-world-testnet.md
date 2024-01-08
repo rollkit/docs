@@ -4,42 +4,31 @@
 This tutorial is under construction. 🏗️
 :::
 
-::: warning
-The script for this tutorial is built for Celestia's
-[Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
-:::
-
 ## Deploying to a Celestia testnet
 
 This tutorial is part two of the GM world rollup tutorials. In this tutorial,
 it is expected that you've completed [part one](./gm-world.md) of
 the tutorial and are familiar with running a local rollup devnet.
 
+The script for this tutorial is built for Celestia's
+[Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
+
 ### 🪶 Run a Celestia light node {#run-celestia-node}
-
-Follow instructions to install and start your Celestia data availability
-layer light node selecting the Arabica network. You can
-find instructions to install and run the node [here](https://docs.celestia.org/nodes/light-node).
-
-After you have Go and Ignite CLI installed, and your Celestia Light
-Node running on your machine, you're ready to build, test, and launch your own
-sovereign rollup.
-
-An example start command on `arabica-9` would look like this:
-
-```bash
-celestia light start --p2p.network arabica \
-  --core.ip validator-1.celestia-arabica-11.com
-```
-
-#### OR Run celestia-da
 
 First you will need to fully sync and fund a light node
 on arabica-11, and then use celestia-da to connect
 to Rollkit. Your node will not need to be running
 when you start celestia-da.
 
-To start celestia-da, run this:
+Follow instructions to install and start your Celestia data availability
+layer light node selecting the Arabica network. You can
+[find instructions to install and run the node](https://docs.celestia.org/nodes/light-node).
+
+After you have Go and Ignite CLI installed, and your Celestia light
+node running on your machine, you're ready to build, test, and launch your own
+sovereign rollup.
+
+To start celestia-da and your light node, run this command:
 
 ```bash
 docker run -d \
@@ -49,7 +38,7 @@ docker run -d \
 -p 26658:26658 \
 -p 26659:26659 \
 -v $HOME/.celestia-light-arabica-11/:/home/celestia/.celestia-light-arabica-11/ \
-ghcr.io/rollkit/celestia-da:339de43 \
+ghcr.io/rollkit/celestia-da:v0.12.1-rc4 \
 celestia-da light start \
 --p2p.network=arabica \
 --da.grpc.namespace=000008e5f679bf7116cb \
