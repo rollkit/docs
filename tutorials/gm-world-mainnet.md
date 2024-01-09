@@ -43,6 +43,19 @@ when you start `celestia-da`.
     --gateway
     ```
 
+    :::tip
+    You can either use the default `000000676d776f726c64`, "gmworld" in
+    plaintext, namespace above, or set your own by using a command
+    similar to this:
+
+    ```bash
+    NAMESPACE_ID=$(echo -n $NAMESPACE_NAME | openssl dgst -sha256 -binary | head -c  | xxd -p)"
+    ```
+
+    [Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)
+
+    :::
+
 After you have Go and Ignite CLI installed, and `celestia-da`
 running on your machine, you're ready to run your own
 sovereign rollup.

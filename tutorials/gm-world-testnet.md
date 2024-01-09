@@ -40,6 +40,19 @@ celestia-da light start \
 --gateway
 ```
 
+:::tip
+You can either use the default `000008e5f679bf7116cb`
+namespace above, or set your own by using a command
+similar to this:
+
+```bash
+NAMESPACE_ID=$(echo -n $NAMESPACE_NAME | openssl dgst -sha256 -binary | head -c 10 | xxd -p)"
+```
+
+[Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)
+.
+:::
+
 After you have Go and Ignite CLI installed, and `celestia-da`
 running on your machine, you're ready to run your own
 sovereign rollup.
