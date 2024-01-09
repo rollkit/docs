@@ -17,9 +17,9 @@ and posting data to Celestia.
 First, we will test on a local DA network, then to a live
 testnet, and lastly to mainnet.
 
-1. Part one (This page): Run your rollup and post DA to a local devnet, and make sure everything works as expected.
-2. [Part two](./gm-world-testnet.md): Deploy the rollup, posting to a DA testnet. Confirm again that everything is functioning properly.
-3. [Part three](./gm-world-mainnet.md): Deploy your rollup to the DA layer's mainnet.
+1. Part 1 (This page): Run your rollup and post DA to a local devnet, and make sure everything works as expected.
+2. [Part 2](./gm-world-testnet.md): Deploy the rollup, posting to a DA testnet. Confirm again that everything is functioning properly.
+3. [Part 3](./gm-world-mainnet.md): Deploy your rollup to the DA layer's mainnet.
 
 The [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) is a framework for
 building blockchain applications. The Cosmos Ecosystem uses
@@ -142,7 +142,7 @@ Your cwd:  /Users/joshstein
 Is on Gitpod:  false
 ```
 
-Your development environment is setup! Now, head to [part 1](#part-one).
+Your development environment is setup! Now, head to [part 1](#part-1).
 
 ## macOS setup
 
@@ -259,16 +259,16 @@ wget is an Internet file retriever:
 brew install wget
 ```
 
-Your development environment is setup! Now, head to [part 1](#part-one).
+Your development environment is setup! Now, head to [part 1](#part-1).
 
-## Part one
+## Part 1
 
 This part of the tutorial will teach developers how to easily run a local data availability (DA) devnet on their own machine (or in the cloud).
 **Running a local devnet for DA to test your rollup is the recommended first step before deploying to a testnet.**
 This eliminates the need for testnet tokens and deploying to a testnet until you are ready.
 
 ::: warning
-Part one of the tutorial has only been tested on an AMD machine running Ubuntu 22.10 x64.
+Part 1 of the tutorial has only been tested on an AMD machine running Ubuntu 22.10 x64.
 :::
 
 Whether you're a developer simply testing things on your laptop or using a virtual machine in the cloud,
