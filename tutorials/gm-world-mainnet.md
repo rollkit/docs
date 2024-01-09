@@ -22,27 +22,26 @@ After the node is synced, stop the light node.
 to connect to Rollkit. Your node does not need to be running
 when you start `celestia-da`.
 
-To start `celestia-da` and your light node, run this command to
-start your Celestia light node with state access
-(using the `--core.ip string` flag). This time, on `celestia`,
-which is the chain ID for Mainnet Beta:
+    Run this command to start celestia-da and your Celestia
+    light node with state access (using the `--core.ip string` flag).
+    This time, on `celestia`, which is the chain ID for Mainnet Beta:
 
-```bash
-docker run -d \
--e NODE_TYPE=light \
--e P2P_NETWORK=celestia \
--p 26650:26650 \
--p 26658:26658 \
--p 26659:26659 \
--v $HOME/.celestia-light/:/home/celestia/.celestia-light/ \
-ghcr.io/rollkit/celestia-da:v0.12.3 \
-celestia-da light start \
---p2p.network=celestia \
---da.grpc.namespace=000000676d776f726c64 \
---da.grpc.listen=0.0.0.0:26650 \
---core.ip rpc.celestia.pops.one \
---gateway
-```
+    ```bash
+    docker run -d \
+    -e NODE_TYPE=light \
+    -e P2P_NETWORK=celestia \
+    -p 26650:26650 \
+    -p 26658:26658 \
+    -p 26659:26659 \
+    -v $HOME/.celestia-light/:/home/celestia/.celestia-light/ \
+    ghcr.io/rollkit/celestia-da:v0.12.3 \
+    celestia-da light start \
+    --p2p.network=celestia \
+    --da.grpc.namespace=000000676d776f726c64 \
+    --da.grpc.listen=0.0.0.0:26650 \
+    --core.ip rpc.celestia.pops.one \
+    --gateway
+    ```
 
 After you have Go and Ignite CLI installed, and `celestia-da`
 running on your machine, you're ready to run your own

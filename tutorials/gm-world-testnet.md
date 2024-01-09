@@ -21,9 +21,7 @@ After the node is synced, stop the light node.
 2. Use
 [`celestia-da`](https://github.com/rollkit/celestia-da)
 to connect to Rollkit. Your node does not need to be running
-when you start `celestia-da`.
-
-To start `celestia-da` and your light node, run this command:
+when you start `celestia-da`. To start `celestia-da` and your light node, run this command:
 
 ```bash
 docker run -d \
