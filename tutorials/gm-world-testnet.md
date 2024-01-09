@@ -1,9 +1,5 @@
 # GM world rollup: Part two
 
-:::warning
-This tutorial is under construction. 🏗️
-:::
-
 ## Deploying to a Celestia testnet
 
 This tutorial is part two of the GM world rollup tutorials. In this tutorial,
@@ -38,7 +34,7 @@ docker run -d \
 -p 26658:26658 \
 -p 26659:26659 \
 -v $HOME/.celestia-light-arabica-11/:/home/celestia/.celestia-light-arabica-11/ \
-ghcr.io/rollkit/celestia-da:v0.12.1-rc4 \
+ghcr.io/rollkit/celestia-da:v0.12.3 \
 celestia-da light start \
 --p2p.network=arabica \
 --da.grpc.namespace=000008e5f679bf7116cb \
