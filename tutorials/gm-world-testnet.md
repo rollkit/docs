@@ -11,20 +11,19 @@ The script for this tutorial is built for Celestia's
 
 ### 🪶 Run a Celestia light node {#run-celestia-node}
 
-First you will need to fully sync and fund a light node
-on arabica-11, and then use celestia-da to connect
-to Rollkit. Your node will not need to be running
-when you start celestia-da.
-
+1. Fully sync and fund a light node
+on Arabica devnet (`arabica-11`).
 Follow instructions to install and start your Celestia data availability
 layer light node selecting the Arabica network. You can
 [find instructions to install and run the node](https://docs.celestia.org/nodes/light-node).
+After the node is synced, stop the light node.
 
-After you have Go and Ignite CLI installed, and your Celestia light
-node running on your machine, you're ready to build, test, and launch your own
-sovereign rollup.
+2. Use
+[`celestia-da`](https://github.com/rollkit/celestia-da)
+to connect to Rollkit. Your node does not need to be running
+when you start `celestia-da`.
 
-To start celestia-da and your light node, run this command:
+To start `celestia-da` and your light node, run this command:
 
 ```bash
 docker run -d \
@@ -42,6 +41,10 @@ celestia-da light start \
 --core.ip validator-1.celestia-arabica-11.com \
 --gateway
 ```
+
+After you have Go and Ignite CLI installed, and `celestia-da`
+running on your machine, you're ready to run your own
+sovereign rollup.
 
 #### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
 
@@ -79,7 +82,7 @@ Now, you can initialize the script with the following command:
 bash init-testnet.sh
 ```
 
-With that, we have kickstarted our second `gmd` network!
+With that, we have kickstarted our second `gmd` rollup!
 
 ## Optional: Add a "GM world" query
 
