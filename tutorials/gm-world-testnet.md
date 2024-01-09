@@ -1,9 +1,9 @@
-# GM world rollup: Part two
+# GM world rollup: Part 2
 
 ## Deploying to a Celestia testnet
 
-This tutorial is part two of the GM world rollup tutorials. In this tutorial,
-it is expected that you've completed [part one](./gm-world.md) of
+This tutorial is part 2 of the GM world rollup tutorials. In this tutorial,
+it is expected that you've completed [part 1](./gm-world.md) of
 the tutorial and are familiar with running a local rollup devnet.
 
 The script for this tutorial is built for Celestia's
@@ -46,10 +46,10 @@ After you have Go and Ignite CLI installed, and `celestia-da`
 running on your machine, you're ready to run your own
 sovereign rollup.
 
-#### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
+### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
 
-We have a handy `init-testnet.sh` found in this repo
-[here](https://github.com/rollkit/docs/tree/main/scripts/gm).
+We have
+[a handy `init-testnet.sh` found in this repo](https://github.com/rollkit/docs/tree/main/scripts/gm).
 
 We can copy it over to our directory with the following commands:
 
@@ -66,7 +66,7 @@ This copies over our `init-testnet.sh` script to initialize our
 You can view the contents of the script to see how we
 initialize the gm rollup.
 
-##### Clear previous chain history
+#### Clear previous chain history
 
 Before starting the rollup, we need to remove the old project folders:
 
@@ -74,7 +74,7 @@ Before starting the rollup, we need to remove the old project folders:
 rm -r $HOME/go/bin/gmd && rm -rf $HOME/.gm
 ```
 
-##### Start the new chain {#start-the-new-chain}
+#### Start the new chain {#start-the-new-chain}
 
 Now, you can initialize the script with the following command:
 
@@ -82,11 +82,29 @@ Now, you can initialize the script with the following command:
 bash init-testnet.sh
 ```
 
+View your rollup by
+[finding your namespace or account an Arabica devnet explorer](https://docs.celestia.org/nodes/arabica-devnet#explorers).
+
 With that, we have kickstarted our second `gmd` rollup!
 
-## Optional: Add a "GM world" query
+### Optional: Restarting your rollup
 
-### 💬 Say gm world {#say-gm-world}
+If you'd like to stop and restart your rollup for development purposes,
+you're in luck!
+
+When you ran `init-mainnet.sh`, the script generated a script called
+`restart-mainnet.sh` in the `$HOME/gm` directory for you to use to
+restart your rollup.
+
+In order to do so, restart `celestia-da` and then run:
+
+```bash
+bash restart-mainnet.sh
+```
+
+### Optional: Add a "GM world" query
+
+#### 💬 Say gm world {#say-gm-world}
 
 Now, we're going to get our blockchain to say `gm world!` - in order to do so
 you need to make the following changes:
@@ -102,7 +120,7 @@ The `Keeper` is required for each Cosmos SDK module and is an abstraction for
 modifying the state of the blockchain. Keeper functions allow us to query or
 write to the state.
 
-#### ✋ Create your first query {#create-first-query}
+##### ✋ Create your first query {#create-first-query}
 
 **Open a new terminal instance that is not the
 same that you started the chain in.**
@@ -151,7 +169,7 @@ The `Gm` RPC for the `Query` service:
 * Returns response of type `QueryGmResponse`
 * The `option` defines the endpoint that is used by gRPC to generate an HTTP API
 
-#### 📨 Query request and response types {#query-request-and-response-types}
+##### 📨 Query request and response types {#query-request-and-response-types}
 
 In the same file, we will find:
 
@@ -167,7 +185,7 @@ message QueryGmResponse {
 }
 ```
 
-#### 👋 Gm keeper function {#gm-keeper-function}
+##### 👋 Gm keeper function {#gm-keeper-function}
 
 The `gm/x/gm/keeper/query_gm.go` file contains the `Gm` keeper function that
 handles the query and returns data.
@@ -219,12 +237,11 @@ The `query` command has also scaffolded
 implements a CLI equivalent of the gm query and mounted this command in
 `x/gm/client/cli/query.go`.
 
-#### Restart your rollup
+##### Restart your rollup
 
-[Restart your rollup](./restart-rollup.md)
-so that you can now run it with the gm query.
+Restart your rollup by running the `init-testnet.sh` script again.
 
-#### Query your rollup
+##### Query your rollup
 
 In a separate window, run the following command:
 

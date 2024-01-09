@@ -2,7 +2,7 @@
 description: Build a sovereign rollup with Ignite CLI, Celestia and Rollkit locally and on a testnet
 ---
 
-# GM world rollup: Part one
+# GM world rollup: Part 1
 
 ## Building a rollup locally
 
@@ -142,7 +142,7 @@ Your cwd:  /Users/joshstein
 Is on Gitpod:  false
 ```
 
-Your development environment is setup! Now, head to [part one](#part-one).
+Your development environment is setup! Now, head to [part 1](#part-one).
 
 ## macOS setup
 
@@ -259,7 +259,7 @@ wget is an Internet file retriever:
 brew install wget
 ```
 
-Your development environment is setup! Now, head to [part one](#part-one).
+Your development environment is setup! Now, head to [part 1](#part-one).
 
 ## Part one
 
@@ -272,7 +272,7 @@ Part one of the tutorial has only been tested on an AMD machine running Ubuntu 2
 :::
 
 Whether you're a developer simply testing things on your laptop or using a virtual machine in the cloud,
-this process can be done on any machine of your choosing. We tested out the Devnet section (part one) on a machine with the following specs:
+this process can be done on any machine of your choosing. We tested out the Devnet section (part 1) on a machine with the following specs:
 
 * Memory: 1 GB RAM
 * CPU: Single Core AMD
