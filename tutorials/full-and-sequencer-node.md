@@ -1,7 +1,7 @@
 # Full and sequencer node rollup setup
 
 ::: warning
-This tutorial is under construction 🏗️
+This tutorial is under construction. 🏗️
 :::
 
 This guide will cover how to set up the GM world rollup example as

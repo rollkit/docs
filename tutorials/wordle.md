@@ -1,5 +1,9 @@
 # 🕹️ Wordle app
 
+::: warning
+This tutorial is under construction. 🏗️
+:::
+
 ![wordle-app](/wordle/wordle.png)
 
 This tutorial guide will go over building a cosmos-sdk app
