@@ -44,7 +44,7 @@ when you start `celestia-da`.
     ```
 
     :::tip
-    You can either use the default `000000676d776f726c64`, "gmworld" in
+    You can either use the default `000000474d776f726c64`, "GMworld" in
     plaintext, namespace above, or set your own by using a command
     similar to this:
 

@@ -1,9 +1,5 @@
 # Polaris EVM and Rollkit
 
-::: warning
-This tutorial is under construction. 🏗️
-:::
-
 This tutorial provides step-by-step instructions for running the
 [Polaris EVM](https://github.com/berachain/polaris)
 using Rollkit. Polaris EVM is a version of the
@@ -32,7 +28,7 @@ Before you can start Polaris EVM, you need to start a
 local-celestia-devnet instance in a separate terminal:
 
 ```bash
-docker run -t -i --platform linux/amd64 -p 26657:26657 -p 26658:26658 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:v0.12.1
+docker run -t -i --platform linux/amd64 -p 26650:26650 -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 ghcr.io/rollkit/local-celestia-devnet:v0.12.5
 ```
 
 ## Clone the repo
@@ -42,7 +38,7 @@ To get started, clone the Polaris repository and switch to the Rollkit branch:
 ```bash
 cd $HOME
 git clone https://github.com/berachain/polaris.git
-cd polaris && git checkout rollkit-stable
+cd polaris && git checkout rollkit-main
 ```
 
 ## Install Foundry
@@ -218,7 +214,7 @@ Now, login with your wallet that you funded, and post a ooga booga on your ooga 
 In this portion of the tutorial, we will go over running Polaris x Rollkit using
 a Celestia light node to post data to Mocha testnet. These steps can be used for
 Mainnet Beta and Arabica devnet, too, you'll just need to change the network in the
-`--p2p.network string` flag.
+`--p2p.network string` flag and your RPC.
 
 ::: tip
 Before using RPC methods through the CLI, you'll need to set your
@@ -238,13 +234,46 @@ and visiting a [faucet](https://docs.celestia.org/nodes/arabica-devnet/#arabica-
 
 ### Start your light node
 
-First, you'll need to start your light node, connected to a consensus
-core endpoint. This will allow you to post data to the network.
+1. Fully sync and fund a light node on
+[Celestia's Mocha testnet](docs.celestia.org/nodes/mocha-testnet)
+(`mocha-4`). Follow instructions to install and start your Celestia
+data availability layer light node selecting the Mocha network. You can
+[find instructions to install and run the node](https://docs.celestia.org/nodes/light-node).
+After the node is synced, stop the light node.
 
-Start the node:
+2. Use
+[`celestia-da`](https://github.com/rollkit/celestia-da)
+to connect to Rollkit. Your node does not need to be running
+when you start `celestia-da`. To start `celestia-da` and your light node, run this command:
+
+:::tip
+You can either use the default `000000506f6c61726973`
+namespace below, or set your own by using a command
+similar to this to generate one (or, you could get creative 😎):
 
 ```bash
-celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
+openssl rand -hex 10
+```
+
+[Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)
+.
+:::
+
+```bash
+docker run -d \
+-e NODE_TYPE=light \
+-e P2P_NETWORK=mocha \
+-p 26650:26650 \
+-p 26658:26658 \
+-p 26659:26659 \
+-v $HOME/.celestia-light-mocha-4/:/home/celestia/.celestia-light-mocha-4/ \
+ghcr.io/rollkit/celestia-da:v0.12.3 \
+celestia-da light start \
+--p2p.network=mocha \
+--da.grpc.namespace=000000506f6c61726973 \
+--da.grpc.listen=0.0.0.0:26650 \
+--core.ip rpc-mocha.pops.one \
+--gateway
 ```
 
 ### Setup Polaris script
@@ -252,20 +281,17 @@ celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 First, ensure you're on the correct branch of Polaris:
 
 ```bash
-cd $HOME/polaris && git checkout rollkit-stable
+cd $HOME/polaris && git checkout rollkit-main
 ```
 
-Before starting your rollup, you'll want to make changes in `$HOME/polaris/e2e/testapp/entrypoint.sh`.
+Before starting your rollup, you'll want to make a change in
+`$HOME/polaris/e2e/testapp/entrypoint.sh` to point to the right
+DA start height:
 
 ```bash
-# set the auth token for DA bridge node
-AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin) // [!code --]
-AUTH_TOKEN=$(celestia light auth admin --p2p.network mocha) // [!code ++]
-
 # set the data availability layer's block height from local-celestia-devnet
 DA_BLOCK_HEIGHT=$(docker exec $(docker ps -q) celestia header local-head --token $AUTH_TOKEN | jq '.result.header.height' -r) // [!code --]
 DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block |jq -r '.result.block.header.height') // [!code ++]
-echo $DA_BLOCK_HEIGHT
 ```
 
 ### Start the EVM rollup
@@ -279,3 +305,7 @@ make start
 
 Congratulations! Your light node is now posting your rollup's data to
 Celestia's Mocha testnet.
+
+Find an explorer to view
+[the default namespace in the tutorial](https://mocha-4.celenium.io/namespace/000000000000000000000000000000000000000000506f6c61726973)
+or [search for your own namespace on Celenium](https://celenium.io).
