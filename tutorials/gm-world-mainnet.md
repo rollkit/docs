@@ -34,7 +34,7 @@ when you start `celestia-da`.
     -p 26658:26658 \
     -p 26659:26659 \
     -v $HOME/.celestia-light/:/home/celestia/.celestia-light/ \
-    ghcr.io/rollkit/celestia-da:v0.12.3-patch \
+    ghcr.io/rollkit/celestia-da:v0.12.4-rc1 \
     celestia-da light start \
     --p2p.network=celestia \
     --da.grpc.namespace=000000676d776f726c64 \
