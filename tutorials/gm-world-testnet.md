@@ -1,37 +1,121 @@
-# GM world rollup: Part two
-
-:::warning
-This tutorial is under construction. 🏗️
-:::
-
-::: warning
-The script for this tutorial is built for Celestia's
-[Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
-:::
+# GM world rollup: Part 2
 
 ## Deploying to a Celestia testnet
 
-This tutorial is part two of the GM world rollup tutorials. In this tutorial,
-it is expected that you've completed [part one](./gm-world.md) of
+This tutorial is part 2 of the GM world rollup tutorials. In this tutorial,
+it is expected that you've completed [part 1](./gm-world.md) of
 the tutorial and are familiar with running a local rollup devnet.
+
+The script for this tutorial is built for Celestia's
+[Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
 
 ### 🪶 Run a Celestia light node {#run-celestia-node}
 
+1. Fully sync and fund a light node
+on Arabica devnet (`arabica-11`).
 Follow instructions to install and start your Celestia data availability
 layer light node selecting the Arabica network. You can
-find instructions to install and run the node [here](https://docs.celestia.org/nodes/light-node).
+[find instructions to install and run the node](https://docs.celestia.org/nodes/light-node).
+After the node is synced, stop the light node.
 
-After you have Go and Ignite CLI installed, and your Celestia Light
-Node running on your machine, you're ready to build, test, and launch your own
-sovereign rollup.
-
-An example start command on `arabica-9` would look like this:
+2. Use
+[`celestia-da`](https://github.com/rollkit/celestia-da)
+to connect to Rollkit. Your node does not need to be running
+when you start `celestia-da`. To start `celestia-da` and your light node, run this command:
 
 ```bash
-celestia light start --core.ip consensus-full-arabica-9.celestia-arabica.com --p2p.network arabica
+docker run -d \
+-e NODE_TYPE=light \
+-e P2P_NETWORK=arabica \
+-p 26650:26650 \
+-p 26658:26658 \
+-p 26659:26659 \
+-v $HOME/.celestia-light-arabica-11/:/home/celestia/.celestia-light-arabica-11/ \
+ghcr.io/rollkit/celestia-da:v0.12.3 \
+celestia-da light start \
+--p2p.network=arabica \
+--da.grpc.namespace=000008e5f679bf7116cb \
+--da.grpc.listen=0.0.0.0:26650 \
+--core.ip validator-1.celestia-arabica-11.com \
+--gateway
 ```
 
-### 💬 Say gm world {#say-gm-world}
+:::tip
+You can either use the default `000008e5f679bf7116cb`
+namespace above, or set your own by using a command
+similar to this:
+
+```bash
+NAMESPACE_ID=$(echo -n $NAMESPACE_NAME | openssl dgst -sha256 -binary | head -c 10 | xxd -p)"
+```
+
+[Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)
+.
+:::
+
+After you have Go and Ignite CLI installed, and `celestia-da`
+running on your machine, you're ready to run your own
+sovereign rollup.
+
+### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
+
+We have
+[a handy `init-testnet.sh` found in this repo](https://github.com/rollkit/docs/tree/main/scripts/gm).
+
+We can copy it over to our directory with the following commands:
+
+<!-- markdownlint-disable MD013 -->
+```bash
+# From inside the `gm` directory
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-testnet.sh
+```
+<!-- markdownlint-enable MD013 -->
+
+This copies over our `init-testnet.sh` script to initialize our
+`gm` rollup.
+
+You can view the contents of the script to see how we
+initialize the gm rollup.
+
+#### Clear previous chain history
+
+Before starting the rollup, we need to remove the old project folders:
+
+```bash
+rm -r $HOME/go/bin/gmd && rm -rf $HOME/.gm
+```
+
+#### Start the new chain {#start-the-new-chain}
+
+Now, you can initialize the script with the following command:
+
+```bash
+bash init-testnet.sh
+```
+
+View your rollup by
+[finding your namespace or account an Arabica devnet explorer](https://docs.celestia.org/nodes/arabica-devnet#explorers).
+
+With that, we have kickstarted our second `gmd` rollup!
+
+### Optional: Restarting your rollup
+
+If you'd like to stop and restart your rollup for development purposes,
+you're in luck!
+
+When you ran `init-mainnet.sh`, the script generated a script called
+`restart-mainnet.sh` in the `$HOME/gm` directory for you to use to
+restart your rollup.
+
+In order to do so, restart `celestia-da` and then run:
+
+```bash
+bash restart-mainnet.sh
+```
+
+### Optional: Add a "GM world" query
+
+#### 💬 Say gm world {#say-gm-world}
 
 Now, we're going to get our blockchain to say `gm world!` - in order to do so
 you need to make the following changes:
@@ -47,7 +131,7 @@ The `Keeper` is required for each Cosmos SDK module and is an abstraction for
 modifying the state of the blockchain. Keeper functions allow us to query or
 write to the state.
 
-#### ✋ Create your first query {#create-first-query}
+##### ✋ Create your first query {#create-first-query}
 
 **Open a new terminal instance that is not the
 same that you started the chain in.**
@@ -96,7 +180,7 @@ The `Gm` RPC for the `Query` service:
 * Returns response of type `QueryGmResponse`
 * The `option` defines the endpoint that is used by gRPC to generate an HTTP API
 
-#### 📨 Query request and response types {#query-request-and-response-types}
+##### 📨 Query request and response types {#query-request-and-response-types}
 
 In the same file, we will find:
 
@@ -112,7 +196,7 @@ message QueryGmResponse {
 }
 ```
 
-#### 👋 Gm keeper function {#gm-keeper-function}
+##### 👋 Gm keeper function {#gm-keeper-function}
 
 The `gm/x/gm/keeper/query_gm.go` file contains the `Gm` keeper function that
 handles the query and returns data.
@@ -159,58 +243,16 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 <!-- markdownlint-enable MD010 -->
 <!-- markdownlint-enable MD013 -->
 
-#### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
-
-We have a handy `init-testnet.sh` found in this repo
-[here](https://github.com/rollkit/docs/tree/main/scripts/gm).
-
-We can copy it over to our directory with the following commands:
-
-<!-- markdownlint-disable MD013 -->
-```bash
-# From inside the `gm` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-testnet.sh
-```
-<!-- markdownlint-enable MD013 -->
-
-This copies over our `init-testnet.sh` script to initialize our
-`gm` rollup.
-
-You can view the contents of the script to see how we
-initialize the gm rollup.
-
-##### Clear previous chain history
-
-Before starting the rollup, we need to remove the old project folders:
-
-```bash
-rm -r $HOME/go/bin/gmd && rm -rf $HOME/.gm
-```
-
-##### Set the auth token for your light node
-
-You will also need to set the auth token for your Celestia light node
-before running the rollup. In the terminal that you will run the
-`init-testnet.sh` script in, run the following:
-
-```bash
-export AUTH_TOKEN=$(celestia light auth admin --p2p.network arabica)
-```
-
-##### Start the new chain {#start-the-new-chain}
-
-Now, you can initialize the script with the following command:
-
-```bash
-bash init-testnet.sh
-```
-
-With that, we have kickstarted our second `gmd` network!
-
 The `query` command has also scaffolded
 `x/gm/client/cli/query_gm.go` that
 implements a CLI equivalent of the gm query and mounted this command in
 `x/gm/client/cli/query.go`.
+
+##### Restart your rollup
+
+Restart your rollup by running the `init-testnet.sh` script again.
+
+##### Query your rollup
 
 In a separate window, run the following command:
 
@@ -226,12 +268,9 @@ text: gm world!
 
 ![gm.png](/gm/gm.png)
 
-Congratulations 🎉 you've successfully built your first rollup and queried it!
-
-If you're interested in looking at the demo repository
-for this tutorial, you can at [https://github.com/rollkit/gm](https://github.com/rollkit/gm).
-
 ## Next steps
+
+Congratulations 🎉 you've successfully built your first rollup and queried it!
 
 In the next tutorial, you'll learn how to post data to Celestia's
 Mainnet Beta.
