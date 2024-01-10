@@ -1,5 +1,9 @@
 # 🗞️ CosmWasm rollup
 
+::: warning
+This tutorial is under construction. 🏗️
+:::
+
 CosmWasm is a smart contracting platform built for the Cosmos
 ecosystem by making use of [WebAssembly](https://webassembly.org) (Wasm)
 to build smart contracts for Cosmos-SDK. In this tutorial, we will be

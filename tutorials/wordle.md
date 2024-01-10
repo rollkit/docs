@@ -1,5 +1,9 @@
 # 🕹️ Wordle app
 
+::: warning
+This tutorial is under construction. 🏗️
+:::
+
 ![wordle-app](/wordle/wordle.png)
 
 This tutorial guide will go over building a cosmos-sdk app
@@ -33,7 +37,7 @@ in Cosmos-SDK, we recommend you go over the following tutorials
 in Ignite to understand all the different components in Cosmos-SDK before
 proceeding with this tutorial.
 
-* [GM World](/tutorials/gm-world)
+* [GM world](/tutorials/gm-world)
 * [Recipe Book](/tutorials/recipe-book) or [Blog and Module Basics](https://docs.ignite.com/guide/blog/intro)
 * [Nameservice Tutorial](https://docs.ignite.com/v0.25.2/guide/nameservice)
 * [Scavenger Hunt](https://docs.ignite.com/v0.25.2/guide/scavenge)

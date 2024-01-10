@@ -194,8 +194,10 @@ function sidebarHome() {
           items: [
             // { text: 'Starter Rollup with Docker', link: '/tutorials/rollup-docker'},
             // { text: 'Starter Rollup', link: '/tutorials/starter-rollup'},
-            { text: 'GM World rollup', link: '/tutorials/gm-world'},
-            { text: 'GM World frontend', link: '/tutorials/gm-world-frontend'},
+            { text: 'GM world rollup: Part 1, local devnet', link: '/tutorials/gm-world'},
+            { text: 'GM world rollup: Part 2, testnet', link: '/tutorials/gm-world-testnet'},
+            { text: 'GM world rollup: Part 3, mainnet', link: '/tutorials/gm-world-mainnet'},
+            { text: 'GM world frontend', link: '/tutorials/gm-world-frontend'},
             { text: 'Recipe Book rollup', link: '/tutorials/recipe-book'},
             { text: 'How to restart your rollup', link: '/tutorials/restart-rollup'},
           ]

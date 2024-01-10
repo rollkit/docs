@@ -40,8 +40,8 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 
 #### Beginner
 
-- [GM World rollup](/tutorials/gm-world)
-- [GM World frontend](/tutorials/gm-world-frontend)
+- [GM world rollup](/tutorials/gm-world)
+- [GM world frontend](/tutorials/gm-world-frontend)
 - [Recipe Book rollup](/tutorials/recipe-book)
 - [How to restart your rollup](/tutorials/restart-rollup)
 

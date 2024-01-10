@@ -1,6 +1,10 @@
 # Full and sequencer node rollup setup
 
-This guide will cover how to set up the GM World rollup example as
+::: warning
+This tutorial is under construction. 🏗️
+:::
+
+This guide will cover how to set up the GM world rollup example as
 a multi-node network using a full and sequencer node.
 
 ## About
@@ -14,10 +18,10 @@ This is the same way that celestia-node syncs blocks over p2p.
 
 ## Prerequisites
 
-First, you'll need to complete the [GM World](./gm-world) tutorial.
+First, you'll need to complete the [GM world](./gm-world) tutorial.
 
 In this demo, we'll be using the local-celestia-devnet setup used
-in [Part One](./gm-world#part-one).
+in [part 1](./gm-world).
 
 ## Getting started
 
