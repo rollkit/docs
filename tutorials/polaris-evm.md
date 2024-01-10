@@ -246,7 +246,18 @@ After the node is synced, stop the light node.
 to connect to Rollkit. Your node does not need to be running
 when you start `celestia-da`. To start `celestia-da` and your light node, run this command:
 
-Start the node:
+:::tip
+You can either use the default `000000506f6c61726973`
+namespace below, or set your own by using a command
+similar to this to generate one (or, you could get creative 😎):
+
+```bash
+openssl rand -hex 10
+```
+
+[Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)
+.
+:::
 
 ```bash
 docker run -d \
@@ -270,7 +281,7 @@ celestia-da light start \
 First, ensure you're on the correct branch of Polaris:
 
 ```bash
-cd $HOME/polaris && git checkout rollkit-stable
+cd $HOME/polaris && git checkout rollkit-main
 ```
 
 Before starting your rollup, you'll want to make a change in
@@ -294,3 +305,7 @@ make start
 
 Congratulations! Your light node is now posting your rollup's data to
 Celestia's Mocha testnet.
+
+Find an explorer to view
+[the default namespace in the tutorial](https://mocha-4.celenium.io/namespace/000000000000000000000000000000000000000000506f6c61726973)
+or [search for your own namespace on Celenium](https://celenium.io).
