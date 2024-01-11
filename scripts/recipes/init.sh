@@ -8,17 +8,13 @@ CHAINFLAG="--chain-id ${CHAIN_ID}"
 TOKEN_AMOUNT="10000000000000000000000000stake"
 STAKING_AMOUNT="1000000000stake"
 
-# create a random Namespace ID for your rollup to post blocks to
-NAMESPACE=$(openssl rand -hex 8)
-echo $NAMESPACE
-
 # query the DA Layer start height, in this case we are querying
 # an RPC endpoint provided by Celestia Labs. The RPC endpoint is
 # to allow users to interact with Celestia's core network by querying
 # the node's state and broadcasting transactions on the Celestia
 # network. This is for Arabica, if using another network, change the RPC.
-DA_BLOCK_HEIGHT=$(curl https://rpc-arabica-9.consensus.celestia-arabica.com/block |jq -r '.result.block.header.height')
-echo $DA_BLOCK_HEIGHT
+DA_BLOCK_HEIGHT=$(curl https://rpc.celestia-arabica-11.com/block | jq -r '.result.block.header.height')
+echo -e "\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n"
 
 # build the recipes chain with Rollkit
 ignite chain build
@@ -33,24 +29,23 @@ recipesd init $VALIDATOR_NAME --chain-id $CHAIN_ID
 recipesd keys add $KEY_NAME --keyring-backend test
 
 # add a genesis account
-recipesd add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
+recipesd genesis add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
 
 # set the staking amounts in the genesis transaction
-recipesd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
+recipesd genesis gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
 
 # collect genesis transactions
-recipesd collect-gentxs
+recipesd genesis collect-gentxs
 
 # copy centralized sequencer address into genesis.json
 # Note: validator and sequencer are used interchangeably here
 ADDRESS=$(jq -r '.address' ~/.recipes/config/priv_validator_key.json)
 PUB_KEY=$(jq -r '.pub_key' ~/.recipes/config/priv_validator_key.json)
-jq --argjson pubKey "$PUB_KEY" '. + {"validators": [{"address": "'$ADDRESS'", "pub_key": $pubKey, "power": "1000", "name": "Rollkit Sequencer"}]}' ~/.recipes/config/genesis.json > temp.json && mv temp.json ~/.recipes/config/genesis.json
+jq --argjson pubKey "$PUB_KEY" '.consensus["validators"]=[{"address": "'$ADDRESS'", "pub_key": $pubKey, "power": "1000", "name": "Rollkit Sequencer"}]' ~/.recipes/config/genesis.json > temp.json && mv temp.json ~/.recipes/config/genesis.json
 
-# export the Celestia light node's auth token to allow you to submit
-# PayForBlobs to Celestia's data availability network
-# this is for Arabica, if using another network, change the network name
-export AUTH_TOKEN=$(celestia light auth write --p2p.network arabica)
+# create a restart-testnet.sh file to restart the chain later
+[ -f restart-recipes.sh ] && rm restart-recipes.sh
+echo "DA_BLOCK_HEIGHT=$DA_BLOCK_HEIGHT" >> restart-recipes.sh
 
-# start the chain
-recipesd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26658","timeout":60000000000,"fee":600000,"gas_limit":6000000,"auth_token":"'$AUTH_TOKEN'"}' --rollkit.namespace_id $NAMESPACE --rollkit.da_start_height $DA_BLOCK_HEIGHT
+# start your recipes rollup
+recipesd start --rollkit.aggregator true --rollkit.da_address=":26650" --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --p2p.laddr "0.0.0.0:36656" --minimum-gas-prices="0.025stake"
