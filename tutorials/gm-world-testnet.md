@@ -43,10 +43,10 @@ celestia-da light start \
 :::tip
 You can either use the default `000008e5f679bf7116cb`
 namespace above, or set your own by using a command
-similar to this:
+similar to this (or, you could get creative 😎):
 
 ```bash
-NAMESPACE_ID=$(echo -n $NAMESPACE_NAME | openssl dgst -sha256 -binary | head -c 10 | xxd -p)"
+openssl rand -hex 10
 ```
 
 [Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)
