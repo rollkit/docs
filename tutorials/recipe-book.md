@@ -1,9 +1,5 @@
 # 🥗 Recipe Book rollup
 
-::: warning
-This tutorial is under construction. 🏗️
-:::
-
 ## 📖 Overview {#overview}
 
 In this tutorial, we are going to build a blockchain
@@ -496,6 +492,9 @@ bash init.sh
 With that, we have kickstarted our `recipesd` network!
 
 ![recipe-start.gif](/recipes/recipe-start.gif)
+
+Find
+[your account address on an Arabica explorer to see your `PayForBlobs` transactions](https://explorer.modular.cloud/celestia-arabica/addresses/celestia10rdu7l3gzeuxplpnr5vxchvxxflx7ym0q6wt5v).
 
 Open another teminal instance. Now, create your first
 recipe in the command line by sending a transaction from `recipes-key`,
