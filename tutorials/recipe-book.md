@@ -440,7 +440,7 @@ docker run -d \
 -p 26658:26658 \
 -p 26659:26659 \
 -v $HOME/.celestia-light-arabica-11/:/home/celestia/.celestia-light-arabica-11/ \
-ghcr.io/rollkit/celestia-da:v0.12.4-rc1 \
+ghcr.io/rollkit/celestia-da:v0.12.5 \
 celestia-da light start \
 --p2p.network=arabica \
 --da.grpc.namespace=00000072656369706573 \
