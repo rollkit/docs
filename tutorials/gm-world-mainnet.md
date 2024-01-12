@@ -34,7 +34,7 @@ when you start `celestia-da`.
     -p 26658:26658 \
     -p 26659:26659 \
     -v $HOME/.celestia-light/:/home/celestia/.celestia-light/ \
-    ghcr.io/rollkit/celestia-da:v0.12.4-rc1 \
+    ghcr.io/rollkit/celestia-da:v0.12.5 \
     celestia-da light start \
     --p2p.network=celestia \
     --da.grpc.namespace=000000676d776f726c64 \
@@ -46,10 +46,10 @@ when you start `celestia-da`.
     :::tip
     You can either use the default `000000474d776f726c64`, "GMworld" in
     plaintext, namespace above, or set your own by using a command
-    similar to this:
+    similar to this (or, you could get creative 😎):
 
     ```bash
-    NAMESPACE_ID=$(echo -n $NAMESPACE_NAME | openssl dgst -sha256 -binary | head -c  | xxd -p)"
+    openssl rand -hex 10
     ```
 
     [Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)

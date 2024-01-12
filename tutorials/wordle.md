@@ -1,9 +1,5 @@
 # 🕹️ Wordle app
 
-::: warning
-This tutorial is under construction. 🏗️
-:::
-
 ![wordle-app](/wordle/wordle.png)
 
 This tutorial guide will go over building a cosmos-sdk app
@@ -94,7 +90,7 @@ You can read more about Ignite [here](https://docs.ignite.com).
 To install Ignite, you can run this command in your terminal:
 
 ```bash
-curl https://get.ignite.com/cli@v0.27.1! | bash
+curl https://get.ignite.com/cli@v28.1.0! | bash
 sudo mv ignite /usr/local/bin/
 ```
 
@@ -179,23 +175,11 @@ Rollkit on our codebase.
 
 Run the following command inside the `wordle` directory.
 
-::: code-group
-
-```bash [local-celestia-devnet]
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.6-rollkit-v0.10.7-no-fraud-proofs-fixed
-go mod edit -replace github.com/gogo/protobuf=github.com/regen-network/protobuf@v1.3.3-alpha.regen.1
+```bash
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.9-no-fraud-proofs
 go mod tidy
 go mod download
 ```
-
-```bash [Arabica Devnet]
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.47.6-rollkit-v0.10.7-no-fraud-proofs-fixed
-go mod edit -replace github.com/gogo/protobuf=github.com/regen-network/protobuf@v1.3.3-alpha.regen.1
-go mod tidy
-go mod download
-```
-
-:::
 
 With that, we have Rollkit changes added to the project directory. Now,
 let's build the Wordle app!
@@ -567,10 +551,57 @@ compile the blockchain and take it out for a test drive.
 
 ### 🪶 Run a Celestia light node {#run-celestia-light-node}
 
-Follow instructions to install and start your Celestia Data
-Availability layer Light Node selecting the network that
-you had previously used. You can find instructions to install
-and run the node [here](https://docs.celestia.org/nodes/light-node).
+Follow instructions to install and start your Celestia Data Availability
+layer Light Node selecting the Arabica Devnet. You can
+find instructions to install and run the node [here](https://docs.celestia.org/nodes/light-node).
+
+After you have Go and Ignite CLI installed, and your Celestia Light
+Node running on your machine, you're ready to build, test, and launch your own
+sovereign rollup.
+
+Be sure you have initialized your node before trying to start it.
+Your start command should look similar to:
+
+<!-- markdownlint-disable MD013 -->
+```bash
+celestia light start --p2p.network arabica
+```
+<!-- markdownlint-enable MD013 -->
+
+After you have synced your node and funded it from the faucet,
+you will need to stop it to restart it with `celestia-da`.
+
+To do so, use the following command:
+
+```bash
+docker run -d \
+-e NODE_TYPE=light \
+-e P2P_NETWORK=arabica \
+-p 26650:26650 \
+-p 26658:26658 \
+-p 26659:26659 \
+-v $HOME/.celestia-light-arabica-11/:/home/celestia/.celestia-light-arabica-11/ \
+ghcr.io/rollkit/celestia-da:v0.12.5 \
+celestia-da light start \
+--p2p.network=arabica \
+--da.grpc.namespace=00000000776f72646c65 \
+--da.grpc.listen=0.0.0.0:26650 \
+--core.ip validator-1.celestia-arabica-11.com \
+--gateway
+```
+
+:::tip
+You can either use the default `00000000776f72646c65`, "wordle" in
+plaintext, namespace above, or set your own by using a command
+similar to this (or, you could get creative 😎):
+
+```bash
+openssl rand -hex 10
+```
+
+[Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)
+
+:::
 
 After you have Go and Ignite CLI installed, and your Celestia
 Light Node running on your machine, you're ready to build,
@@ -603,6 +634,9 @@ bash init.sh
 ```
 
 With that, we have kickstarted our `wordled` network!
+
+Find
+[your account address on an Arabica explorer to see your `PayForBlobs` transactions](https://explorer.modular.cloud/celestia-arabica/addresses/celestia10rdu7l3gzeuxplpnr5vxchvxxflx7ym0q6wt5v).
 
 In another window, run the following to submit a Wordle:
 

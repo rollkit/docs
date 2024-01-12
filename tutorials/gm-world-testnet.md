@@ -31,7 +31,7 @@ docker run -d \
 -p 26658:26658 \
 -p 26659:26659 \
 -v $HOME/.celestia-light-arabica-11/:/home/celestia/.celestia-light-arabica-11/ \
-ghcr.io/rollkit/celestia-da:v0.12.4-rc1 \
+ghcr.io/rollkit/celestia-da:v0.12.5 \
 celestia-da light start \
 --p2p.network=arabica \
 --da.grpc.namespace=000008e5f679bf7116cb \
@@ -43,10 +43,10 @@ celestia-da light start \
 :::tip
 You can either use the default `000008e5f679bf7116cb`
 namespace above, or set your own by using a command
-similar to this:
+similar to this (or, you could get creative 😎):
 
 ```bash
-NAMESPACE_ID=$(echo -n $NAMESPACE_NAME | openssl dgst -sha256 -binary | head -c 10 | xxd -p)"
+openssl rand -hex 10
 ```
 
 [Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)
