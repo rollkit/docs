@@ -411,7 +411,7 @@ func (k Keeper) Dishes(c context.Context, req *types.QueryDishesRequest) (*types
 ### ✨ Run a Celestia light node {#run-celestia-light-node}
 
 Follow instructions to install and start your Celestia Data Availability
-layer Light Node selecting the network that you previously used. You can
+layer Light Node selecting the Arabica Devnet. You can
 find instructions to install and run the node [here](https://docs.celestia.org/nodes/light-node).
 
 After you have Go and Ignite CLI installed, and your Celestia Light
@@ -419,7 +419,6 @@ Node running on your machine, you're ready to build, test, and launch your own
 sovereign rollup.
 
 Be sure you have initialized your node before trying to start it.
-When starting your node, remember to enable the gateway.
 Your start command should look similar to:
 
 <!-- markdownlint-disable MD013 -->
@@ -429,9 +428,9 @@ celestia light start --p2p.network arabica
 <!-- markdownlint-enable MD013 -->
 
 After you have synced your node and funded it from the faucet,
-you will need to stop it to restart it with `celestia-da`.
+you will need to stop it with "Control + C".
 
-To do so, use the following command:
+Then, restart it with `celestia-da` using the following command:
 
 ```bash
 docker run -d \
