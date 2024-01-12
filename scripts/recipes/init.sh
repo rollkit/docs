@@ -47,5 +47,7 @@ jq --argjson pubKey "$PUB_KEY" '.consensus["validators"]=[{"address": "'$ADDRESS
 [ -f restart-recipes.sh ] && rm restart-recipes.sh
 echo "DA_BLOCK_HEIGHT=$DA_BLOCK_HEIGHT" >> restart-recipes.sh
 
+echo "recipesd start --rollkit.aggregator true --rollkit.da_address=":26650" --rollkit.da_start_height \$DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --p2p.laddr \"0.0.0.0:36656\" --minimum-gas-prices="0.025stake"" >> restart-recipes.sh
+
 # start your recipes rollup
 recipesd start --rollkit.aggregator true --rollkit.da_address=":26650" --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --p2p.laddr "0.0.0.0:36656" --minimum-gas-prices="0.025stake"
