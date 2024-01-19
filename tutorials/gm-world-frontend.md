@@ -69,19 +69,16 @@ Follow the instructions at the end of the output to start your app:
 cd ./gm-world && yarn dev
 ```
 
-![cca-3.png](/gm/cca-3.png)
-
 ## Adding your GM portal chain to the config
 
 First, we'll need to make some changes with the default config.
 
 We need to add the array of chains that we would like to test
-in the `components/wallet.tsx` file on underneath imports:
+in the `components/wallet.tsx` file underneath your imports:
 
 ```tsx
 const allowedChains = [
   'gmrollup',
-  'celestiatestnet',
   'celestiatestnet2',
   'celestiatestnet3',
 ];
@@ -131,13 +128,13 @@ export const chain = {
       "rpc": [
         {
           "address": "http://localhost:26657",
-          "provider": "JCS"
+          "provider": "local-network"
         }
       ],
       "rest": [
         {
           "address": "http://localhost:1317",
-          "provider": "JCS"
+          "provider": "local-network"
         }
       ]
     },
@@ -243,29 +240,7 @@ This will save our localhost RPC from being overridden.
 Congratulations! You now have a frontend for your rollup.
 What features do you want to add now?
 
-You may notice that the icons for Celestia testnets are not loading,
-this is due to an outdated version of the chain registry.
-
 ![cca.png](/gm/cca.png)
-
-To update
-these, you can use your terminal:
-
-```bash
-cd $HOME && cd gm-world
-yarn upgrade-interactive --latest
-```
-
-Use arrow keys and the spacebar to select it`@cosmos-kit/core`,
-`@cosmos-kit/cosmostation`, `@cosmos-kit/keplr`, `@cosmos-kit/leap`
-and `@cosmos-kit/react`.
-
-Now use enter to upgrade the dependencies!
-
-Head back to your frontend and take a look, you should see the
-updated icons.
-
-![cca-2.png](/gm/cca-2.png)
 
 <!-- ## TODO
 
