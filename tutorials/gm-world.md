@@ -455,7 +455,7 @@ So using our information from the [keys](#keys) command, we can construct the tr
 
 ```bash
 gmd tx bank send $KEY1 $KEY2 42069stake --keyring-backend test \
---node tcp://127.0.0.1:36657 --chain-id gm
+--node tcp://127.0.0.1:36657 --chain-id gm --fees 5000stake
 ```
 
 ::: tip
