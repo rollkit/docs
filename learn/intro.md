@@ -23,12 +23,12 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 - [Introduction to Rollkit](/learn/intro)
 - [About Rollkit](/learn/about)
 
-### learn
+### Learn
 
 - [Overview](/learn/overview)
 - [Rollkit stack](/learn/stack)
 - [Transaction flow](/learn/transaction-flow)
-- [Building with Rollkit](/learn/building-with-rollkit)
+- [Building with Rollkit](/learn/building-and-deploying-a-rollup)
 
 #### Rollup Wiki
 
