@@ -126,6 +126,19 @@ git checkout tags/v0.50.0
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.19-no-fraud-proofs
 go mod tidy -compat=1.17
 go mod download
+```
+
+Now, comment out lines 902-904 in `app/app.go`:
+
+```go
+if err != nil {
+  panic(err)
+}
+```
+
+And build the binary:
+
+```bash
 make install
 ```
 
