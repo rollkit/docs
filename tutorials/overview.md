@@ -28,7 +28,6 @@ In this section, you'll find:
 * Advanced
   * [Full and sequencer node rollup setup](/tutorials/full-and-sequencer-node.md)
   * [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
-  * [Hyperlane + Celestia tutorial](https://docs.hyperlane.xyz/docs/deploy-hyperlane)
 * Guides
   * [How to change speed of block production](/tutorials/block-times.md)
   * [How to use lazy sequencing (aggregation)](/tutorials/lazy-sequencing.md)

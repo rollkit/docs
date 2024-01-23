@@ -54,7 +54,6 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 
 - [Full and sequencer node rollup setup](/tutorials/full-and-sequencer-node)
 - [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
-- [Hyperlane + Celestia tutorial](https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane)
 
 ### Guides
 
