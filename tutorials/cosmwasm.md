@@ -136,6 +136,9 @@ if err != nil {
 }
 ```
 
+This is a temporary fix until [CosmWasm/wasmd#1785](https://github.com/CosmWasm/wasmd/issues/1785)
+is resolved.
+
 And build the binary:
 
 ```bash
