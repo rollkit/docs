@@ -1,9 +1,5 @@
 # Full and sequencer node rollup setup
 
-::: warning
-This tutorial is under construction. 🏗️
-:::
-
 This guide will cover how to set up the GM world rollup example as
 a multi-node network using a full and sequencer node.
 
@@ -40,8 +36,6 @@ ______         _  _  _     _  _
 | |\ \ | (_) || || ||   < | || |_
 \_| \_| \___/ |_||_||_|\_\|_| \__|
 
-
- Your NAMESPACE is 31e2c345c895c3577bea // [!code focus]
 
  Your DA_BLOCK_HEIGHT is 5 // [!code focus]
 ```
