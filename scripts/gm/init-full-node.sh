@@ -7,8 +7,8 @@ gmd --home "$BASE_DIR" init FullNode --chain-id $CHAIN_ID
 
 cp -R "$HOME/.gm/config/genesis.json" "$BASE_DIR/config/genesis.json"
 
-DA_BLOCK_HEIGHT=your-block-height
-P2P_ID="your-p2p-id"
+DA_BLOCK_HEIGHT=43
+P2P_ID="12D3KooWLt9yqMtQTpCiYTN6ipyCv9iTDCTKBTNXjeHFLUK5yzHi"
 
 # rollkit logo
 cat <<'EOF'
@@ -44,4 +44,4 @@ cat <<'EOF'
 
 EOF
 
-gmd --home $BASE_DIR start --rollkit.aggregator false --rollkit.da_address=":26650" --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:46657 --grpc.address 127.0.0.1:9390 --grpc-web.address 127.0.0.1:9391 --p2p.seeds $P2P_ID@127.0.0.1:36656 --p2p.laddr "0.0.0.0:46656" --log_level debug --minimum-gas-prices="0.025stake"
+gmd start --rollkit.aggregator false --rollkit.da_address=":26650" --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:46657 --grpc.address 127.0.0.1:9390 --p2p.seeds $P2P_ID@127.0.0.1:36656 --p2p.laddr "0.0.0.0:46656" --log_level debug --minimum-gas-prices="0.025stake" --home $BASE_DIR
