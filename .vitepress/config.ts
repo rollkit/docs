@@ -217,7 +217,6 @@ function sidebarHome() {
           items: [
             { text: 'Full and sequencer node rollup setup', link: '/tutorials/full-and-sequencer-node'},
             { text: 'Full-stack modular dapp with Celestia', link: 'https://docs.celestia.org/developers/full-stack-modular-development-guide'},
-            { text: 'Hyperlane + Celestia tutorial', link: 'https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane'},
           ]
         },
         {

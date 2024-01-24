@@ -23,12 +23,12 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 - [Introduction to Rollkit](/learn/intro)
 - [About Rollkit](/learn/about)
 
-### learn
+### Learn
 
 - [Overview](/learn/overview)
 - [Rollkit stack](/learn/stack)
 - [Transaction flow](/learn/transaction-flow)
-- [Building with Rollkit](/learn/building-with-rollkit)
+- [Building with Rollkit](/learn/building-and-deploying-a-rollup)
 
 #### Rollup Wiki
 
@@ -54,7 +54,6 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 
 - [Full and sequencer node rollup setup](/tutorials/full-and-sequencer-node)
 - [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
-- [Hyperlane + Celestia tutorial](https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane)
 
 ### Guides
 
