@@ -7,8 +7,8 @@ gmd --home "$BASE_DIR" init FullNode --chain-id $CHAIN_ID
 
 cp -R "$HOME/.gm/config/genesis.json" "$BASE_DIR/config/genesis.json"
 
-DA_BLOCK_HEIGHT=43
-P2P_ID="12D3KooWLt9yqMtQTpCiYTN6ipyCv9iTDCTKBTNXjeHFLUK5yzHi"
+DA_BLOCK_HEIGHT=your-block-height
+P2P_ID="your-p2p-id"
 
 # rollkit logo
 cat <<'EOF'
