@@ -380,6 +380,7 @@ from inside the `gm` directory:
 ```bash
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.19-no-fraud-proofs
 go mod tidy
+go get github.com/bufbuild/buf@latest
 go mod download
 ```
 
