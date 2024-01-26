@@ -17,7 +17,7 @@ DA_BLOCK_HEIGHT=$(curl https://rpc.celestia-arabica-11.com/block | jq -r '.resul
 echo -e "\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n"
 
 # build the recipes chain with Rollkit
-ignite chain build --skip-proto
+ignite chain build
 
 # reset any existing genesis/chain data
 recipesd tendermint unsafe-reset-all
