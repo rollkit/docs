@@ -52,7 +52,7 @@ EOF
 echo -e "\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n"
 
 # build the gm chain with Rollkit
-ignite chain build
+ignite chain build --skip-proto
 
 # reset any existing genesis/chain data
 gmd tendermint unsafe-reset-all

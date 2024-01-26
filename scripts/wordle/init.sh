@@ -17,7 +17,7 @@ DA_BLOCK_HEIGHT=$(curl https://rpc.celestia-arabica-11.com/block | jq -r '.resul
 echo -e "\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n"
 
 # build the wordle chain with Rollkit
-ignite chain build
+ignite chain build --skip-proto
 
 # reset any existing genesis/chain data
 wordled tendermint unsafe-reset-all
