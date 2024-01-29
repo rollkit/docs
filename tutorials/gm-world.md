@@ -66,12 +66,6 @@ You can [install Golang here](https://docs.celestia.org/nodes/environment#instal
 
 ### 🔥 Install Ignite CLI on Linux {#install-ignite-cli-linux}
 
-First, you will need to create `/usr/local/bin` if you have not already:
-
-```bash
-sudo mkdir -p -m 775 /usr/local/bin
-```
-
 Run this command in your terminal to install Ignite CLI:
 
 ```bash
@@ -157,12 +151,6 @@ Golang to build and run them.
 You can [install Golang here](https://docs.celestia.org/nodes/environment#install-golang).
 
 #### 🔥 Install Ignite CLI on macOS {#install-ignite-mac}
-
-First, you will need to create `/usr/local/bin` if you have not already:
-
-```bash
-sudo mkdir -p -m 775 /usr/local/bin
-```
 
 Run this command in your terminal to install Ignite CLI:
 
