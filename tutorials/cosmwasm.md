@@ -1,9 +1,5 @@
 # 🗞️ CosmWasm rollup
 
-::: warning
-This tutorial is under construction. 🏗️
-:::
-
 CosmWasm is a smart contracting platform built for the Cosmos
 ecosystem by making use of [WebAssembly](https://webassembly.org) (Wasm)
 to build smart contracts for Cosmos-SDK. In this tutorial, we will be
@@ -131,6 +127,22 @@ go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@
 go mod tidy -compat=1.17
 go get github.com/bufbuild/buf@latest
 go mod download
+```
+
+Now, comment out lines 902-904 in `app/app.go`:
+
+```go
+if err != nil {
+  panic(err)
+}
+```
+
+This is a temporary fix until [CosmWasm/wasmd#1785](https://github.com/CosmWasm/wasmd/issues/1785)
+is resolved.
+
+And build the binary:
+
+```bash
 make install
 ```
 
