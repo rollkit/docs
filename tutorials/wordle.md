@@ -176,8 +176,9 @@ Rollkit on our codebase.
 Run the following command inside the `wordle` directory.
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.9-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.19-no-fraud-proofs
 go mod tidy
+go get github.com/bufbuild/buf@latest
 go mod download
 ```
 
@@ -581,7 +582,7 @@ docker run -d \
 -p 26658:26658 \
 -p 26659:26659 \
 -v $HOME/.celestia-light-arabica-11/:/home/celestia/.celestia-light-arabica-11/ \
-ghcr.io/rollkit/celestia-da:v0.12.5 \
+ghcr.io/rollkit/celestia-da:v0.12.9 \
 celestia-da light start \
 --p2p.network=arabica \
 --da.grpc.namespace=00000000776f72646c65 \

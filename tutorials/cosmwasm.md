@@ -125,6 +125,7 @@ cd wasmd
 git checkout tags/v0.50.0
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.19-no-fraud-proofs
 go mod tidy -compat=1.17
+go get github.com/bufbuild/buf@latest
 go mod download
 ```
 
@@ -174,7 +175,7 @@ docker run -d \
 -p 26658:26658 \
 -p 26659:26659 \
 -v $HOME/.celestia-light-mocha-4/:/home/celestia/.celestia-light-mocha-4/ \
-ghcr.io/rollkit/celestia-da:v0.12.5 \
+ghcr.io/rollkit/celestia-da:v0.12.9 \
 celestia-da light start \
 --p2p.network=mocha \
 --da.grpc.namespace=0000636f736d7761736d \
