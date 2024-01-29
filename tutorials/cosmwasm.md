@@ -1,9 +1,5 @@
 # 🗞️ CosmWasm rollup
 
-::: warning
-This tutorial is under construction. 🏗️
-:::
-
 CosmWasm is a smart contracting platform built for the Cosmos
 ecosystem by making use of [WebAssembly](https://webassembly.org) (Wasm)
 to build smart contracts for Cosmos-SDK. In this tutorial, we will be
@@ -127,9 +123,26 @@ Cosmos-SDK applications to connect to Celestia's data availability network.
 git clone https://github.com/CosmWasm/wasmd.git
 cd wasmd
 git checkout tags/v0.50.0
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.9-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.19-no-fraud-proofs
 go mod tidy -compat=1.17
+go get github.com/bufbuild/buf@latest
 go mod download
+```
+
+Now, comment out lines 902-904 in `app/app.go`:
+
+```go
+if err != nil {
+  panic(err)
+}
+```
+
+This is a temporary fix until [CosmWasm/wasmd#1785](https://github.com/CosmWasm/wasmd/issues/1785)
+is resolved.
+
+And build the binary:
+
+```bash
 make install
 ```
 
@@ -162,7 +175,7 @@ docker run -d \
 -p 26658:26658 \
 -p 26659:26659 \
 -v $HOME/.celestia-light-mocha-4/:/home/celestia/.celestia-light-mocha-4/ \
-ghcr.io/rollkit/celestia-da:v0.12.5 \
+ghcr.io/rollkit/celestia-da:v0.12.9 \
 celestia-da light start \
 --p2p.network=mocha \
 --da.grpc.namespace=0000636f736d7761736d \
