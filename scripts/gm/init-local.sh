@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Check if GOPATH is set
+if [ -z "$GOPATH" ]; then
+    echo "GOPATH is not set. Please set GOPATH before proceeding."
+    exit 1
+fi
+
 # set variables for the chain
 VALIDATOR_NAME=validator1
 CHAIN_ID=gm
