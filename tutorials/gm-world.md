@@ -290,7 +290,7 @@ First, run the [`local-celestia-devnet`](https://github.com/rollkit/local-celest
 ```bash
 docker run -t -i \
     -p 26650:26650 -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 \
-    ghcr.io/rollkit/local-celestia-devnet:v0.12.5
+    ghcr.io/rollkit/local-celestia-devnet:v0.12.7
 ```
 
 The docker image automatically creates a `NAMESPACE_ID`
@@ -378,8 +378,9 @@ To swap out CometBFT for Rollkit, run the following command
 from inside the `gm` directory:
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.9-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.19-no-fraud-proofs
 go mod tidy
+go get github.com/bufbuild/buf@latest
 go mod download
 ```
 

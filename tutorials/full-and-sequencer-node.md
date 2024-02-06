@@ -1,15 +1,11 @@
 # Full and sequencer node rollup setup
 
-::: warning
-This tutorial is under construction. 🏗️
-:::
-
 This guide will cover how to set up the GM world rollup example as
 a multi-node network using a full and sequencer node.
 
 ## About
 
-This guide is using a new feature released in v0.10.2 that
+This guide is using a feature released in v0.10.2 that
 uses [go-header](https://github.com/celestiaorg/go-header),
 which uses libp2p that syncs blocks over a peer-to-peer (p2p)
 network.
@@ -25,8 +21,8 @@ in [part 1](./gm-world).
 
 ## Getting started
 
-For running a full node, you will need to update `NAMESPACE`,
-`DA_HEIGHT`, and `P2P_ID` manually. You can retrieve
+For running a full node, you will need to update
+`DA_HEIGHT` and `P2P_ID` manually. You can retrieve
 namespace and height from your terminal output
 from when you ran the `init-local.sh` script.
 
@@ -41,8 +37,6 @@ ______         _  _  _     _  _
 \_| \_| \___/ |_||_||_|\_\|_| \__|
 
 
- Your NAMESPACE is 31e2c345c895c3577bea // [!code focus]
-
  Your DA_BLOCK_HEIGHT is 5 // [!code focus]
 ```
 
@@ -56,15 +50,13 @@ cd $HOME/gm
 wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-full-node.sh
 ```
 
-### Set namespace and DA height
+### Set DA height
 
 Next, you can open the script and set your namespace and DA height from above:
 
 ```sh
 DA_BLOCK_HEIGHT=your-block-height // [!code --]
 DA_BLOCK_HEIGHT=5 // [!code ++]
-NAMESPACE="your-namespace" // [!code --]
-NAMESPACE="31e2c345c895c3577bea" // [!code ++]
 P2P_ID="your-p2p-id"
 ```
 
@@ -93,25 +85,9 @@ for your script to use:
 
 ```bash
 DA_BLOCK_HEIGHT=5
-NAMESPACE="31e2c345c895c3577bea"
 P2P_ID="your-p2p-id" // [!code --]
 P2P_ID="12D3KooWCmfJLkQjZUArWpNUDJSezeFiLYzCULXe1dEKY6ZpXZpk" // [!code ++]
 ```
-
-### Set auth token
-
-When passing the `--rollkit.da_config` flag, it will require `AUTH_TOKEN`
-to be passed in. The auth token with write permission is required to
-submit blobs and can be set with the following command once your
-local-celestia-devnet is running:
-
-```bash
-export AUTH_TOKEN=$(docker exec $(docker ps -q)  celestia bridge --node.store /home/celestia/bridge/ auth admin)
-```
-
-This will set the local-celestia-devnet bridge node auth token. This
-assumes that there is only one container, otherwise you can pass the container
-name.
 
 ## Start the full node
 

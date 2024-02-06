@@ -23,7 +23,6 @@ You can get started with the following tutorials:
 ## 3️. Advanced {#advanced}
 
 - [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
-- [Hyperlane + Celestia tutorial](https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane)
 
 ## 💻 Support {#support}
 

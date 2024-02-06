@@ -267,7 +267,7 @@ docker run -d \
 -p 26658:26658 \
 -p 26659:26659 \
 -v $HOME/.celestia-light-mocha-4/:/home/celestia/.celestia-light-mocha-4/ \
-ghcr.io/rollkit/celestia-da:v0.12.8 \
+ghcr.io/rollkit/celestia-da:v0.12.9 \
 celestia-da light start \
 --p2p.network=mocha \
 --da.grpc.namespace=000000506f6c61726973 \
