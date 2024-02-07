@@ -103,14 +103,14 @@ With that, we have kickstarted our second `gmd` rollup!
 If you'd like to stop and restart your rollup for development purposes,
 you're in luck!
 
-When you ran `init-mainnet.sh`, the script generated a script called
-`restart-mainnet.sh` in the `$HOME/gm` directory for you to use to
+When you ran `init-testnet.sh`, the script generated a script called
+`restart-testnet.sh` in the `$HOME/gm` directory for you to use to
 restart your rollup.
 
 In order to do so, restart `celestia-da` and then run:
 
 ```bash
-bash restart-mainnet.sh
+bash restart-testnet.sh
 ```
 
 ### Optional: Add a "GM world" query
