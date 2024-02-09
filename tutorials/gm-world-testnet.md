@@ -31,7 +31,7 @@ docker run -d \
 -p 26658:26658 \
 -p 26659:26659 \
 -v $HOME/.celestia-light-arabica-11/:/home/celestia/.celestia-light-arabica-11/ \
-ghcr.io/rollkit/celestia-da:v0.12.9 \
+ghcr.io/rollkit/celestia-da:v0.12.10 \
 celestia-da light start \
 --p2p.network=arabica \
 --da.grpc.namespace=000008e5f679bf7116cb \
@@ -103,14 +103,14 @@ With that, we have kickstarted our second `gmd` rollup!
 If you'd like to stop and restart your rollup for development purposes,
 you're in luck!
 
-When you ran `init-mainnet.sh`, the script generated a script called
-`restart-mainnet.sh` in the `$HOME/gm` directory for you to use to
+When you ran `init-testnet.sh`, the script generated a script called
+`restart-testnet.sh` in the `$HOME/gm` directory for you to use to
 restart your rollup.
 
 In order to do so, restart `celestia-da` and then run:
 
 ```bash
-bash restart-mainnet.sh
+bash restart-testnet.sh
 ```
 
 ### Optional: Add a "GM world" query
