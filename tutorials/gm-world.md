@@ -395,9 +395,17 @@ wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.s
 
 Run the `init-local.sh` script:
 
+::: warning
+In order to run init-local.sh you need to have the jq command line tool installed. You can install it by running `sudo apt-get install jq` on Ubuntu or `brew install jq` on MacOS.
+:::
+
 ```bash
 bash init-local.sh
 ```
+
+::: tip
+If you get errors of `gmd` not found, you may need to add the `go/bin` directory to your PATH. You can do this by running `export PATH=$PATH:$HOME/go/bin` and then running the `init-local.sh` script again.
+:::
 
 This will start your rollup, connected to the local Celestia devnet you have running.
 
