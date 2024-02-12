@@ -563,4 +563,4 @@ pagination:
 
 Congratulations! You've built a local rollup that posts to a
 local Celestia devnet. In the next tutorial, you can learn
-how to post data to Celestia's Mocha testnet.
+how to post data to Celestia's Arabica devnet.
