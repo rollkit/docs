@@ -1,7 +1,7 @@
 # IBC connection tutorial
 
 In this tutorial, we'll learn how to use [relayer](https://github.com/cosmos/relayer) to
-create a IBC connection between our [GM world](/tutorials/gm-world) rollup and a stride local testnet.
+create a IBC connection between our [GM world](/tutorials/gm-world) rollup and a osmosis local testnet.
 
 [IBC descriptsion section]
 
@@ -16,7 +16,6 @@ Software requirement:
 * Docker running on your machine
 * Go version >= 1.21.0
 
-
 ## Run a GM rollup chain
 
 Before you can create IBC connection, you need to start a
@@ -27,23 +26,22 @@ docker run -t -i --platform linux/amd64 -p 26650:26650 -p 26657:26657 -p 26658:2
 ```
 And we start the GM chain by using this script :
 ```
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-stride-local.sh
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-osmosis-local.sh
 sh init-full-node.sh
 ```
 
+## Install osmosis
 
-## Install stride
-
 ```
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-stride-local.sh
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-osmosis-local.sh
 ```
 
-## Run your local-stride-testnet
-You also need to start local-stride-testnet in a separate terminal by download and run this script
+## Run your local-osmosis-testnet
+You also need to start local-osmosis-testnet in a separate terminal by download and run this script
 ```
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-stride-local.sh
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-osmosis-local.sh
 ```
-This will start your local stride testnet, we'll create IBC connection between this testnet and GM chain in next step.
+This will start your local osmosis testnet, we'll create IBC connection between this testnet and GM chain in next step.
 
 ::: tip
 We're using the `--rpc.addr [ip:port]` flag to point to port 46657, which is
@@ -63,12 +61,13 @@ make install
 
 ## Create and fund relayer account
 For start relay 
-## Create IBC connection 
+
+## Create IBC connection
 
 ## Create IBC channel
 
 ## Start relaying packet
 
-## Transfer token from rollup chain to stride
+## Transfer token from rollup chain to osmosis
 
-## Transfer token back from stride to rollup chain
+## Transfer token back from osmosis to rollup chain
