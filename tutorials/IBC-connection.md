@@ -80,13 +80,7 @@ git checkout v2.4.2
 make install
 ```
 
-Verify your rly version with:
-
-```sh
-rly version
-```
-
-It should return
+Verify your rly version with `rly version`. It should return :
 
 ```sh
 version: 2.4.2
@@ -204,7 +198,6 @@ At the end, it should return something like this :
 
 ```bash
 2024-02-15T09:13:19.445633Z	info	Successful transaction	{"provider_type": "cosmos", "chain_id": "gm", "gas_used": 125110, "fees": "25000stake", "fee_payer": "gm1vvl79phavqruppr6f5zy4ypxy7znshrqam48qy", "height": 405, "msg_types": ["/ibc.core.client.v1.MsgUpdateClient", "/ibc.core.channel.v1.MsgChannelOpenConfirm"], "tx_hash": "EC6F370D94492FE0F01C7ECD7C0F3D55D73B750D98FA21180E5ABBCAC539C10A"}
-height 405
 2024-02-15T09:13:20.333721Z	info	Successfully created new channel	{"chain_name": "gm-local", "chain_id": "gm", "channel_id": "channel-0", "connection_id": "connection-0", "port_id": "transfer"}
 2024-02-15T09:13:20.333808Z	info	Channel handshake termination candidate	{"path_name": "osmo-gm", "chain_id": "gm", "client_id": "07-tendermint-1", "termination_port_id": "transfer", "observed_port_id": "transfer", "termination_counterparty_port_id": "transfer", "observed_counterparty_port_id": "transfer"}//[!code focus]
 2024-02-15T09:13:20.333813Z	info	Found termination condition for channel handshake	{"path_name": "osmo-gm", "chain_id": "gm", "client_id": "07-tendermint-1"}//[!code focus]
@@ -220,22 +213,16 @@ rly start
 
 ## Transfer token from rollup chain to osmosis-local
 
-Add key for celestia-devnet with
-
-```sh
-gmd keys add test --recover 
-```
-
 Make an ibc-transfer transaction
 
 ```sh
-gmd tx ibc-transfer transfer transfer [src-channel] [receiver_address] [amount] --node tcp://localhost:36657 --chain-id gm --from relay
+gmd tx ibc-transfer transfer transfer [src-channel] [receiver_address] [amount] --node tcp://localhost:36657 --chain-id gm --from gm-key
 ```
 
 Then check the balance of the receiver address to see if the token has been relayed or not:
 
 ```sh
-osmosisd query bank balances [receiver_address] --node tcp://localhost:46657 --chain-id osmosis-testnet-1 --from test
+osmosisd query bank balances [receiver_address] --node tcp://localhost:46657 --chain-id osmosis-testnet-1
 ```
 
 ## Transfer token back from osmosis-local to rollup chain
@@ -249,5 +236,5 @@ osmosisd tx ibc-transfer transfer [src-port] [src-channel] [receiver] [amount] -
 And then check the balances of the receiver address with if it the token is relayed or not
 
 ```sh
-gmd query bank balances [receiver address] --node tcp://localhost:36657 --chain-id gm --from test
+gmd query bank balances [receiver address] --node tcp://localhost:36657 
 ```
