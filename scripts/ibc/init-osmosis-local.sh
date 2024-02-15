@@ -1,5 +1,5 @@
 KEY="mykey"
-CHAINID="testnet-1"
+CHAINID="osmosis-testnet-1"
 MONIKER="localtestnet"
 KEYALGO="secp256k1"
 KEYRING="test"
@@ -7,7 +7,7 @@ LOGLEVEL="info"
 # to trace evm
 #TRACE="--trace"
 TRACE=""
-KEY2="validator"
+KEY_RELAY="relay-osmosis"
 # remove existing daemon
 rm -rf ~/.osmosis*
 
@@ -22,21 +22,20 @@ update_test_genesis () {
 
 # if $KEY exists it should be deleted
 osmosisd keys add $KEY --keyring-backend $KEYRING --algo $KEYALGO
-echo "cup pencil conduct depth analyst human trick excite gain copy option arena mix stamp team soon embody jewel erupt advice access prefer negative cost" | osmosisd keys add $KEY2 --keyring-backend $KEYRING --algo $KEYALGO --recover
+echo "milk verify alley price trust come maple will suit hood clay exotic" | osmosisd keys add $KEY_RELAY --keyring-backend $KEYRING --algo $KEYALGO --recover
 
 # Set moniker and chain-id for Evmos (Moniker can be anything, chain-id must be an integer)
 osmosisd init $MONIKER --chain-id $CHAINID 
 
 # Allocate genesis accounts (cosmos formatted addresses)
-osmosisd add-genesis-account $KEY2 100000001000009000uosmo,100000000000000utest --keyring-backend $KEYRING 
+osmosisd add-genesis-account $KEY_RELAY 100000001000009000uosmo,100000000000000utest --keyring-backend $KEYRING 
 osmosisd add-genesis-account $KEY 100000001000000000uosmo --keyring-backend $KEYRING
 
 # Sign genesis transaction
-osmosisd gentx $KEY2 100000001000000000uosmo --keyring-backend $KEYRING --chain-id $CHAINID
+osmosisd gentx $KEY 100000001000000000uosmo --keyring-backend $KEYRING --chain-id $CHAINID
 
 # Collect genesis tx
 osmosisd collect-gentxs
-update_test_genesis '.app_state["staking"]["params"]["unbonding_time"]="20s"' 
 update_test_genesis '.app_state["mint"]["params"]["mint_denom"]="uosmo"' 
 update_test_genesis '.app_state["staking"]["params"]["bond_denom"]="uosmo"' 
 update_test_genesis '.app_state["txfees"]["basedenom"]="uosmo"' 
