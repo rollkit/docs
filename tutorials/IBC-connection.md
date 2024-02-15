@@ -1,12 +1,11 @@
 # IBC connection tutorial
 
 In this tutorial, we'll learn how to use [relayer](https://github.com/cosmos/relayer) to
-create a IBC connection between our [GM world](/tutorials/gm-world) rollup and a osmosis local testnet.
+create a IBC connection between [GM world](/tutorials/gm-world) rollup and a osmosis local testnet.
 
-# 💻 Pre-requisites
-Given this tutorial is targeted for developers who are experienced in Cosmos-SDK, we recommend you go over the following tutorials in Ignite to understand all the different components in Cosmos-SDK before proceeding with this tutorial.
+## 💻 Pre-requisites
 
-### Software requirement:
+### Software requirement
 
 * Docker running on your machine
 * Go version >= 1.21.0
@@ -19,15 +18,18 @@ local-celestia-devnet instance in a separate terminal:
 ```bash
 docker run -t -i --platform linux/amd64 -p 26650:26650 -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 ghcr.io/rollkit/local-celestia-devnet:v0.12.6
 ```
+
 And we start the GM chain by using this script :
-```
+
+```sh
 wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.sh
 sh init-full-node.sh
 ```
 
-## Run your local-osmosis-testnet'
+## Run your local-osmosis-testnet
 
 ### Install osmosis binary
+
 ```sh
 git clone https://github.com/osmosis-labs/osmosis
 cd osmosis
@@ -49,8 +51,7 @@ This will start your local osmosis testnet, we'll create IBC connection between 
 
 ::: tip
 We're using the `--rpc.addr [ip:port]` flag to point to port 46657, which is
-the custom port we used in the `init-local.sh` script to avoid
-clashing with 26657 on local-celestia-devnet. 
+the custom port to avoid with other runnig chains.
 :::
 
 ## Funds
@@ -71,7 +72,13 @@ Address: gm1vvl79phavqruppr6f5zy4ypxy7znshrqam48qy
 Mnemonic: "milk verify alley price trust come maple will suit hood clay exotic"
 ```
 
-## Install relayer
+## Setup relayer, create IBC connection and start relay packet
+
+A relayer is like a middleman for blockchains in the IBC protocol. Instead of directly talking to each other, blockchains communicate through relayers. These relayers keep an eye on the paths that are open between different blockchains. When there's something new or changed, the relayer makes sure the message gets sent to the right place on the other blockchain.
+
+Apart from just passing messages, a relayer can also set up new paths between blockchains. This involves creating clients, connections, and channels, which are like communication channels between the blockchains. So, in simpler terms, a relayer makes sure blockchains can talk to each other smoothly.
+
+### Install relayer
 
 ```sh
 git clone https://github.com/cosmos/relayer
@@ -89,7 +96,7 @@ cosmos-sdk: v0.47.5
 go: go1.21.4 darwin/arm64
 ```
 
-## Setup relayer config
+### Setup relayer config
 
 Firstly, generate an empty config file with this command:
 
@@ -159,7 +166,7 @@ chains:
 paths: {}
 ```
 
-## Create relayer account
+### Create relayer account
 
 Add keys for each chain with this command
 
@@ -170,9 +177,9 @@ rly keys restore osmo-local default "milk verify alley price trust come maple wi
 rly keys restore gm-local default "milk verify alley price trust come maple will suit hood clay exotic"
 ```
 
-## Create IBC channel
+### Create IBC channel
 
-Create a new blank path to be used in generating a new path (connection and client) between two chains 
+Create a new blank path to be used in generating a new path (connection and client) between two chains
 
 ```sh
 rly paths new osmosis-testnet-1 gm osmo-gm
@@ -197,13 +204,23 @@ rly transact channel osmo-gm --src-port transfer --dst-port transfer --order uno
 At the end, it should return something like this :
 
 ```bash
-2024-02-15T09:13:19.445633Z	info	Successful transaction	{"provider_type": "cosmos", "chain_id": "gm", "gas_used": 125110, "fees": "25000stake", "fee_payer": "gm1vvl79phavqruppr6f5zy4ypxy7znshrqam48qy", "height": 405, "msg_types": ["/ibc.core.client.v1.MsgUpdateClient", "/ibc.core.channel.v1.MsgChannelOpenConfirm"], "tx_hash": "EC6F370D94492FE0F01C7ECD7C0F3D55D73B750D98FA21180E5ABBCAC539C10A"}
-2024-02-15T09:13:20.333721Z	info	Successfully created new channel	{"chain_name": "gm-local", "chain_id": "gm", "channel_id": "channel-0", "connection_id": "connection-0", "port_id": "transfer"}
-2024-02-15T09:13:20.333808Z	info	Channel handshake termination candidate	{"path_name": "osmo-gm", "chain_id": "gm", "client_id": "07-tendermint-1", "termination_port_id": "transfer", "observed_port_id": "transfer", "termination_counterparty_port_id": "transfer", "observed_counterparty_port_id": "transfer"}//[!code focus]
-2024-02-15T09:13:20.333813Z	info	Found termination condition for channel handshake	{"path_name": "osmo-gm", "chain_id": "gm", "client_id": "07-tendermint-1"}//[!code focus]
+2024-02-15T09:22:04.062649Z info Connection handshake termination candidate {"path_name": "osmo-gm", "chain_id": "gm", "client_id": "07-tendermint-0", "termination_client_id": "07-tendermint-0", "observed_client_id": "07-tendermint-0", "termination_counterparty_client_id": "07-tendermint-0", "observed_counterparty_client_id": "07-tendermint-0"}
+2024-02-15T09:22:04.062667Z info Found termination condition for connection handshake {"path_name": "osmo-gm", "chain_id": "gm", "client_id": "07-tendermint-0"}
+2024-02-15T09:22:04.069040Z info Starting event processor for channel handshake {"src_chain_id": "osmosis-testnet-1", "src_port_id": "transfer", "dst_chain_id": "gm", "dst_port_id": "transfer"}
+2024-02-15T09:22:04.070364Z info Chain is in sync {"chain_name": "gm-local", "chain_id": "gm"}
+2024-02-15T09:22:04.070389Z info Chain is in sync {"chain_name": "osmo-local", "chain_id": "osmosis-testnet-1"}
+2024-02-15T09:22:10.310493Z info Successful transaction {"provider_type": "cosmos", "chain_id": "osmosis-testnet-1", "gas_used": 165662, "fees": "24023uosmo", "fee_payer": "osmo1vvl79phavqruppr6f5zy4ypxy7znshrqm390ll", "height": 12, "msg_types": ["/ibc.core.client.v1.MsgUpdateClient", "/ibc.core.channel.v1.MsgChannelOpenInit"], "tx_hash": "D7E7E6EC0299C120C0E32167C11F0B60921EF88CC6524345BCEB3B266EF727AA"}
+2024-02-15T09:22:15.293348Z info Successful transaction {"provider_type": "cosmos", "chain_id": "gm", "gas_used": 171590, "fees": "6510stake", "fee_payer": "gm1vvl79phavqruppr6f5zy4ypxy7znshrqam48qy", "height": 61, "msg_types": ["/ibc.core.client.v1.MsgUpdateClient", "/ibc.core.channel.v1.MsgChannelOpenTry"], "tx_hash": "DE5F15D2CEB85278FA916185A01FBA5DA604563462893288EC7A8745FB597B96"}
+2024-02-15T09:22:18.300397Z info Successful transaction {"provider_type": "cosmos", "chain_id": "osmosis-testnet-1", "gas_used": 126689, "fees": "18177uosmo", "fee_payer": "osmo1vvl79phavqruppr6f5zy4ypxy7znshrqm390ll", "height": 14, "msg_types": ["/ibc.core.client.v1.MsgUpdateClient", "/ibc.core.channel.v1.MsgChannelOpenAck"], "tx_hash": "CB1FA1D3309513FC6C8599606DEFE75164F4CAE2ABD101D78133B287862A5ACA"}
+2024-02-15T09:22:19.078583Z info Successfully created new channel {"chain_name": "osmo-local", "chain_id": "osmosis-testnet-1", "channel_id": "channel-0", "connection_id": "connection-0", "port_id": "transfer"}
+2024-02-15T09:22:23.296353Z info Successful transaction {"provider_type": "cosmos", "chain_id": "gm", "gas_used": 124972, "fees": "4762stake", "fee_payer": "gm1vvl79phavqruppr6f5zy4ypxy7znshrqam48qy", "height": 69, "msg_types": ["/ibc.core.client.v1.MsgUpdateClient", "/ibc.core.channel.v1.MsgChannelOpenConfirm"], "tx_hash": "B917289EC7566B57B2D0EC759F2E703DBD652F9044362E78C05C4F6DF8FD7AC7"}
+2024-02-15T09:22:24.080924Z info Successfully created new channel {"chain_name": "gm-local", "chain_id": "gm", "channel_id": "channel-0", "connection_id": "connection-0", "port_id": "transfer"}
+2024-02-15T09:22:24.080992Z info Channel handshake termination candidate {"path_name": "osmo-gm", "chain_id": "gm", "client_id": "07-tendermint-0", "termination_port_id": "transfer", "observed_port_id": "transfer", "termination_counterparty_port_id": "transfer", "observed_counterparty_port_id": "transfer"}//[!code focus]
+2024-02-15T09:22:24.080998Z info Found termination condition for channel handshake {"path_name": "osmo-gm", "chain_id": "gm", "client_id": "07-tendermint-0"}//[!code focus]
+
 ```
 
-## Start relaying packet
+### Start relaying packet
 
 After completing all these steps, you can start relaying with:
 
@@ -211,30 +228,56 @@ After completing all these steps, you can start relaying with:
 rly start
 ```
 
-## Transfer token from rollup chain to osmosis-local
+IBC transfer tokens between `osmosis-testnet-1` and `gm` are now possible.
 
-Make an ibc-transfer transaction
+### Transfer token from rollup chain to osmosis-local
+
+Make an ibc-transfer transaction. This tx will transfer 1000000stake from `gm-key`  to receiver address in your local-osmosis chain.
 
 ```sh
 gmd tx ibc-transfer transfer transfer [src-channel] [receiver_address] [amount] --node tcp://localhost:36657 --chain-id gm --from gm-key
 ```
 
-Then check the balance of the receiver address to see if the token has been relayed or not:
+Then check the balance of the receiver address to see if the token has been relayed or not.
 
 ```sh
 osmosisd query bank balances [receiver_address] --node tcp://localhost:46657 --chain-id osmosis-testnet-1
 ```
 
-## Transfer token back from osmosis-local to rollup chain
+The balances query command should return something like this:
+
+```bash
+balances:
+- amount: "1000000"
+  denom: ibc/64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273
+- amount: "106833473"
+  denom: uosmo
+pagination:
+  next_key: null
+  total: "0"
+```
+
+### Transfer token back from osmosis-local to rollup chain
 
 Make an ibc-transfer transaction
 
 ```sh
-osmosisd tx ibc-transfer transfer [src-port] [src-channel] [receiver] [amount] --node tcp://localhost:46657 --chain-id osmosis-testnet-1 --from osmosis-relayer
+osmosisd tx ibc-transfer transfer transfer [src-channel] [receiver] [amount] --node tcp://localhost:46657 --chain-id osmosis-testnet-1 --from osmosis-relayer
 ```
 
 And then check the balances of the receiver address with if it the token is relayed or not
 
 ```sh
-gmd query bank balances [receiver address] --node tcp://localhost:36657 
+gmd query bank balances [receiver_address] --node tcp://localhost:36657 
+```
+
+The balances query command should return something like this:
+
+```bash
+balances:
+- amount: "1000000"
+  denom: stake
+pagination:
+  next_key: null
+  total: "0"
 ```
