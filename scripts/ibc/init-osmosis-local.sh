@@ -51,4 +51,4 @@ osmosisd config chain-id $CHAINID
 osmosisd config keyring-backend $KEYRING
 
 # Start the node (remove the --pruning=nothing flag if historical queries are not needed)
-osmosisd start --pruning=nothing  --minimum-gas-prices=0.0001uosmo 
+osmosisd start --pruning=nothing  --minimum-gas-prices=0.0001uosmo --rpc.laddr tcp://0.0.0.0:46657 --p2p.laddr tcp://0.0.0.0:2240  --grpc.address 0.0.0.0:2242 --grpc-web.address 0.0.0.0:2243 --api.address tcp://127.0.0.1:2317 

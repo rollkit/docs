@@ -64,7 +64,7 @@ gmd init $VALIDATOR_NAME --chain-id $CHAIN_ID
 # add keys for key 1 and key 2 to keyring-backend test
 gmd keys add $KEY_NAME --keyring-backend test
 gmd keys add $KEY_2_NAME --keyring-backend test
-echo "milk verify alley price trust come maple will suit hood clay exotic" | gmd keys add $KEY_RELAY --keyring-backend $KEYRING --algo $KEYALGO --recover
+echo "milk verify alley price trust come maple will suit hood clay exotic" | gmd keys add $KEY_RELAY --keyring-backend test  --recover
 
 # add these as genesis accounts
 gmd genesis add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
