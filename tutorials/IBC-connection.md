@@ -23,7 +23,7 @@ And we start the GM chain by using this script :
 
 ```sh
 wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.sh
-sh init-full-node.sh
+sh init-local.sh
 ```
 
 ## Run your local-osmosis-testnet
@@ -33,7 +33,7 @@ sh init-full-node.sh
 ```sh
 git clone https://github.com/osmosis-labs/osmosis
 cd osmosis
-git checkout v21.0.2
+git checkout v21.0.1
 make install
 ```
 
@@ -51,7 +51,7 @@ This will start your local osmosis testnet, we'll create IBC connection between 
 
 ::: tip
 We're using the `--rpc.addr [ip:port]` flag to point to port 46657, which is
-the custom port to avoid with other runnig chains.
+the custom port to avoid with other running chains.
 :::
 
 ## Funds

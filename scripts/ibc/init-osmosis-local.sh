@@ -16,7 +16,6 @@ rm -rf ~/.osmosis*
 command -v jq > /dev/null 2>&1 || { echo >&2 "jq not installed. More info: https://stedolan.github.io/jq/download/"; exit 1; }
 
 update_test_genesis () {
-  # update_test_genesis '.consensus_params["block"]["max_gas"]="100000000"'
   cat $HOME/.osmosisd/config/genesis.json | jq "$1" > $HOME/.osmosisd/config/tmp_genesis.json && mv $HOME/.osmosisd/config/tmp_genesis.json $HOME/.osmosisd/config/genesis.json
 }
 
@@ -51,4 +50,4 @@ osmosisd config chain-id $CHAINID
 osmosisd config keyring-backend $KEYRING
 
 # Start the node (remove the --pruning=nothing flag if historical queries are not needed)
-osmosisd start --pruning=nothing  --minimum-gas-prices=0.0001uosmo --rpc.laddr tcp://0.0.0.0:46657 --p2p.laddr tcp://0.0.0.0:2240  --grpc.address 0.0.0.0:2242 --grpc-web.address 0.0.0.0:2243 --api.address tcp://127.0.0.1:2317 
+osmosisd start --pruning-keep-recent 10000  --minimum-gas-prices=0.0001uosmo --rpc.laddr tcp://0.0.0.0:46657 --p2p.laddr tcp://0.0.0.0:2240  --grpc.address 0.0.0.0:2242 --grpc-web.address 0.0.0.0:2243 --api.address tcp://127.0.0.1:2317 
