@@ -266,7 +266,7 @@ osmosisd tx ibc-transfer transfer transfer [src-channel] [receiver] [amount] --n
 
 And then check the balances of the receiver address with if it the token is relayed or not:
 
-```sh
+```bash
 gmd query bank balances [receiver_address] --node tcp://localhost:36657 
 ```
 
