@@ -5,7 +5,7 @@ create a IBC connection between [GM world](./gm-world) rollup and an Osmosis loc
 
 ## 💻 Pre-requisites {#prerequisites}
 
-### Software requirement
+### Software requirements
 
 * Docker running on your machine
 * Go version >= 1.21.0
