@@ -217,7 +217,6 @@ At the end, it should return something like this :
 2024-02-15T09:22:24.080924Z info Successfully created new channel {"chain_name": "gm-local", "chain_id": "gm", "channel_id": "channel-0", "connection_id": "connection-0", "port_id": "transfer"}
 2024-02-15T09:22:24.080992Z info Channel handshake termination candidate {"path_name": "osmo-gm", "chain_id": "gm", "client_id": "07-tendermint-0", "termination_port_id": "transfer", "observed_port_id": "transfer", "termination_counterparty_port_id": "transfer", "observed_counterparty_port_id": "transfer"}//[!code focus]
 2024-02-15T09:22:24.080998Z info Found termination condition for channel handshake {"path_name": "osmo-gm", "chain_id": "gm", "client_id": "07-tendermint-0"}//[!code focus]
-
 ```
 
 ### Start relaying packet
