@@ -21,16 +21,16 @@ docker run -t -i --platform linux/amd64 -p 26650:26650 -p 26657:26657 -p 26658:2
 
 And you can start the GM chain by using this script:
 
-```sh
+```bash
 wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.sh
-sh init-local.sh
+bash init-local.sh
 ```
 
 ## Run your local-osmosis-testnet
 
-### Install osmosis binary
+### Install Osmosis binary
 
-```sh
+```bash
 git clone https://github.com/osmosis-labs/osmosis
 cd osmosis
 git checkout v21.0.1
@@ -41,11 +41,11 @@ make install
 
 You also need to start local-osmosis-testnet in a separate terminal by downloading and running this script:
 
-```sh
+```bash
 wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/ibc/init-osmosis-local.sh
 ```
 
-This will start your local osmosis testnet, we'll create IBC connection between this testnet and GM chain in next step.
+This will start your local Osmosis testnet, we'll create IBC connection between this testnet and GM chain in next step.
 > NOTE: Here, the keys name from `init-osmosis-local.sh` is `mykey` and `relay_osmosis` but you can modify
   this script to change the name of your key.
 
@@ -72,7 +72,7 @@ Address: gm1vvl79phavqruppr6f5zy4ypxy7znshrqam48qy
 Mnemonic: "milk verify alley price trust come maple will suit hood clay exotic"
 ```
 
-## Setup relayer, create IBC connection and start relay packet
+## Setup relayer, create IBC connection and start relaying packets
 
 A relayer is like a middleman for blockchains in the IBC protocol. Instead of directly talking to each other, blockchains communicate through relayers. These relayers keep an eye on the paths that are open between different blockchains. When there's something new or changed, the relayer makes sure the message gets sent to the right place on the other blockchain.
 
@@ -80,7 +80,7 @@ Apart from just passing messages, a relayer can also set up new paths between bl
 
 ### Install relayer
 
-```sh
+```bash
 git clone https://github.com/cosmos/relayer
 cd relayer
 git checkout v2.4.2
@@ -89,7 +89,7 @@ make install
 
 Verify your rly version with `rly version`. It should return :
 
-```sh
+```bash
 version: 2.4.2
 commit: 259b1278264180a2aefc2085f1b55753849c4815 (dirty)
 cosmos-sdk: v0.47.5
@@ -100,7 +100,7 @@ go: go1.21.4 darwin/arm64
 
 Firstly, generate an empty config file with this command:
 
-```sh
+```bash
 rly config init
 ```
 
@@ -172,7 +172,7 @@ Add keys for each chain with this command
 
 The mnemonic-words is the mnemonic that you have when init local node, ensure that each wallet have token to start relaying.
 
-```sh
+```bash
 rly keys restore osmo-local default "milk verify alley price trust come maple will suit hood clay exotic"
 rly keys restore gm-local default "milk verify alley price trust come maple will suit hood clay exotic"
 ```
@@ -181,13 +181,13 @@ rly keys restore gm-local default "milk verify alley price trust come maple will
 
 Create a new blank path to be used in generating a new path (connection and client) between two chains
 
-```sh
+```bash
 rly paths new osmosis-testnet-1 gm osmo-gm
 ```
 
 and then you can create channel with this command
 
-```sh
+```bash
 rly transact link osmo-gm
 ```
 
@@ -195,7 +195,7 @@ This is a triplewammy, it creates a client, connection, and channel all in one c
 
 Alternatively, you may create them one by one using these commands:
 
-```sh
+```bash
 rly transact clients osmo-local gm-local osmo-gm
 rly transact connection osmo-gm
 rly transact channel osmo-gm --src-port transfer --dst-port transfer --order unordered --version ics20-1
@@ -223,7 +223,7 @@ At the end, it should return something like this :
 
 After completing all these steps, you can start relaying with:
 
-```sh
+```bash
 rly start
 ```
 
@@ -233,13 +233,13 @@ IBC transfer of tokens between `osmosis-testnet-1` and `gm` is now possible.
 
 Make an ibc-transfer transaction. This transaction will transfer 1000000stake from `gm-key`  to receiver address in your local-osmosis chain.
 
-```sh
+```bash
 gmd tx ibc-transfer transfer transfer [src-channel] [receiver_address] [amount] --node tcp://localhost:36657 --chain-id gm --from gm-key
 ```
 
 Then check the balance of the receiver address to see if the token has been relayed or not.
 
-```sh
+```bash
 osmosisd query bank balances [receiver_address] --node tcp://localhost:46657 --chain-id osmosis-testnet-1
 ```
 
@@ -260,7 +260,7 @@ pagination:
 
 Make an ibc-transfer transaction
 
-```sh
+```bash
 osmosisd tx ibc-transfer transfer transfer [src-channel] [receiver] [amount] --node tcp://localhost:46657 --chain-id osmosis-testnet-1 --from osmosis-relayer
 ```
 
