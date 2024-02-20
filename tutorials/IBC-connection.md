@@ -227,7 +227,7 @@ After completing all these steps, you can start relaying with:
 rly start
 ```
 
-IBC transfer tokens between `osmosis-testnet-1` and `gm` are now possible.
+IBC transfer of tokens between `osmosis-testnet-1` and `gm` is now possible.
 
 ### Transfer token from rollup chain to osmosis-local
 
