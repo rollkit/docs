@@ -231,7 +231,7 @@ IBC transfer of tokens between `osmosis-testnet-1` and `gm` is now possible.
 
 ### Transfer token from rollup chain to osmosis-local
 
-Make an ibc-transfer transaction. This tx will transfer 1000000stake from `gm-key`  to receiver address in your local-osmosis chain.
+Make an ibc-transfer transaction. This transaction will transfer 1000000stake from `gm-key`  to receiver address in your local-osmosis chain.
 
 ```sh
 gmd tx ibc-transfer transfer transfer [src-channel] [receiver_address] [amount] --node tcp://localhost:36657 --chain-id gm --from gm-key
