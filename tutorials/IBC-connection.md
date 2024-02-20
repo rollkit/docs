@@ -1,6 +1,6 @@
 # IBC connection tutorial
 
-In this tutorial, we'll learn how to use [relayer](https://github.com/cosmos/relayer) to
+In this tutorial, we'll learn how to use [an IBC relayer](https://github.com/cosmos/relayer) to
 create a IBC connection between [GM world](/tutorials/gm-world) rollup and a osmosis local testnet.
 
 ## 💻 Pre-requisites
