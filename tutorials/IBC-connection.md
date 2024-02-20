@@ -39,7 +39,7 @@ make install
 
 ### Run local-osmosis-testnet
 
-You also need to start local-osmosis-testnet in a separate terminal by download and run this script
+You also need to start local-osmosis-testnet in a separate terminal by downloading and running this script:
 
 ```sh
 wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/ibc/init-osmosis-local.sh
