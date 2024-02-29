@@ -8,8 +8,8 @@ create a IBC connection between [GM world](./gm-world) rollup and an Osmosis loc
 ### Software requirements
 
 * Docker running on your machine
-* Go version >= 1.21.0
-* Ignite version >= v28.2.0
+* Go version ≥ 1.21.0
+* Ignite version ≥ v28.2.0
 
 ## Run a GM rollup chain
 
@@ -20,13 +20,23 @@ local-celestia-devnet instance in a separate terminal:
 docker run -t -i --platform linux/amd64 -p 26650:26650 -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 ghcr.io/rollkit/local-celestia-devnet:v0.12.7
 ```
 
-And start the GM chain, following the guidelines in [GM world rollup](/tutorials/gm-world).
+:::warning
+You will need to use Ignite v28.2.0, which you can install with:
+
+```bash
+curl https://get.ignite.com/cli@v28.2.0! | bash
+```
+
+:::
+
+And start the GM chain, following the guidelines in [GM world rollup](/tutorials/gm-world#building-your-sovereign-rollup).
 
 ## Run your local-osmosis-testnet
 
 ### Install Osmosis binary
 
 ```bash
+cd $HOME
 git clone https://github.com/osmosis-labs/osmosis
 cd osmosis
 git checkout v21.0.1
@@ -39,6 +49,12 @@ You also need to start local-osmosis-testnet in a separate terminal by downloadi
 
 ```bash
 wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/ibc/init-osmosis-local.sh
+```
+
+Run the script:
+
+```bash
+bash init-osmosis-local.sh
 ```
 
 This will start your local Osmosis testnet, we'll create IBC connection between this testnet and GM chain in next step.
@@ -77,13 +93,20 @@ Apart from just passing messages, a relayer can also set up new paths between bl
 ### Install relayer
 
 ```bash
+cd $HOME
 git clone https://github.com/cosmos/relayer
 cd relayer
 git checkout v2.4.2
 make install
 ```
 
-Verify your rly version with `rly version`. It should return :
+Verify your rly version with `rly version`:
+
+```bash
+rly version
+```
+
+It should return:
 
 ```bash
 version: 2.4.2
