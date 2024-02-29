@@ -102,7 +102,7 @@ rly config init
 
 Afterward, edit the file in the directory `$HOME/.relayer/config/config.yaml` with any text editor you prefer. Then, paste this configuration into it.
 
-```config
+```yaml
 global:
     api-listen-addr: :5183
     timeout: 10s
