@@ -9,6 +9,7 @@ create a IBC connection between [GM world](./gm-world) rollup and an Osmosis loc
 
 * Docker running on your machine
 * Go version >= 1.21.0
+* Ignite version >= v28.2.0
 
 ## Run a GM rollup chain
 
@@ -16,15 +17,10 @@ Before you can create IBC connection, you need to start a
 local-celestia-devnet instance in a separate terminal:
 
 ```bash
-docker run -t -i --platform linux/amd64 -p 26650:26650 -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 ghcr.io/rollkit/local-celestia-devnet:v0.12.6
+docker run -t -i --platform linux/amd64 -p 26650:26650 -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 ghcr.io/rollkit/local-celestia-devnet:v0.12.7
 ```
 
-And you can start the GM chain by using this script:
-
-```bash
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.sh
-bash init-local.sh
-```
+And start the GM chain, following the guidelines in [GM world rollup](/tutorials/gm-world).
 
 ## Run your local-osmosis-testnet
 
@@ -46,7 +42,7 @@ wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/ibc/init-osmosi
 ```
 
 This will start your local Osmosis testnet, we'll create IBC connection between this testnet and GM chain in next step.
-> NOTE: Here, the keys name from `init-osmosis-local.sh` is `mykey` and `relay_osmosis` but you can modify
+> NOTE: Here, the keys name from `init-osmosis-local.sh` is `mykey` and `osmosis-relay` but you can modify
   this script to change the name of your key.
 
 ::: tip
@@ -214,10 +210,14 @@ At the end, it should return something like this :
 2024-02-15T09:22:18.300397Z info Successful transaction {"provider_type": "cosmos", "chain_id": "osmosis-testnet-1", "gas_used": 126689, "fees": "18177uosmo", "fee_payer": "osmo1vvl79phavqruppr6f5zy4ypxy7znshrqm390ll", "height": 14, "msg_types": ["/ibc.core.client.v1.MsgUpdateClient", "/ibc.core.channel.v1.MsgChannelOpenAck"], "tx_hash": "CB1FA1D3309513FC6C8599606DEFE75164F4CAE2ABD101D78133B287862A5ACA"}
 2024-02-15T09:22:19.078583Z info Successfully created new channel {"chain_name": "osmo-local", "chain_id": "osmosis-testnet-1", "channel_id": "channel-0", "connection_id": "connection-0", "port_id": "transfer"}
 2024-02-15T09:22:23.296353Z info Successful transaction {"provider_type": "cosmos", "chain_id": "gm", "gas_used": 124972, "fees": "4762stake", "fee_payer": "gm1vvl79phavqruppr6f5zy4ypxy7znshrqam48qy", "height": 69, "msg_types": ["/ibc.core.client.v1.MsgUpdateClient", "/ibc.core.channel.v1.MsgChannelOpenConfirm"], "tx_hash": "B917289EC7566B57B2D0EC759F2E703DBD652F9044362E78C05C4F6DF8FD7AC7"}
-2024-02-15T09:22:24.080924Z info Successfully created new channel {"chain_name": "gm-local", "chain_id": "gm", "channel_id": "channel-0", "connection_id": "connection-0", "port_id": "transfer"}
+2024-02-15T09:22:24.080924Z info Successfully created new channel {"chain_name": "gm-local", "chain_id": "gm", "channel_id": "channel-0", "connection_id": "connection-0", "port_id": "transfer"}[!code focus]
 2024-02-15T09:22:24.080992Z info Channel handshake termination candidate {"path_name": "osmo-gm", "chain_id": "gm", "client_id": "07-tendermint-0", "termination_port_id": "transfer", "observed_port_id": "transfer", "termination_counterparty_port_id": "transfer", "observed_counterparty_port_id": "transfer"}//[!code focus]
 2024-02-15T09:22:24.080998Z info Found termination condition for channel handshake {"path_name": "osmo-gm", "chain_id": "gm", "client_id": "07-tendermint-0"}//[!code focus]
 ```
+
+::: tip
+Notice your `channel_id`, you need to specify it when you make the IBC transfer transaction in next step !
+:::
 
 ### Start relaying packet
 
@@ -231,10 +231,10 @@ IBC transfer of tokens between `osmosis-testnet-1` and `gm` is now possible.
 
 ### Transfer token from rollup chain to osmosis-local
 
-Make an ibc-transfer transaction. This transaction will transfer 1000000stake from `gm-key`  to receiver address in your local-osmosis chain.
+Make an ibc-transfer transaction. This tx will transfer 1000000stake from `gm-key` to receiver address in your local-osmosis chain.
 
-```bash
-gmd tx ibc-transfer transfer transfer [src-channel] [receiver_address] [amount] --node tcp://localhost:36657 --chain-id gm --from gm-key
+```sh
+gmd tx ibc-transfer transfer transfer [src-channel] [receiver_address] 1000000stake --node tcp://localhost:36657 --chain-id gm --from gm-key
 ```
 
 Then check the balance of the receiver address to see if the token has been relayed or not.
@@ -256,12 +256,16 @@ pagination:
   total: "0"
 ```
 
+::: tip
+`ibc/64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273` is corresponding IBC denom in osmosis-testnet for native denom `stake` in GM chain
+:::
+
 ### Transfer token back from osmosis-local to rollup chain
 
 Make an ibc-transfer transaction
 
-```bash
-osmosisd tx ibc-transfer transfer transfer [src-channel] [receiver] [amount] --node tcp://localhost:46657 --chain-id osmosis-testnet-1 --from osmosis-relayer
+```sh
+osmosisd tx ibc-transfer transfer transfer [src-channel] [receiver] 1000ibc/64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273 --node tcp://localhost:46657 --chain-id osmosis-testnet-1 --from osmosis-relay
 ```
 
 And then check the balances of the receiver address with if it the token is relayed or not:

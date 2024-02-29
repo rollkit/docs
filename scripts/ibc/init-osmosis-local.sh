@@ -7,7 +7,7 @@ LOGLEVEL="info"
 # to trace evm
 #TRACE="--trace"
 TRACE=""
-KEY_RELAY="relay-osmosis"
+KEY_RELAY="osmosis-relay"
 # remove existing daemon
 rm -rf ~/.osmosis*
 
