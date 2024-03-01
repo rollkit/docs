@@ -309,10 +309,12 @@ The balances query command should return something like this:
 
 ```bash
 balances:
-- amount: "1000000"
-  denom: ibc/64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273
-- amount: "106833473"
+- amount: "42069"
+  denom: ibc/C053D637CCA2A2BA030E2C5EE1B28A16F71CCB0E45E8BE52766DC1B241B77878
+- amount: "100000000999876914"
   denom: uosmo
+- amount: "100000000000000"
+  denom: utest
 pagination:
   next_key: null
   total: "0"
@@ -342,13 +344,14 @@ And then check the balances of the receiver address with if it the token is rela
 gmd query bank balances $GM_KEY --node tcp://localhost:36657 
 ```
 
-The balances query command should return something like this:
+The balances query command should return something like this,
+which is close to the original balance, minus some gas fees:
 
 ```bash
+gmd query bank balances $GM_KEY --node tcp://localhost:36657
 balances:
-- amount: "1000000"
+- amount: "9999999999999999999897679"
   denom: stake
 pagination:
-  next_key: null
-  total: "0"
+  total: "1"
 ```
