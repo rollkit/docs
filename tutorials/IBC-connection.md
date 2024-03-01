@@ -241,7 +241,7 @@ and then you can create channel with this command
 rly transact link osmo-gm
 ```
 
-This is a triplewammy, it creates a client, connection, and channel all in one command.
+This is a triple whammy; it creates a client, connection, and channel all in one command.
 
 Alternatively, you may create them one by one using these commands:
 
