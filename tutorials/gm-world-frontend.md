@@ -69,34 +69,9 @@ Follow the instructions at the end of the output to start your app:
 cd ./gm-world && yarn dev
 ```
 
-![cca-3.png](/gm/cca-3.png)
-
 ## Adding your GM portal chain to the config
 
-First, we'll need to make some changes with the default config.
-
-We need to add the array of chains that we would like to test
-in the `components/wallet.tsx` file on underneath imports:
-
-```tsx
-const allowedChains = [
-  'gmrollup',
-  'celestiatestnet',
-  'celestiatestnet2',
-  'celestiatestnet3',
-];
-```
-
-In `chainOptions` change `chainRecords` this to show only the allowed chains
-from your array:
-
-```tsx title="hi"
-chainRecords
-      .filter((chainRecord) => allowedChains.includes(chainRecord.name))
-      .map((chainRecord) => {
-```
-
-Now you're ready to see only the chains you've selected, but first, we need
+First, we'll need to make some changes with the default config
 to set up the config for `gmrollup`!
 
 In the `config` directory, create a new file called `chain.ts`. This will
@@ -105,7 +80,7 @@ be your config for your GM rollup.
 In that file, put the following:
 
 ```tsx
-export const chain = {
+export default {
     "$schema": "../../chain.schema.json",
     "chain_name": "gmrollup",
     "chain_id": "gm",
@@ -131,13 +106,13 @@ export const chain = {
       "rpc": [
         {
           "address": "http://localhost:26657",
-          "provider": "JCS"
+          "provider": "local-network"
         }
       ],
       "rest": [
         {
           "address": "http://localhost:1317",
-          "provider": "JCS"
+          "provider": "local-network"
         }
       ]
     },
@@ -148,7 +123,7 @@ export const chain = {
 Create a new file in `config` called `assetlist.ts` and add the following:
 
 ```tsx
-export const assetlist = {
+export default {
     "$schema": "../../assetlist.schema.json",
     "chain_name": "gmrollup",
     "assets": [
@@ -176,22 +151,10 @@ export const assetlist = {
   }
 ```
 
-Create a new file in `config` directory called `defaults.ts`:
+In `config/defaults.ts` add your rollup as the default chain:
 
 ```tsx
-import { assets } from 'chain-registry';
-import { AssetList, Asset } from '@chain-registry/types';
-
-export const defaultChainName = 'gmrollup';
-
-export const getChainAssets = (chainName: string = defaultChainName) => {
-  return assets.find((chain) => chain.chain_name === chainName) as AssetList;
-};
-
-export const getCoin = (chainName: string = defaultChainName) => {
-  const chainAssets = getChainAssets(chainName);
-  return chainAssets.assets[0] as Asset;
-};
+export const CHAIN_NAME = "gmrollup";
 ```
 
 In `_app.tsx` you can now import `assetlist` and `chain` with your
@@ -199,8 +162,8 @@ new GM config!
 
 ```tsx
 # other imports
-import { chain } from "../config/chain"
-import { assetlist } from "../config/assetlist"
+import localchain from "../config/chain"
+import localassets from "../config/assetlist"
 
 # rest of code
 ```
@@ -208,64 +171,31 @@ import { assetlist } from "../config/assetlist"
 Then, modify your `ChainProvider`:
 
 ```tsx
-<ChainProvider
-        chains={[...chains, chain]}
-        assetLists={[...assets, assetlist]}
-        wallets={[...keplrWallets, ...cosmostationWallets, ...leapWallets]}
-        walletConnectOptions={{
-          signClient: {
-            projectId: 'a8510432ebb71e6948cfd6cde54b70f7',
-            relayUrl: 'wss://relay.walletconnect.org',
-            metadata: {
-              name: 'Celestia + Cosmos SDK',
-              description: 'Celestia + Cosmos SDK',
-              url: 'https://docs.celestia.org/',
-              icons: [],
-            },
-          },
-        }}
-        endpointOptions={{
-          isLazy: true
-        }}
-        wrappedWithChakra={true}
-        signerOptions={signerOptions}
-      >
+ <ChainProvider
+    chains={[...chains, localchain]} // [!code ++]
+    assetLists={[...assets, localassets]} // [!code ++]
+    wallets={wallets}
+    walletConnectOptions={{
+      signClient: {
+        projectId: "a8510432ebb71e6948cfd6cde54b70f7",
+        relayUrl: "wss://relay.walletconnect.org",
+        metadata: {
+          name: "CosmosKit Template",
+          description: "CosmosKit dapp template",
+          url: "https://docs.cosmology.zone/cosmos-kit/",
+          icons: [],
+        },
+      },
+    }}
+    // @ts-ignore
+    signerOptions={signerOptions}
+  >
 ```
-
-You may notice that we added:
-
-```tsx
-endpointOptions={{isLazy: true}}
-```
-
-This will save our localhost RPC from being overridden.
 
 Congratulations! You now have a frontend for your rollup.
 What features do you want to add now?
 
-You may notice that the icons for Celestia testnets are not loading,
-this is due to an outdated version of the chain registry.
-
 ![cca.png](/gm/cca.png)
-
-To update
-these, you can use your terminal:
-
-```bash
-cd $HOME && cd gm-world
-yarn upgrade-interactive --latest
-```
-
-Use arrow keys and the spacebar to select it`@cosmos-kit/core`,
-`@cosmos-kit/cosmostation`, `@cosmos-kit/keplr`, `@cosmos-kit/leap`
-and `@cosmos-kit/react`.
-
-Now use enter to upgrade the dependencies!
-
-Head back to your frontend and take a look, you should see the
-updated icons.
-
-![cca-2.png](/gm/cca-2.png)
 
 <!-- ## TODO
 
