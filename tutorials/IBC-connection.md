@@ -273,7 +273,7 @@ At the end, it should return something like this :
 Notice your `channel_id`, you need to specify it when you make the IBC transfer transaction in next step !
 :::
 
-### Start relaying packet
+### Start relaying packets
 
 After completing all these steps, you can start relaying with:
 
