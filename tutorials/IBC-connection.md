@@ -296,7 +296,7 @@ CHANNEL_ID=channel-0
 ```
 
 ```bash
-gmd tx ibc-transfer transfer transfer $SRC_CHANNEL $OSMO_KEY 1000000stake --node tcp://localhost:36657 --chain-id gm --from gm-key
+gmd tx ibc-transfer transfer transfer $CHANNEL_ID $OSMO_KEY 42069stake --node tcp://localhost:36657 --chain-id gm --from gm-key --keyring-backend test --fees 5000stake
 ```
 
 Then check the balance of the receiver address to see if the token has been relayed or not.
@@ -319,15 +319,21 @@ pagination:
 ```
 
 ::: tip
-`ibc/64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273` is corresponding IBC denom in osmosis-testnet for native denom `stake` in GM chain
+`ibc/64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273` is corresponding IBC denom in osmosis-testnet for native denom `stake` in GM chain. Your hash will be different than this and specific to your channel.
 :::
 
 ### Transfer token back from osmosis-local to rollup chain
 
+Set your channel hash from the last step:
+
+```bash
+CHANNEL_HASH=ibc/64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273
+```
+
 Make an ibc-transfer transaction:
 
 ```bash
-osmosisd tx ibc-transfer transfer transfer $CHANNEL_ID $GM_KEY 1000ibc/64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273 --node tcp://localhost:46657 --chain-id osmosis-testnet-1 --from osmosis-relay
+osmosisd tx ibc-transfer transfer transfer $CHANNEL_ID $GM_KEY 42069$CHANNEL_HASH --node tcp://localhost:46657 --chain-id osmosis-testnet-1 --from osmosis-relay --fees 500uosmo
 ```
 
 And then check the balances of the receiver address with if it the token is relayed or not:
