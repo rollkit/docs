@@ -1,7 +1,7 @@
 # IBC connection tutorial
 
 In this tutorial, we'll learn how to use [an IBC relayer](https://github.com/cosmos/relayer) to
-create a IBC connection between [GM world](./gm-world) rollup and an Osmosis local testnet.
+create a IBC connection between a [GM world](./gm-world) rollup and an Osmosis local testnet.
 
 ## 💻 Pre-requisites {#prerequisites}
 
@@ -29,7 +29,38 @@ curl https://get.ignite.com/cli@v28.2.0! | bash
 
 :::
 
-And start the GM chain, following the guidelines in [GM world rollup](/tutorials/gm-world#building-your-sovereign-rollup).
+Scaffold the GM chain:
+
+```bash
+cd $HOME
+ignite scaffold chain gm --address-prefix gm
+```
+
+Change into the `gm` directory and install Rollkit with IBC compatibility:
+
+```bash
+cd gm
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.12.0-rc0-no-fraud-proofs
+go mod tidy
+go get github.com/bufbuild/buf@latest
+go mod download
+```
+
+Now download the script to run the GM chain:
+
+```bash
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.sh
+```
+
+Run the GM rollup:
+
+```bash
+bash init-local.sh
+```
+
+:::tip
+[See the guidelines in GM world rollup for environment setup](/tutorials/gm-world#building-your-sovereign-rollup).
+:::
 
 ## Run your local-osmosis-testnet
 
@@ -110,7 +141,7 @@ It should return:
 
 ```bash
 version: 2.4.2
-commit: 259b1278264180a2aefc2085f1b55753849c4815 (dirty)
+commit: 259b1278264180a2aefc2085f1b55753849c4815
 cosmos-sdk: v0.47.5
 go: go1.21.4 darwin/arm64
 ```
@@ -256,14 +287,22 @@ IBC transfer of tokens between `osmosis-testnet-1` and `gm` is now possible.
 
 Make an ibc-transfer transaction. This tx will transfer 1000000stake from `gm-key` to receiver address in your local-osmosis chain.
 
-```sh
-gmd tx ibc-transfer transfer transfer [src-channel] [receiver_address] 1000000stake --node tcp://localhost:36657 --chain-id gm --from gm-key
+Set your keys and channel ID as variables:
+
+```bash
+OSMO_KEY=osmo1vvl79phavqruppr6f5zy4ypxy7znshrqm390ll
+GM_KEY=gm1vvl79phavqruppr6f5zy4ypxy7znshrqam48qy
+CHANNEL_ID=channel-0
+```
+
+```bash
+gmd tx ibc-transfer transfer transfer $SRC_CHANNEL $OSMO_KEY 1000000stake --node tcp://localhost:36657 --chain-id gm --from gm-key
 ```
 
 Then check the balance of the receiver address to see if the token has been relayed or not.
 
 ```bash
-osmosisd query bank balances [receiver_address] --node tcp://localhost:46657 --chain-id osmosis-testnet-1
+osmosisd query bank balances $OSMO_KEY --node tcp://localhost:46657 --chain-id osmosis-testnet-1
 ```
 
 The balances query command should return something like this:
@@ -285,16 +324,16 @@ pagination:
 
 ### Transfer token back from osmosis-local to rollup chain
 
-Make an ibc-transfer transaction
+Make an ibc-transfer transaction:
 
-```sh
-osmosisd tx ibc-transfer transfer transfer [src-channel] [receiver] 1000ibc/64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273 --node tcp://localhost:46657 --chain-id osmosis-testnet-1 --from osmosis-relay
+```bash
+osmosisd tx ibc-transfer transfer transfer $CHANNEL_ID $GM_KEY 1000ibc/64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273 --node tcp://localhost:46657 --chain-id osmosis-testnet-1 --from osmosis-relay
 ```
 
 And then check the balances of the receiver address with if it the token is relayed or not:
 
 ```bash
-gmd query bank balances [receiver_address] --node tcp://localhost:36657 
+gmd query bank balances $GM_KEY --node tcp://localhost:36657 
 ```
 
 The balances query command should return something like this:
