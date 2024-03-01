@@ -94,7 +94,7 @@ This will start your local Osmosis testnet, we'll create IBC connection between 
 
 ::: tip
 We're using the `--rpc.addr [ip:port]` flag to point to port 46657, which is
-the custom port to avoid with other running chains.
+the custom port to avoid conflicts with other running chains.
 :::
 
 ## Funds
