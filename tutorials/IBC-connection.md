@@ -154,7 +154,7 @@ Firstly, generate an empty config file with this command:
 rly config init
 ```
 
-Afterward, edit the file in the directory `$HOME/.relayer/config/config.yaml` with any text editor you prefer. Then, paste this configuration into it.
+Afterward, replace the content of the file at `$HOME/.relayer/config/config.yaml` with the following configuration using any text editor you prefer.
 
 ```yaml
 global:
