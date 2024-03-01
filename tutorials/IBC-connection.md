@@ -329,13 +329,13 @@ pagination:
 Set your channel hash from the last step:
 
 ```bash
-CHANNEL_HASH=ibc/64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273
+IBC_DENOM_STRING=ibc/64BA6E31FE887D66C6F8F31C7B1A80C7CA179239677B4088BB55F5EA07DBE273
 ```
 
 Make an ibc-transfer transaction:
 
 ```bash
-osmosisd tx ibc-transfer transfer transfer $CHANNEL_ID $GM_KEY 42069$CHANNEL_HASH --node tcp://localhost:46657 --chain-id osmosis-testnet-1 --from osmosis-relay --fees 500uosmo
+osmosisd tx ibc-transfer transfer transfer $CHANNEL_ID $GM_KEY 42069$IBC_DENOM_STRING --node tcp://localhost:46657 --chain-id osmosis-testnet-1 --from osmosis-relay --fees 500uosmo
 ```
 
 And then check the balances of the receiver address with if it the token is relayed or not:
