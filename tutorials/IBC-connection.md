@@ -220,7 +220,7 @@ paths: {}
 
 Add keys for each chain with this command
 
-The mnemonic-words is the mnemonic that you have when init local node, ensure that each wallet have token to start relaying.
+The mnemonic-words are the mnemonics you received when initializing the local node. Ensure that each wallet has tokens to start relaying.
 
 ```bash
 rly keys restore osmo-local default "milk verify alley price trust come maple will suit hood clay exotic"
