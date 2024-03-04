@@ -3,6 +3,14 @@
 In this tutorial, we'll learn how to use [an IBC relayer](https://github.com/cosmos/relayer) to
 create a IBC connection between a [GM world](./gm-world) rollup and an Osmosis local testnet.
 
+:::warning Disclaimer
+This initial version of IBC has high trust assumptions where receiving chains
+only verify the signature of the single rollup sequencer. This is the initial
+step towards the direction of trust-minimized IBC light clients, next steps
+include verifying DA inclusion proofs and adding fraud/zk proof verification.
+[Learn more on ibc-go issue 5112](https://github.com/cosmos/ibc-go/issues/5112).
+:::
+
 ## 💻 Pre-requisites {#prerequisites}
 
 ### Software requirements
