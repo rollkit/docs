@@ -278,7 +278,7 @@ At the end, it should return something like this :
 ```
 
 ::: tip
-Notice your `channel_id`, you need to specify it when you make the IBC transfer transaction in next step !
+Notice your `channel_id`, you need to specify it when you make the IBC transfer transaction in next step!
 :::
 
 ### Start relaying packets
