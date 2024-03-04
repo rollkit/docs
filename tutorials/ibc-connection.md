@@ -21,7 +21,7 @@ include verifying DA inclusion proofs and adding fraud/zk proof verification.
 
 ## Run a GM rollup chain
 
-Before you can create IBC connection, you need to start a
+Before you can create an IBC connection, you need to start a
 local-celestia-devnet instance in a separate terminal:
 
 ```bash
@@ -96,8 +96,8 @@ Run the script:
 bash init-osmosis-local.sh
 ```
 
-This will start your local Osmosis testnet, we'll create IBC connection between this testnet and GM chain in next step.
-> NOTE: Here, the keys name from `init-osmosis-local.sh` is `mykey` and `osmosis-relay` but you can modify
+This will start your local Osmosis testnet, we'll create IBC connection between this testnet and GM chain in the next step.
+> NOTE: Here, the key's name from `init-osmosis-local.sh` is `mykey` and `osmosis-relay` but you can modify
   this script to change the name of your key.
 
 ::: tip
@@ -346,7 +346,7 @@ Make an ibc-transfer transaction:
 osmosisd tx ibc-transfer transfer transfer $CHANNEL_ID $GM_KEY 42069$IBC_DENOM_STRING --node tcp://localhost:46657 --chain-id osmosis-testnet-1 --from osmosis-relay --fees 500uosmo
 ```
 
-And then check the balances of the receiver address with if it the token is relayed or not:
+And then check the balances of the receiver address to see if the token has been relayed or not:
 
 ```bash
 gmd query bank balances $GM_KEY --node tcp://localhost:36657 
