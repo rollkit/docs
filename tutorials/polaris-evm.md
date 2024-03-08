@@ -38,7 +38,7 @@ To get started, clone the Polaris repository and switch to the Rollkit branch:
 ```bash
 cd $HOME
 git clone https://github.com/berachain/polaris.git
-cd polaris && git checkout rollkit-main
+cd polaris && git checkout rollkit
 ```
 
 ## Install Foundry
@@ -281,7 +281,7 @@ celestia-da light start \
 First, ensure you're on the correct branch of Polaris:
 
 ```bash
-cd $HOME/polaris && git checkout rollkit-main
+cd $HOME/polaris && git checkout rollkit
 ```
 
 Before starting your rollup, you'll want to make a change in
