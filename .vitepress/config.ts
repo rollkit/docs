@@ -209,6 +209,7 @@ function sidebarHome() {
             { text: "Wordle app", link: "/tutorials/wordle" },
             { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
             { text: "Polaris EVM rollup", link: "/tutorials/polaris-evm" },
+            { text: "zkML rollup", link: "/tutorials/zkml" },
           ]
         },
         {
