@@ -245,7 +245,7 @@ to                      0x5C59C83c099F72FcE832208f96a23a1E43737a14
 ```
 
 :::tip
-Note: To see the decoded output of the contract call (to check if the proof was verified), you will need to view the the call in a block explorer.
+Note: To see the decoded output of the contract call (to check if the proof was verified), you will need to view the call in a block explorer.
 :::
 
 ## Congratulations
