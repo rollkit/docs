@@ -224,6 +224,7 @@ function sidebarHome() {
           text: 'Guides',
           collapsed: true,
           items: [
+            { text: 'How to configure gas price', link: '/tutorials/gas-price' },
             { text: 'How to change speed of block production', link: '/tutorials/block-times'},
             { text: 'How to use lazy sequencing (aggregation)', link: '/tutorials/lazy-sequencing'},
 
