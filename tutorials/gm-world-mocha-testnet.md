@@ -1,81 +1,54 @@
-# GM world rollup: Part 2
+# GM world rollup: Part 3
 
 ## Deploying to a Celestia testnet
 
-This tutorial is part 2 of the GM world rollup tutorials. In this tutorial,
+This tutorial is part 3 of the GM world rollup tutorials. In this tutorial,
 it is expected that you've completed [part 1](./gm-world.md) of
 the tutorial and are familiar with running a local rollup devnet.
 
 The script for this tutorial is built for Celestia's
-[Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
+[Mocha testnet](https://docs.celestia.org/nodes/mocha-devnet).
 
 ### 🪶 Run a Celestia light node {#run-celestia-node}
 
-1. Fully sync and fund a light node
-on Arabica devnet (`arabica-11`).
+Fully sync and fund a light node
+on Mocha testnet (`mocha-4`).
 Follow instructions to install and start your Celestia data availability
-layer light node selecting the Arabica network. You can
+layer light node selecting the Mocha network. You can
 [find instructions to install and run the node](https://docs.celestia.org/nodes/light-node).
 After the node is synced, stop the light node.
-
-2. Use
-[`celestia-da`](https://github.com/rollkit/celestia-da)
-to connect to Rollkit. Your node does not need to be running
-when you start `celestia-da`. To start `celestia-da` and your light node, run this command:
-
-```bash
-docker run -d \
--e NODE_TYPE=light \
--e P2P_NETWORK=arabica \
--p 26650:26650 \
--p 26658:26658 \
--p 26659:26659 \
--v $HOME/.celestia-light-arabica-11/:/home/celestia/.celestia-light-arabica-11/ \
-ghcr.io/rollkit/celestia-da:v0.12.10 \
-celestia-da light start \
---p2p.network=arabica \
---da.grpc.namespace=000008e5f679bf7116cb \
---da.grpc.listen=0.0.0.0:26650 \
---core.ip validator-1.celestia-arabica-11.com \
---gateway
-```
-
-:::tip
-You can either use the default `000008e5f679bf7116cb`
-namespace above, or set your own by using a command
-similar to this (or, you could get creative 😎):
-
-```bash
-openssl rand -hex 10
-```
-
-[Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)
-.
-:::
-
-After you have Go and Ignite CLI installed, and `celestia-da`
-running on your machine, you're ready to run your own
-sovereign rollup.
 
 ### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
 
 We have
-[a handy `init-testnet.sh` found in this repo](https://github.com/rollkit/docs/tree/main/scripts/gm).
+[a handy `init-mocha-testnet.sh` found in this repo](https://github.com/rollkit/docs/tree/main/scripts/gm).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `gm` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-testnet.sh
+wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-mocha-testnet.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
-This copies over our `init-testnet.sh` script to initialize our
+This copies over our `init-mocha-testnet.sh` script to initialize our
 `gm` rollup.
 
 You can view the contents of the script to see how we
 initialize the gm rollup.
+
+:::tip
+`init-mocha-testnet.sh` script uses a default namespace `00000000000000000000000000000000000000000008e5f679bf7116cb`. You can set your own by using a command
+similar to this (or, you could get creative 😎):
+
+```bash
+openssl rand -hex 30
+```
+
+[Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)
+.
+:::
 
 #### Clear previous chain history
 
@@ -90,11 +63,11 @@ rm -r $HOME/go/bin/gmd && rm -rf $HOME/.gm
 Now, you can initialize the script with the following command:
 
 ```bash
-bash init-testnet.sh
+bash init-mocha-testnet.sh
 ```
 
 View your rollup by
-[finding your namespace or account an Arabica devnet explorer](https://docs.celestia.org/nodes/arabica-devnet#explorers).
+[finding your namespace or account an Mocha devnet explorer](https://docs.celestia.org/nodes/mocha-testnet#explorers).
 
 With that, we have kickstarted our second `gmd` rollup!
 
@@ -103,7 +76,7 @@ With that, we have kickstarted our second `gmd` rollup!
 If you'd like to stop and restart your rollup for development purposes,
 you're in luck!
 
-When you ran `init-testnet.sh`, the script generated a script called
+When you ran `init-mocha-testnet.sh`, the script generated a script called
 `restart-testnet.sh` in the `$HOME/gm` directory for you to use to
 restart your rollup.
 
@@ -250,7 +223,7 @@ implements a CLI equivalent of the gm query and mounted this command in
 
 ##### Restart your rollup
 
-Restart your rollup by running the `init-testnet.sh` script again.
+Restart your rollup by running the `init-mocha-testnet.sh` script again.
 
 ##### Query your rollup
 

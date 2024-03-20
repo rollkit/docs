@@ -14,10 +14,10 @@ STAKING_AMOUNT="1000000000stake"
 # to allow users to interact with Celestia's core network by querying
 # the node's state and broadcasting transactions on the Celestia
 # network. This is for Arabica, if using another network, change the RPC.
-DA_BLOCK_HEIGHT=$(curl https://rpc.lunaroasis.net/block | jq -r '.result.block.header.height')
+DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
 echo -e "\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n"
 
-AUTH_TOKEN=$(celestia light auth write --p2p.network celestia)
+AUTH_TOKEN=$(celestia light auth write --p2p.network mocha)
 echo -e "\n Your DA AUTH_TOKEN is $AUTH_TOKEN \n"
 
 # build the gm chain with Rollkit
@@ -49,11 +49,11 @@ ADDRESS=$(jq -r '.address' ~/.gm/config/priv_validator_key.json)
 PUB_KEY=$(jq -r '.pub_key' ~/.gm/config/priv_validator_key.json)
 jq --argjson pubKey "$PUB_KEY" '.consensus["validators"]=[{"address": "'$ADDRESS'", "pub_key": $pubKey, "power": "1000", "name": "Rollkit Sequencer"}]' ~/.gm/config/genesis.json > temp.json && mv temp.json ~/.gm/config/genesis.json
 
-# create a restart-mainnet.sh file to restart the chain later
-[ -f restart-mainnet.sh ] && rm restart-mainnet.sh
-echo "DA_BLOCK_HEIGHT=$DA_BLOCK_HEIGHT" >> restart-mainnet.sh
+# create a restart-testnet.sh file to restart the chain later
+[ -f restart-testnet.sh ] && rm restart-testnet.sh
+echo "DA_BLOCK_HEIGHT=$DA_BLOCK_HEIGHT" >> restart-testnet.sh
 
-echo "gmd start --rollkit.aggregator --rollkit.da_auth_token=$AUTH_TOKEN --rollkit.da_namespace 00000000000000000000000000000000000000000008e5f679bf7116cb --rollkit.da_start_height \$DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr \"0.0.0.0:36656\" --minimum-gas-prices="0.025stake"" >> restart-mainnet.sh
+echo "gmd start --rollkit.aggregator --rollkit.da_auth_token=$AUTH_TOKEN --rollkit.da_namespace 00000000000000000000000000000000000000000008e5f679bf7116cb --rollkit.da_start_height \$DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr \"0.0.0.0:36656\" --minimum-gas-prices="0.025stake"" >> restart-testnet.sh
 
 # start the chain
 gmd start --rollkit.aggregator --rollkit.da_auth_token=$AUTH_TOKEN --rollkit.da_namespace 00000000000000000000000000000000000000000008e5f679bf7116cb --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr "0.0.0.0:36656" --minimum-gas-prices="0.025stake"

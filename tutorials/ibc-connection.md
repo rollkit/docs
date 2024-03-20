@@ -25,14 +25,14 @@ Before you can create an IBC connection, you need to start a
 local-celestia-devnet instance in a separate terminal:
 
 ```bash
-docker run -t -i --platform linux/amd64 -p 26650:26650 -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 ghcr.io/rollkit/local-celestia-devnet:v0.12.7
+docker run -t -i --platform linux/amd64 -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 ghcr.io/rollkit/local-celestia-devnet:v0.13.1
 ```
 
 :::warning
 You will need to use Ignite v28.2.0, which you can install with:
 
 ```bash
-curl https://get.ignite.com/cli@v28.2.0! | bash
+curl https://get.ignite.com/cli@v28.3.0! | bash
 ```
 
 :::
@@ -48,9 +48,8 @@ Change into the `gm` directory and install Rollkit with IBC compatibility:
 
 ```bash
 cd gm
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.12.0-rc0-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.5-rollkit-v0.13.0-no-fraud-proofs
 go mod tidy
-go get github.com/bufbuild/buf@latest
 go mod download
 ```
 
