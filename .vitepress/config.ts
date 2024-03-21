@@ -195,7 +195,7 @@ function sidebarHome() {
             // { text: 'Starter Rollup with Docker', link: '/tutorials/rollup-docker'},
             // { text: 'Starter Rollup', link: '/tutorials/starter-rollup'},
             { text: 'GM world rollup: Part 1, local devnet', link: '/tutorials/gm-world'},
-            { text: 'GM world rollup: Part 2, arabica testnet', link: '/tutorials/gm-world-arabica-testnet'},
+            { text: 'GM world rollup: Part 2, arabica devnet', link: '/tutorials/gm-world-arabica-testnet'},
             { text: 'GM world rollup: Part 3, mocha testnet', link: '/tutorials/gm-world-mocha-testnet'},
             { text: 'GM world rollup: Part 4, mainnet', link: '/tutorials/gm-world-mainnet'},
             { text: 'GM world frontend', link: '/tutorials/gm-world-frontend'},

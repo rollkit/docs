@@ -18,7 +18,7 @@ In this section, you'll find:
 
 * Beginner
   * [GM world rollup: Part 1, local devnet](/tutorials/gm-world.md)
-  * [GM world rollup: Part 2, arabica testnet](/tutorials/gm-world-arabica-testnet.md)
+  * [GM world rollup: Part 2, arabica devnet](/tutorials/gm-world-arabica-testnet.md)
   * [GM world rollup: Part 3, mocha testnet](/tutorials/gm-world-mocha-testnet.md)
   * [GM world rollup: Part 4, mainnet](/tutorials/gm-world-mainnet.md)
   * [GM world frontend](/tutorials/gm-world-frontend.md)
