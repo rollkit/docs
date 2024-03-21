@@ -1,6 +1,6 @@
 # GM world rollup: Part 2
 
-## Deploying to a Celestia testnet
+## Deploying to a Celestia devnet
 
 This tutorial is part 2 of the GM world rollup tutorials. In this tutorial,
 it is expected that you've completed [part 1](./gm-world.md) of

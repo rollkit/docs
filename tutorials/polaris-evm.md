@@ -1,5 +1,9 @@
 # Polaris EVM and Rollkit
 
+::: danger
+We regret to inform that Polaris V1 and Rollkit integration is not fully functional. Current issues are tracked in https://github.com/rollkit/rollkit/issues/1594. We are expecting Polaris V2 release soon and Rollkit support will be added along with update tutorial. 
+:::
+
 This tutorial provides step-by-step instructions for running the
 [Polaris EVM](https://github.com/berachain/polaris)
 using Rollkit. Polaris EVM is a version of the
