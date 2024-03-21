@@ -30,9 +30,6 @@ jobs:
       - name: Build with Base URL
         run: BASE='/docs-preview/pr-${{ github.event.number }}/' yarn docs:build
 
-      - name: Add CNAME file
-        run: mkdir -p ./.vitepress/dist && echo rollkit.dev > .vitepress/dist/CNAME
-
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
