@@ -90,7 +90,7 @@ You can read more about Ignite [here](https://docs.ignite.com).
 To install Ignite, you can run this command in your terminal:
 
 ```bash
-curl https://get.ignite.com/cli@v28.1.0! | bash
+curl https://get.ignite.com/cli@v28.3.0! | bash
 sudo mv ignite /usr/local/bin/
 ```
 
@@ -176,9 +176,8 @@ Rollkit on our codebase.
 Run the following command inside the `wordle` directory.
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.19-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.5-rollkit-v0.13.0-no-fraud-proofs
 go mod tidy
-go get github.com/bufbuild/buf@latest
 go mod download
 ```
 
@@ -565,44 +564,8 @@ Your start command should look similar to:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-celestia light start --p2p.network arabica
+celestia light start --core.ip validator-1.celestia-arabica-11.com --p2p.network arabica
 ```
-<!-- markdownlint-enable MD013 -->
-
-After you have synced your node and funded it from the faucet,
-you will need to stop it to restart it with `celestia-da`.
-
-To do so, use the following command:
-
-```bash
-docker run -d \
--e NODE_TYPE=light \
--e P2P_NETWORK=arabica \
--p 26650:26650 \
--p 26658:26658 \
--p 26659:26659 \
--v $HOME/.celestia-light-arabica-11/:/home/celestia/.celestia-light-arabica-11/ \
-ghcr.io/rollkit/celestia-da:v0.12.10 \
-celestia-da light start \
---p2p.network=arabica \
---da.grpc.namespace=00000000776f72646c65 \
---da.grpc.listen=0.0.0.0:26650 \
---core.ip validator-1.celestia-arabica-11.com \
---gateway
-```
-
-:::tip
-You can either use the default `00000000776f72646c65`, "wordle" in
-plaintext, namespace above, or set your own by using a command
-similar to this (or, you could get creative 😎):
-
-```bash
-openssl rand -hex 10
-```
-
-[Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)
-
-:::
 
 After you have Go and Ignite CLI installed, and your Celestia
 Light Node running on your machine, you're ready to build,

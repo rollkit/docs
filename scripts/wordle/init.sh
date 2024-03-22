@@ -16,6 +16,9 @@ STAKING_AMOUNT="1000000000stake"
 DA_BLOCK_HEIGHT=$(curl https://rpc.celestia-arabica-11.com/block | jq -r '.result.block.header.height')
 echo -e "\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n"
 
+AUTH_TOKEN=$(celestia light auth write --p2p.network arabica)
+echo -e "\n Your DA AUTH_TOKEN is $AUTH_TOKEN \n"
+
 # build the wordle chain with Rollkit
 ignite chain build
 
@@ -46,8 +49,9 @@ jq --argjson pubKey "$PUB_KEY" '.consensus["validators"]=[{"address": "'$ADDRESS
 # create a restart-testnet.sh file to restart the chain later
 [ -f restart-wordle.sh ] && rm restart-wordle.sh
 echo "DA_BLOCK_HEIGHT=$DA_BLOCK_HEIGHT" >> restart-wordle.sh
+echo "AUTH_TOKEN=$AUTH_TOKEN" >> restart-wordle.sh
 
-echo "wordled start --rollkit.aggregator --rollkit.da_address=":26650" --rollkit.da_start_height \$DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr \"0.0.0.0:36656\" --minimum-gas-prices="0.025stake"" >> restart-wordle.sh
+echo "wordled start --rollkit.aggregator --rollkit.da_auth_token=\$AUTH_TOKEN --rollkit.da_namespace 00000000000000000000000000000000000000000008e5f679bf7116cb --rollkit.da_start_height \$DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr \"0.0.0.0:36656\" --minimum-gas-prices="0.025stake"" >> restart-wordle.sh
 
 # start the chain
-wordled start --rollkit.aggregator --rollkit.da_address=":26650" --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr "0.0.0.0:36656" --minimum-gas-prices="0.025stake"
+wordled start --rollkit.aggregator --rollkit.da_auth_token=$AUTH_TOKEN --rollkit.da_namespace 00000000000000000000000000000000000000000008e5f679bf7116cb --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr "0.0.0.0:36656" --minimum-gas-prices="0.025stake"
