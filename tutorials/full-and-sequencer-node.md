@@ -89,6 +89,15 @@ P2P_ID="your-p2p-id" // [!code --]
 P2P_ID="12D3KooWCmfJLkQjZUArWpNUDJSezeFiLYzCULXe1dEKY6ZpXZpk" // [!code ++]
 ```
 
+Also, in your `init-full-node.sh` script, the `AUTH_TOKEN` is fetched from the celestia-node running in the docker, which is also used by the sequencer node. If you are running a separate celestia-node for sequencer and full node, please update the `AUTH_TOKEN` accordingly. Note that, the `AUTH_TOKEN` is needed to perform DA queries via celestia-node.
+
+```bash
+# uses the same celestia-node as sequencer node
+# if you are running a separate celestia-node for full node
+# use the auth token from that node
+AUTH_TOKEN=$(docker exec $(docker ps -q) celestia bridge auth admin --node.store /home/celestia/bridge)
+```
+
 ## Start the full node
 
 Now run your full node with the script:
