@@ -18,8 +18,8 @@ First, we will test on a local DA network, then to a live
 testnet, and lastly to mainnet.
 
 1. Part 1 (This page): Run your rollup and post DA to a local devnet, and make sure everything works as expected.
-2. [Part 2](./gm-world-testnet.md): Deploy the rollup, posting to a DA testnet. Confirm again that everything is functioning properly.
-3. [Part 3](./gm-world-mainnet.md): Deploy your rollup to the DA layer's mainnet.
+2. [Part 2](./gm-world-arabica-testnet.md) or [Part 3](./gm-world-mocha-testnet.md): Deploy the rollup, posting to a DA testnet (arabica or mocha). Confirm again that everything is functioning properly.
+3. [Part 4](./gm-world-mainnet.md): Deploy your rollup to the DA layer's mainnet.
 
 The [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) is a framework for
 building blockchain applications. The Cosmos Ecosystem uses
@@ -45,7 +45,7 @@ to say GM, Gm, or gm. You can think of "GM" as the new version of
 
 * Operating systems: GNU/Linux or macOS
 * [Golang 1.21+](https://go.dev)
-* [Ignite CLI v28.1.0](https://github.com/ignite/cli)
+* [Ignite CLI v28.3.0](https://github.com/ignite/cli)
 * [Homebrew](https://brew.sh)
 * [wget](https://www.gnu.org/software/wget)
 * [A Celestia Light Node](https://docs.celestia.org/nodes/light-node)
@@ -75,7 +75,7 @@ sudo mkdir -p -m 775 /usr/local/bin
 Run this command in your terminal to install Ignite CLI:
 
 ```bash
-curl https://get.ignite.com/cli@v28.1.0! | bash
+curl https://get.ignite.com/cli@v28.3.0! | bash
 ```
 
 ::: tip
@@ -85,13 +85,13 @@ You can resolve this error by following the guidance
 
 ```bash
 # Error
-jcs @ ~ % curl https://get.ignite.com/cli@v28.1.0! | bash
+jcs @ ~ % curl https://get.ignite.com/cli@v28.3.0! | bash
 
 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  3967    0  3967    0     0  16847      0 --:--:-- --:--:-- --:--:-- 17475
-Installing ignite v28.1.0..... // [!code focus]
+Installing ignite v28.3.0..... // [!code focus]
 ######################################################################## 100.0% // [!code focus]
 mv: rename ./ignite to /usr/local/bin/ignite: Permission denied // [!code focus]
 ============ // [!code focus]
@@ -101,7 +101,7 @@ Error: mv failed // [!code focus]
 The following command will resolve the permissions error:
 
 ```bash
-sudo curl https://get.ignite.com/cli@v28.1.0! | bash
+sudo curl https://get.ignite.com/cli@v28.3.0! | bash
 ```
 
 :::
@@ -112,7 +112,7 @@ A successful installation will return something similar to the response below:
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  4073    0  4073    0     0   4363      0 --:--:-- --:--:-- --:--:--  4379
-Installing ignite v28.1.0..... // [!code focus]
+Installing ignite v28.3.0..... // [!code focus]
 ######################################################################## 100.0% // [!code focus]
 Password:
 Installed at /usr/local/bin/ignite // [!code focus]
@@ -128,11 +128,11 @@ The response that you receive should look something like this:
 
 ```bash
 jcs @ ~ % ignite version // [!code focus]
-Ignite CLI version: v28.1.0 // [!code focus]
-Ignite CLI build date: 2023-12-23T08:29:07Z
-Ignite CLI source hash: 4bb56d0cf73d16303221d8d1ffdd3ec395682813
+Ignite CLI version: v28.3.0 // [!code focus]
+Ignite CLI build date: 2024-03-20T15:31:07Z
+Ignite CLI source hash: 159abdca88605ed82cb4aabd52618db91069b7af
 Ignite CLI config version: v1
-Cosmos SDK version: v0.50.1
+Cosmos SDK version: v0.50.5
 Your OS:  darwin
 Your arch:  arm64
 Your Node.js version: v20.4.0
@@ -167,7 +167,7 @@ sudo mkdir -p -m 775 /usr/local/bin
 Run this command in your terminal to install Ignite CLI:
 
 ```bash
-curl https://get.ignite.com/cli@v28.1.0! | bash
+curl https://get.ignite.com/cli@v28.3.0! | bash
 ```
 
 ::: tip
@@ -177,13 +177,13 @@ You can resolve this error by following the guidance
 
 ```bash
 # Error
-jcs @ ~ % curl https://get.ignite.com/cli@v28.1.0! | bash
+jcs @ ~ % curl https://get.ignite.com/cli@v28.3.0! | bash
 
 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  3967    0  3967    0     0  16847      0 --:--:-- --:--:-- --:--:-- 17475
-Installing ignite v28.1.0..... // [!code focus]
+Installing ignite v28.3.0..... // [!code focus]
 ######################################################################## 100.0% // [!code focus]
 mv: rename ./ignite to /usr/local/bin/ignite: Permission denied // [!code focus]
 ============ // [!code focus]
@@ -193,7 +193,7 @@ Error: mv failed // [!code focus]
 The following command will resolve the permissions error:
 
 ```bash
-sudo curl https://get.ignite.com/cli@v28.1.0! | sudo bash
+sudo curl https://get.ignite.com/cli@v28.3.0! | sudo bash
 ```
 
 :::
@@ -204,7 +204,7 @@ A successful installation will return something similar the response below:
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  3967    0  3967    0     0  15586      0 --:--:-- --:--:-- --:--:-- 15931
-Installing ignite v28.1.0..... // [!code focus]
+Installing ignite v28.3.0..... // [!code focus]
 ######################################################################## 100.0% // [!code focus]
 Installed at /usr/local/bin/ignite // [!code focus]
 ```
@@ -219,15 +219,15 @@ The response that you receive should look something like this:
 
 ```bash
 jcs @ ~ % ignite version // [!code focus]
-Ignite CLI version:  v28.1.0
-Ignite CLI build date:  2023-12-23T08:29:07Z
-Ignite CLI source hash:  4bb56d0cf73d16303221d8d1ffdd3ec395682813
+Ignite CLI version:  v28.3.0
+Ignite CLI build date:  2024-03-20T15:31:07Z
+Ignite CLI source hash:  159abdca88605ed82cb4aabd52618db91069b7af
 Ignite CLI config version: v1
-Cosmos SDK version:  v0.50.1
+Cosmos SDK version:  v0.50.5
 Your OS:   darwin
 Your arch:   arm64
-Your Node.js version:  v20.4.0
-Your go version:  go version go1.21.5 darwin/arm64
+Your Node.js version:  v17.9.0
+Your go version:  go version go1.21.6 darwin/arm64
 Your uname -a:   Darwin Joshs-MacBook-Air.local 22.5.0 Darwin Kernel Version 22.5.0: Thu Jun  8 22:21:34 PDT 2023; root:xnu-8796.121.3~7/RELEASE_ARM64_T8112 arm64
 Your cwd:  /Users/joshstein
 Is on Gitpod:  false
@@ -289,22 +289,11 @@ First, run the [`local-celestia-devnet`](https://github.com/rollkit/local-celest
 
 ```bash
 docker run -t -i \
-    -p 26650:26650 -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 \
-    ghcr.io/rollkit/local-celestia-devnet:v0.12.7
+    -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 \
+    ghcr.io/rollkit/local-celestia-devnet:v0.13.1
 ```
 
-The docker image automatically creates a `NAMESPACE_ID`
-(as shown below) while starting the celestia-da server.
-If you want to set your own `NAMESPACE_ID`, set the env variable
-`CELESTIA_NAMESPACE`.
-
-```bash
-CELESTIA_NAMESPACE=0000$(openssl rand -hex 8)
-```
-
-The port `26650` is where the
-[celestia-da](https://github.com/rollkit/celestia-da) server is run
-(which also runs a Celestia DA bridge node).
+The docker image runs a celestia bridge node.
 
 ### 🏗️ Building your sovereign rollup {#building-your-sovereign-rollup}
 
@@ -378,9 +367,8 @@ To swap out CometBFT for Rollkit, run the following command
 from inside the `gm` directory:
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.1-rollkit-v0.11.19-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.5-rollkit-v0.13.0-no-fraud-proofs
 go mod tidy
-go get github.com/bufbuild/buf@latest
 go mod download
 ```
 

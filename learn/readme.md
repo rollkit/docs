@@ -3,24 +3,36 @@
 A modular framework for rollups, with an ABCI-compatible client interface. For more in-depth information about Rollkit, please visit our [website](https://rollkit.dev).
 
 <!-- markdownlint-disable MD013 -->
-[![build-and-test](https://github.com/rollkit/rollkit/actions/workflows/test.yml/badge.svg)](https://github.com/rollkit/rollkit/actions/workflows/test.yml)  
-[![golangci-lint](https://github.com/rollkit/rollkit/actions/workflows/lint.yml/badge.svg)](https://github.com/rollkit/rollkit/actions/workflows/lint.yml)  
-[![Go Report Card](https://goreportcard.com/badge/github.com/rollkit/rollkit)](https://goreportcard.com/report/github.com/rollkit/rollkit)  
-[![codecov](https://codecov.io/gh/rollkit/rollkit/branch/main/graph/badge.svg?token=CWGA4RLDS9)](https://codecov.io/gh/rollkit/rollkit)  
+[![build-and-test](https://github.com/rollkit/rollkit/actions/workflows/test.yml/badge.svg)](https://github.com/rollkit/rollkit/actions/workflows/test.yml)
+[![golangci-lint](https://github.com/rollkit/rollkit/actions/workflows/lint.yml/badge.svg)](https://github.com/rollkit/rollkit/actions/workflows/lint.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/rollkit/rollkit)](https://goreportcard.com/report/github.com/rollkit/rollkit)
+[![codecov](https://codecov.io/gh/rollkit/rollkit/branch/main/graph/badge.svg?token=CWGA4RLDS9)](https://codecov.io/gh/rollkit/rollkit)
 [![GoDoc](https://godoc.org/github.com/rollkit/rollkit?status.svg)](https://godoc.org/github.com/rollkit/rollkit)
 <!-- markdownlint-enable MD013 -->
 
-## Building from source
+## Rollkit CLI
 
-Requires Go version >= 1.20.
+Requires Go version >= 1.21.
 
-To build:
+A cli tool that allows you to run different kinds of nodes for a rollkit network
+while also helping you generate the required configuration files
 
-```sh
-git clone https://github.com/rollkit/rollkit.git
-cd rollkit
-go build -v ./...
+### Install
+
+To install `rollkit`, simply run the following command at the root of the
+rollkit repo
+
+```bash
+make install
 ```
+
+The latest Rollkit is now installed. You can verify the installation by running:
+
+```bash
+rollkit version
+```
+
+Explore the CLI documentation [here](./cmd/rollkit/docs/rollkit.md)
 
 ## Building with Rollkit
 
@@ -31,54 +43,62 @@ as a data availability layer.
 
 ### Building on Celestia
 
-There are currently 2 ways to build on Celestia:
-
-1. Using a local development environment with [local-celestia-devnet](https://github.com/rollkit/local-celestia-devnet)
-1. Using the Arabica or Mocha Celestia testnet
+You can build Rollkit rollups with [local-celestia-devnet](https://github.com/rollkit/local-celestia-devnet),
+[arabica devnet](https://docs.celestia.org/nodes/arabica-devnet) and
+[mocha testnet](https://docs.celestia.org/nodes/mocha-testnet) and
+[mainnet beta](https://docs.celestia.org/nodes/mainnet).
 
 #### Compatibility
 
 | network               | rollkit | celestia-node | celestia-app |
 | --------------------- | ------- | ------------- | ------------ |
-| local-celestia-devnet | v0.10.5 | v0.11.0       | v1.1.0       |
-| arabica               | v0.10.5 | v0.11.0       | v1.1.0       |
+| local-celestia-devnet | v0.13.0 | v0.13.1       | v1.7.0       |
+| arabica               | v0.13.0 | v0.13.1       | v1.7.0       |
+| mocha                 | v0.13.0 | v0.13.1       | v1.7.0       |
+| mainnet               | v0.13.0 | v0.13.1       | v1.7.0       |
 
 <!-- markdownlint-disable MD013 -->
 | rollkit/cosmos-sdk | rollkit/cometbft | rollkit |
 |-|-|-|
-| [v0.47.3-rollkit-v0.10.5-no-fraud-proofs](https://github.com/rollkit/cosmos-sdk/releases/tag/v0.47.3-rollkit-v0.10.5-no-fraud-proofs)| v0.37.2 | [v0.10.5](https://github.com/rollkit/rollkit/releases/tag/v0.10.5)|
-| [v0.50.0-rc.0-rollkit-v0.11.0-rc1-no-fraud-proofs](https://github.com/rollkit/cosmos-sdk/releases/tag/v0.50.0-rc.0-rollkit-v0.11.0-rc1-no-fraud-proofs) | v0.38.0-rc3| [v0.11.0-rc1](https://github.com/rollkit/rollkit/releases/tag/v0.11.0-rc1) |
+| [v0.50.5-rollkit-v0.13.0-no-fraud-proofs](https://github.com/rollkit/cosmos-sdk/releases/tag/v0.50.5-rollkit-v0.13.0-no-fraud-proofs) | v0.38.5| [v0.13.0](https://github.com/rollkit/rollkit/releases/tag/v0.13.0) |
 <!-- markdownlint-enable MD013 -->
 
 #### Local development environment
 
-The Rollkit v0.10.5 release is compatible with the
-[local-celestia-devnet](https://github.com/rollkit/local-celestia-devnet) [v0.11.0](https://github.com/rollkit/local-celestia-devnet/releases/tag/v0.11.0)
+The Rollkit v0.13.0 release is compatible with the
+[local-celestia-devnet](https://github.com/rollkit/local-celestia-devnet) [v0.13.1](https://github.com/rollkit/local-celestia-devnet/releases/tag/v0.13.1)
 release. This version combination is compatible with celestia-app
-[v1.1.0](https://github.com/celestiaorg/celestia-app/releases/tag/v1.1.0)
+[v1.7.0](https://github.com/celestiaorg/celestia-app/releases/tag/v1.7.0)
 and celestia-node
-[v0.11.0](https://github.com/celestiaorg/celestia-node/releases/tag/v0.11.0).
+[v0.13.1](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.1).
 
 #### Arabica devnet and Mocha testnet
 
-The Rollkit v0.10.5 release is compatible with
-[arabica-10](https://docs.celestia.org/nodes/arabica-devnet/) devnet
+The Rollkit v0.13.0 release is compatible with
+[arabica-11](https://docs.celestia.org/nodes/arabica-devnet/) devnet
 [mocha-4](https://docs.celestia.org/nodes/mocha-testnet/) testnet which are running
 celestia-app
-[v1.1.0](https://github.com/celestiaorg/celestia-app/releases/tag/v1.1.0)
+[v1.7.0](https://github.com/celestiaorg/celestia-app/releases/tag/v1.7.0)
 and celestia-node
-[v0.11.0](https://github.com/celestiaorg/celestia-node/releases/tag/v0.11.0).
+[v0.13.1](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.1).
 
-#### Cometbft v0.38.x and Cosmos-SDK v0.50.x
+#### Celestia mainnet
 
-The Rollkit v0.11.0-rc1 release is compatible with Cometbft v0.38.0-rc3 and Cosmos-SDK
-v0.50.0-rc.0. However, there is no support by ignite for launching a compatible app
-(e.g. gm app) and Rollkit is working on building a gm app for testing this
-release (WIP).
+The Rollkit v0.13.0 release is compatible with [mainnet-beta](https://docs.celestia.org/nodes/mainnet/)
+which is running celestia-app
+[v1.7.0](https://github.com/celestiaorg/celestia-app/releases/tag/v1.7.0)
+and celestia-node
+[v0.13.1](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.1).
+
+#### Cometbft v0.37.x and Cosmos-SDK v0.47.x
+
+The Rollkit v0.10.7 release is compatible with Cometbft v0.37.2 and Cosmos-SDK
+v0.47.6. However, this version is no longer supported for future developments and
+it is recommended to use Rollkit v0.13.x.
 
 ### Tools
 
-1. Install [golangci-lint](https://golangci-lint.run/usage/install/)
+1. Install [golangci-lint](https://golangci-lint.run/welcome/install/)
 1. Install [markdownlint](https://github.com/DavidAnson/markdownlint)
 1. Install [hadolint](https://github.com/hadolint/hadolint)
 1. Install [yamllint](https://yamllint.readthedocs.io/en/stable/quickstart.html)
