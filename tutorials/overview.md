@@ -36,6 +36,7 @@ In this section, you'll find:
   * [How to configure gas price](/tutorials/gas-price.md)
   * [How to change speed of block production](/tutorials/block-times.md)
   * [How to use lazy sequencing (aggregation)](/tutorials/lazy-sequencing.md)
+  * [Testing and deploying smart-contract with cw-orch](/tutorials/cw-orch.md)
 
 ## 💻 Support {#support}
 
