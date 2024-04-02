@@ -12,7 +12,7 @@ This approach not only secures the verification process of machine learning mode
 
 ## Prerequisites
 
-- An operational Polaris EVM using Rollkit (see next step)
+- An operational [Polaris EVM](/tutorials/polaris-evm.md) using Rollkit (see next step)
 - A [Sindri](https://sindri.app) API key, which can be obtained [here](https://hen4zp9gxq3.typeform.com/to/hJHlUF8c?typeform-source=sindri.app)
 - Python 3.10+ installed as well as the [Sindri Python SDK](https://sindri.app/docs/reference/sdk/python/) (more information below)
 
