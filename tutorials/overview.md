@@ -16,27 +16,27 @@ that best suit your needs.
 
 In this section, you'll find:
 
-- Beginner
-  - [GM world rollup: Part 1, local devnet](/tutorials/gm-world.md)
-  - [GM world rollup: Part 2, arabica devnet](/tutorials/gm-world-arabica-testnet.md)
-  - [GM world rollup: Part 3, mocha testnet](/tutorials/gm-world-mocha-testnet.md)
-  - [GM world rollup: Part 4, mainnet](/tutorials/gm-world-mainnet.md)
-  - [GM world frontend](/tutorials/gm-world-frontend.md)
-  - [Recipe Book rollup](/tutorials/recipe-book.md)
-  - [How to restart your rollup](/tutorials/restart-rollup.md)
-- Intermediate
-  - [Wordle app](/tutorials/wordle.md)
-  - [CosmWasm rollup](/tutorials/cosmwasm.md)
-  - [Polaris EVM rollup](/tutorials/polaris-evm.md)
-  - [zkML rollup](/tutorials/zkml.md)
-  - [IBC connection](/tutorials/ibc-connection.md)
-- Advanced
-  - [Full and sequencer node rollup setup](/tutorials/full-and-sequencer-node.md)
-  - [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
-- Guides
-  - [How to configure gas price](/tutorials/gas-price.md)
-  - [How to change speed of block production](/tutorials/block-times.md)
-  - [How to use lazy sequencing (aggregation)](/tutorials/lazy-sequencing.md)
+* Beginner
+  * [GM world rollup: Part 1, local devnet](/tutorials/gm-world.md)
+  * [GM world rollup: Part 2, arabica devnet](/tutorials/gm-world-arabica-testnet.md)
+  * [GM world rollup: Part 3, mocha testnet](/tutorials/gm-world-mocha-testnet.md)
+  * [GM world rollup: Part 4, mainnet](/tutorials/gm-world-mainnet.md)
+  * [GM world frontend](/tutorials/gm-world-frontend.md)
+  * [Recipe Book rollup](/tutorials/recipe-book.md)
+  * [How to restart your rollup](/tutorials/restart-rollup.md)
+* Intermediate
+  * [Wordle app](/tutorials/wordle.md)
+  * [CosmWasm rollup](/tutorials/cosmwasm.md)
+  * [Polaris EVM rollup](/tutorials/polaris-evm.md)
+  * [zkML rollup](/tutorials/zkml.md)
+  * [IBC connection](/tutorials/ibc-connection.md)
+* Advanced
+  * [Full and sequencer node rollup setup](/tutorials/full-and-sequencer-node.md)
+  * [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
+* Guides
+  * [How to configure gas price](/tutorials/gas-price.md)
+  * [How to change speed of block production](/tutorials/block-times.md)
+  * [How to use lazy sequencing (aggregation)](/tutorials/lazy-sequencing.md)
 
 ## 💻 Support {#support}
 
