@@ -49,6 +49,7 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 
 - [Wordle app](/tutorials/wordle)
 - [CosmWasm rollup](/tutorials/cosmwasm)
+- [zkML rollup](/tutorials/zkml.md)
 
 #### Advanced
 
