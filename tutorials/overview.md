@@ -28,6 +28,7 @@ In this section, you'll find:
   * [Wordle app](/tutorials/wordle.md)
   * [CosmWasm rollup](/tutorials/cosmwasm.md)
   * [Polaris EVM rollup](/tutorials/polaris-evm.md)
+  * [zkML rollup](/tutorials/zkml.md)
   * [IBC connection](/tutorials/ibc-connection.md)
 * Advanced
   * [Full and sequencer node rollup setup](/tutorials/full-and-sequencer-node.md)
