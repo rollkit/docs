@@ -36,30 +36,7 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 
 ### Tutorials
 
-- [Overview](/tutorials/overview)
-
-#### Beginner
-
-- [GM world rollup](/tutorials/gm-world)
-- [GM world frontend](/tutorials/gm-world-frontend)
-- [Recipe Book rollup](/tutorials/recipe-book)
-- [How to restart your rollup](/tutorials/restart-rollup)
-
-#### Intermediate
-
-- [Wordle app](/tutorials/wordle)
-- [CosmWasm rollup](/tutorials/cosmwasm)
-- [zkML rollup](/tutorials/zkml.md)
-
-#### Advanced
-
-- [Full and sequencer node rollup setup](/tutorials/full-and-sequencer-node)
-- [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
-
-### Guides
-
-- [How to change speed of block production](/tutorials/block-times)
-- [How to use lazy sequencing (aggregation)](/tutorials/lazy-sequencing)
+[Overview](/tutorials/overview)
 
 ### Blog
 
