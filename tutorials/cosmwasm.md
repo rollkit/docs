@@ -196,7 +196,7 @@ With that, we have kickstarted our `wasmd` network!
 View your rollup by
 [finding your namespace or account Celenium](https://celenium.io).
 
-[View the example rollup's namespace on Celenium](https://celenium.io/namespace/0000000000000000000000000000000000000000636f736d7761736d).
+[View the example rollup's namespace on Celenium](https://celenium.io/namespace/000000000000000000000000000000000000000008e5f679bf7116cb).
 
 ### 💠 Optional: see what's inside the script {#view-script}
 
@@ -279,13 +279,13 @@ Run the following in the `~/cw-contracts/contracts/nameservice` directory:
 
 <!-- markdownlint-disable MD013 -->
 ```bash [AMD Machines]
-TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice.wasm --from celeswasm-key --keyring-backend test --chain-id celeswasm --gas-prices 0uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:26657 --output json -y | jq -r '.txhash') && echo $TX_HASH
+TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice.wasm --from celeswasm-key --keyring-backend test --chain-id celeswasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
 ```
 <!-- markdownlint-enable MD013 -->
 
 <!-- markdownlint-disable MD013 -->
 ```bash [ARM Machines]
-TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice-aarch64.wasm --from celeswasm-key --keyring-backend test --chain-id celeswasm --gas-prices 0uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:26657 --output json -y | jq -r '.txhash') && echo $TX_HASH
+TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice-aarch64.wasm --from celeswasm-key --keyring-backend test --chain-id celeswasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
 
 :::
 
@@ -318,7 +318,7 @@ we will need to query our  tx hash directly to get information about it.
 Let's start by querying our transaction hash for its code ID:
 
 ```bash
-CODE_ID=$(wasmd query tx --type=hash $TX_HASH --chain-id celeswasm --node http://127.0.0.1:26657 --output json | jq -r '.logs[0].events[-1].attributes[0].value')
+CODE_ID=$(wasmd query tx --type=hash $TX_HASH celeswasm --node http://127.0.0.1:36657 --output json | jq -r '.events[-1].attributes[1].value')
 echo $CODE_ID
 ```
 
@@ -330,7 +330,7 @@ the value is `1`.
 Now, we can take a look at the contracts instantiated by this Code ID:
 
 ```bash
-wasmd query wasm list-contract-by-code $CODE_ID --chain-id celeswasm --node http://127.0.0.1:26657 --output json
+wasmd query wasm list-contract-by-code $CODE_ID --node http://127.0.0.1:36657 --output json
 ```
 
 We get the following output:
@@ -347,7 +347,7 @@ is `100uwasm` and `transfer_price` is `999uwasm`.
 
 ```bash
 INIT='{"purchase_price":{"amount":"100","denom":"uwasm"},"transfer_price":{"amount":"999","denom":"uwasm"}}'
-wasmd tx wasm instantiate $CODE_ID "$INIT" --from celeswasm-key --keyring-backend test --label "name service" --chain-id celeswasm --gas-prices 0uwasm --gas auto --gas-adjustment 1.3 -y --no-admin --node http://127.0.0.1:26657
+wasmd tx wasm instantiate $CODE_ID "$INIT" --from celeswasm-key --keyring-backend test --label "name service" --chain-id celeswasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 -y --no-admin --node http://127.0.0.1:36657
 ```
 
 ### 📄 Contract interaction {#contract-interaction}
@@ -355,12 +355,12 @@ wasmd tx wasm instantiate $CODE_ID "$INIT" --from celeswasm-key --keyring-backen
 Now that we instantiated it, we can interact further with the contract:
 
 ```bash
-wasmd query wasm list-contract-by-code $CODE_ID --chain-id celeswasm --output json --node http://127.0.0.1:26657
-CONTRACT=$(wasmd query wasm list-contract-by-code $CODE_ID --chain-id celeswasm --output json --node http://127.0.0.1:26657 | jq -r '.contracts[-1]')
+wasmd query wasm list-contract-by-code $CODE_ID --output json --node http://127.0.0.1:36657
+CONTRACT=$(wasmd query wasm list-contract-by-code $CODE_ID --output json --node http://127.0.0.1:36657 | jq -r '.contracts[-1]')
 echo $CONTRACT
 
-wasmd query wasm contract --node http://127.0.0.1:26657 $CONTRACT --chain-id celeswasm
-wasmd query bank balances --node http://127.0.0.1:26657 $CONTRACT --chain-id celeswasm
+wasmd query wasm contract --node http://127.0.0.1:36657 $CONTRACT
+wasmd query bank balances --node http://127.0.0.1:36657 $CONTRACT
 ```
 
 This allows us to see the contract address, contract details, and
@@ -390,7 +390,7 @@ Now, let's register a name to the contract for our wallet address:
 
 ```bash
 REGISTER='{"register":{"name":"fred"}}'
-wasmd tx wasm execute $CONTRACT "$REGISTER" --amount 100uwasm --from celeswasm-key --chain-id celeswasm --gas-prices 0uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:26657 --keyring-backend test -y
+wasmd tx wasm execute $CONTRACT "$REGISTER" --amount 100uwasm --from celeswasm-key --chain-id celeswasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --keyring-backend test -y
 ```
 
 Your output will look similar to below:
@@ -423,7 +423,7 @@ Next, query the owner of the name record:
 
 ```bash
 NAME_QUERY='{"resolve_record": {"name": "fred"}}'
-wasmd query wasm contract-state smart $CONTRACT "$NAME_QUERY" --chain-id celeswasm --node http://127.0.0.1:26657 --output json
+wasmd query wasm contract-state smart $CONTRACT "$NAME_QUERY" --node http://127.0.0.1:36657 --output json
 ```
 
 You'll see the owner's address in a JSON response:

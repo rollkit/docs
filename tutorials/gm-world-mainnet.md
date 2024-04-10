@@ -53,7 +53,7 @@ using `Control + C` in the terminal.
 5. View your rollup by
 [finding your namespace or account Celenium](https://celenium.io).
 
-[View the example rollup's namespace on Celenium](https://celenium.io/namespace/000000000000000000000000000000000000000000676d776f726c64).
+[View the example rollup's namespace on Celenium](https://celenium.io/namespace/000000000000000000000000000000000000000008e5f679bf7116cb).
 
 
 :::tip
