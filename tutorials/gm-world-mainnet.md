@@ -61,8 +61,9 @@ using `Control + C` in the terminal.
 similar to this (or, you could get creative 😎):
 
 ```bash
-openssl rand -hex 30
+openssl rand -hex 10
 ```
+Replace the last 10 characters in `00000000000000000000000000000000000000000008e5f679bf7116cb` with the newly generated 10 characters.
 
 [Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)
 .
