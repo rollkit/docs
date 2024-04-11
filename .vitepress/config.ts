@@ -171,6 +171,7 @@ function nav() {
     { text: "Intro", link: "/learn/intro" },
     { text: "Learn", link: "/learn/overview" },
     { text: "Tutorials", link: "/tutorials/overview" },
+    { text: "Networks", link: "/networks/cosmwasm-testnet" },
     { text: "Blog", link: "/blog/introducing-rollkit" },
   ];
 }
@@ -285,6 +286,13 @@ function sidebarHome() {
             },
           ],
         },
+      ],
+    },
+    {
+      text: "Networks",
+      collapsed: true,
+      items: [
+        { text: "Cosmwasm Testnet", link: "/networks/cosmwasm-testnet" },
       ],
     },
     {

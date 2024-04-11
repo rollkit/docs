@@ -38,6 +38,10 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 
 [Overview](/tutorials/overview)
 
+### Networks
+
+- [Cosmwasm Testnet](/networks/cosmwasm-testnet)
+
 ### Blog
 
 - [Overview](/blog/overview)
