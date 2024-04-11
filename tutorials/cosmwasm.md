@@ -123,7 +123,7 @@ Cosmos-SDK applications to connect to Celestia's data availability network.
 git clone https://github.com/CosmWasm/wasmd.git
 cd wasmd
 git checkout tags/v0.50.0
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.5-rollkit-v0.13.0-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.5-rollkit-v0.13.1-no-fraud-proofs
 go mod tidy -compat=1.17
 go mod download
 ```
