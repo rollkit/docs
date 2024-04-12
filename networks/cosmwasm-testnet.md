@@ -25,3 +25,13 @@ Our cosmwasm testnet is deployed by following the [cosmwasm tutorial](/tutorials
 - Mocha Namespace: [000000000000000000000000000000000000b7b24d9321578eb83626](https://mocha.celenium.io/namespace/000000000000000000000000000000000000b7b24d9321578eb83626)
 - DA Block Time: `15s`
 - Rollup Block Time: `10s`
+
+### Add Rosm to Keplr
+
+Don't have the Keplr Browser extension? [Add Keplr Wallet Here](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en")
+
+<script setup>
+import Keplr from '../.vitepress/components/keplr.vue'
+</script>
+
+Click <Keplr /> to add Rosm testnet to your Keplr wallet
