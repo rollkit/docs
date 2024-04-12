@@ -1,6 +1,6 @@
 # About Rollkit
 
-Our mission is to empower developers to quickly innovate and create entire new classes of rollups with minimal tradeoffs. We're setting the bar high for developers' flexibility and ability to customize rollups however they see fit.
+Our mission is allow anyone to launch their own sovereign, customizable blockchain as easily as a smart contract by utilizing the shared security of a modular data availability network.
 
 ::: tip
 In order to use Rollkit, it's important to have some familiarity with Cosmos SDK. You can get up to speed on Cosmos SDK by visiting their [official documentation page](https://docs.cosmos.network/main).
@@ -10,12 +10,12 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 
 ## What is Rollkit?
 
-Rollkit is a rollup framework that gives developers the freedom to deploy rollups throughout the modular stack, opening new possibilities for rapid experimentation and innovation.
+Rollkit is a sovereign rollup framework that gives developers the freedom to deploy rollups throughout the modular stack, opening new possibilities for rapid experimentation and innovation.
 
 The Rollkit framework features a modular node that can run rollups and exposes an [ABCI](https://github.com/cometbft/cometbft/tree/main/abci)-compatible client interface, which can be used as a substitute for CometBFT in any ABCI-compatible blockchain application.
 By default, the node utilizes Celestia as the data availability (DA) layer, however other data availability layers can be integrated.
 
-Rollkit can currently be used to deploy [sovereign rollups](https://blog.celestia.org/sovereign-rollup-chains/) or sovereign settlement layers. In the future, we intend to support settled (not sovereign) rollups that settle to another settlement layer.
+Rollkit can currently be used to deploy [sovereign rollups](https://blog.celestia.org/sovereign-rollup-chains/) or sovereign settlement layers.
 
 Rollkit is built as an open-source framework, so that developers can easily modify it to suit their applications.
 
