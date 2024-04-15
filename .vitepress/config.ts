@@ -10,7 +10,7 @@ const { BASE: base = "/" } = process.env;
 export default withMermaid({
   lang: "en-US",
   title: "Rollkit",
-  description: "The open modular framework for sovereign rollups.",
+  description: "The first sovereign rollup framework.",
   lastUpdated: true,
   cleanUrls: true,
   ignoreDeadLinks: true,
@@ -172,7 +172,7 @@ function nav() {
     { text: "Learn", link: "/learn/overview" },
     { text: "Tutorials", link: "/tutorials/overview" },
     { text: "Networks", link: "/networks/cosmwasm-testnet" },
-    { text: "Blog", link: "/blog/introducing-rollkit" },
+    { text: "Blog", link: "/blog/overview" },
   ];
 }
 
@@ -300,14 +300,9 @@ function sidebarHome() {
       collapsed: true,
       items: [
         { text: "Overview", link: "/blog/overview" },
-        { text: "Introducing Rollkit", link: "/blog/introducing-rollkit" },
         {
           text: "Sovereign rollups on Bitcoin with Rollkit",
           link: "/blog/sovereign-rollups-on-bitcoin",
-        },
-        {
-          text: "Let's Roll - Rollkit's Community Call",
-          link: "/blog/lets-roll-community-call",
         },
       ],
     },

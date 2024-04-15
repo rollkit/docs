@@ -2,9 +2,10 @@
 
 Welcome to the Rollkit docs. We're happy you made it here!
 
-Rollkit is the open modular framework for sovereign rollups.
+Rollkit is the first sovereign rollup framework.
 
-Our mission is to empower developers to quickly innovate and create entire new classes of rollups with minimal tradeoffs.
+Our mission is allow anyone to launch their own sovereign, customizable blockchain as easily as a smart contract by utilizing the shared security of a modular data availability network.
+
 
 We're setting the bar high for developers' flexibility and ability to customize rollups however they see fit.
 
@@ -45,6 +46,4 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 ### Blog
 
 - [Overview](/blog/overview)
-- [Introducing Rollkit](/blog/introducing-rollkit)
 - [Sovereign rollups on Bitcoin with Rollkit](/blog/sovereign-rollups-on-bitcoin)
-- ["Let's Roll - Rollkit's Community Call"](/blog/lets-roll-community-call)
