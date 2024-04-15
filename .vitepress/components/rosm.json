@@ -1,6 +1,6 @@
 {
     "rpc":"https://rpc.rosm.rollkit.dev",
-    "rest":"https://rpc.rosm.rollkit.dev",
+    "rest":"https://api.rosm.rollkit.dev",
     "chainId":"rosm",
     "chainName":"Rollkit Cosmwasm Testnet",
     "stakeCurrency":{
