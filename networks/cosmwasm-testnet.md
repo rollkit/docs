@@ -81,6 +81,19 @@ Our cosmwasm testnet is deployed by following the [cosmwasm tutorial](/tutorials
             "id": -1
         }
         ```
+- Tendermint API endpoint (uses default 1317 port): `https://api.rosm.rollkit.dev`
+    - Example: `https://api.rosm.rollkit.dev/cosmos/auth/v1beta1/accounts/wasm1lysztpn74kl40w6ghfhy7xr0v44r658szuysl5`
+    ```json
+    {
+        "account": {
+            "@type": "/cosmos.auth.v1beta1.BaseAccount",
+            "address": "wasm1lysztpn74kl40w6ghfhy7xr0v44r658szuysl5",
+            "pub_key": null,
+            "account_number": "7",
+            "sequence": "0"
+        }
+    }
+    ```
 - Block Explorer: `https://canary.modular.cloud/rollkit-cosmwasm`
 - Faucet: `https://faucet.rosm.rollkit.dev/`
     - You can request 1 rosm (or 1000000urosm) every 24 hours.  
