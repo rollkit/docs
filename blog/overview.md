@@ -8,8 +8,6 @@ Welcome to our blog! Here, you'll find a variety of articles on a range of topic
 
 ## Table of contents
 
-- [Introducing Rollkit](/blog/introducing-rollkit)
 - [Sovereign rollups on Bitcoin with Rollkit](/blog/sovereign-rollups-on-bitcoin)
-- [Let's Roll - Rollkit's Community Call](/blog/lets-roll-community-call)
 
 Stay tuned for more exciting content!

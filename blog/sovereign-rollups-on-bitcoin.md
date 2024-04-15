@@ -5,7 +5,7 @@ head:
       content: "Sovereign rollups on Bitcoin with Rollkit"
   - - meta
     - name: description
-      content: Last week, we introduced Rollkit, a modular framework for rollups. Today, we are proud to announce that Rollkit is the first rollup framework to support sovereign rollups on Bitcoin. This allows Rollkit rollups to use Bitcoin for data availability. The implementation is in alpha, but we invite curious developers to experiment with it.
+      content: Today, we are proud to announce that Rollkit is the first rollup framework to support sovereign rollups on Bitcoin. This allows Rollkit rollups to use Bitcoin for data availability. The implementation is in alpha, but we invite curious developers to experiment with it.
   - - meta
     - name: keywords
       content: Rollkit, Celestia
@@ -21,7 +21,7 @@ By Rollkit
 ![rollkit-bitcoin](/bitcoin-rollkit/rollkit-bitcoin.png)
 _Originally published on 5 March 2023_
 
-Last week, we introduced Rollkit, a modular framework for rollups. Today, we are proud to announce that Rollkit is the first rollup framework to support sovereign rollups on Bitcoin. An early research implementation allows Rollkit rollups to use Bitcoin for data availability.
+Today, we are proud to announce that Rollkit is the first rollup framework to support sovereign rollups on Bitcoin. An early research implementation allows Rollkit rollups to use Bitcoin for data availability.
 
 Rollkit is opening the door for developers to create rollups with arbitrary execution environments that inherit Bitcoin’s data availability guarantees and re-org resistance. With the new integration it is now possible to run the [EVM on Bitcoin as a Rollkit sovereign rollup](/docs/tutorials/bitcoin). Sovereign rollups on Bitcoin not only expand the possibilities for rollups, but also have the potential to help bootstrap a healthy blockspace fee market on Bitcoin, enabling a more sustainable security budget.
 
