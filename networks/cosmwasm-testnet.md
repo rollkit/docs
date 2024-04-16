@@ -98,7 +98,7 @@ Our cosmwasm testnet is deployed by following the [cosmwasm tutorial](/tutorials
 - Faucet: [https://faucet.rosm.rollkit.dev/](https://faucet.rosm.rollkit.dev/)
     - You can request 1 rosm (or 1000000urosm) every 24 hours.  
 ![Faucet](/networks/faucet.png)
-- Mocha Namespace: [000000000000000000000000000000000000b7b24d9321578eb83626](https://mocha.celenium.io/namespace/000000000000000000000000000000000000b7b24d9321578eb83626)
+- Mocha Namespace: `000000000000000000000000000000000000b7b24d9321578eb83626`, view it on Celenium [here](https://mocha.celenium.io/namespace/000000000000000000000000000000000000b7b24d9321578eb83626)
 - DA Block Time: `15s`
 - Rollup Block Time: `10s`
 
