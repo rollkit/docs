@@ -94,8 +94,8 @@ Our cosmwasm testnet is deployed by following the [cosmwasm tutorial](/tutorials
         }
     }
     ```
-- Block Explorer: `https://canary.modular.cloud/rollkit-cosmwasm`
-- Faucet: `https://faucet.rosm.rollkit.dev/`
+- Block Explorer: [https://canary.modular.cloud/rollkit-cosmwasm](https://canary.modular.cloud/rollkit-cosmwasm)
+- Faucet: [https://faucet.rosm.rollkit.dev/](https://faucet.rosm.rollkit.dev/)
     - You can request 1 rosm (or 1000000urosm) every 24 hours.  
 ![Faucet](/networks/faucet.png)
 - Mocha Namespace: [000000000000000000000000000000000000b7b24d9321578eb83626](https://mocha.celenium.io/namespace/000000000000000000000000000000000000b7b24d9321578eb83626)
