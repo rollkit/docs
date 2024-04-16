@@ -95,6 +95,13 @@ Our cosmwasm testnet is deployed by following the [cosmwasm tutorial](/tutorials
     }
     ```
 - Block Explorer: [https://canary.modular.cloud/rollkit-cosmwasm](https://canary.modular.cloud/rollkit-cosmwasm)
+::: warning
+The modular.cloud explorer is work in progress. In the meanwhile, the wasm CLI can be used to query the accounts.
+For example: to collect the transactions for any account, following command can be used.
+```
+wasmd query txs --query "message.sender='wasm1lysztpn74kl40w6ghfhy7xr0v44r658szuysl5'" --node https://rpc.rosm.rollkit.dev
+```
+:::
 - Faucet: [https://faucet.rosm.rollkit.dev/](https://faucet.rosm.rollkit.dev/)
     - You can request 1 rosm (or 1000000urosm) every 24 hours.  
 ![Faucet](/networks/faucet.png)
