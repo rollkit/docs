@@ -147,7 +147,7 @@ Overall, state fraud proofs will enable trust-minimization between full nodes an
 
 Note that Rollkit state fraud proofs are still a work in progress and will require new methods on top of ABCI, specifically, `GenerateFraudProof`, `VerifyFraudProof`, and `GetAppHash`.
 
-You can find current detailed design and the remaining work needed to push state fraud proofs towards completion in this [Architecture Decision Record (ADR)](https://github.com/rollkit/rollkit/blob/main/docs/lazy-adr/adr-009-state-fraud-proofs.md).
+You can find current detailed design and the remaining work needed to push state fraud proofs towards completion in this [Architecture Decision Record (ADR)](https://github.com/rollkit/rollkit/blob/main/specs/lazy-adr/adr-009-state-fraud-proofs.md).
 
 ### Validity (ZK proofs)
 
