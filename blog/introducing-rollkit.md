@@ -20,14 +20,15 @@ By Rollkit
 
 ![Rollkit blog cover](/introducing-rollkit/rollkit-blog-cover.jpg)
 
-### Blockspace should be accessible. 
+### Blockspace should be accessible
+
 Blockspace is a commodity where transaction data is published and stored. It is a medium that allows users to publicly, directly, and verifiably interact with smart contracts and settle transactions. Years of research and hundreds of millions of dollars have been invested into designing protocols that scale blockspace – however, this has resulted in blockchain frameworks that forced critical choices on both users and developers. Secure, dedicated blockspace remains expensive in both cost and developer sacrifice of design freedom.
 
-### Blockspace should be sovereign and dedicated.
+### Blockspace should be sovereign and dedicated
 
 Since 2018, the Cosmos SDK has offered the best framework for developers to build blockchains that their communities and users own outright. Developers retained the ability to configure crypto-economics, define upgrade features, and enable users to participate in onchain governance. Sovereignty incentivizes the community to pursue long-term value creation.
 
-### Blockspace should be customizable.
+### Blockspace should be customizable
 
 Developers deserve the ability to customize, experiment, and rapidly iterate on their blockchain. Rollup frameworks should not impose features or architecture nor restrict developers from building for their specific use cases. The Cosmos SDK enables developers to select from powerful modules that implement common functionalities like staking, token transfers, creating NFTs, and governance. This empowers developers to build highly versatile blockchains while retaining the ability to vote for upgrades and change any onchain parameters without delegating that power to any trusted council or multisig. This is the flexibility that developers need and deserve - to build blockchains capable of supporting any use case.
 
