@@ -38,7 +38,7 @@ Please ensure to review the detailed Contribution Guidelines above before making
 
 We value feedback from the community. If you have suggestions for improvements or find any discrepancies in the documentation, please raise an issue in this repository.
 Menu
-On this page 
+On this page
 Sidebar Navigation
 Introduction
 Learn
