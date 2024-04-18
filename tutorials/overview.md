@@ -6,7 +6,7 @@ description: This page provides a comprehensive overview of tutorials and guides
 
 Welcome to the Rollkit tutorials section! Here, you'll find a wide range of
 tutorials and guides designed to help you understand and effectively use
-Rollkit, the open modular framework for sovereign rollups.
+Rollkit, the first sovereign rollup framework.
 
 Whether you're a beginner just starting out, an intermediate user looking
 to expand your knowledge, or an advanced user seeking to delve into more
