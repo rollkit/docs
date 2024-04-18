@@ -315,11 +315,11 @@ which we will go over in a bit:
 package keeper
 
 import (
-  "errors"
   "context"
   "crypto/sha256"
   "encoding/hex"
   "wordle/x/wordle/types"
+  "cosmossdk.io/errors"
   sdk "github.com/cosmos/cosmos-sdk/types"
   sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
   "time"
@@ -410,11 +410,11 @@ explain in a bit:
 package keeper
 
 import (
-  "errors"
   "context"
   "crypto/sha256"
   "encoding/hex"
   "wordle/x/wordle/types"
+  "cosmossdk.io/errors"
   sdk "github.com/cosmos/cosmos-sdk/types"
   sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
   "strconv"
