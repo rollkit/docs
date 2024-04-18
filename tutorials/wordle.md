@@ -162,7 +162,7 @@ your cosmos-sdk blockchain.
 | readme.md      | A readme file for your sovereign application-specific blockchain project.
 
 Going over each one is outside the scope of this guide, but we encourage you
-to read about it [here](https://docs.ignite.com/v0.25.2/kb).
+to read about it [here](https://docs.ignite.com).
 
 Most of the tutorial work will happen inside the `x` directory.
 
@@ -315,6 +315,7 @@ which we will go over in a bit:
 package keeper
 
 import (
+  "errors"
   "context"
   "crypto/sha256"
   "encoding/hex"
@@ -330,11 +331,11 @@ func (k msgServer) SubmitWordle(goCtx context.Context, msg *types.MsgSubmitWordl
   ctx := sdk.UnwrapSDKContext(goCtx)
   // Check to See the Wordle is 5 letters
   if len(msg.Word) != 5 {
-    return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "Wordle Must Be A 5 Letter Word")
+    return nil, errors.Wrap(sdkerrors.ErrInvalidRequest, "Wordle Must Be A 5 Letter Word")
   }
   // Check to See Only Alphabets Are Passed for the Wordle
   if !(IsLetter(msg.Word)) {
-    return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "Wordle Must Only Consist Of Letters In The Alphabet")
+    return nil, errors.Wrap(sdkerrors.ErrInvalidRequest, "Wordle Must Only Consist Of Letters In The Alphabet")
   }
 
   // Use Current Day to Create The Index of the Newly-Submitted Wordle of the Day
@@ -356,7 +357,7 @@ func (k msgServer) SubmitWordle(goCtx context.Context, msg *types.MsgSubmitWordl
   // This Helps ensure only one Wordle is submitted per day
   _, isFound := k.GetWordle(ctx, currentTimeHashString)
   if isFound {
-    return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "Wordle of the Day is Already Submitted")
+    return nil, errors.Wrap(sdkerrors.ErrInvalidRequest, "Wordle of the Day is Already Submitted")
   }
   // Write Wordle to KV Store
   k.SetWordle(ctx, wordle)
@@ -409,6 +410,7 @@ explain in a bit:
 package keeper
 
 import (
+  "errors"
   "context"
   "crypto/sha256"
   "encoding/hex"
@@ -424,12 +426,12 @@ func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess)
   ctx := sdk.UnwrapSDKContext(goCtx)
   // Check Word is 5 Characters Long
   if len(msg.Word) != 5 {
-    return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "Guess Must Be A 5 Letter Word!")
+    return nil, errors.Wrap(sdkerrors.ErrInvalidRequest, "Guess Must Be A 5 Letter Word!")
   }
  
   // Check String Contains Alphabet Letters Only
   if !(IsLetter(msg.Word)) {
-    return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "Guess Must Only Consist of Alphabet Letters!")
+    return nil, errors.Wrap(sdkerrors.ErrInvalidRequest, "Guess Must Only Consist of Alphabet Letters!")
   }
 
   // Get Current Day to Pull Up Wordle of That Day As A Hash
@@ -439,7 +441,7 @@ func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess)
   var currentTimeHashString = hex.EncodeToString(currentTimeHash[:])
   wordle, isFound := k.GetWordle(ctx, currentTimeHashString)
   if !isFound {
-    return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "Wordle of The Day Hasn't Been Submitted Yet. Feel Free to Submit One!")
+    return nil, errors.Wrap(sdkerrors.ErrInvalidRequest, "Wordle of The Day Hasn't Been Submitted Yet. Feel Free to Submit One!")
   }
 
   // We Convert Current Day and Guesser to A Hash To Use As An Index For Today's Guesses For That Guesser
@@ -457,7 +459,7 @@ func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess)
   if isFound {
     // Check if Submitter Reached 6 Tries
     if guess.Count == strconv.Itoa(6) {
-      return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "You Have Guessed The Maximum Amount of Times for The Day! Try Again Tomorrow With A New Wordle.")
+      return nil, errors.Wrap(sdkerrors.ErrInvalidRequest, "You Have Guessed The Maximum Amount of Times for The Day! Try Again Tomorrow With A New Wordle.")
     }
     currentCount, err := strconv.Atoi(guess.Count)
     if err != nil {
