@@ -81,7 +81,7 @@ We can copy it over to our directory with the following commands:
 
 bash
 # From inside the `gm` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-arabica-testnet.sh
+wget [init-arabica-testnet script](https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-arabica-testnet.sh)
 This copies over our init-arabica-testnet.sh script to initialize our gm rollup.
 
 You can view the contents of the script to see how we initialize the gm rollup.
