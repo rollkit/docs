@@ -18,8 +18,8 @@ First, we will test on a local DA network, then to a live
 testnet, and lastly to mainnet.
 
 1. Part 1 (This page): Run your rollup and post DA to a local devnet, and make sure everything works as expected.
-2. [Part 2](./gm-world-arabica-testnet.md) or [Part 3](./gm-world-mocha-testnet.md): Deploy the rollup, posting to a DA testnet (arabica or mocha). Confirm again that everything is functioning properly.
-3. [Part 4](./gm-world-mainnet.md): Deploy your rollup to the DA layer's mainnet.
+2. [Part 2](./gm-world-mocha-testnet.md): Deploy the rollup, posting to a DA testnet (Mocha). Confirm again that everything is functioning properly.
+3. [Part 3](./gm-world-mainnet.md): Deploy your rollup to the DA layer's mainnet.
 
 The [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) is a framework for
 building blockchain applications. The Cosmos Ecosystem uses
@@ -32,7 +32,7 @@ which is still in Alpha stage. If you run into bugs, please write a Github
 [Issue ticket](https://github.com/rollkit/docs/issues/new)
 or let us know in our [Telegram](https://t.me/rollkit).
 
-Learn how to [restart your rollup](restart-rollup.md).
+Learn how to [restart your rollup](/guides/restart-rollup.md).
 :::
 
 ## 🤔 What is GM? {#what-is-gm}

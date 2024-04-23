@@ -15,7 +15,7 @@ is used to deploy a Polaris EVM rollup without needing to set up a data
 availability and consensus network.
 
 ::: tip
-Learn how to [restart your rollup](restart-rollup.md).
+Learn how to [restart your rollup](/guides/restart-rollup.md).
 :::
 
 ## Prerequisites

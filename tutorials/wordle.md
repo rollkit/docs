@@ -18,7 +18,7 @@ which is still in Alpha stage. If you run into bugs, please write a Github
 [Issue ticket](https://github.com/rollkit/docs/issues/new)
 or let us know in our [Telegram](https://t.me/rollkit).
 
-Learn how to [restart your rollup](restart-rollup.md).
+Learn how to [restart your rollup](/guides/restart-rollup.md).
 :::
 
 ::: warning
