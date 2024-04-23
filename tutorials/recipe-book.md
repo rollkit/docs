@@ -188,7 +188,8 @@ package keeper
 import (
   "encoding/binary"
 
-  "github.com/cosmos/cosmos-sdk/store/prefix"
+  "cosmossdk.io/store/prefix"
+  "github.com/cosmos/cosmos-sdk/runtime"
   sdk "github.com/cosmos/cosmos-sdk/types"
 
   "recipes/x/recipes/types"
@@ -221,7 +222,8 @@ Next, implement `GetRecipeCount` in the `recipes/x/recipes/keeper/recipe.go` fil
 ```go title="recipes/x/recipes/keeper/recipe.go"
 func (k Keeper) GetRecipeCount(ctx sdk.Context) uint64 {
   // Get the store using storeKey (which is "recipes") and RecipeCountKey (which is "Recipe-count-")
-  store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.RecipeCountKey))
+  storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+  store := prefix.NewStore(storeAdapter, []byte(types.RecipeCountKey))
   
   // Convert the RecipeCountKey to bytes
   byteKey := []byte(types.RecipeCountKey)
@@ -244,7 +246,8 @@ And then `SetRecipeCount`:
 ```go title="recipes/x/recipes/keeper/recipe.go"
 func (k Keeper) SetRecipeCount(ctx sdk.Context, count uint64) {
   // Get the store using storeKey (which is "recipes") and RecipeCountKey (which is "Recipe-count-")
-  store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.RecipeCountKey))
+  storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+  store := prefix.NewStore(storeAdapter, []byte(types.RecipeCountKey))
   
   // Convert the RecipeCountKey to bytes
   byteKey := []byte(types.RecipeCountKey)
@@ -271,7 +274,8 @@ func (k Keeper) AppendRecipe (ctx sdk.Context, recipe types.Recipe) uint64 {
   recipe.Id = count
   
   // Get the store
-  store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.RecipeKey))
+  storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+  store := prefix.NewStore(storeAdapter, []byte(types.RecipeKey))
   
   // Convert the recipe ID into bytes
   byteKey := make([]byte, 8)
@@ -378,10 +382,10 @@ func (k Keeper) Dishes(c context.Context, req *types.QueryDishesRequest) (*types
   ctx := sdk.UnwrapSDKContext(c)
 
   // Get the key-value module store using the store key (in our case store key is "chain")
-  store := ctx.KVStore(k.storeKey)
+  storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 
   // Get the part of the store that keeps recipes (using recipe key, which is "Recipe-value-")
-  recipeStore := prefix.NewStore(store, []byte(types.RecipeKey))
+  recipeStore := prefix.NewStore(storeAdapter, []byte(types.RecipeKey))
 
   // Paginate the recipes store based on PageRequest
   pageRes, err := query.Paginate(recipeStore, req.Pagination, func(key []byte, value []byte) error {
@@ -420,6 +424,12 @@ sovereign rollup.
 
 Be sure you have initialized your node before trying to start it.
 Your start command should look similar to:
+
+::: tip
+
+It is recommended that you [create your own key](https://docs.celestia.org/nodes/light-node#keys-and-wallets) and fund it with a [testnet tokens](https://docs.celestia.org/nodes/light-node#testnet-tokens).
+
+:::
 
 <!-- markdownlint-disable MD013 -->
 ```bash
@@ -461,7 +471,7 @@ With that, we have kickstarted our `recipesd` network!
 ![recipe-start.gif](/recipes/recipe-start.gif)
 
 Find
-[your account address on an Arabica explorer to see your `PayForBlobs` transactions](https://explorer.modular.cloud/celestia-arabica/addresses/celestia10rdu7l3gzeuxplpnr5vxchvxxflx7ym0q6wt5v).
+[your account address on an Arabica explorer to see your `PayForBlobs` transactions](https://explorer.modular.cloud/celestia-arabica/transactions).
 
 Open another teminal instance. Now, create your first
 recipe in the command line by sending a transaction from `recipes-key`,
@@ -469,7 +479,7 @@ when prompted, confirm the transaction by entering `y`:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinaigrette" --from recipes-key --keyring-backend test
+recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinaigrette" --from recipes-key --keyring-backend test --fees 5000stake --chain-id recipes
 ```
 <!-- markdownlint-enable MD013 -->
 

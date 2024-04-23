@@ -26,8 +26,16 @@ Now that you have your rollup running, you are ready to scaffold
 the frontend! In your terminal, first install `create-cosmos-app`:
 
 ```bash
-npm install -g create-cosmos-app
+yarn global add create-cosmos-app
 ```
+
+::: tip
+✋ If you don't have yarn, run this command to install it using cURL on most Linux distros and macOS:
+```bash
+curl -o- -L https://yarnpkg.com/install.sh | bash
+```
+
+:::
 
 Now scaffold an app:
 

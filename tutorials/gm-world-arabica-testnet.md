@@ -16,7 +16,7 @@ on Arabica devnet (`arabica-11`).
 Follow instructions to install and start your Celestia data availability
 layer light node selecting the Arabica network. You can
 [find instructions to install and run the node](https://docs.celestia.org/nodes/light-node).
-After the node is synced, stop the light node.
+Keep the node running while doing the next steps.
 
 ### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
 

@@ -145,6 +145,10 @@ And build the binary:
 make install
 ```
 
+::: tip
+You will have to install `gcc` if you are trying it on a clean linux vm.
+:::
+
 ### ✨ Celestia node {#celestia-node}
 
 You will need a light node running with test tokens on
@@ -318,7 +322,7 @@ we will need to query our  tx hash directly to get information about it.
 Let's start by querying our transaction hash for its code ID:
 
 ```bash
-CODE_ID=$(wasmd query tx --type=hash $TX_HASH celeswasm --node http://127.0.0.1:36657 --output json | jq -r '.events[-1].attributes[1].value')
+CODE_ID=$(wasmd query tx --type=hash $TX_HASH --node http://127.0.0.1:36657 --output json | jq -r '.events[-1].attributes[1].value')
 echo $CODE_ID
 ```
 
