@@ -1,5 +1,5 @@
 ---
-description: This page provides a comprehensive overview of tutorials and guides available for Rollkit.
+description: This page provides a comprehensive overview of tutorials available for Rollkit.
 ---
 
 # Tutorials
@@ -16,28 +16,16 @@ that best suit your needs.
 
 In this section, you'll find:
 
-* Beginner
+* Rollkit
   * [GM world rollup: Part 1, local devnet](/tutorials/gm-world.md)
-  * [GM world rollup: Part 2, arabica devnet](/tutorials/gm-world-arabica-testnet.md)
-  * [GM world rollup: Part 3, mocha testnet](/tutorials/gm-world-mocha-testnet.md)
-  * [GM world rollup: Part 4, mainnet](/tutorials/gm-world-mainnet.md)
   * [GM world frontend](/tutorials/gm-world-frontend.md)
-  * [Recipe Book rollup](/tutorials/recipe-book.md)
-  * [How to restart your rollup](/tutorials/restart-rollup.md)
-* Intermediate
   * [Wordle app](/tutorials/wordle.md)
+* DA
+  * [GM world rollup: Part 2, mocha testnet](/tutorials/gm-world-mocha-testnet.md)
+  * [GM world rollup: Part 3, mainnet](/tutorials/gm-world-mainnet.md)
+* Execution
   * [CosmWasm rollup](/tutorials/cosmwasm.md)
   * [Polaris EVM rollup](/tutorials/polaris-evm.md)
-  * [zkML rollup](/tutorials/zkml.md)
-  * [IBC connection](/tutorials/ibc-connection.md)
-* Advanced
-  * [Full and sequencer node rollup setup](/tutorials/full-and-sequencer-node.md)
-  * [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
-* Guides
-  * [How to configure gas price](/tutorials/gas-price.md)
-  * [How to change speed of block production](/tutorials/block-times.md)
-  * [How to use lazy sequencing (aggregation)](/tutorials/lazy-sequencing.md)
-  * [Testing and deploying smart-contract with cw-orch](/tutorials/cw-orch.md)
 
 ## 💻 Support {#support}
 

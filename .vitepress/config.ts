@@ -167,11 +167,11 @@ export default withMermaid({
 
 function nav() {
   return [
-    { text: "Home", link: "/" },
     { text: "Intro", link: "/learn/intro" },
     { text: "Learn", link: "/learn/overview" },
     { text: "Tutorials", link: "/tutorials/overview" },
-    { text: "Networks", link: "/networks/cosmwasm-testnet" },
+    { text: "How To Guides", link: "/guides/overview" },
+    { text: "Testnets", link: "/testnets/cosmwasm-testnet" },
     { text: "Blog", link: "/blog/overview" },
   ];
 }
@@ -210,7 +210,7 @@ function sidebarHome() {
       items: [
         { text: "Overview", link: "/tutorials/overview" },
         {
-          text: "Beginner",
+          text: "Rollkit",
           collapsed: true,
           items: [
             // { text: 'Starter Rollup with Docker', link: '/tutorials/rollup-docker'},
@@ -219,81 +219,81 @@ function sidebarHome() {
               text: "GM world rollup: Part 1, local devnet",
               link: "/tutorials/gm-world",
             },
+            { text: "GM world frontend", link: "/tutorials/gm-world-frontend" },
+            { text: "Wordle app", link: "/tutorials/wordle" },
+          ],
+        },
+        {
+          text: "DA",
+          collapsed: true,
+          items: [
             {
-              text: "GM world rollup: Part 2, arabica devnet",
-              link: "/tutorials/gm-world-arabica-testnet",
-            },
-            {
-              text: "GM world rollup: Part 3, mocha testnet",
+              text: "GM world rollup: Part 2, mocha testnet",
               link: "/tutorials/gm-world-mocha-testnet",
             },
             {
-              text: "GM world rollup: Part 4, mainnet",
+              text: "GM world rollup: Part 3, mainnet",
               link: "/tutorials/gm-world-mainnet",
             },
-            { text: "GM world frontend", link: "/tutorials/gm-world-frontend" },
-            { text: "Recipe Book rollup", link: "/tutorials/recipe-book" },
-            {
-              text: "How to restart your rollup",
-              link: "/tutorials/restart-rollup",
-            },
           ],
         },
         {
-          text: "Intermediate",
+          text: "Execution",
           collapsed: true,
           items: [
-            { text: "Wordle app", link: "/tutorials/wordle" },
             { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
             { text: "Polaris EVM rollup", link: "/tutorials/polaris-evm" },
-            { text: "zkML rollup", link: "/tutorials/zkml" },
-            { text: "IBC connection", link: "/tutorials/ibc-connection" },
+            // {
+            //   text: "Full-stack modular dapp with Celestia",
+            //   link: "https://docs.celestia.org/developers/full-stack-modular-development-guide",
+            // },
           ],
         },
+      ],
+    },
+    {
+      text: "How To Guides",
+      collapsed: true,
+      items: [
         {
-          text: "Advanced",
-          collapsed: true,
           items: [
             {
-              text: "Full and sequencer node rollup setup",
-              link: "/tutorials/full-and-sequencer-node",
+              text: "How to restart your rollup",
+              link: "/guides/restart-rollup",
             },
             {
-              text: "Full-stack modular dapp with Celestia",
-              link: "https://docs.celestia.org/developers/full-stack-modular-development-guide",
+              text: "How to run as a full and sequencer node",
+              link: "/guides/full-and-sequencer-node",
             },
-          ],
-        },
-        {
-          text: "Guides",
-          collapsed: true,
-          items: [
             {
               text: "How to configure gas price",
-              link: "/tutorials/gas-price",
+              link: "/guides/gas-price",
             },
             {
               text: "How to change speed of block production",
-              link: "/tutorials/block-times",
+              link: "/guides/block-times",
             },
             {
               text: "How to use lazy sequencing (aggregation)",
-              link: "/tutorials/lazy-sequencing",
+              link: "/guides/lazy-sequencing",
             },
             {
-              text: "Testing and deploying smart-contracts",
-              link: "/tutorials/cw-orch",
+              text: "How to test and deploy smart-contracts",
+              link: "/guides/cw-orch",
+            },
+            { text: "How to add zkML to your rollup", link: "/guides/zkml" },
+            {
+              text: "How to add an IBC connection to your rollup",
+              link: "/guides/ibc-connection",
             },
           ],
         },
       ],
     },
     {
-      text: "Networks",
+      text: "Testnets",
       collapsed: true,
-      items: [
-        { text: "Cosmwasm Testnet", link: "/networks/cosmwasm-testnet" },
-      ],
+      items: [{ text: "Cosmwasm Testnet", link: "/testnets/cosmwasm-testnet" }],
     },
     {
       text: "Blog",

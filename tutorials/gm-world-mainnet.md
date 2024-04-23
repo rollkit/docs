@@ -1,10 +1,9 @@
-# GM world rollup: Part 4
+# GM world rollup: Part 3
 
-This tutorial is part 4 of the GM world rollup tutorials. In this tutorial,
-it is expected that you've completed [part 1](./gm-world.md), [part 2](./gm-world-arabica-testnet.md) or
-[part 3](./gm-world-mocha-testnet.md) of the tutorial and are
-familiar with running a local rollup devnet and posting to a
-Celestia testnet.
+This tutorial is part 3 of the GM world rollup tutorials. In this tutorial, it
+is expected that you've completed [part 1](./gm-world.md) or [part
+2](./gm-world-mocha-testnet.md) of the tutorial and are familiar with running a
+local rollup devnet or posting to a Celestia testnet.
 
 ## Deploying to Celestia Mainnet Beta
 
@@ -87,4 +86,4 @@ Congratulations! You have a Rollkit rollup running on Celestia's
 Mainnet Beta.
 
 If you're interested in setting up a full node alongside your sequencer,
-see the [Full and sequencer node rollup setup](./full-and-sequencer-node) tutorial.
+see the [Full and sequencer node rollup setup](/guides/full-and-sequencer-node) tutorial.
