@@ -39,9 +39,9 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 
 [Overview](/tutorials/overview)
 
-### Networks
+### Testnets
 
-- [Cosmwasm Testnet](/networks/cosmwasm-testnet)
+- [Cosmwasm Testnet](/testnets/cosmwasm-testnet)
 
 ### Blog
 
