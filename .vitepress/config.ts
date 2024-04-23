@@ -171,6 +171,7 @@ function nav() {
     { text: "Intro", link: "/learn/intro" },
     { text: "Learn", link: "/learn/overview" },
     { text: "Tutorials", link: "/tutorials/overview" },
+    { text: "How To Guides", link: "/guides/overview" },
     { text: "Testnets", link: "/testnets/cosmwasm-testnet" },
     { text: "Blog", link: "/blog/overview" },
   ];
@@ -233,10 +234,6 @@ function sidebarHome() {
             },
             { text: "GM world frontend", link: "/tutorials/gm-world-frontend" },
             { text: "Recipe Book rollup", link: "/tutorials/recipe-book" },
-            {
-              text: "How to restart your rollup",
-              link: "/tutorials/restart-rollup",
-            },
           ],
         },
         {
@@ -246,8 +243,6 @@ function sidebarHome() {
             { text: "Wordle app", link: "/tutorials/wordle" },
             { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
             { text: "Polaris EVM rollup", link: "/tutorials/polaris-evm" },
-            { text: "zkML rollup", link: "/tutorials/zkml" },
-            { text: "IBC connection", link: "/tutorials/ibc-connection" },
           ],
         },
         {
@@ -255,34 +250,47 @@ function sidebarHome() {
           collapsed: true,
           items: [
             {
-              text: "Full and sequencer node rollup setup",
-              link: "/tutorials/full-and-sequencer-node",
-            },
-            {
               text: "Full-stack modular dapp with Celestia",
               link: "https://docs.celestia.org/developers/full-stack-modular-development-guide",
             },
           ],
         },
+      ],
+    },
+    {
+      text: "How To Guides",
+      collapsed: true,
+      items: [
         {
-          text: "Guides",
-          collapsed: true,
           items: [
             {
+              text: "How to restart your rollup",
+              link: "/guides/restart-rollup",
+            },
+            {
+              text: "How to run as a full and sequencer node",
+              link: "/guides/full-and-sequencer-node",
+            },
+            {
               text: "How to configure gas price",
-              link: "/tutorials/gas-price",
+              link: "/guides/gas-price",
             },
             {
               text: "How to change speed of block production",
-              link: "/tutorials/block-times",
+              link: "/guides/block-times",
             },
             {
               text: "How to use lazy sequencing (aggregation)",
-              link: "/tutorials/lazy-sequencing",
+              link: "/guides/lazy-sequencing",
             },
             {
-              text: "Testing and deploying smart-contracts",
-              link: "/tutorials/cw-orch",
+              text: "How to test and deploy smart-contracts",
+              link: "/guides/cw-orch",
+            },
+            { text: "How to add zkML to your rollup", link: "/guides/zkml" },
+            {
+              text: "How to add an IBC connection to your rollup",
+              link: "/guides/ibc-connection",
             },
           ],
         },
