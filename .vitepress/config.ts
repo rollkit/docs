@@ -167,7 +167,6 @@ export default withMermaid({
 
 function nav() {
   return [
-    { text: "Home", link: "/" },
     { text: "Intro", link: "/learn/intro" },
     { text: "Learn", link: "/learn/overview" },
     { text: "Tutorials", link: "/tutorials/overview" },
