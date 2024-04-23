@@ -1,6 +1,6 @@
 # GM world rollup: Part 3
 
-This tutorial is part 4 of the GM world rollup tutorials. In this tutorial, it
+This tutorial is part 3 of the GM world rollup tutorials. In this tutorial, it
 is expected that you've completed [part 1](./gm-world.md) or [part
 2](./gm-world-mocha-testnet.md) of the tutorial and are familiar with running a
 local rollup devnet or posting to a Celestia testnet.

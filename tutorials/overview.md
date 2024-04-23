@@ -16,19 +16,16 @@ that best suit your needs.
 
 In this section, you'll find:
 
-* Beginner
+* Rollkit
   * [GM world rollup: Part 1, local devnet](/tutorials/gm-world.md)
-  * [GM world rollup: Part 2, arabica devnet](/tutorials/gm-world-arabica-testnet.md)
-  * [GM world rollup: Part 3, mocha testnet](/tutorials/gm-world-mocha-testnet.md)
-  * [GM world rollup: Part 4, mainnet](/tutorials/gm-world-mainnet.md)
   * [GM world frontend](/tutorials/gm-world-frontend.md)
-  * [Recipe Book rollup](/tutorials/recipe-book.md)
-* Intermediate
   * [Wordle app](/tutorials/wordle.md)
+* DA
+  * [GM world rollup: Part 2, mocha testnet](/tutorials/gm-world-mocha-testnet.md)
+  * [GM world rollup: Part 3, mainnet](/tutorials/gm-world-mainnet.md)
+* Execution
   * [CosmWasm rollup](/tutorials/cosmwasm.md)
   * [Polaris EVM rollup](/tutorials/polaris-evm.md)
-* Advanced
-  * [Full-stack modular dapp with Celestia](https://docs.celestia.org/developers/full-stack-modular-development-guide)
 
 ## 💻 Support {#support}
 

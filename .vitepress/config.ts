@@ -229,11 +229,11 @@ function sidebarHome() {
           collapsed: true,
           items: [
             {
-              text: "GM world rollup: Part 3, mocha testnet",
+              text: "GM world rollup: Part 2, mocha testnet",
               link: "/tutorials/gm-world-mocha-testnet",
             },
             {
-              text: "GM world rollup: Part 4, mainnet",
+              text: "GM world rollup: Part 3, mainnet",
               link: "/tutorials/gm-world-mainnet",
             },
           ],
