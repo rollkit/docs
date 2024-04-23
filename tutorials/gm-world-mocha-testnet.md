@@ -1,8 +1,8 @@
-# GM world rollup: Part 3
+# GM world rollup: Part 2
 
 ## Deploying to a Celestia testnet
 
-This tutorial is part 3 of the GM world rollup tutorials. In this tutorial,
+This tutorial is part 2 of the GM world rollup tutorials. In this tutorial,
 it is expected that you've completed [part 1](./gm-world.md) of
 the tutorial and are familiar with running a local rollup devnet.
 

@@ -211,7 +211,7 @@ function sidebarHome() {
       items: [
         { text: "Overview", link: "/tutorials/overview" },
         {
-          text: "Beginner",
+          text: "Rollkit",
           collapsed: true,
           items: [
             // { text: 'Starter Rollup with Docker', link: '/tutorials/rollup-docker'},
@@ -220,10 +220,14 @@ function sidebarHome() {
               text: "GM world rollup: Part 1, local devnet",
               link: "/tutorials/gm-world",
             },
-            {
-              text: "GM world rollup: Part 2, arabica devnet",
-              link: "/tutorials/gm-world-arabica-testnet",
-            },
+            { text: "GM world frontend", link: "/tutorials/gm-world-frontend" },
+            { text: "Wordle app", link: "/tutorials/wordle" },
+          ],
+        },
+        {
+          text: "DA",
+          collapsed: true,
+          items: [
             {
               text: "GM world rollup: Part 3, mocha testnet",
               link: "/tutorials/gm-world-mocha-testnet",
@@ -232,27 +236,18 @@ function sidebarHome() {
               text: "GM world rollup: Part 4, mainnet",
               link: "/tutorials/gm-world-mainnet",
             },
-            { text: "GM world frontend", link: "/tutorials/gm-world-frontend" },
-            { text: "Recipe Book rollup", link: "/tutorials/recipe-book" },
           ],
         },
         {
-          text: "Intermediate",
+          text: "Execution",
           collapsed: true,
           items: [
-            { text: "Wordle app", link: "/tutorials/wordle" },
             { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
             { text: "Polaris EVM rollup", link: "/tutorials/polaris-evm" },
-          ],
-        },
-        {
-          text: "Advanced",
-          collapsed: true,
-          items: [
-            {
-              text: "Full-stack modular dapp with Celestia",
-              link: "https://docs.celestia.org/developers/full-stack-modular-development-guide",
-            },
+            // {
+            //   text: "Full-stack modular dapp with Celestia",
+            //   link: "https://docs.celestia.org/developers/full-stack-modular-development-guide",
+            // },
           ],
         },
       ],
