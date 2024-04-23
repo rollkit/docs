@@ -6,7 +6,7 @@
     "import-readme": "node importReadme.mjs"
   },
   "devDependencies": {
-    "@keplr-wallet/types": "0.11.51",
+    "@keplr-wallet/types": "0.12.82",
     "i": "^0.3.7",
     "mermaid": "^10.3.0",
     "vitepress": "^1.0.0-rc.4",
