@@ -250,4 +250,4 @@ In the next tutorial, you'll learn how to post data to Celestia's
 Mainnet Beta.
 
 If you're interested in setting up a full node alongside your sequencer,
-see the [Full and sequencer node rollup setup](./full-and-sequencer-node) tutorial.
+see the [Full and sequencer node rollup setup](/guides/full-and-sequencer-node) tutorial.

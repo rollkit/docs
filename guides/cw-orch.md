@@ -22,6 +22,7 @@ In this quick-start guide, we will review the necessary steps in order to integr
 >If you're moving quicker than everybody else, we suggest looking at <a href="https://github.com/AbstractSDK/cw-orch-counter-example/compare/e0a54b074ca1a894bb6e58276944cf2013d152f2..main" target="_blank">a before-after review of this example integration</a>. This will help you catch the additions you need to make to your contract to be able to interact with it using cw-orchestrator.
 
 > **NOTE**: If you want to go more in depth, [browse the full `cw-orch` documentation](https://orchestrator.abstract.money/).
+
 ## Summary
 
 - [Speed up your development with cw-orchestrator](#speed-up-your-development-with-cw-orchestrator)
@@ -100,6 +101,7 @@ Learn more about the content of the interface creation specifics in the [`cw-orc
 >    #[cfg(not(target_arch = "wasm32"))]
 >    pub use crate::interface::CounterContract;
 >    ```
+
 ### Interaction helpers
 
 cw-orchestrator provides a additional macros that simplify contract calls and queries. The macro implements functions on the interface for each variant of the contract's `ExecuteMsg` and `QueryMsg`.
