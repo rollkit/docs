@@ -5,10 +5,10 @@ create an IBC connection between a [GM world](./gm-world) rollup and an Osmosis 
 
 :::warning Disclaimer
 This initial version of IBC has high trust assumptions where receiving chains
-only verify the signature of the single rollup sequencer. This is the initial
-step towards the direction of trust-minimized IBC light clients, next steps
-include verifying DA inclusion proofs and adding fraud/zk proof verification.
-[Learn more on ibc-go issue 5112](https://github.com/cosmos/ibc-go/issues/5112).
+only verify the signature of the single rollup node. For use in production, it's recommended
+to wait for trust-minimized IBC support which includes state proofs and conditional clients.
+Learn more about how conditional clients work in [ibc-go issue 5112](https://github.com/cosmos/ibc-go/issues/5112)
+and a tracking issue for state proofs in [rollkit issue 1632](https://github.com/rollkit/rollkit/issues/1632).
 :::
 
 ## 💻 Pre-requisites {#prerequisites}
