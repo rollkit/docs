@@ -11,6 +11,7 @@ In this guide, we’ll go over the steps of the integration of our sample rollup
 3. **Create your first alert and explore transactions.**
 
 ## Prerequisites
+
 You need to have an operational rollkit rollup. If you haven't done so, you'll need to complete the [GM world](../tutorials/gm-world) tutorial first.
 
 ### 1. Integrate Your Rollup
@@ -20,6 +21,7 @@ We’ll integrate our rollup GM into Range and start indexing blocks and transac
 ![custom-network](/public/range-rollkit/custom-network.png)
 
 #### Steps
+
 - Create an account in [Range](https://app.range.org)
 - Make sure you have a public RPC endpoint of your Rollkit rollup
 - Go to the settings tab on your account profile in the top-right corner
@@ -32,7 +34,6 @@ We’ll integrate our rollup GM into Range and start indexing blocks and transac
 Now that your rollup is integrated into Range, you can customize your workspace. The first step is adding addresses and contracts that you want to monitor. For that, head to the Address section:
 
 ![import-address](/public/range-rollkit/import-address.png)
-
 
 Once you’ve added one or multiple addresses, you can start looking at the real-time transactions explorer in the Transactions tab.
 
@@ -51,6 +52,5 @@ gmd tx bank send gm-991hesf7xgmjwttag2n2wzk43rvxh47nn4ckh3e6s gm-991rcctqc5l4px9
 The alert events will appear both in the Overview tab and the Alerting section:
 
 ![alert-events](/public/range-rollkit/alert-events.png)
-
 
 🎊 Congrats! You've detected the first monitored transaction in your GM rollup.
