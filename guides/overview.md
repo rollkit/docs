@@ -22,6 +22,7 @@ In this section, you'll find:
   * [How to change speed of block production](/guides/block-times.md)
   * [How to use lazy sequencing (aggregation)](/guides/lazy-sequencing.md)
   * [Testing and deploying smart-contract with cw-orch](/guides/cw-orch.md)
+  * [How to integrate Range with your rollup](/guides/rollkit-monitoring.md)
 
 ## 💻 Support {#support}
 
