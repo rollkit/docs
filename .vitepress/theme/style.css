@@ -89,3 +89,7 @@
   --docsearch-primary-color: var(--vp-c-brand) !important;
 }
 
+:root {
+  --vp-font-family-base: Ubuntu, sans-serif;
+  --vp-font-family-mono: 'Ubuntu Mono', mono;
+}
