@@ -286,6 +286,10 @@ function sidebarHome() {
               text: "How to add an IBC connection to your rollup",
               link: "/guides/ibc-connection",
             },
+            {
+              text: "How to integrate Range with your rollup",
+              link: "/guides/rollkit-monitoring",
+            },
           ],
         },
       ],
