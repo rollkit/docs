@@ -184,7 +184,6 @@ function sidebarHome() {
       items: [
         { text: "Introduction to Rollkit", link: "/learn/intro" },
         { text: "About Rollkit", link: "/learn/about" },
-        { text: "Readme", link: "/learn/readme" },
       ],
     },
     {
