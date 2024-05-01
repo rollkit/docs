@@ -2,8 +2,7 @@
   "scripts": {
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview",
-    "import-readme": "node importReadme.mjs"
+    "docs:preview": "vitepress preview"
   },
   "devDependencies": {
     "@keplr-wallet/types": "0.12.82",
