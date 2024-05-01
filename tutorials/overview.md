@@ -17,6 +17,7 @@ that best suit your needs.
 In this section, you'll find:
 
 * Rollkit
+  * [Quick Start](/tutorials/quick-start.md)
   * [GM world rollup: Part 1, local devnet](/tutorials/gm-world.md)
   * [GM world frontend](/tutorials/gm-world-frontend.md)
   * [Wordle app](/tutorials/wordle.md)

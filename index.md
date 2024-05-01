@@ -13,7 +13,7 @@ hero:
   actions:
     - theme: brand
       text: Starter Rollup
-      link: /tutorials/gm-world
+      link: /tutorials/quick-start
     - theme: alt
       text: Introduction
       link: /learn/intro

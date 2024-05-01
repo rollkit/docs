@@ -216,6 +216,10 @@ function sidebarHome() {
             // { text: 'Starter Rollup with Docker', link: '/tutorials/rollup-docker'},
             // { text: 'Starter Rollup', link: '/tutorials/starter-rollup'},
             {
+              text: "Quick start guide",
+              link: "/tutorials/quick-start",
+            },
+            {
               text: "GM world rollup: Part 1, local devnet",
               link: "/tutorials/gm-world",
             },
