@@ -11,7 +11,7 @@ Welcome to Rollkit, a sovereign rollup framework! The easiest way to launch your
 To install Rollkit, run the following command in your terminal:
 
 ```bash
-curl -s https://install.rollkit.dev | sh
+curl -sSL https://install.rollkit.dev | sh -s v0.13.2
 ```
 
 Verify the installation by checking the Rollkit version:

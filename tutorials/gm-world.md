@@ -24,7 +24,7 @@ This tutorial explores Rollkit, currently in Alpha. If you encounter bugs, pleas
 Rollkit uses the [Go programming language](https://go.dev/dl/). Here's how to install it:
 - **Linux or MacOS**: Run the provided script:
   ```bash
-  curl -s https://raw.githubusercontent.com/rollkit/docs/main/quick-start/scripts/install-go.sh | sh
+  curl -sSL https://raw.githubusercontent.com/rollkit/docs/main/scripts/install-go.sh | sh -s 1.22.2
   ```
 - **Windows**: Download and execute the [installer](https://go.dev/dl/go1.22.2.windows-amd64.msi).
 
@@ -34,7 +34,7 @@ Learn to run a local DA network, designed for educational purposes, on your mach
 
 To set up a mock DA network node:
 ```bash
-curl -s https://raw.githubusercontent.com/rollkit/docs/main/quick-start/scripts/install-mock-da.sh | sh
+curl -sSL https://raw.githubusercontent.com/rollkit/docs/main/scripts/install-mock-da.sh | sh ff82679
 ```
 This script builds and runs the node, now listening on port `7980`.
 
@@ -54,7 +54,7 @@ If you get errors of `gmd` not found, you may need to add the `go/bin` directory
 :::
 
 ```bash
-curl -s https://raw.githubusercontent.com/rollkit/docs/main/quick-start/scripts/install-gm-rollup.sh | sh
+curl -sSL https://raw.githubusercontent.com/rollkit/docs/main/scripts/install-gm-rollup.sh | sh
 ```
 
 ### 🚀 Starting Your Rollup {#start-your-rollup}
