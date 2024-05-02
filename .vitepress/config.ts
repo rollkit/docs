@@ -169,7 +169,7 @@ function nav() {
   return [
     { text: "Intro", link: "/learn/intro" },
     { text: "Learn", link: "/learn/overview" },
-    { text: "Tutorials", link: "/tutorials/overview" },
+    { text: "Tutorials", link: "/tutorials/quick-start" },
     { text: "How To Guides", link: "/guides/overview" },
     { text: "Testnets", link: "/testnets/cosmwasm-testnet" },
     { text: "Blog", link: "/blog/overview" },
@@ -207,7 +207,6 @@ function sidebarHome() {
       text: "Tutorials",
       collapsed: true,
       items: [
-        { text: "Overview", link: "/tutorials/overview" },
         {
           text: "Rollkit",
           collapsed: true,
@@ -219,7 +218,7 @@ function sidebarHome() {
               link: "/tutorials/quick-start",
             },
             {
-              text: "GM world rollup: Part 1, local devnet",
+              text: "GM world rollup",
               link: "/tutorials/gm-world",
             },
             { text: "GM world frontend", link: "/tutorials/gm-world-frontend" },

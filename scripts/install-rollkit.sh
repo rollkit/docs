@@ -14,7 +14,7 @@ if ! which go > /dev/null; then
 	fi
 fi
 
-cd rollkit || { echo "Failed to find the unpacked directory."; exit 1; }
+cd rollkit || { echo "Failed to find the downloaded repository."; exit 1; }
 git checkout v0.13.2
 echo "Building and installing Rollkit..."
 make install
