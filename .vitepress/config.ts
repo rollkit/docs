@@ -141,7 +141,7 @@ export default withMermaid({
     },
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/rollkit/docs" },
+      { icon: "github", link: "https://github.com/rollkit/rollkit" },
       { icon: "twitter", link: "https://twitter.com/RollkitDev" },
       { icon: { svg: telegramSVG }, link: "https://t.me/rollkit" },
     ],
@@ -184,7 +184,6 @@ function sidebarHome() {
       items: [
         { text: "Introduction to Rollkit", link: "/learn/intro" },
         { text: "About Rollkit", link: "/learn/about" },
-        { text: "Readme", link: "/learn/readme" },
       ],
     },
     {
