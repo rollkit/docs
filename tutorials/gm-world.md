@@ -34,7 +34,7 @@ Learn to run a local DA network, designed for educational purposes, on your mach
 
 To set up a mock DA network node:
 ```bash
-curl -sSL https://raw.githubusercontent.com/rollkit/docs/main/scripts/install-mock-da.sh | sh ff82679
+curl -sSL https://raw.githubusercontent.com/rollkit/docs/main/scripts/install-mock-da.sh | sh v0.1.0 
 ```
 This script builds and runs the node, now listening on port `7980`.
 
