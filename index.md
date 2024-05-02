@@ -12,7 +12,7 @@ hero:
     alt: Rollkit
   actions:
     - theme: brand
-      text: Starter Rollup
+      text: Quick Start 
       link: /tutorials/quick-start
     - theme: alt
       text: Introduction
