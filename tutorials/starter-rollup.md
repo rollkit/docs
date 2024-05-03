@@ -3,7 +3,7 @@
 In this tutorial, you will learn how to build a Rollkit rollup that uses a local Celestia devnet
 for consensus and data availability. This is the first-stop for developers building on Rollkit.
 
-This is built for MacOS and has been tested on an M1 and M2 Mac.
+This is built for macOS and has been tested on an M1 and M2 Mac.
 
 ## Prerequisites
 
