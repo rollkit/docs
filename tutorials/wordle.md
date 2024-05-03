@@ -575,7 +575,7 @@ test, and launch your own sovereign rollup.
 
 ### 🟢 Building and running wordle chain {#build-and-run-wordle-chain}
 
-We have a handy `init.sh` [found in this repo](https://rollkit.dev/wordle/init.sh).
+We have a handy `init.sh` [found in this repo](https://github.com/rollkit/docs/blob/main/public/wordle/init.sh).
 
 We can copy it over to our directory with the following commands:
 

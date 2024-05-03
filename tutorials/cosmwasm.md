@@ -172,7 +172,7 @@ that communicates between `wasmd` and Rollkit.
 
 ### 🗞️ Initializing CosmWasm rollup with a bash script {#initialize-rollup}
 
-We have a handy `init.sh` [found in this repo](https://rollkit.dev/cosmwasm/init.sh).
+We have a handy `init.sh` [found in this repo](https://github.com/rollkit/docs/blob/main/public/cosmwasm/init.sh).
 
 We can copy it over to our directory with the following commands:
 
