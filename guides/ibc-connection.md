@@ -65,6 +65,10 @@ Run the GM rollup:
 bash init-local.sh
 ```
 
+:::tip
+[See the guidelines in GM world rollup for environment setup](/tutorials/gm-world#building-your-sovereign-rollup).
+:::
+
 ## Run your local-osmosis-testnet
 
 ### Install Osmosis binary

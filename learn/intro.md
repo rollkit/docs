@@ -28,7 +28,7 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 
 ### Tutorials
 
-[Overview](/tutorials/overview)
+- [Overview](/tutorials/overview)
 
 ### Testnets
 

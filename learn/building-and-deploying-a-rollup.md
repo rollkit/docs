@@ -12,7 +12,6 @@ You can get started with the following tutorials:
 
 - [GM world](/tutorials/gm-world)
 - [GM world frontend](/tutorials/gm-world-frontend)
-- [Recipe Book](/tutorials/recipe-book)
 - [Restart your rollup](/guides/restart-rollup)
 
 ## 2️. Intermediate {#intermediate}
