@@ -30,10 +30,6 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 - [Transaction flow](/learn/transaction-flow)
 - [Building with Rollkit](/learn/building-and-deploying-a-rollup)
 
-#### Rollup Wiki
-
-- [A-Z glossary](/learn/rollup-glossary)
-
 ### Tutorials
 
 [Overview](/tutorials/overview)

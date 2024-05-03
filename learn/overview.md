@@ -12,5 +12,3 @@ transaction flow, building with Rollkit, a glossary, and more.
 
 - [Rollkit Stack](/learn/stack)
 - [Transaction Flow](/learn/transaction-flow)
-- Rollup Wiki
-  - [A-Z Glossary](/learn/rollup-glossary)

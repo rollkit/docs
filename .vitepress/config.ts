@@ -194,13 +194,6 @@ function sidebarHome() {
         { text: "Rollkit stack", link: "/learn/stack" },
         { text: "Transaction flow", link: "/learn/transaction-flow" },
         { text: "Rollkit specs", link: "rollkit.github.io/rollkit" },
-        {
-          text: "Rollup Wiki",
-          collapsed: true,
-          items: [
-            { text: "A-Z glossary", link: "/learn/rollup-glossary" },
-          ],
-        },
       ],
     },
     {
