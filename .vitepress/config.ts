@@ -167,8 +167,7 @@ export default withMermaid({
 
 function nav() {
   return [
-    { text: "Intro", link: "/learn/intro" },
-    { text: "Learn", link: "/learn/overview" },
+    { text: "Learn", link: "/learn/intro" },
     { text: "Tutorials", link: "/tutorials/quick-start" },
     { text: "How To Guides", link: "/guides/overview" },
     { text: "Testnets", link: "/testnets/cosmwasm-testnet" },
@@ -179,18 +178,11 @@ function nav() {
 function sidebarHome() {
   return [
     {
-      text: "Introduction",
+      text: "Learn",
       collapsed: true,
       items: [
         { text: "Introduction to Rollkit", link: "/learn/intro" },
         { text: "About Rollkit", link: "/learn/about" },
-      ],
-    },
-    {
-      text: "Learn",
-      collapsed: true,
-      items: [
-        { text: "Overview", link: "/learn/overview" },
         { text: "Rollkit stack", link: "/learn/stack" },
         { text: "Transaction flow", link: "/learn/transaction-flow" },
         { text: "Rollkit specs", link: "rollkit.github.io/rollkit" },
