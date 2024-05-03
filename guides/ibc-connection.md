@@ -56,7 +56,7 @@ go mod download
 Now download the script to run the GM chain:
 
 ```bash
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.sh
+wget https://rollkit.dev/gm/init-local.sh
 ```
 
 Run the GM rollup:
@@ -64,10 +64,6 @@ Run the GM rollup:
 ```bash
 bash init-local.sh
 ```
-
-:::tip
-[See the guidelines in GM world rollup for environment setup](/tutorials/gm-world#building-your-sovereign-rollup).
-:::
 
 ## Run your local-osmosis-testnet
 
@@ -86,7 +82,7 @@ make install
 You also need to start local-osmosis-testnet in a separate terminal by downloading and running this script:
 
 ```bash
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/ibc/init-osmosis-local.sh
+wget https://rollkit.dev/ibc/init-osmosis-local.sh
 ```
 
 Run the script:

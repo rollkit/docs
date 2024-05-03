@@ -2,16 +2,16 @@
 description: Quickly start a rollup node using the Rollkit CLI.
 ---
 
-# Quick Start Guide
+# Quick start guide
 
 Welcome to Rollkit, a sovereign rollup framework! The easiest way to launch your sovereign rollup node is by using the Rollkit CLI.
 
-### 📦 Install Rollkit (CLI)
+## 📦 Install Rollkit (CLI)
 
 To install Rollkit, run the following command in your terminal:
 
 ```bash
-curl -sSL https://install.rollkit.dev | sh -s v0.13.2
+curl -sSL https://rollkit.dev/install.sh | sh -s v0.13.2
 ```
 
 Verify the installation by checking the Rollkit version:
@@ -22,7 +22,7 @@ rollkit version
 
 A successful installation will display the version number and its associated git commit hash.
 
-### 🚀 Run Your Sovereign Rollup Node
+## 🚀 Run your sovereign rollup node
 
 To start a basic sovereign rollup node, execute:
 
@@ -42,6 +42,6 @@ I[2024-05-01|09:58:46.081] Creating and publishing block                module=B
 I[2024-05-01|09:58:46.082] Finalized block                              module=BlockManager height=223 num_txs_res=0 num_val_updates=0 block_app_hash=
 ```
 
-### 🎉 Conclusion
+## 🎉 Conclusion
 
 That's it! Your sovereign rollup node is now up and running. It's incredibly simple to start a blockchain (which is essentially what a rollup is) these days using Rollkit. Explore further and discover how you can build useful applications on Rollkit. Good luck!

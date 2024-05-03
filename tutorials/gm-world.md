@@ -4,11 +4,12 @@ description: Build a sovereign rollup with Ignite CLI, Celestia, and Rollkit loc
 
 # GM World Rollup
 
-### 🌞Introduction {#introduction}
+## 🌞Introduction {#introduction}
 
 This tutorial will guide you through building a sovereign `gm-world` rollup (`gm` stands for "good morning") using Rollkit. Unlike the [Quick Start Guide](https://rollkit.dev/tutorials/quick-start), this tutorial provides a more practical approach to understanding sovereign rollup development.
 
 We will cover:
+
 - Building and configuring a Cosmos-SDK application-specific rollup blockchain.
 - Posting rollup data to a Data Availability (DA) network.
 - Executing transactions (the end goal).
@@ -19,27 +20,31 @@ No prior understanding of the build process is required, just that it utilizes t
 This tutorial explores Rollkit, currently in Alpha. If you encounter bugs, please report them via a Github [Issue ticket](https://github.com/rollkit/docs/issues/new) or reach out in our [Telegram group](https://t.me/rollkit).
 :::
 
-### 🛠️ Dependencies {#dependencies}
+## 🛠️ Dependencies {#dependencies}
 
 Rollkit uses the [Go programming language](https://go.dev/dl/). Here's how to install it:
+
 - **Linux or macOS**: Run the provided script:
+
   ```bash
-  curl -sSL https://raw.githubusercontent.com/rollkit/docs/main/scripts/install-go.sh | sh -s 1.22.2
+  curl -sSL https://rollkit.dev/install-go.sh | sh -s 1.22.2
   ```
+
 - **Windows**: Download and execute the [installer](https://go.dev/dl/go1.22.2.windows-amd64.msi).
 
-### 🌐 Running a Local DA Network {#running-local-da}
+## 🌐 Running a Local DA Network {#running-local-da}
 
 Learn to run a local DA network, designed for educational purposes, on your machine.
 
 To set up a mock DA network node:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/rollkit/docs/main/scripts/install-mock-da.sh | sh v0.1.0 
+curl -sSL https://rollkit.dev/install-mock-da.sh | sh v0.1.0 
 ```
+
 This script builds and runs the node, now listening on port `7980`.
 
-### 🏗️ Building Your Sovereign Rollup {#building-your-sovereign-rollup}
+## 🏗️ Building Your Sovereign Rollup {#building-your-sovereign-rollup}
 
 With the local DA network running, let’s prepare your rollup blockchain.
 
@@ -55,18 +60,20 @@ If you get errors of `gmd` not found, you may need to add the `go/bin` directory
 :::
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/rollkit/docs/main/scripts/install-gm-rollup.sh | sh
+curl -sSL https://rollkit.dev/install-gm-rollup.sh | sh
 ```
 
-### 🚀 Starting Your Rollup {#start-your-rollup}
+## 🚀 Starting Your Rollup {#start-your-rollup}
 
 Start the rollup, posting to the local DA network:
+
 ```bash
 gmd start --rollkit.aggregator --minimum-gas-prices="0.025stake" --rollkit.da_address http://localhost:7980
 ```
 
 Notice how we specified the DA network address along with a few other flags. Now you should see the logs of the running node:
-```
+
+```bash
 12:21PM INF starting node with ABCI CometBFT in-process module=server
 12:21PM INF starting node with Rollkit in-process module=server
 12:21PM INF service start impl=multiAppConn module=proxy msg="Starting multiAppConn service"
@@ -96,7 +103,7 @@ Notice how we specified the DA network address along with a few other flags. Now
 
 Good work so far, we have a Rollup node, DA network node, now we can start submitting transactions.
 
-### 💸 Transactions {#transactions}
+## 💸 Transactions {#transactions}
 
 First, list your keys:
 
@@ -106,7 +113,7 @@ gmd keys list --keyring-backend test
 
 You should see an output like the following
 
-```
+```bash
 - address: gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9
   name: gm-key-2
   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Al92dlOeLpuAiOUSIaJapkIveiwlhlEdz/O5CrniMdwH"}'
@@ -136,7 +143,7 @@ gmd tx bank send $KEY1 $KEY2 42069stake --keyring-backend test --chain-id gm --f
 
 You'll be prompted to accept the transaction:
 
-```
+```bash
 auth_info:
   fee:
     amount: []
@@ -163,13 +170,13 @@ confirm transaction before signing and broadcasting [y/N]: // [!code focus]
 
 Confirm and sign the transaction as prompted. now you see the transaction hash at the output:
 
-```
+```bash
 //...
 
 txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
 ```
 
-### ⚖️ Checking Balances {#balances}
+## ⚖️ Checking Balances {#balances}
 
 Query balances after the transaction:
 
@@ -179,7 +186,7 @@ gmd query bank balances $KEY2
 
 The receiver’s balance should show an increase.
 
-```
+```bash
 balances: // [!code focus]
 - amount: "10000000000000000000042069" // [!code focus]
   denom: stake
@@ -190,14 +197,13 @@ pagination:
 
 For the sender’s balance:
 
-
 ```bash
 gmd query bank balances $KEY1
 ```
 
 Output:
 
-```
+```bash
 balances: // [!code focus]
 - amount: "9999999999999999999957931" // [!code focus]
   denom: stake
@@ -206,7 +212,7 @@ pagination:
   total: "0"
 ```
 
-### 🎉 Next steps
+## 🎉 Next steps
 
 Congratulations! You've built a local rollup that posts to a
 local DA network. So far so good, keep diving deeper if you like it. Good luck!

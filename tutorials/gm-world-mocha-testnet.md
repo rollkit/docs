@@ -21,14 +21,14 @@ After the node is synced, stop the light node.
 ### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
 
 We have
-[a handy `init-mocha-testnet.sh` found in this repo](https://github.com/rollkit/docs/tree/main/scripts/gm).
+[a handy `init-mocha-testnet.sh` found in this repo](https://rollkit.dev/gm/init-mocha-testnet.sh).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `gm` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-mocha-testnet.sh
+wget https://rollkit.dev/gm/init-mocha-testnet.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -45,6 +45,7 @@ similar to this (or, you could get creative 😎):
 ```bash
 openssl rand -hex 10
 ```
+
 Replace the last 10 characters in `00000000000000000000000000000000000000000008e5f679bf7116cb` with the newly generated 10 characters.
 
 [Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)

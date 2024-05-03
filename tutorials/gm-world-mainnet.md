@@ -35,7 +35,7 @@ using `Control + C` in the terminal.
     <!-- markdownlint-disable MD013 -->
     ```bash
     # From inside the `gm` directory
-    wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-mainnet.sh
+    wget https://rollkit.dev/gm/init-mainnet.sh
     ```
     <!-- markdownlint-enable MD013 -->
 
@@ -54,7 +54,6 @@ using `Control + C` in the terminal.
 
 [View the example rollup's namespace on Celenium](https://celenium.io/namespace/000000000000000000000000000000000000000008e5f679bf7116cb).
 
-
 :::tip
 `init-mainnet.sh` script uses a default namespace `00000000000000000000000000000000000000000008e5f679bf7116cb`. You can set your own by using a command
 similar to this (or, you could get creative 😎):
@@ -62,6 +61,7 @@ similar to this (or, you could get creative 😎):
 ```bash
 openssl rand -hex 10
 ```
+
 Replace the last 10 characters in `00000000000000000000000000000000000000000008e5f679bf7116cb` with the newly generated 10 characters.
 
 [Learn more about namespaces](https://celestiaorg.github.io/celestia-app/specs/namespace.html)

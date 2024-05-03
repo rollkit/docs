@@ -31,6 +31,7 @@ yarn global add create-cosmos-app
 
 ::: tip
 ✋ If you don't have yarn, run this command to install it using cURL on most Linux distros and macOS:
+
 ```bash
 curl -o- -L https://yarnpkg.com/install.sh | bash
 ```

@@ -8,11 +8,11 @@ hero:
   text: "The first sovereign rollup framework"
   tagline: Rollkit allows anyone to launch their own sovereign, customizable blockchain as easily as a smart contract
   image:
-    src: /logo-big.svg
+    src: /img/logo-big.svg
     alt: Rollkit
   actions:
     - theme: brand
-      text: Quick Start 
+      text: Quick start 
       link: /tutorials/quick-start
     - theme: alt
       text: Introduction

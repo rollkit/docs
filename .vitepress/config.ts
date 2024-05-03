@@ -20,14 +20,14 @@ export default withMermaid({
   },
 
   head: [
-    ["link", { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
-    ["link", { rel: "icon", href: "/favicon.png", type: "image/png" }],
+    ["link", { rel: "icon", href: "/img/favicon.svg", type: "image/svg+xml" }],
+    ["link", { rel: "icon", href: "/img/favicon.png", type: "image/png" }],
     // [
     //   'link',
     //   {
     //     rel: 'icon',
     //     type: 'image/svg+xml',
-    //     href: '/favicon-dark.svg',
+    //     href: '/img/favicon-dark.svg',
     //     media: '(prefers-color-scheme: dark)',
     //   },
     // ],
@@ -36,7 +36,7 @@ export default withMermaid({
     //   {
     //     rel: 'icon',
     //     type: 'image/png',
-    //     href: '/favicon-dark.png',
+    //     href: '/img/favicon-dark.png',
     //     media: '(prefers-color-scheme: dark)',
     //   },
     // ],
@@ -49,7 +49,7 @@ export default withMermaid({
     //   {
     //     rel: 'icon',
     //     type: 'image/x-icon',
-    //     href: '/favicon-dark.ico',
+    //     href: '/img/favicon-dark.ico',
     //     media: '(prefers-color-scheme: dark)',
     //   },
     // ],
@@ -74,10 +74,10 @@ export default withMermaid({
     ],
     ["meta", { httpEquiv: "Content-Language", content: "en" }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
-    ["meta", { name: "twitter:image", content: "/Rollkit-og.png" }],
+    ["meta", { name: "twitter:image", content: "/img/Rollkit-og.png" }],
     ["meta", { name: "twitter:site:domain", content: "rollkit.dev" }],
     ["meta", { name: "twitter:url", content: "https://rollkit.dev" }],
-    ["meta", { name: "og:image", content: "/Rollkit-og.png" }],
+    ["meta", { name: "og:image", content: "/img/Rollkit-og.png" }],
     ["meta", { name: "apple-mobile-web-app-title", content: "Rollkit" }],
     [
       "script",
@@ -136,8 +136,8 @@ export default withMermaid({
 
     logo: {
       alt: "Rollkit Logo",
-      light: "/logo.svg",
-      dark: "/logo-dark.svg",
+      light: "/img/logo.svg",
+      dark: "/img/logo-dark.svg",
     },
 
     socialLinks: [
@@ -199,7 +199,6 @@ function sidebarHome() {
           collapsed: true,
           items: [
             { text: "A-Z glossary", link: "/learn/rollup-glossary" },
-            // { text: 'Basic Rollup', link: '/learn/basic-rollup' },
           ],
         },
       ],
@@ -212,8 +211,6 @@ function sidebarHome() {
           text: "Rollkit",
           collapsed: true,
           items: [
-            // { text: 'Starter Rollup with Docker', link: '/tutorials/rollup-docker'},
-            // { text: 'Starter Rollup', link: '/tutorials/starter-rollup'},
             {
               text: "Quick start guide",
               link: "/tutorials/quick-start",
@@ -246,10 +243,6 @@ function sidebarHome() {
           items: [
             { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
             { text: "Polaris EVM rollup", link: "/tutorials/polaris-evm" },
-            // {
-            //   text: "Full-stack modular dapp with Celestia",
-            //   link: "https://docs.celestia.org/developers/full-stack-modular-development-guide",
-            // },
           ],
         },
       ],

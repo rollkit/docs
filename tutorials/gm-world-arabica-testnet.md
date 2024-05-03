@@ -21,14 +21,14 @@ Keep the node running while doing the next steps.
 ### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
 
 We have
-[a handy `init-arabica-testnet.sh` found in this repo](https://github.com/rollkit/docs/tree/main/scripts/gm).
+[a handy `init-arabica-testnet.sh` found in this repo](https://rollkit.dev/gm/init-arabica-testnet.sh).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `gm` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-arabica-testnet.sh
+wget https://rollkit.dev/gm/init-arabica-testnet.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
