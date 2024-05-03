@@ -8,12 +8,7 @@ exploring how to integrate CosmWasm with Celestia's
 using Rollkit.
 
 ::: tip
-This tutorial will explore developing with Rollkit,
-which is still in Alpha stage. If you run into bugs, please write a Github
-[Issue ticket](https://github.com/rollkit/docs/issues/new)
-or let us know in our [Telegram](https://t.me/rollkit).
-
-Learn how to [restart your rollup](/guides/restart-rollup.md).
+This tutorial explores Rollkit, currently in Alpha. If you encounter bugs, please report them via a GitHub [issue ticket](https://github.com/rollkit/docs/issues/new) or reach out in our [Telegram group](https://t.me/rollkit).
 :::
 
 ::: warning

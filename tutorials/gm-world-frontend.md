@@ -14,6 +14,10 @@ In the end, you'll have something that looks like this
 [demo](https://rollkit-frontend.vercel.app)
 ([repo](https://github.com/jcstein/rollkit-frontend)).
 
+::: tip
+This tutorial explores Rollkit, currently in Alpha. If you encounter bugs, please report them via a GitHub [issue ticket](https://github.com/rollkit/docs/issues/new) or reach out in our [Telegram group](https://t.me/rollkit).
+:::
+
 ## Getting started
 
 In order to complete this tutorial you will need to have completed

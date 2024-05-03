@@ -9,6 +9,10 @@ the tutorial and are familiar with running a local rollup devnet.
 The script for this tutorial is built for Celestia's
 [Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
 
+::: tip
+This tutorial explores Rollkit, currently in Alpha. If you encounter bugs, please report them via a GitHub [issue ticket](https://github.com/rollkit/docs/issues/new) or reach out in our [Telegram group](https://t.me/rollkit).
+:::
+
 ### 🪶 Run a Celestia light node {#run-celestia-node}
 
 Fully sync and fund a light node

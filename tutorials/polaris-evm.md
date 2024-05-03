@@ -15,7 +15,7 @@ is used to deploy a Polaris EVM rollup without needing to set up a data
 availability and consensus network.
 
 ::: tip
-Learn how to [restart your rollup](/guides/restart-rollup.md).
+This tutorial explores Rollkit, currently in Alpha. If you encounter bugs, please report them via a GitHub [issue ticket](https://github.com/rollkit/docs/issues/new) or reach out in our [Telegram group](https://t.me/rollkit).
 :::
 
 ## Prerequisites

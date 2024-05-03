@@ -17,7 +17,7 @@ We will cover:
 No prior understanding of the build process is required, just that it utilizes the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) for blockchain applications.
 
 ::: tip
-This tutorial explores Rollkit, currently in Alpha. If you encounter bugs, please report them via a Github [Issue ticket](https://github.com/rollkit/docs/issues/new) or reach out in our [Telegram group](https://t.me/rollkit).
+This tutorial explores Rollkit, currently in Alpha. If you encounter bugs, please report them via a GitHub [issue ticket](https://github.com/rollkit/docs/issues/new) or reach out in our [Telegram group](https://t.me/rollkit).
 :::
 
 ## 🛠️ Dependencies {#dependencies}
