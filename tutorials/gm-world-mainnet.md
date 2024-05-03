@@ -5,9 +5,15 @@ is expected that you've completed [part 1](./gm-world.md) or [part
 2](./gm-world-mocha-testnet.md) of the tutorial and are familiar with running a
 local rollup devnet or posting to a Celestia testnet.
 
-::: tip
-This tutorial explores Rollkit, currently in Alpha. If you encounter bugs, please report them via a GitHub [issue ticket](https://github.com/rollkit/docs/issues/new) or reach out in our [Telegram group](https://t.me/rollkit).
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import Callout from '../.vitepress/components/callout.vue'
+</script>
+
+:::tip
+<Callout />
 :::
+<!-- markdownlint-enable MD033 -->
 
 ## Deploying to Celestia Mainnet Beta
 

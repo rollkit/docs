@@ -9,9 +9,15 @@ the tutorial and are familiar with running a local rollup devnet.
 The script for this tutorial is built for Celestia's
 [Mocha testnet](https://docs.celestia.org/nodes/mocha-devnet).
 
-::: tip
-This tutorial explores Rollkit, currently in Alpha. If you encounter bugs, please report them via a GitHub [issue ticket](https://github.com/rollkit/docs/issues/new) or reach out in our [Telegram group](https://t.me/rollkit).
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import Callout from '../.vitepress/components/callout.vue'
+</script>
+
+:::tip
+<Callout />
 :::
+<!-- markdownlint-enable MD033 -->
 
 ### 🪶 Run a Celestia light node {#run-celestia-node}
 
