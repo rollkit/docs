@@ -1,419 +1,117 @@
 ---
-description: Build a sovereign rollup with Ignite CLI, Celestia and Rollkit locally and on a testnet
+description: Build a sovereign rollup with Ignite CLI, Celestia, and Rollkit locally and on a testnet
 ---
 
-# GM world rollup: Part 1
+# GM World Rollup
 
-## Building a rollup locally
+## 🌞Introduction {#introduction}
 
-### 🌅 Introduction {#introduction}
+This tutorial will guide you through building a sovereign `gm-world` rollup (`gm` stands for "good morning") using Rollkit. Unlike the [Quick Start Guide](https://rollkit.dev/tutorials/quick-start), this tutorial provides a more practical approach to understanding sovereign rollup development.
 
-This tutorial will guide you through building a sovereign `gm-world` rollup using Rollkit,
-using Celestia’s data availability and consensus layer to submit Rollkit blocks.
+We will cover:
 
-We'll cover setting up Ignite CLI,
-building a Cosmos-SDK application-specific rollup blockchain,
-and posting data to Celestia.
-First, we will test on a local DA network, then to a live
-testnet, and lastly to mainnet.
+- Building and configuring a Cosmos-SDK application-specific rollup blockchain.
+- Posting rollup data to a Data Availability (DA) network.
+- Executing transactions (the end goal).
 
-1. Part 1 (This page): Run your rollup and post DA to a local devnet, and make sure everything works as expected.
-2. [Part 2](./gm-world-mocha-testnet.md): Deploy the rollup, posting to a DA testnet (Mocha). Confirm again that everything is functioning properly.
-3. [Part 3](./gm-world-mainnet.md): Deploy your rollup to the DA layer's mainnet.
+No prior understanding of the build process is required, just that it utilizes the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) for blockchain applications.
 
-The [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) is a framework for
-building blockchain applications. The Cosmos Ecosystem uses
-[Inter-Blockchain Communication (IBC)](https://github.com/cosmos/ibc-go)
-to allow blockchains to communicate with one another.
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import Callout from '../.vitepress/components/callout.vue'
+</script>
 
-::: tip
-This tutorial will explore developing with Rollkit,
-which is still in Alpha stage. If you run into bugs, please write a Github
-[Issue ticket](https://github.com/rollkit/docs/issues/new)
-or let us know in our [Telegram](https://t.me/rollkit).
-
-Learn how to [restart your rollup](/guides/restart-rollup.md).
+:::tip
+<Callout />
 :::
+<!-- markdownlint-enable MD033 -->
 
-## 🤔 What is GM? {#what-is-gm}
+## 🛠️ Dependencies {#dependencies}
 
-GM means good morning. It's GM o'clock somewhere, so there's never a bad time
-to say GM, Gm, or gm. You can think of "GM" as the new version of
-"hello world".
+Rollkit uses the [Go programming language](https://go.dev/dl/). Here's how to install it:
 
-## Dependencies {#dependencies}
+- **Linux or macOS**: Run the provided script:
 
-* Operating systems: GNU/Linux or macOS
-* [Golang 1.21+](https://go.dev)
-* [Ignite CLI v28.3.0](https://github.com/ignite/cli)
-* [Homebrew](https://brew.sh)
-* [wget](https://www.gnu.org/software/wget)
-* [A Celestia Light Node](https://docs.celestia.org/nodes/light-node)
+  ```bash
+  curl -sSL https://rollkit.dev/install-go.sh | sh -s 1.22.2
+  ```
 
-Next, head either to [Linux setup](#linux-setup) or [MacOS setup](#macos-setup).
+- **Windows**: Download and execute the [installer](https://go.dev/dl/go1.22.2.windows-amd64.msi).
 
-## Linux setup
+## 🌐 Running a Local DA Network {#running-local-da}
 
-### 🏃 Install Golang on Linux {#install-golang-linux}
+Learn to run a local DA network, designed for educational purposes, on your machine.
 
-[Celestia-App](https://github.com/celestiaorg/celestia-app),
-[Celestia-Node](https://github.com/celestiaorg/celestia-node),
-and [Cosmos-SDK](https://github.com/cosmos/cosmos-sdk) are
-written in the Golang programming language. You will need
-Golang to build and run them.
-
-You can [install Golang here](https://docs.celestia.org/nodes/environment#install-golang).
-
-### 🔥 Install Ignite CLI on Linux {#install-ignite-cli-linux}
-
-First, you will need to create `/usr/local/bin` if you have not already:
+To set up a mock DA network node:
 
 ```bash
-sudo mkdir -p -m 775 /usr/local/bin
+curl -sSL https://rollkit.dev/install-mock-da.sh | sh v0.1.0 
 ```
 
-Run this command in your terminal to install Ignite CLI:
+This script builds and runs the node, now listening on port `7980`.
 
-```bash
-curl https://get.ignite.com/cli@v28.3.0! | bash
-```
+## 🏗️ Building Your Sovereign Rollup {#building-your-sovereign-rollup}
 
-::: tip
-✋ On some machines, you may run into permissions errors like the one below.
-You can resolve this error by following the guidance
-[here](https://docs.ignite.com/v0.25.2/guide/install#write-permission) or below.
+With the local DA network running, let’s prepare your rollup blockchain.
 
-```bash
-# Error
-jcs @ ~ % curl https://get.ignite.com/cli@v28.3.0! | bash
+To make it simple we will download a repository with a `gm-world` rollup that has an `init.sh` script that does all the setup for you.
 
-
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  3967    0  3967    0     0  16847      0 --:--:-- --:--:-- --:--:-- 17475
-Installing ignite v28.3.0..... // [!code focus]
-######################################################################## 100.0% // [!code focus]
-mv: rename ./ignite to /usr/local/bin/ignite: Permission denied // [!code focus]
-============ // [!code focus]
-Error: mv failed // [!code focus]
-```
-
-The following command will resolve the permissions error:
-
-```bash
-sudo curl https://get.ignite.com/cli@v28.3.0! | bash
-```
-
-:::
-
-A successful installation will return something similar to the response below:
-
-```bash
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  4073    0  4073    0     0   4363      0 --:--:-- --:--:-- --:--:--  4379
-Installing ignite v28.3.0..... // [!code focus]
-######################################################################## 100.0% // [!code focus]
-Password:
-Installed at /usr/local/bin/ignite // [!code focus]
-```
-
-Verify you’ve installed Ignite CLI by running:
-
-```bash
-ignite version
-```
-
-The response that you receive should look something like this:
-
-```bash
-jcs @ ~ % ignite version // [!code focus]
-Ignite CLI version: v28.3.0 // [!code focus]
-Ignite CLI build date: 2024-03-20T15:31:07Z
-Ignite CLI source hash: 159abdca88605ed82cb4aabd52618db91069b7af
-Ignite CLI config version: v1
-Cosmos SDK version: v0.50.5
-Your OS:  darwin
-Your arch:  arm64
-Your Node.js version: v20.4.0
-Your go version: go version go1.21.5 darwin/arm64
-Your uname -a:  Darwin Joshs-MacBook-Air.local 22.5.0 Darwin Kernel Version 22.5.0: Thu Jun  8 22:21:34 PDT 2023; root:xnu-8796.121.3~7/RELEASE_ARM64_T8112 arm64
-Your cwd:  /Users/joshstein
-Is on Gitpod:  false
-```
-
-Your development environment is setup! Now, head to [part 1](#part-1).
-
-## macOS setup
-
-### 🏃 Install Golang on macOS {#install-golang-mac}
-
-[Celestia-App](https://github.com/celestiaorg/celestia-app),
-[Celestia-Node](https://github.com/celestiaorg/celestia-node),
-and [Cosmos-SDK](https://github.com/cosmos/cosmos-sdk) are
-written in the Golang programming language. You will need
-Golang to build and run them.
-
-You can [install Golang here](https://docs.celestia.org/nodes/environment#install-golang).
-
-#### 🔥 Install Ignite CLI on macOS {#install-ignite-mac}
-
-First, you will need to create `/usr/local/bin` if you have not already:
-
-```bash
-sudo mkdir -p -m 775 /usr/local/bin
-```
-
-Run this command in your terminal to install Ignite CLI:
-
-```bash
-curl https://get.ignite.com/cli@v28.3.0! | bash
-```
-
-::: tip
-✋ On some machines, you may run into permissions errors like the one below.
-You can resolve this error by following the guidance
-[here](https://docs.ignite.com/v0.25.2/guide/install#write-permission) or below.
-
-```bash
-# Error
-jcs @ ~ % curl https://get.ignite.com/cli@v28.3.0! | bash
-
-
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  3967    0  3967    0     0  16847      0 --:--:-- --:--:-- --:--:-- 17475
-Installing ignite v28.3.0..... // [!code focus]
-######################################################################## 100.0% // [!code focus]
-mv: rename ./ignite to /usr/local/bin/ignite: Permission denied // [!code focus]
-============ // [!code focus]
-Error: mv failed // [!code focus]
-```
-
-The following command will resolve the permissions error:
-
-```bash
-sudo curl https://get.ignite.com/cli@v28.3.0! | sudo bash
-```
-
-:::
-
-A successful installation will return something similar the response below:
-
-```bash
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  3967    0  3967    0     0  15586      0 --:--:-- --:--:-- --:--:-- 15931
-Installing ignite v28.3.0..... // [!code focus]
-######################################################################## 100.0% // [!code focus]
-Installed at /usr/local/bin/ignite // [!code focus]
-```
-
-Verify you’ve installed Ignite CLI by running:
-
-```bash
-ignite version
-```
-
-The response that you receive should look something like this:
-
-```bash
-jcs @ ~ % ignite version // [!code focus]
-Ignite CLI version:  v28.3.0
-Ignite CLI build date:  2024-03-20T15:31:07Z
-Ignite CLI source hash:  159abdca88605ed82cb4aabd52618db91069b7af
-Ignite CLI config version: v1
-Cosmos SDK version:  v0.50.5
-Your OS:   darwin
-Your arch:   arm64
-Your Node.js version:  v17.9.0
-Your go version:  go version go1.21.6 darwin/arm64
-Your uname -a:   Darwin Joshs-MacBook-Air.local 22.5.0 Darwin Kernel Version 22.5.0: Thu Jun  8 22:21:34 PDT 2023; root:xnu-8796.121.3~7/RELEASE_ARM64_T8112 arm64
-Your cwd:  /Users/joshstein
-Is on Gitpod:  false
-```
-
-### 🍺 Install Homebrew on macOS {#install-homebrew-mac}
-
-Homebrew will allow us to install dependencies for our Mac:
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-Be sure to run the commands similar to the output below from the successful installation:
-
-```bash
-==> Next steps:
-- Run these three commands in your terminal to add Homebrew to your PATH:
-    echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/joshstein/.zprofile
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/joshstein/.zprofile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-```
-
-### 🏃 Install wget on macOS {#install-wget-mac}
-
-wget is an Internet file retriever:
-
-```bash
-brew install wget
-```
-
-Your development environment is setup! Now, head to [part 1](#part-1).
-
-## Part 1
-
-This part of the tutorial will teach developers how to easily run a local data availability (DA) devnet on their own machine (or in the cloud).
-**Running a local devnet for DA to test your rollup is the recommended first step before deploying to a testnet.**
-This eliminates the need for testnet tokens and deploying to a testnet until you are ready.
+Download and build a `gm-world` rollup with an interactive script in a new terminal:
 
 ::: warning
-Part 1 of the tutorial has only been tested on an AMD machine running Ubuntu 22.10 x64.
+In order to run it you need to have the jq command line tool installed. You can install it by running `sudo apt-get install jq` on Ubuntu or `brew install jq` on macOS.
 :::
-
-Whether you're a developer simply testing things on your laptop or using a virtual machine in the cloud,
-this process can be done on any machine of your choosing. We tested out the Devnet section (part 1) on a machine with the following specs:
-
-* Memory: 1 GB RAM
-* CPU: Single Core AMD
-* Disk: 25 GB SSD Storage
-* OS: Ubuntu 22.10 x64
-
-### 💻 Prerequisites {#prerequisites}
-
-* [Docker](https://docs.docker.com/get-docker) installed on your machine
-
-### 🏠 Running local devnet with a Rollkit rollup {#running-local-devnet-rollup}
-
-First, run the [`local-celestia-devnet`](https://github.com/rollkit/local-celestia-devnet) by running the following command:
-
-```bash
-docker run -t -i \
-    -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 \
-    ghcr.io/rollkit/local-celestia-devnet:v0.13.1
-```
-
-The docker image runs a celestia bridge node.
-
-### 🏗️ Building your sovereign rollup {#building-your-sovereign-rollup}
-
-Now that you have a Celestia devnet running, we are ready to use Golang
-to build and run our Cosmos-SDK blockchain.
-
-The Ignite CLI comes with scaffolding commands to make development of
-blockchains quicker by creating everything that is needed to start a new
-Cosmos SDK blockchain.
-
-Check your version:
-
-```bash
-ignite version
-```
-
-Open a new tab or window in your terminal and run this command to
-scaffold your rollup. Scaffold the chain:
-
-```bash
-cd $HOME
-ignite scaffold chain gm --address-prefix gm
-```
-
 ::: tip
-The `--address-prefix gm` flag will change the address prefix from `cosmos` to `gm`. Read more on the [Cosmos docs](https://docs.cosmos.network/v0.46/basics/accounts.html).
-:::
-
-The response will look similar to below:
-
-::: warning
-Do not run `ignite chain serve` as we will build the chain later in the tutorial.
+If you get errors of `gmd` not found, you may need to add the `go/bin` directory to your PATH. You can do this by running `export PATH=$PATH:$HOME/go/bin` and then running the `init.sh` script manually again.
 :::
 
 ```bash
-jcs @ ~ % ignite scaffold chain gm --address-prefix gm
-
-⭐️ Successfully created a new blockchain 'gm'. // [!code focus]
-👉 Get started with the following commands: // [!code focus]
-
- % cd gm // [!code focus]
- % ignite chain serve
-
-Documentation: https://docs.ignite.com
+curl -sSL https://rollkit.dev/install-gm-rollup.sh | sh
 ```
 
-This command has created a Cosmos SDK blockchain in the `gm` directory. The
-`gm` directory contains a fully functional blockchain. The following standard
-Cosmos SDK [modules](https://docs.cosmos.network/main/modules) have been
-imported:
+## 🚀 Starting Your Rollup {#start-your-rollup}
 
-* `staking` - for delegated Proof-of-Stake (PoS) consensus mechanism
-* `bank` - for fungible token transfers between accounts
-* `gov` - for on-chain governance
-* `mint` - for minting new units of staking token
-* `nft` - for creating, transferring, and updating NFTs
-* and [more](https://docs.cosmos.network/main/architecture/adr-043-nft-module.html)
-
-Change to the `gm` directory:
+Start the rollup, posting to the local DA network:
 
 ```bash
-cd gm
+gmd start --rollkit.aggregator --minimum-gas-prices="0.025stake" --rollkit.da_address http://localhost:7980
 ```
 
-You can learn more about the `gm` directory’s file structure [here](https://docs.ignite.com/v0.25.2/guide/hello#blockchain-directory-structure).
-Most of our work in this tutorial will happen in the `x` directory.
-
-### 🗞️ Install Rollkit {#install-rollkit}
-
-To swap out CometBFT for Rollkit, run the following command
-from inside the `gm` directory:
+Notice how we specified the DA network address along with a few other flags. Now you should see the logs of the running node:
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.5-rollkit-v0.13.1-no-fraud-proofs
-go mod tidy
-go mod download
+12:21PM INF starting node with ABCI CometBFT in-process module=server
+12:21PM INF starting node with Rollkit in-process module=server
+12:21PM INF service start impl=multiAppConn module=proxy msg="Starting multiAppConn service"
+12:21PM INF service start connection=query impl=localClient module=abci-client msg="Starting localClient service"
+12:21PM INF service start connection=snapshot impl=localClient module=abci-client msg="Starting localClient service"
+12:21PM INF service start connection=mempool impl=localClient module=abci-client msg="Starting localClient service"
+12:21PM INF service start connection=consensus impl=localClient module=abci-client msg="Starting localClient service"
+12:21PM INF service start impl=EventBus module=events msg="Starting EventBus service"
+12:21PM INF service start impl=PubSub module=pubsub msg="Starting PubSub service"
+12:21PM INF Using default mempool ttl MempoolTTL=25 module=BlockManager
+12:21PM INF service start impl=IndexerService module=txindex msg="Starting IndexerService service"
+12:21PM INF service start impl=RPC module=server msg="Starting RPC service"
+12:21PM INF service start impl=Node module=server msg="Starting Node service"
+12:21PM INF starting P2P client module=server
+12:21PM INF serving HTTP listen address=127.0.0.1:26657 module=server
+12:21PM INF listening on address=/ip4/127.0.0.1/tcp/26656/p2p/12D3KooWSicdPmMTLf9fJbSSHZc9UVP1CbNqKPpbYVbgxHvbhAUY module=p2p
+12:21PM INF listening on address=/ip4/163.172.162.109/tcp/26656/p2p/12D3KooWSicdPmMTLf9fJbSSHZc9UVP1CbNqKPpbYVbgxHvbhAUY module=p2p
+12:21PM INF no seed nodes - only listening for connections module=p2p
+12:21PM INF working in aggregator mode block time=1000 module=server
+12:21PM INF Creating and publishing block height=22 module=BlockManager
+12:21PM INF starting gRPC server... address=127.0.0.1:9290 module=grpc-server
+12:21PM INF finalized block block_app_hash=235D3710D61F347DBBBDD6FD63AA7687842D1EF9CB475C712856D7DA32F82F09 height=22 module=BlockManager num_txs_res=0 num_val_updates=0
+12:21PM INF executed block app_hash=235D3710D61F347DBBBDD6FD63AA7687842D1EF9CB475C712856D7DA32F82F09 height=22 module=BlockManager
+12:21PM INF indexed block events height=22 module=txindex
+...
 ```
 
-### ▶️ Start your rollup {#start-your-rollup}
+Good work so far, we have a Rollup node, DA network node, now we can start submitting transactions.
 
-Download the `init-local.sh` script to start the chain:
+## 💸 Transactions {#transactions}
 
-```bash
-# From inside the `gm` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.sh
-```
-
-Run the `init-local.sh` script:
-
-::: warning
-In order to run init-local.sh you need to have the jq command line tool installed. You can install it by running `sudo apt-get install jq` on Ubuntu or `brew install jq` on MacOS.
-:::
-
-```bash
-bash init-local.sh
-```
-
-::: tip
-If you get errors of `gmd` not found, you may need to add the `go/bin` directory to your PATH. You can do this by running `export PATH=$PATH:$HOME/go/bin` and then running the `init-local.sh` script again.
-:::
-
-This will start your rollup, connected to the local Celestia devnet you have running.
-
-Now let's explore a bit.
-
-::: tip
-
-If you are restarting your rollup, you'll need to clear the old
-chain history and binary:
-
-```bash
-rm -rf $HOME/.gm
-rm $HOME/go/bin/gmd
-```
-
-:::
-
-#### 🔑 Keys {#keys}
-
-List your keys:
+First, list your keys:
 
 ```bash
 gmd keys list --keyring-backend test
@@ -422,49 +120,32 @@ gmd keys list --keyring-backend test
 You should see an output like the following
 
 ```bash
-- address: gm1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7 // [!code focus]
-  name: gm-key-2 // [!code focus]
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AlXXb6Op8DdwCejeYkGWbF4G3pDLDO+rYiVWKPKuvYaz"}'
+- address: gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9
+  name: gm-key-2
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Al92dlOeLpuAiOUSIaJapkIveiwlhlEdz/O5CrniMdwH"}'
   type: local
-- address: gm13nf52x452c527nycahthqq4y9phcmvat9nejl2 // [!code focus]
-  name: gm-key // [!code focus]
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AwigPerY+eeC2WAabA6iW1AipAQora5Dwmo1SnMnjavt"}'
+- address: gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
+  name: gm-key
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AwdsLY+2US2VV+rbyfi60GB4/Ir/FeTIkLJ3CWVhUF6b"}'
+  type: local
+- address: gm1vvl79phavqruppr6f5zy4ypxy7znshrqam48qy
+  name: gm-relay
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AlnSEnBUv5GO86fMWe11qth1+R76g2e1lv8c1FWhLpqP"}'
   type: local
 ```
 
-#### 💸 Transactions {#transactions}
-
-Now we can test sending a transaction from one of our keys to the other. We can do that with the following command:
+For convenience we export two of our keys like this:
 
 ```bash
-gmd tx bank send [from_key_or_address] [to_address] [amount] [flags]
+export KEY1=gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9
+export KEY2=gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
 ```
 
-Set your keys as variables to make it easier to add the address:
+Now let's submit a transaction that sends coins from one account to another (don't worry about all the flags, for now, we just want to submit transaction from a high level perspective):
 
 ```bash
-export KEY1=gm1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7
-export KEY2=gm13nf52x452c527nycahthqq4y9phcmvat9nejl2
+gmd tx bank send $KEY1 $KEY2 42069stake --keyring-backend test --chain-id gm --fees 5000stake
 ```
-<!-- markdownlint-disable MD051 -->
-So using our information from the [keys](#keys) command, we can construct the transaction command like so to send 42069stake from one address to another:
-<!-- markdownlint-enable MD051 -->
-
-```bash
-gmd tx bank send $KEY1 $KEY2 42069stake --keyring-backend test \
---node tcp://127.0.0.1:36657 --chain-id gm --fees 5000stake
-```
-
-::: tip
-We're using the `--node [ip:port]` flag to point to port 36657, which is
-the custom port we used in the `init-local.sh` script to avoid
-clashing with 26657 on local-celestia-devnet. We set it here:
-
-```bash
---rpc.laddr tcp://127.0.0.1:36657
-```
-
-:::
 
 You'll be prompted to accept the transaction:
 
@@ -485,41 +166,31 @@ body:
     amount:
     - amount: "42069"
       denom: stake
-    from_address: gm1sa3xvrkvwhktjppxzaayst7s7z4ar06rk37jq7
-    to_address: gm13nf52x452c527nycahthqq4y9phcmvat9nejl2
+    from_address: gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9 
+    to_address: gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
   non_critical_extension_options: []
   timeout_height: "0"
 signatures: []
 confirm transaction before signing and broadcasting [y/N]: // [!code focus]
 ```
 
-Type `y` if you'd like to confirm and sign the transaction. Then, you'll see the confirmation:
+Confirm and sign the transaction as prompted. now you see the transaction hash at the output:
 
 ```bash
-code: 0
-codespace: ""
-data: ""
-events: []
-gas_used: "0"
-gas_wanted: "0"
-height: "0"
-info: ""
-logs: []
-raw_log: '[]'
-timestamp: ""
-tx: null
+//...
+
 txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
 ```
 
-#### ⚖️ Balances {#balances}
+## ⚖️ Checking Balances {#balances}
 
-Then, query your balance:
+Query balances after the transaction:
 
 ```bash
-gmd query bank balances $KEY2 --node tcp://127.0.0.1:36657
+gmd query bank balances $KEY2 
 ```
 
-This is the key that received the balance, so it should have increased past the initial `STAKING_AMOUNT`:
+The receiver’s balance should show an increase.
 
 ```bash
 balances: // [!code focus]
@@ -530,13 +201,13 @@ pagination:
   total: "0"
 ```
 
-The other key, should have decreased in balance:
+For the sender’s balance:
 
 ```bash
-gmd query bank balances $KEY1 --node tcp://127.0.0.1:36657
+gmd query bank balances $KEY1
 ```
 
-Response:
+Output:
 
 ```bash
 balances: // [!code focus]
@@ -547,8 +218,7 @@ pagination:
   total: "0"
 ```
 
-## Next steps
+## 🎉 Next steps
 
 Congratulations! You've built a local rollup that posts to a
-local Celestia devnet. In the next tutorial, you can learn
-how to post data to Celestia's Arabica devnet.
+local DA network. So far so good, keep diving deeper if you like it. Good luck!

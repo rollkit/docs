@@ -14,6 +14,16 @@ In the end, you'll have something that looks like this
 [demo](https://rollkit-frontend.vercel.app)
 ([repo](https://github.com/jcstein/rollkit-frontend)).
 
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import Callout from '../.vitepress/components/callout.vue'
+</script>
+
+:::tip
+<Callout />
+:::
+<!-- markdownlint-enable MD033 -->
+
 ## Getting started
 
 In order to complete this tutorial you will need to have completed
@@ -31,6 +41,7 @@ yarn global add create-cosmos-app
 
 ::: tip
 ✋ If you don't have yarn, run this command to install it using cURL on most Linux distros and macOS:
+
 ```bash
 curl -o- -L https://yarnpkg.com/install.sh | bash
 ```

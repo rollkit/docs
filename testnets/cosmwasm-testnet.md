@@ -6,7 +6,7 @@ description: This page provides details about Rollkit testnets.
 
 Our cosmwasm testnet is deployed by following the [cosmwasm tutorial](/tutorials/cosmwasm.md). The [rollkit/wasmd](https://github.com/rollkit/wasmd/tree/v0.50.0) contains the code for the same.
 
-## Details of ROSM testnet 
+## Details of ROSM testnet
 
 - Chain ID: `rosm`
 - Address Prefix: `wasm`

@@ -1,7 +1,7 @@
 # Polaris EVM and Rollkit
 
 ::: danger
-We regret to inform that Polaris V1 and Rollkit integration is not fully functional. Current issues are tracked in https://github.com/rollkit/rollkit/issues/1594. We are expecting Polaris V2 release soon and Rollkit support will be added along with update tutorial. 
+We regret to inform that Polaris V1 and Rollkit integration is not fully functional. Current issues are tracked in https://github.com/rollkit/rollkit/issues/1594. We are expecting Polaris V2 release soon and Rollkit support will be added along with update tutorial.
 :::
 
 This tutorial provides step-by-step instructions for running the
@@ -14,9 +14,15 @@ layer. This integration uses a local-celestia-devnet. Rollkit
 is used to deploy a Polaris EVM rollup without needing to set up a data
 availability and consensus network.
 
-::: tip
-Learn how to [restart your rollup](/guides/restart-rollup.md).
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import Callout from '../.vitepress/components/callout.vue'
+</script>
+
+:::tip
+<Callout />
 :::
+<!-- markdownlint-enable MD033 -->
 
 ## Prerequisites
 

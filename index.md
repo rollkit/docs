@@ -6,14 +6,14 @@ titleTemplate: ':title'
 hero:
   name: "Rollkit"
   text: "The first sovereign rollup framework"
-  tagline: Rollkit utilizes the shared security of a modular data availability network to allow anyone to launch their own sovereign, customizable blockchain as easily as a smart contract
+  tagline: Rollkit allows anyone to launch their own sovereign, customizable blockchain as easily as a smart contract
   image:
-    src: /logo-big.svg
+    src: /img/logo-big.svg
     alt: Rollkit
   actions:
     - theme: brand
-      text: Starter Rollup
-      link: /tutorials/gm-world
+      text: Quick start 
+      link: /tutorials/quick-start
     - theme: alt
       text: Introduction
       link: /learn/intro

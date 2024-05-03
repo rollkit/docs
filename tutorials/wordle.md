@@ -12,14 +12,15 @@ The tutorial will go over the simple design,
 as well as conclude with future implementations and ideas
 to extend this codebase.
 
-::: tip
-This tutorial will explore developing with Rollkit,
-which is still in Alpha stage. If you run into bugs, please write a Github
-[Issue ticket](https://github.com/rollkit/docs/issues/new)
-or let us know in our [Telegram](https://t.me/rollkit).
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import Callout from '../.vitepress/components/callout.vue'
+</script>
 
-Learn how to [restart your rollup](/guides/restart-rollup.md).
+:::tip
+<Callout />
 :::
+<!-- markdownlint-enable MD033 -->
 
 ::: warning
 The script for this tutorial is built for Celestia's
@@ -34,7 +35,6 @@ in Ignite to understand all the different components in Cosmos-SDK before
 proceeding with this tutorial.
 
 * [GM world](/tutorials/gm-world)
-* [Recipe Book](/tutorials/recipe-book) or [Blog and Module Basics](https://docs.ignite.com/guide/blog/intro)
 * [Nameservice Tutorial](https://docs.ignite.com/v0.25.2/guide/nameservice)
 * [Scavenger Hunt](https://docs.ignite.com/v0.25.2/guide/scavenge)
 
@@ -95,7 +95,7 @@ sudo mv ignite /usr/local/bin/
 ```
 
 This installs Ignite CLI in your local machine.
-This tutorial uses a MacOS but it should work for Windows.
+This tutorial uses a macOS but it should work for Windows.
 For Windows users, check out the Ignite docs on installation
 for Windows machines.
 
@@ -575,15 +575,14 @@ test, and launch your own sovereign rollup.
 
 ### 🟢 Building and running wordle chain {#build-and-run-wordle-chain}
 
-We have a handy `init.sh` found in this repo
-[here](https://github.com/rollkit/docs/tree/main/scripts/wordle).
+We have a handy `init.sh` [found in this repo](https://rollkit.dev/wordle/init.sh).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `wordle` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/wordle/init.sh
+wget https://rollkit.dev/wordle/init.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
