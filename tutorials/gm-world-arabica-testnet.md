@@ -31,7 +31,7 @@ Keep the node running while doing the next steps.
 ### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
 
 We have
-[a handy `init-arabica-testnet.sh` found in this repo](https://rollkit.dev/gm/init-arabica-testnet.sh).
+[a handy `init-arabica-testnet.sh` found in this repo](https://github.com/rollkit/docs/blob/main/public/gm/init-arabica-testnet.sh).
 
 We can copy it over to our directory with the following commands:
 

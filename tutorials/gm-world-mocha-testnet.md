@@ -31,7 +31,7 @@ After the node is synced, stop the light node.
 ### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
 
 We have
-[a handy `init-mocha-testnet.sh` found in this repo](https://rollkit.dev/gm/init-mocha-testnet.sh).
+[a handy `init-mocha-testnet.sh` found in this repo](https://github.com/rollkit/docs/blob/main/public/gm/init-mocha-testnet.sh).
 
 We can copy it over to our directory with the following commands:
 
