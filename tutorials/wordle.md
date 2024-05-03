@@ -95,7 +95,7 @@ sudo mv ignite /usr/local/bin/
 ```
 
 This installs Ignite CLI in your local machine.
-This tutorial uses a MacOS but it should work for Windows.
+This tutorial uses a macOS but it should work for Windows.
 For Windows users, check out the Ignite docs on installation
 for Windows machines.
 

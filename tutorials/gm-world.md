@@ -22,7 +22,7 @@ This tutorial explores Rollkit, currently in Alpha. If you encounter bugs, pleas
 ### 🛠️ Dependencies {#dependencies}
 
 Rollkit uses the [Go programming language](https://go.dev/dl/). Here's how to install it:
-- **Linux or MacOS**: Run the provided script:
+- **Linux or macOS**: Run the provided script:
   ```bash
   curl -sSL https://raw.githubusercontent.com/rollkit/docs/main/scripts/install-go.sh | sh -s 1.22.2
   ```
@@ -33,6 +33,7 @@ Rollkit uses the [Go programming language](https://go.dev/dl/). Here's how to in
 Learn to run a local DA network, designed for educational purposes, on your machine.
 
 To set up a mock DA network node:
+
 ```bash
 curl -sSL https://raw.githubusercontent.com/rollkit/docs/main/scripts/install-mock-da.sh | sh v0.1.0 
 ```
@@ -42,12 +43,12 @@ This script builds and runs the node, now listening on port `7980`.
 
 With the local DA network running, let’s prepare your rollup blockchain.
 
-To make it simple we will donwload a repository with a `gm-world` rollup that has `init.sh` script that does all the setup for you.
+To make it simple we will download a repository with a `gm-world` rollup that has an `init.sh` script that does all the setup for you.
 
 Download and build a `gm-world` rollup with an interactive script in a new terminal:
 
 ::: warning
-In order to run it you need to have the jq command line tool installed. You can install it by running `sudo apt-get install jq` on Ubuntu or `brew install jq` on MacOS.
+In order to run it you need to have the jq command line tool installed. You can install it by running `sudo apt-get install jq` on Ubuntu or `brew install jq` on macOS.
 :::
 ::: tip
 If you get errors of `gmd` not found, you may need to add the `go/bin` directory to your PATH. You can do this by running `export PATH=$PATH:$HOME/go/bin` and then running the `init.sh` script manually again.
@@ -64,7 +65,7 @@ Start the rollup, posting to the local DA network:
 gmd start --rollkit.aggregator --minimum-gas-prices="0.025stake" --rollkit.da_address http://localhost:7980
 ```
 
-Notice how we specified DA network address along with few other flags. Now you should see the logs of running node:
+Notice how we specified the DA network address along with a few other flags. Now you should see the logs of the running node:
 ```
 12:21PM INF starting node with ABCI CometBFT in-process module=server
 12:21PM INF starting node with Rollkit in-process module=server
@@ -127,7 +128,7 @@ export KEY1=gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9
 export KEY2=gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
 ```
 
-Now let's submit a transaction that sends coins from one account to another (don't worry about all the flags, for now we just want to submit transaction from high perspective):
+Now let's submit a transaction that sends coins from one account to another (don't worry about all the flags, for now, we just want to submit transaction from a high level perspective):
 
 ```bash
 gmd tx bank send $KEY1 $KEY2 42069stake --keyring-backend test --chain-id gm --fees 5000stake
