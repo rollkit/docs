@@ -6,7 +6,7 @@ titleTemplate: ':title'
 hero:
   name: "Rollkit"
   text: "The first sovereign rollup framework"
-  tagline: Rollkit allows anyone to launch their own sovereign, customizable blockchain as easily as a smart contract
+  tagline: Launch a sovereign, customizable blockchain as easily as a smart contract
   image:
     src: /img/logo-big.svg
     alt: Rollkit
