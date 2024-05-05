@@ -4,7 +4,7 @@ description: Build a sovereign rollup with Ignite CLI, Celestia, and Rollkit loc
 
 # GM World Rollup
 
-## 🌞Introduction {#introduction}
+## 🌞 Introduction {#introduction}
 
 This tutorial will guide you through building a sovereign `gm-world` rollup (`gm` stands for "good morning") using Rollkit. Unlike the [quick start guide](https://rollkit.dev/tutorials/quick-start), this tutorial provides a more practical approach to understanding sovereign rollup development.
 
