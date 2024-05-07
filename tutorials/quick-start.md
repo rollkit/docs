@@ -2,6 +2,10 @@
 description: Quickly start a rollup node using the Rollkit CLI.
 ---
 
+<script setup>
+import constants from '../.vitepress/constants/constants.js'
+</script>
+
 # Quick start guide
 
 Welcome to Rollkit, a sovereign rollup framework! The easiest way to launch your sovereign rollup node is by using the Rollkit CLI.
@@ -10,8 +14,8 @@ Welcome to Rollkit, a sovereign rollup framework! The easiest way to launch your
 
 To install Rollkit, run the following command in your terminal:
 
-```bash
-curl -sSL https://rollkit.dev/install.sh | sh -s v0.13.2
+```bash-vue
+curl -sSL https://rollkit.dev/install.sh | sh -s {{constants.rollkitLatestTag}}
 ```
 
 Verify the installation by checking the Rollkit version:

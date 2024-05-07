@@ -193,13 +193,13 @@ function sidebarHome() {
       collapsed: true,
       items: [
         {
+          text: "Quick start guide",
+          link: "/tutorials/quick-start",
+        },
+        {
           text: "Rollkit",
           collapsed: true,
           items: [
-            {
-              text: "Quick start guide",
-              link: "/tutorials/quick-start",
-            },
             {
               text: "GM world rollup",
               link: "/tutorials/gm-world",
