@@ -19,6 +19,7 @@ No prior understanding of the build process is required, just that it utilizes t
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import Callout from '../.vitepress/components/callout.vue'
+import constants from '../.vitepress/constants/constants.js'
 </script>
 
 :::tip
@@ -32,11 +33,12 @@ Rollkit uses the [Go programming language](https://go.dev/dl/). Here's how to in
 
 - **Linux or macOS**: Run the provided script:
 
-  ```bash
-  curl -sSL https://rollkit.dev/install-go.sh | sh -s 1.22.2
+  ```bash-vue
+  curl -sSL https://rollkit.dev/install-go.sh | sh -s {{constants.golangVersion}}
   ```
 
-- **Windows**: Download and execute the [installer](https://go.dev/dl/go1.22.2.windows-amd64.msi).
+- **Windows**: Download and execute the <a :href="`https://go.dev/dl/go${constants.golangVersion}.windows-amd64.msi`">installer</a>.
+
 
 ## 🌐 Running a Local DA Network {#running-local-da}
 
@@ -44,8 +46,8 @@ Learn to run a local DA network, designed for educational purposes, on your mach
 
 To set up a mock DA network node:
 
-```bash
-curl -sSL https://rollkit.dev/install-mock-da.sh | sh v0.1.0 
+```bash-vue
+curl -sSL https://rollkit.dev/install-mock-da.sh | sh {{constants.mockDALatestTag}} 
 ```
 
 This script builds and runs the node, now listening on port `7980`.

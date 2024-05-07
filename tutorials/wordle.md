@@ -15,6 +15,7 @@ to extend this codebase.
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import Callout from '../.vitepress/components/callout.vue'
+import constants from '../.vitepress/constants/constants.js'
 </script>
 
 :::tip
@@ -35,8 +36,6 @@ in Ignite to understand all the different components in Cosmos-SDK before
 proceeding with this tutorial.
 
 * [GM world](/tutorials/gm-world)
-* [Nameservice Tutorial](https://docs.ignite.com/v0.25.2/guide/nameservice)
-* [Scavenger Hunt](https://docs.ignite.com/v0.25.2/guide/scavenge)
 
 You do not have to do those guides in order to follow this Wordle tutorial,
 but doing so helps you understand the architecture of Cosmos-SDK better.
@@ -89,8 +88,8 @@ You can read more about Ignite [here](https://docs.ignite.com).
 
 To install Ignite, you can run this command in your terminal:
 
-```bash
-curl https://get.ignite.com/cli@v28.3.0! | bash
+```bash-vue
+curl https://get.ignite.com/cli@{{constants.igniteVersionTag}}! | bash
 sudo mv ignite /usr/local/bin/
 ```
 
@@ -175,8 +174,8 @@ Rollkit on our codebase.
 
 Run the following command inside the `wordle` directory.
 
-```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.5-rollkit-v0.13.1-no-fraud-proofs
+```bash-vue
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@{{constants.rollkitCosmosSDKVersion}}
 go mod tidy
 go mod download
 ```
