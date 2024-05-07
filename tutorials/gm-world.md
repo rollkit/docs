@@ -1,5 +1,5 @@
 ---
-description: Build a sovereign rollup with Ignite CLI, Celestia, and Rollkit locally and on a testnet
+description: Build a sovereign rollup using only Rollkit CLI and mocked DA network
 ---
 
 # GM World Rollup
@@ -66,7 +66,7 @@ If you get errors of `gmd` not found, you may need to add the `go/bin` directory
 :::
 
 ```bash
-curl -sSL https://rollkit.dev/install-gm-rollup.sh | sh
+cd $HOME && curl -sSL https://rollkit.dev/install-gm-rollup.sh | sh
 ```
 
 ## 🚀 Starting Your Rollup {#start-your-rollup}
