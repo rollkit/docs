@@ -41,9 +41,10 @@ By using a generic application interface like [ABCI++](https://docs.cometbft.com
 Developers have full-freedom to deploy a VM or define their own execution environment, unconstrained by the overhead of an enshrined settlement layer that must process fraud or ZK proofs for their rollups. This means that instead of a canonical on-chain light client that comes with an enshrined settlement layer, sovereign rollups can define how they interoperate with other blockchains by having on-chain light clients of each other as needed.
 
 ## Take Control
+
 In the past, developers have been compelled to accept a degree of trust in convincing validators to organize and independently run nodes that secure a new blockchain. This requires launching premature tokens, inflating away their token supply in order to maintain incentive alignment with validators and offset their operational costs. This does not let developers focus on the core product they’re building. Sovereign rollups empower developers to get rid of this need to launch a token prematurely for bootstrapping a validator set and spending an excessively high amount of internal resources on blockchain development.
 
-Existing settled rollups come with the overhead of an enshrined settlement layer like Ethereum L1 where it is difficult and expensive to unwind a token on an L2 and move to another L2 without relying on trusted liquidity bridging intermediaries. This also comes with becoming subordinate to the social consensus of an enshrined settlement layer which they may or may not align with.
+Existing settled rollups come with the overhead of an enshrined settlement layer like Ethereum L1 where it is difficult and expensive to unwind a token on an L2 and move to another L2 without relying on trusted liquidity bridging intermediaries. This also comes with becoming subordinate to the social consensus of an enshrined settlement layer, which they may or may not align with.
 
 Sovereign rollups don’t need to settle to an external blockchain and can instead fully own their settlement. This allows them to protect against hacks and bugs, and facilitate upgrades via hard forks. They introduce rollup light clients that verify DA directly through data availability sampling and verify execution state proofs allowing asynchronous composability as needed. This in turn paves the path forward for trust-minimized interoperability between sovereign chains that share the same DA layer. 
 
@@ -56,8 +57,11 @@ Cosmos SDK’s rich array of developer tooling, battle-tested and refined over t
 Rollkit rollups interact with a state machine via the Application Blockchain Interface ([ABCI++](https://docs.cometbft.com/v0.38/spec/abci/)). This allows it to be used as an alternative to CometBFT for any ABCI application. Rollkit comes with a [custom start handler](https://github.com/rollkit/cosmos-sdk-starter) that can be used by Cosmos SDK blockchains to use it as its ABCI client while still following the release branches of upstream Cosmos SDK.  This compatibility enables developers to use tools like [abci-cli](https://docs.cometbft.com/v0.38/app-dev/abci-cli) to test and debug rollups.
 
 ## Optimize for your needs
+
 Rollkit allows developers to optimize between the different modular components  of a sovereign chain as needed. Rollkit allows you to:
+
 - Choose between data availability layers that implement the [go-da interface](https://github.com/rollkit/go-da).
+
 - Choose any ABCI++ compatible virtual machine.
 - Utilize the Sequencing API to delegate sequencing to the shared sequencer network of your choice or even delegate sequencing to the DA layer to go [based](https://ethresear.ch/t/based-rollups-superpowers-from-l1-sequencing/15016).
 - Choose between state validity modes: Pessimistic, Optimistic, or ZK or use a combination of both zk and optimistic schemes. 
