@@ -11,29 +11,29 @@ head:
       content: Rollkit, Cosmos-SDK
   - - meta
     - name: og:image
-      content: /introducing-rollkit/rollkit-blog-cover.jpg
+      content: /img/Rollkit-cover.jpg
 ---
 
 # Rollkit: The First Sovereign Rollup Framework
 
 By Rollkit
 
-![Rollkit blog cover](/introducing-rollkit/rollkit-blog-cover.jpg)
+![Rollkit blog cover](/img/Rollkit-cover.jpg)
 
 Bitcoin to Ethereum took 7 years.  Ethereum to more scalable alt-L1s took 1-2 years. And then Cosmos SDK and CometBFT brought down time-to-launch a sovereign L1 to months.
 
-Now, Rollkit makes deploying any VM or application on its own sovereign chain as easy as **rollkit start**.
+Now, Rollkit makes deploying any VM or application on its own sovereign chain as easy as typing **rollkit start**.
 
-<iframe
-     title="rollkit start"
-     src="https://x.com/JoshCStein/status/1783880747301880161"
-     allowfullscreen
-  >
-</iframe>
+<div>
+<code>
+<blockquote class="twitter-tweet" data-lang="en" data-theme="dark"><p lang="de" dir="ltr">rollkit start <a href="https://t.co/tytjFm1Z4Y">pic.twitter.com/tytjFm1Z4Y</a></p>&mdash; Josh Stein 🤳✨ (@JoshCStein) <a href="https://twitter.com/JoshCStein/status/1783880747301880161?ref_src=twsrc%5Etfw">April 26, 2024</a></blockquote>
+</code>
+</div>
+
 
 Rollkit provides a path to one-click sovereignty for any crypto application, enabling any developer to launch their own [sovereign rollups](https://blog.celestia.org/sovereign-rollup-chains/) within seconds.
 
-Sovereign rollups combine the self-governance of a Layer 1 with the ease of deploying a rollup. They remove the need to recruit a secure validator set or bootstrap security by prematurely launching a token. Just like an independent L1, Sovereign rollups retain the ability to hard fork which allows them to protect against hacks or bugs. This provides its community the ability to enforce social consensus and be sovereign.
+Sovereign rollups combine the self-governance of a Layer 1 with the ease of deploying a rollup. They remove the need to recruit a secure validator set or bootstrap security by prematurely launching a token. Just like an independent L1, sovereign rollups retain the ability to hard fork which allows them to protect against hacks or bugs. This provides its community the ability to enforce social consensus and be sovereign.
 
 Without the overhead of a settlement layer, sovereign rollups can directly interoperate with shared security when using the same DA layer.
 

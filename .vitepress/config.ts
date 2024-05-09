@@ -72,10 +72,10 @@ export default withMermaid({
     ],
     ["meta", { httpEquiv: "Content-Language", content: "en" }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
-    ["meta", { name: "twitter:image", content: "/img/Rollkit-og.png" }],
+    ["meta", { name: "twitter:image", content: "/img/Rollkit-cover.jpg" }],
     ["meta", { name: "twitter:site:domain", content: "rollkit.dev" }],
     ["meta", { name: "twitter:url", content: "https://rollkit.dev" }],
-    ["meta", { name: "og:image", content: "/img/Rollkit-og.png" }],
+    ["meta", { name: "og:image", content: "/img/Rollkit-cover.jpg" }],
     ["meta", { name: "apple-mobile-web-app-title", content: "Rollkit" }],
     [
       "script",
@@ -102,7 +102,7 @@ export default withMermaid({
         defer: true,
       },
     ],
-  ],
+      ],
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -183,7 +183,7 @@ function sidebarHome() {
         { text: "About Rollkit", link: "/learn/about" },
         { text: "Rollkit stack", link: "/learn/stack" },
         { text: "Transaction flow", link: "/learn/transaction-flow" },
-        { text: "Rollkit specs", link: "rollkit.github.io/rollkit" },
+        { text: "Rollkit specs", link: "https://rollkit.github.io/rollkit" },
       ],
     },
     {
@@ -289,7 +289,7 @@ function sidebarHome() {
         },
         {
           text: "Rollkit: The First Sovereign Rollup Framework",
-          link: "/blog/introducing-rollkit"
+          link: "/blog/rollkit-the-first-sovereign-rollup-framework",
         }
       ],
     },
