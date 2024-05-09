@@ -71,7 +71,7 @@ If you get errors of `gmd` not found, you may need to add the `go/bin` directory
 cd $HOME && curl -sSL https://rollkit.dev/install-gm-rollup.sh | sh
 ```
 
-## 🚀 Starting Your Rollup {#start-your-rollup}
+## 🚀 Starting your rollup {#start-your-rollup}
 
 Start the rollup, posting to the local DA network:
 

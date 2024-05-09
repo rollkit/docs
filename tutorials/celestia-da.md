@@ -2,11 +2,11 @@
 
 ## 🌞 Introduction {#introduction}
 
-This tutorial serves as a comprehensive guide for deploying your gm-world rollup on Celestia's data availability network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnet or mainnet beta.
+This tutorial serves as a comprehensive guide for deploying your gm-world rollup on Celestia's data availability network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
 
 Before proceeding, ensure that you have completed the [GM World Rollup](/tutorials/gm-world) tutorial, which covers setting up a local sovereign gm-world rollup and connecting it to a local mock DA node.
 
-## 🪶 Runnning a Celestia Light Node
+## 🪶 Running a Celestia light node
 
 Before you can start your rollup node, you need to initiate, sync, and possibly fund a light node on one of Celestia's networks:
 
@@ -14,22 +14,21 @@ Before you can start your rollup node, you need to initiate, sync, and possibly 
 - [Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet)
 - [Mainnet Beta](https://docs.celestia.org/nodes/mainnet#mainnet-beta)
 
-The main difference lies in how you fund your wallet address: using testnet tokens or [TIA](https://docs.celestia.org/learn/tia#overview-of-tia) for the mainnet beta.
+The main difference lies in how you fund your wallet address: using testnet TIA or [TIA](https://docs.celestia.org/learn/tia#overview-of-tia) for Mainnet Beta.
 
-After successfully starting a light node, it's time to start posting the blocks of data that your rollup generates.
+After successfully starting a light node, it's time to start posting the batches of blocks of data that your rollup generates.
 
-## 🧹 Cleaning Previous Chain History
+## 🧹 Cleaning previous chain history
 
-From the [GM World Rollup](/tutorials/gm-world) tutorial, you should already have the `gmd` binary and the `$HOME/.gm` directory.
+From the [GM world rollup](/tutorials/gm-world) tutorial, you should already have the `gmd` binary and the `$HOME/.gm` directory.
 
 To clear old rollup data:
 
 ```bash
 rm -r /usr/local/bin/gmd && rm -rf $HOME/.gm
-
 ```
 
-## 🏗️ Building Your Rollup
+## 🏗️ Building your rollup
 
 Now we need to rebuild our rollup by simply running the existing `init.sh` script:
 
@@ -39,9 +38,9 @@ cd $HOME/gm && bash init.sh
 
 This process creates a new `$HOME/.gm` directory and a new `gmd` binary. Next, we need to connect our rollup to the running Celestia light node.
 
-## 🛠️ Configuring Flags for DA
+## 🛠️ Configuring flags for DA
 
-Now we're ready to start our rollup and connect it to the Celestia light node. There are three DA configuration flags we need to provide to the `gmd start` command:
+Now we're prepared to initiate our rollup and establish a connection with the Celestia light node. The `gmd start` command requires three DA configuration flags:
 
 - `--rollkit.da_start_height`
 - `--rollkit.da_auth_token`
@@ -49,9 +48,10 @@ Now we're ready to start our rollup and connect it to the Celestia light node. T
 
 Let's determine what to provide for each of them.
 
-First, let's query the DA Layer start height using an RPC endpoint provided by Celestia Labs. For Mocha testnet it would be - https://rpc-mocha.pops.one/block, and for mainnet beta - https://rpc.lunaroasis.net/block
+First, let's query the DA Layer start height using an RPC endpoint provided by Celestia Labs. For Mocha testnet it would be - [https://rpc-mocha.pops.one/block](https://rpc-mocha.pops.one/block), and for mainnet beta - [https://rpc.lunaroasis.net/block](https://rpc.lunaroasis.net/block)
 
 Here is an example for the Mocha testnet (replace URL for mainnet beta if needed):
+
 ```bash
 DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
 echo -e "\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n"
@@ -63,14 +63,14 @@ You will see the output like this:
  Your DA_BLOCK_HEIGHT is 1777655
 ```
 
-Now, obtain an authentication token for your light node as follows (for mainnet beta, simply omit the --p2p.network flag):
+Now, obtain an authentication token for your light node as follows (for Mainnet Beta, simply omit the --p2p.network flag):
 
 ```bash
 AUTH_TOKEN=$(celestia light auth write --p2p.network mocha)
 echo -e "\n Your DA AUTH_TOKEN is $AUTH_TOKEN \n"
 ```
 
-The output would look like this:
+The output will look like this:
 
 ```bash
  Your DA AUTH_TOKEN is eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiXX0.cSrJjpfUdTNFtzGho69V0D_8kyECn9Mzv8ghJSpKRDE
@@ -83,19 +83,19 @@ DA_NAMESPACE=00000000000000000000000000000000000000000008e5f679bf7116cb
 ```
 
 :::tip
-`00000000000000000000000000000000000000000008e5f679bf7116cb` is a default namespace for mocha testnet. You can set your own by using a command
+`00000000000000000000000000000000000000000008e5f679bf7116cb` is a default namespace for Mocha testnet. You can set your own by using a command
 similar to this (or, you could get creative 😎):
 
 ```bash
 openssl rand -hex 10
 ```
 
-Replace the last 10 characters in `00000000000000000000000000000000000000000008e5f679bf7116cb` with the newly generated 10 characters.
+Replace the last 20 characters (10 bytes) in `00000000000000000000000000000000000000000008e5f679bf7116cb` with the newly generated 10 bytes.
 
 [Learn more about namespaces](https://docs.celestia.org/developers/node-tutorial#namespaces).
 :::
 
-## 🔥 Running Your Rollup Connected to a Celestia Light Node
+## 🔥 Running your rollup connected to a Celestia light node
 
 Now let's run our rollup node with all DA flags:
 
@@ -108,7 +108,7 @@ gmd start \
     --minimum-gas-prices="0.025stake"
 ```
 
-Now, the rollup is running and posting blocks (aggregated in batches) to Celestia. You can view your rollup by finding your namespace or account on [Mocha devnet](https://docs.celestia.org/nodes/mocha-testnet#explorers) or [mainnet beta](https://docs.celestia.org/nodes/mainnet#explorers) explorers.
+Now, the rollup is running and posting blocks (aggregated in batches) to Celestia. You can view your rollup by finding your namespace or account on [Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet#explorers) or [mainnet beta](https://docs.celestia.org/nodes/mainnet#explorers) explorers.
 
 ::: info 
 For details on configuring gas prices specifically for the DA network, see our [DA Network Gas Price Guide](/guides/gas-price). This is separate from the `--minimum-gas-prices="0.025stake"` setting, which is used for rollup network operations.
