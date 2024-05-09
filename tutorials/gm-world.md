@@ -68,7 +68,8 @@ If you get errors of `gmd` not found, you may need to add the `go/bin` directory
 :::
 
 ```bash
-cd $HOME && curl -sSL https://rollkit.dev/install-gm-rollup.sh | sh
+cd $HOME
+bash -c "$(curl -sSL https://rollkit.dev/install-gm-rollup.sh)"
 ```
 
 ## 🚀 Starting your rollup {#start-your-rollup}
