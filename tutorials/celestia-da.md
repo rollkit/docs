@@ -2,7 +2,7 @@
 
 ## 🌞 Introduction {#introduction}
 
-This tutorial serves as a comprehensive guide for deploying your GM world rollup on Celestia's data availability network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
+This tutorial serves as a comprehensive guide for deploying your GM world rollup on Celestia's data availability (DA) network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
 
 Before proceeding, ensure that you have completed the [GM world rollup](/tutorials/gm-world) tutorial, which covers setting up a local sovereign gm-world rollup and connecting it to a local mock DA node.
 
@@ -10,9 +10,9 @@ Before proceeding, ensure that you have completed the [GM world rollup](/tutoria
 
 Before you can start your rollup node, you need to initiate, sync, and possibly fund a light node on one of Celestia's networks:
 
-- [Arabica Devnet](https://docs.celestia.org/nodes/arabica-devnet#arabica-devnet)
-- [Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet)
-- [Mainnet Beta](https://docs.celestia.org/nodes/mainnet#mainnet-beta)
+- [Arabica Devnet](https://docs.celestia.org/nodes/arabica-devnet)
+- [Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet)
+- [Mainnet Beta](https://docs.celestia.org/nodes/mainnet)
 
 The main difference lies in how you fund your wallet address: using testnet TIA or [TIA](https://docs.celestia.org/learn/tia#overview-of-tia) for Mainnet Beta.
 
@@ -116,4 +116,4 @@ For details on configuring gas prices specifically for the DA network, see our [
 
 ## 🎉 Next steps
 
-Congratulations! You've built a local rollup that posts to Celestia's testnet or mainnet. Well done! Now, go forth and build something great! Good luck!
+Congratulations! You've built a local rollup that posts to Celestia's testnets or Mainnet Beta. Well done! Now, go forth and build something great! Good luck!

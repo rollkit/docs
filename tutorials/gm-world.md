@@ -1,8 +1,8 @@
 ---
-description: Build a sovereign rollup using only Rollkit CLI and mocked DA network
+description: Build a sovereign rollup using only Rollkit CLI and a mock DA network.
 ---
 
-# GM World Rollup
+# GM world rollup
 
 ## 🌞 Introduction {#introduction}
 
