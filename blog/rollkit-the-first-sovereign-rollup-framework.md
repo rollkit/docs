@@ -43,7 +43,7 @@ In the past, developers have been compelled to accept a degree of trust in convi
 
 Existing settled rollups come with the overhead of an enshrined settlement layer like Ethereum L1 where it is difficult and expensive to unwind a token on an L2 and move to another L2 without relying on trusted liquidity bridging intermediaries. This also comes with becoming subordinate to the social consensus of an enshrined settlement layer, which they may or may not align with.
 
-Sovereign rollups don’t need to settle to an external blockchain and can instead fully own their settlement. This allows them to protect against hacks and bugs, and facilitate upgrades via hard forks. They introduce rollup light clients that verify DA directly through data availability sampling and verify execution state proofs allowing asynchronous composability as needed. This in turn paves the path forward for trust-minimized interoperability between sovereign chains that share the same DA layer. 
+Sovereign rollups don’t need to settle to an external blockchain and can instead fully own their settlement. This allows them to protect against hacks and bugs, and facilitate upgrades via hard forks. They introduce rollup light clients that verify DA directly through data availability sampling and verify execution state proofs allowing asynchronous composability as needed. This in turn paves the path forward for trust-minimized interoperability between sovereign chains that share the same DA layer.
 
 Sovereign rollups remove the need to have a bridge contract that is upgradeable by an offchain council and instead allows the sovereign community to define rules via fully onchain governance.
 
@@ -61,8 +61,8 @@ Rollkit allows developers to optimize between the different modular components  
 
 - Choose any ABCI++ compatible virtual machine.
 - Utilize the Sequencing API to delegate sequencing to the shared sequencer network of your choice or even delegate sequencing to the DA layer to go [based](https://ethresear.ch/t/based-rollups-superpowers-from-l1-sequencing/15016).
-- Choose between state validity modes: Pessimistic, Optimistic, or ZK or use a combination of both zk and optimistic schemes. 
-- Eliminate the need to launch a token or designate the native token or any token for gas fees. 
+Choose between state validity modes: Pessimistic, Optimistic, or ZK or use a combination of both zk and optimistic schemes.
+Eliminate the need to launch a token or designate the native token or any token for gas fees.
 - Customize block time to just a couple hundred milliseconds and produce blocks only when needed.
 - Configure the fork choice rule.
 
