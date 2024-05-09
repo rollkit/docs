@@ -40,7 +40,6 @@ By using a generic application interface like [ABCI++](https://docs.cometbft.com
 
 Developers have full-freedom to deploy a VM or define their own execution environment, unconstrained by the overhead of an enshrined settlement layer that must process fraud or ZK proofs for their rollups. This means that instead of a canonical on-chain light client that comes with an enshrined settlement layer, sovereign rollups can define how they interoperate with other blockchains by having on-chain light clients of each other as needed.
 
-
 ## Take Control
 In the past, developers have been compelled to accept a degree of trust in convincing validators to organize and independently run nodes that secure a new blockchain. This requires launching premature tokens, inflating away their token supply in order to maintain incentive alignment with validators and offset their operational costs. This does not let developers focus on the core product they’re building. Sovereign rollups empower developers to get rid of this need to launch a token prematurely for bootstrapping a validator set and spending an excessively high amount of internal resources on blockchain development.
 
