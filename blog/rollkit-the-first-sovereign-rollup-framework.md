@@ -18,14 +18,13 @@ head:
 import Twitter from '../.vitepress/components/twitter.vue'
 </script>
 
-
 # Rollkit: The First Sovereign Rollup Framework
 
 By Rollkit
 
 ![Rollkit blog cover](/img/Rollkit-cover.jpg)
 
-Bitcoin to Ethereum took 7 years.  Ethereum to more scalable alt-L1s took 1-2 years. And then Cosmos SDK and CometBFT brought down time-to-launch a sovereign L1 to months.
+Bitcoin to Ethereum took 7 years.  Ethereum to more scalable alt-L1s took 1–2 years. And then Cosmos SDK and CometBFT brought down time-to-launch a sovereign L1 to months.
 
 Now, Rollkit makes deploying any VM or application on its own sovereign chain as easy as typing **rollkit start**.
 
