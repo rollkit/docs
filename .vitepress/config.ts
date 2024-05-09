@@ -102,8 +102,14 @@ export default withMermaid({
         defer: true,
       },
     ],
-      ],
-
+    [
+      "script",
+      {
+        src: "https://platform.twitter.com/widgets.js",
+	async: true,
+      },
+    ],
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: nav(),

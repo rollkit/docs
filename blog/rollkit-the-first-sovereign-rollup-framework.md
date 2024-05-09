@@ -14,6 +14,11 @@ head:
       content: /img/Rollkit-cover.jpg
 ---
 
+<script setup>
+import Twitter from '../.vitepress/components/twitter.vue'
+</script>
+
+
 # Rollkit: The First Sovereign Rollup Framework
 
 By Rollkit
@@ -24,12 +29,7 @@ Bitcoin to Ethereum took 7 years.  Ethereum to more scalable alt-L1s took 1-2 ye
 
 Now, Rollkit makes deploying any VM or application on its own sovereign chain as easy as typing **rollkit start**.
 
-<div>
-<code>
-<blockquote class="twitter-tweet" data-lang="en" data-theme="dark"><p lang="de" dir="ltr">rollkit start <a href="https://t.co/tytjFm1Z4Y">pic.twitter.com/tytjFm1Z4Y</a></p>&mdash; Josh Stein 🤳✨ (@JoshCStein) <a href="https://twitter.com/JoshCStein/status/1783880747301880161?ref_src=twsrc%5Etfw">April 26, 2024</a></blockquote>
-</code>
-</div>
-
+<Twitter />
 
 Rollkit provides a path to one-click sovereignty for any crypto application, enabling any developer to launch their own [sovereign rollups](https://blog.celestia.org/sovereign-rollup-chains/) within seconds.
 
