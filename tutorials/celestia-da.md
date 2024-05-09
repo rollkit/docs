@@ -59,7 +59,7 @@ echo -e "\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n"
 
 You will see the output like this:
 
-```
+```bash
  Your DA_BLOCK_HEIGHT is 1777655
 ```
 
