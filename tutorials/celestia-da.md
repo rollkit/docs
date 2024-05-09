@@ -72,7 +72,7 @@ echo -e "\n Your DA AUTH_TOKEN is $AUTH_TOKEN \n"
 
 The output would look like this:
 
-```
+```bash
  Your DA AUTH_TOKEN is eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiXX0.cSrJjpfUdTNFtzGho69V0D_8kyECn9Mzv8ghJSpKRDE
 ```
 
