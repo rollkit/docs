@@ -9,9 +9,6 @@ head:
   - - meta
     - name: keywords
       content: Rollkit, Cosmos-SDK
-  - - meta
-    - name: og:image
-      content: /img/Rollkit-cover.jpg
 ---
 
 <script setup>
