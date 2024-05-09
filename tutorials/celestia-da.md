@@ -110,7 +110,7 @@ gmd start \
 
 Now, the rollup is running and posting blocks (aggregated in batches) to Celestia. You can view your rollup by finding your namespace or account on [Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet#explorers) or [mainnet beta](https://docs.celestia.org/nodes/mainnet#explorers) explorers.
 
-::: info 
+::: info
 For details on configuring gas prices specifically for the DA network, see our [DA Network Gas Price Guide](/guides/gas-price). This is separate from the `--minimum-gas-prices="0.025stake"` setting, which is used for rollup network operations.
 :::
 
