@@ -11,7 +11,7 @@ head:
       content: Rollkit, Celestia
   - - meta
     - name: og:image
-      content: /img/introducing-rollkit/rollkit-blog-cover.png
+      content: /introducing-rollkit/rollkit-blog-cover.jpg
 ---
 
 # Sovereign rollups on Bitcoin with Rollkit

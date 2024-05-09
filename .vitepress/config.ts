@@ -287,6 +287,10 @@ function sidebarHome() {
           text: "Sovereign rollups on Bitcoin with Rollkit",
           link: "/blog/sovereign-rollups-on-bitcoin",
         },
+        {
+          text: "Rollkit: The First Sovereign Rollup Framework",
+          link: "/blog/introducing-rollkit"
+        }
       ],
     },
   ];
