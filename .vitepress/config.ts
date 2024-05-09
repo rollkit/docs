@@ -63,21 +63,19 @@ export default withMermaid({
           "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
       },
     ],
-    // ['meta', { property: 'og:title', content: 'Rollkit' }],
-    // ['meta', { property: 'og:description', content: 'The open modular framework for sovereign rollups.' }],
     [
       "meta",
       {
         property: "description",
-        content: "The open modular framework for sovereign rollups.",
+        content: "The first sovereign rollup framework.",
       },
     ],
     ["meta", { httpEquiv: "Content-Language", content: "en" }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
-    ["meta", { name: "twitter:image", content: "/img/Rollkit-og.png" }],
+    ["meta", { name: "twitter:image", content: "/img/Rollkit-cover.jpg" }],
     ["meta", { name: "twitter:site:domain", content: "rollkit.dev" }],
     ["meta", { name: "twitter:url", content: "https://rollkit.dev" }],
-    ["meta", { name: "og:image", content: "/img/Rollkit-og.png" }],
+    ["meta", { name: "og:image", content: "/img/Rollkit-cover.jpg" }],
     ["meta", { name: "apple-mobile-web-app-title", content: "Rollkit" }],
     [
       "script",
@@ -104,8 +102,14 @@ export default withMermaid({
         defer: true,
       },
     ],
+    [
+      "script",
+      {
+        src: "https://platform.twitter.com/widgets.js",
+	async: true,
+      },
+    ],
   ],
-
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: nav(),
@@ -185,7 +189,7 @@ function sidebarHome() {
         { text: "About Rollkit", link: "/learn/about" },
         { text: "Rollkit stack", link: "/learn/stack" },
         { text: "Transaction flow", link: "/learn/transaction-flow" },
-        { text: "Rollkit specs", link: "rollkit.github.io/rollkit" },
+        { text: "Rollkit specs", link: "https://rollkit.github.io/rollkit" },
       ],
     },
     {
@@ -289,6 +293,10 @@ function sidebarHome() {
           text: "Sovereign rollups on Bitcoin with Rollkit",
           link: "/blog/sovereign-rollups-on-bitcoin",
         },
+        {
+          text: "Rollkit: The First Sovereign Rollup Framework",
+          link: "/blog/rollkit-the-first-sovereign-rollup-framework",
+        }
       ],
     },
   ];
