@@ -117,4 +117,4 @@ else
 	echo "$GO_BIN_PATH is already in PATH."
 fi
 
-/usr/local/go/bin/go version
+$(which go) version

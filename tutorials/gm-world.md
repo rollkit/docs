@@ -34,7 +34,7 @@ Rollkit uses the [Go programming language](https://go.dev/dl/). Here's how to in
 - **Linux or macOS**: Run the provided script:
 
   ```bash-vue
-  curl -sSL https://rollkit.dev/install-go.sh | sh -s {{constants.golangVersion}}
+  curl -sSL https://rollkit.dev/install-go.sh | bash -s {{constants.golangVersion}}
   ```
 
 - **Windows**: Download and execute the <a :href="`https://go.dev/dl/go${constants.golangVersion}.windows-amd64.msi`">installer</a>.
