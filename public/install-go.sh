@@ -7,11 +7,10 @@
 deps=( curl jq )
 
 for dep in "${deps[@]}"; do
-    if ! command -v "$dep" &> /dev/null; then
-        echo "$dep is not installed. Downloading and executing the script..."
-        curl -sSL https://rollkit.dev/install-jq.sh | bash
-        exit $?
-    fi
+	if ! command -v "$dep" &> /dev/null; then
+		echo "$dep is not installed. Downloading and executing the script..."
+		curl -sSL https://rollkit.dev/install-jq.sh | bash
+	fi
 done
 
 version="${1:-$(curl -s 'https://go.dev/dl/?mode=json' | jq -r '.[0].version')}"
@@ -25,15 +24,26 @@ update_go() {
 	local arch="$1"
 	local os="$2"
 
-	local go_url="https://golang.org/dl/${version}.${os}-${arch}.tar.gz"
+	local go_url="https://golang.org/dl/go${version}.${os}-${arch}.tar.gz"
 
-	curl -so "/tmp/${version}.${os}-${arch}.tar.gz" -L "$go_url" && \
-		rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/${version}.${os}-${arch}.tar.gz
+	echo "Downloading Go from ${go_url}"
 
-	tar -C /usr/local -xzf "/tmp/${version}.${os}-${arch}.tar.gz" && \
-		echo "Go updated to version ${version}"
+	curl -so "/tmp/go${version}.${os}-${arch}.tar.gz" -L "$go_url"
+	if [ $? -eq 0 ]; then
+		tar -C /usr/local -xzf "/tmp/go${version}.${os}-${arch}.tar.gz"
+		if [ $? -ne 0 ]; then
+			echo "Failed to extract Go. Possibly corrupted download."
+			rm "/tmp/go${version}.${os}-${arch}.tar.gz"
+			exit 1
+		else
+			echo "Go updated to version ${version}"
+		fi
+	else
+		echo "Failed to download Go from ${go_url}"
+		exit 1
+	fi
 
-	rm "/tmp/${version}.${os}-${arch}.tar.gz"
+	rm "/tmp/go${version}.${os}-${arch}.tar.gz"
 }
 
 case "$(uname -s)" in
