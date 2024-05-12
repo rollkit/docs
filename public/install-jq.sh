@@ -5,6 +5,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     if ! command -v brew &> /dev/null; then
         echo "Homebrew is not installed. Installing Homebrew..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	# adding /opt/homebrew/bin to the $PATH variable based on the shell
+	if [[ -f "$HOME/.bash_profile" ]]; then
+		echo 'export PATH="/opt/homebrew/bin:$PATH"' >> "$HOME/.bash_profile"
+		source "$HOME/.bash_profile"
+	elif [[ -f "$HOME/.zshrc" ]]; then
+		echo 'export PATH="/opt/homebrew/bin:$PATH"' >> "$HOME/.zshrc"
+		source "$HOME/.zshrc"
+	else
+		echo "Unsupported shell. Please add /opt/homebrew/bin to your PATH manually."
+
     fi
     brew install jq
     echo "jq has been installed successfully."
