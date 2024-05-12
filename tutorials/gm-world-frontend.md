@@ -1,3 +1,8 @@
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '../.vitepress/constants/constants.js'
+</script>
+
 #  GM World UI App
 
 This tutorial aims to demonstrate the user interface (UI) application aspect of connecting a wallet to a rollup, showcasing that it's as straightforward as connecting to any other blockchain. It assumes you have the [Keplr](https://www.keplr.app/) wallet extension installed in your browser.
@@ -9,9 +14,10 @@ Before you start, ensure you have completed the [GM world](/tutorials/gm-world) 
 You will also need Yarn installed for web app development.
 
 :::tip
-If you don't have yarn, run this command to install it using cURL on most Linux distros and macOS:
+If you don't have yarn or nodejs, run this command to install it using cURL on most Linux distros and macOS:
+
 ```bash
-curl -o- -L https://yarnpkg.com/install.sh | bash
+curl -sSL https://rollkit.dev/install-yarn.sh | bash -s {{constants.nodeVersion}} {{constants.yarnVersion}}
 ```
 :::
 
