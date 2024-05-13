@@ -1,11 +1,16 @@
+# GM World UI App
+
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import constants from '../.vitepress/constants/constants.js'
+import Callout from '../.vitepress/components/callout.vue'
 </script>
 
-#  GM World UI App
-
 This tutorial aims to demonstrate the user interface (UI) application aspect of connecting a wallet to a rollup, showcasing that it's as straightforward as connecting to any other blockchain. It assumes you have the [Keplr](https://www.keplr.app/) wallet extension installed in your browser.
+
+:::tip
+<Callout />
+:::
 
 ## 🛠 Prerequisites
 
@@ -19,6 +24,7 @@ If you don't have Yarn or Node.js, run this command to install it using cURL on 
 ```bash-vue
 curl -sSL https://rollkit.dev/install-yarn.sh | bash -s {{constants.nodeVersion}} {{constants.yarnVersion}}
 ```
+
 :::
 
 ## 🚀 Starting an App
@@ -30,7 +36,8 @@ curl -sSL https://rollkit.dev/install-gm-frontend-app.sh | bash
 ```
 
 You should see the following output indicating that the development server is up and running:
-```
+
+```bash
 ready - started server on 0.0.0.0:3000, url: http://localhost:3000
 info  - SWC minify release candidate enabled. https://nextjs.link/swcmin
 event - compiled client and server successfully in 7.8s (2225 modules)
@@ -53,4 +60,3 @@ If you run into any issues, make sure your Keplr wallet is updated and set to co
 ## 🎉 Next Steps
 
 Congratulations! You've experienced connecting to a rollup from the user side — simple and straightforward. Now, you might consider exploring how to add more application logic to your rollup using the Cosmos SDK, as demonstrated in our Wordle App tutorial.
-
