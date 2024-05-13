@@ -4,14 +4,17 @@
 # Multi-platform (Linux and macOS)
 # Multi-architecture (amd64, arm64, arm) support
 
-deps=( curl jq )
+# if curl is not installed then install it
+if ! command -v curl &> /dev/null; then
+	echo "curl is not installed. Please install curl and try again."
+	exit 1
+fi
 
-for dep in "${deps[@]}"; do
-	if ! command -v "$dep" &> /dev/null; then
-		echo "$dep is not installed. Downloading and executing the script..."
-		curl -sSL https://rollkit.dev/install-jq.sh | bash
-	fi
-done
+# if jq is not installed then install it using the script
+if ! command -v jq &> /dev/null; then
+	echo "jq is not installed. Downloading and executing the script..."
+	curl -sSL https://rollkit.dev/install-jq.sh | bash
+fi
 
 version="${1:-$(curl -s 'https://go.dev/dl/?mode=json' | jq -r '.[0].version')}"
 current="$(/usr/local/go/bin/go version 2>/dev/null | awk '{print $3}')"
