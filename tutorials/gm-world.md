@@ -34,11 +34,12 @@ Rollkit uses the [Go programming language](https://go.dev/dl/). Here's how to in
 - **Linux or macOS**: Run the provided script:
 
   ```bash-vue
-  curl -sSL https://rollkit.dev/install-go.sh | sh -s {{constants.golangVersion}}
+  curl -sSL https://rollkit.dev/install-go.sh | bash -s {{constants.golangVersion}}
   ```
 
+<!-- markdownlint-disable MD033 -->
 - **Windows**: Download and execute the <a :href="`https://go.dev/dl/go${constants.golangVersion}.windows-amd64.msi`">installer</a>.
-
+<!-- markdownlint-enable MD033 -->
 
 ## 🌐 Running a Local DA Network {#running-local-da}
 
@@ -47,7 +48,7 @@ Learn to run a local DA network, designed for educational purposes, on your mach
 To set up a mock DA network node:
 
 ```bash-vue
-curl -sSL https://rollkit.dev/install-mock-da.sh | sh {{constants.mockDALatestTag}} 
+curl -sSL https://rollkit.dev/install-mock-da.sh | bash {{constants.mockDALatestTag}} 
 ```
 
 This script builds and runs the node, now listening on port `7980`.
