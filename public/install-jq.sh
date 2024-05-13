@@ -7,13 +7,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 		# adding /opt/homebrew/bin to the $PATH variable based on the shell
 		if [[ -f "$HOME/.bash_profile" ]]; then
-			echo 'export PATH="/opt/homebrew/bin:$PATH"' >> "$HOME/.bash_profile"
+			echo "export PATH=\"/opt/homebrew/bin:\$PATH\"" >> "$HOME/.bash_profile"
 			source "$HOME/.bash_profile"
 		elif [[ -f "$HOME/.bashrc" ]]; then
-			echo 'export PATH="/opt/homebrew/bin:$PATH"' >> "$HOME/.bashrc"
+			echo "export PATH=\"/opt/homebrew/bin:\$PATH\"" >> "$HOME/.bashrc"
 			source "$HOME/.bashrc"
 		elif [[ -f "$HOME/.zshrc" ]]; then
-			echo 'export PATH="/opt/homebrew/bin:$PATH"' >> "$HOME/.zshrc"
+			echo "export PATH=\"/opt/homebrew/bin:\$PATH\"" >> "$HOME/.zshrc"
 			source "$HOME/.zshrc"
 		else
 			echo "Unsupported shell. Please add /opt/homebrew/bin to your PATH manually."
