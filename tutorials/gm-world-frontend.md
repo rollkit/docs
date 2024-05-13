@@ -8,7 +8,7 @@ import Callout from '../.vitepress/components/callout.vue'
 
 This tutorial aims to demonstrate the user interface (UI) application aspect of connecting a wallet to a rollup, showcasing that it's as straightforward as connecting to any other blockchain. It assumes you have the [Keplr](https://www.keplr.app/) wallet extension installed in your browser.
 
-:::tip
+::: tip
 <Callout />
 :::
 
@@ -51,7 +51,7 @@ Click the "Connect Wallet" button on the page, and approve the connection reques
 
 Once authorized, your wallet address will be displayed, confirming that your wallet is successfully connected.
 
-![gm-world-frontend-connected](/public/img/gm-world-frontend-wallet-connected.png)
+![gm-world-frontend-connected](/img/gm-world-frontend-wallet-connected.png)
 
 :::tip
 If you run into any issues, make sure your Keplr wallet is updated and set to connect to your local environment.
