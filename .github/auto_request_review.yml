@@ -1,0 +1,23 @@
+reviewers:
+  defaults:
+    - rollkit
+  groups:
+    rollkit:
+      - Manav-Aggarwal
+      - tzdybal
+      - gupadhyaya
+      - tuxcanfly
+      - MSevey
+      - yarikbratashchuk
+      - jcstein
+files:
+  "**":
+    - rollkit
+  ".github/**":
+    - MSevey
+    - rollkit
+options:
+  ignore_draft: true
+  ignored_keywords:
+    - WIP
+  number_of_reviewers: 3
