@@ -16,8 +16,6 @@ if [ "$2" != '' ]; then
 	INSTALL_YARN_VER=$2
 fi
 
-
-
 echo "==> Ensuring .bashrc exists and is writable"
 touch ~/.bashrc
 
@@ -65,4 +63,4 @@ echo "==> List installed node versions"
 nvm ls
 
 nvm cache clear
-echo "==> Now you're all setup and ready for development. If changes are yet totake effect, I suggest you restart your computer"
+echo "==> Now you're all setup and ready for development. If changes are yet to take effect, I suggest you restart your computer"
