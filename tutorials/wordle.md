@@ -595,7 +595,7 @@ wordled tx wordle submit-wordle giant --from wordle-key --keyring-backend test -
 
 > NOTE: We are submitting a transaction asynchronously to avoid
   any timeout errors. With Rollkit as a replacement to CometBFT, we
-  need to wait for data availability network to ensure a block
+  need to wait for the data availability network to ensure a block
   was included from Wordle, before proceeding to the next block. Currently,
   in Rollkit, the single aggregator is not moving forward with the next block
   production as long as it is trying to submit the current block to the DA network.
