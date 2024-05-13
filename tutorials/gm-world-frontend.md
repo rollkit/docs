@@ -23,6 +23,8 @@ If you don't have Yarn or Node.js, run this command to install it using cURL on 
 
 ```bash-vue
 curl -sSL https://rollkit.dev/install-yarn.sh | bash -s {{constants.nodeVersion}} {{constants.yarnVersion}}
+```
+
 :::
 
 ## 🚀 Starting an app
