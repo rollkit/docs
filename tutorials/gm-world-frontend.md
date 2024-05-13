@@ -44,6 +44,8 @@ Click the "Connect Wallet" button on the page, and approve the connection reques
 
 Once authorized, your wallet address will be displayed, confirming that your wallet is successfully connected.
 
+![gm-world-frontend-connected](/public/img/gm-world-frontend-wallet-connected.png)
+
 :::tip
 If you run into any issues, make sure your Keplr wallet is updated and set to connect to your local environment.
 :::
