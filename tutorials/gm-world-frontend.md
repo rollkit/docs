@@ -1,4 +1,4 @@
-# GM World UI App
+# GM world UI app
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
@@ -27,7 +27,7 @@ curl -sSL https://rollkit.dev/install-yarn.sh | bash -s {{constants.nodeVersion}
 
 :::
 
-## 🚀 Starting an App
+## 🚀 Starting an app
 
 We've simplified the process by preparing a repository with the necessary scaffolding and configuration for our local rollup. Run a command to download the code, install dependencies, and start the development server:
 
@@ -43,7 +43,7 @@ info  - SWC minify release candidate enabled. https://nextjs.link/swcmin
 event - compiled client and server successfully in 7.8s (2225 modules)
 ```
 
-## 🔗 Connecting Your Wallet
+## 🔗 Connecting your wallet
 
 To connect your Keplr wallet to the application, simply open your browser and go to [http://localhost:3000](https://localhost:3000).
 
@@ -57,6 +57,6 @@ Once authorized, your wallet address will be displayed, confirming that your wal
 If you run into any issues, make sure your Keplr wallet is updated and set to connect to your local environment.
 :::
 
-## 🎉 Next Steps
+## 🎉 Next steps
 
 Congratulations! You've experienced connecting to a rollup from the user side — simple and straightforward. Now, you might consider exploring how to add more application logic to your rollup using the Cosmos SDK, as demonstrated in our Wordle App tutorial.
