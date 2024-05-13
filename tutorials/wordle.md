@@ -759,5 +759,4 @@ There are many ways this codebase can be extended:
 
 ## 🎉 Next steps
 
-Congratulations! You've built a Wordle app using Cosmos-SDK and Rollkit.
 Congratulations! You've built a Wordle app using Cosmos-SDK and Rollkit. Now, explore connecting your rollup to DA networks like Celestia.
