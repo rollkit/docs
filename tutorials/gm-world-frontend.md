@@ -16,7 +16,7 @@ You will also need Yarn installed for web app development.
 :::tip
 If you don't have yarn or nodejs, run this command to install it using cURL on most Linux distros and macOS:
 
-```bash
+```bash-vue
 curl -sSL https://rollkit.dev/install-yarn.sh | bash -s {{constants.nodeVersion}} {{constants.yarnVersion}}
 ```
 :::
