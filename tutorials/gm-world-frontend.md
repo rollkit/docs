@@ -26,7 +26,7 @@ curl -sSL https://rollkit.dev/install-yarn.sh | bash -s {{constants.nodeVersion}
 We've simplified the process by preparing a repository with the necessary scaffolding and configuration for our local rollup. Run a command to download the code, install dependencies, and start the development server:
 
 ```bash
-curl -sSL https://rollkit.dev/install-gm-frontend-app.sh | sh
+curl -sSL https://rollkit.dev/install-gm-frontend-app.sh | bash
 ```
 
 You should see the following output indicating that the development server is up and running:
