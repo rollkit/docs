@@ -14,7 +14,7 @@ Before you start, ensure you have completed the [GM world](/tutorials/gm-world) 
 You will also need Yarn installed for web app development.
 
 :::tip
-If you don't have yarn or nodejs, run this command to install it using cURL on most Linux distros and macOS:
+If you don't have Yarn or Node.js, run this command to install it using cURL on most Linux distros and macOS:
 
 ```bash-vue
 curl -sSL https://rollkit.dev/install-yarn.sh | bash -s {{constants.nodeVersion}} {{constants.yarnVersion}}
