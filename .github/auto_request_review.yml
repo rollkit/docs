@@ -1,5 +1,6 @@
 reviewers:
   defaults:
+    - jcstein
     - rollkit
   groups:
     rollkit:
@@ -9,12 +10,10 @@ reviewers:
       - tuxcanfly
       - MSevey
       - yarikbratashchuk
-      - jcstein
 files:
-  "**":
-    - rollkit
   ".github/**":
     - MSevey
+    - jcstein
     - rollkit
 options:
   ignore_draft: true
