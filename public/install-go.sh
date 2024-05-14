@@ -17,7 +17,8 @@ if ! command -v jq &> /dev/null; then
 fi
 
 # Define the Go binary path
-GO_BIN_PATH="$HOME/go/bin"
+GO_BIN_PATH="/usr/local/go/bin"
+GO_UNTAR_PATH="/usr/local"
 
 version="${1:-$(curl -sSL 'https://go.dev/dl/?mode=json' | jq -r '.[0].version')}"
 
@@ -37,7 +38,7 @@ update_go() {
 
 	curl -so "/tmp/${version}.${os}-${arch}.tar.gz" -L "$go_url"
 	if [ $? -eq 0 ]; then
-		tar -C $HOME -xzf "/tmp/${version}.${os}-${arch}.tar.gz"
+		tar -C $GO_UNTAR_PATH -xzf "/tmp/${version}.${os}-${arch}.tar.gz"
 		if [ $? -ne 0 ]; then
 			echo "Failed to extract Go. Possibly corrupted download."
 			rm "/tmp/${version}.${os}-${arch}.tar.gz"
@@ -53,49 +54,10 @@ update_go() {
 	rm "/tmp/${version}.${os}-${arch}.tar.gz"
 }
 
-case "$(uname -s)" in
-	Linux)
-		case "$(uname -m)" in
-			armv6l|armv7l)
-				update_go "armv6l" "linux"
-				;;
-			arm64)
-				update_go "arm64" "linux"
-				;;
-			x86_64)
-				update_go "amd64" "linux"
-				;;
-			*)
-				echo "Unsupported architecture: $(uname -m)" >&2
-				exit 1
-				;;
-		esac
-		;;
-	Darwin)
-		case "$(uname -m)" in
-			arm64)
-				update_go "arm64" "darwin"
-				;;
-			x86_64)
-				update_go "amd64" "darwin"
-				;;
-			*)
-				echo "Unsupported architecture: $(uname -m)" >&2
-				exit 1
-				;;
-		esac
-		;;
-	*)
-		echo "Unsupported operating system: $(uname -s)" >&2
-		exit 1
-		;;
-esac
-
 # Function to add path to the specific shell config file
 add_path_to_config() {
     local config_file="$1"
 
-    # Check if the Go bin path is already in the config file to prevent duplicates
     if ! grep -q "export PATH=.*$GO_BIN_PATH" "$config_file" ; then
 	    echo "export PATH=\"\$PATH:$GO_BIN_PATH\"" >> "$config_file"
 	    echo "Added $GO_BIN_PATH to $config_file"
@@ -103,6 +65,41 @@ add_path_to_config() {
 	    echo "$GO_BIN_PATH is already in $config_file"
     fi
 }
+
+case "$(uname -s)" in
+	Linux)
+		OS="linux"
+		;;
+	Darwin)
+		OS="darwin"
+		;;
+	*)
+		echo "Unsupported operating system: $(uname -s)" >&2
+		exit 1
+		;;
+esac
+
+# Determine the architecture
+case "$(uname -m)" in
+	armv6l)
+		ARCH="armv6l"
+		;;
+	armv7l)
+		ARCH="armv7l"
+		;;
+	arm64)
+		ARCH="arm64"
+		;;
+	x86_64)
+		ARCH="amd64"
+		;;
+	*)
+		echo "Unsupported architecture: $(uname -m)" >&2
+		exit 1
+		;;
+esac
+
+update_go "$ARCH" "$OS"
 
 # Determine shell and appropriate config file
 if [[ -n "$ZSH_VERSION" ]]; then
@@ -121,27 +118,8 @@ else
 	exit 1
 fi
 
-# Check if the Go bin path is already in the PATH
-if [[ ":$PATH:" != *":$GO_BIN_PATH:"* ]]; then
-	echo "Adding $GO_BIN_PATH to PATH."
-	add_path_to_config "$CONFIG_FILE"
-	# Source the config file to update the current session
-	source "$CONFIG_FILE"
-	echo "$GO_BIN_PATH added to PATH successfully."
-else
-	echo "$GO_BIN_PATH is already in PATH."
-fi
-
-
-# Check if the GO_BIN_PATH bin path is already in the PATH
-if [[ ":$PATH:" != *":$GO_BIN_PATH:"* ]]; then
-	echo "Adding $GO_BIN_PATH to PATH."
-	add_path_to_config "$CONFIG_FILE"
-	# Source the config file to update the current session
-	source "$CONFIG_FILE"
-	echo "$GO_BIN_PATH added to PATH successfully."
-else
-	echo "$GO_BIN_PATH is already in PATH."
-fi
+add_path_to_config "$CONFIG_FILE"
 
 $(which go) version
+
+echo "Now run 'source $CONFIG_FILE' to update your environment"
