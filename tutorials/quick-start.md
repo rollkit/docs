@@ -49,3 +49,4 @@ I[2024-05-01|09:58:46.082] Finalized block                              module=B
 ## 🎉 Conclusion
 
 That's it! Your sovereign rollup node is now up and running. It's incredibly simple to start a blockchain (which is essentially what a rollup is) these days using Rollkit. Explore further and discover how you can build useful applications on Rollkit. Good luck!
+Hello
