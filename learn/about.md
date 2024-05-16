@@ -12,11 +12,11 @@ If you're familiar with Rollkit, you may want to skip to the [tutorials section]
 
 Rollkit is a sovereign rollup framework that gives developers the freedom to deploy rollups throughout the modular stack, opening new possibilities for rapid experimentation and innovation.
 
-Here is a [good read](https://blog.celestia.org/sovereign-rollup-chains/) on sovereign rollup concept.
+[Read more on the Celestia blog](https://blog.celestia.org/sovereign-rollup-chains/) to learn more about the concept of sovereign rollups.
 
-Rollkit is an [open-source](https://github.com/rollkit/rollkit) framework. It features a modular node that can run rollups and exposes an [ABCI](https://github.com/cometbft/cometbft/tree/main/abci)-compatible client interface, which can be used as a substitute for CometBFT in any ABCI-compatible blockchain application.
+Rollkit is an [open-source framework](https://github.com/rollkit/rollkit). It features a modular node that can run rollups and exposes an [ABCI-compatible client interface](https://github.com/cometbft/cometbft/tree/main/abci), which can be used as a substitute for CometBFT in any ABCI-compatible blockchain application.
 
-Rollkit utilizes data availability (DA) layer by having a unified client interface which could be implemented for a different DA networks, such as [Celestia](https://celestia.org/).
+Rollkit uses data availability (DA) layers by having a unified client interface which can be implemented for use with different DA networks, such as [Celestia](https://celestia.org/).
 
 Our goal is to empower developers to quickly innovate and create new classes of rollups with minimal trade-offs, and to make deploying a new chain as easy as deploying a smart contract.
 
@@ -81,7 +81,7 @@ Think of settlement layers as a special type of execution layer.
 
 ## When can you use Rollkit?
 
-As of today, Rollkit is still in the MVP stage. The framework currently provides a centralized sequencer, an execution interface (ABCI or Cosmos SDK), and a connection to a data availability layer.
+As of today, Rollkit is still in the alpha stages. The framework currently provides a centralized sequencer, an execution interface (ABCI or Cosmos SDK), and a connection to a data availability layer.
 
 We're currently working on implementing many new and exciting features such as light nodes and state fraud proofs.
 
