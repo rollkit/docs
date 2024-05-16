@@ -201,11 +201,29 @@ function sidebarHome() {
       text: "Learn",
       collapsed: true,
       items: [
-        { text: "Introduction to Rollkit", link: "/learn/intro" },
-        { text: "About Rollkit", link: "/learn/about" },
-        { text: "Rollkit stack", link: "/learn/stack" },
-        { text: "Transaction flow", link: "/learn/transaction-flow" },
-        { text: "Rollkit specs", link: "https://rollkit.github.io/rollkit" },
+        {
+          text: "Overview",
+          collapsed: true,
+	  items: [
+	    { text: "Introduction", link: "/learn/intro" },
+            { text: "About Rollkit", link: "/learn/about" },
+	  ],
+	},
+	{
+          text: "Technical details",
+	  collapsed: true,
+	  items: [
+            { text: "Rollkit stack", link: "/learn/stack" },
+            { text: "Transaction flow", link: "/learn/transaction-flow" },
+	  ],
+	},
+	{
+	  text: "Resources",
+	  collapsed: true,
+	  items: [
+            { text: "Technical specifications", link: "/learn/specifications" },
+	  ],
+	},
       ],
     },
     {
