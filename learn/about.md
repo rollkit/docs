@@ -81,7 +81,7 @@ Think of settlement layers as a special type of execution layer.
 
 ## When can you use Rollkit?
 
-As of today, Rollkit is still in the alpha stages. The framework currently provides a centralized sequencer, an execution interface (ABCI or Cosmos SDK), and a connection to a data availability layer.
+As of today, Rollkit is still in the alpha stage. The framework currently provides a centralized sequencer, an execution interface (ABCI or Cosmos SDK), and a connection to a data availability layer.
 
 We're currently working on implementing many new and exciting features such as light nodes and state fraud proofs.
 
