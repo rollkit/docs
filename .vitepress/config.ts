@@ -20,14 +20,14 @@ export default withMermaid({
   },
 
   head: [
-    ["link", { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
-    ["link", { rel: "icon", href: "/favicon.png", type: "image/png" }],
+    ["link", { rel: "icon", href: "/img/favicon.svg", type: "image/svg+xml" }],
+    ["link", { rel: "icon", href: "/img/favicon.png", type: "image/png" }],
     // [
     //   'link',
     //   {
     //     rel: 'icon',
     //     type: 'image/svg+xml',
-    //     href: '/favicon-dark.svg',
+    //     href: '/img/favicon-dark.svg',
     //     media: '(prefers-color-scheme: dark)',
     //   },
     // ],
@@ -36,7 +36,7 @@ export default withMermaid({
     //   {
     //     rel: 'icon',
     //     type: 'image/png',
-    //     href: '/favicon-dark.png',
+    //     href: '/img/favicon-dark.png',
     //     media: '(prefers-color-scheme: dark)',
     //   },
     // ],
@@ -49,7 +49,7 @@ export default withMermaid({
     //   {
     //     rel: 'icon',
     //     type: 'image/x-icon',
-    //     href: '/favicon-dark.ico',
+    //     href: '/img/favicon-dark.ico',
     //     media: '(prefers-color-scheme: dark)',
     //   },
     // ],
@@ -63,21 +63,19 @@ export default withMermaid({
           "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
       },
     ],
-    // ['meta', { property: 'og:title', content: 'Rollkit' }],
-    // ['meta', { property: 'og:description', content: 'The open modular framework for sovereign rollups.' }],
     [
       "meta",
       {
         property: "description",
-        content: "The open modular framework for sovereign rollups.",
+        content: "The first sovereign rollup framework.",
       },
     ],
     ["meta", { httpEquiv: "Content-Language", content: "en" }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
-    ["meta", { name: "twitter:image", content: "/Rollkit-og.png" }],
+    ["meta", { name: "twitter:image", content: "/img/Rollkit-cover.jpg" }],
     ["meta", { name: "twitter:site:domain", content: "rollkit.dev" }],
     ["meta", { name: "twitter:url", content: "https://rollkit.dev" }],
-    ["meta", { name: "og:image", content: "/Rollkit-og.png" }],
+    ["meta", { name: "og:image", content: "/img/Rollkit-cover.jpg" }],
     ["meta", { name: "apple-mobile-web-app-title", content: "Rollkit" }],
     [
       "script",
@@ -105,6 +103,13 @@ export default withMermaid({
       },
     ],
     [
+      "script",
+      {
+        src: "https://platform.twitter.com/widgets.js",
+	      async: true,
+      },
+    ],
+    [
       'link',
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' }
     ],
@@ -121,7 +126,6 @@ export default withMermaid({
       { href: 'https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap', rel: 'stylesheet' }
     ],
   ],
-
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: nav(),
@@ -152,12 +156,12 @@ export default withMermaid({
 
     logo: {
       alt: "Rollkit Logo",
-      light: "/logo.svg",
-      dark: "/logo-dark.svg",
+      light: "/img/logo.svg",
+      dark: "/img/logo-dark.svg",
     },
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/rollkit/docs" },
+      { icon: "github", link: "https://github.com/rollkit/rollkit" },
       { icon: "twitter", link: "https://twitter.com/RollkitDev" },
       { icon: { svg: telegramSVG }, link: "https://t.me/rollkit" },
     ],
@@ -183,9 +187,8 @@ export default withMermaid({
 
 function nav() {
   return [
-    { text: "Intro", link: "/learn/intro" },
-    { text: "Learn", link: "/learn/overview" },
-    { text: "Tutorials", link: "/tutorials/overview" },
+    { text: "Learn", link: "/learn/intro" },
+    { text: "Tutorials", link: "/tutorials/quick-start" },
     { text: "How To Guides", link: "/guides/overview" },
     { text: "Testnets", link: "/testnets/cosmwasm-testnet" },
     { text: "Blog", link: "/blog/overview" },
@@ -195,44 +198,30 @@ function nav() {
 function sidebarHome() {
   return [
     {
-      text: "Introduction",
+      text: "Learn",
       collapsed: true,
       items: [
         { text: "Introduction to Rollkit", link: "/learn/intro" },
         { text: "About Rollkit", link: "/learn/about" },
-        { text: "Readme", link: "/learn/readme" },
-      ],
-    },
-    {
-      text: "Learn",
-      collapsed: true,
-      items: [
-        { text: "Overview", link: "/learn/overview" },
         { text: "Rollkit stack", link: "/learn/stack" },
         { text: "Transaction flow", link: "/learn/transaction-flow" },
-        {
-          text: "Rollup Wiki",
-          collapsed: true,
-          items: [
-            { text: "A-Z glossary", link: "/learn/rollup-glossary" },
-            // { text: 'Basic Rollup', link: '/learn/basic-rollup' },
-          ],
-        },
+        { text: "Rollkit specs", link: "https://rollkit.github.io/rollkit" },
       ],
     },
     {
       text: "Tutorials",
       collapsed: true,
       items: [
-        { text: "Overview", link: "/tutorials/overview" },
+        {
+          text: "Quick start guide",
+          link: "/tutorials/quick-start",
+        },
         {
           text: "Rollkit",
           collapsed: true,
           items: [
-            // { text: 'Starter Rollup with Docker', link: '/tutorials/rollup-docker'},
-            // { text: 'Starter Rollup', link: '/tutorials/starter-rollup'},
             {
-              text: "GM world rollup: Part 1, local devnet",
+              text: "GM world rollup",
               link: "/tutorials/gm-world",
             },
             { text: "GM world frontend", link: "/tutorials/gm-world-frontend" },
@@ -244,12 +233,8 @@ function sidebarHome() {
           collapsed: true,
           items: [
             {
-              text: "GM world rollup: Part 2, mocha testnet",
-              link: "/tutorials/gm-world-mocha-testnet",
-            },
-            {
-              text: "GM world rollup: Part 3, mainnet",
-              link: "/tutorials/gm-world-mainnet",
+              text: "Celestia",
+              link: "/tutorials/celestia-da",
             },
           ],
         },
@@ -259,10 +244,6 @@ function sidebarHome() {
           items: [
             { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
             { text: "Polaris EVM rollup", link: "/tutorials/polaris-evm" },
-            // {
-            //   text: "Full-stack modular dapp with Celestia",
-            //   link: "https://docs.celestia.org/developers/full-stack-modular-development-guide",
-            // },
           ],
         },
       ],
@@ -320,6 +301,10 @@ function sidebarHome() {
           text: "Sovereign rollups on Bitcoin with Rollkit",
           link: "/blog/sovereign-rollups-on-bitcoin",
         },
+        {
+          text: "Rollkit: The First Sovereign Rollup Framework",
+          link: "/blog/rollkit-the-first-sovereign-rollup-framework",
+        }
       ],
     },
   ];

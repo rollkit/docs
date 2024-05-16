@@ -7,14 +7,15 @@ exploring how to integrate CosmWasm with Celestia's
 [data availability layer](https://docs.celestia.org/concepts/how-celestia-works/data-availability-layer)
 using Rollkit.
 
-::: tip
-This tutorial will explore developing with Rollkit,
-which is still in Alpha stage. If you run into bugs, please write a Github
-[Issue ticket](https://github.com/rollkit/docs/issues/new)
-or let us know in our [Telegram](https://t.me/rollkit).
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import Callout from '../.vitepress/components/callout.vue'
+</script>
 
-Learn how to [restart your rollup](/guides/restart-rollup.md).
+:::tip
+<Callout />
 :::
+<!-- markdownlint-enable MD033 -->
 
 ::: warning
 The script for this tutorial is built for Celestia's
@@ -123,7 +124,7 @@ Cosmos-SDK applications to connect to Celestia's data availability network.
 git clone https://github.com/CosmWasm/wasmd.git
 cd wasmd
 git checkout tags/v0.50.0
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.5-rollkit-v0.13.1-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.6-rollkit-v0.13.3-no-fraud-proofs
 go mod tidy -compat=1.17
 go mod download
 ```
@@ -171,15 +172,14 @@ that communicates between `wasmd` and Rollkit.
 
 ### 🗞️ Initializing CosmWasm rollup with a bash script {#initialize-rollup}
 
-We have a handy `init.sh` found in this repo
-[here](https://github.com/rollkit/docs/blob/main/scripts/cosmwasm/init.sh).
+We have a handy `init.sh` [found in this repo](https://github.com/rollkit/docs/blob/main/public/cosmwasm/init.sh).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `wasmd` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/cosmwasm/init.sh
+wget https://rollkit.dev/cosmwasm/init.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -207,8 +207,7 @@ View your rollup by
 You can skip this section, but it is important to know
 how Rollkit is initializing the cosmwasm rollup.
 
-View the script
-[here](https://github.com/rollkit/docs/blob/main/scripts/cosmwasm/init.sh).
+[View the script](https://rollkit.dev/cosmwasm/init.sh).
 
 ## 📒 Contract deployment on CosmWasm with Rollkit {#contract-deployment-on-cosmwasm}
 

@@ -9,5 +9,6 @@ Welcome to our blog! Here, you'll find a variety of articles on a range of topic
 ## Table of contents
 
 - [Sovereign rollups on Bitcoin with Rollkit](/blog/sovereign-rollups-on-bitcoin)
+- [Rollkit: The First Sovereign Rollup Framework](/blog/rollkit-the-first-sovereign-rollup-framework.md)
 
 Stay tuned for more exciting content!

@@ -12,7 +12,6 @@ You can get started with the following tutorials:
 
 - [GM world](/tutorials/gm-world)
 - [GM world frontend](/tutorials/gm-world-frontend)
-- [Recipe Book](/tutorials/recipe-book)
 - [Restart your rollup](/guides/restart-rollup)
 
 ## 2️. Intermediate {#intermediate}
@@ -27,7 +26,7 @@ You can get started with the following tutorials:
 ## 💻 Support {#support}
 
 The tutorials will explore developing with Rollkit,
-which is still in Alpha stage. If you run into bugs, please write a Github
+which is still in Alpha stage. If you run into bugs, please write a GitHub
 [issue](https://github.com/rollkit/docs/issues/new)
 or let us know in our [Telegram](https://t.me/rollkit).
 Furthermore, while Rollkit allows you to build sovereign rollups

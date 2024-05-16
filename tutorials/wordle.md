@@ -12,19 +12,16 @@ The tutorial will go over the simple design,
 as well as conclude with future implementations and ideas
 to extend this codebase.
 
-::: tip
-This tutorial will explore developing with Rollkit,
-which is still in Alpha stage. If you run into bugs, please write a Github
-[Issue ticket](https://github.com/rollkit/docs/issues/new)
-or let us know in our [Telegram](https://t.me/rollkit).
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import Callout from '../.vitepress/components/callout.vue'
+import constants from '../.vitepress/constants/constants.js'
+</script>
 
-Learn how to [restart your rollup](/guides/restart-rollup.md).
+:::tip
+<Callout />
 :::
-
-::: warning
-The script for this tutorial is built for Celestia's
-[Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
-:::
+<!-- markdownlint-enable MD033 -->
 
 ## 💻 Pre-requisites {#prerequisites}
 
@@ -34,9 +31,6 @@ in Ignite to understand all the different components in Cosmos-SDK before
 proceeding with this tutorial.
 
 * [GM world](/tutorials/gm-world)
-* [Recipe Book](/tutorials/recipe-book) or [Blog and Module Basics](https://docs.ignite.com/guide/blog/intro)
-* [Nameservice Tutorial](https://docs.ignite.com/v0.25.2/guide/nameservice)
-* [Scavenger Hunt](https://docs.ignite.com/v0.25.2/guide/scavenge)
 
 You do not have to do those guides in order to follow this Wordle tutorial,
 but doing so helps you understand the architecture of Cosmos-SDK better.
@@ -89,13 +83,13 @@ You can read more about Ignite [here](https://docs.ignite.com).
 
 To install Ignite, you can run this command in your terminal:
 
-```bash
-curl https://get.ignite.com/cli@v28.3.0! | bash
+```bash-vue
+curl https://get.ignite.com/cli@{{constants.igniteVersionTag}}! | bash
 sudo mv ignite /usr/local/bin/
 ```
 
 This installs Ignite CLI in your local machine.
-This tutorial uses a MacOS but it should work for Windows.
+This tutorial uses a macOS but it should work for Windows.
 For Windows users, check out the Ignite docs on installation
 for Windows machines.
 
@@ -175,8 +169,8 @@ Rollkit on our codebase.
 
 Run the following command inside the `wordle` directory.
 
-```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.5-rollkit-v0.13.1-no-fraud-proofs
+```bash-vue
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@{{constants.rollkitCosmosSDKVersion}}
 go mod tidy
 go mod download
 ```
@@ -188,7 +182,7 @@ let's build the Wordle app!
 
 For the Wordle module, we can add dependencies offered by Cosmos-SDK.
 
-From the Cosmos-SDK docs, a [module](https://docs.ignite.com/v0.25.2/guide/nameservice#cosmos-sdk-modules)
+From the Cosmos-SDK docs, a [module](https://docs.cosmos.network/main/glossary#module)
 is defined as the following:
 
 > In a Cosmos SDK blockchain, application-specific logic
@@ -225,7 +219,7 @@ This will scaffold the Wordle module to our Wordle Chain project.
 
 Messages allow us to process and submit information to our specific module.
 
-From the Cosmos-SDK docs, [messages](https://docs.cosmos.network/main/building-modules/messages-and-queries.html#messages)
+From the Cosmos-SDK docs, [messages](https://docs.cosmos.network/main/build/building-modules/messages-and-queries)
 are:
 
 > In the Cosmos SDK, messages are objects that are contained
@@ -288,7 +282,7 @@ this address submitted.
 <!-- markdownlint-disable MD013 -->
 
 Now it’s time to implement the Keeper functions for each
-message. From the Cosmos-SDK docs, [Keeper](https://docs.cosmos.network/main/building-modules/keeper.html)
+message. From the Cosmos-SDK docs, [Keeper](https://docs.cosmos.network/main/build/building-modules/keeper)
 is defined as the following:
 
 > The main core of a Cosmos SDK module is a piece called the keeper.
@@ -551,39 +545,29 @@ compile the blockchain and take it out for a test drive.
 ## ⛓️ Run the wordle chain
 <!-- markdownlint-disable MD013 -->
 
-### 🪶 Run a Celestia light node {#run-celestia-light-node}
+### 🪶 Run a mock DA node {#run-mock-da-node}
 
-Follow instructions to install and start your Celestia Data Availability
-layer Light Node selecting the Arabica Devnet. You can
-find instructions to install and run the node [here](https://docs.celestia.org/nodes/light-node).
+To set up a mock data availability network node run:
 
-After you have Go and Ignite CLI installed, and your Celestia Light
-Node running on your machine, you're ready to build, test, and launch your own
-sovereign rollup.
-
-Be sure you have initialized your node before trying to start it.
-Your start command should look similar to:
-
-<!-- markdownlint-disable MD013 -->
-```bash
-celestia light start --core.ip validator-1.celestia-arabica-11.com --p2p.network arabica
+```bash-vue
+curl -sSL https://rollkit.dev/install-mock-da.sh | sh {{constants.mockDALatestTag}} 
 ```
 
-After you have Go and Ignite CLI installed, and your Celestia
-Light Node running on your machine, you're ready to build,
-test, and launch your own sovereign rollup.
+This script builds and runs the node, now listening on port `7980`.
+
+After you have Go and Ignite CLI installed, and your mock data availability node
+running on your machine, you're ready to build, test, and launch your own sovereign rollup.
 
 ### 🟢 Building and running wordle chain {#build-and-run-wordle-chain}
 
-We have a handy `init.sh` found in this repo
-[here](https://github.com/rollkit/docs/tree/main/scripts/wordle).
+We have a handy `init.sh` [found in this repo](https://github.com/rollkit/docs/blob/main/public/wordle/init.sh).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `wordle` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/wordle/init.sh
+wget https://rollkit.dev/wordle/init.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -601,9 +585,6 @@ bash init.sh
 
 With that, we have kickstarted our `wordled` network!
 
-Find
-[your account address on an Arabica explorer to see your `PayForBlobs` transactions](https://explorer.modular.cloud/celestia-arabica/addresses/celestia10rdu7l3gzeuxplpnr5vxchvxxflx7ym0q6wt5v).
-
 In another window, run the following to submit a Wordle:
 
 <!-- markdownlint-disable MD013 -->
@@ -614,7 +595,7 @@ wordled tx wordle submit-wordle giant --from wordle-key --keyring-backend test -
 
 > NOTE: We are submitting a transaction asynchronously to avoid
   any timeout errors. With Rollkit as a replacement to CometBFT, we
-  need to wait for Celestia's Data-Availability network to ensure a block
+  need to wait for the data availability network to ensure a block
   was included from Wordle, before proceeding to the next block. Currently,
   in Rollkit, the single aggregator is not moving forward with the next block
   production as long as it is trying to submit the current block to the DA network.
@@ -762,9 +743,6 @@ extend the code base.
 
 ### 🔮 Extending in the future {#extending-in-the-future}
 
-You can extend the codebase and improve this tutorial by checking
-out the repository [here](https://github.com/celestiaorg/wordle).
-
 There are many ways this codebase can be extended:
 
 1. You can improve messaging around when you guess the correct word.
@@ -778,3 +756,7 @@ There are many ways this codebase can be extended:
 5. You can create a bot that submits a wordle every day at a specific time.
 6. You can create a vue.js front-end with Ignite using example open-source
     repositories [here](https://github.com/yyx990803/vue-wordle) and [here](https://github.com/xudafeng/wordle).
+
+## 🎉 Next steps
+
+Congratulations! You've built a Wordle app using Cosmos-SDK and Rollkit. Now, explore connecting your rollup to DA networks like Celestia.

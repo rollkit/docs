@@ -47,7 +47,7 @@ Now, clone the script for the full node:
 ```bash
 # From inside the `gm` directory
 cd $HOME/gm
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-full-node.sh
+wget https://rollkit.dev/gm/init-full-node.sh
 ```
 
 ### Set DA height

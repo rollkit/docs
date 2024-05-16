@@ -48,7 +48,7 @@ Change into the `gm` directory and install Rollkit with IBC compatibility:
 
 ```bash
 cd gm
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.5-rollkit-v0.13.1-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.6-rollkit-v0.13.3-no-fraud-proofs
 go mod tidy
 go mod download
 ```
@@ -56,7 +56,7 @@ go mod download
 Now download the script to run the GM chain:
 
 ```bash
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-local.sh
+wget https://rollkit.dev/gm/init-local.sh
 ```
 
 Run the GM rollup:
@@ -86,7 +86,7 @@ make install
 You also need to start local-osmosis-testnet in a separate terminal by downloading and running this script:
 
 ```bash
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/ibc/init-osmosis-local.sh
+wget https://rollkit.dev/ibc/init-osmosis-local.sh
 ```
 
 Run the script:

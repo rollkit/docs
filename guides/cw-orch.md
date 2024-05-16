@@ -219,7 +219,7 @@ members = ["packages/*", "contracts/*", "interface"]
 
 Inside this `interface` crate, we advise to integrate all your contracts 1 by 1 in separate files. Here is the structure of the `cw-plus` integration for reference:
 
-```path
+```bash
 interface (interface collection)
 ├── Cargo.toml
 └── src

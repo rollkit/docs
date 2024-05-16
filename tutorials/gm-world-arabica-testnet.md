@@ -9,6 +9,16 @@ the tutorial and are familiar with running a local rollup devnet.
 The script for this tutorial is built for Celestia's
 [Arabica devnet](https://docs.celestia.org/nodes/arabica-devnet).
 
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import Callout from '../.vitepress/components/callout.vue'
+</script>
+
+:::tip
+<Callout />
+:::
+<!-- markdownlint-enable MD033 -->
+
 ### 🪶 Run a Celestia light node {#run-celestia-node}
 
 Fully sync and fund a light node
@@ -21,14 +31,14 @@ Keep the node running while doing the next steps.
 ### 🟢 Start your sovereign rollup {#start-your-sovereign-rollup}
 
 We have
-[a handy `init-arabica-testnet.sh` found in this repo](https://github.com/rollkit/docs/tree/main/scripts/gm).
+[a handy `init-arabica-testnet.sh` found in this repo](https://github.com/rollkit/docs/blob/main/public/gm/init-arabica-testnet.sh).
 
 We can copy it over to our directory with the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
 # From inside the `gm` directory
-wget https://raw.githubusercontent.com/rollkit/docs/main/scripts/gm/init-arabica-testnet.sh
+wget https://rollkit.dev/gm/init-arabica-testnet.sh
 ```
 <!-- markdownlint-enable MD013 -->
 
