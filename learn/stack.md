@@ -47,12 +47,12 @@ It's important to keep in mind that there is no direct correlation between the D
 
 #### Celestia
 
-Celestia is an example of a data availability integration implemented for Rollkit.
+Celestia is a prominent example of a data availability integration implemented for Rollkit.
 It's using the [Celestia Node API](https://node-rpc-docs.celestia.org)
 via the [`rollkit/celestia-da`](https://github.com/rollkit/celestia-da) package.
 To deploy a Rollkit rollup on Celestia you also have to [run a Celestia light node](https://docs.celestia.org/developers/node-tutorial/).
 
-Use of other data availability (DA) layers is also supported by Rollkit, and research integrations for Bitcoin, Mock, gRPC are works in progress. New DA layer integrations can be added by using the [go-da](https://github.com/rollkit/go-da) interface.
+New DA layer integrations can be added by using the [go-da](https://github.com/rollkit/go-da) interface.
 
 ## Node components
 
