@@ -194,18 +194,18 @@ function sidebarHome() {
 	  ],
 	},
 	{
-          text: "Technical Details",
+          text: "Technical details",
 	  collapsed: true,
 	  items: [
-            { text: "Rollkit Stack", link: "/learn/stack" },
-            { text: "Transaction Flow", link: "/learn/transaction-flow" },
+            { text: "Rollkit stack", link: "/learn/stack" },
+            { text: "Transaction flow", link: "/learn/transaction-flow" },
 	  ],
 	},
 	{
 	  text: "Resources",
 	  collapsed: true,
 	  items: [
-            { text: "Technical Specifications", link: "/learn/specifications" },
+            { text: "Technical specifications", link: "/learn/specifications" },
 	  ],
 	},
       ],
