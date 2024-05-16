@@ -27,12 +27,27 @@ curl -sSL https://rollkit.dev/install-yarn.sh | bash -s {{constants.nodeVersion}
 
 :::
 
-## 🚀 Starting an app
+## 📦 Cloning the repo
 
-We've simplified the process by preparing a repository with the necessary scaffolding and configuration for our local rollup. Run a command to download the code, install dependencies, and start the development server:
+First, clone the repo with a simple frontend app that connects to the rollup:
 
 ```bash
-curl -sSL https://rollkit.dev/install-gm-frontend-app.sh | bash
+git clone https://github.com/rollkit/gm-frontend.git
+cd gm-frontend
+```
+
+Next, install the dependencies:
+
+```bash
+yarn
+```
+
+## 🚀 Running the app
+
+Now, you can run the app using the following command:
+
+```bash
+yarn dev
 ```
 
 You should see the following output indicating that the development server is up and running:
