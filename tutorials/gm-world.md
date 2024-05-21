@@ -1,5 +1,5 @@
 ---
-description: Build a sovereign rollup using only Rollkit CLI and a mock DA network.
+description: Build a sovereign rollup using only Rollkit CLI and a local DA network.
 ---
 
 # GM world rollup
@@ -45,10 +45,10 @@ Rollkit uses the [Go programming language](https://go.dev/dl/). Here's how to in
 
 Learn to run a local DA network, designed for educational purposes, on your machine.
 
-To set up a mock DA network node:
+To set up a local DA network node:
 
 ```bash-vue
-curl -sSL https://rollkit.dev/install-mock-da.sh | bash {{constants.mockDALatestTag}} 
+curl -sSL https://rollkit.dev/install-local-da.sh | bash {{constants.localDALatestTag}} 
 ```
 
 This script builds and runs the node, now listening on port `7980`.
