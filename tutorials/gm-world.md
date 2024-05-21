@@ -29,19 +29,13 @@ import constants from '../.vitepress/constants/constants.js'
 
 ## 🛠️ Dependencies {#dependencies}
 
-Rollkit uses the [Go programming language](https://go.dev/dl/). Here's how to install it:
+If you followed the [quick start guide](/tutorials/quick-start), you should have the Rollkit CLI and Golang installed already. If not, here's the script for you:
 
-- **Linux or macOS**: Run the provided script:
+```bash-vue
+curl -sSL https://rollkit.dev/install.sh | sh -s {{constants.rollkitLatestTag}}
+```
 
-  ```bash-vue
-  curl -sSL https://rollkit.dev/install-go.sh | bash -s {{constants.golangVersion}}
-  ```
-
-<!-- markdownlint-disable MD033 -->
-- **Windows**: Download and execute the <a :href="`https://go.dev/dl/go${constants.golangVersion}.windows-amd64.msi`">installer</a>.
-<!-- markdownlint-enable MD033 -->
-
-## 🌐 Running a Local DA Network {#running-local-da}
+## 🌐 Running a local DA network {#running-local-da}
 
 Learn to run a local DA network, designed for educational purposes, on your machine.
 
@@ -57,19 +51,36 @@ This script builds and runs the node, now listening on port `7980`.
 
 With the local DA network running, let’s prepare your rollup blockchain.
 
-To make it simple we will download a repository with a `gm-world` rollup that has an `init.sh` script that does all the setup for you.
-
-Download and build a `gm-world` rollup with an interactive script in a new terminal:
-
-::: warning
-In order to run it you need to have the jq command line tool installed. You can install it by running `sudo apt-get install jq` on Ubuntu or `brew install jq` on macOS.
-:::
-::: tip
-If you get errors of `gmd` not found, you may need to add the `go/bin` directory to your PATH. You can do this by running `export PATH=$PATH:$HOME/go/bin` and then running the `init.sh` script manually again.
-:::
+To make it simple, we will download a repository with a `gm-world` rollup that has all app chain config set up for you:
 
 ```bash
 cd $HOME && bash -c "$(curl -sSL https://rollkit.dev/install-gm-rollup.sh)"
+```
+
+## 🧰 Configuring your rollup {#configuring-your-rollup}
+
+Generate rollkit.toml file by running:
+
+```bash
+rollkit toml init
+```
+
+The output should be similar to this:
+```
+Found rollup entrypoint: /root/gm/cmd/gmd/main.go, adding to rollkit.toml
+Could not find rollup config under gm. Please put the chain.config_dir in the rollkit.toml file manually.
+Initialized rollkit.toml file in the current directory.
+```
+
+From the output, you can see that the rollup entrypoint is `~/gm/cmd/gmd/main.go`.
+
+Open the rollkit.toml file and under the `[chain]` section set `config_dir` to the `./.gm` directory. Your rollkit.toml file should look like this:
+
+```bash
+entrypoint = "./cmd/gmd/main.go"
+
+[chain]
+  config_dir = "./.gm"
 ```
 
 ## 🚀 Starting your rollup {#start-your-rollup}
@@ -77,10 +88,10 @@ cd $HOME && bash -c "$(curl -sSL https://rollkit.dev/install-gm-rollup.sh)"
 Start the rollup, posting to the local DA network:
 
 ```bash
-gmd start --rollkit.aggregator --minimum-gas-prices="0.025stake" --rollkit.da_address http://localhost:7980
+rollkit start --rollkit.aggregator --rollkit.da_address http://localhost:7980
 ```
 
-Notice how we specified the DA network address along with a few other flags. Now you should see the logs of the running node:
+Notice how we specified the DA network address. Now you should see the logs of the running node:
 
 ```bash
 12:21PM INF starting node with ABCI CometBFT in-process module=server
@@ -117,7 +128,7 @@ Good work so far, we have a Rollup node, DA network node, now we can start submi
 First, list your keys:
 
 ```bash
-gmd keys list --keyring-backend test
+rollkit keys list --keyring-backend test
 ```
 
 You should see an output like the following
@@ -144,10 +155,10 @@ export KEY1=gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9
 export KEY2=gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
 ```
 
-Now let's submit a transaction that sends coins from one account to another (don't worry about all the flags, for now, we just want to submit transaction from a high level perspective):
+Now let's submit a transaction that sends coins from one account to another (don't worry about all the flags, for now, we just want to submit transaction from a high-level perspective):
 
 ```bash
-gmd tx bank send $KEY1 $KEY2 42069stake --keyring-backend test --chain-id gm --fees 5000stake
+rollkit tx bank send $KEY1 $KEY2 42069stake --keyring-backend test --chain-id gm --fees 5000stake
 ```
 
 You'll be prompted to accept the transaction:
@@ -190,7 +201,7 @@ txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
 Query balances after the transaction:
 
 ```bash
-gmd query bank balances $KEY2 
+rollkit query bank balances $KEY2
 ```
 
 The receiver’s balance should show an increase.
@@ -207,7 +218,7 @@ pagination:
 For the sender’s balance:
 
 ```bash
-gmd query bank balances $KEY1
+rollkit query bank balances $KEY1
 ```
 
 Output:

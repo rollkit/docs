@@ -255,45 +255,67 @@ function sidebarHome() {
       collapsed: true,
       items: [
         {
+          text: "Configuration",
+          collapsed: true,
           items: [
             {
-              text: "How to restart your rollup",
+              text: "Use the Rollkit CLI",
+              link: "/guides/use-rollkit-cli",
+            },
+            {
+              text: "Connect to a local DA",
+              link: "/guides/connect-local-da",
+            },
+            {
+              text: "Create genesis for your rollup",
+              link: "/guides/create-genesis",
+            },
+            {
+              text: "Restart your rollup",
               link: "/guides/restart-rollup",
             },
             {
-              text: "How to run as a full and sequencer node",
+              text: "Run as a full and sequencer node",
               link: "/guides/full-and-sequencer-node",
             },
             {
-              text: "How to configure gas price",
+              text: "Configure gas price",
               link: "/guides/gas-price",
             },
             {
-              text: "How to change speed of block production",
+              text: "Configure max pending blocks",
+              link: "/guides/max-pending-blocks",
+            },
+            {
+              text: "Configure DA chain block sync time",
+              link: "/guides/da-block-time",
+            },
+            {
+              text: "Change speed of block production",
               link: "/guides/block-times",
             },
             {
-              text: "How to use lazy sequencing (aggregation)",
+              text: "Use lazy sequencing (aggregation)",
               link: "/guides/lazy-sequencing",
             },
-            {
-              text: "How to test and deploy smart-contracts",
-              link: "/guides/cw-orch",
-            },
-            { text: "How to add zkML to your rollup", link: "/guides/zkml" },
-            {
-              text: "How to add an IBC connection to your rollup",
-              link: "/guides/ibc-connection",
-            },
-            {
-              text: "How to integrate Range with your rollup",
-              link: "/guides/rollkit-monitoring",
-            },
-            {
-              text: "How to use IBC token (TIA) as gas token in your rollup",
-              link: "/guides/use-tia-for-gas",
-            },
           ],
+        },
+        {
+          text: "Test and deploy smart-contracts",
+          link: "/guides/cw-orch",
+        },
+        { text: "Add zkML to your rollup", link: "/guides/zkml" },
+        {
+          text: "Add an IBC connection to your rollup",
+          link: "/guides/ibc-connection",
+        },
+        {
+          text: "Integrate Range with your rollup",
+          link: "/guides/rollkit-monitoring",
+        },
+        {
+          text: "Use IBC token (TIA) as gas token in your rollup",
+          link: "/guides/use-tia-for-gas",
         },
       ],
     },

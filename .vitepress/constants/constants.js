@@ -10,6 +10,6 @@ const constants = Object.freeze({
 
   localDALatestTag: "v0.2.0",
 
-  igniteVersionTag: "v28.3.0",
+  igniteVersionTag: "v28.4.0",
 });
 export default constants;
