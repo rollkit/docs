@@ -1,10 +1,10 @@
-# GM world rollup: Deploying to Celestia  
+# Deploying a rollup to Celestia  
 
 ## 🌞 Introduction {#introduction}
 
-This tutorial serves as a comprehensive guide for deploying your GM world rollup on Celestia's data availability (DA) network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
+This tutorial serves as a comprehensive guide for deploying your rollup on Celestia's data availability (DA) network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
 
-Before proceeding, ensure that you have completed the [GM world rollup](/tutorials/gm-world) tutorial, which covers setting up a local sovereign gm-world rollup and connecting it to a local (mock) DA node.
+Before proceeding, ensure that you have completed the [GM world rollup](/tutorials/gm-world) tutorial, which covers setting up a local sovereign gm-world rollup and connecting it to a local DA node.
 
 ## 🪶 Running a Celestia light node
 
@@ -18,29 +18,61 @@ The main difference lies in how you fund your wallet address: using testnet TIA 
 
 After successfully starting a light node, it's time to start posting the batches of blocks of data that your rollup generates.
 
-## 🧹 Cleaning previous chain history
+## 🏗️  Prerequisites {#prerequisites}
 
-From the [GM world rollup](/tutorials/gm-world) tutorial, you should already have the `gmd` binary and the `$HOME/.gm` directory.
+From the [GM world rollup](/tutorials/gm-world) tutorial, you should already have the `rollkit` CLI and `ignite` installed.
 
-To clear old rollup data:
+## 🏗️ Building your sovereign rollup {#building-your-sovereign-rollup}
 
-```bash
-rm -r $(which gmd) && rm -rf $HOME/.gm
-```
-
-## 🏗️ Building your rollup
-
-Now we need to rebuild our rollup by simply running the existing `init.sh` script:
+Remove the existing `gm` project and create a new one using ignite:
 
 ```bash
-cd $HOME/gm && bash init.sh
+cd $HOME && rm -rf gm
+ignite scaffold chain gm --address-prefix gm --no-module
 ```
 
-This process creates a new `$HOME/.gm` directory and a new `gmd` binary. Next, we need to connect our rollup to the running Celestia light node.
+Install the Rollkit app to ignite:
+
+```bash
+ignite app install github.com/ignite/apps/rollkit@rollkit/v0.2.0
+```
+
+Next, move to the `gm` directory and add the Rollkit app:
+
+```bash
+cd $HOME/gm
+ignite rollkit add
+```
+
+Initialize the Rollkit chain configuration:
+
+```bash
+ignite rollkit init
+```
+
+This will create a `$HOME/.gm` directory with the chain configuration files.
+
+
+## 🧰 Configuring your rollup {#configuring-your-rollup}
+
+
+From inside the `$HOME/gm` directory, generate a rollkit.toml file by running:
+
+```bash
+rollkit toml init
+```
+
+The output should be similar to this (our `$HOME` is `/root`):
+
+```
+Found rollup entrypoint: /root/gm/cmd/gmd/main.go, adding to rollkit.toml
+Found rollup configuration under /root/.gm, adding to rollkit.toml
+Initialized rollkit.toml file in the current directory.
+```
 
 ## 🛠️ Configuring flags for DA
 
-Now we're prepared to initiate our rollup and establish a connection with the Celestia light node. The `gmd start` command requires three DA configuration flags:
+Now we're prepared to initiate our rollup and establish a connection with the Celestia light node. The `rollkit start` command requires three DA configuration flags:
 
 - `--rollkit.da_start_height`
 - `--rollkit.da_auth_token`
@@ -100,7 +132,7 @@ Replace the last 20 characters (10 bytes) in `0000000000000000000000000000000000
 Now let's run our rollup node with all DA flags:
 
 ```bash
-gmd start \
+rollkit start \
     --rollkit.aggregator \
     --rollkit.da_auth_token $AUTH_TOKEN \
     --rollkit.da_namespace $DA_NAMESPACE \
