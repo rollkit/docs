@@ -545,17 +545,17 @@ compile the blockchain and take it out for a test drive.
 ## ⛓️ Run the wordle chain
 <!-- markdownlint-disable MD013 -->
 
-### 🪶 Run a mock DA node {#run-mock-da-node}
+### 🪶 Run a local DA node {#run-local-da-node}
 
-To set up a mock data availability network node run:
+To set up a local data availability network node run:
 
 ```bash-vue
-curl -sSL https://rollkit.dev/install-mock-da.sh | sh {{constants.mockDALatestTag}} 
+curl -sSL https://rollkit.dev/install-local-da.sh | sh {{constants.localDALatestTag}} 
 ```
 
 This script builds and runs the node, now listening on port `7980`.
 
-After you have Go and Ignite CLI installed, and your mock data availability node
+After you have Go and Ignite CLI installed, and your local data availability node
 running on your machine, you're ready to build, test, and launch your own sovereign rollup.
 
 ### 🟢 Building and running wordle chain {#build-and-run-wordle-chain}
