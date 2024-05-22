@@ -48,7 +48,7 @@ Learn to run a local DA network, designed for educational purposes, on your mach
 To set up a local DA network node:
 
 ```bash-vue
-curl -sSL https://rollkit.dev/install-local-da.sh | bash {{constants.localDALatestTag}} 
+curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.localDALatestTag}} 
 ```
 
 This script builds and runs the node, now listening on port `7980`.
