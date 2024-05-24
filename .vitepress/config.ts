@@ -296,7 +296,7 @@ function sidebarHome() {
     {
       text: "Testnets",
       collapsed: true,
-      items: [{ text: "Cosmwasm Testnet", link: "/testnets/cosmwasm-testnet" }],
+      items: [{ text: "CosmWasm Testnet", link: "/testnets/cosmwasm-testnet" }],
     },
     {
       text: "Blog",
