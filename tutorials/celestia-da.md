@@ -25,7 +25,7 @@ From the [GM world rollup](/tutorials/gm-world) tutorial, you should already hav
 To clear old rollup data:
 
 ```bash
-rm -r /usr/local/bin/gmd && rm -rf $HOME/.gm
+rm -r $(which gmd) && rm -rf $HOME/.gm
 ```
 
 ## 🏗️ Building your rollup
