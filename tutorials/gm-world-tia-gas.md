@@ -125,7 +125,9 @@ Next, we're going to create an IBC connection between our rollup and the Celesti
 Install the IBC relayer:
 
 ```bash
-npm i -g @confio/relayer
+git clone --depth 1 --branch v2.5.2 https://github.com/cosmos/relayer.git /tmp/relayer
+cd /tmp/relayer
+make install
 ```
 
 After installation, `ibc-setup` and `ibc-relayer` executables should be available.
@@ -133,58 +135,101 @@ After installation, `ibc-setup` and `ibc-relayer` executables should be availabl
 Configure the relayer:
 
 ```bash
-mkdir -p "$HOME/.ibc-setup"
+rly config init
 
-echo $'version: 1
+mkdir -p /home/assafmo/.relayer/keys/{gm,mocha-4}
 
+echo $'global:
+    api-listen-addr: :5183
+    timeout: 10s
+    memo: ""
+    light-cache-size: 20
+    log-level: info
+    ics20-memo-limit: 0
+    max-receiver-size: 150
 chains:
-  gm_rollup:
-    chain_id: gm
-    prefix: gm
-    gas_price: 0stake
-    hd_path: m/44\'/118\'/0\'/0/0
-    ics20_port: transfer
-    estimated_block_time: 1000
-    estimated_indexer_time: 250
-    rpc:
-      - http://localhost:26657
-  mocha:
-    chain_id: mocha-4
-    prefix: celestia
-    gas_price: 0.02utia
-    hd_path: m/44\'/118\'/0\'/0/0
-    ics20_port: transfer
-    estimated_block_time: 7000
-    estimated_indexer_time: 250
-    rpc:
-      - https://rpc-mocha.pops.one:443
-' > "$HOME/.ibc-setup/registry.yaml"
+    gm_rollup:
+        type: cosmos
+        value:
+            key-directory: /home/assafmo/.relayer/keys/gm
+            key: default
+            chain-id: gm
+            rpc-addr: http://localhost:26657
+            account-prefix: gm
+            keyring-backend: test
+            gas-adjustment: 1.2
+            gas-prices: 0.025stake
+            min-gas-amount: 0
+            max-gas-amount: 0
+            debug: false
+            timeout: 20s
+            block-timeout: ""
+            output-format: json
+            sign-mode: direct
+            extra-codecs: []
+            coin-type: 118
+            signing-algorithm: ""
+            broadcast-mode: batch
+            min-loop-duration: 0s
+            extension-options: []
+            feegrants: null
+    mocha:
+        type: cosmos
+        value:
+            key-directory: /home/assafmo/.relayer/keys/mocha-4
+            key: default
+            chain-id: mocha-4
+            rpc-addr: https://rpc-mocha.pops.one:443
+            account-prefix: celestia
+            keyring-backend: test
+            gas-adjustment: 1.2
+            gas-prices: 0.02utia
+            min-gas-amount: 0
+            max-gas-amount: 0
+            debug: false
+            timeout: 20s
+            block-timeout: ""
+            output-format: json
+            sign-mode: direct
+            extra-codecs: []
+            coin-type: 118
+            signing-algorithm: ""
+            broadcast-mode: batch
+            min-loop-duration: 0s
+            extension-options: []
+            feegrants: null
+paths: {}
+' > "$HOME/.relayer/config/config.yaml"
 
-echo 'src: gm_rollup
-dest: mocha
-mnemonic: regret resist either bid upon yellow leaf early symbol win market vital
-' > "$HOME/.ibc-setup/app.yaml"
+rly keys restore gm_rollup a "regret resist either bid upon yellow leaf early symbol win market vital"
+rly keys restore mocha     a "regret resist either bid upon yellow leaf early symbol win market vital"
 ```
 
 Get the relayer accounts:
 
 ```bash
-ibc-setup keys list
-
-# Output should be:
-# gm_rollup: gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc
-# mocha: celestia1jqevcsld0dqpjp3csfg7alkv3lehvn8u04ymsu
+rly address gm_rollup a # => gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc
+rly address mocha     a # => celestia1jqevcsld0dqpjp3csfg7alkv3lehvn8u04ymsu
 ```
 
-Note: These accounts should always be the same because of the hardcoded mnemonic that we've set in `$HOME/.ibc-setup/app.yaml`.
+Note: These accounts should always be the same because of the hardcoded mnemonics that we've loaded in `rly keys restore`.
 
-Fund the relayer:
+Fund the relayer on our rollup:
 
-- On Celestia: https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet
-- On our rollup:
-  ```bash
-  gmd tx bank send gm-key-2 gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc 10000000stake --keyring-backend test --chain-id gm --fees 5000stake -y
-  ```
+```bash
+gmd tx bank send gm-key-2 gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc 10000000stake --keyring-backend test --chain-id gm --fees 5000stake -y
+```
+
+Fund the relayer on Celestia:
+
+https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet
+
+Verify the relayer is funded:
+
+```bash
+rly q balance mocha     a # => address {celestia1jqevcsld0dqpjp3csfg7alkv3lehvn8u04ymsu} balance {10000000utia}
+rly q balance gm_rollup a # => address {gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc} balance {10000000stake}
+```
 
 ## 💸 Transactions {#transactions}
 
