@@ -59,7 +59,7 @@ This script builds and runs the node, now listening on port `7980`.
 
 With the local DA network running, let’s prepare your rollup blockchain.
 
-To make it simple we will download a repository with a `gm-world` rollup that has an `init.sh` script that does all the setup for you.
+To make it simple, we will download a repository with a `gm-world` rollup that includes an `init.sh` script to handle all the setup for you.
 
 Download and build a `gm-world` rollup with an interactive script in a new terminal:
 
