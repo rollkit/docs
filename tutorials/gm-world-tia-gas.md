@@ -64,6 +64,7 @@ To make it simple we will download a repository with a `gm-world` rollup that ha
 Download and build a `gm-world` rollup with an interactive script in a new terminal:
 
 ::: warning
+You must install the jq command line tool to run it.
 In order to run it you need to have the jq command line tool installed. You can install it by running `sudo apt-get install jq` on Ubuntu or `brew install jq` on macOS.
 :::
 ::: tip
