@@ -83,7 +83,7 @@ Start the rollup, posting to the local DA network:
 gmd start --rollkit.aggregator --rollkit.da_address http://localhost:7980 --minimum-gas-prices="0.02ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA,0.025stake"
 ```
 
-Note that we specified the gas token to be IBC `TIA`. We still haven't made an IBC connection to Celestia's Mocha testnet, however, if we assume our first channel is going to be an ICS-20 transfer channel to Celestia, we can already calculate the token denom using this formula:
+Note that we specified the gas token to be IBC `TIA`. We still haven't made an IBC connection to Celestia's Mocha testnet, however, if we assume our first channel will be an ICS-20 transfer channel to Celestia, we can already calculate the token denom using this formula:
 
 ```js
 "ibc/" + toHex(sha256(toUtf8("transfer/channel-0/utia"))).toUpperCase();
