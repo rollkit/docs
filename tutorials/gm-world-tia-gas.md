@@ -230,7 +230,7 @@ gmd tx bank send gm-key-2 gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc 10000000stak
 
 Fund the relayer on Mocha:
 
-https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet
+[Mocha Testnet Faucet Instructions](https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet).
 
 Verify the relayer is funded:
 
