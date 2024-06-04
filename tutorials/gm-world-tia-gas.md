@@ -131,14 +131,12 @@ cd /tmp/relayer
 make install
 ```
 
-After installation, `ibc-setup` and `ibc-relayer` executables should be available.
-
 Configure the relayer:
 
 ```bash
 rly config init
 
-mkdir -p /home/assafmo/.relayer/keys/{gm,mocha-4}
+mkdir -p $HOME/.relayer/keys/{gm,mocha-4}
 
 echo $'global:
     api-listen-addr: :5183
@@ -221,7 +219,7 @@ rly address gm_rollup a # => gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc
 rly address mocha     a # => celestia1jqevcsld0dqpjp3csfg7alkv3lehvn8u04ymsu
 ```
 
-Note: These accounts should always be the same because of the hardcoded mnemonics that we've loaded in `rly keys restore`.
+Note: These accounts should always be the same because of the hardcoded mnemonics that we've loaded in the `rly keys restore` step.
 
 Fund the relayer on our rollup:
 
@@ -229,7 +227,7 @@ Fund the relayer on our rollup:
 gmd tx bank send gm-key-2 gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc 10000000stake --keyring-backend test --chain-id gm --fees 5000stake -y
 ```
 
-Fund the relayer on Mocha:
+Fund the relayer on the Celestia  Mocha testnet:
 
 [Mocha Testnet Faucet Instructions](https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet).
 
