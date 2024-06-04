@@ -121,7 +121,7 @@ Now you should see the logs of the running node:
 
 ## ✨ Connecting to Celestia Mocha testnet using IBC {#ibc-to-celestia}
 
-Next, we will create an IBC connection between our rollup and the Celestia Mocha testnet. This will allow us to send TIA to our rollup in order to use it as a gas token.
+Next, we will establish an IBC connection with the Celestia Mocha testnet to enable TIA transfers for gas usage on our rollup.
 
 Install the IBC relayer:
 
