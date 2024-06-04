@@ -12,7 +12,7 @@ We will cover:
 
 - Building and configuring a Cosmos-SDK application-specific rollup blockchain.
 - Posting rollup data to a Data Availability (DA) network.
-- Executing transactions using TIA as the gas token (the end goal).
+- Executing transactions using `TIA` as the gas token (the end goal).
 
 No prior understanding of the build process is required, just that it utilizes the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) for blockchain applications.
 
@@ -79,10 +79,10 @@ cd $HOME && bash -c "$(curl -sSL https://rollkit.dev/install-gm-rollup.sh)"
 Start the rollup, posting to the local DA network:
 
 ```bash
-gmd start --rollkit.aggregator --rollkit.da_address http://localhost:7980 --minimum-gas-prices="0.001337ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA,0.025stake"
+gmd start --rollkit.aggregator --rollkit.da_address http://localhost:7980 --minimum-gas-prices="0.02ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA,0.025stake"
 ```
 
-Note that we specified the gas token to be IBC TIA. We still haven't made an IBC connection to Celestia's Mocha testnet, however, if we assume our first channel is going to be an ICS-20 transfer channel to Celestia, we can already calculate the token denom using this formula:
+Note that we specified the gas token to be IBC `TIA`. We still haven't made an IBC connection to Celestia's Mocha testnet, however, if we assume our first channel is going to be an ICS-20 transfer channel to Celestia, we can already calculate the token denom using this formula:
 
 ```js
 "ibc/" + toHex(sha256(toUtf8("transfer/channel-0/utia"))).toUpperCase();
@@ -152,12 +152,12 @@ chains:
         type: cosmos
         value:
             key-directory: /home/assafmo/.relayer/keys/gm
-            key: default
+            key: a
             chain-id: gm
             rpc-addr: http://localhost:26657
             account-prefix: gm
             keyring-backend: test
-            gas-adjustment: 1.2
+            gas-adjustment: 1.5
             gas-prices: 0.025stake
             min-gas-amount: 0
             max-gas-amount: 0
@@ -177,13 +177,13 @@ chains:
         type: cosmos
         value:
             key-directory: /home/assafmo/.relayer/keys/mocha-4
-            key: default
+            key: a
             chain-id: mocha-4
-            rpc-addr: https://rpc-mocha.pops.one:443
+            rpc-addr: https://celestia-testnet-rpc.publicnode.com:443
             account-prefix: celestia
             keyring-backend: test
-            gas-adjustment: 1.2
-            gas-prices: 0.02utia
+            gas-adjustment: 1.5
+            gas-prices: 0.15utia
             min-gas-amount: 0
             max-gas-amount: 0
             debug: false
@@ -198,7 +198,15 @@ chains:
             min-loop-duration: 0s
             extension-options: []
             feegrants: null
-paths: {}
+paths:
+    gm_mocha-4:
+        src:
+            chain-id: gm
+        dst:
+            chain-id: mocha-4
+        src-channel-filter:
+            rule: ""
+            channel-list: []
 ' > "$HOME/.relayer/config/config.yaml"
 
 rly keys restore gm_rollup a "regret resist either bid upon yellow leaf early symbol win market vital"
@@ -220,7 +228,7 @@ Fund the relayer on our rollup:
 gmd tx bank send gm-key-2 gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc 10000000stake --keyring-backend test --chain-id gm --fees 5000stake -y
 ```
 
-Fund the relayer on Celestia:
+Fund the relayer on Mocha:
 
 https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet
 
@@ -231,116 +239,68 @@ rly q balance mocha     a # => address {celestia1jqevcsld0dqpjp3csfg7alkv3lehvn8
 rly q balance gm_rollup a # => address {gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc} balance {10000000stake}
 ```
 
+Create IBC clients:
+
+```bash
+rly tx client gm_rollup mocha gm_mocha-4 --override
+rly tx client mocha gm_rollup gm_mocha-4 --override
+```
+
+Create IBC connection:
+
+```bash
+rly tx connection gm_mocha-4
+```
+
+Create IBC channel:
+
+```bash
+rly tx channel gm_mocha-4 --src-port transfer --dst-port transfer --version ics20-1
+```
+
+Start the relayer:
+
+```bash
+rly start gm_mocha-4
+```
+
+Transfer `TIA` from Mocha to our rollup:
+
+```bash
+ACCOUNT_ON_ROLLUP="$(gmd keys show -a --keyring-backend test gm-key-2)"
+CHANNEL_ID_ON_MOCHA="$(rly q channels mocha gm_rollup | jq -r .channel_id)"
+
+rly tx transfer mocha gm_rollup 1000000utia "$ACCOUNT_ON_ROLLUP" "$CHANNEL_ID_ON_MOCHA" --path gm_mocha-4
+```
+
+Verify the account on our rollup is funded with IBC `TIA`:
+
+```bash
+gmd q bank balances "$(gmd keys show -a --keyring-backend test gm-key-2)"
+# =>
+# balances:
+# - amount: "1000000"
+#   denom: ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA
+# - amount: "9999999999999999989995000"
+#   denom: stake
+# pagination:
+#   total: "2"
+```
+
 ## 💸 Transactions {#transactions}
 
-First, list your keys:
+Finally, send a transaction on our rollup using IBC `TIA` as the gas token:
 
 ```bash
-gmd keys list --keyring-backend test
-```
+ACCOUNT_ON_ROLLUP="$(gmd keys show -a --keyring-backend test gm-key-2)"
 
-You should see an output like the following
+# Send the transaction
+TX_HASH=$(gmd tx bank send "$ACCOUNT_ON_ROLLUP" "$ACCOUNT_ON_ROLLUP" 1stake --keyring-backend test --chain-id gm --gas-prices 0.02ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA -y --output json | jq -r .txhash)
 
-```bash
-- address: gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9
-  name: gm-key-2
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Al92dlOeLpuAiOUSIaJapkIveiwlhlEdz/O5CrniMdwH"}'
-  type: local
-- address: gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
-  name: gm-key
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AwdsLY+2US2VV+rbyfi60GB4/Ir/FeTIkLJ3CWVhUF6b"}'
-  type: local
-- address: gm1vvl79phavqruppr6f5zy4ypxy7znshrqam48qy
-  name: gm-relay
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AlnSEnBUv5GO86fMWe11qth1+R76g2e1lv8c1FWhLpqP"}'
-  type: local
-```
-
-For convenience we export two of our keys like this:
-
-```bash
-export KEY1=gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9
-export KEY2=gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
-```
-
-Now let's submit a transaction that sends coins from one account to another (don't worry about all the flags, for now, we just want to submit transaction from a high level perspective):
-
-```bash
-gmd tx bank send $KEY1 $KEY2 42069stake --keyring-backend test --chain-id gm --fees 5000stake
-```
-
-You'll be prompted to accept the transaction:
-
-```bash
-auth_info:
-  fee:
-    amount: []
-    gas_limit: "200000"
-    granter: ""
-    payer: ""
-  signer_infos: []
-  tip: null
-body:
-  extension_options: []
-  memo: ""
-  messages:
-  - '@type': /cosmos.bank.v1beta1.MsgSend
-    amount:
-    - amount: "42069"
-      denom: stake
-    from_address: gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9
-    to_address: gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
-  non_critical_extension_options: []
-  timeout_height: "0"
-signatures: []
-confirm transaction before signing and broadcasting [y/N]: // [!code focus]
-```
-
-Confirm and sign the transaction as prompted. now you see the transaction hash at the output:
-
-```bash
-//...
-
-txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
-```
-
-## ⚖️ Checking Balances {#balances}
-
-Query balances after the transaction:
-
-```bash
-gmd query bank balances $KEY2
-```
-
-The receiver’s balance should show an increase.
-
-```bash
-balances: // [!code focus]
-- amount: "10000000000000000000042069" // [!code focus]
-  denom: stake
-pagination:
-  next_key: null
-  total: "0"
-```
-
-For the sender’s balance:
-
-```bash
-gmd query bank balances $KEY1
-```
-
-Output:
-
-```bash
-balances: // [!code focus]
-- amount: "9999999999999999999957931" // [!code focus]
-  denom: stake
-pagination:
-  next_key: null
-  total: "0"
+# Verify success
+gmd q tx "$TX_HASH" --output json | jq .code # => 0
 ```
 
 ## 🎉 Next steps
 
-Congratulations! You've built a local rollup that posts to a
-local DA network. So far so good, keep diving deeper if you like it. Good luck!
+Congratulations! You've built a local rollup that posts to a local DA network and uses `TIA` as the gas token!
