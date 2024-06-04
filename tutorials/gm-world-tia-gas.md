@@ -6,13 +6,13 @@ description: Build a sovereign rollup using only Rollkit CLI and a local DA netw
 
 ## 🌞 Introduction {#introduction}
 
-This tutorial will guide you through building a sovereign `gm-world` rollup using Rollkit, with `TIA` as the gas token. Unlike the [quick start guide](https://rollkit.dev/tutorials/quick-start), this tutorial provides a more practical approach to understanding sovereign rollup development using `TIA` as the gas token.
+This tutorial will guide you through building a sovereign `gm-world` rollup using Rollkit, with TIA as the gas token. Unlike the [quick start guide](https://rollkit.dev/tutorials/quick-start), this tutorial provides a more practical approach to understanding sovereign rollup development using TIA as the gas token.
 
 We will cover:
 
 - Building and configuring a Cosmos-SDK application-specific rollup blockchain.
 - Posting rollup data to a Data Availability (DA) network.
-- Executing transactions using `TIA` as the gas token (the end goal).
+- Executing transactions using TIA as the gas token (the end goal).
 
 No prior understanding of the build process is required, just that it utilizes the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) for blockchain applications.
 
@@ -50,7 +50,7 @@ Learn to run a local DA network, designed for educational purposes, on your mach
 To set up a local DA network node:
 
 ```bash-vue
-curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.localDALatestTag}}
+(cd /tmp && curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.localDALatestTag}})
 ```
 
 This script builds and runs the node, now listening on port `7980`.
@@ -71,7 +71,7 @@ If you get errors of `gmd` not found, you may need to add the `go/bin` directory
 :::
 
 ```bash
-cd $HOME && bash -c "$(curl -sSL https://rollkit.dev/install-gm-rollup.sh)"
+(cd /tmp && bash -c "$(curl -sSL https://rollkit.dev/install-gm-rollup.sh)")
 ```
 
 ## 🚀 Starting your rollup {#start-your-rollup}
@@ -82,7 +82,7 @@ Start the rollup, posting to the local DA network:
 gmd start --rollkit.aggregator --rollkit.da_address http://localhost:7980 --minimum-gas-prices="0.02ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA,0.025stake"
 ```
 
-Note that we specified the gas token to be IBC `TIA`. We still haven't made an IBC connection to Celestia's Mocha testnet, however, if we assume our first channel will be an ICS-20 transfer channel to Celestia, we can already calculate the token denom using this formula:
+Note that we specified the gas token to be IBC TIA. We still haven't made an IBC connection to Celestia's Mocha testnet, however, if we assume our first channel will be an ICS-20 transfer channel to Celestia, we can already calculate the token denom using this formula:
 
 ```js
 "ibc/" + toHex(sha256(toUtf8("transfer/channel-0/utia"))).toUpperCase();
@@ -135,12 +135,12 @@ Configure the relayer:
 ```bash
 rly config init
 
-mkdir -p $HOME/.relayer/keys/{gm,mocha-4}
+mkdir -p "$HOME/.relayer/keys/{gm,mocha-4}"
 
-echo $'global:
+echo "global:
     api-listen-addr: :5183
     timeout: 10s
-    memo: ""
+    memo: ''
     light-cache-size: 20
     log-level: info
     ics20-memo-limit: 0
@@ -149,7 +149,7 @@ chains:
     gm_rollup:
         type: cosmos
         value:
-            key-directory: /home/assafmo/.relayer/keys/gm
+            key-directory: '$HOME/.relayer/keys/gm'
             key: a
             chain-id: gm
             rpc-addr: http://localhost:26657
@@ -161,12 +161,12 @@ chains:
             max-gas-amount: 0
             debug: false
             timeout: 20s
-            block-timeout: ""
+            block-timeout: ''
             output-format: json
             sign-mode: direct
             extra-codecs: []
             coin-type: 118
-            signing-algorithm: ""
+            signing-algorithm: ''
             broadcast-mode: batch
             min-loop-duration: 0s
             extension-options: []
@@ -174,7 +174,7 @@ chains:
     mocha:
         type: cosmos
         value:
-            key-directory: /home/assafmo/.relayer/keys/mocha-4
+            key-directory: '$HOME/.relayer/keys/mocha-4'
             key: a
             chain-id: mocha-4
             rpc-addr: https://celestia-testnet-rpc.publicnode.com:443
@@ -186,12 +186,12 @@ chains:
             max-gas-amount: 0
             debug: false
             timeout: 20s
-            block-timeout: ""
+            block-timeout: ''
             output-format: json
             sign-mode: direct
             extra-codecs: []
             coin-type: 118
-            signing-algorithm: ""
+            signing-algorithm: ''
             broadcast-mode: batch
             min-loop-duration: 0s
             extension-options: []
@@ -203,9 +203,9 @@ paths:
         dst:
             chain-id: mocha-4
         src-channel-filter:
-            rule: ""
+            rule: ''
             channel-list: []
-' > "$HOME/.relayer/config/config.yaml"
+" > "$HOME/.relayer/config/config.yaml"
 
 rly keys restore gm_rollup a "regret resist either bid upon yellow leaf early symbol win market vital"
 rly keys restore mocha     a "regret resist either bid upon yellow leaf early symbol win market vital"
@@ -226,7 +226,7 @@ Fund the relayer on our rollup:
 gmd tx bank send gm-key-2 gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc 10000000stake --keyring-backend test --chain-id gm --fees 5000stake -y
 ```
 
-Fund the relayer on the Celestia  Mocha testnet:
+Fund the relayer on the Celestia Mocha testnet:
 
 [Mocha Testnet Faucet Instructions](https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet).
 
@@ -262,16 +262,16 @@ Start the relayer:
 rly start gm_mocha-4
 ```
 
-Transfer `TIA` from Mocha to our rollup:
+Transfer TIA from Mocha to our rollup:
 
 ```bash
 ACCOUNT_ON_ROLLUP="$(gmd keys show -a --keyring-backend test gm-key-2)"
-CHANNEL_ID_ON_MOCHA="$(rly q channels mocha gm_rollup | jq -r .channel_id)"
+CHANNEL_ID_ON_MOCHA="$(rly q channels mocha gm_rollup | jq -r .channel_id | tail -1)"
 
 rly tx transfer mocha gm_rollup 1000000utia "$ACCOUNT_ON_ROLLUP" "$CHANNEL_ID_ON_MOCHA" --path gm_mocha-4
 ```
 
-Verify the account on our rollup is funded with IBC `TIA`:
+Verify the account on our rollup is funded with IBC TIA:
 
 ```bash
 gmd q bank balances "$(gmd keys show -a --keyring-backend test gm-key-2)"
@@ -287,7 +287,7 @@ gmd q bank balances "$(gmd keys show -a --keyring-backend test gm-key-2)"
 
 ## 💸 Transactions {#transactions}
 
-Finally, send a transaction on our rollup using IBC `TIA` as the gas token:
+Finally, send a transaction on our rollup using IBC TIA as the gas token:
 
 ```bash
 ACCOUNT_ON_ROLLUP="$(gmd keys show -a --keyring-backend test gm-key-2)"
@@ -301,4 +301,4 @@ gmd q tx "$TX_HASH" --output json | jq .code # => 0
 
 ## 🎉 Next steps
 
-Congratulations! You've built a local rollup that posts to a local DA network and uses `TIA` as the gas token!
+Congratulations! You've built a local rollup that posts to a local DA network and uses TIA as the gas token!
