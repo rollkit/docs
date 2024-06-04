@@ -1,18 +1,18 @@
 ---
-description: Build a sovereign rollup using only Rollkit CLI and a local DA network.
+description: Build a sovereign rollup using only Rollkit CLI and a local DA network, with TIA as the gas token.
 ---
 
 # GM world rollup
 
 ## 🌞 Introduction {#introduction}
 
-This tutorial will guide you through building a sovereign `gm-world` rollup (`gm` stands for "good morning") using Rollkit. Unlike the [quick start guide](https://rollkit.dev/tutorials/quick-start), this tutorial provides a more practical approach to understanding sovereign rollup development.
+This tutorial will guide you through building a sovereign `gm-world` rollup using Rollkit, with `TIA` as the gas token. Unlike the [quick start guide](https://rollkit.dev/tutorials/quick-start), this tutorial provides a more practical approach to understanding sovereign rollup development using `TIA` as the gas token.
 
 We will cover:
 
 - Building and configuring a Cosmos-SDK application-specific rollup blockchain.
 - Posting rollup data to a Data Availability (DA) network.
-- Executing transactions (the end goal).
+- Executing transactions using TIA as the gas token (the end goal).
 
 No prior understanding of the build process is required, just that it utilizes the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) for blockchain applications.
 
@@ -79,10 +79,16 @@ cd $HOME && bash -c "$(curl -sSL https://rollkit.dev/install-gm-rollup.sh)"
 Start the rollup, posting to the local DA network:
 
 ```bash
-gmd start --rollkit.aggregator --minimum-gas-prices="0.025stake" --rollkit.da_address http://localhost:7980
+gmd start --rollkit.aggregator --rollkit.da_address http://localhost:7980 --minimum-gas-prices="0.001337ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA,0.025stake"
 ```
 
-Notice how we specified the DA network address along with a few other flags. Now you should see the logs of the running node:
+Note that we specified the gas token to be IBC TIA. We still haven't made an IBC connection to Celestia's Mocha testnet, however, if we assume our first channel is going to be an ICS-20 transfer channel to Celestia, we can already calculate the token denom using this formula:
+
+```js
+"ibc/" + toHex(sha256(toUtf8("transfer/channel-0/utia"))).toUpperCase();
+```
+
+Now you should see the logs of the running node:
 
 ```bash
 12:21PM INF starting node with ABCI CometBFT in-process module=server
@@ -112,7 +118,73 @@ Notice how we specified the DA network address along with a few other flags. Now
 ...
 ```
 
-Good work so far, we have a Rollup node, DA network node, now we can start submitting transactions.
+## ✨ Connecting to Celestia Mocha testnet using IBC {#ibc-to-celestia}
+
+Next, we're going to create an IBC connection between our rollup and the Celestia Mocha testnet. This will allow us to send TIA to our rollup in order to use it as a gas token.
+
+Install the IBC relayer:
+
+```bash
+npm i -g @confio/relayer
+```
+
+After installation, `ibc-setup` and `ibc-relayer` executables should be available.
+
+Configure the relayer:
+
+```bash
+mkdir -p "$HOME/.ibc-setup"
+
+echo $'version: 1
+
+chains:
+  gm_rollup:
+    chain_id: gm
+    prefix: gm
+    gas_price: 0stake
+    hd_path: m/44\'/118\'/0\'/0/0
+    ics20_port: transfer
+    estimated_block_time: 1000
+    estimated_indexer_time: 250
+    rpc:
+      - http://localhost:26657
+  mocha:
+    chain_id: mocha-4
+    prefix: celestia
+    gas_price: 0.02utia
+    hd_path: m/44\'/118\'/0\'/0/0
+    ics20_port: transfer
+    estimated_block_time: 7000
+    estimated_indexer_time: 250
+    rpc:
+      - https://rpc-mocha.pops.one:443
+' > "$HOME/.ibc-setup/registry.yaml"
+
+echo 'src: gm_rollup
+dest: mocha
+mnemonic: regret resist either bid upon yellow leaf early symbol win market vital
+' > "$HOME/.ibc-setup/app.yaml"
+```
+
+Get the relayer accounts:
+
+```bash
+ibc-setup keys list
+
+# Output should be:
+# gm_rollup: gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc
+# mocha: celestia1jqevcsld0dqpjp3csfg7alkv3lehvn8u04ymsu
+```
+
+Note: These accounts should always be the same because of the hardcoded mnemonic that we've set in `$HOME/.ibc-setup/app.yaml`.
+
+Fund the relayer:
+
+- On Celestia: https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet
+- On our rollup:
+  ```bash
+  gmd tx bank send gm-key-2 gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc 10000000stake --keyring-backend test --chain-id gm --fees 5000stake -y
+  ```
 
 ## 💸 Transactions {#transactions}
 
