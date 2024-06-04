@@ -65,7 +65,7 @@ Download and build a `gm-world` rollup with an interactive script in a new termi
 
 ::: warning
 You must install the jq command line tool to run it.
-In order to run it you need to have the jq command line tool installed. You can install it by running `sudo apt-get install jq` on Ubuntu or `brew install jq` on macOS.
+In order to run it, you need to have the jq command line tool installed. You can install it by running `sudo apt-get install jq` on Ubuntu or `brew install jq` on macOS.
 :::
 ::: tip
 If you get errors of `gmd` not found, you may need to add the `go/bin` directory to your PATH. You can do this by running `export PATH=$PATH:$HOME/go/bin` and then running the `init.sh` script manually again.
