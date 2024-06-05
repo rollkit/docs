@@ -25,9 +25,9 @@ this tutorial.
 
 ## 💻 CosmWasm dependency installations {#dependencies}
 
-### 🏃 Golang {#environment}
+### 🏃 Golang {#install-go}
 
-For this tutorial, we will need `go` and `jq` installed on your machine. You can install them by running:
+For this tutorial, we will need `go` and `jq` installed on your machine. You can install them by running our script:
 
 ```bash
 curl -sSL https://rollkit.dev/install-go.sh | bash -s go1.22.3
@@ -101,7 +101,7 @@ Find the right instructions specific for
 
 Here, we are going to pull down the `wasmd` repository and replace CometBFT
 with Rollkit. Rollkit is a drop-in replacement for CometBFT that allows
-Cosmos-SDK applications to connect to data availability network.
+Cosmos-SDK applications to connect to data availability (DA) network.
 
 ```bash
 git clone https://github.com/CosmWasm/wasmd.git
