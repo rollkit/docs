@@ -273,7 +273,7 @@ or commands in the remainder of the tutorial, cross-reference
 the variables in the command with the variables in the `init.sh` script.
 :::
 
-## 🌟 Contract interaction on CosmWasm with Celestia {#contract-interaction-on-celestia}
+## 🌟 Contract interaction on CosmWasm {#contract-interaction-on-local-da}
 <!-- markdownlint-disable MD013 -->
 
 In the previous steps, we have stored out contract's tx hash in an
