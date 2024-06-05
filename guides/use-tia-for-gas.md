@@ -1,8 +1,8 @@
 ---
-description: Build a sovereign rollup using only Rollkit CLI and a local DA network, with TIA as the gas token.
+description: Build a sovereign rollup using Rollkit CLI and a local DA network, with TIA as the gas token.
 ---
 
-# GM world rollup
+# How to use IBC token (TIA) as gas token in your rollup
 
 ## 🌞 Introduction {#introduction}
 
