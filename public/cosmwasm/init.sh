@@ -2,23 +2,12 @@
 
 # set variables for the chain
 VALIDATOR_NAME=validator1
-CHAIN_ID=celeswasm
-KEY_NAME=celeswasm-key
+CHAIN_ID=localwasm
+KEY_NAME=localwasm-key
 TOKEN_AMOUNT="10000000000000000000000000uwasm"
 STAKING_AMOUNT=1000000000uwasm
 CHAINFLAG="--chain-id ${CHAIN_ID}"
 TXFLAG="--chain-id ${CHAIN_ID} --gas-prices 0uwasm --gas auto --gas-adjustment 1.3"
-
-# query the DA Layer start height, in this case we are querying
-# an RPC endpoint provided by Celestia Labs. The RPC endpoint is
-# to allow users to interact with Celestia's core network by querying
-# the node's state and broadcasting transactions on the Celestia
-# network. This is for Arabica, if using another network, change the RPC.
-DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block |jq -r '.result.block.header.height')
-echo -e "\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n"
-
-AUTH_TOKEN=$(celestia light auth write --p2p.network mocha)
-echo -e "\n Your DA AUTH_TOKEN is $AUTH_TOKEN \n"
 
 # reset any existing genesis/chain data
 wasmd tendermint unsafe-reset-all
@@ -54,12 +43,7 @@ ADDRESS=$(jq -r '.address' ~/.wasmd/config/priv_validator_key.json)
 PUB_KEY=$(jq -r '.pub_key' ~/.wasmd/config/priv_validator_key.json)
 jq --argjson pubKey "$PUB_KEY" '.consensus["validators"]=[{"address": "'$ADDRESS'", "pub_key": $pubKey, "power": "1000", "name": "Rollkit Sequencer"}]' ~/.wasmd/config/genesis.json > temp.json && mv temp.json ~/.wasmd/config/genesis.json
 
-# create a restart-testnet.sh file to restart the chain later
-[ -f restart-wasmd.sh ] && rm restart-wasmd.sh
-echo "DA_BLOCK_HEIGHT=$DA_BLOCK_HEIGHT" >> restart-wasmd.sh
-echo "AUTH_TOKEN=$AUTH_TOKEN" >> restart-wasmd.sh
-
-echo "wasmd start --rollkit.aggregator --rollkit.da_auth_token=\$AUTH_TOKEN --rollkit.da_namespace 00000000000000000000000000000000000000000008e5f679bf7116cb --rollkit.da_start_height \$DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr \"0.0.0.0:36656\" --minimum-gas-prices="0.025uwasm"" >> restart-wasmd.sh
+echo "wasmd start --rollkit.aggregator --rollkit.da_address http://localhost:7980 --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr \"0.0.0.0:36656\" --minimum-gas-prices="0.025uwasm"" >> restart-wasmd.sh
 
 # start the chain
-wasmd start --rollkit.aggregator --rollkit.da_auth_token=$AUTH_TOKEN --rollkit.da_namespace 00000000000000000000000000000000000000000008e5f679bf7116cb --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr "0.0.0.0:36656" --minimum-gas-prices="0.025uwasm"
+wasmd start --rollkit.aggregator --rollkit.da_address http://localhost:7980 --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr "0.0.0.0:36656" --minimum-gas-prices="0.025uwasm"
