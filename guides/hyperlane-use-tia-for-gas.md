@@ -13,12 +13,4 @@ import Callout from '../.vitepress/components/callout.vue'
 
 <!-- markdownlint-enable MD033 -->
 
-The smart contract we will use for this tutorial is one provided by
-the CosmWasm team for Nameservice purchasing.
-
-You can check out the contract [here](https://github.com/InterWasm/cw-contracts/tree/main/contracts/nameservice).
-
-How to write the Rust smart contract for Nameservice is outside the scope of
-this tutorial.
-
 ## 💻 Deploy the Hyperlane contracts {#deploy-contracts}
