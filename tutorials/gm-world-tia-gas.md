@@ -91,30 +91,10 @@ Note that we specified the gas token to be IBC TIA. We still haven't made an IBC
 Now you should see the logs of the running node:
 
 ```bash
-12:21PM INF starting node with ABCI CometBFT in-process module=server
-12:21PM INF starting node with Rollkit in-process module=server
-12:21PM INF service start impl=multiAppConn module=proxy msg="Starting multiAppConn service"
-12:21PM INF service start connection=query impl=localClient module=abci-client msg="Starting localClient service"
-12:21PM INF service start connection=snapshot impl=localClient module=abci-client msg="Starting localClient service"
-12:21PM INF service start connection=mempool impl=localClient module=abci-client msg="Starting localClient service"
-12:21PM INF service start connection=consensus impl=localClient module=abci-client msg="Starting localClient service"
-12:21PM INF service start impl=EventBus module=events msg="Starting EventBus service"
-12:21PM INF service start impl=PubSub module=pubsub msg="Starting PubSub service"
-12:21PM INF Using default mempool ttl MempoolTTL=25 module=BlockManager
-12:21PM INF service start impl=IndexerService module=txindex msg="Starting IndexerService service"
-12:21PM INF service start impl=RPC module=server msg="Starting RPC service"
-12:21PM INF service start impl=Node module=server msg="Starting Node service"
-12:21PM INF starting P2P client module=server
-12:21PM INF serving HTTP listen address=127.0.0.1:26657 module=server
-12:21PM INF listening on address=/ip4/127.0.0.1/tcp/26656/p2p/12D3KooWSicdPmMTLf9fJbSSHZc9UVP1CbNqKPpbYVbgxHvbhAUY module=p2p
-12:21PM INF listening on address=/ip4/163.172.162.109/tcp/26656/p2p/12D3KooWSicdPmMTLf9fJbSSHZc9UVP1CbNqKPpbYVbgxHvbhAUY module=p2p
-12:21PM INF no seed nodes - only listening for connections module=p2p
-12:21PM INF working in aggregator mode block time=1000 module=server
-12:21PM INF Creating and publishing block height=22 module=BlockManager
-12:21PM INF starting gRPC server... address=127.0.0.1:9290 module=grpc-server
-12:21PM INF finalized block block_app_hash=235D3710D61F347DBBBDD6FD63AA7687842D1EF9CB475C712856D7DA32F82F09 height=22 module=BlockManager num_txs_res=0 num_val_updates=0
-12:21PM INF executed block app_hash=235D3710D61F347DBBBDD6FD63AA7687842D1EF9CB475C712856D7DA32F82F09 height=22 module=BlockManager
-12:21PM INF indexed block events height=22 module=txindex
+...
+12:21PM INF finalized block block_app_hash=235D3710D61F347DBBBDD6FD63AA7687842D1EF9CB475C712856D7DA32F82F09 height=1 module=BlockManager num_txs_res=0 num_val_updates=0
+12:21PM INF executed block app_hash=235D3710D61F347DBBBDD6FD63AA7687842D1EF9CB475C712856D7DA32F82F09 height=1 module=BlockManager
+12:21PM INF indexed block events height=1 module=txindex
 ...
 ```
 
@@ -181,7 +161,7 @@ chains:
             account-prefix: celestia
             keyring-backend: test
             gas-adjustment: 1.5
-            gas-prices: 0.15utia
+            gas-prices: 0.25utia
             min-gas-amount: 0
             max-gas-amount: 0
             debug: false
