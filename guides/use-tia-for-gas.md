@@ -5,7 +5,13 @@ description: Build a sovereign rollup using Rollkit CLI and a local DA network, 
 # How to use IBC token (TIA) as gas token in your rollup
 
 :::warning Disclaimer
-Using IBC with a single sequencer poses significant risks, namely that the sequencer can be compromised and take control of the rollup, which could result in a loss of funds. It is strongly recommended using Hyperlane instead of IBC. Check out [GM world rollup with Hyperlane](https://rollkit.dev/guides/hyperlane).
+This initial version of IBC has high trust assumptions where receiving chains
+only verify the signature of the single rollup node. For use in production, it's recommended to wait for trust-minimized IBC support which includes state proofs and conditional clients.
+
+Learn more about how conditional clients work in [ibc-go issue 5112](https://github.com/cosmos/ibc-go/issues/5112)
+and a tracking issue for state proofs in [rollkit issue 1632](https://github.com/rollkit/rollkit/issues/1632).
+
+For now, it is strongly recommended using Hyperlane instead of IBC. Check out [GM world rollup with Hyperlane](https://rollkit.dev/guides/hyperlane).
 :::
 
 ## 🌞 Introduction {#introduction}
