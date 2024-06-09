@@ -104,7 +104,7 @@ with Rollkit. Rollkit is a drop-in replacement for CometBFT that allows
 Cosmos-SDK applications to connect to data availability (DA) network.
 
 ```bash
-git clone https://github.com/CosmWasm/wasmd.git
+git clone --branch v0.50.0 --depth https://github.com/CosmWasm/wasmd.git
 cd wasmd
 git checkout tags/v0.50.0
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.6-rollkit-v0.13.3-no-fraud-proofs
