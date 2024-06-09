@@ -1,8 +1,8 @@
 ---
-description: Build a sovereign rollup using only Rollkit CLI and a local DA network, with TIA as the gas token.
+description: Build a sovereign rollup using Rollkit CLI and a local DA network, with TIA as the gas token.
 ---
 
-# GM world rollup with TIA as gas token
+# How to use IBC token (TIA) as gas token in your rollup
 
 :::warning Disclaimer
 Using IBC with a single sequencer poses significant risks, namely that the sequencer can be compromised and take control of the rollup, which could result in a loss of funds. It is strongly recommended using Hyperlane instead of IBC. Check out [GM world rollup with Hyperlane](https://rollkit.dev/guides/hyperlane).
