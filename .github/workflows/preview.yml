@@ -1,7 +1,9 @@
 name: Deploy PR previews
 
 on:
-  pull_request_target:
+  # This workflow requires pull_request and won't work with pull_request_target 
+  # due to github permissions 
+  pull_request:
     types:
       - opened
       - reopened
