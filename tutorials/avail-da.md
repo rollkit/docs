@@ -8,7 +8,7 @@ This tutorial serves as a comprehensive guide for deploying your GM world rollup
 
 Before proceeding, ensure that you have completed the [GM world rollup](/tutorials/gm-world) tutorial, which covers setting up a local sovereign gm-world rollup and connecting it to a local (mock) DA node.
 
-## 🪶 Running a avail light node
+## 🪶 Running an avail light node
 
 Before you can start your rollup node, you need to initiate, sync, and possibly fund a light node on Turing testnet which is the test network of Avail
 
@@ -17,18 +17,19 @@ Before you can start your rollup node, you need to initiate, sync, and possibly 
 
 ### 🚀 Using Turing Testnet
 
-* To fund your wallet address for using Turing Testnet: get AVAIL tokens from [Faucet]((https://faucet.avail.tools/))
-* Paste your mnemonic in the `identity.toml` file by creating a `identity.toml` with the following command:
-    ```touch identity.toml```
-    Example:
-    ```bash
-    avail_secret_uri = '<paste your mnemonic here>'
-* Running just a Avail light node is enough for Turing testnet. Run the Avail light node using the following command
+- To fund your wallet address for using Turing Testnet: get AVAIL tokens from [Faucet]((https://faucet.avail.tools/))
+- Paste your mnemonic in the `identity.toml` file by creating a `identity.toml` with the following command:
+```touch identity.toml```
+Example:
+```bash
+avail_secret_uri = '<paste your mnemonic here>'
+```
+- Running just an Avail light node is enough for Turing testnet. Run the Avail light node using the following command
 ```bash
 cargo run --release -- --network turing --app-id 1 --clean --identity identity.toml
 ```
 
-If you want to sync avail light node with your desired block number, you can add the following config in your `config.yaml` file from [here]()
+If you want to sync avail light node with your desired block number, you can add the following config in your `config.yaml` file from [here](https://github.com/availproject/avail-light/blob/main/config.yaml.template)
 ```bash
 http_server_host = '127.0.0.1'
 http_server_port = 8000
@@ -82,7 +83,7 @@ You will see the output like this:
  Your DA_BLOCK_HEIGHT is 35
 ```
 
-## 🔥 Running your rollup connected to a avail light node
+## 🔥 Running your rollup connected to an avail light node
 
 Now let's run our rollup node with all DA flags:
 
@@ -94,7 +95,7 @@ Now let's run our rollup node with all DA flags:
     --minimum-gas-prices="0.1stake"
 ```
 
-Now, the rollup is running and posting blocks (aggregated in batches) to avail. You can view your rollup by finding your account on [Turing testnet](https://avail-turing.subscan.io/) 
+Now, the rollup is running and posting blocks (aggregated in batches) to avail. You can view your rollup by finding your account on [Turing testnet](https://avail-turing.subscan.io/)
 
 ::: info
 For details on configuring gas prices specifically for the DA network, see our [DA Network Gas Price Guide](/guides/gas-price). This is separate from the `--minimum-gas-prices="0.025stake"` setting, which is used for rollup network operations.
