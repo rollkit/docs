@@ -85,7 +85,6 @@ To install Ignite, you can run this command in your terminal:
 
 ```bash-vue
 curl https://get.ignite.com/cli@{{constants.igniteVersionTag}}! | bash
-sudo mv ignite /usr/local/bin/
 ```
 
 This installs Ignite CLI in your local machine.
@@ -120,8 +119,8 @@ you must write yourself. If you are coming from the EVM-world, think of
 Ignite as a Cosmos-SDK version of Foundry or Hardhat but specifically
 designed to build blockchains.
 
-We first run the following command to setup our project for
-our new blockchain, Wordle.
+we first run the following command to set up our project for
+our new blockchain, wordle.
 
 ```bash
 ignite scaffold chain wordle --no-module
@@ -167,16 +166,26 @@ Rollkit on our codebase.
 
 ### 🗞️ Installing Rollkit {#installing-rollkit}
 
-Run the following command inside the `wordle` directory.
+To install the Rollkit app to Ignite, run the following command:
 
-```bash-vue
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@{{constants.rollkitCosmosSDKVersion}}
-go mod tidy
-go mod download
+```bash
+ignite app install github.com/ignite/apps/rollkit@rollkit/v0.2.0
 ```
 
-With that, we have Rollkit changes added to the project directory. Now,
-let's build the Wordle app!
+Next, add Rollkit to your project by running:
+
+```bash
+ignite rollkit add
+```
+
+Initialize the Rollkit chain configuration for a local DA network with this command:
+
+```bash
+ignite rollkit init --local-da
+```
+
+This will create a `~/.wordle` directory with all the necessary files to run a rollup on a local DA network.
+With these steps, Rollkit is now added. Let's build the Wordle app!
 
 ## ✨ Creating the wordle module {#creating-wordle-module}
 
@@ -550,7 +559,7 @@ compile the blockchain and take it out for a test drive.
 To set up a local data availability network node run:
 
 ```bash-vue
-curl -sSL https://rollkit.dev/install-local-da.sh | sh {{constants.localDALatestTag}} 
+curl -sSL https://rollkit.dev/install-local-da.sh | sh -s {{constants.localDALatestTag}}
 ```
 
 This script builds and runs the node, now listening on port `7980`.
@@ -560,36 +569,26 @@ running on your machine, you're ready to build, test, and launch your own sovere
 
 ### 🟢 Building and running wordle chain {#build-and-run-wordle-chain}
 
-We have a handy `init.sh` [found in this repo](https://github.com/rollkit/docs/blob/main/public/wordle/init.sh).
 
-We can copy it over to our directory with the following commands:
+Now let's initialize a `rollkit.toml` file in the `worldle` directory by running:
+
+```bash
+rollkit toml init
+```
+
+To start running a rollup with the Wordle chain, run the following command:
+
+```bash
+rollkit start --rollkit.aggregator --rollkit.da_address http://localhost:7980
+```
+
+With that, we have kickstarted our wordle network!
+
+In another window, from the `~/wordle` directory  (where rollkit.toml is located)  run the following command to submit a Wordle:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-# From inside the `wordle` directory
-wget https://rollkit.dev/wordle/init.sh
-```
-<!-- markdownlint-enable MD013 -->
-
-This copies over our `init.sh` script to initialize our
-Wordle Rollup.
-
-You can view the contents of the script to see how we
-initialize the Wordle Rollup.
-
-You can initialize the script with the following command:
-
-```bash
-bash init.sh
-```
-
-With that, we have kickstarted our `wordled` network!
-
-In another window, run the following to submit a Wordle:
-
-<!-- markdownlint-disable MD013 -->
-```bash
-wordled tx wordle submit-wordle giant --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+rollkit tx wordle submit-wordle giant --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -669,7 +668,7 @@ the block yet or if there are any errors.
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-wordled query tx --type=hash F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E --chain-id wordle --output json | jq -r '.raw_log'
+rollkit query tx --type=hash F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E --chain-id wordle --output json | jq -r '.raw_log'
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -684,7 +683,7 @@ Test out a few things for fun:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-wordled tx wordle submit-guess 12345 --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+rollkit tx wordle submit-guess 12345 --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -696,7 +695,7 @@ Now try:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-wordled tx wordle submit-guess ABCDEFG --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+rollkit  tx wordle submit-guess ABCDEFG --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -708,7 +707,7 @@ Now try to submit another wordle even though one was already submitted
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-wordled tx wordle submit-wordle meter --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+rollkit tx wordle submit-wordle meter --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -720,7 +719,7 @@ Now let’s try to guess a five letter word:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-wordled tx wordle submit-guess least --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+rollkit tx wordle submit-guess least --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -731,7 +730,7 @@ word, it will increment the guess count for wordle-key's account.
 We can verify this by querying the list:
 
 ```bash
-wordled q wordle list-guess --output json
+rollkit q wordle list-guess --output json
 ```
 
 This outputs all Guess objects submitted so far, with the index
