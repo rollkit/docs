@@ -293,6 +293,10 @@ function sidebarHome() {
               text: "How to integrate Range with your rollup",
               link: "/guides/rollkit-monitoring",
             },
+            {
+              text: "How to use IBC token (TIA) as gas token in your rollup",
+              link: "/guides/use-tia-for-gas",
+            },
           ],
         },
       ],

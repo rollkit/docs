@@ -23,6 +23,7 @@ In this section, you'll find:
 * [How to use lazy sequencing (aggregation)](/guides/lazy-sequencing.md)
 * [Testing and deploying smart-contract with cw-orch](/guides/cw-orch.md)
 * [How to integrate Range with your rollup](/guides/rollkit-monitoring.md)
+* [How to use IBC token (TIA) as gas token in your rollup](/guides/use-tia-for-gas.md)
 
 ## 💻 Support {#support}
 

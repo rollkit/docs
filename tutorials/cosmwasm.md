@@ -3,9 +3,7 @@
 CosmWasm is a smart contracting platform built for the Cosmos
 ecosystem by making use of [WebAssembly](https://webassembly.org) (Wasm)
 to build smart contracts for Cosmos-SDK. In this tutorial, we will be
-exploring how to integrate CosmWasm with Celestia's
-[data availability layer](https://docs.celestia.org/concepts/how-celestia-works/data-availability-layer)
-using Rollkit.
+exploring how to integrate CosmWasm with local DA layer using Rollkit.
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
@@ -17,40 +15,25 @@ import Callout from '../.vitepress/components/callout.vue'
 :::
 <!-- markdownlint-enable MD033 -->
 
-::: warning
-The script for this tutorial is built for Celestia's
-[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet).
-:::
-
-You can learn more about CosmWasm [here](https://docs.cosmwasm.com/docs/).
-
 The smart contract we will use for this tutorial is one provided by
 the CosmWasm team for Nameservice purchasing.
 
 You can check out the contract [here](https://github.com/InterWasm/cw-contracts/tree/main/contracts/nameservice).
 
 How to write the Rust smart contract for Nameservice is outside the scope of
-this tutorial. In the future we will add more tutorials for writing CosmWasm
-smart contracts for Celestia.
+this tutorial.
 
 ## 💻 CosmWasm dependency installations {#dependencies}
 
-### 🛠️ Environment setup {#environment}
+### 🏃 Golang {#install-go}
 
-For this tutorial, we will be using `curl` and `jq` as helpful
-tools. You can follow the guide on installing them
-[here](https://docs.celestia.org/nodes/environment/#-install-wget-and-jq).
+For this tutorial, we will need `go` and `jq` installed on your machine. You can install them by running our script:
 
-### 🏃 Golang dependency {#install-golang}
+```bash
+curl -sSL https://rollkit.dev/install-go.sh | bash -s go1.22.3
+```
 
-The Golang version used for this tutorial is v1.19+
-
-You can install Golang
-by following our tutorial [here](https://docs.celestia.org/nodes/environment#install-golang).
-
-### 🦀 Rust installation {#install-rust}
-
-#### 🔨 Rustup {#rustup}
+### 🦀 Rust {#install-rust}
 
 First, before installing Rust, you would need to install `rustup`.
 
@@ -118,7 +101,7 @@ Find the right instructions specific for
 
 Here, we are going to pull down the `wasmd` repository and replace CometBFT
 with Rollkit. Rollkit is a drop-in replacement for CometBFT that allows
-Cosmos-SDK applications to connect to Celestia's data availability network.
+Cosmos-SDK applications to connect to data availability (DA) network.
 
 ```bash
 git clone https://github.com/CosmWasm/wasmd.git
@@ -150,22 +133,16 @@ make install
 You will have to install `gcc` if you are trying it on a clean linux vm.
 :::
 
-### ✨ Celestia node {#celestia-node}
+### ✨ Local DA node {#local-da-node}
 
-You will need a light node running with test tokens on
-[Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet) in order
-to complete this tutorial. Complete [the tutorial](https://docs.celestia.org/developers/node-tutorial)
-and start up your node.
+You will need a local-da node running in order to complete this tutorial. To start it, run: 
 
-Be sure you have initialized your node before trying to start it.
-Your start command should look similar to:
-
-<!-- markdownlint-disable MD013 -->
 ```bash
-celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
+curl -sSL https://rollkit.dev/install-local-da.sh | bash -s v0.2.0
 ```
 
-## 🌌 Setting up your environment for CosmWasm on Celestia {#setting-up-environment-on-celestia}
+
+## 🌌 Setting up your environment for CosmWasm on local-da {#setting-up-environment-on-local-da}
 
 Now the `wasmd` binary is built, we need to setup a local network
 that communicates between `wasmd` and Rollkit.
@@ -197,10 +174,6 @@ bash init.sh
 
 With that, we have kickstarted our `wasmd` network!
 
-View your rollup by
-[finding your namespace or account Celenium](https://celenium.io).
-
-[View the example rollup's namespace on Celenium](https://celenium.io/namespace/000000000000000000000000000000000000000008e5f679bf7116cb).
 
 ### 💠 Optional: see what's inside the script {#view-script}
 
@@ -282,20 +255,17 @@ Run the following in the `~/cw-contracts/contracts/nameservice` directory:
 
 <!-- markdownlint-disable MD013 -->
 ```bash [AMD Machines]
-TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice.wasm --from celeswasm-key --keyring-backend test --chain-id celeswasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
+TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice.wasm --from localwasm-key --keyring-backend test --chain-id localwasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
 ```
 <!-- markdownlint-enable MD013 -->
 
 <!-- markdownlint-disable MD013 -->
 ```bash [ARM Machines]
-TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice-aarch64.wasm --from celeswasm-key --keyring-backend test --chain-id celeswasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
+TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice-aarch64.wasm --from localwasm-key --keyring-backend test --chain-id localwasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
 
 :::
 
-This will get you the transaction hash for the smart contract deployment. Given
-we are using Rollkit, there will be a delay on the transaction being included
-due to Rollkit waiting on Celestia's data availability layer to confirm the block
-has been included before submitting a new block.
+This will get you the transaction hash for the smart contract deployment.
 
 ::: danger
 If you run into errors with variables on the previous command,
@@ -303,7 +273,7 @@ or commands in the remainder of the tutorial, cross-reference
 the variables in the command with the variables in the `init.sh` script.
 :::
 
-## 🌟 Contract interaction on CosmWasm with Celestia {#contract-interaction-on-celestia}
+## 🌟 Contract interaction on CosmWasm {#contract-interaction-on-local-da}
 <!-- markdownlint-disable MD013 -->
 
 In the previous steps, we have stored out contract's tx hash in an
@@ -312,13 +282,9 @@ environment variable for later use.
 The following guide will show you how to deploy and interact with a contract using CLI. 
 For scripting using Rust, you can use [cw-orchestrator](/guides/cw-orch.md).
 
-Because of the longer time periods of submitting transactions via Rollkit
-due to waiting on Celestia's data availability layer to confirm block inclusion,
-we will need to query our  tx hash directly to get information about it.
-
 ### 🔎 Contract querying {#contract-querying}
 
-Let's start by querying our transaction hash for its code ID:
+Now, let's query our transaction hash for its code ID:
 
 ```bash
 CODE_ID=$(wasmd query tx --type=hash $TX_HASH --node http://127.0.0.1:36657 --output json | jq -r '.events[-1].attributes[1].value')
@@ -350,7 +316,7 @@ is `100uwasm` and `transfer_price` is `999uwasm`.
 
 ```bash
 INIT='{"purchase_price":{"amount":"100","denom":"uwasm"},"transfer_price":{"amount":"999","denom":"uwasm"}}'
-wasmd tx wasm instantiate $CODE_ID "$INIT" --from celeswasm-key --keyring-backend test --label "name service" --chain-id celeswasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 -y --no-admin --node http://127.0.0.1:36657
+wasmd tx wasm instantiate $CODE_ID "$INIT" --from localwasm-key --keyring-backend test --label "name service" --chain-id localwasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 -y --no-admin --node http://127.0.0.1:36657
 ```
 
 ### 📄 Contract interaction {#contract-interaction}
@@ -393,7 +359,7 @@ Now, let's register a name to the contract for our wallet address:
 
 ```bash
 REGISTER='{"register":{"name":"fred"}}'
-wasmd tx wasm execute $CONTRACT "$REGISTER" --amount 100uwasm --from celeswasm-key --chain-id celeswasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --keyring-backend test -y
+wasmd tx wasm execute $CONTRACT "$REGISTER" --amount 100uwasm --from localwasm-key --chain-id localwasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --keyring-backend test -y
 ```
 
 Your output will look similar to below:
@@ -436,4 +402,4 @@ You'll see the owner's address in a JSON response:
 ```
 
 With that, we have instantiated and interacted with the CosmWasm nameservice
-smart contract using Celestia!
+smart contract on our local DA network using Rollkit!
