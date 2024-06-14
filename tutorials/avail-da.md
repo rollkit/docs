@@ -90,7 +90,7 @@ Now let's run our rollup node with all DA flags:
 ```bash
     gmd start \
     --rollkit.aggregator \
-    --rollkit.da_address="grpc://localhost:3000" \   
+    --rollkit.da_address="grpc://localhost:3000" \
     --rollkit.da_start_height $DA_BLOCK_HEIGHT \
     --minimum-gas-prices="0.1stake"
 ```
