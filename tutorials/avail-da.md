@@ -21,15 +21,18 @@ Before you can start your rollup node, you need to initiate, sync, and possibly 
 - Paste your mnemonic in the `identity.toml` file by creating a `identity.toml` with the following command:
 `touch identity.toml`
 Example:
+
 ```bash
 avail_secret_uri = '<paste your mnemonic here>'
 ```
-- Running just an Avail light node is enough for Turing Testnet. Run the Avail light node using the following command
+
+Running just an Avail light node is enough for Turing testnet. Run the Avail light node using the following command
 ```bash
 cargo run --release -- --network turing --app-id 1 --clean --identity identity.toml
 ```
 
-If you want to sync Avail light node with your desired block number, you can add the following config in your `config.yaml` file from [here](https://github.com/availproject/avail-light/blob/main/config.yaml.template)
+If you want to sync Avail light node with your desired block number, you can add the following config in your `config.yaml` file from [here]( https://github.com/availproject/avail-light/blob/main/config.yaml.template )
+
 ```bash
 http_server_host = '127.0.0.1'
 http_server_port = 8000
@@ -41,7 +44,7 @@ After successfully starting a light node, it's time to start posting the batches
 
 ## 🧹 Cleaning previous chain history
 
-From the [GM world rollup](/tutorials/gm-world) tutorial, you should already have the `gmd` binary and the `$HOME/.gm` directory.
+From the [GM world rollup]( /tutorials/gm-world ) tutorial, you should already have the `gmd` binary and the `$HOME/.gm` directory.
 
 To clear old rollup data:
 
@@ -68,7 +71,7 @@ Now we're prepared to initiate our rollup and establish a connection with the Av
 
 Let's determine what to provide for each of them.
 
-First, let's query the DA Layer start height using an RPC endpoint provided by Avail Labs. For local, it would be - [https://localhost:8000/v1/latest_block](https://localhost:8000/v1/latest_block), and for Turing Testnet - [https://rpc.lunaroasis.net/block](https://rpc.lunaroasis.net/block)
+First, let's query the DA Layer start height using an RPC endpoint provided by Avail Labs. For local, it would be - [https://localhost:8000/v1/latest_block]( https://localhost:8000/v1/latest_block ), and for Turing Testnet - [https://avail-turing-rpc.publicnode.com]( https://avail-turing-rpc.publicnode.com )
 
 Here is an example for the local development (replace URL for Turing Testnet if needed):
 
@@ -83,19 +86,19 @@ You will see the output like this:
  Your DA_BLOCK_HEIGHT is 35
 ```
 
-## 🔥 Running your rollup connected to an Avail light node
+## 🔥 Running your rollup connected to an avail light node
 
 Now let's run our rollup node with all DA flags:
 
 ```bash
     gmd start \
     --rollkit.aggregator \
-    --rollkit.da_address="grpc://localhost:3000" \
+    --rollkit.da_address="grpc://localhost:3000" \   
     --rollkit.da_start_height $DA_BLOCK_HEIGHT \
     --minimum-gas-prices="0.1stake"
 ```
 
-Now, the rollup is running and posting blocks (aggregated in batches) to Avail. You can view your rollup by finding your account on [Turing Testnet](https://avail-turing.subscan.io/)
+Now, the rollup is running and posting blocks (aggregated in batches) to Avail. You can view your rollup by finding your account on [Turing testnet]( https://avail-turing.subscan.io/ )
 
 ::: info
 For details on configuring gas prices specifically for the DA network, see our [DA Network Gas Price Guide](/guides/gas-price). This is separate from the `--minimum-gas-prices="0.025stake"` setting, which is used for rollup network operations.
