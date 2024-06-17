@@ -27,6 +27,7 @@ avail_secret_uri = '<paste your mnemonic here>'
 ```
 
 Running just an Avail light node is enough for Turing testnet. Run the Avail light node using the following command
+
 ```bash
 cargo run --release -- --network turing --app-id 1 --clean --identity identity.toml
 ```
