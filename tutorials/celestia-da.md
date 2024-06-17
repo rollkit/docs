@@ -16,7 +16,7 @@ Before you can start your rollup node, you need to initiate, sync, and possibly 
 
 The main difference lies in how you fund your wallet address: using testnet TIA or [TIA](https://docs.celestia.org/learn/tia#overview-of-tia) for Mainnet Beta.
 
-After successfully starting a light node, it's time to start posting the batches of blocks of data that your rollup generates to Celestia DA.
+After successfully starting a light node, it's time to start posting the batches of blocks of data that your rollup generates to Celestia.
 
 ## 🏗️ Prerequisites {#prerequisites}
 
@@ -82,9 +82,9 @@ Now, we're prepared to initiate our rollup and establish a connection with the C
 - `--rollkit.da_auth_token`
 - `--rollkit.da_namespace`
 
-Let's determine what values to provide for each of them.
+Let's determine which values to provide for each of them.
 
-First, let's query the DA layer start height using an RPC endpoint provided by Celestia Labs.
+First, let's query the DA layer start height using an RPC endpoint provided by Celestia's documentation.
 - Mocha testnet: [https://rpc-mocha.pops.one/block](https://rpc-mocha.pops.one/block)
 - Mainnet Beta: [https://rpc.lunaroasis.net/block](https://rpc.lunaroasis.net/block)
 
@@ -114,7 +114,7 @@ The output of the command above will look similar to this:
  Your DA AUTH_TOKEN is eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiXX0.cSrJjpfUdTNFtzGho69V0D_8kyECn9Mzv8ghJSpKRDE
 ```
 
-Lastly, let's set up the namespace to be used for posting data on Celestia DA:
+Lastly, let's set up the namespace to be used for posting data on Celestia:
 
 ```bash
 DA_NAMESPACE=00000000000000000000000000000000000000000008e5f679bf7116cb
