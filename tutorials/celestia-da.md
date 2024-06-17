@@ -2,7 +2,7 @@
 
 ## 🌞 Introduction {#introduction}
 
-This tutorial serves as a comprehensive guide for deploying your rollup on Celestia's data availability (DA) network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's Testnets or Mainnet Beta.
+This tutorial serves as a comprehensive guide for deploying your rollup on Celestia's data availability (DA) network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
 
 Before proceeding, ensure that you have completed the [GM world rollup](/tutorials/gm-world) tutorial, which covers setting up a local sovereign `gm-world` rollup and connecting it to a local DA node.
 
@@ -14,11 +14,11 @@ Before you can start your rollup node, you need to initiate, sync, and possibly 
 - [Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet)
 - [Mainnet Beta](https://docs.celestia.org/nodes/mainnet)
 
-The main difference lies in how you fund your wallet address: using Testnet TIA or [TIA](https://docs.celestia.org/learn/tia#overview-of-tia) for Mainnet Beta.
+The main difference lies in how you fund your wallet address: using testnet TIA or [TIA](https://docs.celestia.org/learn/tia#overview-of-tia) for Mainnet Beta.
 
 After successfully starting a light node, it's time to start posting the batches of blocks of data that your rollup generates to Celestia DA.
 
-## 📝 Prerequisites {#prerequisites}
+## 🏗️ Prerequisites {#prerequisites}
 
 From the [GM world rollup](/tutorials/gm-world) tutorial, you should already have the `rollkit` CLI and `ignite` CLI installed.
 
@@ -56,13 +56,11 @@ Initialize the Rollkit chain configuration:
 ignite rollkit init
 ```
 
-This will create a `$HOME/.gm` directory with all the chain configuration files.
-
+This will create a `$HOME/.gm` directory with the chain configuration files.
 
 ## 🧰 Configuring your sovereign rollup {#configuring-your-sovereign-rollup}
 
-
-From the `$HOME/gm` directory, generate the `rollkit.toml` file by running:
+From the `$HOME/gm` directory, generate a `rollkit.toml` file by running:
 
 ```bash
 rollkit toml init
@@ -78,7 +76,7 @@ Initialized rollkit.toml file in the current directory.
 
 ## 🛠️ Configuring flags for DA
 
-Now, we're prepared to initiate our rollup and establish a connection with the Celestia light node. The `rollkit start` command requires three mandatory DA configuration flags:
+Now, we're prepared to initiate our rollup and establish a connection with the Celestia light node. The `rollkit start` command requires three DA configuration flags:
 
 - `--rollkit.da_start_height`
 - `--rollkit.da_auth_token`
@@ -87,30 +85,30 @@ Now, we're prepared to initiate our rollup and establish a connection with the C
 Let's determine what values to provide for each of them.
 
 First, let's query the DA layer start height using an RPC endpoint provided by Celestia Labs.
-- Mocha Testnet: [https://rpc-mocha.pops.one/block](https://rpc-mocha.pops.one/block)
+- Mocha testnet: [https://rpc-mocha.pops.one/block](https://rpc-mocha.pops.one/block)
 - Mainnet Beta: [https://rpc.lunaroasis.net/block](https://rpc.lunaroasis.net/block)
 
-Here is an example for the Mocha Testnet (replace URL for Mainnet Beta accordingly):
+Here is an example for the Mocha testnet (replace URL for Mainnet Beta accordingly):
 
 ```bash
 DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
 echo -e "\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n"
 ```
 
-The output of the above command will look similar to this:
+The output of the command above will look similar to this:
 
 ```bash
  Your DA_BLOCK_HEIGHT is 1777655
 ```
 
-Now, let's obtain the authentication token of your light node using the following command: (omit the --p2p.network flag for Mainnet Beta):
+Now, let's obtain the authentication token of your light node using the following command (omit the --p2p.network flag for Mainnet Beta):
 
 ```bash
 AUTH_TOKEN=$(celestia light auth write --p2p.network mocha)
 echo -e "\n Your DA AUTH_TOKEN is $AUTH_TOKEN \n"
 ```
 
-The output of the above command will look similar to this:
+The output of the command above will look similar to this:
 
 ```bash
  Your DA AUTH_TOKEN is eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiXX0.cSrJjpfUdTNFtzGho69V0D_8kyECn9Mzv8ghJSpKRDE
@@ -123,13 +121,13 @@ DA_NAMESPACE=00000000000000000000000000000000000000000008e5f679bf7116cb
 ```
 
 :::tip
-`00000000000000000000000000000000000000000008e5f679bf7116cb` is a default namespace for Mocha Testnet. You can also create your own namespace by using the below command (or you can also get creative 😎):
+`00000000000000000000000000000000000000000008e5f679bf7116cb` is a default namespace for Mocha testnet. You can set your own by using a command similar to this (or, you could get creative 😎):
 
 ```bash
 openssl rand -hex 10
 ```
 
-Replace the last 20 characters (10 bytes) in `00000000000000000000000000000000000000000008e5f679bf7116cb` with the newly generated 10 bytes using the command above.
+Replace the last 20 characters (10 bytes) in `00000000000000000000000000000000000000000008e5f679bf7116cb` with the newly generated 10 bytes.
 
 [Learn more about namespaces](https://docs.celestia.org/developers/node-tutorial#namespaces).
 :::
@@ -147,10 +145,10 @@ rollkit start \
     --minimum-gas-prices="0.025stake"
 ```
 
-Now, the rollup should be running and posting blocks (aggregated in batches) to the Celestia chain. You can view your rollup by using your namespace or account on [Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet#explorers) or [Mainnet Beta](https://docs.celestia.org/nodes/mainnet#explorers) explorers.
+Now, the rollup is running and posting blocks (aggregated in batches) to Celestia. You can view your rollup by using your namespace or account on [Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet#explorers) or [Mainnet Beta](https://docs.celestia.org/nodes/mainnet#explorers) explorers.
 
 ::: info
-For details on configuring gas prices, specifically for the Celestia DA network, see the [DA Network Gas Price Guide](/guides/gas-price). The Celestia gas price is separate from the `--minimum-gas-prices="0.025stake"` setting, which is used for the rollup network operations.
+For details on configuring gas prices, specifically for the Celestia network, see the [DA Network Gas Price Guide](/guides/gas-price). The Celestia gas price is separate from the `--minimum-gas-prices="0.025stake"` setting, which is used for the rollup network operations.
 :::
 
 ## 🎉 Next steps
