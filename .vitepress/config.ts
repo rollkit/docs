@@ -238,6 +238,10 @@ function sidebarHome() {
               text: "Celestia",
               link: "/tutorials/celestia-da",
             },
+            {
+              text: "Avail",
+              link: "/tutorials/avail-da",
+            },
           ],
         },
         {
