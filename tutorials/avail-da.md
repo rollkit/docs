@@ -1,4 +1,4 @@
-# GM world rollup: Deploying to Avail  
+# Deploying a rollup to Avail  
 
 ## 🌞 Introduction {#introduction}
 
