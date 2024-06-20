@@ -8,6 +8,7 @@ exploring how to integrate CosmWasm with local DA layer using Rollkit.
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import Callout from '../.vitepress/components/callout.vue'
+import constants from '../.vitepress/constants/constants.js'
 </script>
 
 :::tip
@@ -29,8 +30,8 @@ this tutorial.
 
 For this tutorial, we will need `go` and `jq` installed on your machine. You can install them by running our script:
 
-```bash
-curl -sSL https://rollkit.dev/install-go.sh | bash -s go1.22.3
+```bash-vue
+curl -sSL https://rollkit.dev/install-go.sh | bash -s {{constants.golangVersion}}
 ```
 
 ### 🦀 Rust {#install-rust}
@@ -137,8 +138,8 @@ You will have to install `gcc` if you are trying it on a clean linux vm.
 
 You will need a local-da node running in order to complete this tutorial. To start it, run: 
 
-```bash
-curl -sSL https://rollkit.dev/install-local-da.sh | bash -s v0.2.0
+```bash-vue
+curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.localDALatestTag}}
 ```
 
 

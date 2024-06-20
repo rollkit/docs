@@ -1,12 +1,17 @@
 # How to connect a rollup to a local DA network
 
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '../.vitepress/constants/constants.js'
+</script>
+
 This guide provides a quick and straightforward method to start a local Data Availability (DA) network and configure your rollup to post data to it.
 
 ## Setting Up a Local DA Network
 
 To set up a local DA network node on your machine, run the following script to install and start the local DA node:
 
-```bash
+```bash-vue
 curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.localDALatestTag}}
 ```
 
