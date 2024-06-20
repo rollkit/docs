@@ -168,8 +168,8 @@ Rollkit on our codebase.
 
 To install the Rollkit app to Ignite, run the following command:
 
-```bash
-ignite app install github.com/ignite/apps/rollkit@rollkit/v0.2.0
+```bash-vue
+ignite app install github.com/ignite/apps/rollkit@rollkit/{{constants.rollkitIgniteAppVersion}}
 ```
 
 Next, add Rollkit to your project by running:
