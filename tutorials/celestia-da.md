@@ -1,5 +1,10 @@
 # Deploying a rollup to Celestia  
 
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '../.vitepress/constants/constants.js'
+</script>
+
 ## 🌞 Introduction {#introduction}
 
 This tutorial serves as a comprehensive guide for deploying your rollup on Celestia's data availability (DA) network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
@@ -33,9 +38,8 @@ ignite scaffold chain gm --address-prefix gm --no-module
 
 Install the Rollkit app to ignite:
 
-```bash
-cd $HOME/gm
-ignite app install github.com/ignite/apps/rollkit@rollkit/v0.2.0
+```bash-vue
+ignite app install github.com/ignite/apps/rollkit@rollkit/{{constants.rollkitIgniteAppVersion}}
 ```
 
 Add the Rollkit app:
