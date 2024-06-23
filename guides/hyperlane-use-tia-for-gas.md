@@ -276,3 +276,4 @@ echo '{
 ## Resources
 
 - [Deploying Hyperlane with Osmosis Testnet](https://github.com/many-things/cw-hyperlane/blob/main/DEPLOYMENT.md#4-setup-validator--relayer-config)
+- [Hyperlane docs: Deploy Hyperlane](https://docs.hyperlane.xyz/docs/deploy-hyperlane)
