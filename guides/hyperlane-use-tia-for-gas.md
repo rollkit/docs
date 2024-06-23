@@ -273,6 +273,22 @@ echo '{
 }' > example/hyperlane/validator.localwasmd.json
 ```
 
+### Run this monstrosity (TODO fix ASAP):
+
+```bash
+cd ./example
+
+# Merge localwasmd.config.json and agent-config.docker.json
+OSMOSISLOCALWASMDTESTNET_AGENT_CONFIG=$(cat ../context/localwasmd.config.json | jq -r '.chains.localwasmd') && \
+  LOCALWASMD_AGENT_CONFIG_NAME=$(echo $LOCALWASMD_AGENT_CONFIG | jq -r '.name') && \
+    cat ./hyperlane/agent-config.docker.json \
+      | jq ".chains.$LOCALWASMD_AGENT_CONFIG_NAME=$(echo $LOCALWASMD_AGENT_CONFIG)" > merge.tmp && \
+  mv merge.tmp ./hyperlane/agent-config.docker.json
+
+# Run Hyperlane with docker-compose
+docker compose up
+```
+
 ## Resources
 
 - [Deploying Hyperlane with Osmosis Testnet](https://github.com/many-things/cw-hyperlane/blob/main/DEPLOYMENT.md#4-setup-validator--relayer-config)
