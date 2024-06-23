@@ -43,11 +43,11 @@ echo 'networks:
     endpoint:
       rpc: "https://stride.testnet-1.stridenet.co"
       rest: "https://stride.testnet-1.stridenet.co/api"
-      grpc: "http://localhost:9090" # TODO
+      grpc: "http://stride-testnet-grpc.polkachu.com:12290"
     gas:
       price: "0"
       denom: "ustrd"
-    domain: 1064
+    domain: 1651
 
 # wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45
 # stride133xh839fjn9wxzg6vhc0370lcem8939z2sd4gn
@@ -61,7 +61,7 @@ deploy:
       - type: multisig
         owner: <signer>
         validators:
-          11155111:
+          1651:
             addrs:
               - <signer>
             threshold: 1
@@ -75,10 +75,10 @@ deploy:
         - type: igp
           owner: <signer>
           configs:
-            11155111:
-              exchange_rate: 3000
+            1651:
+              exchange_rate: 1.5
               gas_price: 5000
-          default_gas_usage: 30000
+          default_gas_usage: 100000
 
     required:
       type: aggregate
@@ -96,6 +96,16 @@ deploy:
             amount: 1' > config.yaml
 ```
 
+:::tip
+The `domain` IDs were generated as a sum or the ascii values of the chain ID, for example:
+
+```python
+print(sum(ord(char) for char in "stride-internal-1"))
+```
+
+However, you can pick any number as your domain ID.
+:::
+
 Config the `wasmd` CLI for ease of use:
 
 ```bash
@@ -110,7 +120,7 @@ Fund the cw-hyperlane signer in our localwasmd rollup:
 wasmd tx bank send localwasm-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 10000000uwasm -y --gas-adjustment 1.5 --gas-prices 0.025uwasm
 ```
 
-Inside the cw-hyperlane directory, build the Hyperlane contracts and upload them to our localwasmd chain:
+Inside the cw-hyperlane directory, build the Hyperlane contracts:
 
 ```bash
 yarn install
@@ -119,11 +129,26 @@ yarn install
 make optimize
 # Run compatibility test
 make check
+```
 
+Upload the contracts:
+
+```bash
 # This command will make one file.
 # - context with artifacts (default path: {project-root}/context/localwasmd.json)
 yarn cw-hpl upload local -n localwasmd
 ```
+
+Deploy the contracts:
+
+```bash
+# This command will output two results.
+# - context + deployment    (default path: ./context/osmo-test-5.json)
+# - Hyperlane agent-config  (default path: ./context/osmo-test-5.config.json)
+yarn cw-hpl deploy -n localwasmd
+```
+
+Setup the Hyperland Validator and Relayer configs:
 
 ## Resources
 
