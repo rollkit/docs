@@ -106,6 +106,29 @@ print(sum(ord(char) for char in "stride-internal-1"))
 However, you can pick any number as your domain ID.
 :::
 
+:::tip
+In this guide, we're using a predefined seep phrase for simplicity. Alternativley you can generate and use your own:
+
+```bash
+wasmd keys add my-key
+```
+
+To get your Stride address, import the generated seed phrase to the `strided` CLI using:
+
+```bash
+strided keys add --recover my-key
+```
+
+Then fund it using the [Stride testnet faucet](https://stride-faucet.pages.dev).
+
+To get the private key, run:
+
+```bash
+wasmd keys export --unsafe --unarmored-hex my-key
+```
+
+:::
+
 Config the `wasmd` CLI for ease of use:
 
 ```bash
