@@ -175,7 +175,42 @@ Deploy the contracts:
 yarn cw-hpl deploy -n localwasmd
 ```
 
-Setup the Hyperland Validator and Relayer configs:
+Setup the Hyperland relayer config:
+
+```bash
+echo '{
+  "db": "/tmp/hyperlane-relayer/db",
+  "relayChains": "localwasmd,strideinternal1",
+  "allowLocalCheckpointSyncers": "true",
+  "gasPaymentEnforcement": [{ "type": "none" }],
+  "whitelist": [
+    {
+      "origindomain": [1063],
+      "destinationDomain": [1651]
+    },
+    {
+      "origindomain": [1651],
+      "destinationDomain": [1063]
+    }
+  ],
+  "chains": {
+    "localwasmd": {
+      "signer": {
+        "type": "cosmosKey",
+        "key": "0xf0517040b5669e2d93ffac3a3616187b14a19ad7a0657657e0f655d5eced9e31",
+        "prefix": "wasm"
+      }
+    },
+    "strideinternal1": {
+      "signer": {
+        "type": "cosmosKey",
+        "key": "0xf0517040b5669e2d93ffac3a3616187b14a19ad7a0657657e0f655d5eced9e31",
+        "prefix": "stride"
+      }
+    }
+  }
+}' > example/hyperlane/relayer.json
+```
 
 ## Resources
 
