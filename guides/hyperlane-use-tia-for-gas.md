@@ -24,7 +24,7 @@ cd cw-hyperlane
 
 This is a temporary fix until [many-things/cw-hyperlane#133](https://github.com/many-things/cw-hyperlane/pull/133) is resolved.
 
-Create `config.yaml` with our networks setup:
+#### Create `config.yaml` with our networks setup:
 
 ```bash
 echo 'networks:
@@ -129,7 +129,7 @@ wasmd keys export --unsafe --unarmored-hex my-key
 
 :::
 
-Config the `wasmd` CLI for ease of use:
+#### Config the `wasmd` CLI for ease of use:
 
 ```bash
 wasmd config set client node tcp://127.0.0.1:36657
@@ -137,7 +137,7 @@ wasmd config set client output json
 wasmd config set client keyring-backend test
 ```
 
-Fund the cw-hyperlane signer in our localwasmd rollup:
+#### Fund the cw-hyperlane signer in our localwasmd rollup:
 
 ```bash
 wasmd tx bank send localwasm-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 10000000uwasm -y --gas-adjustment 1.5 --gas-prices 0.025uwasm
@@ -147,7 +147,7 @@ wasmd tx bank send localwasm-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 100
 `localwasm-key` is the genesis validator's address. See https://rollkit.dev/cosmwasm/init.sh for more info.
 :::
 
-Inside the cw-hyperlane directory, build the Hyperlane contracts:
+#### Inside the cw-hyperlane directory, build the Hyperlane contracts:
 
 ```bash
 yarn install
@@ -158,28 +158,37 @@ make optimize
 make check
 ```
 
-Upload the contracts:
+#### Upload and deploy the contracts on localwasmd:
 
 ```bash
 # This command will make one file.
-# - context with artifacts (default path: {project-root}/context/localwasmd.json)
+# - context with artifacts (default path: {cw-hyperlane-root}/context/localwasmd.json)
 yarn cw-hpl upload local -n localwasmd
-```
 
-Deploy the contracts:
-
-```bash
 # This command will output two results.
-# - context + deployment    (default path: ./context/osmo-test-5.json)
-# - Hyperlane agent-config  (default path: ./context/osmo-test-5.config.json)
+# - context + deployment    (default path: {cw-hyperlane-root}/context/localwasmd.json)
+# - Hyperlane agent-config  (default path: {cw-hyperlane-root}/context/localwasmd.config.json)
 yarn cw-hpl deploy -n localwasmd
 ```
 
-Setup the Hyperland relayer config:
+#### Upload and deploy the contracts on the Stride testnet:
+
+```bash
+# This command will make one file.
+# - context with artifacts (default path: {cw-hyperlane-root}/context/stride-internal-1.json)
+yarn cw-hpl upload local -n stride-internal-1
+
+# This command will output two results.
+# - context + deployment    (default path: {cw-hyperlane-root}/context/stride-internal-1.json)
+# - Hyperlane agent-config  (default path: {cw-hyperlane-root}/context/stride-internal-1.config.json)
+yarn cw-hpl deploy -n stride-internal-1
+```
+
+#### Setup the relayer config:
 
 ```bash
 echo '{
-  "db": "/tmp/hyperlane-relayer/db",
+  "db": "/tmp/hyperlane/db",
   "relayChains": "localwasmd,strideinternal1",
   "allowLocalCheckpointSyncers": "true",
   "gasPaymentEnforcement": [{ "type": "none" }],
@@ -210,6 +219,58 @@ echo '{
     }
   }
 }' > example/hyperlane/relayer.json
+```
+
+#### Setup the validator config on the Stride side:
+
+```bash
+echo '{
+  "db": "/tmp/hyperlane/db",
+  "checkpointSyncer": {
+    "type": "localStorage",
+    "path": "/tmp/hyperlane/validator/strideinternal1/checkpoint"
+  },
+  "originChainName": "strideinternal1",
+  "validator": {
+    "type": "hexKey",
+    "key": "0xf0517040b5669e2d93ffac3a3616187b14a19ad7a0657657e0f655d5eced9e31"
+  },
+  "chains": {
+    "strideinternal1": {
+      "signer": {
+        "type": "cosmosKey",
+        "key": "0xf0517040b5669e2d93ffac3a3616187b14a19ad7a0657657e0f655d5eced9e31",
+        "prefix": "stride"
+      }
+    }
+  }
+}' > example/hyperlane/validator.strideinternal1.json
+```
+
+#### Setup the validator config on the localwasmd side:
+
+```bash
+echo '{
+  "db": "/tmp/hyperlane/db",
+  "checkpointSyncer": {
+    "type": "localStorage",
+    "path": "/tmp/hyperlane/validator/localwasmd/checkpoint"
+  },
+  "originChainName": "localwasmd",
+  "validator": {
+    "type": "hexKey",
+    "key": "0xf0517040b5669e2d93ffac3a3616187b14a19ad7a0657657e0f655d5eced9e31"
+  },
+  "chains": {
+    "localwasmd": {
+      "signer": {
+        "type": "cosmosKey",
+        "key": "0xf0517040b5669e2d93ffac3a3616187b14a19ad7a0657657e0f655d5eced9e31",
+        "prefix": "stride"
+      }
+    }
+  }
+}' > example/hyperlane/validator.localwasmd.json
 ```
 
 ## Resources
