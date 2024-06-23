@@ -101,7 +101,7 @@ go mod tidy -compat=1.17
 go mod download
 ```
 
-Now, comment out lines 902-904 in `app/app.go`:
+Now, comment out lines 898-900 in `app/app.go`:
 
 ```go
 if err != nil {
