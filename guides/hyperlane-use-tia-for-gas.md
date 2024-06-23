@@ -143,6 +143,10 @@ Fund the cw-hyperlane signer in our localwasmd rollup:
 wasmd tx bank send localwasm-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 10000000uwasm -y --gas-adjustment 1.5 --gas-prices 0.025uwasm
 ```
 
+:::info
+`localwasm-key` is the genesis validator's address. See https://rollkit.dev/cosmwasm/init.sh for more info.
+:::
+
 Inside the cw-hyperlane directory, build the Hyperlane contracts:
 
 ```bash
