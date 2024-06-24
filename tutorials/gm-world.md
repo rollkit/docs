@@ -62,7 +62,7 @@ cd $HOME && bash -c "$(curl -sSL https://rollkit.dev/install-gm-rollup.sh)"
 Generate rollkit.toml file by running:
 
 ```bash
-rollkit toml init
+cd $HOME/gm && rollkit toml init
 ```
 
 The output should be similar to this:
