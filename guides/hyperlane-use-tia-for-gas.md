@@ -76,7 +76,7 @@ deploy:
           owner: <signer>
           configs:
             1651:
-              exchange_rate: 1.5
+              exchange_rate: 2
               gas_price: 5000
           default_gas_usage: 100000
 
