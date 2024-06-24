@@ -174,9 +174,34 @@ yarn cw-hpl deploy -n localwasmd
 #### Upload and deploy the contracts on the Stride testnet:
 
 ```bash
-# This command will make one file.
-# - context with artifacts (default path: {cw-hyperlane-root}/context/stride-internal-1.json)
-yarn cw-hpl upload local -n stride-internal-1
+# Stride has permissioned CosmWasm, meaning only certain addresses can upload contracts.
+# The Hyperlane contracts have already been uploaded, so all that's left is to instantiate them.
+# The following command will initialize the config for stride-testnet-1 with the code IDs of the Hyperlane contracts.
+echo '{
+  "artifacts": {
+    "hpl_mailbox": 362,
+    "hpl_validator_announce": 363,
+    "hpl_ism_aggregate": 364,
+    "hpl_ism_multisig": 365,
+    "hpl_ism_pausable": 366,
+    "hpl_ism_routing": 367,
+    "hpl_igp": 368,
+    "hpl_hook_aggregate": 369,
+    "hpl_hook_fee": 370,
+    "hpl_hook_merkle": 371,
+    "hpl_hook_pausable": 372,
+    "hpl_hook_routing": 373,
+    "hpl_hook_routing_custom": 374,
+    "hpl_hook_routing_fallback": 375,
+    "hpl_test_mock_hook": 376,
+    "hpl_test_mock_ism": 377,
+    "hpl_test_mock_msg_receiver": 378,
+    "hpl_igp_oracle": 379,
+    "hpl_warp_cw20": 380,
+    "hpl_warp_native": 381
+  },
+  "deployments": {}
+}' > context/stride-internal-1.json
 
 # This command will output two results.
 # - context + deployment    (default path: {cw-hyperlane-root}/context/stride-internal-1.json)
