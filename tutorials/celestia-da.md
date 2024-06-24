@@ -1,4 +1,4 @@
-# Deploying a rollup to Celestia  
+# Deploying a rollup to Celestia
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
@@ -48,12 +48,6 @@ Add the Rollkit app:
 ignite rollkit add
 ```
 
-Build the Rollkit chain:
-
-```bash
-ignite chain build
-```
-
 Initialize the Rollkit chain configuration:
 
 ```bash
@@ -89,6 +83,7 @@ Now, we're prepared to initiate our rollup and establish a connection with the C
 Let's determine which values to provide for each of them.
 
 First, let's query the DA layer start height using an RPC endpoint provided by Celestia's documentation.
+
 - Mocha testnet: [https://rpc-mocha.pops.one/block](https://rpc-mocha.pops.one/block)
 - Mainnet Beta: [https://rpc.lunaroasis.net/block](https://rpc.lunaroasis.net/block)
 
