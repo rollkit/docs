@@ -77,8 +77,6 @@ git clone --depth 1 git@github.com:many-things/cw-hyperlane.git
 cd cw-hyperlane
 ```
 
-This is a temporary fix until [many-things/cw-hyperlane#133](https://github.com/many-things/cw-hyperlane/pull/133) is resolved.
-
 #### Create `config.yaml` with our networks setup:
 
 ```bash
