@@ -39,6 +39,7 @@ ignite scaffold chain gm --address-prefix gm --no-module
 Install the Rollkit app to ignite:
 
 ```bash-vue
+cd $HOME/gm
 ignite app install github.com/ignite/apps/rollkit@rollkit/{{constants.rollkitIgniteAppVersion}}
 ```
 

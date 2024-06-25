@@ -9,7 +9,7 @@ if ! which go > /dev/null; then
 fi
 
 cd rollkit || { echo "Failed to find the downloaded repository."; exit 1; }
-git checkout $1
+git fetch && git checkout $1
 echo "Building and installing Rollkit..."
 make install
 cd ..
