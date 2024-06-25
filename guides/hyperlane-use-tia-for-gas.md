@@ -13,6 +13,57 @@ import Callout from '../.vitepress/components/callout.vue'
 
 <!-- markdownlint-enable MD033 -->
 
+## 📝 In short, deploy a CosmWasm rollup
+
+This is a gist of the [CosmWasm rollup](../tutorials/cosmwasm.md) guide.
+
+```bash
+git clone --branch v0.50.0 --depth 1 https://github.com/CosmWasm/wasmd.git
+cd wasmd
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.6-rollkit-v0.13.3-no-fraud-proofs
+go mod tidy -compat=1.17
+go mod download
+```
+
+Comment out lines 898-900 in `app/app.go`:
+
+```bash
+echo 'diff --git a/app/app.go b/app/app.go
+index 5c67ba31..797b6bf4 100644
+--- a/app/app.go
++++ b/app/app.go
+@@ -895,9 +895,6 @@ func NewWasmApp(
+ 	// At startup, after all modules have been registered, check that all proto
+ 	// annotations are correct.
+ 	protoFiles, err := proto.MergedRegistry()
+-	if err != nil {
+-		panic(err)
+-	}
+ 	err = msgservice.ValidateProtoAnnotations(protoFiles)
+ 	if err != nil {
+ 		// Once we switch to using protoreflect-based antehandlers, we might' | git apply
+```
+
+Build `wasmd`:
+
+```bash
+make install
+```
+
+To start a local DA, run:
+
+```bash
+curl -sSL https://rollkit.dev/install-local-da.sh | bash -s v0.2.0
+```
+
+From inside the `wasmd` directory, run the init script:
+
+```bash
+curl -sSL https://rollkit.dev/cosmwasm/init.sh | sh
+```
+
+With that, we have kickstarted our `wasmd` network!
+
 ## 💻 Deploy the Hyperlane contracts {#deploy-contracts}
 
 Fork the cw-hyperlane repo:
@@ -304,11 +355,11 @@ echo '{
 cd ./example
 
 # Merge localwasmd.config.json and agent-config.docker.json
-OSMOSISLOCALWASMDTESTNET_AGENT_CONFIG=$(cat ../context/localwasmd.config.json | jq -r '.chains.localwasmd') && \
-  LOCALWASMD_AGENT_CONFIG_NAME=$(echo $LOCALWASMD_AGENT_CONFIG | jq -r '.name') && \
-    cat ./hyperlane/agent-config.docker.json \
-      | jq ".chains.$LOCALWASMD_AGENT_CONFIG_NAME=$(echo $LOCALWASMD_AGENT_CONFIG)" > merge.tmp && \
-  mv merge.tmp ./hyperlane/agent-config.docker.json
+LOCALWASMD_AGENT_CONFIG=$(cat ../context/localwasmd.config.json | jq -r '.chains.localwasmd')
+LOCALWASMD_AGENT_CONFIG_NAME=$(echo $LOCALWASMD_AGENT_CONFIG | jq -r '.name')
+cat ./hyperlane/agent-config.docker.json |
+  jq ".chains.$LOCALWASMD_AGENT_CONFIG_NAME=$(echo $LOCALWASMD_AGENT_CONFIG)" > merge.tmp
+mv merge.tmp ./hyperlane/agent-config.docker.json
 
 # Run Hyperlane with docker-compose
 docker compose up
