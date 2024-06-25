@@ -193,11 +193,21 @@ wasmd config set client keyring-backend test
 #### Fund the cw-hyperlane signer in our localwasmd rollup:
 
 ```bash
-wasmd tx bank send localwasm-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 10000000uwasm -y --gas-adjustment 1.5 --gas-prices 0.025uwasm
+wasmd tx bank send localwasm-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 10000000uwasm -y --gas auto --gas-adjustment 1.2 --gas-prices 0.025uwasm
 ```
 
 :::info
 `localwasm-key` is the genesis validator's address. See https://rollkit.dev/cosmwasm/init.sh for more info.
+:::
+
+:::tip
+To check if the transaction was successful, get the `txhash` field from the response to the `wasmd tx bank send` command above, and run:
+
+```bash
+wasmd q tx $TXHASH
+```
+
+The transaction was successful if the `code` field is 0 (success).
 :::
 
 #### Inside the cw-hyperlane directory, build the Hyperlane contracts:
