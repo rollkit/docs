@@ -361,7 +361,7 @@ echo '{
 }' > example/hyperlane/validator.localwasmd.json
 ```
 
-#### Prepare the validators and relayer configs:
+#### Prepare the validators and relayer config:
 
 ```bash
 # Create agent-config.docker.json by merging localwasmd.config.json and stride-internal-1.config.json
@@ -437,7 +437,6 @@ echo 'services:
 #### Run the relayer and validators:
 
 ```bash
-# This will launch one relayer and two validators, one on each side
 docker compose -f example/docker-compose.yml up
 ```
 
