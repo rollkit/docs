@@ -59,8 +59,12 @@ curl -sSL https://rollkit.dev/install-local-da.sh | bash -s v0.2.0
 From inside the `wasmd` directory, run the init script:
 
 ```bash
-curl -sSL https://rollkit.dev/cosmwasm/init.sh | sh
+curl -sSL https://rollkit.dev/cosmwasm/init.sh | perl -pe 's/127\.0\.0\.1/0.0.0.0/g' | sh
 ```
+
+:::info
+We modify the listening address from `127.0.0.1` to `0.0.0.0` so that it is accessible from the Hyperlane docker agents later on.
+:::
 
 With that, we have kickstarted our `wasmd` network!
 
