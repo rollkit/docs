@@ -88,7 +88,7 @@ echo 'networks:
     endpoint:
       rpc: "http://localhost:36657"
       rest: "http://localhost:1317"
-      grpc: "http://localhost:9090"
+      grpc: "http://172.17.0.1:9290"
     gas:
       price: "0.025"
       denom: "uwasm"
@@ -213,7 +213,7 @@ make optimize
 make check
 ```
 
-#### Upload and deploy the contracts on localwasmd:
+#### Upload and deploy the contracts on our localwasmd rollup:
 
 ```bash
 # This command will make one file.
@@ -231,7 +231,7 @@ yarn cw-hpl deploy -n localwasmd
 ```bash
 # Stride has permissioned CosmWasm, meaning only certain addresses can upload contracts.
 # The Hyperlane contracts have already been uploaded, so all that's left is to instantiate them.
-# The following command will initialize the config for stride-testnet-1 with the code IDs of the Hyperlane contracts.
+# This command will initialize the config for stride-testnet-1 with the code IDs of the Hyperlane contracts.
 echo '{
   "artifacts": {
     "hpl_mailbox": 362,
@@ -268,7 +268,7 @@ yarn cw-hpl deploy -n stride-internal-1
 
 ```bash
 echo '{
-  "db": "/tmp/hyperlane/db",
+  "db": "/etc/data/db",
   "relayChains": "localwasmd,strideinternal1",
   "allowLocalCheckpointSyncers": "true",
   "gasPaymentEnforcement": [{ "type": "none" }],
@@ -305,10 +305,10 @@ echo '{
 
 ```bash
 echo '{
-  "db": "/tmp/hyperlane/db",
+  "db": "/etc/data/db",
   "checkpointSyncer": {
     "type": "localStorage",
-    "path": "/tmp/hyperlane/validator/strideinternal1/checkpoint"
+    "path": "/etc/validator/strideinternal1/checkpoint"
   },
   "originChainName": "strideinternal1",
   "validator": {
@@ -327,14 +327,14 @@ echo '{
 }' > example/hyperlane/validator.strideinternal1.json
 ```
 
-#### Setup the validator config on the localwasmd side:
+#### Setup the validator config on the localwasmd rollup side:
 
 ```bash
 echo '{
-  "db": "/tmp/hyperlane/db",
+  "db": "/etc/data/db",
   "checkpointSyncer": {
     "type": "localStorage",
-    "path": "/tmp/hyperlane/validator/localwasmd/checkpoint"
+    "path": "/etc/validator/localwasmd/checkpoint"
   },
   "originChainName": "localwasmd",
   "validator": {
@@ -353,20 +353,84 @@ echo '{
 }' > example/hyperlane/validator.localwasmd.json
 ```
 
-### Run this monstrosity (TODO fix ASAP):
+#### Prepare the validators and relayer configs:
 
 ```bash
-cd ./example
+# Create agent-config.docker.json by merging localwasmd.config.json and stride-internal-1.config.json
+jq -s '(.[0] | .chains.localwasmd.grpcUrl = .chains.localwasmd.grpcUrls[0].http) * (.[1] | .chains.strideinternal1.grpcUrl = .chains.strideinternal1.grpcUrls[0].http)' context/{localwasmd,stride-internal-1}.config.json > example/hyperlane/agent-config.docker.json
+```
 
-# Merge localwasmd.config.json and agent-config.docker.json
-LOCALWASMD_AGENT_CONFIG=$(cat ../context/localwasmd.config.json | jq -r '.chains.localwasmd')
-LOCALWASMD_AGENT_CONFIG_NAME=$(echo $LOCALWASMD_AGENT_CONFIG | jq -r '.name')
-cat ./hyperlane/agent-config.docker.json |
-  jq ".chains.$LOCALWASMD_AGENT_CONFIG_NAME=$(echo $LOCALWASMD_AGENT_CONFIG)" > merge.tmp
-mv merge.tmp ./hyperlane/agent-config.docker.json
+#### Update the docker compose file:
 
-# Run Hyperlane with docker-compose
-docker compose up
+```bash
+echo 'services:
+  relayer:
+    container_name: hpl-relayer
+    image: gcr.io/abacus-labs-dev/hyperlane-agent:3bb4d87-20240129-164519
+    user: root
+    # restart: always
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        rm -rf /app/config/* && \
+        cp "/etc/hyperlane/agent-config.docker.json" "/app/config/agent-config.json" && \
+        CONFIG_FILES="/etc/hyperlane/relayer.json" \
+          ./relayer
+    ports:
+      - 9110:9090
+    volumes:
+      - ./hyperlane:/etc/hyperlane
+      - ./relayer:/etc/data
+      - ./validator:/etc/validator
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
+  validator-localwasmd:
+    container_name: hpl-validator-localwasmd
+    image: gcr.io/abacus-labs-dev/hyperlane-agent:3bb4d87-20240129-164519
+    user: root
+    # restart: always
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        rm -rf /app/config/* && \
+        cp "/etc/hyperlane/agent-config.docker.json" "/app/config/agent-config.json" && \
+        CONFIG_FILES="/etc/hyperlane/validator.localwasmd.json" \
+          ./validator
+    ports:
+      - 9120:9090
+    volumes:
+      - ./hyperlane:/etc/hyperlane
+      - ./validator:/etc/validator
+      - ./validator/localwasmd:/etc/data
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
+  validator-strideinternal1:
+    container_name: hpl-validator-strideinternal1
+    image: gcr.io/abacus-labs-dev/hyperlane-agent:3bb4d87-20240129-164519
+    user: root
+    # restart: always
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        rm -rf /app/config/* && \
+        cp "/etc/hyperlane/agent-config.docker.json" "/app/config/agent-config.json" && \
+        CONFIG_FILES="/etc/hyperlane/validator.strideinternal1.json" \
+          ./validator
+    ports:
+      - 9121:9090
+    volumes:
+      - ./hyperlane:/etc/hyperlane
+      - ./validator:/etc/validator
+      - ./validator/strideinternal1:/etc/data' > example/docker-compose.yml
+```
+
+#### Run the relayer and validators:
+
+```bash
+# This will launch one relayer and two validators, one on each side
+docker compose -f example/docker-compose.yml up
 ```
 
 ## Resources
