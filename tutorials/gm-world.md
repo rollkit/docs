@@ -134,31 +134,27 @@ rollkit keys list --keyring-backend test
 You should see an output like the following
 
 ```bash
-- address: gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9
-  name: gm-key-2
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Al92dlOeLpuAiOUSIaJapkIveiwlhlEdz/O5CrniMdwH"}'
+- address: gm17rpwv7lnk96ka00v93rphhvcqqztpn896q0dxx
+  name: alice
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A5WPM5WzfNIPrGyha/TlHt0okdlzS1O4Gb1d1kU+xuG+"}'
   type: local
-- address: gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
-  name: gm-key
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AwdsLY+2US2VV+rbyfi60GB4/Ir/FeTIkLJ3CWVhUF6b"}'
-  type: local
-- address: gm1vvl79phavqruppr6f5zy4ypxy7znshrqam48qy
-  name: gm-relay
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AlnSEnBUv5GO86fMWe11qth1+R76g2e1lv8c1FWhLpqP"}'
+- address: gm1r2udsh4za7r7sxvzy496qfazvjp04j4zgytve3
+  name: bob
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A+jOX/CWInFer2IkqgXGo0da9j7Ubq+e1LJWzTMDjwdt"}'
   type: local
 ```
 
 For convenience we export two of our keys like this:
 
 ```bash
-export KEY1=gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9
-export KEY2=gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
+export KEY1=gm17rpwv7lnk96ka00v93rphhvcqqztpn896q0dxx
+export KEY2=gm1r2udsh4za7r7sxvzy496qfazvjp04j4zgytve3
 ```
 
 Now let's submit a transaction that sends coins from one account to another (don't worry about all the flags, for now, we just want to submit transaction from a high-level perspective):
 
 ```bash
-rollkit tx bank send $KEY1 $KEY2 42069stake --keyring-backend test --chain-id gm --fees 5000stake
+rollkit tx bank send $KEY2 $KEY1 42069stake --keyring-backend test --chain-id gm --fees 5000stake
 ```
 
 You'll be prompted to accept the transaction:
@@ -180,8 +176,8 @@ body:
     amount:
     - amount: "42069"
       denom: stake
-    from_address: gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9 
-    to_address: gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
+    from_address: gm1r2udsh4za7r7sxvzy496qfazvjp04j4zgytve3
+    to_address: gm17rpwv7lnk96ka00v93rphhvcqqztpn896q0dxx
   non_critical_extension_options: []
   timeout_height: "0"
 signatures: []
@@ -201,14 +197,14 @@ txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
 Query balances after the transaction:
 
 ```bash
-rollkit query bank balances $KEY2
+rollkit query bank balances $KEY1
 ```
 
 The receiver’s balance should show an increase.
 
 ```bash
 balances: // [!code focus]
-- amount: "10000000000000000000042069" // [!code focus]
+- amount: "42069" // [!code focus]
   denom: stake
 pagination:
   next_key: null
@@ -218,14 +214,14 @@ pagination:
 For the sender’s balance:
 
 ```bash
-rollkit query bank balances $KEY1
+rollkit query bank balances $KEY2
 ```
 
 Output:
 
 ```bash
 balances: // [!code focus]
-- amount: "9999999999999999999957931" // [!code focus]
+- amount: "99957931" // [!code focus]
   denom: stake
 pagination:
   next_key: null

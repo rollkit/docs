@@ -178,15 +178,6 @@ Next, add Rollkit to your project by running:
 ignite rollkit add
 ```
 
-Initialize the Rollkit chain configuration for a local DA network with this command:
-
-```bash
-ignite rollkit init --local-da
-```
-
-This will create a `~/.wordle` directory with all the necessary files to run a rollup on a local DA network.
-With these steps, Rollkit is now added. Let's build the Wordle app!
-
 ## ✨ Creating the wordle module {#creating-wordle-module}
 
 For the Wordle module, we can add dependencies offered by Cosmos-SDK.
@@ -569,6 +560,13 @@ running on your machine, you're ready to build, test, and launch your own sovere
 
 ### 🟢 Building and running wordle chain {#build-and-run-wordle-chain}
 
+Initialize the Rollkit chain configuration for a local DA network with this command:
+
+```bash
+ignite chain build && ignite rollkit init --local-da
+```
+
+This will create a `~/.wordle` directory with all the necessary files to run a rollup on a local DA network.
 
 Now let's initialize a `rollkit.toml` file in the `worldle` directory by running:
 
