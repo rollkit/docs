@@ -18,7 +18,7 @@ import Callout from '../.vitepress/components/callout.vue'
 Fork the cw-hyperlane repo:
 
 ```bash
-git clone --depth 1 --brnach fix-askQuestion git@github.com:Stride-Labs/cw-hyperlane.git
+git clone --depth 1 git@github.com:many-things/cw-hyperlane.git
 cd cw-hyperlane
 ```
 
