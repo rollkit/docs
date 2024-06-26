@@ -354,7 +354,7 @@ echo '{
       "signer": {
         "type": "cosmosKey",
         "key": "0xf0517040b5669e2d93ffac3a3616187b14a19ad7a0657657e0f655d5eced9e31",
-        "prefix": "stride"
+        "prefix": "wasm"
       }
     }
   }
