@@ -365,7 +365,7 @@ echo '{
 
 ```bash
 # Create agent-config.docker.json by merging localwasmd.config.json and stride-internal-1.config.json
-jq -s '(.[0] | .chains.localwasmd.grpcUrl = .chains.localwasmd.grpcUrls[0].http) * (.[1] | .chains.strideinternal1.grpcUrl = .chains.strideinternal1.grpcUrls[0].http)' context/{localwasmd,stride-internal-1}.config.json > example/hyperlane/agent-config.docker.json
+jq -s '.[0] * .[1]' context/{localwasmd,stride-internal-1}.config.json > example/hyperlane/agent-config.docker.json
 ```
 
 #### Update the docker compose file:
@@ -374,7 +374,7 @@ jq -s '(.[0] | .chains.localwasmd.grpcUrl = .chains.localwasmd.grpcUrls[0].http)
 echo 'services:
   relayer:
     container_name: hpl-relayer
-    image: gcr.io/abacus-labs-dev/hyperlane-agent:3bb4d87-20240129-164519
+    image: gcr.io/abacus-labs-dev/hyperlane-agent:8a66544-20240530-111322
     user: root
     # restart: always
     entrypoint: ["sh", "-c"]
@@ -395,7 +395,7 @@ echo 'services:
 
   validator-localwasmd:
     container_name: hpl-validator-localwasmd
-    image: gcr.io/abacus-labs-dev/hyperlane-agent:3bb4d87-20240129-164519
+    image: gcr.io/abacus-labs-dev/hyperlane-agent:8a66544-20240530-111322
     user: root
     # restart: always
     entrypoint: ["sh", "-c"]
@@ -416,7 +416,7 @@ echo 'services:
 
   validator-strideinternal1:
     container_name: hpl-validator-strideinternal1
-    image: gcr.io/abacus-labs-dev/hyperlane-agent:3bb4d87-20240129-164519
+    image: gcr.io/abacus-labs-dev/hyperlane-agent:8a66544-20240530-111322
     user: root
     # restart: always
     entrypoint: ["sh", "-c"]
