@@ -1,48 +1,35 @@
 # Full and sequencer node rollup setup
 
-This guide will cover how to set up the GM world rollup example as
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '../.vitepress/constants/constants.js'
+</script>
+
+This guide will cover how to set up the GM World rollup example as
 a multi-node network using a full and sequencer node.
 
-## About
+## Running a local DA network {#running-local-da}
 
-This guide is using a feature released in v0.10.2 that
-uses [go-header](https://github.com/celestiaorg/go-header),
-which uses libp2p that syncs blocks over a peer-to-peer (p2p)
-network.
+In this demo, we'll be using the local-da setup used in [GM World](../tutorials/gm-world)
 
-This is the same way that celestia-node syncs blocks over p2p.
+To set up a local DA network node:
 
-## Prerequisites
+```bash-vue
+curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.localDALatestTag}} 
+```
 
-First, you'll need to complete the [GM world](../tutorials/gm-world) tutorial.
+This script builds and runs the node, now listening on port `7980`.
 
-In this demo, we'll be using the local-celestia-devnet setup used
-in [part 1](./gm-world).
+## Running a sequencer node
+
+By following the [GM World](../tutorials/gm-world) tutorial, you will have a sequencer node running.
+
+We wil now set up a full node to run alongside the sequencer node.
+
 
 ## Getting started
 
-For running a full node, you will need to update
-`DA_HEIGHT` and `P2P_ID` manually. You can retrieve
-namespace and height from your terminal output
-from when you ran the `init-local.sh` script.
-
-They will be printed before your chain starts:
-
-```txt
-______         _  _  _     _  _
-| ___ \       | || || |   (_)| |
-| |_/ /  ___  | || || | __ _ | |_
-|    /  / _ \ | || || |/ /| || __|
-| |\ \ | (_) || || ||   < | || |_
-\_| \_| \___/ |_||_||_|\_\|_| \__|
-
-
- Your DA_BLOCK_HEIGHT is 5 // [!code focus]
-```
-
-### Clone the script
-
-Now, clone the script for the full node:
+Clone the script for the full node:
 
 ```bash
 # From inside the `gm` directory
@@ -50,21 +37,9 @@ cd $HOME/gm
 wget https://rollkit.dev/gm/init-full-node.sh
 ```
 
-### Set DA height
-
-Next, you can open the script and set your namespace and DA height from above:
-
-```sh
-DA_BLOCK_HEIGHT=your-block-height // [!code --]
-DA_BLOCK_HEIGHT=5 // [!code ++]
-P2P_ID="your-p2p-id"
-```
-
 ### Update the p2p address
 
-Next, we'll update the p2p address.
-
-Once your sequencer starts producing blocks, it will show the p2p address,
+Once your sequencer node starts producing blocks, it will show the p2p address,
 beginning with 12D:
 
 ```bash
@@ -80,22 +55,12 @@ beginning with 12D:
 3:55PM INF starting Celestia Data Availability Layer Client baseURL=http://localhost:26658 module=da_client
 ```
 
-In your `init-full-node.sh` script, you will now set the `P2P_ADDRESS` variable
+In your `init-full-node.sh` script, you will now set the `P2P_ID` variable
 for your script to use:
 
 ```bash
-DA_BLOCK_HEIGHT=5
 P2P_ID="your-p2p-id" // [!code --]
 P2P_ID="12D3KooWCmfJLkQjZUArWpNUDJSezeFiLYzCULXe1dEKY6ZpXZpk" // [!code ++]
-```
-
-Also, in your `init-full-node.sh` script, the `AUTH_TOKEN` is fetched from the celestia-node running in the docker, which is also used by the sequencer node. If you are running a separate celestia-node for sequencer and full node, please update the `AUTH_TOKEN` accordingly. Note that, the `AUTH_TOKEN` is needed to perform DA queries via celestia-node.
-
-```bash
-# uses the same celestia-node as sequencer node
-# if you are running a separate celestia-node for full node
-# use the auth token from that node
-AUTH_TOKEN=$(docker exec $(docker ps -q) celestia bridge auth admin --node.store /home/celestia/bridge)
 ```
 
 ## Start the full node
