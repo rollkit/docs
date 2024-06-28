@@ -70,6 +70,10 @@ Now we're prepared to initiate our rollup and establish a connection with the Av
 - `--rollkit.da_start_height`
 - `--rollkit.da_address`
 
+::: tip
+Optionally, you could also set the `--rollkit.da_block_time` flag. This should be set to the finality time of the DA layer, not its actual block time, as Rollkit does not handle reorganization logic. The default value is 15 seconds.
+:::
+
 Let's determine what to provide for each of them.
 
 First, let's query the DA Layer start height using an RPC endpoint provided by Avail Labs. For local, it would be - [https://localhost:8000/v1/latest_block]( https://localhost:8000/v1/latest_block ), and for Turing Testnet - [https://avail-turing-rpc.publicnode.com]( https://avail-turing-rpc.publicnode.com )

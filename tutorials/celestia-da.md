@@ -85,6 +85,12 @@ Let's determine which values to provide for each of them.
 
 First, let's query the DA layer start height using an RPC endpoint provided by Celestia's documentation.
 
+::: tip
+Optionally, you could also set the `--rollkit.da_block_time` flag. This should be set to the finality time of the DA layer, not its actual block time, as Rollkit does not handle reorganization logic. The default value is 15 seconds.
+:::
+
+Let's determine what to provide for each of them.
+
 - Mocha testnet: [https://rpc-mocha.pops.one/block](https://rpc-mocha.pops.one/block)
 - Mainnet Beta: [https://rpc.lunaroasis.net/block](https://rpc.lunaroasis.net/block)
 
