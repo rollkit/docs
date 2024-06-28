@@ -249,7 +249,7 @@ function sidebarHome() {
           collapsed: true,
           items: [
             { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
-	    { text: "Omni Octane EMV rollup", link: "/tutorials/octane-evm" },
+	    { text: "Omni Octane EVM rollup", link: "/tutorials/octane-evm" },
             { text: "Polaris EVM rollup", link: "/tutorials/polaris-evm" },
           ],
         },
