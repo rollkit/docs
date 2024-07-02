@@ -259,7 +259,26 @@ pagination:
   total: "0"
 ```
 
+## 📦 GM world UI app
+
+Now that you have an idea of how to interact with the rollup with the rollkit CLI, let's look at the user interface (UI) application aspect of connecting a wallet to a rollup. 
+
+Connecting your wallet to your rollup is as straightforward as connecting to any other blockchain. It assumes you have the [Keplr](https://www.keplr.app/) wallet extension installed in your browser.
+
+## 🔗 Connecting your wallet
+
+Kurtosis spun up a UI app alongside your rollup already, so to connect your Keplr wallet to the application, simply open your browser and go to [http://localhost:3000](https://localhost:3000).
+
+Click the "Connect Wallet" button on the page, and approve the connection request in the Keplr prompt.
+
+Once authorized, your wallet address will be displayed, confirming that your wallet is successfully connected.
+
+![gm-world-frontend-connected](/img/gm-world-frontend-wallet-connected.png)
+
+:::tip
+If you run into any issues, make sure your Keplr wallet is updated and set to connect to your local environment.
+:::
+
 ## 🎉 Next steps
 
-Congratulations! You've built a local rollup that posts to a
-local DA network. So far so good, keep diving deeper if you like it. Good luck!
+Congratulations! You've experienced connecting to a rollup from the user side — simple and straightforward. Now, you might consider exploring how to add more application logic to your rollup using the Cosmos SDK, as demonstrated in our Wordle App tutorial.
