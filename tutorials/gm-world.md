@@ -29,9 +29,9 @@ import constants from '../.vitepress/constants/constants.js'
 
 ## 🛠️ Dependencies {#dependencies}
 
-As we moved into more advanced use cases we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install). 
+As we move into more advanced use cases, we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install). 
 
-Once installed you can verify the installation by running:
+Once installed, you can verify the installation by running:
 
 ```bash
 $ kurtosis version
@@ -43,10 +43,10 @@ To see the engine version (provided it is running): kurtosis engine status
 
 ## 🚀 Starting your rollup {#start-your-rollup}
 
-Now that we have kurtosis, we can launch our GM rollup along with the local DA by running the following command:
+Now that we have kurtosis installed, we can launch our GM rollup along with the local DA by running the following command:
 
 ```bash
-kurtosis run github.com/rollkit/gm@v0.2.1
+kurtosis run github.com/rollkit/gm@v0.3.0
 ```
 
 You should see an output like this:
