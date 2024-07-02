@@ -6,7 +6,9 @@ Avail DA offers scalable data availability that underpins the Avail ecosystem an
 
 This tutorial serves as a comprehensive guide for deploying your GM world rollup on Avail's data availability (DA) network.
 
-Before proceeding, ensure that you have completed the [GM world rollup](/tutorials/gm-world) tutorial, which covers setting up a local sovereign gm-world rollup and connecting it to a local (mock) DA node.
+Before proceeding, ensure that you have completed the GM World rollup setup.
+
+Note : If you want to go through gm world setup docs for more information, you can refer [GM world rollup](/tutorials/gm-world) tutorial, which covers setting up a local sovereign gm-world rollup and connecting it to a local (mock) DA node.
 
 ## 🪶 Running an Avail light node
 
