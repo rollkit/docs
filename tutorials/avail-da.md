@@ -6,50 +6,7 @@ Avail DA offers scalable data availability that underpins the Avail ecosystem an
 
 This tutorial serves as a comprehensive guide for deploying your GM world rollup on Avail's data availability (DA) network.
 
-Before proceeding, ensure that you have completed the GM World rollup setup. Follow the steps below to install Rollkit and GM World.
-
-## 🧑‍🔧 Install Rollkit (CLI)
-You should have the Rollkit CLI and Golang installed already. 
-
-If not, to install Rollkit, run the following command in your terminal:
-```bash
-curl -sSL https://rollkit.dev/install.sh | sh -s v0.13.4
-```
-Verify the installation by checking the Rollkit version:
-```bash
-rollkit version
-```
-A successful installation will display the version number and its associated git commit hash.
-Example:
-```bash
-rollkit version:  v0.13.4
-rollkit git sha:  24a9fe9
-```
-
-# Building Your Sovereign Rollup
-With the avail DA network running, let’s prepare your rollup blockchain.
-
-To make it simple, download a repository with a GM World rollup that has all the app chain configurations set up for you:
-```bash
-cd $HOME && bash -c "$(curl -sSL https://rollkit.dev/install-gm-rollup.sh)"
-```
-# Configuring your rollup
-
-Generate rollkit.toml file by running:
-
-```bash
-cd $HOME/gm && rollkit toml init
-```
-The output should be similar to this:
-```
-Found rollup entrypoint: /root/gm/cmd/gmd/main.go, adding to rollkit.toml
-Could not find rollup config under gm. Please put the chain.config_dir in the rollkit.toml file manually.
-Initialized rollkit.toml file in the current directory.
-```
-
-From the output, you can see that the rollup entrypoint is `~/gm/cmd/gmd/main.go`.
-
-Open the rollkit.toml file and under the `[chain]` section set `config_dir` to the `./.gm` directory. Your rollkit.toml file should look like this:
+Before proceeding, ensure that you have completed the GM World rollup setup.
 
 Note : If you want to go through gm world setup docs for more information, you can refer [GM world rollup](/tutorials/gm-world) tutorial, which covers setting up a local sovereign gm-world rollup and connecting it to a local (mock) DA node.
 
