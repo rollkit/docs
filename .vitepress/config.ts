@@ -106,7 +106,7 @@ export default withMermaid({
       "script",
       {
         src: "https://platform.twitter.com/widgets.js",
-	async: true,
+        async: true,
       },
     ],
   ],
@@ -188,26 +188,26 @@ function sidebarHome() {
         {
           text: "Overview",
           collapsed: true,
-	  items: [
-	    { text: "Introduction", link: "/learn/intro" },
+          items: [
+            { text: "Introduction", link: "/learn/intro" },
             { text: "About Rollkit", link: "/learn/about" },
-	  ],
-	},
-	{
+          ],
+        },
+        {
           text: "Technical details",
-	  collapsed: true,
-	  items: [
+          collapsed: true,
+          items: [
             { text: "Rollkit stack", link: "/learn/stack" },
             { text: "Transaction flow", link: "/learn/transaction-flow" },
-	  ],
-	},
-	{
-	  text: "Resources",
-	  collapsed: true,
-	  items: [
+          ],
+        },
+        {
+          text: "Resources",
+          collapsed: true,
+          items: [
             { text: "Technical specifications", link: "/learn/specifications" },
-	  ],
-	},
+          ],
+        },
       ],
     },
     {
@@ -226,7 +226,6 @@ function sidebarHome() {
               text: "GM world rollup",
               link: "/tutorials/gm-world",
             },
-            { text: "GM world frontend", link: "/tutorials/gm-world-frontend" },
             { text: "Wordle app", link: "/tutorials/wordle" },
           ],
         },
@@ -249,7 +248,7 @@ function sidebarHome() {
           collapsed: true,
           items: [
             { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
-	    { text: "Omni Octane EVM rollup", link: "/tutorials/octane-evm" },
+            { text: "Omni Octane EVM rollup", link: "/tutorials/octane-evm" },
             { text: "Polaris EVM rollup", link: "/tutorials/polaris-evm" },
           ],
         },
@@ -341,7 +340,7 @@ function sidebarHome() {
         {
           text: "Rollkit: The First Sovereign Rollup Framework",
           link: "/blog/rollkit-the-first-sovereign-rollup-framework",
-        }
+        },
       ],
     },
   ];
