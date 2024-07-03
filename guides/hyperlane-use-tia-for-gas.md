@@ -81,7 +81,7 @@ cd cw-hyperlane
 
 ```bash
 echo 'networks:
-  - id: "localwasmd"
+  - id: "localwasm"
     hrp: "wasm"
     endpoint:
       rpc: "http://localhost:36657"
@@ -190,7 +190,7 @@ wasmd config set client output json
 wasmd config set client keyring-backend test
 ```
 
-#### Fund the cw-hyperlane signer in our localwasmd rollup:
+#### Fund the cw-hyperlane signer in our localwasm rollup:
 
 ```bash
 wasmd tx bank send localwasm-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 10000000uwasm -y --gas auto --gas-adjustment 1.2 --gas-prices 0.025uwasm
@@ -221,17 +221,17 @@ make optimize
 make check
 ```
 
-#### Upload and deploy the contracts on our localwasmd rollup:
+#### Upload and deploy the contracts on our localwasm rollup:
 
 ```bash
 # This command will make one file.
-# - context with artifacts (default path: {cw-hyperlane-root}/context/localwasmd.json)
-yarn cw-hpl upload local -n localwasmd
+# - context with artifacts (default path: {cw-hyperlane-root}/context/localwasm.json)
+yarn cw-hpl upload local -n localwasm
 
 # This command will output two results.
-# - context + deployment    (default path: {cw-hyperlane-root}/context/localwasmd.json)
-# - Hyperlane agent-config  (default path: {cw-hyperlane-root}/context/localwasmd.config.json)
-yarn cw-hpl deploy -n localwasmd
+# - context + deployment    (default path: {cw-hyperlane-root}/context/localwasm.json)
+# - Hyperlane agent-config  (default path: {cw-hyperlane-root}/context/localwasm.config.json)
+yarn cw-hpl deploy -n localwasm
 ```
 
 #### Upload and deploy the contracts on the Stride testnet:
@@ -277,7 +277,7 @@ yarn cw-hpl deploy -n stride-internal-1
 ```bash
 echo '{
   "db": "/etc/data/db",
-  "relayChains": "localwasmd,strideinternal1",
+  "relayChains": "localwasm,strideinternal1",
   "allowLocalCheckpointSyncers": "true",
   "gasPaymentEnforcement": [{ "type": "none" }],
   "whitelist": [
@@ -291,7 +291,7 @@ echo '{
     }
   ],
   "chains": {
-    "localwasmd": {
+    "localwasm": {
       "signer": {
         "type": "cosmosKey",
         "key": "0xf0517040b5669e2d93ffac3a3616187b14a19ad7a0657657e0f655d5eced9e31",
@@ -335,22 +335,22 @@ echo '{
 }' > example/hyperlane/validator.strideinternal1.json
 ```
 
-#### Setup the validator config on the localwasmd rollup side:
+#### Setup the validator config on the localwasm rollup side:
 
 ```bash
 echo '{
   "db": "/etc/data/db",
   "checkpointSyncer": {
     "type": "localStorage",
-    "path": "/etc/validator/localwasmd/checkpoint"
+    "path": "/etc/validator/localwasm/checkpoint"
   },
-  "originChainName": "localwasmd",
+  "originChainName": "localwasm",
   "validator": {
     "type": "hexKey",
     "key": "0xf0517040b5669e2d93ffac3a3616187b14a19ad7a0657657e0f655d5eced9e31"
   },
   "chains": {
-    "localwasmd": {
+    "localwasm": {
       "signer": {
         "type": "cosmosKey",
         "key": "0xf0517040b5669e2d93ffac3a3616187b14a19ad7a0657657e0f655d5eced9e31",
@@ -358,14 +358,14 @@ echo '{
       }
     }
   }
-}' > example/hyperlane/validator.localwasmd.json
+}' > example/hyperlane/validator.localwasm.json
 ```
 
 #### Prepare the validators and relayer config:
 
 ```bash
-# Create agent-config.docker.json by merging localwasmd.config.json and stride-internal-1.config.json
-jq -s '.[0] * .[1]' context/{localwasmd,stride-internal-1}.config.json > example/hyperlane/agent-config.docker.json
+# Create agent-config.docker.json by merging localwasm.config.json and stride-internal-1.config.json
+jq -s '.[0] * .[1]' context/{localwasm,stride-internal-1}.config.json > example/hyperlane/agent-config.docker.json
 ```
 
 #### Update the docker compose file:
@@ -393,8 +393,8 @@ echo 'services:
     extra_hosts:
       - 'host.docker.internal:host-gateway'
 
-  validator-localwasmd:
-    container_name: hpl-validator-localwasmd
+  validator-localwasm:
+    container_name: hpl-validator-localwasm
     image: gcr.io/abacus-labs-dev/hyperlane-agent:8a66544-20240530-111322
     user: root
     # restart: always
@@ -403,14 +403,14 @@ echo 'services:
       - |
         rm -rf /app/config/* && \
         cp "/etc/hyperlane/agent-config.docker.json" "/app/config/agent-config.json" && \
-        CONFIG_FILES="/etc/hyperlane/validator.localwasmd.json" \
+        CONFIG_FILES="/etc/hyperlane/validator.localwasm.json" \
           ./validator
     ports:
       - 9120:9090
     volumes:
       - ./hyperlane:/etc/hyperlane
       - ./validator:/etc/validator
-      - ./validator/localwasmd:/etc/data
+      - ./validator/localwasm:/etc/data
     extra_hosts:
       - 'host.docker.internal:host-gateway'
 
