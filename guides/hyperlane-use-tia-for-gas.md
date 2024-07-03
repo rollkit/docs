@@ -86,7 +86,7 @@ echo 'networks:
     endpoint:
       rpc: "http://localhost:36657"
       rest: "http://localhost:1317"
-      grpc: "http://172.17.0.1:9290"
+      grpc: "http://localhost:9290"
     gas:
       price: "0.025"
       denom: "uwasm"
@@ -366,6 +366,10 @@ echo '{
 ```bash
 # Create agent-config.docker.json by merging localwasm.config.json and stride-internal-1.config.json
 jq -s '.[0] * .[1]' context/{localwasm,stride-internal-1}.config.json > example/hyperlane/agent-config.docker.json
+
+# Replace `localhost` with `172.17.0.1` in agent-config.docker.json,
+# to allow the relayer and validators to connect to localwasm which is running on the docker host machine.
+perl -i -pe 's/localhost/172.17.0.1/' example/hyperlane/agent-config.docker.json
 ```
 
 #### Update the docker compose file:
