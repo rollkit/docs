@@ -358,8 +358,7 @@ func (k msgServer) SubmitWordle(goCtx context.Context, msg *types.MsgSubmitWordl
   reward := sdk.Coins{sdk.NewInt64Coin("token", 100)}
   // Escrow Reward
   submitterAddress, _ := sdk.AccAddressFromBech32(msg.Creator)
-  moduleAcct := sdk.AccAddress(crypto.AddressHash([]byte(types.ModuleName)))
-  err := k.bankKeeper.SendCoins(ctx, submitterAddress, moduleAcct, reward)
+  err := k.bankKeeper.SendCoinsFromAccountToModule(ctx, submitterAddress, types.ModuleName, reward)
   if err != nil {
     return nil, err
   }
@@ -483,9 +482,8 @@ func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess)
     reward := sdk.Coins{sdk.NewInt64Coin("token", 100)}
     // If Submitter Guesses Correctly
     guesserAddress, _ := sdk.AccAddressFromBech32(msg.Creator)
-    moduleAcct := sdk.AccAddress(crypto.AddressHash([]byte(types.ModuleName)))
     // Send Reward
-    err := k.bankKeeper.SendCoins(ctx, moduleAcct, guesserAddress, reward)
+    err := k.bankKeeper.SendCoinsFromModuleToAccount(ctx, types.ModuleName, guesserAddress, reward)
     if err !=nil {
       return nil, err
     }
@@ -535,7 +533,8 @@ interface in order to allow sending the reward to the right guesser.
 
 ```go title="x/wordle/types/expected_keepers.go"
 type BankKeeper interface {
-  SendCoins(ctx sdk.Context, fromAddr sdk.AccAddress, toAddr sdk.AccAddress, amt sdk.Coins) error
+  SendCoinsFromModuleToAccount(ctx context.Context, senderModule string, recipientAddr sdk.AccAddress, amt sdk.Coins) error
+  SendCoinsFromAccountToModule(ctx context.Context, senderAddr sdk.AccAddress, recipientModule string, amt sdk.Coins) error
 }
 ```
 
