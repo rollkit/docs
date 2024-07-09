@@ -26,14 +26,14 @@ import constants from '../.vitepress/constants/constants.js'
 ## 💻 Pre-requisites {#prerequisites}
 
 Given this tutorial is targeted for developers who are experienced
-in Cosmos-SDK, we recommend you go over the following tutorials
-in Ignite to understand all the different components in Cosmos-SDK before
+in Cosmos-SDK, we recommend you go over [GM world](/tutorials/gm-world) tutorial to understand all the different components in Cosmos-SDK before
 proceeding with this tutorial.
 
-* [GM world](/tutorials/gm-world)
+You also need to have Rollkit CLI installed. You can install it by running:
 
-You do not have to do those guides in order to follow this Wordle tutorial,
-but doing so helps you understand the architecture of Cosmos-SDK better.
+```bash-vue
+curl -sSL https://rollkit.dev/install.sh | sh -s {{constants.rollkitLatestTag}}
+```
 
 ## 📖 Design implementation {#design-implementation}
 
@@ -546,10 +546,10 @@ compile the blockchain and take it out for a test drive.
 
 ### 🪶 Run a local DA node {#run-local-da-node}
 
-To set up a local data availability network node run:
+To set up a local data availability network node open a new terminal and run:
 
 ```bash-vue
-curl -sSL https://rollkit.dev/install-local-da.sh | sh -s {{constants.localDALatestTag}}
+cd $HOME && curl -sSL https://rollkit.dev/install-local-da.sh | sh -s {{constants.localDALatestTag}}
 ```
 
 This script builds and runs the node, now listening on port `7980`.
