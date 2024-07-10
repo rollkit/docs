@@ -46,7 +46,7 @@ To see the engine version (provided it is running): kurtosis engine status
 Now that we have kurtosis installed, we can launch our GM rollup along with the local DA by running the following command:
 
 ```bash
-kurtosis run github.com/rollkit/gm@v0.3.0
+kurtosis run github.com/rollkit/gm@v0.3.1
 ```
 
 You should see an output like this:
