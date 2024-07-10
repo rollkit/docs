@@ -193,7 +193,7 @@ wasmd config set client keyring-backend test
 #### Fund the cw-hyperlane signer in our localwasm rollup:
 
 ```bash
-wasmd tx bank send localwasm-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 10000000uwasm -y --gas auto --gas-adjustment 1.2 --gas-prices 0.025uwasm
+wasmd tx bank send localwasm-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 10000000uwasm -y --gas auto --gas-adjustment 1.5 --gas-prices 0.025uwasm
 ```
 
 :::info
