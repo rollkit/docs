@@ -165,23 +165,12 @@ The CosmWasm team provides a tool called `rust-optimizer`, which requires
 
 Run the following command in the `~/nameservice` directory you just copied:
 
-::: code-group
-
-```bash [AMD Machines]
+```bash
 sudo docker run --rm -v "$(pwd)":/code \
   --mount type=volume,source="$(basename "$(pwd)")_cache",target=/code/target \
   --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \
   cosmwasm/rust-optimizer:0.12.6
 ```
-
-```bash [ARM Machines]
-sudo docker run --platform linux/arm64 --rm -v "$(pwd)":/code \
-  --mount type=volume,source="$(basename "$(pwd)")_cache",target=/code/target \
-  --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \
-  cosmwasm/rust-optimizer-arm64:0.12.8
-```
-
-:::
 
 This will place the optimized Wasm bytecode at `artifacts/cw_nameservice.wasm`.
 
@@ -207,19 +196,11 @@ deploy/script and test your contracts, you can use [cw-orchestrator](/guides/cw-
 
 Run the following in the `~/cw-contracts/contracts/nameservice` directory:
 
-::: code-group
-
 <!-- markdownlint-disable MD013 -->
-```bash [AMD Machines]
+```bash
 TX_HASH=$(wasmd tx wasm store cw_nameservice.wasm --from localwasm-key --keyring-backend test --chain-id localwasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
 ```
 <!-- markdownlint-enable MD013 -->
-
-<!-- markdownlint-disable MD013 -->
-```bash [ARM Machines]
-TX_HASH=$(wasmd tx wasm store cw_nameservice-aarch64.wasm --from localwasm-key --keyring-backend test --chain-id localwasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
-
-:::
 
 This will get you the transaction hash for the smart contract deployment.
 
