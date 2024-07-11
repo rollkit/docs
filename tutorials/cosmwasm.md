@@ -24,15 +24,110 @@ You can check out the contract [here](https://github.com/InterWasm/cw-contracts/
 How to write the Rust smart contract for Nameservice is outside the scope of
 this tutorial.
 
-## 💻 CosmWasm dependency installations {#dependencies}
+## 💻 CosmWasm dependency {#dependencies}
 
-### 🏃 Golang {#install-go}
+As with the [GM Rollup](https://rollkit.dev/tutorials/gm-world), we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install). 
 
-For this tutorial, we will need `go` and `jq` installed on your machine. You can install them by running our script:
+Once installed, you can verify the installation by running:
 
-```bash-vue
-curl -sSL https://rollkit.dev/install-go.sh | bash -s {{constants.golangVersion}}
+```bash
+$ kurtosis version
+
+CLI Version:   0.90.1
+
+To see the engine version (provided it is running): kurtosis engine status
 ```
+
+## 🚀 Starting your rollup {#start-your-rollup}
+
+Now that we have kurtosis installed, we can launch our CosmWasm rollup along with the local DA by running the following command:
+
+```bash
+kurtosis run github.com/rollkit/cosmwasm@v0.1.0
+```
+
+You should see an output like this:
+
+```bash
+INFO[2024-07-02T11:15:43-04:00] Creating a new enclave for Starlark to run inside...
+INFO[2024-07-11T11:53:13-04:00] Enclave 'forgotten-fen' created successfully 
+
+Container images used in this run:
+> ghcr.io/rollkit/local-da:v0.2.1 - remotely downloaded
+> ghcr.io/rollkit/cosmwasm:3b5a25b - remotely downloaded
+
+Adding service with name 'local-da' and image 'ghcr.io/rollkit/local-da:v0.2.1'
+Service 'local-da' added with service UUID '96d04bc472c9455d88d046128fbdefa6'
+
+Printing a message
+connecting to da layer via http://172.16.0.5:7980
+
+Printing a message
+Adding CosmWasm service
+
+Adding service with name 'wasm' and image 'ghcr.io/rollkit/cosmwasm:3b5a25b'
+Service 'wasm' added with service UUID 'c71b0308616d40ad919ad24c3d14f35b'
+
+Printing a message
+CosmWasm service is available at http://172.16.0.6:36657
+
+Starlark code successfully run. No output was returned.
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+INFO[2024-07-11T11:53:27-04:00] ====================================================== 
+INFO[2024-07-11T11:53:27-04:00] ||          Created enclave: forgotten-fen          || 
+INFO[2024-07-11T11:53:27-04:00] ====================================================== 
+Name:            forgotten-fen
+UUID:            8cd936e91ada
+Status:          RUNNING
+Creation Time:   Thu, 11 Jul 2024 11:53:00 EDT
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID   Name
+
+========================================== User Services ==========================================
+UUID           Name       Ports                                            Status
+96d04bc472c9   local-da   jsonrpc: 7980/tcp -> http://127.0.0.1:7980       RUNNING
+c71b0308616d   wasm       grpc-addr: 9290/tcp -> http://127.0.0.1:9290     RUNNING
+                          p2p-laddr: 36656/tcp -> http://127.0.0.1:36656   
+                          rpc-laddr: 36657/tcp -> http://127.0.0.1:36657   
+```
+
+Kurtosis has successfully launched the CosmWasm rollup and the local DA network. You can see the services running in docker as well:
+
+```bash
+$ docker ps
+CONTAINER ID   IMAGE                              COMMAND                  CREATED              STATUS              PORTS                                                                              NAMES
+5bfeda0a871f   ghcr.io/rollkit/cosmwasm:3b5a25b   "/bin/sh -c 'wasmd s…"   About a minute ago   Up About a minute   0.0.0.0:9290->9290/tcp, 0.0.0.0:36656-36657->36656-36657/tcp                       wasm--c71b0308616d40ad919ad24c3d14f35b
+782dec73fcf8   ghcr.io/rollkit/local-da:v0.2.1    "local-da -listen-all"   About a minute ago   Up About a minute   0.0.0.0:7980->7980/tcp                                                             local-da--96d04bc472c9455d88d046128fbdefa6
+62da89015918   kurtosistech/core:0.90.1           "/bin/sh -c ./api-co…"   About a minute ago   Up About a minute   0.0.0.0:55500->7443/tcp                                                            kurtosis-api--8cd936e91ada45beab50f0d19be8c57f
+1eb6366a5e16   fluent/fluent-bit:1.9.7            "/fluent-bit/bin/flu…"   About a minute ago   Up About a minute   2020/tcp                                                                           kurtosis-logs-collector--8cd936e91ada45beab50f0d19be8c57f
+8bfee95b49ee   kurtosistech/engine:0.90.1         "/bin/sh -c ./kurtos…"   39 minutes ago       Up 39 minutes       0.0.0.0:8081->8081/tcp, 0.0.0.0:9710-9711->9710-9711/tcp, 0.0.0.0:9779->9779/tcp   kurtosis-engine--cee974a1c2b141478c9eb2a9b1e4f87f
+d532fc82579f   traefik:2.10.6                     "/bin/sh -c 'mkdir -…"   39 minutes ago       Up 39 minutes       80/tcp, 0.0.0.0:9730-9731->9730-9731/tcp                                           kurtosis-reverse-proxy--cee974a1c2b141478c9eb2a9b1e4f87f
+7700c0b72195   timberio/vector:0.31.0-debian      "/bin/sh -c 'printf …"   39 minutes ago       Up 39 minutes                                                                                          kurtosis-logs-aggregator
+```
+
+We can see the CosmWasm rollup running in container `wasm--c71b0308616d40ad919ad24c3d14f35b` and the local DA network running in container `local-da--96d04bc472c9455d88d046128fbdefa6`.
+
+You can verify the rollup is running by checking the logs:
+
+```bash
+$ docker logs wasm--c71b0308616d40ad919ad24c3d14f35b
+...
+3:55PM INF Creating and publishing block height=137 module=BlockManager
+3:55PM INF finalized block block_app_hash=E71622A57B08D28613A34E3D7AD36BF294CF5A88F4CDD5DD18E6FB65C76F7209 height=137 module=BlockManager num_txs_res=0 num_val_updates=0
+3:55PM INF executed block app_hash=E71622A57B08D28613A34E3D7AD36BF294CF5A88F4CDD5DD18E6FB65C76F7209 height=137 module=BlockManager
+3:55PM INF indexed block events height=137 module=txindex
+3:55PM INF Creating and publishing block height=138 module=BlockManager
+3:55PM INF finalized block block_app_hash=E09F4A71E216D85F4CCB9FCBCEE53D82BCA597451C1D4B4FCE0E4081B5FA40E3 height=138 module=BlockManager num_txs_res=0 num_val_updates=0
+3:55PM INF executed block app_hash=E09F4A71E216D85F4CCB9FCBCEE53D82BCA597451C1D4B4FCE0E4081B5FA40E3 height=138 module=BlockManager
+...
+```
+
+Good work so far, we have a Rollup node, DA network node, now we can move onto the contract deployment.
+
+## 💻 Contract dependency {#contract-dependencies}
 
 ### 🦀 Rust {#install-rust}
 
@@ -98,91 +193,6 @@ Examples on how to install it on Linux are found [here](https://docs.docker.com/
 Find the right instructions specific for
 [your OS here](https://docs.docker.com/engine/install).
 
-### 💻 Wasmd installation {#wasmd-installation}
-
-Here, we are going to pull down the `wasmd` repository and replace CometBFT
-with Rollkit. Rollkit is a drop-in replacement for CometBFT that allows
-Cosmos-SDK applications to connect to data availability (DA) network.
-
-```bash
-git clone https://github.com/CosmWasm/wasmd.git
-cd wasmd
-git checkout tags/v0.50.0
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.6-rollkit-v0.13.3-no-fraud-proofs
-go mod tidy -compat=1.17
-go mod download
-```
-
-Now, comment out lines 902-904 in `app/app.go`:
-
-```go
-if err != nil {
-  panic(err)
-}
-```
-
-This is a temporary fix until [CosmWasm/wasmd#1785](https://github.com/CosmWasm/wasmd/issues/1785)
-is resolved.
-
-And build the binary:
-
-```bash
-make install
-```
-
-::: tip
-You will have to install `gcc` if you are trying it on a clean linux vm.
-:::
-
-### ✨ Local DA node {#local-da-node}
-
-You will need a local-da node running in order to complete this tutorial. To start it, run: 
-
-```bash-vue
-curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.localDALatestTag}}
-```
-
-
-## 🌌 Setting up your environment for CosmWasm on local-da {#setting-up-environment-on-local-da}
-
-Now the `wasmd` binary is built, we need to setup a local network
-that communicates between `wasmd` and Rollkit.
-
-### 🗞️ Initializing CosmWasm rollup with a bash script {#initialize-rollup}
-
-We have a handy `init.sh` [found in this repo](https://github.com/rollkit/docs/blob/main/public/cosmwasm/init.sh).
-
-We can copy it over to our directory with the following commands:
-
-<!-- markdownlint-disable MD013 -->
-```bash
-# From inside the `wasmd` directory
-wget https://rollkit.dev/cosmwasm/init.sh
-```
-<!-- markdownlint-enable MD013 -->
-
-This copies over our `init.sh` script to initialize our
-CosmWasm rollup.
-
-You can view the contents of the script to see how we
-initialize the CosmWasm Rollup.
-
-You can initialize the script with the following command:
-
-```bash
-bash init.sh
-```
-
-With that, we have kickstarted our `wasmd` network!
-
-
-### 💠 Optional: see what's inside the script {#view-script}
-
-You can skip this section, but it is important to know
-how Rollkit is initializing the cosmwasm rollup.
-
-[View the script](https://rollkit.dev/cosmwasm/init.sh).
-
 ## 📒 Contract deployment on CosmWasm with Rollkit {#contract-deployment-on-cosmwasm}
 
 ### 🤖 Compile the smart contract {#compile-smart-contract}
@@ -246,6 +256,18 @@ This will place the optimized Wasm bytecode at `artifacts/cw_nameservice.wasm`.
 
 Let's now deploy our smart contract!
 
+We will need to do this in the docker container that the CosmWasm rollup is running. So first let's move the compiled contract to the container:
+
+```bash
+docker cp artifacts/cw_nameservice.wasm wasm--c71b0308616d40ad919ad24c3d14f35b:/root/cw_nameservice.wasm
+```
+
+Now let's jump into the container:
+
+```bash
+docker exec -it wasm--c71b0308616d40ad919ad24c3d14f35b sh
+```
+
 In order to deploy a contract, you can use the command line as described below.
 For a better experience and to use Rust code instead of the command line to
 deploy/script and test your contracts, you can use [cw-orchestrator](/guides/cw-orch.md). 
@@ -256,13 +278,13 @@ Run the following in the `~/cw-contracts/contracts/nameservice` directory:
 
 <!-- markdownlint-disable MD013 -->
 ```bash [AMD Machines]
-TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice.wasm --from localwasm-key --keyring-backend test --chain-id localwasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
+TX_HASH=$(wasmd tx wasm store cw_nameservice.wasm --from localwasm-key --keyring-backend test --chain-id localwasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
 ```
 <!-- markdownlint-enable MD013 -->
 
 <!-- markdownlint-disable MD013 -->
 ```bash [ARM Machines]
-TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice-aarch64.wasm --from localwasm-key --keyring-backend test --chain-id localwasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
+TX_HASH=$(wasmd tx wasm store cw_nameservice-aarch64.wasm --from localwasm-key --keyring-backend test --chain-id localwasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
 
 :::
 
