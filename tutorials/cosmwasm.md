@@ -43,7 +43,7 @@ To see the engine version (provided it is running): kurtosis engine status
 Now that we have kurtosis installed, we can launch our CosmWasm rollup along with the local DA by running the following command:
 
 ```bash
-kurtosis run github.com/rollkit/cosmwasm@v0.1.0
+kurtosis run github.com/rollkit/cosmwasm@v0.2.0
 ```
 
 You should see an output like this:
@@ -54,7 +54,7 @@ INFO[2024-07-11T11:53:13-04:00] Enclave 'forgotten-fen' created successfully
 
 Container images used in this run:
 > ghcr.io/rollkit/local-da:v0.2.1 - remotely downloaded
-> ghcr.io/rollkit/cosmwasm:3b5a25b - remotely downloaded
+> ghcr.io/rollkit/cosmwasm:v0.1.0 - remotely downloaded
 
 Adding service with name 'local-da' and image 'ghcr.io/rollkit/local-da:v0.2.1'
 Service 'local-da' added with service UUID '96d04bc472c9455d88d046128fbdefa6'
@@ -99,7 +99,7 @@ Kurtosis has successfully launched the CosmWasm rollup and the local DA network.
 ```bash
 $ docker ps
 CONTAINER ID   IMAGE                              COMMAND                  CREATED              STATUS              PORTS                                                                              NAMES
-5bfeda0a871f   ghcr.io/rollkit/cosmwasm:3b5a25b   "/bin/sh -c 'wasmd s…"   About a minute ago   Up About a minute   0.0.0.0:9290->9290/tcp, 0.0.0.0:36656-36657->36656-36657/tcp                       wasm--c71b0308616d40ad919ad24c3d14f35b
+5bfeda0a871f   ghcr.io/rollkit/cosmwasm:v0.1.0    "/bin/sh -c 'wasmd s…"   About a minute ago   Up About a minute   0.0.0.0:9290->9290/tcp, 0.0.0.0:36656-36657->36656-36657/tcp                       wasm--c71b0308616d40ad919ad24c3d14f35b
 782dec73fcf8   ghcr.io/rollkit/local-da:v0.2.1    "local-da -listen-all"   About a minute ago   Up About a minute   0.0.0.0:7980->7980/tcp                                                             local-da--96d04bc472c9455d88d046128fbdefa6
 62da89015918   kurtosistech/core:0.90.1           "/bin/sh -c ./api-co…"   About a minute ago   Up About a minute   0.0.0.0:55500->7443/tcp                                                            kurtosis-api--8cd936e91ada45beab50f0d19be8c57f
 1eb6366a5e16   fluent/fluent-bit:1.9.7            "/fluent-bit/bin/flu…"   About a minute ago   Up About a minute   2020/tcp                                                                           kurtosis-logs-collector--8cd936e91ada45beab50f0d19be8c57f
@@ -127,97 +127,31 @@ $ docker logs wasm--c71b0308616d40ad919ad24c3d14f35b
 
 Good work so far, we have a Rollup node, DA network node, now we can move onto the contract deployment.
 
-## 💻 Contract dependency {#contract-dependencies}
-
-### 🦀 Rust {#install-rust}
-
-First, before installing Rust, you would need to install `rustup`.
-
-On Mac and Linux systems, here are the commands for installing it:
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
-::: tip
-
-You will see a note similar to below after installing Rust:
-
-```bash
-Rust is installed now. Great!
-
-To get started you may need to restart your current shell.
-This would reload your PATH environment variable to include
-Cargo's bin directory ($HOME/.cargo/bin).
-
-To configure your current shell, run: // [!code focus]
-source "$HOME/.cargo/env" // [!code focus]
-```
-
-If you don't follow the guidance, you won't be able to continue with the
-tutorial!
-
-:::
-
-After installation, follow the commands here to setup Rust.
-
-```bash
-rustup default stable
-cargo version
-
-rustup target list --installed
-rustup target add wasm32-unknown-unknown
-```
-
-Your output should look similar to below:
-
-```bash
-info: using existing install for 'stable-aarch64-apple-darwin'
-info: default toolchain set to 'stable-aarch64-apple-darwin'
-
-  stable-aarch64-apple-darwin unchanged - rustc 1.74.0 (79e9716c9 2023-11-13)
-
-cargo 1.74.0 (ecb9851af 2023-10-18)
-aarch64-apple-darwin
-wasm32-unknown-unknown
-info: downloading component 'rust-std' for 'wasm32-unknown-unknown'
-info: installing component 'rust-std' for 'wasm32-unknown-unknown'
-```
-
-### 🐳 Docker installation {#docker-installation}
-
-We will be using Docker later in this tutorial for compiling a smart contract
-to use a small footprint. We recommend installing Docker on your machine.
-
-Examples on how to install it on Linux are found [here](https://docs.docker.com/engine/install/ubuntu).
-Find the right instructions specific for
-[your OS here](https://docs.docker.com/engine/install).
-
 ## 📒 Contract deployment on CosmWasm with Rollkit {#contract-deployment-on-cosmwasm}
 
 ### 🤖 Compile the smart contract {#compile-smart-contract}
 
-In a new terminal instance, we will run the following commands to pull down the
-Nameservice smart contract and compile it:
+To compile the smart contract, you can use our docker image.
+
+First download the image:
 
 ```bash
-git clone https://github.com/InterWasm/cw-contracts
-cd cw-contracts
-cd contracts/nameservice
-cargo wasm
+docker pull ghcr.io/rollkit/contract:v0.2.0
 ```
 
-The compiled contract is outputted to:
-`target/wasm32-unknown-unknown/release/cw_nameservice.wasm`.
+Then run the container:
 
-### 🧪 Unit tests {#unit-tests}
+```bash 
+docker run --rm -d --name cw ghcr.io/rollkit/contract:v0.2.0
+```
 
-If we want to run tests, we can do so with the following command in the
-`~/cw-contracts/contracts/nameservice` directory:
+The container is now running and has the pre-built nameservice contract for us. Let's copy it out of the container.
 
 ```bash
-cargo unit-test
+docker cp cw:/root/cw-contracts/contracts/nameservice .
 ```
+
+We now have the nameservice contract in the `nameservice` directory.
 
 ### 🏎️ Optimized smart contract {#optimized-smart-contract}
 
@@ -229,8 +163,7 @@ The CosmWasm team provides a tool called `rust-optimizer`, which requires
 [Docker](#docker-installation) in order to compile.
 <!-- markdownlint-enable MD051 -->
 
-Run the following command in the `~/cw-contracts/contracts/nameservice`
-directory:
+Run the following command in the `~/nameservice` directory you just copied:
 
 ::: code-group
 
