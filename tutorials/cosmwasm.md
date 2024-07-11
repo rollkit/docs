@@ -194,8 +194,6 @@ In order to deploy a contract, you can use the command line as described below.
 For a better experience and to use Rust code instead of the command line to
 deploy/script and test your contracts, you can use [cw-orchestrator](/guides/cw-orch.md). 
 
-Run the following in the `~/cw-contracts/contracts/nameservice` directory:
-
 <!-- markdownlint-disable MD013 -->
 ```bash
 TX_HASH=$(wasmd tx wasm store cw_nameservice.wasm --from localwasm-key --keyring-backend test --chain-id localwasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
