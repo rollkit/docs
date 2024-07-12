@@ -312,7 +312,6 @@ wasmd tx wasm execute $CONTRACT "$REGISTER" --amount 100uwasm --from localwasm-k
 Your output will look similar to below:
 
 ```bash
-DEIP --keyring-backend test -y
 gas estimate: 167533
 code: 0
 codespace: ""
