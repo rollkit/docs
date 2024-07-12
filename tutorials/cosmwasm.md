@@ -31,8 +31,9 @@ As with the [GM Rollup](https://rollkit.dev/tutorials/gm-world), we use [kurtosi
 Once installed, you can verify the installation by running:
 
 ```bash
-$ kurtosis version
-
+kurtosis version
+```
+```bash
 CLI Version:   0.90.1
 
 To see the engine version (provided it is running): kurtosis engine status
@@ -97,7 +98,9 @@ c71b0308616d   wasm       grpc-addr: 9290/tcp -> http://127.0.0.1:9290     RUNNI
 Kurtosis has successfully launched the CosmWasm rollup and the local DA network. You can see the services running in docker as well:
 
 ```bash
-$ docker ps
+docker ps
+```
+```bash
 CONTAINER ID   IMAGE                              COMMAND                  CREATED              STATUS              PORTS                                                                              NAMES
 5bfeda0a871f   ghcr.io/rollkit/cosmwasm:v0.1.0    "/bin/sh -c 'wasmd s…"   About a minute ago   Up About a minute   0.0.0.0:9290->9290/tcp, 0.0.0.0:36656-36657->36656-36657/tcp                       wasm--c71b0308616d40ad919ad24c3d14f35b
 782dec73fcf8   ghcr.io/rollkit/local-da:v0.2.1    "local-da -listen-all"   About a minute ago   Up About a minute   0.0.0.0:7980->7980/tcp                                                             local-da--96d04bc472c9455d88d046128fbdefa6
@@ -110,10 +113,19 @@ d532fc82579f   traefik:2.10.6                     "/bin/sh -c 'mkdir -…"   39 
 
 We can see the CosmWasm rollup running in container `wasm--c71b0308616d40ad919ad24c3d14f35b` and the local DA network running in container `local-da--96d04bc472c9455d88d046128fbdefa6`.
 
+Let's hold on to the container name for the CosmWasm rollup, as we will need it later.
+
+```bash 
+CW=$(docker ps --format '{{.Names}}' | grep wasm)
+echo $CW
+```
+
 You can verify the rollup is running by checking the logs:
 
 ```bash
-$ docker logs wasm--c71b0308616d40ad919ad24c3d14f35b
+docker logs $CW
+```
+```bash
 ...
 3:55PM INF Creating and publishing block height=137 module=BlockManager
 3:55PM INF finalized block block_app_hash=E71622A57B08D28613A34E3D7AD36BF294CF5A88F4CDD5DD18E6FB65C76F7209 height=137 module=BlockManager num_txs_res=0 num_val_updates=0
@@ -181,13 +193,13 @@ Let's now deploy our smart contract!
 We will need to do this in the docker container that the CosmWasm rollup is running. So first let's move the compiled contract to the container:
 
 ```bash
-docker cp artifacts/cw_nameservice.wasm wasm--c71b0308616d40ad919ad24c3d14f35b:/root/cw_nameservice.wasm
+docker cp artifacts/cw_nameservice.wasm $CW:/root/cw_nameservice.wasm
 ```
 
 Now let's jump into the container:
 
 ```bash
-docker exec -it wasm--c71b0308616d40ad919ad24c3d14f35b sh
+docker exec -it $CW sh
 ```
 
 In order to deploy a contract, you can use the command line as described below.
