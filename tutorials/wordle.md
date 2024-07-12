@@ -318,7 +318,6 @@ import (
   sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
   "time"
   "unicode"
-  "github.com/cometbft/cometbft/crypto"
 )
 
 func (k msgServer) SubmitWordle(goCtx context.Context, msg *types.MsgSubmitWordle) (*types.MsgSubmitWordleResponse, error) {
@@ -412,7 +411,6 @@ import (
   sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
   "strconv"
   "time"
-  "github.com/cometbft/cometbft/crypto"
 )
 
 func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess) (*types.MsgSubmitGuessResponse, error) {
