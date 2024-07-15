@@ -25,9 +25,10 @@ import constants from '../.vitepress/constants/constants.js'
 
 ## 💻 Pre-requisites {#prerequisites}
 
-Given this tutorial is targeted for developers who are experienced
-in Cosmos-SDK, we recommend you go over [GM world](/tutorials/gm-world) tutorial to understand all the different components in Cosmos-SDK before
-proceeding with this tutorial.
+This tutorial is targeted for developers who have some experience
+in the [Cosmos-SDK](https://docs.cosmos.network/). We will go through the steps to build the rollup, but for more information on how the Cosmos-SDK components work, [check out the Cosmos-SDK Docs](https://docs.cosmos.network/).
+
+Additionally, we recommend that you have gone over the [GM world](/tutorials/gm-world) tutorial first to see an example of a running rollup.
 
 You also need to have Rollkit CLI installed. You can install it by running:
 
