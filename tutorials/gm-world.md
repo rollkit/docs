@@ -34,8 +34,9 @@ As we move into more advanced use cases, we use [kurtosis](https://docs.kurtosis
 Once installed, you can verify the installation by running:
 
 ```bash
-$ kurtosis version
-
+kurtosis version
+```
+```bash
 CLI Version:   0.90.1
 
 To see the engine version (provided it is running): kurtosis engine status
@@ -46,7 +47,7 @@ To see the engine version (provided it is running): kurtosis engine status
 Now that we have kurtosis installed, we can launch our GM rollup along with the local DA by running the following command:
 
 ```bash
-kurtosis run github.com/rollkit/gm@v0.3.0
+kurtosis run github.com/rollkit/gm@v0.3.1
 ```
 
 You should see an output like this:
@@ -101,7 +102,9 @@ ed0233f8291d   gm         jsonrpc: 26657/tcp -> http://127.0.0.1:26657   RUNNING
 Kurtosis has successfully launched the GM rollup and the local DA network. The GM rollup is running on port `26657` and the local DA network is running on port `7980`. You can see the services running in docker as well:
 
 ```bash
-$ docker ps
+docker ps
+```
+```bash
 CONTAINER ID   IMAGE                             COMMAND                  CREATED          STATUS          PORTS                                                                              NAMES
 af16c1a5e68c   ghcr.io/rollkit/gm:05bd40e        "/bin/sh -c 'rollkit…"   46 seconds ago   Up 45 seconds   0.0.0.0:26657->26657/tcp                                                           gm--ed0233f8291d4a42bdd0e173393af809
 9db601efd92b   ghcr.io/rollkit/local-da:v0.2.1   "local-da -listen-all"   46 seconds ago   Up 46 seconds   0.0.0.0:7980->7980/tcp                                                             local-da--990942dc84ab4b3ab2c8d64002a5bafa
@@ -114,10 +117,19 @@ c5363b77b543   traefik:2.10.6                    "/bin/sh -c 'mkdir -…"   2 ho
 
 We can see the GM rollup running in container `gm--ed0233f8291d4a42bdd0e173393af809` and the local DA network running in container `local-da--990942dc84ab4b3ab2c8d64002a5bafa`.
 
+Let's hold on to the container name for the GM rollup as we will need it later.
+
+```bash
+GM=$(docker ps --format '{{.Names}}' | grep gm)
+echo $GM
+```
+
 You can verify the rollup is running by checking the logs:
 
 ```bash
-$ docker logs gm--ed0233f8291d4a42bdd0e173393af809
+docker logs $GM
+```
+```bash
 ...
 12:21PM INF starting node with ABCI CometBFT in-process module=server
 12:21PM INF starting node with Rollkit in-process module=server
@@ -153,7 +165,7 @@ Good work so far, we have a Rollup node, DA network node, now we can start submi
 Since our rollup is running in a docker container, we want to enter the docker container to interact with it via the Rollkit CLI. We can do this by running:
 
 ```bash
-docker exec -it gm--ed0233f8291d4a42bdd0e173393af809 sh
+docker exec -it $GM sh
 ```
 
 First, list your keys:
