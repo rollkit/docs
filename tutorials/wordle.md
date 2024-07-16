@@ -543,62 +543,261 @@ compile the blockchain and take it out for a test drive.
 ## ⛓️ Run the wordle chain
 <!-- markdownlint-disable MD013 -->
 
-### 🪶 Run a local DA node {#run-local-da-node}
+In order to run our wordle chain, we need to also run a DA node. Like in previous tutorials, we will use kurtosis to manage running all the nodes.
 
-To set up a local data availability network node open a new terminal and run:
+### 🐳 Dockerfile {#dockerfile}
 
-```bash-vue
-cd $HOME && curl -sSL https://rollkit.dev/install-local-da.sh | sh -s {{constants.localDALatestTag}}
+First, we need to create a Dockerfile for our wordle chain. Create a new file called `Dockerfile` in the root of the `wordle` directory and add the following code:
+
+```dockerfile
+# Stage 1: Install ignite CLI and rollkit
+FROM golang as base
+
+# Install dependencies
+RUN apt update && \
+	apt-get install -y \
+	build-essential \
+	ca-certificates \
+	curl
+
+# Install rollkit
+RUN curl -sSL https://rollkit.dev/install.sh | sh -s v0.13.6
+
+# Install ignite
+RUN curl https://get.ignite.com/cli@v28.4.0! | bash
+
+# Set the working directory
+WORKDIR /app
+
+# cache dependencies.
+COPY ./go.mod . 
+COPY ./go.sum . 
+RUN go mod download
+
+# Copy all files from the current directory to the container
+COPY . .
+
+# Build the chain
+RUN ignite chain build && ignite rollkit init --local-da
+
+# Initialize the rollkit.toml file
+RUN rollkit toml init
+
+# Run rollkit command to initialize the entrypoint executable
+RUN rollkit
+
+# Stage 2: Set up the runtime environment
+FROM debian:bookworm-slim
+
+# Set the working directory
+WORKDIR /root
+
+# Copy over the rollkit binary from the build stage
+COPY --from=base /go/bin/rollkit /usr/bin
+
+# Copy the entrypoint and rollkit.toml files from the build stage
+COPY --from=base /app/entrypoint ./entrypoint
+COPY --from=base /app/rollkit.toml ./rollkit.toml
+
+# Copy the $HOME/.wordle directory from the build stage.
+# This directory contains all your chain config.
+COPY --from=base /root/.wordle /root/.wordle
+
+# Ensure the entrypoint script is executable
+RUN chmod +x ./entrypoint
+
+# Keep the container running after it has been started
+CMD tail -f /dev/null
 ```
 
-This script builds and runs the node, now listening on port `7980`.
+This Dockerfile sets up the environment to build the chain and run the rollkit node. It then sets up the runtime environment to run the chain. This allows you as the developer to modify any files, and then simply rebuild the Docker image to run the new chain.
 
-After you have Go and Ignite CLI installed, and your local data availability node
-running on your machine, you're ready to build, test, and launch your own sovereign rollup.
-
-### 🟢 Building and running wordle chain {#build-and-run-wordle-chain}
-
-Initialize the Rollkit chain configuration for a local DA network with this command:
+Build the docker image by running the following command:
 
 ```bash
-ignite chain build && ignite rollkit init --local-da
+docker build -t wordle .
 ```
 
-You'll see an output like this:
+### 🟢 Kurtosis {#kurtosis}
+
+To initialize a kurtosis package, run the following command:
 
 ```bash
-Cosmos SDK's version is: v0.50.6
-
-🗃  Installed. Use with: wordled
---local-da has been deprecated, this flag does nothing but is kept for backward compatibility
-Initializing accounts...
-✔ Added account alice with address cosmos17sdyjz0zjsefd79k8nt9uvvfk732d0w7tzxfck and mnemonic:
-shrimp feature plunge cube reflect kiss finish usage adapt tattoo alone glance novel earn glow delay fury sad nuclear peanut economy clock style air
-
-✔ Added account bob with address cosmos13uevxd5zen4ywjuqr7cz4903uyktqm0swvfjly and mnemonic:
-wreck left vote conduct castle town circle wagon sad notice auto prosper custom vapor tattoo tool patch athlete tilt ugly false target play nasty
-
-
-🗃 Initialized. Checkout your rollkit chain's home (data) directory: $HOME/.wordle
+kurtosis package init
 ```
 
-You can see that a `~/.wordle` directory was created with all the necessary files to run a rollup on a local DA network.
+This will create a `kurtosis.yml` file and a `main.star` file.  The `kurtosis.yml` file is where you define your package. Open it and update it to something like the following:
 
-Now let's initialize a `rollkit.toml` file in the `worldle` directory by running:
+```yaml
+name: github.com/rollkit/wordle
+description: |-
+  # github.com/rollkit/wordle
+  A simple wordle chain for the Rollkit tutorial.
+replace: {}
+```
+
+You should replace `github.com/rollkit/wordle` with your own repository name.
+
+The `main.star` file is where we define the kurtosis package. Open it up and replace the contents with the following code:
+
+```python
+# This Kurtosis package spins up a wordle rollup that connects to a DA node
+
+# Import the local da kurtosis package
+da_node = import_module("github.com/rollkit/local-da/main.star@v0.3.0")
+
+
+def run(plan):
+    # Start the DA node
+    da_address = da_node.run(
+        plan,
+    )
+    plan.print("connecting to da layer via {0}".format(da_address))
+
+    # Define the wordle start command
+    wordle_start_cmd = [
+        "rollkit",
+        "start",
+        "--rollkit.aggregator",
+        "--rollkit.da_address {0}".format(da_address),
+    ]
+    # Define the jsonrpc ports
+    wordle_ports = {
+        "jsonrpc": PortSpec(
+            number=26657, transport_protocol="TCP", application_protocol="http"
+        ),
+    }
+    # Start the wordle chain
+    wordle = plan.add_service(
+        name="wordle",
+        config=ServiceConfig(
+            # Use the wordle image we just built
+            image="wordle",
+            # Set the command to start the wordle chain in the docker container
+            cmd=["/bin/sh", "-c", " ".join(wordle_start_cmd)],
+            ports=wordle_ports,
+            public_ports=wordle_ports,
+        ),
+    )
+```
+
+We now have all we need to run the wordle chain and connect to a local DA node.
+
+### 🟢 Run Wordle Chain {#run-wordle-chain}
+
+Run your wordle chain by running the following command:
 
 ```bash
-rollkit toml init
+kurtosis run .
 ```
 
-To start running a rollup with the Wordle chain, run the following command:
+You'll see an output like the following:
 
 ```bash
-rollkit start --rollkit.aggregator --rollkit.da_address http://localhost:7980
+INFO[2024-07-16T14:56:39-04:00] No Kurtosis engine was found; attempting to start one... 
+INFO[2024-07-16T14:56:39-04:00] Starting the centralized logs components...  
+INFO[2024-07-16T14:56:39-04:00] Centralized logs components started.         
+INFO[2024-07-16T14:56:40-04:00] Reverse proxy started.                       
+INFO[2024-07-16T14:56:43-04:00] Successfully started Kurtosis engine         
+INFO[2024-07-16T14:56:43-04:00] Creating a new enclave for Starlark to run inside... 
+INFO[2024-07-16T14:56:46-04:00] Enclave 'yearning-bog' created successfully  
+INFO[2024-07-16T14:56:46-04:00] Executing Starlark package at '/Users/matt/Code/test/wordle' as the passed argument '.' looks like a directory 
+INFO[2024-07-16T14:56:46-04:00] Compressing package 'github.com/example-org/example-package' at '.' for upload 
+INFO[2024-07-16T14:56:48-04:00] Uploading and executing package 'github.com/example-org/example-package' 
+
+Container images used in this run:
+> ghcr.io/rollkit/local-da:v0.2.1 - locally cached
+> wordle - locally cached
+
+Adding service with name 'local-da' and image 'ghcr.io/rollkit/local-da:v0.2.1'
+Service 'local-da' added with service UUID '775883b14f7f4db393addcebe3afe34d'
+
+Printing a message
+connecting to da layer via http://172.16.0.5:7980
+
+Adding service with name 'wordle' and image 'wordle'
+Service 'wordle' added with service UUID '5a969765174a47ada0727bd68e087f36'
+
+Starlark code successfully run. No output was returned.
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+INFO[2024-07-16T14:56:54-04:00] ===================================================== 
+INFO[2024-07-16T14:56:54-04:00] ||          Created enclave: yearning-bog          || 
+INFO[2024-07-16T14:56:54-04:00] ===================================================== 
+Name:            yearning-bog
+UUID:            dc4026b38a60
+Status:          RUNNING
+Creation Time:   Tue, 16 Jul 2024 14:56:43 EDT
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID   Name
+
+========================================== User Services ==========================================
+UUID           Name       Ports                                          Status
+775883b14f7f   local-da   jsonrpc: 7980/tcp -> http://127.0.0.1:7980     RUNNING
+5a969765174a   wordle     jsonrpc: 26657/tcp -> http://127.0.0.1:26657   RUNNING
 ```
 
-With that, we have kickstarted our wordle network!
+You can see the docker containers running with the wordle chain and the local DA node by running the following command:
 
-Open a new terminal window from the `~/wordle` directory (where rollkit.toml is located).
+```bash
+docker ps
+```
+
+You should see the following output:
+
+```bash
+CONTAINER ID   IMAGE                             COMMAND                  CREATED          STATUS          PORTS                                                                              NAMES
+cbf66a881cb2   wordle:latest                     "/bin/sh -c 'rollkit…"   5 seconds ago    Up 4 seconds    0.0.0.0:26657->26657/tcp                                                           wordle--5a969765174a47ada0727bd68e087f36
+09bdf1e94862   ghcr.io/rollkit/local-da:v0.2.1   "local-da -listen-all"   6 seconds ago    Up 5 seconds    0.0.0.0:7980->7980/tcp                                                             local-da--775883b14f7f4db393addcebe3afe34d
+2b50989f65cd   kurtosistech/core:0.90.1          "/bin/sh -c ./api-co…"   14 seconds ago   Up 13 seconds   0.0.0.0:57050->7443/tcp                                                            kurtosis-api--dc4026b38a604b82af88a0cd9bedb245
+74b6708de48e   fluent/fluent-bit:1.9.7           "/fluent-bit/bin/flu…"   14 seconds ago   Up 13 seconds   2020/tcp                                                                           kurtosis-logs-collector--dc4026b38a604b82af88a0cd9bedb245
+f1a64151bd29   kurtosistech/engine:0.90.1        "/bin/sh -c ./kurtos…"   18 seconds ago   Up 17 seconds   0.0.0.0:8081->8081/tcp, 0.0.0.0:9710-9711->9710-9711/tcp, 0.0.0.0:9779->9779/tcp   kurtosis-engine--089b9be758464668857fa46c2187bfe3
+ce2291909a3d   traefik:2.10.6                    "/bin/sh -c 'mkdir -…"   19 seconds ago   Up 18 seconds   80/tcp, 0.0.0.0:9730-9731->9730-9731/tcp                                           kurtosis-reverse-proxy--089b9be758464668857fa46c2187bfe3
+2e8da9bdf81f   timberio/vector:0.31.0-debian     "/bin/sh -c 'printf …"   19 seconds ago   Up 18 seconds                                                                                      kurtosis-logs-aggregator
+```
+
+We can see the wordle rollup running in container `wordle--5a969765174a47ada0727bd68e087f36` and the local DA network running in container `local-da--775883b14f7f4db393addcebe3afe34d`.
+
+Let's hold on to the container name for the world rollup as we will need it later.
+
+```bash
+WORDLE=$(docker ps --format '{{.Names}}' | grep wordle)
+echo $WORDLE
+```
+
+You can verify the rollup is running by checking the logs:
+
+```bash
+docker logs $WORDLE
+```
+
+You should see the following output:
+
+```bash
+...
+6:56PM INF executed block app_hash=313F7C52E30B3DEE3511D66B3E2C1B2A56DF4CDE54A90B02AC79678D822B644A height=5 module=BlockManager
+6:56PM INF indexed block events height=5 module=txindex
+6:56PM INF Creating and publishing block height=6 module=BlockManager
+6:56PM INF finalized block block_app_hash=826541369149F3F8DE5A53F5B4174C51975BCC665F0E73B1DB69D9206E4F5563 height=6 module=BlockManager num_txs_res=0 num_val_updates=0
+6:56PM INF executed block app_hash=826541369149F3F8DE5A53F5B4174C51975BCC665F0E73B1DB69D9206E4F5563 height=6 module=BlockManager
+6:56PM INF indexed block events height=6 module=txindex
+6:57PM INF Creating and publishing block height=7 module=BlockManager
+6:57PM INF finalized block block_app_hash=8C751BA9EDCFAD7F92E0E940995B0155BDC856070B876373299E7820C32F0B8B height=7 module=BlockManager num_txs_res=0 num_val_updates=0
+6:57PM INF executed block app_hash=8C751BA9EDCFAD7F92E0E940995B0155BDC856070B876373299E7820C32F0B8B height=7 module=BlockManager
+6:57PM INF indexed block events height=7 module=txindex
+6:57PM INF Creating and publishing block height=8 module=BlockManager
+6:57PM INF finalized block block_app_hash=C93D26AEE9B611952C8122DEB67DBAD95B3604F5C9C5DFBA95A3E7A4CF0AF641 height=8 module=BlockManager num_txs_res=0 num_val_updates=0
+...
+```
+
+Since our rollup is running in a docker container, we want to enter the docker container to interact with it via the Rollkit CLI. We can do this by running:
+
+```bash
+docker exec -it $WORDLE sh
+```
+
 
 You can see the two accounts that were created by running the following command:
 
