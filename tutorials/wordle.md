@@ -564,7 +564,25 @@ Initialize the Rollkit chain configuration for a local DA network with this comm
 ignite chain build && ignite rollkit init --local-da
 ```
 
-This will create a `~/.wordle` directory with all the necessary files to run a rollup on a local DA network.
+You'll see an output like this:
+
+```bash
+Cosmos SDK's version is: v0.50.6
+
+🗃  Installed. Use with: wordled
+--local-da has been deprecated, this flag does nothing but is kept for backward compatibility
+Initializing accounts...
+✔ Added account alice with address cosmos17sdyjz0zjsefd79k8nt9uvvfk732d0w7tzxfck and mnemonic:
+shrimp feature plunge cube reflect kiss finish usage adapt tattoo alone glance novel earn glow delay fury sad nuclear peanut economy clock style air
+
+✔ Added account bob with address cosmos13uevxd5zen4ywjuqr7cz4903uyktqm0swvfjly and mnemonic:
+wreck left vote conduct castle town circle wagon sad notice auto prosper custom vapor tattoo tool patch athlete tilt ugly false target play nasty
+
+
+🗃 Initialized. Checkout your rollkit chain's home (data) directory: $HOME/.wordle
+```
+
+You can see that a `~/.wordle` directory was created with all the necessary files to run a rollup on a local DA network.
 
 Now let's initialize a `rollkit.toml` file in the `worldle` directory by running:
 
@@ -580,11 +598,32 @@ rollkit start --rollkit.aggregator --rollkit.da_address http://localhost:7980
 
 With that, we have kickstarted our wordle network!
 
-In another window, from the `~/wordle` directory  (where rollkit.toml is located)  run the following command to submit a Wordle:
+Open a new terminal window from the `~/wordle` directory (where rollkit.toml is located).
+
+You can see the two accounts that were created by running the following command:
+
+```bash
+rollkit keys list --keyring-backend test
+```
+
+You should see the following output:
+
+```bash
+- address: cosmos17sdyjz0zjsefd79k8nt9uvvfk732d0w7tzxfck
+  name: alice
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AkWmEZ0oYewolMY9AqJspcMDsoVPoG7t24r93rZaTuBZ"}'
+  type: local
+- address: cosmos13uevxd5zen4ywjuqr7cz4903uyktqm0swvfjly
+  name: bob
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AnqNse6cuVtx5AIUN9U3vxNq7rw9e2G0R4pCPRySqzAn"}'
+  type: local
+```
+
+Let's have Bob submit a Wordle for the day:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-rollkit tx wordle submit-wordle giant --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+rollkit tx wordle submit-wordle giant --from bob --keyring-backend test --chain-id wordle -b async
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -600,42 +639,26 @@ rollkit tx wordle submit-wordle giant --from wordle-key --keyring-backend test -
 This will ask you to confirm the transaction with the following message:
 
 ```json
-{
-  "body":{
-    "messages":[
-       {
-          "@type":"/YazzyYaz.wordle.wordle.MsgSubmitWordle",
-          "creator":"cosmos17lk3fgutf00pd5s8zwz5fmefjsdv4wvzyg7d74",
-          "word":"giant"
-       }
-    ],
-    "memo":"",
-    "timeout_height":"0",
-    "extension_options":[
-    ],
-    "non_critical_extension_options":[
-    ]
-  },
-  "auth_info":{
-    "signer_infos":[
-    ],
-    "fee":{
-       "amount":[
-       ],
-       "gas_limit":"200000",
-       "payer":"",
-       "granter":""
-    }
-  },
-  "signatures":[
-  ]
-}
-```
+auth_info:
+  fee:
+    amount: []
+    gas_limit: "200000"
+    granter: ""
+    payer: ""
+  signer_infos: []
+  tip: null
+body:
+  extension_options: []
+  memo: ""
+  messages:
+  - '@type': /wordle.wordle.MsgSubmitWordle
+    creator: cosmos13uevxd5zen4ywjuqr7cz4903uyktqm0swvfjly
+    word: giant
+  non_critical_extension_options: []
+  timeout_height: "0"
+signatures: []
 
-Cosmos-SDK will ask you to confirm the transaction here:
-
-```bash
-confirm transaction before signing and broadcasting [y/N]:
+confirm transaction before signing and broadcasting [y/N]: // [!code focus]
 ```
 
 Confirm with a Y.
@@ -658,70 +681,140 @@ tx: null
 txhash: F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E
 ```
 
+Let's hold onto the txhash as we will need it to query the transaction.
+
+```bash
+TX_HASH=F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E
+```
+
 Note, this does not mean the transaction was included in the block yet.
 Let's query the transaction hash to check whether it has been included in
 the block yet or if there are any errors.
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-rollkit query tx --type=hash F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E --chain-id wordle --output json | jq -r '.raw_log'
+rollkit query tx --type=hash $TX_HASH --chain-id wordle --output json | jq
 ```
 <!-- markdownlint-enable MD013 -->
 
 This should display an output like the following:
 
 ```json
-[{"events":[{"type":"message","attributes":[{"key":"action","value":"submit_wordle"
-}]}]}]
+{"events":[{"type":"message","at{
+  "height": "843",
+  "txhash": "2B80B61FA136132F929CB288E17E640BEFAD01548A9178CAF9809BBC9154AA4E",
+  "codespace": "",
+  "code": 0,
+  "data": "12280A262F776F72646C652E776F72646C652E4D73675375626D6974576F72646C65526573706F6E7365",
+  "raw_log": "",  // [!code focus]
+  "logs": [],
+  "info": "",
+  "gas_wanted": "200000",
+  "gas_used": "84990",
+  "tx": {
+    "@type": "/cosmos.tx.v1beta1.Tx",
+    "body": {
+      "messages": [
+        {
+          "@type": "/wordle.wordle.MsgSubmitWordle",
+          "creator": "cosmos13uevxd5zen4ywjuqr7cz4903uyktqm0swvfjly",
+          "word": "giant"
+        }
+      ],
+      "memo": "",
+      "timeout_height": "0",
+      "extension_options": [],
+      "non_critical_extension_options": []
+    },
+    ...
+  },
+  "timestamp": "2024-07-16T14:24:45Z",
+  "events": [
+    ...
+  ]
+}
 ```
 
-Test out a few things for fun:
+That's a lot of information! The main thing we are looking at right now is the log to see if there were any errors. We can filter the output with `-r '.raw_logs'`. Let's run the command again.
+
+```bash
+rollkit query tx --type=hash $TX_HASH --chain-id wordle --output json | jq -r '.raw_log'
+```
+
+Now you shouldn't see any output from this because there was no error. Excellent!
+
+Let's test out a few things for fun. First let's try submitting an invalid guess.
+
+The following command as some shortcuts to auto confirm the transaction and store the txhash in a variable for you:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-rollkit tx wordle submit-guess 12345 --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+TX_HASH=$(rollkit tx wordle submit-guess 12345 --from bob --keyring-backend test --chain-id wordle -b async -y | grep txhash | cut -d ' ' -f 2)
 ```
 <!-- markdownlint-enable MD013 -->
 
-After confirming the transaction, query the `txhash`
-given the same way you did above. You will see the response shows
-an Invalid Error because you submitted integers.
+Now let's query the transaction:
 
-Now try:
+```bash
+rollkit query tx --type=hash $TX_HASH --chain-id wordle --output json | jq -r '.raw_log'
+```
+
+You will see the following response because you submitted integers:
+
+```bash
+failed to execute message; message index: 0: Guess Must Only Consist of Alphabet Letters!: invalid request
+```
+
+Now let's try a guess that is too long:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-rollkit  tx wordle submit-guess ABCDEFG --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+TX_HASH=$(rollkit tx wordle submit-guess toolong --from bob --keyring-backend test --chain-id wordle -b async -y | grep txhash | cut -d ' ' -f 2)
+```
+
+And let's query the transaction:
+
+```bash
+rollkit query tx --type=hash $TX_HASH --chain-id wordle --output json | jq -r '.raw_log'
 ```
 <!-- markdownlint-enable MD013 -->
 
-After confirming the transaction, query the `txhash` given the same
-way you did above. You will see the response shows
-an Invalid Error because you submitted a word larger than 5 characters.
+You will see the following response:
+
+```bash
+failed to execute message; message index: 0: Guess Must Be A 5 Letter Word!: invalid request
+```
 
 Now try to submit another wordle even though one was already submitted
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-rollkit tx wordle submit-wordle meter --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+TX_HASH=$(rollkit tx wordle submit-wordle meter --from bob --keyring-backend test --chain-id wordle -b async -y | grep txhash | cut -d ' ' -f 2)
 ```
 <!-- markdownlint-enable MD013 -->
 
-After submitting the transactions and confirming, query the `txhash`
-given the same way you did above. You will get an error that a wordle
-has already been submitted for the day.
+And let's query the transaction:
 
-Now let’s try to guess a five letter word:
+```bash
+rollkit query tx --type=hash $TX_HASH --chain-id wordle --output json | jq -r '.raw_log'
+```
+<!-- markdownlint-enable MD013 -->
+
+You will see the following response:
+
+```bash
+failed to execute message; message index: 0: Wordle of the Day is Already Submitted: invalid request
+```
+
+Alright, enough testing the error cases, let’s try to guess a five letter word:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-rollkit tx wordle submit-guess least --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+TX_HASH=$(rollkit tx wordle submit-guess least --from bob --keyring-backend test --chain-id wordle -b async -y | grep txhash | cut -d ' ' -f 2)
 ```
 <!-- markdownlint-enable MD013 -->
 
-After submitting the transactions and confirming, query the `txhash`
-given the same way you did above. Given you didn’t guess the correct
-word, it will increment the guess count for wordle-key's account.
+Given you didn’t guess the correct word, it will increment the guess count for wordle-key's account.
 
 We can verify this by querying the list:
 
@@ -731,6 +824,22 @@ rollkit q wordle list-guess --output json
 
 This outputs all Guess objects submitted so far, with the index
 being today’s date and the address of the submitter.
+
+```json
+{
+  "guess": [
+    {
+      "index": "7df4afc694ef096cb285544db57282bbdc28fcbdf75f7457d5dec4bf4367a9de",
+      "word": "6bab65a2bddec8af5dbc7f8b24ef22fc58acc385abcde4a6c4e34387d3b29261",
+      "submitter": "cosmos13uevxd5zen4ywjuqr7cz4903uyktqm0swvfjly",
+      "count": "1"
+    }
+  ],
+  "pagination": {
+    "total": "1"
+  }
+}
+```
 
 With that, we implemented a basic example of Wordle using
 Cosmos-SDK and Ignite and Rollkit. Read on to how you can
