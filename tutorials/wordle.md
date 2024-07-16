@@ -30,10 +30,55 @@ in the [Cosmos-SDK](https://docs.cosmos.network/). We will go through the steps 
 
 Additionally, we recommend that you have gone over the [GM world](/tutorials/gm-world) tutorial first to see an example of a running rollup.
 
-You also need to have Rollkit CLI installed. You can install it by running:
+## 🛠️ Dependencies {#dependencies}
+
+### 🟩 Kurtosis {#kurtosis}
+As with the [GM Rollup](https://rollkit.dev/tutorials/gm-world), we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install). 
+
+Once installed, you can verify the installation by running:
+
+```bash
+kurtosis version
+```
+```bash
+CLI Version:   0.90.1
+
+To see the engine version (provided it is running): kurtosis engine status
+```
+
+### 🔥 Ignite {#ignite}
+
+Ignite is an amazing CLI tool to help us get started building our own blockchains for cosmos-sdk apps. It provides lots of power toolings and scaffoldings for adding messages, types, and modules with a host of cosmos-sdk libraries provided.
+
+You can read more about Ignite [here](https://docs.ignite.com).
+
+To install Ignite, you can run this command in your terminal:
 
 ```bash-vue
-curl -sSL https://rollkit.dev/install.sh | sh -s {{constants.rollkitLatestTag}}
+curl https://get.ignite.com/cli@{{constants.igniteVersionTag}}! | bash
+```
+
+This installs Ignite CLI in your local machine. You can verify by running the `version` command and confirming it matches the version you installed.
+
+```bash
+ignite version
+```
+
+You should see the following:
+
+```bash
+Ignite CLI version:		v28.4.0
+Ignite CLI build date:		2024-05-15T13:42:13Z
+Ignite CLI source hash:		83ee9ba5f81f2d2104ed91808f2cb72719a23e41
+Ignite CLI config version:	v1
+Cosmos SDK version:		v0.50.6
+Your OS:			darwin
+Your arch:			amd64
+Your Node.js version:		v18.17.1
+Your go version:		go version go1.22.4 darwin/amd64
+Your uname -a:			Darwin Carl 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+Your cwd:			/Users/matt/Code/test
+Is on Gitpod:			false
 ```
 
 ## 📖 Design implementation {#design-implementation}
@@ -70,42 +115,8 @@ We will go over the architecture to achieve this further
 in the guide. But for now, we will get started setting up
 our development environment.
 
-## ⛓️ Ignite and scaffolding the wordle chain {#ignite-scaffold-wordle-chain}
+## ⛓️ Scaffolding the wordle chain {#scaffolding-wordle-chain}
 <!-- markdownlint-disable MD013 -->
-
-### 🔥 Ignite {#ignite}
-
-Ignite is an amazing CLI tool to help us get started building
-our own blockchains for cosmos-sdk apps. It provides lots of
-power toolings and scaffoldings for adding messages, types,
-and modules with a host of cosmos-sdk libraries provided.
-
-You can read more about Ignite [here](https://docs.ignite.com).
-
-To install Ignite, you can run this command in your terminal:
-
-```bash-vue
-curl https://get.ignite.com/cli@{{constants.igniteVersionTag}}! | bash
-```
-
-This installs Ignite CLI in your local machine.
-This tutorial uses a macOS but it should work for Windows.
-For Windows users, check out the Ignite docs on installation
-for Windows machines.
-
-Now, refresh your terminal using `source` or open a new terminal
-session for the change to take place.
-
-If you run the following:
-
-```bash
-ignite --help
-```
-
-You should see an output of help commands meaning Ignite
-was installed successfully!
-
-### ⛓️ Scaffolding the wordle chain {#scaffolding-wordle-chain}
 
 Now, comes the fun part, creating a new blockchain! With Ignite,
 the process is pretty easy and straightforward.
@@ -165,7 +176,7 @@ Most of the tutorial work will happen inside the `x` directory.
 Before we continue with building our Wordle App, we need to set up
 Rollkit on our codebase.
 
-### 🗞️ Installing Rollkit {#installing-rollkit}
+### 🗞️ Installing Rollkit Ignite App {#installing-rollkit-ignite-app}
 
 To install the Rollkit app to Ignite, run the following command:
 
@@ -211,7 +222,7 @@ module is defined as the following:
 We build the module with the `bank` dependency with the following command:
 
 ```bash
-ignite scaffold module wordle --dep bank
+ignite scaffold module wordle --dep bank -y
 ```
 
 This will scaffold the Wordle module to our Wordle Chain project.
@@ -241,7 +252,7 @@ With these initial designs, we can start creating our messages!
 To create the `SubmitWordle` message, we run the following command:
 
 ```bash
-ignite scaffold message submit-wordle word
+ignite scaffold message submit-wordle word -y
 ```
 
 This creates the `submit-wordle` message that takes in `word` as a parameter.
@@ -249,7 +260,7 @@ This creates the `submit-wordle` message that takes in `word` as a parameter.
 We now create the final message, `SubmitGuess`:
 
 ```bash
-ignite scaffold message submit-guess word
+ignite scaffold message submit-guess word -y
 ```
 
 Here, we are passing a word as a guess with `submit-guess`.
@@ -262,7 +273,7 @@ the messages we created.
 ### 🏗️ Scaffolding wordle types {#scaffolding-wordle-types}
 
 ```bash
-ignite scaffold map wordle word submitter --no-message
+ignite scaffold map wordle word submitter --no-message -y
 ```
 
 This type is a map called `Wordle` with two values of
@@ -273,7 +284,7 @@ The second type is the `Guess` type. It allows us to store
 the latest guess for each address that submitted a solution.
 
 ```bash
-ignite scaffold map guess word submitter count --no-message
+ignite scaffold map guess word submitter count --no-message -y
 ```
 
 Here, we are also storing `count` to count how many guesses
@@ -589,6 +600,11 @@ RUN rollkit
 # Stage 2: Set up the runtime environment
 FROM debian:bookworm-slim
 
+# Install jq
+RUN apt update && \
+	apt-get install -y \
+	jq
+
 # Set the working directory
 WORKDIR /root
 
@@ -618,7 +634,20 @@ Build the docker image by running the following command:
 docker build -t wordle .
 ```
 
-### 🟢 Kurtosis {#kurtosis}
+You can then see the built image by running:
+
+```bash
+docker images
+```
+
+You should see the following output:
+
+```bash
+REPOSITORY  TAG     IMAGE ID       CREATED         SIZE
+wordle      latest  5d3533c1ea1c   8 seconds ago   443MB
+```
+
+### 🟢 Kurtosis {#kurtosis-init}
 
 To initialize a kurtosis package, run the following command:
 
@@ -683,7 +712,7 @@ def run(plan):
 
 We now have all we need to run the wordle chain and connect to a local DA node.
 
-### 🟢 Run Wordle Chain {#run-wordle-chain}
+### 🚀 Run Wordle Chain {#run-wordle-chain}
 
 Run your wordle chain by running the following command:
 
@@ -1041,8 +1070,21 @@ being today’s date and the address of the submitter.
 ```
 
 With that, we implemented a basic example of Wordle using
-Cosmos-SDK and Ignite and Rollkit. Read on to how you can
-extend the code base.
+Cosmos-SDK and Ignite and Rollkit. 
+
+You can exit out of your docker container with:
+
+```bash
+exit
+```
+
+Then you can shut down your rollup and kurtosis by running:
+
+```bash
+kurtosis clean -a
+```
+
+Read on to how you can extend the code base.
 
 ### 🔮 Extending in the future {#extending-in-the-future}
 
