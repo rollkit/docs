@@ -1,48 +1,33 @@
-# BeaconKit and Rollkit 
+# Building a Sovereign Rollup with BeaconKit and Rollkit
 
 ![beaconkit](https://camo.githubusercontent.com/8aaae79e171969a2a9c950582d512cd1e3746e67d3aea6410afc04e9b6cb8055/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f6475763067343032792f696d6167652f75706c6f61642f76313731383033343331322f426561636f6e4b697442616e6e65722e706e67)
 
-This tutorial provides step-by-step instructions for running a BeaconKit node using Rollkit. It is a guide for developers who want to build and run their own sovereign rollup using 
-[BeaconKit](https://github.com/rollkit/beacon-kit/tree/rollkit) and Rollkit.
+## Introduction
 
-BeaconKit is a modular framework for building EVM based consensus clients. It allows developers to build their own rollup chains using the Ethereum Virtual Machine (EVM). 
+This tutorial guides developers through the process of building and running a sovereign rollup using BeaconKit and Rollkit. BeaconKit is a modular framework for building EVM-based consensus clients, while Rollkit is a modular framework for building sovereign rollups. By combining these tools, you can create your own customizable rollup chain using the Ethereum Virtual Machine (EVM).
 
-<!-- markdownlint-disable MD033 -->
-<script setup>
-import Callout from '../.vitepress/components/callout.vue'
-import constants from '../.vitepress/constants/constants.js'
-</script>
+## Prerequisites
 
-:::tip
-<Callout />
-:::
-<!-- markdownlint-enable MD033 -->
+Before starting, ensure you have the following software installed on your machine:
 
-## Prerequisites {#prerequisites}
+* [Rollkit](https://rollkit.dev/): A modular framework for sovereign rollups
+* [Docker](https://www.docker.com/): For running containerized applications
+* [Go](https://golang.org/) (version >= 1.21.0): The programming language used by BeaconKit
+* [jq](https://stedolan.github.io/jq/): A lightweight command-line JSON processor
 
-Before you can run a rollup, you need to have the
-following software installed on your machine:
+## Run a local Data Availability (DA) node {#run-local-da-node}
 
-* Rollkit
-* Docker
-* Go (version >= 1.21.0)
-* jq  
+First, set up a local data availability network node:
 
-## Run a local DA node {#run-local-da-node}
-
-First, let's set up a local data availability network node. Open a new terminal and run:
-
-```bash-vue
+```bash
 cd $HOME && curl -sSL https://rollkit.dev/install-local-da.sh | sh -s {{constants.localDALatestTag}}
 ```
 
-This script builds and runs the node, now listening on port `7980`.
+This script builds and runs a DA node, which will listen on port `7980`.
 
-After your local data availability node running on your machine, you're ready to build, test, and launch your own sovereign rollup.
+## Clone the BeaconKit repository {#clone-the-repo}
 
-## Clone the repo
-
-Now, clone the BeaconKit repository and switch to the Rollkit branch:
+Clone the BeaconKit repository and switch to the Rollkit branch:
 
 ```bash
 cd $HOME
@@ -50,31 +35,31 @@ git clone -b rollkit https://github.com/rollkit/beacon-kit.git
 cd beacon-kit && git checkout rollkit
 ```
 
-## Start Go Ethereum client {#start-go-ethereum-client}
+## Start the Go Ethereum (Geth) client {#start-go-ethereum-client}
 
-You need to start a Go Ethereum client (Geth) to provide the Ethereum layer for your rollup.
+Start a Go Ethereum client to provide the Ethereum layer for your rollup:
 
 ```bash
 cd $HOME/beacon-kit
 make start-geth
 ```
 
-This will remove any existing Ethereum data directory. Initialize a new Ethereum node with a specified genesis file
- and start the Geth node with specific configuration options.
+This command initializes a new Ethereum node with a specified genesis file and starts the Geth node with specific configuration options.
 
 ## Build and run the BeaconKit node {#build-and-run-beaconkit-node}
 
-Open new terminal and run the following commands:
+Open a new terminal and run:
 
 ```bash
 cd $HOME/beacon-kit
 make start
 ```
 
-This will build, configure and start an ephemeral `beacond` node as a Rollkit sequencer.
+This command builds, configures, and starts an ephemeral `beacond` node as a Rollkit sequencer.
 
-Now you should see the familiar output of a Rollkit node running:
-```
+You should now see output indicating that your Rollkit node is running, with log messages about creating and publishing blocks, computing state roots, and other node activities:
+
+```bash
 ...
 11:45AM INF indexed block events height=39 module=txindex
 11:45AM INF Creating and publishing block height=40 module=BlockManager
@@ -101,9 +86,28 @@ Now you should see the familiar output of a Rollkit node running:
 11:45AM INF Creating and publishing block height=41 module=BlockManager
 ...
 ```
-# Conclusion {#conclusion}
 
-That's it! You've successfully set up a BeaconKit node using Rollkit. This is a demonstration tutorial, and you can further customize your rollup chain by modifying the BeaconKit configuration files and flags.
+## Conclusion
 
+Congratulations! You've successfully set up a BeaconKit node using Rollkit, creating your own sovereign rollup. This setup demonstrates the basic functionality of combining BeaconKit with Rollkit.
 
+## Next Steps
+
+To further customize your rollup chain:
+
+1. Explore the BeaconKit configuration files to adjust parameters.
+2. Experiment with different Rollkit settings to optimize performance.
+3. Consider implementing custom smart contracts on your rollup.
+4. Test the scalability and performance of your rollup under various conditions.
+
+## Troubleshooting
+
+If you encounter issues:
+
+- Ensure all prerequisites are correctly installed and up to date.
+- Check that your local DA node is running correctly on port 7980.
+- Verify that the Geth client is properly initialized and running.
+- Review the BeaconKit logs for any specific error messages.
+
+For more detailed information and updates, visit the [BeaconKit GitHub repository](https://github.com/rollkit/beacon-kit) and the [Rollkit documentation](https://rollkit.dev/).
 
