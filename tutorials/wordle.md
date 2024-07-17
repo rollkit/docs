@@ -866,7 +866,7 @@ rollkit tx wordle submit-wordle giant --from bob --keyring-backend test --chain-
 
 This will ask you to confirm the transaction with the following message:
 
-```json
+```bash
 auth_info:
   fee:
     amount: []
