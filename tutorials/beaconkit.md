@@ -8,12 +8,15 @@ This tutorial guides developers through the process of building and running a so
 
 ## Prerequisites
 
-Before starting, ensure you have the following software installed on your machine:
+Before you begin, ensure you have the following software installed on your machine:
 
-* [Rollkit](https://rollkit.dev/): A modular framework for sovereign rollups
-* [Docker](https://www.docker.com/): For running containerized applications
-* [Go](https://golang.org/) (version >= 1.21.0): The programming language used by BeaconKit
-* [jq](https://stedolan.github.io/jq/): A lightweight command-line JSON processor
+### Rollkit
+
+[Rollkit](https://rollkit.dev/) is a modular framework for sovereign rollups. Follow our [Quick Start Guide](https://rollkit.dev/tutorials/quick-start#%F0%9F%93%A6-install-rollkit-cli) to walk through the installation process. The installation script will install the Rollkit CLI, Golang, and jq if they are not already present on your machine.
+
+### Docker
+
+[Docker](https://www.docker.com/desktop/install/linux-install/) is essential for running containerized applications. Follow the provided link to install Docker on your system.
 
 ## Run a local Data Availability (DA) node {#run-local-da-node}
 
