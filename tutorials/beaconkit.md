@@ -40,7 +40,7 @@ cd beacon-kit && git checkout rollkit
 
 ## Start the Go Ethereum (Geth) client {#start-go-ethereum-client}
 
-Start a Go Ethereum client to provide the Ethereum layer for your rollup:
+Start a Go Ethereum client to provide the execution layer:
 
 ```bash
 cd $HOME/beacon-kit
