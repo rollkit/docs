@@ -40,14 +40,12 @@ cd beacon-kit && git checkout rollkit
 
 ## Start the Go Ethereum (Geth) client {#start-go-ethereum-client}
 
-Start a Go Ethereum client to provide the execution layer:
+Start local ephemeral Go Ethereum client to provide the execution layer:
 
 ```bash
 cd $HOME/beacon-kit
 make start-geth
 ```
-
-This command initializes a new Ethereum node with a specified genesis file and starts the Geth node with specific configuration options.
 
 ## Build and run the BeaconKit node {#build-and-run-beaconkit-node}
 
