@@ -71,6 +71,8 @@ You should now see output indicating that your Rollkit node is running, with log
 11:45AM INF beacon block successfully built 🛠️  duration=46.93036ms module=server service=validator slot=40 state_root=0x5f75afde5c6a596fa11c17e8c60ca291ffb31ae5c9a40392e0ceb4d45ab42037
 11:45AM INF received proposal with beacon_block=true blob_sidecars=true module=baseapp service=prepare-proposal
 11:45AM INF no blob sidecars to verify, skipping verifier 🧢 module=server service=blockchain slot=0x28
+11:45AM INF received proposal with beacon_block=true blob_sidecars=true module=baseapp service=prepare-proposal
+11:45AM INF no blob sidecars to verify, skipping verifier 🧢 module=server service=blockchain slot=0x28
 11:45AM INF received incoming beacon block 📫 module=server service=blockchain state_root=0x5f75afde5c6a596fa11c17e8c60ca291ffb31ae5c9a40392e0ceb4d45ab42037
 11:45AM INF calling new payload is_optimistic=false module=server payload_block_hash=0x2ff9329ffecc7f395cb72acb9fd81a6085e5d75101ab14b508f6418fbcd7d0b4 payload_parent_block_hash=0x88081d5e4c48de2f82464f2c8b4b46df8892fe921e5e9b13113ed2a62081d843 service=execution-engine
 11:45AM INF state root verification succeeded - accepting incoming beacon block 🏎️ module=server service=blockchain state_root=0x5f75afde5c6a596fa11c17e8c60ca291ffb31ae5c9a40392e0ceb4d45ab42037
@@ -88,6 +90,25 @@ You should now see output indicating that your Rollkit node is running, with log
 ...
 ```
 
+## Smart Contract Deployment and Interaction
+
+To deploy and interact with smart contracts on the BeaconKit EVM, you can use the tools you are already familiar with, follow our [Contract interaction tutorial](/tutorials/evm-contract-interaction) to get a hands on experience. 
+
+To fund your account with some tokens, modify a Geth genesis file and restart the Geth client:
+Open `$HOME/beacon-kit/testing/files/eth-genesis.json`, and add your account address and balance:
+
+```bash
+"nonce": "0x0000000000000000",
+"timestamp": "0x0",
+"alloc": {
+  "<your address>": { // [!code focus]
+    "balance": "0x12345000000000000000000" // [!code focus]
+  }, // [!code focus]
+  "0x20f33ce90a13a4b5e7697e3544c3083b8f8a51d4": {
+    "balance": "0x123450000000000000000"
+  },
+```
+
 ## Conclusion
 
 Congratulations! You've successfully set up a BeaconKit node using Rollkit, creating your own sovereign rollup. This setup demonstrates the basic functionality of combining BeaconKit with Rollkit.
@@ -95,8 +116,6 @@ Congratulations! You've successfully set up a BeaconKit node using Rollkit, crea
 ## Next Steps
 
 To further customize your rollup chain:
-
-1. Explore the BeaconKit configuration files to adjust parameters.
 2. Experiment with different Rollkit settings to optimize performance.
 3. Consider implementing custom smart contracts on your rollup.
 4. Test the scalability and performance of your rollup under various conditions.
