@@ -13,7 +13,7 @@ foundryup
 
 ## Funds
 
-Here is the private key and derived address of the account that will be used in this tutorial (make sure to fund it with some ETH):
+Here is the private key and derived address of the account for you to be used in this tutorial (make sure to fund it with some ETH):
 
 ```bash
 PrivateKey: 0xfffdbb37105441e14b0ee6330d855d8504ff39e705c3afa8f859ac9865f99306
