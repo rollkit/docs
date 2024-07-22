@@ -257,6 +257,7 @@ function sidebarHome() {
 		{ text: "Contract interaction", link: "/tutorials/evm-contract-interaction" },
               ]
 	    },
+	  ],
         },
       ],
     },
