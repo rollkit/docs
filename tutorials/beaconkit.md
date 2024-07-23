@@ -118,7 +118,7 @@ Congratulations! You've successfully set up a BeaconKit node using Rollkit, crea
 To further customize your rollup chain:
 1. Experiment with different Rollkit settings to optimize performance.
 3. Consider implementing custom smart contracts on your rollup.
-4. Test the scalability and performance of your rollup under various conditions.
+3. Test the scalability and performance of your rollup under various conditions.
 
 ## Troubleshooting
 
