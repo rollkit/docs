@@ -19,6 +19,7 @@ Here is the private key and derived address of the account for you to be used in
 PrivateKey: 0xfffdbb37105441e14b0ee6330d855d8504ff39e705c3afa8f859ac9865f99306
 Address: 0x20f33CE90A13a4b5E7697E3544c3083B8F8A51D4
 ```
+
 ## Frontend
 
 Now we will make a frontend with a smart contract on our EVM rollup. First, clone the GM Portal repository:
