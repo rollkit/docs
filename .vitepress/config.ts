@@ -248,10 +248,16 @@ function sidebarHome() {
           collapsed: true,
           items: [
             { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
-            { text: "Omni Octane EVM rollup", link: "/tutorials/octane-evm" },
-            { text: "Polaris EVM rollup", link: "/tutorials/polaris-evm" },
-	    { text: "BeaconKit EVM", link: "/tutorials/beaconkit" },
-          ],
+	    {
+              text: "EVM",
+	      collapsed: true,
+	      items: [
+                { text: "Omni Octane EVM", link: "/tutorials/octane-evm" },
+	        { text: "BeaconKit EVM", link: "/tutorials/beaconkit" },
+		{ text: "Contract interaction", link: "/tutorials/evm-contract-interaction" },
+              ]
+	    },
+	  ],
         },
       ],
     },

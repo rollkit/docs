@@ -48,7 +48,22 @@ To start your Omni node with Rollkit and local-DA, execute:
 make devnet-zero-deploy
 ```
 
-Upon execution, the command will set up and start your Omni node. You should see output indicating the progress and status of your node.
+Upon execution, the command will set up and start your Omni node. You should see output indicating the progress and status of your node. Notice the `EVM Chain RPC available` message, which indicates that the Omni node is ready to accept EVM transactions:
+
+```bash
+24-07-22 20:29:03.655 INFO EVM Chain RPC available                  chain_id=1651 chain_name=omni_evm url=http://127.0.0.1:8000
+```
+
+## 🧪 Smart Contract Deployment and Interaction
+
+To deploy and interact with smart contracts on the Omni EVM, you can use the tools you are already familiar with, follow our [Contract interaction tutorial](/tutorials/evm-contract-interaction) to get a hands on experience. 
+
+To fund your account with some tokens, you can use the omni-cli, which needs to be installed first:
+
+```bash
+make install-cli # install omni cli 
+omni devnet fund --rpc-url http://127.0.0.1:8000 --address=<your address>
+``` 
 
 ## 🛑 Stopping the node
 
