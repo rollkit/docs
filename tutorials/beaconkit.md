@@ -47,6 +47,8 @@ cd $HOME/beacon-kit
 make start-geth
 ```
 
+Notice within logs indicating that your Geth client is running the RPC server is listening on port `8545`. You will need that port to interact with the client.
+
 ## Build and run the BeaconKit node {#build-and-run-beaconkit-node}
 
 Open a new terminal and run:
