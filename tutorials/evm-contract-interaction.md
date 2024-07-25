@@ -37,7 +37,7 @@ Export the funded private key and RPC URL:
 
 ```bash
 export PRIVATE_KEY=0xfffdbb37105441e14b0ee6330d855d8504ff39e705c3afa8f859ac9865f99306
-export RPC_URL=<rpc url>
+export RPC_URL=http://localhost:8545 // or for Octane EVM the port is 8000
 ```
 
 Use Foundry to deploy the contract to your EVM:
