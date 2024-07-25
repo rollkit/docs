@@ -1,5 +1,10 @@
 # Building a Sovereign Rollup with BeaconKit and Rollkit
 
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '../.vitepress/constants/constants.js'
+</script>
+
 ![beaconkit](https://camo.githubusercontent.com/8aaae79e171969a2a9c950582d512cd1e3746e67d3aea6410afc04e9b6cb8055/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f6475763067343032792f696d6167652f75706c6f61642f76313731383033343331322f426561636f6e4b697442616e6e65722e706e67)
 
 ## Introduction
@@ -22,7 +27,7 @@ Before you begin, ensure you have the following software installed on your machi
 
 First, set up a local data availability network node:
 
-```bash
+```bash-vue
 cd $HOME && curl -sSL https://rollkit.dev/install-local-da.sh | sh -s {{constants.localDALatestTag}}
 ```
 
