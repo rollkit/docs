@@ -189,9 +189,9 @@ echo 'networks:
   - id: 'localwasm'
     hrp: 'wasm'
     endpoint:
-      rpc: 'http://localhost:36657'
-      rest: 'http://localhost:1317'
-      grpc: 'http://localhost:9290'
+      rpc: 'http://127.0.0.1:36657'
+      rest: 'http://127.0.0.1:1317'
+      grpc: 'http://127.0.0.1:9290'
     gas:
       price: '0.025'
       denom: 'uwasm'
@@ -200,11 +200,11 @@ echo 'networks:
   - id: 'stride-internal-1'
     hrp: 'stride'
     endpoint:
-      rpc: 'https://stride.testnet-1.stridenet.co'
-      rest: 'https://stride.testnet-1.stridenet.co/api'
+      rpc: 'https://stride-testnet-rpc.polkachu.com'
+      rest: 'https://stride-testnet-api.polkachu.com'
       grpc: 'http://stride-testnet-grpc.polkachu.com:12290'
     gas:
-      price: '0'
+      price: '0.01'
       denom: 'ustrd'
     domain: 1651
     signer: 'join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy' # stride133xh839fjn9wxzg6vhc0370lcem8939z2sd4gn
@@ -215,16 +215,13 @@ signer: 'join always addict position jungle jeans bus govern crack huge photo pu
 
 deploy:
   ism:
-    type: routing
+    type: multisig
     owner: <signer>
-    isms:
-      - type: multisig
-        owner: <signer>
-        validators:
-          1651:
-            addrs:
-              - <signer>
-            threshold: 1
+    validators:
+      1651:
+        addrs:
+          - <signer>
+        threshold: 1
   hooks:
     default:
       type: aggregate
@@ -318,15 +315,10 @@ wasmd q tx $TXHASH
 The transaction was successful if the `code` field is 0 (success).
 :::
 
-#### Inside the cw-hyperlane directory, build the Hyperlane contracts:
+#### Inside the cw-hyperlane directory, install the hyperlane cw-cli:
 
 ```bash
 yarn install
-
-# Build contracts from local environment
-make optimize
-# Run compatibility test
-make check
 ```
 
 #### Upload and deploy the contracts on our localwasm rollup:
@@ -334,7 +326,7 @@ make check
 ```bash
 # This command will make one file.
 # - context with artifacts (default path: {cw-hyperlane-root}/context/localwasm.json)
-yarn cw-hpl upload local -n localwasm
+yarn cw-hpl upload remote v0.0.6-rc8 -n localwasm
 
 # This command will output two results.
 # - context + deployment    (default path: {cw-hyperlane-root}/context/localwasm.json)
@@ -473,7 +465,11 @@ echo '{
 
 ```bash
 # Create agent-config.docker.json by merging localwasm.config.json and stride-internal-1.config.json
-jq -s '.[0] * .[1]' context/{localwasm,stride-internal-1}.config.json > example/hyperlane/agent-config.docker.json
+# We also have to put quotes around the gasPrice amount to be compliant
+# with the agent version
+jq -s '.[0] * .[1]' context/{localwasm,stride-internal-1}.config.json | \
+  jq '.chains |= with_entries(.value.gasPrice.amount |= tostring)' > \
+  example/hyperlane/agent-config.docker.json
 
 # Replace `localhost` with `172.17.0.1` in agent-config.docker.json,
 # to allow the relayer and validators to connect to localwasm which is running on the docker host machine.
@@ -487,6 +483,7 @@ echo 'services:
   relayer:
     container_name: hpl-relayer
     image: gcr.io/abacus-labs-dev/hyperlane-agent:8a66544-20240530-111322
+    platform: linux/amd64
     user: root
     # restart: always
     entrypoint: ["sh", "-c"]
@@ -508,6 +505,7 @@ echo 'services:
   validator-localwasm:
     container_name: hpl-validator-localwasm
     image: gcr.io/abacus-labs-dev/hyperlane-agent:8a66544-20240530-111322
+    platform: linux/amd64
     user: root
     # restart: always
     entrypoint: ["sh", "-c"]
@@ -529,6 +527,7 @@ echo 'services:
   validator-strideinternal1:
     container_name: hpl-validator-strideinternal1
     image: gcr.io/abacus-labs-dev/hyperlane-agent:8a66544-20240530-111322
+    platform: linux/amd64
     user: root
     # restart: always
     entrypoint: ["sh", "-c"]
