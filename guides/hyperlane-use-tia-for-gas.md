@@ -20,19 +20,107 @@ This is a gist of the [CosmWasm rollup](../tutorials/cosmwasm.md) guide.
 ```bash
 git clone --branch v0.50.0 --depth 1 https://github.com/CosmWasm/wasmd.git
 cd wasmd
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.7-rollkit-v0.13.6-no-fraud-proofs.0.20240730125236-04ca9ba69219
-go mod tidy -compat=1.17
-go mod download
 ```
 
-Comment out lines 898-900 in `app/app.go`:
+Add token factory to app.go:
 
 ```bash
 echo 'diff --git a/app/app.go b/app/app.go
-index 5c67ba31..797b6bf4 100644
+index 44934ea..8e8c829 100644
 --- a/app/app.go
 +++ b/app/app.go
-@@ -895,9 +895,6 @@ func NewWasmApp(
+@@ -10,6 +10,9 @@ import (
+ 	"strings"
+ 	"sync"
+ 
++	"github.com/Stride-Labs/tokenfactory/tokenfactory"
++	tokenfactorykeeper "github.com/Stride-Labs/tokenfactory/tokenfactory/keeper"
++	tokenfactorytypes "github.com/Stride-Labs/tokenfactory/tokenfactory/types"
+ 	abci "github.com/cometbft/cometbft/abci/types"
+ 	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
+ 	dbm "github.com/cosmos/cosmos-db"
+@@ -176,10 +179,11 @@ var maccPerms = map[string][]string{
+ 	govtypes.ModuleName:            {authtypes.Burner},
+ 	nft.ModuleName:                 nil,
+ 	// non sdk modules
+-	ibctransfertypes.ModuleName: {authtypes.Minter, authtypes.Burner},
+-	ibcfeetypes.ModuleName:      nil,
+-	icatypes.ModuleName:         nil,
+-	wasmtypes.ModuleName:        {authtypes.Burner},
++	ibctransfertypes.ModuleName:  {authtypes.Minter, authtypes.Burner},
++	ibcfeetypes.ModuleName:       nil,
++	icatypes.ModuleName:          nil,
++	wasmtypes.ModuleName:         {authtypes.Burner},
++	tokenfactorytypes.ModuleName: {authtypes.Minter, authtypes.Burner},
+ }
+ 
+ var (
+@@ -226,6 +230,7 @@ type WasmApp struct {
+ 	ICAHostKeeper       icahostkeeper.Keeper
+ 	TransferKeeper      ibctransferkeeper.Keeper
+ 	WasmKeeper          wasmkeeper.Keeper
++	TokenFactoryKeeper  tokenfactorykeeper.Keeper
+ 
+ 	ScopedIBCKeeper           capabilitykeeper.ScopedKeeper
+ 	ScopedICAHostKeeper       capabilitykeeper.ScopedKeeper
+@@ -326,6 +331,7 @@ func NewWasmApp(
+ 		capabilitytypes.StoreKey, ibcexported.StoreKey, ibctransfertypes.StoreKey, ibcfeetypes.StoreKey,
+ 		wasmtypes.StoreKey, icahosttypes.StoreKey,
+ 		icacontrollertypes.StoreKey,
++		tokenfactorytypes.StoreKey,
+ 	)
+ 
+ 	tkeys := storetypes.NewTransientStoreKeys(paramstypes.TStoreKey)
+@@ -563,6 +569,16 @@ func NewWasmApp(
+ 		app.BankKeeper,
+ 	)
+ 
++	// Token factory keeper
++	app.TokenFactoryKeeper = tokenfactorykeeper.NewKeeper(
++		keys[tokenfactorytypes.StoreKey],
++		app.GetSubspace(tokenfactorytypes.ModuleName),
++		maccPerms,
++		app.AccountKeeper,
++		app.BankKeeper,
++		app.DistrKeeper,
++	)
++
+ 	// create evidence keeper with router
+ 	evidenceKeeper := evidencekeeper.NewKeeper(
+ 		appCodec,
+@@ -725,6 +741,7 @@ func NewWasmApp(
+ 		ibcfee.NewAppModule(app.IBCFeeKeeper),
+ 		ica.NewAppModule(&app.ICAControllerKeeper, &app.ICAHostKeeper),
+ 		ibctm.AppModule{},
++		tokenfactory.NewAppModule(app.TokenFactoryKeeper, app.AccountKeeper, app.BankKeeper),
+ 		// sdk
+ 		crisis.NewAppModule(app.CrisisKeeper, skipGenesisInvariants, app.GetSubspace(crisistypes.ModuleName)), // always be last to make sure that it checks for all invariants and not only part of them
+ 	)
+@@ -770,6 +787,7 @@ func NewWasmApp(
+ 		icatypes.ModuleName,
+ 		ibcfeetypes.ModuleName,
+ 		wasmtypes.ModuleName,
++		tokenfactorytypes.ModuleName,
+ 	)
+ 
+ 	app.ModuleManager.SetOrderEndBlockers(
+@@ -786,6 +804,7 @@ func NewWasmApp(
+ 		icatypes.ModuleName,
+ 		ibcfeetypes.ModuleName,
+ 		wasmtypes.ModuleName,
++		tokenfactorytypes.ModuleName,
+ 	)
+ 
+ 	// NOTE: The genutils module must occur after staking so that pools are
+@@ -811,6 +830,7 @@ func NewWasmApp(
+ 		ibcfeetypes.ModuleName,
+ 		// wasm after ibc transfer
+ 		wasmtypes.ModuleName,
++		tokenfactorytypes.ModuleName,
+ 	}
+ 	app.ModuleManager.SetOrderInitGenesis(genesisModuleOrder...)
+ 	app.ModuleManager.SetOrderExportGenesis(genesisModuleOrder...)
+@@ -899,9 +919,6 @@ func NewWasmApp(
  	// At startup, after all modules have been registered, check that all proto
  	// annotations are correct.
  	protoFiles, err := proto.MergedRegistry()
@@ -41,7 +129,24 @@ index 5c67ba31..797b6bf4 100644
 -	}
  	err = msgservice.ValidateProtoAnnotations(protoFiles)
  	if err != nil {
- 		// Once we switch to using protoreflect-based antehandlers, we might' | git apply
+ 		// Once we switch to using protoreflect-based antehandlers, we might
+@@ -1209,5 +1226,6 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
+ 	paramsKeeper.Subspace(icahosttypes.SubModuleName).WithKeyTable(icahosttypes.ParamKeyTable())
+ 
+ 	paramsKeeper.Subspace(wasmtypes.ModuleName)
++	paramsKeeper.Subspace(tokenfactorytypes.ModuleName)
+ 	return paramsKeeper
+ }' | git apply
+```
+
+Update packages to accommodate tokenfactory:
+```bash
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.7-rollkit-v0.13.6-no-fraud-proofs.0.20240730125236-04ca9ba69219
+go mod edit -replace cosmossdk.io/core=cosmossdk.io/core@v0.11.0
+go mod edit -replace github.com/cosmos/ibc-go/v8=github.com/cosmos/ibc-go/v8@v8.0.0
+go get -v github.com/Stride-Labs/tokenfactory@a301020c313d6bd8b45e474ca242922bdd133f6b
+go mod tidy -compat=1.17
+go mod download
 ```
 
 Build `wasmd`:
