@@ -13,14 +13,14 @@ import Callout from '../.vitepress/components/callout.vue'
 
 <!-- markdownlint-enable MD033 -->
 
-## 📝 In short, deploy a CosmWasm rollup
+## 📝 In short, deploy a CosmWasm rollup {#deploy-rollup}
 
 This is a gist of the [CosmWasm rollup](../tutorials/cosmwasm.md) guide.
 
 ```bash
 git clone --branch v0.50.0 --depth 1 https://github.com/CosmWasm/wasmd.git
 cd wasmd
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.6-rollkit-v0.13.3-no-fraud-proofs
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.7-rollkit-v0.13.6-no-fraud-proofs.0.20240730125236-04ca9ba69219
 go mod tidy -compat=1.17
 go mod download
 ```
@@ -68,7 +68,7 @@ We modify the listening address from `127.0.0.1` to `0.0.0.0` so that it is acce
 
 With that, we have kickstarted our `wasmd` network!
 
-## 💻 Deploy the Hyperlane contracts {#deploy-contracts}
+## 💻 Deploy the Hyperlane {#deploy-hyperlane}
 
 Fork the cw-hyperlane repo:
 
@@ -81,30 +81,32 @@ cd cw-hyperlane
 
 ```bash
 echo 'networks:
-  - id: "localwasm"
-    hrp: "wasm"
+  - id: 'localwasm'
+    hrp: 'wasm'
     endpoint:
-      rpc: "http://localhost:36657"
-      rest: "http://localhost:1317"
-      grpc: "http://localhost:9290"
+      rpc: 'http://localhost:36657'
+      rest: 'http://localhost:1317'
+      grpc: 'http://localhost:9290'
     gas:
-      price: "0.025"
-      denom: "uwasm"
-    domain: 1063
-  - id: "stride-internal-1"
-    hrp: "stride"
+      price: '0.025'
+      denom: 'uwasm'
+    domain: 963
+    signer: 'join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy' # wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45
+  - id: 'stride-internal-1'
+    hrp: 'stride'
     endpoint:
-      rpc: "https://stride.testnet-1.stridenet.co"
-      rest: "https://stride.testnet-1.stridenet.co/api"
-      grpc: "http://stride-testnet-grpc.polkachu.com:12290"
+      rpc: 'https://stride.testnet-1.stridenet.co'
+      rest: 'https://stride.testnet-1.stridenet.co/api'
+      grpc: 'http://stride-testnet-grpc.polkachu.com:12290'
     gas:
-      price: "0"
-      denom: "ustrd"
+      price: '0'
+      denom: 'ustrd'
     domain: 1651
+    signer: 'join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy' # stride133xh839fjn9wxzg6vhc0370lcem8939z2sd4gn
 
 # wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45
 # stride133xh839fjn9wxzg6vhc0370lcem8939z2sd4gn
-signer: "join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy"
+signer: 'join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy'
 
 deploy:
   ism:
@@ -146,7 +148,8 @@ deploy:
           fee:
             # defaults tp gas denom from network config
             denom: uwasm
-            amount: 1' > config.yaml
+            amount: 1
+' > config.yaml
 ```
 
 :::tip
@@ -282,12 +285,12 @@ echo '{
   "gasPaymentEnforcement": [{ "type": "none" }],
   "whitelist": [
     {
-      "origindomain": [1063],
+      "origindomain": [963],
       "destinationDomain": [1651]
     },
     {
       "origindomain": [1651],
-      "destinationDomain": [1063]
+      "destinationDomain": [963]
     }
   ],
   "chains": {
@@ -444,7 +447,75 @@ echo 'services:
 docker compose -f example/docker-compose.yml up
 ```
 
+#### Deploy warp route on localwasm
+
+```bash
+yarn cw-hpl warp deploy -n localwasm
+```
+
+#### Deploy warp contract with TIA as collateral on Stride:
+
+```bash
+echo '{
+  "type": "native",
+  "mode": "collateral",
+  "id": "TIA.stride-localwasm",
+  "owner": "<signer>",
+  "config": {
+    "collateral": {
+      "denom": "ibc/1A7653323C1A9E267FF7BEBF40B3EEA8065E8F069F47F2493ABC3E0B621BF793"
+    }
+  }
+}' > example/warp/utia-stride.json
+
+yarn cw-hpl warp create ./example/warp/utia-stride.json -n stride-internal-1
+```
+
+The output shoule look like:
+
+```
+[DEBUG] [contract] deploying hpl_warp_native
+[ INFO] [contract] deployed hpl_warp_native at stride1wl200l7hhpmkvcrr03dllun5ehkklh83wypgrfftwxdd6sw22lrqu5f40r
+```
+
+#### Deploy warp contract on localwasm:
+
+```bash
+echo '{
+  "type": "native",
+  "mode": "bridged",
+  "id": "TIA.stride-localwasm",
+  "owner": "<signer>",
+  "config": {
+    "bridged": {
+      "denom": "utia",
+      "metadata": {
+        "description": "TIA via Stride",
+        "denom_units": [],
+        "base": "utia",
+        "display": "utia",
+        "name": "utia",
+        "symbol": "utia"
+      }
+    }
+  }
+}' > example/warp/utia-localwasm.json
+
+yarn cw-hpl warp create ./example/warp/utia-localwasm.json -n localwasm
+```
+
+::tip
+`code_id` is taken from `cw-hyperlane/context/localwasm.json`. This might be different on your setup, but for the porpuses of this guide it's 19 because we uploaded the contracts to localwasm right afer genesis.
+::
+
+The output shoule look like:
+
+```
+[DEBUG] [contract] deploying hpl_warp_native
+[ INFO] [contract] deployed hpl_warp_native at stride1wl200l7hhpmkvcrr03dllun5ehkklh83wypgrfftwxdd6sw22lrqu5f40r
+```
+
 ## Resources
 
-- [Deploying Hyperlane with Osmosis Testnet](https://github.com/many-things/cw-hyperlane/blob/main/DEPLOYMENT.md#4-setup-validator--relayer-config)
+- [Deploying Hyperlane with Osmosis Testnet](https://github.com/many-things/cw-hyperlane/blob/main/DEPLOYMENT.md)
 - [Hyperlane docs: Deploy Hyperlane](https://docs.hyperlane.xyz/docs/deploy-hyperlane)
