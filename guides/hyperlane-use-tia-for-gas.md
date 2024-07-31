@@ -13,6 +13,8 @@ import Callout from '../.vitepress/components/callout.vue'
 
 <!-- markdownlint-enable MD033 -->
 
+<!-- TODO: Provide files instead of echo'ing everything -->
+
 ## 📝 Deploy a CosmWasm rollup {#deploy-rollup}
 
 This is a gist of the [CosmWasm rollup](../tutorials/cosmwasm.md) guide.
@@ -165,14 +167,14 @@ make install
 Config the `wasmd` and `strided` CLI for ease of use:
 
 ```bash
+wasmd config set client chain-id localwasm
 wasmd config set client node tcp://127.0.0.1:36657
 wasmd config set client output json
 wasmd config set client keyring-backend test
 
-strided config set chain-id stride-internal-1
-strided config set client node https://stride-testnet-rpc.polkachu.com:443
-strided config set client output json
-strided config set client keyring-backend test
+strided config chain-id stride-internal-1
+strided config node https://stride-testnet-rpc.polkachu.com:443
+strided config keyring-backend test
 ```
 
 Add the signer accounts to each keyring
@@ -341,7 +343,8 @@ echo 'services:
     volumes:
       - ./hyperlane:/etc/hyperlane
       - ./validator:/etc/validator
-      - ./validator/strideinternal1:/etc/data' > example/docker-compose.yml
+      - ./validator/strideinternal1:/etc/data
+' > example/docker-compose.yml
 ```
 
 To start the data availability service, run:
@@ -365,6 +368,8 @@ With that, we have kickstarted our `wasmd` network! 🎉
 If you're using the account specified in this guide, the stride account should already be funded!
 
 If you're using a new account, you can fund it from the faucet at [Stride testnet faucet](https://stride-faucet.pages.dev).
+
+<!-- TODO: Add TIA on stride to faucet -->
 
 #### Rollup Account
 
@@ -718,7 +723,8 @@ echo '{
 # We also have to put quotes around the gasPrice amount to be compliant with the agent version,
 # and we need to change the hostname to localwasm so it can be recognized from within docker
 jq -s '.[0] * .[1]' context/{localwasm,stride-internal-1}.config.json | \
-  jq '.chains |= with_entries(.value.gasPrice.amount |= tostring)' |
+  jq '.chains |= with_entries(.value.gasPrice.amount |= tostring)' | \
+  jq '.chains.strideinternal1.index.chunk |= 5' | \
   perl -pe 's/127.0.0.1/localwasm/' > \
   example/hyperlane/agent-config.docker.json
 ```
@@ -758,6 +764,8 @@ The output shoule look like:
 
 #### Deploy a warp contract on the rollup with bride TIA from Stride
 
+<!-- TODO: Add metadata -->
+
 ```bash
 echo '{
   "type": "native",
@@ -793,7 +801,7 @@ yarn cw-hpl warp link \
   --asset-type native \
   --asset-id TIA.stride-localwasm \
   --target-domain 963 \
-  --warp-address $(jq -r '.deployments.warp.native[0].hexed' context/stride-internal-1.json) \
+  --warp-address $(jq -r '.deployments.warp.native[0].hexed' context/localwasm.json) \
   -n stride-internal-1
 ```
 
@@ -804,7 +812,7 @@ yarn cw-hpl warp link \
   --asset-type native \
   --asset-id TIA.stride-localwasm \
   --target-domain 1651 \
-  --warp-address $(jq -r '.deployments.warp.native[0].hexed' context/localwasm.json) \
+  --warp-address $(jq -r '.deployments.warp.native[0].hexed' context/stride-internal-1.json) \
   -n localwasm
 ```
 
@@ -812,15 +820,23 @@ yarn cw-hpl warp link \
 
 ### Test transferring from Stride to Localwasm
 
+Initiate transfer
+
 ```bash
 # Template
-warp_contract_address=$(jq -r '.deployments.warp.native[0].hexed' context/stride-internal-1.json)
+warp_contract_address=$(jq -r '.deployments.warp.native[0].address' context/stride-internal-1.json)
 recipient=$(yarn cw-hpl wallet convert-cosmos-to-eth -n localwasm $(wasmd keys show my-key -a) | perl -pe 's/0x0x//g')
 strided tx wasm execute $warp_contract_address \
     '{"transfer_remote":{"dest_domain":963,"recipient":"'"$recipient"'","amount":"10000"}}' \
     --amount 10101ibc/1A7653323C1A9E267FF7BEBF40B3EEA8065E8F069F47F2493ABC3E0B621BF793 \
     --from my-key -y \
-     --gas 2000000
+     --gas 2000000 --fees 1000ustrd
+```
+
+Observe logs in the validator and relayer to witness the transfer. Confirm the tokens landed in the wasm account with:
+
+```bash
+wasmd q bank balances $(wasmd keys show my-key -a)
 ```
 
 #### Transfer from Localwasm back to Stride
@@ -829,14 +845,22 @@ strided tx wasm execute $warp_contract_address \
 
 ```bash
 # Template
-warp_contract_address=$(jq -r '.deployments.warp.native[0].hexed' context/localwasm.json)
+warp_contract_address=$(jq -r '.deployments.warp.native[0].address' context/localwasm.json)
 recipient=$(yarn cw-hpl wallet convert-cosmos-to-eth -n stride-internal-1 $(strided keys show my-key -a) | perl -pe 's/0x0x//g')
-wasmd tx wasm execute {localwasm-warp-address} \
+wasmd tx wasm execute $warp_contract_address \
     '{"transfer_remote":{"dest_domain":1651,"recipient":"'"$recipient"'","amount":"10000"}}' \
-    --amount 10000factory/wasm1n78c8ckw5xwktg7laae7utrm7jtyrsshnfrl9n72xzlxz9gpq0zsa4nzyv/utia,101uwasm \
+    --amount 10000factory/${warp_contract_address}/utia,101uwasm \
     --from my-key -y \
      --gas 2000000 --fees 50000uwasm
 ```
+
+Observe logs in the validator and relayer to witness the transfer. Confirm the tokens landed in the wasm account with:
+
+```bash
+strided q bank balances $(strided keys show my-key -a)
+```
+
+<!-- TODO: Add transfer from celestia through ibc hook -->
 
 ## Resources
 
