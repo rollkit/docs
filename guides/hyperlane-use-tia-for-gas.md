@@ -22,7 +22,7 @@ git clone --branch v0.50.0 --depth 1 https://github.com/CosmWasm/wasmd.git
 cd wasmd
 ```
 
-Add token factory to app.go:
+Add x/tokenfactory to `app.go`:
 
 ```bash
 echo 'diff --git a/app/app.go b/app/app.go
@@ -32,7 +32,7 @@ index 44934ea..8e8c829 100644
 @@ -10,6 +10,9 @@ import (
  	"strings"
  	"sync"
- 
+
 +	"github.com/Stride-Labs/tokenfactory/tokenfactory"
 +	tokenfactorykeeper "github.com/Stride-Labs/tokenfactory/tokenfactory/keeper"
 +	tokenfactorytypes "github.com/Stride-Labs/tokenfactory/tokenfactory/types"
@@ -53,14 +53,14 @@ index 44934ea..8e8c829 100644
 +	wasmtypes.ModuleName:         {authtypes.Burner},
 +	tokenfactorytypes.ModuleName: {authtypes.Minter, authtypes.Burner},
  }
- 
+
  var (
 @@ -226,6 +230,7 @@ type WasmApp struct {
  	ICAHostKeeper       icahostkeeper.Keeper
  	TransferKeeper      ibctransferkeeper.Keeper
  	WasmKeeper          wasmkeeper.Keeper
 +	TokenFactoryKeeper  tokenfactorykeeper.Keeper
- 
+
  	ScopedIBCKeeper           capabilitykeeper.ScopedKeeper
  	ScopedICAHostKeeper       capabilitykeeper.ScopedKeeper
 @@ -326,6 +331,7 @@ func NewWasmApp(
@@ -69,12 +69,12 @@ index 44934ea..8e8c829 100644
  		icacontrollertypes.StoreKey,
 +		tokenfactorytypes.StoreKey,
  	)
- 
+
  	tkeys := storetypes.NewTransientStoreKeys(paramstypes.TStoreKey)
 @@ -563,6 +569,16 @@ func NewWasmApp(
  		app.BankKeeper,
  	)
- 
+
 +	// Token factory keeper
 +	app.TokenFactoryKeeper = tokenfactorykeeper.NewKeeper(
 +		keys[tokenfactorytypes.StoreKey],
@@ -102,7 +102,7 @@ index 44934ea..8e8c829 100644
  		wasmtypes.ModuleName,
 +		tokenfactorytypes.ModuleName,
  	)
- 
+
  	app.ModuleManager.SetOrderEndBlockers(
 @@ -786,6 +804,7 @@ func NewWasmApp(
  		icatypes.ModuleName,
@@ -110,7 +110,7 @@ index 44934ea..8e8c829 100644
  		wasmtypes.ModuleName,
 +		tokenfactorytypes.ModuleName,
  	)
- 
+
  	// NOTE: The genutils module must occur after staking so that pools are
 @@ -811,6 +830,7 @@ func NewWasmApp(
  		ibcfeetypes.ModuleName,
@@ -132,14 +132,15 @@ index 44934ea..8e8c829 100644
  		// Once we switch to using protoreflect-based antehandlers, we might
 @@ -1209,5 +1226,6 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
  	paramsKeeper.Subspace(icahosttypes.SubModuleName).WithKeyTable(icahosttypes.ParamKeyTable())
- 
+
  	paramsKeeper.Subspace(wasmtypes.ModuleName)
 +	paramsKeeper.Subspace(tokenfactorytypes.ModuleName)
  	return paramsKeeper
  }' | git apply
 ```
 
-Update packages to accommodate tokenfactory:
+Update packages to use rollkit and accommodate x/tokenfactory:
+
 ```bash
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.7-rollkit-v0.13.6-no-fraud-proofs.0.20240730125236-04ca9ba69219
 go mod edit -replace cosmossdk.io/core=cosmossdk.io/core@v0.11.0
@@ -152,7 +153,7 @@ go mod download
 Create an updated Dockerfile in the `wasmd` repo that will be used to run the chain.
 
 ```bash
-echo 'FROM golang:1.22.5-bullseye 
+echo 'FROM golang:1.22.5-bullseye
 
 RUN set -eux; apt-get update && apt-get install git make;
 
@@ -172,7 +173,19 @@ EXPOSE 36656
 EXPOSE 36657' > Dockerfile
 ```
 
-Create the docker compose file that will be used for the data availablility service, the localwasm chain, and the hyperlane validators and relayers.
+In the next section we'll start our localwasm rollup and deploy hyperlane.
+
+## 💻 Deploy Hyperlane {#deploy-hyperlane}
+
+#### Fork the cw-hyperlane repo:
+
+```bash
+git clone --depth 1 git@github.com:many-things/cw-hyperlane.git
+cd cw-hyperlane
+git checkout 4f5656d4704178ac54d10467ca7edc3df2312c4b
+```
+
+#### Create the docker compose file that will be used for the data availablility service, the localwasm rollup, and the hyperlane validators and relayers.
 
 ```bash
 echo 'services:
@@ -191,7 +204,7 @@ echo 'services:
   localwasm:
     image: localwasm
     container_name: localwasm
-    build: 
+    build:
       context: ../../wasmd
       dockerfile: Dockerfile
     entrypoint: ["sh", "-c"]
@@ -279,20 +292,12 @@ docker compose -f example/docker-compose.yml up da
 ```
 
 Then start the localwasm chain:
+
 ```bash
 docker compose -f example/docker-compose.yml up localwasm
 ```
 
-With that, we have kickstarted our `wasmd` network!
-
-## 💻 Deploy the Hyperlane {#deploy-hyperlane}
-
-Fork the cw-hyperlane repo:
-
-```bash
-git clone --depth 1 git@github.com:many-things/cw-hyperlane.git
-cd cw-hyperlane
-```
+With that, we have kickstarted our localwasm rollup! 🎉
 
 #### Create `config.yaml` with our networks setup:
 
