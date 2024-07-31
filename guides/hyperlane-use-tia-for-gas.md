@@ -718,6 +718,8 @@ echo '{
 
 #### Prepare the validators and relayer config:
 
+<!-- TODO: The chunk may need to be adjusted if this switches to the main stride testnet mailbox -->
+
 ```bash
 # Create agent-config.docker.json by merging localwasm.config.json and stride-internal-1.config.json
 # We also have to put quotes around the gasPrice amount to be compliant with the agent version,
@@ -839,7 +841,7 @@ Observe logs in the validator and relayer to witness the transfer. Confirm the t
 wasmd q bank balances $(wasmd keys show my-key -a)
 ```
 
-#### Transfer from Localwasm back to Stride
+### Transfer from Localwasm back to Stride
 
 <!-- TODO: Update fee to be only the tokenfactory tie -->
 
@@ -859,6 +861,49 @@ Observe logs in the validator and relayer to witness the transfer. Confirm the t
 ```bash
 strided q bank balances $(strided keys show my-key -a)
 ```
+
+### Transfer from Celestia through Stride to the Rollup
+
+Build the celestia binary
+
+```bash
+git clone https://github.com/celestiaorg/celestia-app.git
+cd celestia-appd
+make install
+cd ..
+rm -rf celestia-appd
+```
+
+Add your account
+
+```bash
+celestia-appd config chain-id mocha-4
+celestia-appd config node https://celestia-testnet-rpc.polkachu.com:443
+celestia-appd config keyring-backend test
+
+echo "join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy" | \
+  celestia-appd keys add my-key --recover
+```
+
+Fund the relayer with the [Celestia Mocha Testnet Faucet](https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet).
+
+Transfer from celestia through Stride, to the rollup
+
+```bash
+warp_contract_address=$(jq -r '.deployments.warp.native[0].address' context/stride-internal-1.json)
+recipient=$(yarn cw-hpl wallet convert-cosmos-to-eth -n localwasm $(wasmd keys show my-key -a) | perl -pe 's/0x0x//g')
+
+forward_msg='{"transfer_remote":{"dest_domain":963,"recipient":"'"$recipient"'","amount":"10000"}}'
+funds='[{"amount":10101,"denom":"ibc/1A7653323C1A9E267FF7BEBF40B3EEA8065E8F069F47F2493ABC3E0B621BF793"}]'
+memo='{"wasm":{"contract":"'"$warp_contract_address"'","msg":'"$forward_msg"',"funds":'"$funds"'}}'
+
+celestia-appd tx ibc-transfer transfer transfer channel-78 $warp_contract_address 10101utia \
+  --from my-key -y --fees 420utia --memo "$memo"
+```
+
+:::tip
+Stride has IBC middleware installed that automatically forwards and routes transfers directly to the Rollup so you only need to sign one transaction on Celestia!
+:::
 
 <!-- TODO: Add transfer from celestia through ibc hook -->
 
