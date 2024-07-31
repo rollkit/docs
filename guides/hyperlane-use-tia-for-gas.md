@@ -149,27 +149,139 @@ go mod tidy -compat=1.17
 go mod download
 ```
 
-Build `wasmd`:
+Create an updated Dockerfile in the `wasmd` repo that will be used to run the chain.
 
 ```bash
-make install
+echo 'FROM golang:1.22.5-bullseye 
+
+RUN set -eux; apt-get update && apt-get install git make;
+
+WORKDIR /code
+COPY . /code/
+
+RUN WASMVM_VERSION=$(cat go.mod | grep github.com/CosmWasm/wasmvm | awk '\''{print $2}'\'') \
+    && wget https://github.com/CosmWasm/wasmvm/releases/download/$WASMVM_VERSION/libwasmvm_muslc.$(uname -m).a \
+    -O /lib/libwasmvm_muslc.a
+RUN LEDGER_ENABLED=false BUILD_TAGS=muslc LINK_STATICALLY=true make build \
+    && cp /code/build/wasmd /usr/bin/wasmd
+
+WORKDIR /opt
+
+EXPOSE 1317
+EXPOSE 36656
+EXPOSE 36657' > Dockerfile
 ```
 
-To start a local DA, run:
+Create the docker compose file that will be used for the data availablility service, the localwasm chain, and the hyperlane validators and relayers.
 
 ```bash
-curl -sSL https://rollkit.dev/install-local-da.sh | bash -s v0.2.0
+echo 'services:
+  da:
+    image: golang:1.22-alpine
+    container_name: da
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        apk add curl perl jq bash git make
+        curl -sSL https://rollkit.dev/install-local-da.sh -o start.sh
+        sed -i '\''s|./build/local-da|./build/local-da -listen-all|'\'' start.sh
+        bash start.sh
+    ports:
+      - 7980:7980
+  localwasm:
+    image: localwasm
+    container_name: localwasm
+    build: 
+      context: ../../wasmd
+      dockerfile: Dockerfile
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        apt-get update && apt-get install -y curl perl jq netcat
+        until nc -z -v da 7980; do
+          echo "Waiting for the DA layer to start..."
+          sleep 2
+        done
+        curl -sSL https://rollkit.dev/cosmwasm/init.sh | \
+        perl -pe '\''s/127\.0\.0\.1/0.0.0.0/g'\'' | \
+        perl -pe '\''s|http://localhost:7980|http://da:7980|g'\'' | \
+        perl -pe '\''s|--rollkit.aggregator|--rollkit.aggregator --api.address tcp://0.0.0.0:1317|g'\'' | \
+        bash
+    ports:
+      - 36657:36657
+      - 1317:1317
+      - 9290:9290
+  relayer:
+    container_name: hpl-relayer
+    image: gcr.io/abacus-labs-dev/hyperlane-agent:8a66544-20240530-111322
+    platform: linux/amd64
+    user: root
+    # restart: always
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        rm -rf /app/config/* && \
+        cp "/etc/hyperlane/agent-config.docker.json" "/app/config/agent-config.json" && \
+        CONFIG_FILES="/etc/hyperlane/relayer.json" \
+          ./relayer
+    ports:
+      - 9110:9090
+    volumes:
+      - ./hyperlane:/etc/hyperlane
+      - ./relayer:/etc/data
+      - ./validator:/etc/validator
+
+  validator-localwasm:
+    container_name: hpl-validator-localwasm
+    image: gcr.io/abacus-labs-dev/hyperlane-agent:8a66544-20240530-111322
+    platform: linux/amd64
+    user: root
+    # restart: always
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        rm -rf /app/config/* && \
+        cp "/etc/hyperlane/agent-config.docker.json" "/app/config/agent-config.json" && \
+        CONFIG_FILES="/etc/hyperlane/validator.localwasm.json" \
+          ./validator
+    ports:
+      - 9120:9090
+    volumes:
+      - ./hyperlane:/etc/hyperlane
+      - ./validator:/etc/validator
+      - ./validator/localwasm:/etc/data
+
+  validator-strideinternal1:
+    container_name: hpl-validator-strideinternal1
+    image: gcr.io/abacus-labs-dev/hyperlane-agent:8a66544-20240530-111322
+    platform: linux/amd64
+    user: root
+    # restart: always
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        rm -rf /app/config/* && \
+        cp "/etc/hyperlane/agent-config.docker.json" "/app/config/agent-config.json" && \
+        CONFIG_FILES="/etc/hyperlane/validator.strideinternal1.json" \
+          ./validator
+    ports:
+      - 9121:9090
+    volumes:
+      - ./hyperlane:/etc/hyperlane
+      - ./validator:/etc/validator
+      - ./validator/strideinternal1:/etc/data' > example/docker-compose.yml
 ```
 
-From inside the `wasmd` directory, run the init script:
+To start the data availability service, run:
 
 ```bash
-curl -sSL https://rollkit.dev/cosmwasm/init.sh | perl -pe 's/127\.0\.0\.1/0.0.0.0/g' | sh
+docker compose -f example/docker-compose.yml up da
 ```
 
-:::info
-We modify the listening address from `127.0.0.1` to `0.0.0.0` so that it is accessible from the Hyperlane docker agents later on.
-:::
+Then start the localwasm chain:
+```bash
+docker compose -f example/docker-compose.yml up localwasm
+```
 
 With that, we have kickstarted our `wasmd` network!
 
@@ -298,7 +410,10 @@ wasmd config set client keyring-backend test
 #### Fund the cw-hyperlane signer in our localwasm rollup:
 
 ```bash
-wasmd tx bank send localwasm-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 10000000uwasm -y --gas auto --gas-adjustment 1.5 --gas-prices 0.025uwasm
+docker exec -it localwasm \
+  wasmd tx bank send localwasm-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 \
+  10000000uwasm -y --gas auto --gas-adjustment 1.5 --gas-prices 0.025uwasm \
+  --keyring-backend test --node http://localhost:36657
 ```
 
 :::info
@@ -465,96 +580,18 @@ echo '{
 
 ```bash
 # Create agent-config.docker.json by merging localwasm.config.json and stride-internal-1.config.json
-# We also have to put quotes around the gasPrice amount to be compliant
-# with the agent version
+# We also have to put quotes around the gasPrice amount to be compliant with the agent version,
+# and we need to change the hostname to localwasm so it can be recognized from within docker
 jq -s '.[0] * .[1]' context/{localwasm,stride-internal-1}.config.json | \
-  jq '.chains |= with_entries(.value.gasPrice.amount |= tostring)' > \
+  jq '.chains |= with_entries(.value.gasPrice.amount |= tostring)' |
+  perl -pe 's/127.0.0.1/localwasm/' > \
   example/hyperlane/agent-config.docker.json
-
-# Replace `localhost` with `172.17.0.1` in agent-config.docker.json,
-# to allow the relayer and validators to connect to localwasm which is running on the docker host machine.
-perl -i -pe 's/localhost/172.17.0.1/' example/hyperlane/agent-config.docker.json
-```
-
-#### Update the docker compose file:
-
-```bash
-echo 'services:
-  relayer:
-    container_name: hpl-relayer
-    image: gcr.io/abacus-labs-dev/hyperlane-agent:8a66544-20240530-111322
-    platform: linux/amd64
-    user: root
-    # restart: always
-    entrypoint: ["sh", "-c"]
-    command:
-      - |
-        rm -rf /app/config/* && \
-        cp "/etc/hyperlane/agent-config.docker.json" "/app/config/agent-config.json" && \
-        CONFIG_FILES="/etc/hyperlane/relayer.json" \
-          ./relayer
-    ports:
-      - 9110:9090
-    volumes:
-      - ./hyperlane:/etc/hyperlane
-      - ./relayer:/etc/data
-      - ./validator:/etc/validator
-    extra_hosts:
-      - 'host.docker.internal:host-gateway'
-
-  validator-localwasm:
-    container_name: hpl-validator-localwasm
-    image: gcr.io/abacus-labs-dev/hyperlane-agent:8a66544-20240530-111322
-    platform: linux/amd64
-    user: root
-    # restart: always
-    entrypoint: ["sh", "-c"]
-    command:
-      - |
-        rm -rf /app/config/* && \
-        cp "/etc/hyperlane/agent-config.docker.json" "/app/config/agent-config.json" && \
-        CONFIG_FILES="/etc/hyperlane/validator.localwasm.json" \
-          ./validator
-    ports:
-      - 9120:9090
-    volumes:
-      - ./hyperlane:/etc/hyperlane
-      - ./validator:/etc/validator
-      - ./validator/localwasm:/etc/data
-    extra_hosts:
-      - 'host.docker.internal:host-gateway'
-
-  validator-strideinternal1:
-    container_name: hpl-validator-strideinternal1
-    image: gcr.io/abacus-labs-dev/hyperlane-agent:8a66544-20240530-111322
-    platform: linux/amd64
-    user: root
-    # restart: always
-    entrypoint: ["sh", "-c"]
-    command:
-      - |
-        rm -rf /app/config/* && \
-        cp "/etc/hyperlane/agent-config.docker.json" "/app/config/agent-config.json" && \
-        CONFIG_FILES="/etc/hyperlane/validator.strideinternal1.json" \
-          ./validator
-    ports:
-      - 9121:9090
-    volumes:
-      - ./hyperlane:/etc/hyperlane
-      - ./validator:/etc/validator
-      - ./validator/strideinternal1:/etc/data' > example/docker-compose.yml
 ```
 
 #### Run the relayer and validators:
 
 ```bash
-docker compose -f example/docker-compose.yml up
-```
-
-#### Deploy warp route on localwasm
-
-```bash
-yarn cw-hpl warp deploy -n localwasm
+docker compose -f example/docker-compose.yml up -d validator-localwasm validator-strideinternal1 relayer
 ```
 
 #### Deploy warp contract with TIA as collateral on Stride:
@@ -579,7 +616,7 @@ The output shoule look like:
 
 ```
 [DEBUG] [contract] deploying hpl_warp_native
-[ INFO] [contract] deployed hpl_warp_native at stride1wl200l7hhpmkvcrr03dllun5ehkklh83wypgrfftwxdd6sw22lrqu5f40r
+[ INFO] [contract] deployed hpl_warp_native at stride1...
 ```
 
 #### Deploy warp contract on localwasm:
@@ -595,7 +632,11 @@ echo '{
       "denom": "utia",
       "metadata": {
         "description": "TIA via Stride",
-        "denom_units": [],
+        "denom_units": [{
+          "denom": "utia",
+          "exponent": "0",
+          "aliases": ["utia"]
+        }],
         "base": "utia",
         "display": "utia",
         "name": "utia",
@@ -607,10 +648,6 @@ echo '{
 
 yarn cw-hpl warp create ./example/warp/utia-localwasm.json -n localwasm
 ```
-
-::tip
-`code_id` is taken from `cw-hyperlane/context/localwasm.json`. This might be different on your setup, but for the porpuses of this guide it's 19 because we uploaded the contracts to localwasm right afer genesis.
-::
 
 The output shoule look like:
 
