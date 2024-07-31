@@ -13,16 +13,19 @@ import Callout from '../.vitepress/components/callout.vue'
 
 <!-- markdownlint-enable MD033 -->
 
-## 📝 In short, deploy a CosmWasm rollup {#deploy-rollup}
+## 📝 Deploy a CosmWasm rollup {#deploy-rollup}
 
 This is a gist of the [CosmWasm rollup](../tutorials/cosmwasm.md) guide.
+
+### Prepare rollup binary
 
 ```bash
 git clone --branch v0.50.0 --depth 1 https://github.com/CosmWasm/wasmd.git
 cd wasmd
 ```
 
-Add token factory to app.go:
+#### Add token factory to app.go:
+<!-- TODO: Update to a forked version -->
 
 ```bash
 echo 'diff --git a/app/app.go b/app/app.go
@@ -139,7 +142,7 @@ index 44934ea..8e8c829 100644
  }' | git apply
 ```
 
-Update packages to accommodate tokenfactory:
+#### Update packages to use rollkit and accommodate x/tokenfactory:
 ```bash
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.7-rollkit-v0.13.6-no-fraud-proofs.0.20240730125236-04ca9ba69219
 go mod edit -replace cosmossdk.io/core=cosmossdk.io/core@v0.11.0
@@ -149,7 +152,59 @@ go mod tidy -compat=1.17
 go mod download
 ```
 
-Create an updated Dockerfile in the `wasmd` repo that will be used to run the chain.
+#### Build the rollup binary locally
+```bash
+make install
+```
+
+### Configure Local Clients
+
+Config the `wasmd` and `strided` CLI for ease of use:
+
+```bash
+wasmd config set client node tcp://127.0.0.1:36657
+wasmd config set client output json
+wasmd config set client keyring-backend test
+
+strided config set chain-id stride-internal-1
+strided config set client node https://stride-testnet-rpc.polkachu.com:443
+strided config set client output json
+strided config set client keyring-backend test
+```
+
+Add the signer accounts to each keyring
+```bash
+echo "join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy" | \
+  wasmd keys add my-key --recover 
+
+echo "join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy" | \
+  strided keys add my-key --recover 
+```
+
+:::tip
+In this guide, we're using a predefined seep phrase for simplicity. Alternativley you can generate and use your own:
+
+```bash
+wasmd keys add my-key
+```
+
+To get your Stride address, import the generated seed phrase to the `strided` CLI using:
+
+```bash
+strided keys add --recover my-key
+```
+
+To get the private key, run:
+
+```bash
+wasmd keys export --unsafe --unarmored-hex my-key
+```
+:::
+
+### Deploy local data availability service and rollup
+<!-- TODO: Update to a forked version that has this new image -->
+
+Create an updated Dockerfile in the `wasmd` repo that will be used to run the rollup.
 
 ```bash
 echo 'FROM golang:1.22.5-bullseye 
@@ -170,6 +225,16 @@ WORKDIR /opt
 EXPOSE 1317
 EXPOSE 36656
 EXPOSE 36657' > Dockerfile
+```
+
+Fork the cw-hyperlane repo
+```bash
+# Back out to the same level as the wasmd repo
+cd ..
+
+git clone --depth 1 git@github.com:many-things/cw-hyperlane.git
+cd cw-hyperlane
+git checkout 4f5656d4704178ac54d10467ca7edc3df2312c4b
 ```
 
 Create the docker compose file that will be used for the data availablility service, the localwasm chain, and the hyperlane validators and relayers.
@@ -283,18 +348,44 @@ Then start the localwasm chain:
 docker compose -f example/docker-compose.yml up localwasm
 ```
 
-With that, we have kickstarted our `wasmd` network!
+With that, we have kickstarted our `wasmd` network! 🎉
 
-## 💻 Deploy the Hyperlane {#deploy-hyperlane}
+### Fund our accounts
+#### Stride Account
+If you're using the account specified in this guide, the stride account should already be funded! 
 
-Fork the cw-hyperlane repo:
+If you're using a new account, you can fund it from the faucet at [Stride testnet faucet](https://stride-faucet.pages.dev).
+
+#### Rollup Account
+We can fund the rollup account through one of the genesis account's in the docker container
 
 ```bash
-git clone --depth 1 git@github.com:many-things/cw-hyperlane.git
-cd cw-hyperlane
+docker exec -it localwasm \
+  wasmd tx bank send localwasm-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 \
+  10000000uwasm -y --gas auto --gas-adjustment 1.5 --gas-prices 0.025uwasm \
+  --keyring-backend test --node http://localhost:36657
 ```
 
+:::info
+`localwasm-key` is the genesis validator's address. See https://rollkit.dev/cosmwasm/init.sh for more info.
+:::
+
+:::tip
+To check if the transaction was successful, get the `txhash` field from the response to the `wasmd tx bank send` command above, and run:
+
+```bash
+wasmd q tx $TXHASH
+```
+
+The transaction was successful if the `code` field is 0 (success).
+:::
+
+## Deploy Hyperlane
+
+### Deploy Contracts
+
 #### Create `config.yaml` with our networks setup:
+<!-- TODO: Update the fee to be denominated in the tokenfactory TIA -->
 
 ```bash
 echo 'networks:
@@ -345,8 +436,8 @@ deploy:
           owner: <signer>
           configs:
             1651:
-              exchange_rate: 2
-              gas_price: 5000
+              exchange_rate: 1000
+              gas_price: 10000
           default_gas_usage: 100000
 
     required:
@@ -360,7 +451,6 @@ deploy:
         - type: fee
           owner: <signer>
           fee:
-            # defaults tp gas denom from network config
             denom: uwasm
             amount: 1
 ' > config.yaml
@@ -377,57 +467,11 @@ However, you can pick any number as your domain ID.
 :::
 
 :::tip
-In this guide, we're using a predefined seep phrase for simplicity. Alternativley you can generate and use your own:
+The fee for each transfer is calculated by: 
 
-```bash
-wasmd keys add my-key
-```
+= `protocol_fee` + (`default_gas_usage` * `gas_price` * `exchange_rate` / `10000000000`)
 
-To get your Stride address, import the generated seed phrase to the `strided` CLI using:
-
-```bash
-strided keys add --recover my-key
-```
-
-Then fund it using the [Stride testnet faucet](https://stride-faucet.pages.dev).
-
-To get the private key, run:
-
-```bash
-wasmd keys export --unsafe --unarmored-hex my-key
-```
-
-:::
-
-#### Config the `wasmd` CLI for ease of use:
-
-```bash
-wasmd config set client node tcp://127.0.0.1:36657
-wasmd config set client output json
-wasmd config set client keyring-backend test
-```
-
-#### Fund the cw-hyperlane signer in our localwasm rollup:
-
-```bash
-docker exec -it localwasm \
-  wasmd tx bank send localwasm-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 \
-  10000000uwasm -y --gas auto --gas-adjustment 1.5 --gas-prices 0.025uwasm \
-  --keyring-backend test --node http://localhost:36657
-```
-
-:::info
-`localwasm-key` is the genesis validator's address. See https://rollkit.dev/cosmwasm/init.sh for more info.
-:::
-
-:::tip
-To check if the transaction was successful, get the `txhash` field from the response to the `wasmd tx bank send` command above, and run:
-
-```bash
-wasmd q tx $TXHASH
-```
-
-The transaction was successful if the `code` field is 0 (success).
+So in our config, it will be: `1 + [(1000 * 10000 * 100000) / 10000000000] = 101uwasm`
 :::
 
 #### Inside the cw-hyperlane directory, install the hyperlane cw-cli:
@@ -449,7 +493,82 @@ yarn cw-hpl upload remote v0.0.6-rc8 -n localwasm
 yarn cw-hpl deploy -n localwasm
 ```
 
-#### Upload and deploy the contracts on the Stride testnet:
+#### Update the config.yaml for the stride deployment
+<!-- TODO: Don't redeploy all stride contracts. Re-use the same mailbox and just deploy new warp and ISM contracts --> 
+<!-- TODO: Change the config.yaml layout to support multiple networks -->
+
+```
+echo 'networks:
+  - id: 'localwasm'
+    hrp: 'wasm'
+    endpoint:
+      rpc: 'http://127.0.0.1:36657'
+      rest: 'http://127.0.0.1:1317'
+      grpc: 'http://127.0.0.1:9290'
+    gas:
+      price: '0.025'
+      denom: 'uwasm'
+    domain: 963
+    signer: 'join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy' # wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45
+  - id: 'stride-internal-1'
+    hrp: 'stride'
+    endpoint:
+      rpc: 'https://stride-testnet-rpc.polkachu.com'
+      rest: 'https://stride-testnet-api.polkachu.com'
+      grpc: 'http://stride-testnet-grpc.polkachu.com:12290'
+    gas:
+      price: '0.01'
+      denom: 'ustrd'
+    domain: 1651
+    signer: 'join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy' # stride133xh839fjn9wxzg6vhc0370lcem8939z2sd4gn
+
+# wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45
+# stride133xh839fjn9wxzg6vhc0370lcem8939z2sd4gn
+signer: 'join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy'
+
+deploy:
+  ism:
+    type: multisig
+    owner: <signer>
+    validators:
+      963:
+        addrs:
+          - <signer>
+        threshold: 1
+  hooks:
+    default:
+      type: aggregate
+      owner: <signer>
+      hooks:
+        - type: merkle
+
+        - type: igp
+          owner: <signer>
+          token: "ibc/1A7653323C1A9E267FF7BEBF40B3EEA8065E8F069F47F2493ABC3E0B621BF793"
+          configs:
+            963:
+              exchange_rate: 1000
+              gas_price: 10000
+          default_gas_usage: 100000
+
+    required:
+      type: aggregate
+      owner: <signer>
+      hooks:
+        - type: pausable
+          owner: <signer>
+          paused: false
+
+        - type: fee
+          owner: <signer>
+          fee:
+            denom: "ibc/1A7653323C1A9E267FF7BEBF40B3EEA8065E8F069F47F2493ABC3E0B621BF793"
+            amount: 1
+' > config.yaml
+```
+
+#### Deploy the contracts on the Stride testnet:
+<!-- TODO: Use the testnet config minus the ISM, warp contract, and any other contract that must be regenerated -->
 
 ```bash
 # Stride has permissioned CosmWasm, meaning only certain addresses can upload contracts.
@@ -486,6 +605,8 @@ echo '{
 # - Hyperlane agent-config  (default path: {cw-hyperlane-root}/context/stride-internal-1.config.json)
 yarn cw-hpl deploy -n stride-internal-1
 ```
+
+### Deploy the validators and relayer
 
 #### Setup the relayer config:
 
@@ -594,7 +715,9 @@ jq -s '.[0] * .[1]' context/{localwasm,stride-internal-1}.config.json | \
 docker compose -f example/docker-compose.yml up -d validator-localwasm validator-strideinternal1 relayer
 ```
 
-#### Deploy warp contract with TIA as collateral on Stride:
+### Deploy the warp routes
+
+#### Deploy a warp contract with TIA as collateral on Stride
 
 ```bash
 echo '{
@@ -619,7 +742,7 @@ The output shoule look like:
 [ INFO] [contract] deployed hpl_warp_native at stride1...
 ```
 
-#### Deploy warp contract on localwasm:
+#### Deploy a warp contract on the rollup with bride TIA from Stride
 
 ```bash
 echo '{
@@ -629,19 +752,7 @@ echo '{
   "owner": "<signer>",
   "config": {
     "bridged": {
-      "denom": "utia",
-      "metadata": {
-        "description": "TIA via Stride",
-        "denom_units": [{
-          "denom": "utia",
-          "exponent": "0",
-          "aliases": ["utia"]
-        }],
-        "base": "utia",
-        "display": "utia",
-        "name": "utia",
-        "symbol": "utia"
-      }
+      "denom": "utia"
     }
   }
 }' > example/warp/utia-localwasm.json
@@ -653,7 +764,62 @@ The output shoule look like:
 
 ```
 [DEBUG] [contract] deploying hpl_warp_native
-[ INFO] [contract] deployed hpl_warp_native at stride1wl200l7hhpmkvcrr03dllun5ehkklh83wypgrfftwxdd6sw22lrqu5f40r
+[ INFO] [contract] deployed hpl_warp_native at wasm1...
+```
+
+:::tip
+When TIA is bridged to the rollup, it uses tokenfactory under the hood to mint TIA that belongs to the warp contract. 
+The denom will be of the form: factory/{warp-contract-address}/utia
+:::
+
+
+#### Link the localwasm route to the stride route
+```bash
+yarn cw-hpl warp link \
+  --asset-type native \
+  --asset-id TIA.stride-localwasm \
+  --target-domain 963 \
+  --warp-address $(jq -r '.deployments.warp.native[0].hexed' context/stride-internal-1.json) \
+  -n stride-internal-1
+```
+
+#### Link the stride route to the localwasm route
+```bash
+yarn cw-hpl warp link \
+  --asset-type native \
+  --asset-id TIA.stride-localwasm \
+  --target-domain 1651 \
+  --warp-address $(jq -r '.deployments.warp.native[0].hexed' context/localwasm.json) \
+  -n localwasm
+```
+
+
+## Transfer TIA 
+
+### Test transferring from Stride to Localwasm
+```bash
+# Template
+warp_contract_address=$(jq -r '.deployments.warp.native[0].hexed' context/stride-internal-1.json)
+recipient=$(yarn cw-hpl wallet convert-cosmos-to-eth -n localwasm $(wasmd keys show my-key -a) | perl -pe 's/0x0x//g')
+strided tx wasm execute $warp_contract_address \
+    '{"transfer_remote":{"dest_domain":963,"recipient":"'"$recipient"'","amount":"10000"}}' \
+    --amount 10101ibc/1A7653323C1A9E267FF7BEBF40B3EEA8065E8F069F47F2493ABC3E0B621BF793 \
+    --from my-key -y \
+     --gas 2000000
+```
+
+#### Transfer from Localwasm back to Stride
+<!-- TODO: Update fee to be only the tokenfactory tie -->
+
+```bash
+# Template
+warp_contract_address=$(jq -r '.deployments.warp.native[0].hexed' context/localwasm.json)
+recipient=$(yarn cw-hpl wallet convert-cosmos-to-eth -n stride-internal-1 $(strided keys show my-key -a) | perl -pe 's/0x0x//g')
+wasmd tx wasm execute {localwasm-warp-address} \
+    '{"transfer_remote":{"dest_domain":1651,"recipient":"'"$recipient"'","amount":"10000"}}' \
+    --amount 10000factory/wasm1n78c8ckw5xwktg7laae7utrm7jtyrsshnfrl9n72xzlxz9gpq0zsa4nzyv/utia,101uwasm \
+    --from my-key -y \
+     --gas 2000000 --fees 50000uwasm
 ```
 
 ## Resources
