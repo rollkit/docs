@@ -25,6 +25,7 @@ cd wasmd
 ```
 
 #### Add token factory to app.go:
+
 <!-- TODO: Update to a forked version -->
 
 ```bash
@@ -35,7 +36,7 @@ index 44934ea..8e8c829 100644
 @@ -10,6 +10,9 @@ import (
  	"strings"
  	"sync"
- 
+
 +	"github.com/Stride-Labs/tokenfactory/tokenfactory"
 +	tokenfactorykeeper "github.com/Stride-Labs/tokenfactory/tokenfactory/keeper"
 +	tokenfactorytypes "github.com/Stride-Labs/tokenfactory/tokenfactory/types"
@@ -56,14 +57,14 @@ index 44934ea..8e8c829 100644
 +	wasmtypes.ModuleName:         {authtypes.Burner},
 +	tokenfactorytypes.ModuleName: {authtypes.Minter, authtypes.Burner},
  }
- 
+
  var (
 @@ -226,6 +230,7 @@ type WasmApp struct {
  	ICAHostKeeper       icahostkeeper.Keeper
  	TransferKeeper      ibctransferkeeper.Keeper
  	WasmKeeper          wasmkeeper.Keeper
 +	TokenFactoryKeeper  tokenfactorykeeper.Keeper
- 
+
  	ScopedIBCKeeper           capabilitykeeper.ScopedKeeper
  	ScopedICAHostKeeper       capabilitykeeper.ScopedKeeper
 @@ -326,6 +331,7 @@ func NewWasmApp(
@@ -72,12 +73,12 @@ index 44934ea..8e8c829 100644
  		icacontrollertypes.StoreKey,
 +		tokenfactorytypes.StoreKey,
  	)
- 
+
  	tkeys := storetypes.NewTransientStoreKeys(paramstypes.TStoreKey)
 @@ -563,6 +569,16 @@ func NewWasmApp(
  		app.BankKeeper,
  	)
- 
+
 +	// Token factory keeper
 +	app.TokenFactoryKeeper = tokenfactorykeeper.NewKeeper(
 +		keys[tokenfactorytypes.StoreKey],
@@ -105,7 +106,7 @@ index 44934ea..8e8c829 100644
  		wasmtypes.ModuleName,
 +		tokenfactorytypes.ModuleName,
  	)
- 
+
  	app.ModuleManager.SetOrderEndBlockers(
 @@ -786,6 +804,7 @@ func NewWasmApp(
  		icatypes.ModuleName,
@@ -113,7 +114,7 @@ index 44934ea..8e8c829 100644
  		wasmtypes.ModuleName,
 +		tokenfactorytypes.ModuleName,
  	)
- 
+
  	// NOTE: The genutils module must occur after staking so that pools are
 @@ -811,6 +830,7 @@ func NewWasmApp(
  		ibcfeetypes.ModuleName,
@@ -135,7 +136,7 @@ index 44934ea..8e8c829 100644
  		// Once we switch to using protoreflect-based antehandlers, we might
 @@ -1209,5 +1226,6 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
  	paramsKeeper.Subspace(icahosttypes.SubModuleName).WithKeyTable(icahosttypes.ParamKeyTable())
- 
+
  	paramsKeeper.Subspace(wasmtypes.ModuleName)
 +	paramsKeeper.Subspace(tokenfactorytypes.ModuleName)
  	return paramsKeeper
@@ -143,6 +144,7 @@ index 44934ea..8e8c829 100644
 ```
 
 #### Update packages to use rollkit and accommodate x/tokenfactory:
+
 ```bash
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.50.7-rollkit-v0.13.6-no-fraud-proofs.0.20240730125236-04ca9ba69219
 go mod edit -replace cosmossdk.io/core=cosmossdk.io/core@v0.11.0
@@ -153,6 +155,7 @@ go mod download
 ```
 
 #### Build the rollup binary locally
+
 ```bash
 make install
 ```
@@ -173,12 +176,13 @@ strided config set client keyring-backend test
 ```
 
 Add the signer accounts to each keyring
+
 ```bash
 echo "join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy" | \
-  wasmd keys add my-key --recover 
+  wasmd keys add my-key --recover
 
 echo "join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy" | \
-  strided keys add my-key --recover 
+  strided keys add my-key --recover
 ```
 
 :::tip
@@ -199,15 +203,17 @@ To get the private key, run:
 ```bash
 wasmd keys export --unsafe --unarmored-hex my-key
 ```
+
 :::
 
 ### Deploy local data availability service and rollup
+
 <!-- TODO: Update to a forked version that has this new image -->
 
 Create an updated Dockerfile in the `wasmd` repo that will be used to run the rollup.
 
 ```bash
-echo 'FROM golang:1.22.5-bullseye 
+echo 'FROM golang:1.22.5-bullseye
 
 RUN set -eux; apt-get update && apt-get install git make;
 
@@ -228,6 +234,7 @@ EXPOSE 36657' > Dockerfile
 ```
 
 Fork the cw-hyperlane repo
+
 ```bash
 # Back out to the same level as the wasmd repo
 cd ..
@@ -256,7 +263,7 @@ echo 'services:
   localwasm:
     image: localwasm
     container_name: localwasm
-    build: 
+    build:
       context: ../../wasmd
       dockerfile: Dockerfile
     entrypoint: ["sh", "-c"]
@@ -344,6 +351,7 @@ docker compose -f example/docker-compose.yml up da
 ```
 
 Then start the localwasm chain:
+
 ```bash
 docker compose -f example/docker-compose.yml up localwasm
 ```
@@ -351,12 +359,15 @@ docker compose -f example/docker-compose.yml up localwasm
 With that, we have kickstarted our `wasmd` network! 🎉
 
 ### Fund our accounts
+
 #### Stride Account
-If you're using the account specified in this guide, the stride account should already be funded! 
+
+If you're using the account specified in this guide, the stride account should already be funded!
 
 If you're using a new account, you can fund it from the faucet at [Stride testnet faucet](https://stride-faucet.pages.dev).
 
 #### Rollup Account
+
 We can fund the rollup account through one of the genesis account's in the docker container
 
 ```bash
@@ -385,6 +396,7 @@ The transaction was successful if the `code` field is 0 (success).
 ### Deploy Contracts
 
 #### Create `config.yaml` with our networks setup:
+
 <!-- TODO: Update the fee to be denominated in the tokenfactory TIA -->
 
 ```bash
@@ -467,9 +479,9 @@ However, you can pick any number as your domain ID.
 :::
 
 :::tip
-The fee for each transfer is calculated by: 
+The fee for each transfer is calculated by:
 
-= `protocol_fee` + (`default_gas_usage` * `gas_price` * `exchange_rate` / `10000000000`)
+= `protocol_fee` + (`default_gas_usage` _ `gas_price` _ `exchange_rate` / `10000000000`)
 
 So in our config, it will be: `1 + [(1000 * 10000 * 100000) / 10000000000] = 101uwasm`
 :::
@@ -494,7 +506,8 @@ yarn cw-hpl deploy -n localwasm
 ```
 
 #### Update the config.yaml for the stride deployment
-<!-- TODO: Don't redeploy all stride contracts. Re-use the same mailbox and just deploy new warp and ISM contracts --> 
+
+<!-- TODO: Don't redeploy all stride contracts. Re-use the same mailbox and just deploy new warp and ISM contracts -->
 <!-- TODO: Change the config.yaml layout to support multiple networks -->
 
 ```
@@ -568,6 +581,7 @@ deploy:
 ```
 
 #### Deploy the contracts on the Stride testnet:
+
 <!-- TODO: Use the testnet config minus the ISM, warp contract, and any other contract that must be regenerated -->
 
 ```bash
@@ -768,12 +782,12 @@ The output shoule look like:
 ```
 
 :::tip
-When TIA is bridged to the rollup, it uses tokenfactory under the hood to mint TIA that belongs to the warp contract. 
+When TIA is bridged to the rollup, it uses tokenfactory under the hood to mint TIA that belongs to the warp contract.
 The denom will be of the form: factory/{warp-contract-address}/utia
 :::
 
-
 #### Link the localwasm route to the stride route
+
 ```bash
 yarn cw-hpl warp link \
   --asset-type native \
@@ -784,6 +798,7 @@ yarn cw-hpl warp link \
 ```
 
 #### Link the stride route to the localwasm route
+
 ```bash
 yarn cw-hpl warp link \
   --asset-type native \
@@ -793,10 +808,10 @@ yarn cw-hpl warp link \
   -n localwasm
 ```
 
-
-## Transfer TIA 
+## Transfer TIA
 
 ### Test transferring from Stride to Localwasm
+
 ```bash
 # Template
 warp_contract_address=$(jq -r '.deployments.warp.native[0].hexed' context/stride-internal-1.json)
@@ -809,6 +824,7 @@ strided tx wasm execute $warp_contract_address \
 ```
 
 #### Transfer from Localwasm back to Stride
+
 <!-- TODO: Update fee to be only the tokenfactory tie -->
 
 ```bash
