@@ -90,7 +90,9 @@ If you get errors of `gmd` not found, you may need to add the `go/bin` directory
 curl -sSL https://rollkit.dev/install-gm-rollup.sh | sh
 ```
 
-## Initialize rollkit toml configuration {#initialize-rollkit-configuration}
+## 🛠️ Initialize Rollkit TOML Configuration {#initialize-rollkit-configuration}
+
+Change to the `gm` directory and initialize the rollkit toml configuration:
 
 ```bash
 cd ./gm && rollkit toml init
