@@ -298,7 +298,7 @@ rly start gm_mocha-4
 Transfer TIA from Mocha to our rollup:
 
 ```bash
-ACCOUNT_ON_ROLLUP="$(gmd keys show -a --keyring-backend test gm-key-2)"
+ACCOUNT_ON_ROLLUP="$(rollkit keys show -a --keyring-backend test gm-key-2)"
 CHANNEL_ID_ON_MOCHA="$(rly q channels mocha gm_rollup | jq -r .channel_id | tail -1)"
 
 rly tx transfer mocha gm_rollup 1000000utia "$ACCOUNT_ON_ROLLUP" "$CHANNEL_ID_ON_MOCHA" --path gm_mocha-4
@@ -307,7 +307,7 @@ rly tx transfer mocha gm_rollup 1000000utia "$ACCOUNT_ON_ROLLUP" "$CHANNEL_ID_ON
 Verify the account on our rollup is funded with IBC TIA:
 
 ```bash
-gmd q bank balances "$(gmd keys show -a --keyring-backend test gm-key-2)"
+rollkit q bank balances "$(rollkit keys show -a --keyring-backend test gm-key-2)"
 # =>
 # balances:
 # - amount: "1000000"
@@ -323,10 +323,10 @@ gmd q bank balances "$(gmd keys show -a --keyring-backend test gm-key-2)"
 Finally, send a transaction on our rollup using IBC TIA as the gas token:
 
 ```bash
-ACCOUNT_ON_ROLLUP="$(gmd keys show -a --keyring-backend test gm-key-2)"
+ACCOUNT_ON_ROLLUP="$(rollkit keys show -a --keyring-backend test gm-key-2)"
 
 # Send the transaction
-TX_HASH=$(gmd tx bank send "$ACCOUNT_ON_ROLLUP" "$ACCOUNT_ON_ROLLUP" 1stake --keyring-backend test --chain-id gm --gas-prices 0.02ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA -y --output json | jq -r .txhash)
+TX_HASH=$(rollkit tx bank send "$ACCOUNT_ON_ROLLUP" "$ACCOUNT_ON_ROLLUP" 1stake --keyring-backend test --chain-id gm --gas-prices 0.02ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA -y --output json | jq -r .txhash)
 
 # Verify success
 rollkit q tx "$TX_HASH" --output json | jq .code # => 0
