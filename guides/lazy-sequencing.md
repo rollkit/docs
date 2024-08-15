@@ -10,16 +10,16 @@ To turn on lazy sequencing, add the following flag to your start command:
 --rollkit.lazy_aggregator
 ```
 
-Optionally, if you want to specify a custom time to wait to accumulate transactions in lazy mode, use:
+Additionally, if you want to specify the time interval used for block production even if there are no transactions, use:
 
 ```bash
---rollkit.lazy_buffer_time <duration>
+--rollkit.lazy_block_time <duration>
 ```
 
-An example command with a custom buffer wait time would look like this:
+An example command with a custom block time of 1 minute:
 
 ```bash
 # start the chain
 gmd start [existing flags...] // [!code --]
-gmd start [existing flags...] --rollkit.lazy_aggregator --rollkit.lazy_buffer_time=30s // [!code ++]
+gmd start [existing flags...] --rollkit.lazy_aggregator --rollkit.lazy_block_time=1m0s // [!code ++]
 ```
