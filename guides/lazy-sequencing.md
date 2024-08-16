@@ -20,6 +20,6 @@ An example command with a custom block time of 1 minute:
 
 ```bash
 # start the chain
-gmd start [existing flags...] // [!code --]
-gmd start [existing flags...] --rollkit.lazy_aggregator --rollkit.lazy_block_time=1m0s // [!code ++]
+rollkit start [existing flags...] // [!code --]
+rollkit start [existing flags...] --rollkit.lazy_aggregator --rollkit.lazy_block_time=1m0s // [!code ++]
 ```
