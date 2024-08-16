@@ -7,7 +7,7 @@ The gas price can also be configured manually with the flag
 `--rollkit.da_gas_price`:
 
 ```bash
-gmd start --rollkit.da_gas_price=0.1 [existing flags...]
+rollkit start --rollkit.da_gas_price=0.1 [existing flags...]
 ```
 
 This configures the rollup to always use the fixed gas price of `0.1utia/gas`.
@@ -19,7 +19,7 @@ To avoid such transient blob submission failures, the flag
 `--rollkit.da_gas_multiplier` may be used:
 
 ```bash
-gmd start --rollkit.da_gas_price=0.1 --rollkit.da_gas_multiplier=1.2 [...]
+rollkit start --rollkit.da_gas_price=0.1 --rollkit.da_gas_multiplier=1.2 [...]
 ```
 
 This configures the rollup to keep increasing the gas price by a factor of 1.2x
