@@ -248,16 +248,26 @@ function sidebarHome() {
           collapsed: true,
           items: [
             { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
-	    {
+            {
               text: "EVM",
-	      collapsed: true,
-	      items: [
+              collapsed: true,
+              items: [
                 { text: "Omni Octane EVM", link: "/tutorials/octane-evm" },
-	        { text: "BeaconKit EVM", link: "/tutorials/beaconkit" },
-		{ text: "Contract interaction", link: "/tutorials/evm-contract-interaction" },
+	              { text: "BeaconKit EVM", link: "/tutorials/beaconkit" },
+		            { text: "Contract interaction", link: "/tutorials/evm-contract-interaction" },
               ]
-	    },
-	  ],
+            },
+            {
+              text: "EVM++",
+              collapsed: true,
+              items: [
+                {
+                  text: "Artela EVM++",
+                  link: "/tutorials/artela-evm-plus-plus",
+                },
+              ],
+            },
+          ],
         },
       ],
     },
