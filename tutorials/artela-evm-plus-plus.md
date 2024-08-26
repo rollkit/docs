@@ -4,17 +4,15 @@
 import constants from '../.vitepress/constants/constants.js'
 </script>
 
-This guide will assist you in quickly setting up and operating an rollup node with [Artela EVM++](https://docs.artela.network/main/Artela-Blockchain/EVM++) execution layer using Rollkit and local-DA.
+This guide will assist you to quickly set up an rollup node with [Artela EVM++](https://docs.artela.network/main/Artela-Blockchain/EVM++) execution layer using Rollkit and local-DA.
 
 ![evmpp](/evmpp/evmpp.png)
 
-EVM++ is a modular dual-vm execution layer that support dynamic creation of native extension modules for blockchain at runtime. 
-
-EVM++ allowing developers to utilize WasmVM to build native extensions to coprocess with EVM for more customized functionalities. Beyond just dual-VM, these native extensions enable customization at the block level. It enables custom logic to be added throughout the transaction lifecycle with broader runtime context access.
+EVM++ is a modular dual-VM execution layer that supports the dynamic creation of native extension modules for blockchain at runtime. It enables developers to leverage WasmVM to build native extensions that co-process with EVM, offering enhanced customization capabilities. More than just a dual-VM setup, these native extensions facilitate blockchain-level customization. They allow for the integration of custom logic throughout the transaction lifecycle, providing access to an expanded runtime context.
 
 ## 📦 Clone the Artela Rollkit Repository
 
-Begin by cloning the Artela Rollkit repository:
+Start by cloning the Artela Rollkit repository:
 
 ```bash
 git clone https://github.com/artela-network/artela-rollkit.git
@@ -23,21 +21,21 @@ cd artela-rollkit
 
 ## 🛥️ Run with Docker Compose
 
-Ensure Docker is installed on your system before initiating the Artela rollup node. If not, download and follow the setup instructions [here](https://www.docker.com/products/docker-desktop/).
+Ensure Docker is installed on your system before setting up the Artela rollup node. If not already installed, download and follow the setup instructions available [here](https://www.docker.com/products/docker-desktop/).
 
-After installing Docker, execute the following command to start a local development node:
+After installing Docker, run the following command to start a local development node:
 
 ```bash
 docker compose up -d
 ```
 
-This command initiates the Artela rollup node with Rollkit and local-DA. Monitor the logs using this command:
+This command launches the Artela rollup node with Rollkit and local-DA. To monitor the logs, use this command:
 
 ```bash
 docker logs artroll -f
 ```
 
-If you observe the following output, the local development node is functioning properly:
+If you observe the following output, the local development node is running properly:
 
 ```bash
 ...
@@ -74,25 +72,22 @@ There are four testing accounts available in the local development node for inte
 
 ## 🧪 Build on EVM++
 
-Let's learn Artela EVM++ by quickly starting with the Hello World project! The code will show you everything!!
+Let’s dive into Artela EVM++ by kicking off with the Hello World project, the following code will guide you through the essentials:
 
-👉 [Quick Start](https://docs.artela.network/develop/get-started/art-dev-intro): deploy your first smart contract on Artela EVM.
+👉 [Quick Start for Smart Contract on EVM++](https://docs.artela.network/develop/get-started/hello-world-contract): deploy your first smart contract on Artela.
 
-👉 [Quick Start](https://docs.artela.network/develop/get-started/dev-aspect): try your first [Aspect](https://docs.artela.network/develop/core-concepts/aspect-programming) on Artela!
+👉 [Quick Start for Aspect on EVM++](https://docs.artela.network/develop/get-started/dev-aspect): try your first [Aspect](https://docs.artela.network/develop/core-concepts/aspect-programming) on Artela.
 
-Now, we believe that you
+By now, we assume that you:
 
-* have a basic sense of Artela technology,
-* have installed and tried Artela dev tools,
-* know how Aspect works, and know how Aspect makes dApp different and great!
-* You might even already have lots of exciting ideas about building on Artela!
+ - Have a basic understanding of Artela technology.
+ - Have installed and played with Artela development tools.
+ - Understand how Aspect functions and its impact on making dApps distinct and superior.
+ - May already have numerous innovative ideas for building on Artela.
 
-### 📖 Learn more if need
-Let’s delve into Aspect and your idea!
+### 📖 More to know
 
-Learn more detailed concepts of Aspect, and you will know what it can do for your idea and what it can’t.
-
-If you are very interested in the deep Aspects, you should not miss those concepts.
+If you want to gain a deeper understanding of Aspect’s capabilities and limitations to fully grasp how it can enhance or constrain your project, make sure not to overlook these essential concepts:
 
 * [Aspect Runtime](https://docs.artela.network/develop/core-concepts/aspect-runtime)
 * [Aspect Lifecycle](https://docs.artela.network/develop/core-concepts/lifecycle)
@@ -101,18 +96,17 @@ If you are very interested in the deep Aspects, you should not miss those concep
 * [Aspect Libs](https://docs.artela.network/develop/reference/aspect-lib/overview)
 
 ### 💥 Build with examples
-There are many examples of Aspect projects.
 
-Checkout, build, and modify! When you try to build a complex Aspect, this path will save you from many basic problems in using the basic API.
+Our community has built numbers of projects with Aspect, you can refer to these projects and modify them to learn how to use Aspect more effectively.
 
-Examples that show how to use the basic library
+Simple examples that use the basic functionalities of Aspect:
 
 * Example 1: [Against Reentrancy Attacks with Aspect](https://github.com/artela-network/aspect-example/blob/main/reentrance/README.md)
 * Example 2: [Aspect operation call case](https://github.com/artela-network/aspect-example/blob/main/operation/README.md)
 * Example 3: [Using Aspect to mirror a transaction via jit-call](https://github.com/artela-network/aspect-example/blob/main/storage_mirror/README.md)
 
 
-Real use cases that show how to apply to specific dApps
+Real-world use cases that show how to build more complex projects with Aspect:
 
 * [Session key Aspect](https://github.com/artela-network/session-key-aspect): use Aspect to extend EoA with session keys and improve
 * [JIT-gaming Aspect](https://github.com/cpppppp7/jit-gaming): use Aspect to add automatic on-chain NPC for a fully on-chain game.
@@ -130,4 +124,4 @@ This command halts all running containers and clears the environment.
 
 ## 🎉 Conclusion
 
-Congratulations! You've successfully set up and operated an Artela EVM++ rollup with Rollkit and local-DA, allowing you to test Artela's EVM++ capabilities integrated with Rollkit.
+Congratulations! You have successfully learnt some basic knowledge of EVM++ and have set up an Artela EVM++ rollup using Rollkit and local-DA. This setup enables you to test the integrated capabilities of Artela’s EVM++ with Rollkit.
