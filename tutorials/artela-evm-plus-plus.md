@@ -101,14 +101,14 @@ Our community has built numbers of projects with Aspect, you can refer to these 
 
 Simple examples that use the basic functionalities of Aspect:
 
-* Example 1: [Aspect Reentrancy Guard](https://github.com/artela-network/example/blob/main/curve_reentrance/README.md)
-* Example 2: [Black List Aspect](https://github.com/artela-network/blacklist-aspect/tree/finished)
-* Example 3: [Throttler Aspect](https://github.com/artela-network/throttler-aspect/tree/main)
+* Example 1: [Aspect Reentrancy Guard](https://github.com/artela-network/example/blob/rollkit/curve_reentrance/README.md)
+* Example 2: [Black List Aspect](https://github.com/artela-network/blacklist-aspect/tree/rollkit)
+* Example 3: [Throttler Aspect](https://github.com/artela-network/throttler-aspect/tree/rollkit)
 
 Real-world use cases that show how to build more complex projects with Aspect:
 
-* [Session key Aspect](https://github.com/artela-network/session-key-aspect): use Aspect to extend EoA with session keys and improve
-* [JIT-gaming Aspect](https://github.com/cpppppp7/jit-gaming): use Aspect to add automatic on-chain NPC for a fully on-chain game.
+* [Session key Aspect](https://github.com/artela-network/session-key-aspect/tree/rollkit): use Aspect to extend EoA with session keys and improve
+* [JIT-gaming Aspect](https://github.com/artela-network/jit-gaming/tree/rollkit): use Aspect to add automatic on-chain NPC for a fully on-chain game.
 
 
 ## 🛑 Stopping the Node
