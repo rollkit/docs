@@ -101,10 +101,9 @@ Our community has built numbers of projects with Aspect, you can refer to these 
 
 Simple examples that use the basic functionalities of Aspect:
 
-* Example 1: [Against Reentrancy Attacks with Aspect](https://github.com/artela-network/aspect-example/blob/main/reentrance/README.md)
-* Example 2: [Aspect operation call case](https://github.com/artela-network/aspect-example/blob/main/operation/README.md)
-* Example 3: [Using Aspect to mirror a transaction via jit-call](https://github.com/artela-network/aspect-example/blob/main/storage_mirror/README.md)
-
+* Example 1: [Aspect Reentrancy Guard](https://github.com/artela-network/example/blob/main/curve_reentrance/README.md)
+* Example 2: [Black List Aspect](https://github.com/artela-network/blacklist-aspect/tree/finished)
+* Example 3: [Throttler Aspect](https://github.com/artela-network/throttler-aspect/tree/main)
 
 Real-world use cases that show how to build more complex projects with Aspect:
 
