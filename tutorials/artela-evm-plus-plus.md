@@ -64,8 +64,8 @@ Retrieve the address and private key of testing accounts using:
 This will display the testing private key and its address:
 
 ```bash
-private key: 0x531183470334c5551c7645f8b74f22b544d1e0c813b9e5b6d79d5416f124fe32
-address: 0x682a8598aaaba7ab3e35024d9fbedfee164521be
+private key: { Plain Private Key in Hex Format }
+address: { Address Associated with the Private Key }
 ```
 
 There are four testing accounts available in the local development node for interacting with the EVM chain.
