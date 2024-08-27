@@ -25,8 +25,9 @@ After successfully starting a light node, it's time to start posting the batches
 
 ## 🏗️ Prerequisites {#prerequisites}
 
-From the [GM world rollup](/tutorials/gm-world) tutorial, you should already have the `rollkit` CLI and `ignite` CLI installed.
-
+* `rollkit` CLI installed from the [GM world rollup](/tutorials/gm-world) tutorial.
+* `ignite` CLI v28.4.0 installed `curl https://get.ignite.com/cli@v28.4.0! | bash`
+ 
 ## 🏗️ Building your sovereign rollup {#building-your-sovereign-rollup}
 
 Remove the existing `gm` project and create a new one using ignite:
@@ -126,7 +127,7 @@ The output of the command above will look similar to this:
  Your DA AUTH_TOKEN is eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiXX0.cSrJjpfUdTNFtzGho69V0D_8kyECn9Mzv8ghJSpKRDE
 ```
 
-Lastly, let's set up the namespace to be used for posting data on Celestia:
+Next, let's set up the namespace to be used for posting data on Celestia:
 
 ```bash
 DA_NAMESPACE=00000000000000000000000000000000000000000008e5f679bf7116cb
@@ -144,6 +145,11 @@ Replace the last 20 characters (10 bytes) in `0000000000000000000000000000000000
 [Learn more about namespaces](https://docs.celestia.org/developers/node-tutorial#namespaces).
 :::
 
+Lastly, set your DA address for your light node, which by default runs at
+port 26658:
+
+```bash
+DA_ADDRESS=http://localhost:26658
 ## 🔥 Running your rollup connected to Celestia light node
 
 Finally, let's initiate the rollup node with all the flags:
@@ -154,6 +160,7 @@ rollkit start \
     --rollkit.da_auth_token $AUTH_TOKEN \
     --rollkit.da_namespace $DA_NAMESPACE \
     --rollkit.da_start_height $DA_BLOCK_HEIGHT \
+    --rollkit.da_address $DA_ADDRESS \
     --minimum-gas-prices="0.025stake"
 ```
 
