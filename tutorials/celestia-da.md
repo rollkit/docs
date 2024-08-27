@@ -150,6 +150,8 @@ port 26658:
 
 ```bash
 DA_ADDRESS=http://localhost:26658
+```
+
 ## 🔥 Running your rollup connected to Celestia light node
 
 Finally, let's initiate the rollup node with all the flags:
