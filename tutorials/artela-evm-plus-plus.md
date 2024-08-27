@@ -4,7 +4,7 @@
 import constants from '../.vitepress/constants/constants.js'
 </script>
 
-This guide will assist you to quickly set up an rollup node with [Artela EVM++](https://docs.artela.network/main/Artela-Blockchain/EVM++) execution layer using Rollkit and local-DA.
+This guide will assist you to quickly set up a rollup node with [Artela EVM++](https://docs.artela.network/main/Artela-Blockchain/EVM++) execution layer using Rollkit and local-DA.
 
 ![evmpp](/evmpp/evmpp.png)
 
@@ -80,10 +80,10 @@ Let’s dive into Artela EVM++ by kicking off with the Hello World project, the 
 
 By now, we assume that you:
 
- - Have a basic understanding of Artela technology.
- - Have installed and played with Artela development tools.
- - Understand how Aspect functions and its impact on making dApps distinct and superior.
- - May already have numerous innovative ideas for building on Artela.
+- Have a basic understanding of Artela technology.
+- Have installed and played with Artela development tools.
+- Understand how Aspect functions and its impact on making dApps distinct and superior.
+- May already have numerous innovative ideas for building on Artela.
 
 ### 📖 More to know
 
