@@ -49,6 +49,12 @@ Add the Rollkit app:
 ignite rollkit add
 ```
 
+Build the rollup node binary to use it for the chain configuration and to initialize:
+
+```bash
+ignite chain build
+```
+
 Initialize the Rollkit chain configuration:
 
 ```bash
