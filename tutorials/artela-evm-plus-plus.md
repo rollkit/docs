@@ -89,11 +89,11 @@ By now, we assume that you:
 
 If you want to gain a deeper understanding of Aspect’s capabilities and limitations to fully grasp how it can enhance or constrain your project, make sure not to overlook these essential concepts:
 
-* [Aspect Runtime](https://docs.artela.network/develop/core-concepts/aspect-runtime)
-* [Aspect Lifecycle](https://docs.artela.network/develop/core-concepts/lifecycle)
-* [Join Point](https://docs.artela.network/develop/core-concepts/join-point)
-* [Aspect Tool](https://docs.artela.network/develop/reference/aspect-tool/overview)
-* [Aspect Libs](https://docs.artela.network/develop/reference/aspect-lib/overview)
+- [Aspect Runtime](https://docs.artela.network/develop/core-concepts/aspect-runtime)
+- [Aspect Lifecycle](https://docs.artela.network/develop/core-concepts/lifecycle)
+- [Join Point](https://docs.artela.network/develop/core-concepts/join-point)
+- [Aspect Tool](https://docs.artela.network/develop/reference/aspect-tool/overview)
+- [Aspect Libs](https://docs.artela.network/develop/reference/aspect-lib/overview)
 
 ### 💥 Build with examples
 
@@ -101,14 +101,14 @@ Our community has built numbers of projects with Aspect, you can refer to these 
 
 Simple examples that use the basic functionalities of Aspect:
 
-* Example 1: [Aspect Reentrancy Guard](https://github.com/artela-network/example/blob/rollkit/curve_reentrance/README.md)
-* Example 2: [Black List Aspect](https://github.com/artela-network/blacklist-aspect/tree/rollkit)
-* Example 3: [Throttler Aspect](https://github.com/artela-network/throttler-aspect/tree/rollkit)
+- Example 1: [Aspect Reentrancy Guard](https://github.com/artela-network/example/blob/rollkit/curve_reentrance/README.md)
+- Example 2: [Black List Aspect](https://github.com/artela-network/blacklist-aspect/tree/rollkit)
+- Example 3: [Throttler Aspect](https://github.com/artela-network/throttler-aspect/tree/rollkit)
 
 Real-world use cases that show how to build more complex projects with Aspect:
 
-* [Session key Aspect](https://github.com/artela-network/session-key-aspect/tree/rollkit): use Aspect to extend EoA with session keys and improve
-* [JIT-gaming Aspect](https://github.com/artela-network/jit-gaming/tree/rollkit): use Aspect to add automatic on-chain NPC for a fully on-chain game.
+- [Session key Aspect](https://github.com/artela-network/session-key-aspect/tree/rollkit): use Aspect to extend EoA with session keys and improve
+- [JIT-gaming Aspect](https://github.com/artela-network/jit-gaming/tree/rollkit): use Aspect to add automatic on-chain NPC for a fully on-chain game.
 
 
 ## 🛑 Stopping the Node
