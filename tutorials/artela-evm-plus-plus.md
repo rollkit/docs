@@ -46,7 +46,7 @@ If you observe the following output, the local development node is running prope
 ...
 ```
 
-## 🔑 Create testing accounts
+## 🔑 Get prefunded test accounts
 
 Access testing accounts by entering the `artroll` Docker container:
 
@@ -73,6 +73,8 @@ There are four testing accounts available in the local development node for inte
 ## 🧪 Build on EVM++
 
 Let’s dive into Artela EVM++ by kicking off with the Hello World project, the following code will guide you through the essentials:
+
+👉 [Contract interaction tutorial](/tutorials/evm-contract-interaction)
 
 👉 [Quick Start for Smart Contract on EVM++](https://docs.artela.network/develop/get-started/hello-world-contract): deploy your first smart contract on Artela.
 
