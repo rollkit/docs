@@ -74,11 +74,9 @@ There are four testing accounts available in the local development node for inte
 
 Let’s dive into Artela EVM++ by kicking off with the Hello World project, the following code will guide you through the essentials:
 
-👉 [Contract interaction tutorial](/tutorials/evm-contract-interaction)
+👉 [Contract interaction tutorial](/tutorials/evm-contract-interaction): Get hands-on experience with deploying and interacting with smart contracts on the Artela rollup node.
 
-👉 [Quick Start for Smart Contract on EVM++](https://docs.artela.network/develop/get-started/hello-world-contract): deploy your first smart contract on Artela.
-
-👉 [Quick Start for Aspect on EVM++](https://docs.artela.network/develop/get-started/dev-aspect): try your first [Aspect](https://docs.artela.network/develop/core-concepts/aspect-programming) on Artela.
+👉 [Quick Start for Aspect on EVM++](https://docs.artela.network/develop/get-started/dev-aspect): Try your first [Aspect](https://docs.artela.network/develop/core-concepts/aspect-programming) with Artela rollup node. Please note that when you are following this tutorial, you need to replace the Artela Testnet node URL with `http://localhost:8545` to connect to your local rollup node.
 
 By now, we assume that you:
 
