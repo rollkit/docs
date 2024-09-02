@@ -23,6 +23,10 @@ cd artela-rollkit
 
 Ensure Docker is installed on your system before setting up the Artela rollup node. If not already installed, download and follow the setup instructions available [here](https://www.docker.com/products/docker-desktop/).
 
+:::tip
+Make sure you meet these [prerequisites](https://docs.docker.com/engine/network/tutorials/host/#prerequisites) of enabling host network mode in Docker.
+:::
+
 After installing Docker, run the following command to start a local development node:
 
 ```bash
