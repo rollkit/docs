@@ -6,7 +6,7 @@ import constants from '../.vitepress/constants/constants.js'
 
 This guide will assist you to quickly set up a rollup node with [Artela EVM++](https://docs.artela.network/main/Artela-Blockchain/EVM++) execution layer using Rollkit and local-DA.
 
-![evmpp](/evmpp/evmpp.png)
+![artela-evm-rollkit](/artela-evm-rollkit/artela-evm-rollkit.png)
 
 EVM++ is a modular dual-VM execution layer that supports the dynamic creation of native extension modules for blockchain at runtime. It enables developers to leverage WasmVM to build native extensions that co-process with EVM, offering enhanced customization capabilities. More than just a dual-VM setup, these native extensions facilitate blockchain-level customization. They allow for the integration of custom logic throughout the transaction lifecycle, providing access to an expanded runtime context.
 
