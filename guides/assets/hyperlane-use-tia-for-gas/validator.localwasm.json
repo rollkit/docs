@@ -1,0 +1,21 @@
+{
+  "db": "/etc/data/db",
+  "checkpointSyncer": {
+    "type": "localStorage",
+    "path": "/etc/validator/localwasm/checkpoint"
+  },
+  "originChainName": "localwasm",
+  "validator": {
+    "type": "hexKey",
+    "key": "0xf0517040b5669e2d93ffac3a3616187b14a19ad7a0657657e0f655d5eced9e31"
+  },
+  "chains": {
+    "localwasm": {
+      "signer": {
+        "type": "cosmosKey",
+        "key": "0xf0517040b5669e2d93ffac3a3616187b14a19ad7a0657657e0f655d5eced9e31",
+        "prefix": "wasm"
+      }
+    }
+  }
+}

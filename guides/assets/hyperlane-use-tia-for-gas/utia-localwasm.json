@@ -1,0 +1,11 @@
+{
+  "type": "native",
+  "mode": "bridged",
+  "id": "TIA.stride-localwasm",
+  "owner": "<signer>",
+  "config": {
+    "bridged": {
+      "denom": "utia"
+    }
+  }
+}
