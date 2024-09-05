@@ -15,7 +15,7 @@ services:
     image: localwasm
     container_name: localwasm
     build:
-      context: ../../wasmd
+      context: ../wasmd
       dockerfile: Dockerfile
     entrypoint: ["sh", "-c"]
     command:
