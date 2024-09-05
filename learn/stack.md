@@ -88,6 +88,18 @@ The following RPC protocols are currently supported:
 - JSON-RPC over HTTP
 - JSON-RPC over WebSockets
 
+The RPC provides an additional query for DA included blocks using the `height` parameter:
+
+```sh
+curl http://127.0.0.1:26657/block?height=1
+
+curl http://127.0.0.1:26657/block?height=included
+```
+
+#### Parameters
+- height (integer or string): height of the requested block. If no height is specified the latest block will be used. If height is set to the string "included", the latest DA included block will be returned.
+
+
 ### P2P layer
 
 Rollkit's [P2P layer](https://github.com/rollkit/rollkit/tree/main/p2p) enables
