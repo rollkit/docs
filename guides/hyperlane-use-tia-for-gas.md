@@ -311,7 +311,7 @@ The output should look like:
 <!-- TODO: Add metadata -->
 
 ```bash
-wget -O example/warp/utia-localwasm.json https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/guides/assets/hyperlane-use-tia-for-gas/
+wget -O example/warp/utia-localwasm.json https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/guides/assets/hyperlane-use-tia-for-gas/utia-localwasm.json
 
 yarn cw-hpl warp create ./example/warp/utia-localwasm.json -n localwasm
 ```
@@ -375,7 +375,7 @@ wasmd q bank balances $(wasmd keys show my-key -a)
 
 ### Transfer from Localwasm back to Stride
 
-<!-- TODO: Update fee to be only the tokenfactory tie -->
+<!-- TODO: Update fee to be only the tokenfactory tia -->
 
 ```bash
 # Template
@@ -419,7 +419,7 @@ echo "join always addict position jungle jeans bus govern crack huge photo purse
 
 Fund the relayer with the [Celestia Mocha Testnet Faucet](https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet).
 
-Transfer from celestia through Stride, to the rollup
+Transfer from celestia through Stride, to the rollup:
 
 ```bash
 warp_contract_address=$(jq -r '.deployments.warp.native[0].address' context/stride-internal-1.json)
