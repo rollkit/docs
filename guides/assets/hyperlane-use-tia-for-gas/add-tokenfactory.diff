@@ -110,3 +110,4 @@ index 44934ea..8e8c829 100644
 +	paramsKeeper.Subspace(tokenfactorytypes.ModuleName)
  	return paramsKeeper
  }
+ 
