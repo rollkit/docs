@@ -267,29 +267,29 @@ function sidebarHome() {
       collapsed: true,
       items: [
         {
+          text: "Use the Rollkit CLI",
+          link: "/guides/use-rollkit-cli",
+        },
+        {
+          text: "Connect to a local DA",
+          link: "/guides/connect-local-da",
+        },
+        {
+          text: "Create genesis for your rollup",
+          link: "/guides/create-genesis",
+        },
+        {
+          text: "Restart your rollup",
+          link: "/guides/restart-rollup",
+        },
+        {
+          text: "Run as a full and sequencer node",
+          link: "/guides/full-and-sequencer-node",
+        },
+        {
           text: "Configuration",
           collapsed: true,
           items: [
-            {
-              text: "Use the Rollkit CLI",
-              link: "/guides/use-rollkit-cli",
-            },
-            {
-              text: "Connect to a local DA",
-              link: "/guides/connect-local-da",
-            },
-            {
-              text: "Create genesis for your rollup",
-              link: "/guides/create-genesis",
-            },
-            {
-              text: "Restart your rollup",
-              link: "/guides/restart-rollup",
-            },
-            {
-              text: "Run as a full and sequencer node",
-              link: "/guides/full-and-sequencer-node",
-            },
             {
               text: "Configure gas price",
               link: "/guides/gas-price",
@@ -313,22 +313,28 @@ function sidebarHome() {
           ],
         },
         {
-          text: "Test and deploy smart-contracts",
-          link: "/guides/cw-orch",
-        },
-        { text: "Add zkML to your rollup", link: "/guides/zkml" },
-        {
-          text: "Add an IBC connection to your rollup",
-          link: "/guides/ibc-connection",
-        },
-        {
-          text: "Integrate Range with your rollup",
-          link: "/guides/rollkit-monitoring",
-        },
-        {
-          text: "Use IBC token (TIA) as gas token in your rollup",
-          link: "/guides/use-tia-for-gas",
-        },
+          text: "Integrations",
+          collapsed: true,
+          items: [
+          {
+            text: "Test and deploy cosmwasm smart-contracts",
+            link: "/guides/cw-orch",
+          },
+          { text: "Add zkML to your EVM rollup", link: "/guides/zkml" },
+          {
+            text: "Add an IBC connection to your rollup",
+            link: "/guides/ibc-connection",
+          },
+          {
+            text: "Integrate Range with your rollup",
+            link: "/guides/rollkit-monitoring",
+          },
+          {
+            text: "Use IBC token (TIA) as gas token in your rollup",
+            link: "/guides/use-tia-for-gas",
+          },
+        ],
+      },
       ],
     },
     {
