@@ -281,10 +281,10 @@
   resolved "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz"
   integrity sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==
 
-"@keplr-wallet/types@0.12.82":
-  version "0.12.82"
-  resolved "https://registry.npmjs.org/@keplr-wallet/types/-/types-0.12.82.tgz"
-  integrity sha512-cNjkSvIHpWQEaM0cS9eQRJWTdwL55J9LQtRyCfOaB8bSEsFwBOvwcb2vpwMjLCJ3t0zkQ6VirOjvZWPutydpMQ==
+"@keplr-wallet/types@0.12.127":
+  version "0.12.127"
+  resolved "https://registry.yarnpkg.com/@keplr-wallet/types/-/types-0.12.127.tgz#d52170a1ce7e7f7f04041b1a2a856300e097d5a4"
+  integrity sha512-U9oKmhx38lOBKUSsB0appFfeRX6yl540Ar0OEwnmuiHXj3vp+ELgWmFM/2T8tMOMQJvfoxhF8rKVoWniJICobA==
   dependencies:
     long "^4.0.0"
 
