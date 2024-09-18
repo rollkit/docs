@@ -7,7 +7,7 @@
   "devDependencies": {
     "@keplr-wallet/types": "0.12.82",
     "i": "^0.3.7",
-    "mermaid": "^10.3.0",
+    "mermaid": "^10.9.1",
     "vitepress": "^1.0.0-rc.4",
     "vitepress-plugin-mermaid": "^2.0.13"
   },
