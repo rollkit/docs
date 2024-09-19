@@ -17,7 +17,7 @@ In this section, you'll find:
 * [How to restart your rollup](/guides/restart-rollup.md)
 * [zkML rollup](/guides/zkml.md)
 * [IBC connection](/guides/ibc-connection.md)
-* [Full and sequencer node rollup setup](/guides/full-and-sequencer-node.md)
+* [Full rollup node setup](/guides/full-node.md)
 * [How to configure gas price](/guides/gas-price.md)
 * [How to change speed of block production](/guides/block-times.md)
 * [How to use lazy sequencing (aggregation)](/guides/lazy-sequencing.md)
