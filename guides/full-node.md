@@ -1,16 +1,13 @@
-# Full and sequencer node rollup setup
+# Full node rollup setup
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import constants from '../.vitepress/constants/constants.js'
 </script>
 
-This guide will cover how to set up the GM World rollup example as
-a multi-node network using a full and sequencer node.
+This guide will cover how to set up a full node to run alongside a sequencer node. 
 
 ## Running a local DA network {#running-local-da}
-
-In this demo, we'll be using the local-da setup used in [GM World](../tutorials/gm-world)
 
 To set up a local DA network node:
 
@@ -22,22 +19,37 @@ This script builds and runs the node, now listening on port `7980`.
 
 ## Running a sequencer node
 
-By following the [GM World](../tutorials/gm-world) tutorial, you will have a sequencer node running.
-
-We wil now set up a full node to run alongside the sequencer node.
-
+We expect that you have your sequencer node running. We will now set up a full node to run alongside the sequencer node.
 
 ## Getting started
 
-Clone the script for the full node:
+In order to run a full node you have to specify a different config directory. and copy the genesis file from the sequencer node to the full node.
+Then you can use rollkit cli to start the full node.
+
+## Initialize chain config and copy the genesis file
+
+We will use rollkit cli to run commands (instead of the actual binary) so we need to update config dir in the rollkit.toml file like this:
 
 ```bash
-# From inside the `gm` directory
-cd $HOME/gm
-wget https://rollkit.dev/gm/init-full-node.sh
+[chain]
+  config_dir = "/root/.yourrollupd" // [!code --]
+  config_dir = "/root/.yourrollupd_fn" // [!code ++]
 ```
 
-### Update the p2p address
+Now we will initialize the chain config for the full node:
+
+```bash
+rollkit init FullNode --chain-id=your-rollup-chain-id
+```
+
+Now copy the genesis file from the sequencer node to the full node:
+
+```bash
+cp /root/.yourrollupd/config/genesis.json /root/.yourrollupd_fn/config/genesis.json
+```
+
+
+### Set up the p2p address for the sequencer node
 
 Once your sequencer node starts producing blocks, it will show the p2p address,
 beginning with 12D:
@@ -61,22 +73,20 @@ beginning with 12D:
 ...
 ```
 
-In your `init-full-node.sh` script, you will now set the `P2P_ID` variable
-for your script to use:
+Create an environment variable with the p2p address:
 
 ```bash
-P2P_ID="your-p2p-id" // [!code --]
-P2P_ID="12D3KooWJbD9TQoMSSSUyfhHMmgVY3LqCjxYFz8wQ92Qa6DAqtmh" // [!code ++]
+export P2P_ID="12D3KooWJbD9TQoMSSSUyfhHMmgVY3LqCjxYFz8wQ92Qa6DAqtmh" // [!code ++]
 ```
 
 ## Start the full node
 
-Now run your full node with the script:
+Now run your full node like this:
 
 ```bash
-# from the gm directory
-bash init-full-node.sh
+rollkit start --rollkit.aggregator=false --rollkit.da_address http://127.0.0.1:7980 --rpc.laddr tcp://127.0.0.1:46657 --grpc.address 127.0.0.1:9390 --p2p.seeds $P2P_ID@127.0.0.1:26656 --p2p.laddr "0.0.0.0:46656"
 ```
+Notice that we are using the `P2P_ID` environment variable to set the seed node and we expect that the sequencer node is listening for p2p connections on port `26656`. Also we specify the `--rollkit.aggregator=false` flag to indicate that this node is not an aggregator node. The rest of the flags are used just to specify the ports and addresses where the node will listen for connections, and it should be different from the sequencer node. 
 
 Your full node will now start and connect to the sequencer node. You should see the following output:
 ```bash
