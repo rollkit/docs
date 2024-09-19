@@ -74,6 +74,27 @@ address: { Address Associated with the Private Key }
 
 There are four testing accounts available in the local development node for interacting with the EVM chain.
 
+## ⚙️ Configuring the Node
+
+You can modify runtime parameters of the Artela development node by adjusting its configuration files. Follow the steps below to make these changes.
+
+To configure the development node, first access the Docker container by running the following command:
+
+```bash
+docker exec -it artroll /bin/bash
+```
+
+Inside the container, you will need to modify the following configuration files:
+
+- /root/.artroll/config/app.toml
+- /root/.artroll/config/config.toml
+
+After making the necessary changes, return to the Docker host and restart the container to apply the new configuration:
+
+```bash
+docker compose restart artroll
+```
+
 ## 🧪 Build on EVM++
 
 Let’s dive into Artela EVM++ by kicking off with the Hello World project, the following code will guide you through the essentials:
