@@ -283,7 +283,7 @@ function sidebarHome() {
           link: "/guides/restart-rollup",
         },
         {
-          text: "Run a full node",
+          text: "Run a rollup full node",
           link: "/guides/full-node",
         },
         {
