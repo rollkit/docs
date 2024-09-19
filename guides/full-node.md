@@ -18,7 +18,7 @@ Before starting, ensure you have:
 
 First, update the `config_dir` in the `rollkit.toml` file:
 
-```toml
+```bash
 [chain]
   config_dir = "/root/.yourrollupd" // [!code --]
   config_dir = "/root/.yourrollupd_fn" // [!code ++]
