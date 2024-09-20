@@ -24,7 +24,7 @@ First, update the `config_dir` in the `rollkit.toml` file:
   config_dir = "/root/.yourrollupd_fn" // [!code ++]
 ```
 
-Initialize the chain config for the full node:
+Initialize the chain config for the full node, lets call it `FullNode` and set the chain ID to your rollup chain ID:
 
 ```bash
 rollkit init FullNode --chain-id=your-rollup-chain-id
@@ -60,12 +60,14 @@ rollkit start --rollkit.aggregator=false \
   --rpc.laddr tcp://127.0.0.1:46657 \
   --grpc.address 127.0.0.1:9390 \
   --p2p.seeds $P2P_ID@127.0.0.1:26656 \
-  --p2p.laddr "0.0.0.0:46656"
+  --p2p.laddr "0.0.0.0:46656" \
+  --json-rpc.ws-address 127.0.0.1:8547 \
+  --api.address tcp://localhost:1318
 ```
 
 Key points about this command:
 - `--rollkit.aggregator=false` indicates this is not an aggregator node.
-- The ports and addresses are different from the sequencer node to avoid conflicts.
+- The ports and addresses are different from the sequencer node to avoid conflicts. Not everything may be necessary for your setup.
 - We use the `P2P_ID` environment variable to set the seed node.
 
 ## Verifying Full Node Operation
@@ -78,6 +80,11 @@ After starting your full node, you should see output similar to:
 ```
 
 This output indicates that your full node is successfully connecting to the network and processing blocks.
+
+:::tip
+If your rollup uses EVM as an execution layar and you see an error like `datadir already used by another process`, it means you have to remove all the state from rollup data directory (`/root/.yourrollup_fn/data/`) and specify a different data directory for the EVM client.
+:::
+
 
 ## Conclusion
 
