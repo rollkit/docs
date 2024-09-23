@@ -283,8 +283,8 @@ function sidebarHome() {
           link: "/guides/restart-rollup",
         },
         {
-          text: "Run as a full and sequencer node",
-          link: "/guides/full-and-sequencer-node",
+          text: "Run a rollup full node",
+          link: "/guides/full-node",
         },
         {
           text: "Configuration",
