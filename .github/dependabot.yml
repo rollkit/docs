@@ -12,11 +12,11 @@ updates:
       patch-updates:
         applies-to: version-updates
         update-types:
-          - "minor"
+          - "patch"
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
     open-pull-requests-limit: 10
     labels:
       - T:dependencies
@@ -25,4 +25,4 @@ updates:
       patch-updates:
         applies-to: version-updates
         update-types:
-          - "minor"
+          - "patch"
