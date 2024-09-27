@@ -1,4 +1,4 @@
-FROM golang:1.22.5-bullseye
+FROM golang:1.23-bullseye
 
 RUN set -eux; apt-get update && apt-get install git make;
 
