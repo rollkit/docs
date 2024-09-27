@@ -1,6 +1,6 @@
 FROM golang:1.22.5-bullseye
 
-RUN set -eux; apt-get update && apt-get install -y git make;
+RUN set -eux; apt-get update && echo Y | apt-get install -y git make;
 
 WORKDIR /code
 COPY . /code/
