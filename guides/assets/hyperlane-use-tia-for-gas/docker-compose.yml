@@ -20,16 +20,20 @@ services:
     entrypoint: ["sh", "-c"]
     command:
       - |
-        apt-get update && apt-get install -y curl perl jq netcat
-        until nc -z -v da 7980; do
-          echo "Waiting for the DA layer to start..."
-          sleep 2
-        done
-        curl -sSL https://rollkit.dev/cosmwasm/init.sh |
-          perl -pe 's;127.0.0.1;0.0.0.0;g' |
-          perl -pe 's;http://localhost:7980;http://da:7980;g' |
-          perl -pe 's;--rollkit.aggregator;--rollkit.aggregator --api.address tcp://0.0.0.0:1317;g' |
-          bash
+        if [ -f /opt/restart-wasm.sh ]; then
+          bash /opt/restart-wasm.sh
+        else
+          apt-get update && apt-get install -y curl perl jq netcat
+          until nc -z -v da 7980; do
+            echo "Waiting for the DA layer to start..."
+            sleep 2
+          done
+          curl -sSL https://rollkit.dev/cosmwasm/init.sh |
+            perl -pe 's;127.0.0.1;0.0.0.0;g' |
+            perl -pe 's;http://localhost:7980;http://da:7980;g' |
+            perl -pe 's;--rollkit.aggregator;--rollkit.aggregator --api.address tcp://0.0.0.0:1317;g' |
+            bash
+        fi
     ports:
       - 36657:36657
       - 1317:1317
