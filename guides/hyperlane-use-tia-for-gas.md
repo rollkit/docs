@@ -68,6 +68,7 @@ make install
 strided config chain-id stride-internal-1
 strided config node https://stride-testnet-rpc.polkachu.com:443
 strided config keyring-backend test
+cd ../wasmd
 ```
 
 Add the signer accounts to each keyring
@@ -353,56 +354,16 @@ yarn cw-hpl warp link \
   -n localwasm
 ```
 
-## Transfer Tokens
-
-### Transfer STRD from Stride to localwasm
-
-Initiate transfer
-
-```bash
-warp_contract_address=$(jq -r '.deployments.warp.native[0].address' context/stride-internal-1.json)
-recipient=$(yarn cw-hpl wallet convert-cosmos-to-eth -n localwasm $(wasmd keys show my-key -a) | perl -pe 's/0x0x//g')
-strided tx wasm execute $warp_contract_address \
-    '{"transfer_remote":{"dest_domain":963,"recipient":"'"$recipient"'","amount":"1"}}' \
-    --amount 1ustrd \
-    --from my-key -y \
-     --gas 2000000 --fees 1000ustrd
-```
-
-Observe logs in the validator and relayer to witness the transfer. Confirm the tokens landed in the wasm account with:
-
-```bash
-wasmd q bank balances $(wasmd keys show my-key -a)
-```
-
-### Transfer STRD from localwasm back to Stride
-
-```bash
-warp_contract_address=$(jq -r '.deployments.warp.native[0].address' context/localwasm.json)
-recipient=$(yarn cw-hpl wallet convert-cosmos-to-eth -n stride-internal-1 $(strided keys show my-key -a) | perl -pe 's/0x0x//g')
-wasmd tx wasm execute $warp_contract_address \
-    '{"transfer_remote":{"dest_domain":1651,"recipient":"'"$recipient"'","amount":"1"}}' \
-    --amount 1factory/${warp_contract_address}/ustrd,101uwasm \
-    --from my-key -y \
-     --gas 2000000 --fees 50000uwasm
-```
-
-Observe logs in the validator and relayer to witness the transfer. Confirm the tokens landed in the wasm account with:
-
-```bash
-strided q bank balances $(strided keys show my-key -a)
-```
-
-### Transfer from Celestia through Stride to the Rollup
+### Transfer TIA from Celestia through Stride to localwasm
 
 Build the celestia binary
 
 ```bash
-git clone https://github.com/celestiaorg/celestia-app.git
-cd celestia-appd
+git clone https://github.com/celestiaorg/celestia-app.git ../celestia-appd
+cd ../celestia-appd
 make install
-cd ..
-rm -rf celestia-appd
+
+cd - # return to previous directory
 ```
 
 Add your account
@@ -428,14 +389,13 @@ forward_msg='{"transfer_remote":{"dest_domain":963,"recipient":"'"$recipient"'",
 funds='[{"amount":1,"denom":"ibc/1A7653323C1A9E267FF7BEBF40B3EEA8065E8F069F47F2493ABC3E0B621BF793"}]'
 memo='{"wasm":{"contract":"'"$warp_contract_address"'","msg":'"$forward_msg"',"funds":'"$funds"'}}'
 
-celestia-appd tx ibc-transfer transfer transfer channel-78 $warp_contract_address 1utia \
-  --from my-key -y --fees 420utia --memo "$memo"
+celestia-appd tx ibc-transfer transfer transfer channel-78 $warp_contract_address 1utia --from my-key -y --fees 420utia --memo "$memo"
 ```
 
 :::tip
 Stride has IBC middleware installed that automatically forwards and routes transfers directly to the rollup, therefore we only need to sign one transaction on Celestia!
 
-See the `memo` field in the above command to see how we can encode a message for the Wasm contract and send it along with the funds.
+See the `memo` field in the above command to see how we can encode a message for the wasm contract and send it along with the funds.
 :::
 
 Confirm the tokens landed in the wasm account with:
@@ -458,7 +418,7 @@ docker exec "$localwasm_container_id" perl -i -pe "s;--minimum-gas-prices=0.025u
 Restart the wasmd container:
 
 ```bash
-docker compose -f example/docker-compose.yml restart localwasm
+docker compose -f example/docker-compose.yml restart "$localwasm_container_id"
 ```
 
 ### Send a transaction on the localwasm using TIA to pay for gas
