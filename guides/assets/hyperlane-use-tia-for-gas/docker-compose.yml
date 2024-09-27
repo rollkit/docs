@@ -7,8 +7,8 @@ services:
       - |
         apk add curl perl jq bash git make
         curl -sSL https://rollkit.dev/install-local-da.sh -o start.sh
-        sed -i '\''s|./build/local-da|./build/local-da -listen-all|'\'' start.sh
-        bash start.sh
+        sed -i 's|./build/local-da|./build/local-da -listen-all|' start.sh
+        sh start.sh
     ports:
       - 7980:7980
   localwasm:
