@@ -1,0 +1,28 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    labels:
+      - T:dependencies
+    # Group all patch updates into a single PR
+    groups:
+      patch-updates:
+        applies-to: version-updates
+        update-types:
+          - "patch"
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    labels:
+      - T:dependencies
+    # Group all patch updates into a single PR
+    groups:
+      patch-updates:
+        applies-to: version-updates
+        update-types:
+          - "patch"

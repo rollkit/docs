@@ -29,60 +29,108 @@ import constants from '../.vitepress/constants/constants.js'
 
 ## 🛠️ Dependencies {#dependencies}
 
-Rollkit uses the [Go programming language](https://go.dev/dl/). Here's how to install it:
+As we move into more advanced use cases, we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install). 
 
-- **Linux or macOS**: Run the provided script:
-
-  ```bash-vue
-  curl -sSL https://rollkit.dev/install-go.sh | bash -s {{constants.golangVersion}}
-  ```
-
-<!-- markdownlint-disable MD033 -->
-- **Windows**: Download and execute the <a :href="`https://go.dev/dl/go${constants.golangVersion}.windows-amd64.msi`">installer</a>.
-<!-- markdownlint-enable MD033 -->
-
-## 🌐 Running a Local DA Network {#running-local-da}
-
-Learn to run a local DA network, designed for educational purposes, on your machine.
-
-To set up a local DA network node:
-
-```bash-vue
-curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.localDALatestTag}} 
-```
-
-This script builds and runs the node, now listening on port `7980`.
-
-## 🏗️ Building Your Sovereign Rollup {#building-your-sovereign-rollup}
-
-With the local DA network running, let’s prepare your rollup blockchain.
-
-To make it simple we will download a repository with a `gm-world` rollup that has an `init.sh` script that does all the setup for you.
-
-Download and build a `gm-world` rollup with an interactive script in a new terminal:
-
-::: warning
-In order to run it you need to have the jq command line tool installed. You can install it by running `sudo apt-get install jq` on Ubuntu or `brew install jq` on macOS.
-:::
-::: tip
-If you get errors of `gmd` not found, you may need to add the `go/bin` directory to your PATH. You can do this by running `export PATH=$PATH:$HOME/go/bin` and then running the `init.sh` script manually again.
-:::
+Once installed, you can verify the installation by running:
 
 ```bash
-cd $HOME && bash -c "$(curl -sSL https://rollkit.dev/install-gm-rollup.sh)"
+kurtosis version
+```
+```bash
+CLI Version:   0.90.1
+
+To see the engine version (provided it is running): kurtosis engine status
 ```
 
 ## 🚀 Starting your rollup {#start-your-rollup}
 
-Start the rollup, posting to the local DA network:
+Now that we have kurtosis installed, we can launch our GM rollup along with the local DA by running the following command:
 
 ```bash
-gmd start --rollkit.aggregator --minimum-gas-prices="0.025stake" --rollkit.da_address http://localhost:7980
+kurtosis run github.com/rollkit/gm@v0.3.1
 ```
 
-Notice how we specified the DA network address along with a few other flags. Now you should see the logs of the running node:
+You should see an output like this:
 
 ```bash
+INFO[2024-07-02T11:15:43-04:00] Creating a new enclave for Starlark to run inside...
+INFO[2024-07-02T11:15:46-04:00] Enclave 'sparse-grotto' created successfully
+INFO[2024-07-02T11:15:46-04:00] Executing Starlark package at '/Users/matt/Code/rollkit/gm' as the passed argument '.' looks like a directory
+INFO[2024-07-02T11:15:46-04:00] Compressing package 'github.com/rollkit/gm' at '.' for upload
+INFO[2024-07-02T11:15:46-04:00] Uploading and executing package 'github.com/rollkit/gm'
+
+Container images used in this run:
+> ghcr.io/rollkit/gm:05bd40e - locally cached
+> ghcr.io/rollkit/local-da:v0.2.1 - locally cached
+
+Printing a message
+Adding Local DA service
+
+Adding service with name 'local-da' and image 'ghcr.io/rollkit/local-da:v0.2.1'
+Service 'local-da' added with service UUID '990942dc84ab4b3ab2c8d64002a5bafa'
+
+Printing a message
+Adding GM service
+
+Printing a message
+NOTE: This can take a few minutes to start up...
+
+Adding service with name 'gm' and image 'ghcr.io/rollkit/gm:05bd40e'
+Service 'gm' added with service UUID 'ed0233f8291d4a42bdd0e173393af809'
+
+Starlark code successfully run. No output was returned.
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+INFO[2024-07-02T11:15:50-04:00] ======================================================
+INFO[2024-07-02T11:15:50-04:00] ||          Created enclave: sparse-grotto          ||
+INFO[2024-07-02T11:15:50-04:00] ======================================================
+Name:            sparse-grotto
+UUID:            49dd471ac3bb
+Status:          RUNNING
+Creation Time:   Tue, 02 Jul 2024 11:15:43 EDT
+Flags:
+
+========================================= Files Artifacts =========================================
+UUID   Name
+
+========================================== User Services ==========================================
+UUID           Name       Ports                                          Status
+ed0233f8291d   gm         jsonrpc: 26657/tcp -> http://127.0.0.1:26657   RUNNING
+990942dc84ab   local-da   jsonrpc: 7980/tcp -> http://127.0.0.1:7980     RUNNING
+```
+
+Kurtosis has successfully launched the GM rollup and the local DA network. The GM rollup is running on port `26657` and the local DA network is running on port `7980`. You can see the services running in docker as well:
+
+```bash
+docker ps
+```
+```bash
+CONTAINER ID   IMAGE                             COMMAND                  CREATED          STATUS          PORTS                                                                              NAMES
+af16c1a5e68c   ghcr.io/rollkit/gm:05bd40e        "/bin/sh -c 'rollkit…"   46 seconds ago   Up 45 seconds   0.0.0.0:26657->26657/tcp                                                           gm--ed0233f8291d4a42bdd0e173393af809
+9db601efd92b   ghcr.io/rollkit/local-da:v0.2.1   "local-da -listen-all"   46 seconds ago   Up 46 seconds   0.0.0.0:7980->7980/tcp                                                             local-da--990942dc84ab4b3ab2c8d64002a5bafa
+7fec3d659452   kurtosistech/core:0.90.1          "/bin/sh -c ./api-co…"   50 seconds ago   Up 50 seconds   0.0.0.0:59855->7443/tcp                                                            kurtosis-api--49dd471ac3bb413d96932d4020c20b21
+198f7873bbec   fluent/fluent-bit:1.9.7           "/fluent-bit/bin/flu…"   51 seconds ago   Up 51 seconds   2020/tcp                                                                           kurtosis-logs-collector--49dd471ac3bb413d96932d4020c20b21
+f921884f4132   kurtosistech/engine:0.90.1        "/bin/sh -c ./kurtos…"   2 hours ago      Up 2 hours      0.0.0.0:8081->8081/tcp, 0.0.0.0:9710-9711->9710-9711/tcp, 0.0.0.0:9779->9779/tcp   kurtosis-engine--1657ab3f1c3942658a3993a0e3b54327
+c5363b77b543   traefik:2.10.6                    "/bin/sh -c 'mkdir -…"   2 hours ago      Up 2 hours      80/tcp, 0.0.0.0:9730-9731->9730-9731/tcp                                           kurtosis-reverse-proxy--1657ab3f1c3942658a3993a0e3b54327
+39eb05e1c693   timberio/vector:0.31.0-debian     "/bin/sh -c 'printf …"   2 hours ago      Up 2 hours                                                                                         kurtosis-logs-aggregator
+```
+
+We can see the GM rollup running in container `gm--ed0233f8291d4a42bdd0e173393af809` and the local DA network running in container `local-da--990942dc84ab4b3ab2c8d64002a5bafa`.
+
+Let's hold on to the container name for the GM rollup as we will need it later.
+
+```bash
+GM=$(docker ps --format '{{.Names}}' | grep gm)
+echo $GM
+```
+
+You can verify the rollup is running by checking the logs:
+
+```bash
+docker logs $GM
+```
+```bash
+...
 12:21PM INF starting node with ABCI CometBFT in-process module=server
 12:21PM INF starting node with Rollkit in-process module=server
 12:21PM INF service start impl=multiAppConn module=proxy msg="Starting multiAppConn service"
@@ -114,40 +162,42 @@ Good work so far, we have a Rollup node, DA network node, now we can start submi
 
 ## 💸 Transactions {#transactions}
 
+Since our rollup is running in a docker container, we want to enter the docker container to interact with it via the Rollkit CLI. We can do this by running:
+
+```bash
+docker exec -it $GM sh
+```
+
 First, list your keys:
 
 ```bash
-gmd keys list --keyring-backend test
+rollkit keys list --keyring-backend test
 ```
 
 You should see an output like the following
 
 ```bash
-- address: gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9
-  name: gm-key-2
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Al92dlOeLpuAiOUSIaJapkIveiwlhlEdz/O5CrniMdwH"}'
+- address: gm17rpwv7lnk96ka00v93rphhvcqqztpn896q0dxx
+  name: alice
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A5WPM5WzfNIPrGyha/TlHt0okdlzS1O4Gb1d1kU+xuG+"}'
   type: local
-- address: gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
-  name: gm-key
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AwdsLY+2US2VV+rbyfi60GB4/Ir/FeTIkLJ3CWVhUF6b"}'
-  type: local
-- address: gm1vvl79phavqruppr6f5zy4ypxy7znshrqam48qy
-  name: gm-relay
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AlnSEnBUv5GO86fMWe11qth1+R76g2e1lv8c1FWhLpqP"}'
+- address: gm1r2udsh4za7r7sxvzy496qfazvjp04j4zgytve3
+  name: bob
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A+jOX/CWInFer2IkqgXGo0da9j7Ubq+e1LJWzTMDjwdt"}'
   type: local
 ```
 
 For convenience we export two of our keys like this:
 
 ```bash
-export KEY1=gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9
-export KEY2=gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
+export KEY1=gm17rpwv7lnk96ka00v93rphhvcqqztpn896q0dxx
+export KEY2=gm1r2udsh4za7r7sxvzy496qfazvjp04j4zgytve3
 ```
 
-Now let's submit a transaction that sends coins from one account to another (don't worry about all the flags, for now, we just want to submit transaction from a high level perspective):
+Now let's submit a transaction that sends coins from one account to another (don't worry about all the flags, for now, we just want to submit transaction from a high-level perspective):
 
 ```bash
-gmd tx bank send $KEY1 $KEY2 42069stake --keyring-backend test --chain-id gm --fees 5000stake
+rollkit tx bank send $KEY2 $KEY1 42069stake --keyring-backend test --chain-id gm --fees 5000stake
 ```
 
 You'll be prompted to accept the transaction:
@@ -169,8 +219,8 @@ body:
     amount:
     - amount: "42069"
       denom: stake
-    from_address: gm18k57hn42ujcccyn0n5v7r6ydpacycn2wkt7uh9 
-    to_address: gm1e4fqspwdsy0dzkmzsdhkadfcrd0udngw0f88pw
+    from_address: gm1r2udsh4za7r7sxvzy496qfazvjp04j4zgytve3
+    to_address: gm17rpwv7lnk96ka00v93rphhvcqqztpn896q0dxx
   non_critical_extension_options: []
   timeout_height: "0"
 signatures: []
@@ -190,14 +240,14 @@ txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
 Query balances after the transaction:
 
 ```bash
-gmd query bank balances $KEY2 
+rollkit query bank balances $KEY1
 ```
 
 The receiver’s balance should show an increase.
 
 ```bash
 balances: // [!code focus]
-- amount: "10000000000000000000042069" // [!code focus]
+- amount: "42069" // [!code focus]
   denom: stake
 pagination:
   next_key: null
@@ -207,21 +257,40 @@ pagination:
 For the sender’s balance:
 
 ```bash
-gmd query bank balances $KEY1
+rollkit query bank balances $KEY2
 ```
 
 Output:
 
 ```bash
 balances: // [!code focus]
-- amount: "9999999999999999999957931" // [!code focus]
+- amount: "99957931" // [!code focus]
   denom: stake
 pagination:
   next_key: null
   total: "0"
 ```
 
+## 📦 GM world UI app
+
+Now that you have an idea of how to interact with the rollup with the rollkit CLI, let's look at the user interface (UI) application aspect of connecting a wallet to a rollup. 
+
+Connecting your wallet to your rollup is as straightforward as connecting to any other blockchain. It assumes you have the [Keplr](https://www.keplr.app/) wallet extension installed in your browser.
+
+## 🔗 Connecting your wallet
+
+Kurtosis spun up a UI app alongside your rollup already, so to connect your Keplr wallet to the application, simply open your browser and go to [http://localhost:3000](https://localhost:3000).
+
+Click the "Connect Wallet" button on the page, and approve the connection request in the Keplr prompt.
+
+Once authorized, your wallet address will be displayed, confirming that your wallet is successfully connected.
+
+![gm-world-frontend-connected](/img/gm-world-frontend-wallet-connected.png)
+
+:::tip
+If you run into any issues, make sure your Keplr wallet is updated and set to connect to your local environment.
+:::
+
 ## 🎉 Next steps
 
-Congratulations! You've built a local rollup that posts to a
-local DA network. So far so good, keep diving deeper if you like it. Good luck!
+Congratulations! You've experienced connecting to a rollup from the user side — simple and straightforward. Now, you might consider exploring how to add more application logic to your rollup using the Cosmos SDK, as demonstrated in our Wordle App tutorial.

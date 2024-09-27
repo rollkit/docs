@@ -11,7 +11,6 @@ You can get started with the following tutorials:
 ## 1. Beginner {#beginner}
 
 - [GM world](/tutorials/gm-world)
-- [GM world frontend](/tutorials/gm-world-frontend)
 - [Restart your rollup](/guides/restart-rollup)
 
 ## 2️. Intermediate {#intermediate}

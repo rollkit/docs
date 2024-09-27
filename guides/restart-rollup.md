@@ -16,7 +16,7 @@ For the GM world tutorial, you can restart the chain by
 Use the `DA_START_HEIGHT`, `NAMESPACE`, and `AUTH_TOKEN` variables from your original
 start command.
 
-Using the `gmd` rollup as an example, you can add something similar to your
+Using the `rollkit` rollup as an example, you can add something similar to your
 respective start script to make it easier to save variables for later use:
 
 ```bash
@@ -27,7 +27,7 @@ rm restart-local.sh
 echo "DA_BLOCK_HEIGHT=$DA_BLOCK_HEIGHT" >> restart-local.sh
 echo "NAMESPACE=$NAMESPACE" >> restart-local.sh
 echo "AUTH_TOKEN=$AUTH_TOKEN" >> restart-local.sh
-echo "gmd start --rollkit.aggregator --rollkit.da_auth_token=\$AUTH_TOKEN --rollkit.da_namespace \$NAMESPACE --rollkit.da_start_height \$DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr \"0.0.0.0:36656\"" >> restart-local.sh
+echo "rollkit start --rollkit.aggregator --rollkit.da_auth_token=\$AUTH_TOKEN --rollkit.da_namespace \$NAMESPACE --rollkit.da_start_height \$DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr \"0.0.0.0:36656\"" >> restart-local.sh
 ```
 
 
@@ -81,7 +81,7 @@ You can stop your gm chain (or other Rollkit rollup) by using `Control + C` in y
 To reiterate, before restarting the chain, you will need to increase the gas fee in order to avoid a `Code: 19` error:
 
 ```bash
-gmd start --rollkit.aggregator --rollkit.da_auth_token=$AUTH_TOKEN --rollkit.da_namespace $NAMESPACE --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr "0.0.0.0:36656"
+rollkit start --rollkit.aggregator --rollkit.da_auth_token=$AUTH_TOKEN --rollkit.da_namespace $NAMESPACE --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr "0.0.0.0:36656"
 ```
 
 ### 🔁 Restarting your rollup {#restarting-your-rollup}
@@ -93,7 +93,7 @@ Follow the [restart rollup](#restart-rollup) section above.
 In order to save your TIA, we also recommend stopping the chain with `Control + C`, changing the gas fee back to the default (in our case, 8000 utia) and restarting the chain:
 
 ```bash
-gmd start --rollkit.aggregator --rollkit.da_auth_token=$AUTH_TOKEN --rollkit.da_namespace $NAMESPACE --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr "0.0.0.0:36656"
+rollkit start --rollkit.aggregator --rollkit.da_auth_token=$AUTH_TOKEN --rollkit.da_namespace $NAMESPACE --rollkit.da_start_height $DA_BLOCK_HEIGHT --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr "0.0.0.0:36656"
 ```
 
 🎊 Congrats! You've successfully restarted your Rollkit rollup after running out of TIA.

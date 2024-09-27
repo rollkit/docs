@@ -5,13 +5,14 @@
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
-    "@keplr-wallet/types": "0.12.82",
+    "@keplr-wallet/types": "0.12.129",
     "i": "^0.3.7",
-    "mermaid": "^10.3.0",
-    "vitepress": "^1.0.0-rc.4",
-    "vitepress-plugin-mermaid": "^2.0.13"
+    "mermaid": "^11.2.1",
+    "vitepress": "^1.3.4",
+    "vitepress-plugin-mermaid": "^2.0.17"
   },
   "dependencies": {
     "node-fetch": "^3.3.2"
-  }
+  },
+  "type": "module"
 }

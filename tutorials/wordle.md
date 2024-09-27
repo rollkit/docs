@@ -25,15 +25,61 @@ import constants from '../.vitepress/constants/constants.js'
 
 ## 💻 Pre-requisites {#prerequisites}
 
-Given this tutorial is targeted for developers who are experienced
-in Cosmos-SDK, we recommend you go over the following tutorials
-in Ignite to understand all the different components in Cosmos-SDK before
-proceeding with this tutorial.
+This tutorial is targeted for developers who have some experience
+in the [Cosmos-SDK](https://docs.cosmos.network/). We will go through the steps to build the rollup, but for more information on how the Cosmos-SDK components work, [check out the Cosmos-SDK Docs](https://docs.cosmos.network/).
 
-* [GM world](/tutorials/gm-world)
+Additionally, we recommend that you have gone over the [GM world](/tutorials/gm-world) tutorial first to see an example of a running rollup.
 
-You do not have to do those guides in order to follow this Wordle tutorial,
-but doing so helps you understand the architecture of Cosmos-SDK better.
+## 🛠️ Dependencies {#dependencies}
+
+### 🟩 Kurtosis {#kurtosis}
+As with the [GM Rollup](https://rollkit.dev/tutorials/gm-world), we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install). 
+
+Once installed, you can verify the installation by running:
+
+```bash
+kurtosis version
+```
+```bash
+CLI Version:   0.90.1
+
+To see the engine version (provided it is running): kurtosis engine status
+```
+
+### 🔥 Ignite {#ignite}
+
+Ignite is an amazing CLI tool to help us get started building our own blockchains for cosmos-sdk apps. It provides lots of power toolings and scaffoldings for adding messages, types, and modules with a host of cosmos-sdk libraries provided.
+
+You can read more about Ignite [here](https://docs.ignite.com).
+
+To install Ignite, you can run this command in your terminal:
+
+```bash-vue
+curl https://get.ignite.com/cli@{{constants.igniteVersionTag}}! | bash
+```
+
+This installs Ignite CLI in your local machine. You can verify by running the `version` command and confirming it matches the version you installed.
+
+```bash
+ignite version
+```
+
+You should see the following:
+
+```bash
+Ignite CLI version:		v28.4.0
+Ignite CLI build date:		2024-05-15T13:42:13Z
+Ignite CLI source hash:		83ee9ba5f81f2d2104ed91808f2cb72719a23e41
+Ignite CLI config version:	v1
+Cosmos SDK version:		v0.50.6
+Your OS:			darwin
+Your arch:			amd64
+Your Node.js version:		v18.17.1
+Your go version:		go version go1.22.4 darwin/amd64
+Your uname -a:			Darwin Carl 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:09:52 PDT 2024; root:xnu-10063.121.3~5/RELEASE_X86_64 x86_64
+Your cwd:			/Users/matt/Code/test
+Is on Gitpod:			false
+```
 
 ## 📖 Design implementation {#design-implementation}
 
@@ -69,43 +115,8 @@ We will go over the architecture to achieve this further
 in the guide. But for now, we will get started setting up
 our development environment.
 
-## ⛓️ Ignite and scaffolding the wordle chain {#ignite-scaffold-wordle-chain}
+## ⛓️ Scaffolding the wordle chain {#scaffolding-wordle-chain}
 <!-- markdownlint-disable MD013 -->
-
-### 🔥 Ignite {#ignite}
-
-Ignite is an amazing CLI tool to help us get started building
-our own blockchains for cosmos-sdk apps. It provides lots of
-power toolings and scaffoldings for adding messages, types,
-and modules with a host of cosmos-sdk libraries provided.
-
-You can read more about Ignite [here](https://docs.ignite.com).
-
-To install Ignite, you can run this command in your terminal:
-
-```bash-vue
-curl https://get.ignite.com/cli@{{constants.igniteVersionTag}}! | bash
-sudo mv ignite /usr/local/bin/
-```
-
-This installs Ignite CLI in your local machine.
-This tutorial uses a macOS but it should work for Windows.
-For Windows users, check out the Ignite docs on installation
-for Windows machines.
-
-Now, refresh your terminal using `source` or open a new terminal
-session for the change to take place.
-
-If you run the following:
-
-```bash
-ignite --help
-```
-
-You should see an output of help commands meaning Ignite
-was installed successfully!
-
-### ⛓️ Scaffolding the wordle chain {#scaffolding-wordle-chain}
 
 Now, comes the fun part, creating a new blockchain! With Ignite,
 the process is pretty easy and straightforward.
@@ -120,8 +131,8 @@ you must write yourself. If you are coming from the EVM-world, think of
 Ignite as a Cosmos-SDK version of Foundry or Hardhat but specifically
 designed to build blockchains.
 
-We first run the following command to setup our project for
-our new blockchain, Wordle.
+we first run the following command to set up our project for
+our new blockchain, wordle.
 
 ```bash
 ignite scaffold chain wordle --no-module
@@ -165,18 +176,19 @@ Most of the tutorial work will happen inside the `x` directory.
 Before we continue with building our Wordle App, we need to set up
 Rollkit on our codebase.
 
-### 🗞️ Installing Rollkit {#installing-rollkit}
+### 🗞️ Installing Rollkit Ignite App {#installing-rollkit-ignite-app}
 
-Run the following command inside the `wordle` directory.
+To install the Rollkit app to Ignite, run the following command:
 
 ```bash-vue
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@{{constants.rollkitCosmosSDKVersion}}
-go mod tidy
-go mod download
+ignite app install github.com/ignite/apps/rollkit@rollkit/{{constants.rollkitIgniteAppVersion}}
 ```
 
-With that, we have Rollkit changes added to the project directory. Now,
-let's build the Wordle app!
+Next, add Rollkit to your project by running:
+
+```bash
+ignite rollkit add
+```
 
 ## ✨ Creating the wordle module {#creating-wordle-module}
 
@@ -210,7 +222,7 @@ module is defined as the following:
 We build the module with the `bank` dependency with the following command:
 
 ```bash
-ignite scaffold module wordle --dep bank
+ignite scaffold module wordle --dep bank -y
 ```
 
 This will scaffold the Wordle module to our Wordle Chain project.
@@ -240,7 +252,7 @@ With these initial designs, we can start creating our messages!
 To create the `SubmitWordle` message, we run the following command:
 
 ```bash
-ignite scaffold message submit-wordle word
+ignite scaffold message submit-wordle word -y
 ```
 
 This creates the `submit-wordle` message that takes in `word` as a parameter.
@@ -248,7 +260,7 @@ This creates the `submit-wordle` message that takes in `word` as a parameter.
 We now create the final message, `SubmitGuess`:
 
 ```bash
-ignite scaffold message submit-guess word
+ignite scaffold message submit-guess word -y
 ```
 
 Here, we are passing a word as a guess with `submit-guess`.
@@ -261,7 +273,7 @@ the messages we created.
 ### 🏗️ Scaffolding wordle types {#scaffolding-wordle-types}
 
 ```bash
-ignite scaffold map wordle word submitter --no-message
+ignite scaffold map wordle word submitter --no-message -y
 ```
 
 This type is a map called `Wordle` with two values of
@@ -272,7 +284,7 @@ The second type is the `Guess` type. It allows us to store
 the latest guess for each address that submitted a solution.
 
 ```bash
-ignite scaffold map guess word submitter count --no-message
+ignite scaffold map guess word submitter count --no-message -y
 ```
 
 Here, we are also storing `count` to count how many guesses
@@ -318,7 +330,6 @@ import (
   sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
   "time"
   "unicode"
-  "github.com/cometbft/cometbft/crypto"
 )
 
 func (k msgServer) SubmitWordle(goCtx context.Context, msg *types.MsgSubmitWordle) (*types.MsgSubmitWordleResponse, error) {
@@ -358,8 +369,7 @@ func (k msgServer) SubmitWordle(goCtx context.Context, msg *types.MsgSubmitWordl
   reward := sdk.Coins{sdk.NewInt64Coin("token", 100)}
   // Escrow Reward
   submitterAddress, _ := sdk.AccAddressFromBech32(msg.Creator)
-  moduleAcct := sdk.AccAddress(crypto.AddressHash([]byte(types.ModuleName)))
-  err := k.bankKeeper.SendCoins(ctx, submitterAddress, moduleAcct, reward)
+  err := k.bankKeeper.SendCoinsFromAccountToModule(ctx, submitterAddress, types.ModuleName, reward)
   if err != nil {
     return nil, err
   }
@@ -413,7 +423,6 @@ import (
   sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
   "strconv"
   "time"
-  "github.com/cometbft/cometbft/crypto"
 )
 
 func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess) (*types.MsgSubmitGuessResponse, error) {
@@ -483,9 +492,8 @@ func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess)
     reward := sdk.Coins{sdk.NewInt64Coin("token", 100)}
     // If Submitter Guesses Correctly
     guesserAddress, _ := sdk.AccAddressFromBech32(msg.Creator)
-    moduleAcct := sdk.AccAddress(crypto.AddressHash([]byte(types.ModuleName)))
     // Send Reward
-    err := k.bankKeeper.SendCoins(ctx, moduleAcct, guesserAddress, reward)
+    err := k.bankKeeper.SendCoinsFromModuleToAccount(ctx, types.ModuleName, guesserAddress, reward)
     if err !=nil {
       return nil, err
     }
@@ -535,7 +543,8 @@ interface in order to allow sending the reward to the right guesser.
 
 ```go title="x/wordle/types/expected_keepers.go"
 type BankKeeper interface {
-  SendCoins(ctx sdk.Context, fromAddr sdk.AccAddress, toAddr sdk.AccAddress, amt sdk.Coins) error
+  SendCoinsFromModuleToAccount(ctx context.Context, senderModule string, recipientAddr sdk.AccAddress, amt sdk.Coins) error
+  SendCoinsFromAccountToModule(ctx context.Context, senderAddr sdk.AccAddress, recipientModule string, amt sdk.Coins) error
 }
 ```
 
@@ -545,51 +554,304 @@ compile the blockchain and take it out for a test drive.
 ## ⛓️ Run the wordle chain
 <!-- markdownlint-disable MD013 -->
 
-### 🪶 Run a local DA node {#run-local-da-node}
+In order to run our wordle chain, we need to also run a DA node. Like in previous tutorials, we will use kurtosis to manage running all the nodes.
 
-To set up a local data availability network node run:
+### 🐳 Dockerfile {#dockerfile}
 
-```bash-vue
-curl -sSL https://rollkit.dev/install-local-da.sh | sh {{constants.localDALatestTag}} 
+First, we need to create a Dockerfile for our wordle chain. Create a new file called `Dockerfile` in the root of the `wordle` directory and add the following code:
+
+```dockerfile
+# Stage 1: Install ignite CLI and rollkit
+FROM golang as base
+
+# Install dependencies
+RUN apt update && \
+	apt-get install -y \
+	build-essential \
+	ca-certificates \
+	curl
+
+# Install rollkit
+RUN curl -sSL https://rollkit.dev/install.sh | sh -s v0.13.6
+
+# Install ignite
+RUN curl https://get.ignite.com/cli@v28.4.0! | bash
+
+# Set the working directory
+WORKDIR /app
+
+# cache dependencies.
+COPY ./go.mod . 
+COPY ./go.sum . 
+RUN go mod download
+
+# Copy all files from the current directory to the container
+COPY . .
+
+# Build the chain
+RUN ignite chain build && ignite rollkit init --local-da
+
+# Initialize the rollkit.toml file
+RUN rollkit toml init
+
+# Run rollkit command to initialize the entrypoint executable
+RUN rollkit
+
+# Stage 2: Set up the runtime environment
+FROM debian:bookworm-slim
+
+# Install jq
+RUN apt update && \
+	apt-get install -y \
+	jq
+
+# Set the working directory
+WORKDIR /root
+
+# Copy over the rollkit binary from the build stage
+COPY --from=base /go/bin/rollkit /usr/bin
+
+# Copy the entrypoint and rollkit.toml files from the build stage
+COPY --from=base /app/entrypoint ./entrypoint
+COPY --from=base /app/rollkit.toml ./rollkit.toml
+
+# Copy the $HOME/.wordle directory from the build stage.
+# This directory contains all your chain config.
+COPY --from=base /root/.wordle /root/.wordle
+
+# Ensure the entrypoint script is executable
+RUN chmod +x ./entrypoint
+
+# Keep the container running after it has been started
+CMD tail -f /dev/null
 ```
 
-This script builds and runs the node, now listening on port `7980`.
+This Dockerfile sets up the environment to build the chain and run the rollkit node. It then sets up the runtime environment to run the chain. This allows you as the developer to modify any files, and then simply rebuild the Docker image to run the new chain.
 
-After you have Go and Ignite CLI installed, and your local data availability node
-running on your machine, you're ready to build, test, and launch your own sovereign rollup.
+Build the docker image by running the following command:
 
-### 🟢 Building and running wordle chain {#build-and-run-wordle-chain}
+```bash
+docker build -t wordle .
+```
 
-We have a handy `init.sh` [found in this repo](https://github.com/rollkit/docs/blob/main/public/wordle/init.sh).
+You can then see the built image by running:
 
-We can copy it over to our directory with the following commands:
+```bash
+docker images
+```
+
+You should see the following output:
+
+```bash
+REPOSITORY  TAG     IMAGE ID       CREATED         SIZE
+wordle      latest  5d3533c1ea1c   8 seconds ago   443MB
+```
+
+### 🟢 Kurtosis {#kurtosis-init}
+
+To initialize a kurtosis package, run the following command:
+
+```bash
+kurtosis package init
+```
+
+This will create a `kurtosis.yml` file and a `main.star` file.  The `kurtosis.yml` file is where you define your package. Open it and update it to something like the following:
+
+```yaml
+name: github.com/rollkit/wordle
+description: |-
+  # github.com/rollkit/wordle
+  A simple wordle chain for the Rollkit tutorial.
+replace: {}
+```
+
+You should replace `github.com/rollkit/wordle` with your own repository name.
+
+The `main.star` file is where we define the kurtosis package. Open it up and replace the contents with the following code:
+
+```python
+# This Kurtosis package spins up a wordle rollup that connects to a DA node
+
+# Import the local da kurtosis package
+da_node = import_module("github.com/rollkit/local-da/main.star@v0.3.0")
+
+
+def run(plan):
+    # Start the DA node
+    da_address = da_node.run(
+        plan,
+    )
+    plan.print("connecting to da layer via {0}".format(da_address))
+
+    # Define the wordle start command
+    wordle_start_cmd = [
+        "rollkit",
+        "start",
+        "--rollkit.aggregator",
+        "--rollkit.da_address {0}".format(da_address),
+    ]
+    # Define the jsonrpc ports
+    wordle_ports = {
+        "jsonrpc": PortSpec(
+            number=26657, transport_protocol="TCP", application_protocol="http"
+        ),
+    }
+    # Start the wordle chain
+    wordle = plan.add_service(
+        name="wordle",
+        config=ServiceConfig(
+            # Use the wordle image we just built
+            image="wordle",
+            # Set the command to start the wordle chain in the docker container
+            cmd=["/bin/sh", "-c", " ".join(wordle_start_cmd)],
+            ports=wordle_ports,
+            public_ports=wordle_ports,
+        ),
+    )
+```
+
+We now have all we need to run the wordle chain and connect to a local DA node.
+
+### 🚀 Run Wordle Chain {#run-wordle-chain}
+
+Run your wordle chain by running the following command:
+
+```bash
+kurtosis run .
+```
+
+You'll see an output like the following:
+
+```bash
+INFO[2024-07-16T14:56:39-04:00] No Kurtosis engine was found; attempting to start one... 
+INFO[2024-07-16T14:56:39-04:00] Starting the centralized logs components...  
+INFO[2024-07-16T14:56:39-04:00] Centralized logs components started.         
+INFO[2024-07-16T14:56:40-04:00] Reverse proxy started.                       
+INFO[2024-07-16T14:56:43-04:00] Successfully started Kurtosis engine         
+INFO[2024-07-16T14:56:43-04:00] Creating a new enclave for Starlark to run inside... 
+INFO[2024-07-16T14:56:46-04:00] Enclave 'yearning-bog' created successfully  
+INFO[2024-07-16T14:56:46-04:00] Executing Starlark package at '/Users/matt/Code/test/wordle' as the passed argument '.' looks like a directory 
+INFO[2024-07-16T14:56:46-04:00] Compressing package 'github.com/example-org/example-package' at '.' for upload 
+INFO[2024-07-16T14:56:48-04:00] Uploading and executing package 'github.com/example-org/example-package' 
+
+Container images used in this run:
+> ghcr.io/rollkit/local-da:v0.2.1 - locally cached
+> wordle - locally cached
+
+Adding service with name 'local-da' and image 'ghcr.io/rollkit/local-da:v0.2.1'
+Service 'local-da' added with service UUID '775883b14f7f4db393addcebe3afe34d'
+
+Printing a message
+connecting to da layer via http://172.16.0.5:7980
+
+Adding service with name 'wordle' and image 'wordle'
+Service 'wordle' added with service UUID '5a969765174a47ada0727bd68e087f36'
+
+Starlark code successfully run. No output was returned.
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+INFO[2024-07-16T14:56:54-04:00] ===================================================== 
+INFO[2024-07-16T14:56:54-04:00] ||          Created enclave: yearning-bog          || 
+INFO[2024-07-16T14:56:54-04:00] ===================================================== 
+Name:            yearning-bog
+UUID:            dc4026b38a60
+Status:          RUNNING
+Creation Time:   Tue, 16 Jul 2024 14:56:43 EDT
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID   Name
+
+========================================== User Services ==========================================
+UUID           Name       Ports                                          Status
+775883b14f7f   local-da   jsonrpc: 7980/tcp -> http://127.0.0.1:7980     RUNNING
+5a969765174a   wordle     jsonrpc: 26657/tcp -> http://127.0.0.1:26657   RUNNING
+```
+
+You can see the docker containers running with the wordle chain and the local DA node by running the following command:
+
+```bash
+docker ps
+```
+
+You should see the following output:
+
+```bash
+CONTAINER ID   IMAGE                             COMMAND                  CREATED          STATUS          PORTS                                                                              NAMES
+cbf66a881cb2   wordle:latest                     "/bin/sh -c 'rollkit…"   5 seconds ago    Up 4 seconds    0.0.0.0:26657->26657/tcp                                                           wordle--5a969765174a47ada0727bd68e087f36
+09bdf1e94862   ghcr.io/rollkit/local-da:v0.2.1   "local-da -listen-all"   6 seconds ago    Up 5 seconds    0.0.0.0:7980->7980/tcp                                                             local-da--775883b14f7f4db393addcebe3afe34d
+2b50989f65cd   kurtosistech/core:0.90.1          "/bin/sh -c ./api-co…"   14 seconds ago   Up 13 seconds   0.0.0.0:57050->7443/tcp                                                            kurtosis-api--dc4026b38a604b82af88a0cd9bedb245
+74b6708de48e   fluent/fluent-bit:1.9.7           "/fluent-bit/bin/flu…"   14 seconds ago   Up 13 seconds   2020/tcp                                                                           kurtosis-logs-collector--dc4026b38a604b82af88a0cd9bedb245
+f1a64151bd29   kurtosistech/engine:0.90.1        "/bin/sh -c ./kurtos…"   18 seconds ago   Up 17 seconds   0.0.0.0:8081->8081/tcp, 0.0.0.0:9710-9711->9710-9711/tcp, 0.0.0.0:9779->9779/tcp   kurtosis-engine--089b9be758464668857fa46c2187bfe3
+ce2291909a3d   traefik:2.10.6                    "/bin/sh -c 'mkdir -…"   19 seconds ago   Up 18 seconds   80/tcp, 0.0.0.0:9730-9731->9730-9731/tcp                                           kurtosis-reverse-proxy--089b9be758464668857fa46c2187bfe3
+2e8da9bdf81f   timberio/vector:0.31.0-debian     "/bin/sh -c 'printf …"   19 seconds ago   Up 18 seconds                                                                                      kurtosis-logs-aggregator
+```
+
+We can see the wordle rollup running in container `wordle--5a969765174a47ada0727bd68e087f36` and the local DA network running in container `local-da--775883b14f7f4db393addcebe3afe34d`.
+
+Let's hold on to the container name for the world rollup as we will need it later.
+
+```bash
+WORDLE=$(docker ps --format '{{.Names}}' | grep wordle)
+echo $WORDLE
+```
+
+You can verify the rollup is running by checking the logs:
+
+```bash
+docker logs $WORDLE
+```
+
+You should see the following output:
+
+```bash
+...
+6:56PM INF executed block app_hash=313F7C52E30B3DEE3511D66B3E2C1B2A56DF4CDE54A90B02AC79678D822B644A height=5 module=BlockManager
+6:56PM INF indexed block events height=5 module=txindex
+6:56PM INF Creating and publishing block height=6 module=BlockManager
+6:56PM INF finalized block block_app_hash=826541369149F3F8DE5A53F5B4174C51975BCC665F0E73B1DB69D9206E4F5563 height=6 module=BlockManager num_txs_res=0 num_val_updates=0
+6:56PM INF executed block app_hash=826541369149F3F8DE5A53F5B4174C51975BCC665F0E73B1DB69D9206E4F5563 height=6 module=BlockManager
+6:56PM INF indexed block events height=6 module=txindex
+6:57PM INF Creating and publishing block height=7 module=BlockManager
+6:57PM INF finalized block block_app_hash=8C751BA9EDCFAD7F92E0E940995B0155BDC856070B876373299E7820C32F0B8B height=7 module=BlockManager num_txs_res=0 num_val_updates=0
+6:57PM INF executed block app_hash=8C751BA9EDCFAD7F92E0E940995B0155BDC856070B876373299E7820C32F0B8B height=7 module=BlockManager
+6:57PM INF indexed block events height=7 module=txindex
+6:57PM INF Creating and publishing block height=8 module=BlockManager
+6:57PM INF finalized block block_app_hash=C93D26AEE9B611952C8122DEB67DBAD95B3604F5C9C5DFBA95A3E7A4CF0AF641 height=8 module=BlockManager num_txs_res=0 num_val_updates=0
+...
+```
+
+Since our rollup is running in a docker container, we want to enter the docker container to interact with it via the Rollkit CLI. We can do this by running:
+
+```bash
+docker exec -it $WORDLE sh
+```
+
+
+You can see the two accounts that were created by running the following command:
+
+```bash
+rollkit keys list --keyring-backend test
+```
+
+You should see the following output:
+
+```bash
+- address: cosmos17sdyjz0zjsefd79k8nt9uvvfk732d0w7tzxfck
+  name: alice
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AkWmEZ0oYewolMY9AqJspcMDsoVPoG7t24r93rZaTuBZ"}'
+  type: local
+- address: cosmos13uevxd5zen4ywjuqr7cz4903uyktqm0swvfjly
+  name: bob
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AnqNse6cuVtx5AIUN9U3vxNq7rw9e2G0R4pCPRySqzAn"}'
+  type: local
+```
+
+Let's have Bob submit a Wordle for the day:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-# From inside the `wordle` directory
-wget https://rollkit.dev/wordle/init.sh
-```
-<!-- markdownlint-enable MD013 -->
-
-This copies over our `init.sh` script to initialize our
-Wordle Rollup.
-
-You can view the contents of the script to see how we
-initialize the Wordle Rollup.
-
-You can initialize the script with the following command:
-
-```bash
-bash init.sh
-```
-
-With that, we have kickstarted our `wordled` network!
-
-In another window, run the following to submit a Wordle:
-
-<!-- markdownlint-disable MD013 -->
-```bash
-wordled tx wordle submit-wordle giant --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+rollkit tx wordle submit-wordle giant --from bob --keyring-backend test --chain-id wordle -b async
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -604,43 +866,27 @@ wordled tx wordle submit-wordle giant --from wordle-key --keyring-backend test -
 
 This will ask you to confirm the transaction with the following message:
 
-```json
-{
-  "body":{
-    "messages":[
-       {
-          "@type":"/YazzyYaz.wordle.wordle.MsgSubmitWordle",
-          "creator":"cosmos17lk3fgutf00pd5s8zwz5fmefjsdv4wvzyg7d74",
-          "word":"giant"
-       }
-    ],
-    "memo":"",
-    "timeout_height":"0",
-    "extension_options":[
-    ],
-    "non_critical_extension_options":[
-    ]
-  },
-  "auth_info":{
-    "signer_infos":[
-    ],
-    "fee":{
-       "amount":[
-       ],
-       "gas_limit":"200000",
-       "payer":"",
-       "granter":""
-    }
-  },
-  "signatures":[
-  ]
-}
-```
-
-Cosmos-SDK will ask you to confirm the transaction here:
-
 ```bash
-confirm transaction before signing and broadcasting [y/N]:
+auth_info:
+  fee:
+    amount: []
+    gas_limit: "200000"
+    granter: ""
+    payer: ""
+  signer_infos: []
+  tip: null
+body:
+  extension_options: []
+  memo: ""
+  messages:
+  - '@type': /wordle.wordle.MsgSubmitWordle
+    creator: cosmos13uevxd5zen4ywjuqr7cz4903uyktqm0swvfjly
+    word: giant
+  non_critical_extension_options: []
+  timeout_height: "0"
+signatures: []
+
+confirm transaction before signing and broadcasting [y/N]: // [!code focus]
 ```
 
 Confirm with a Y.
@@ -663,83 +909,182 @@ tx: null
 txhash: F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E
 ```
 
+Let's hold onto the txhash as we will need it to query the transaction.
+
+```bash
+TX_HASH=F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E
+```
+
 Note, this does not mean the transaction was included in the block yet.
 Let's query the transaction hash to check whether it has been included in
 the block yet or if there are any errors.
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-wordled query tx --type=hash F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E --chain-id wordle --output json | jq -r '.raw_log'
+rollkit query tx --type=hash $TX_HASH --chain-id wordle --output json | jq
 ```
 <!-- markdownlint-enable MD013 -->
 
 This should display an output like the following:
 
 ```json
-[{"events":[{"type":"message","attributes":[{"key":"action","value":"submit_wordle"
-}]}]}]
+{"events":[{"type":"message","at{
+  "height": "843",
+  "txhash": "2B80B61FA136132F929CB288E17E640BEFAD01548A9178CAF9809BBC9154AA4E",
+  "codespace": "",
+  "code": 0,
+  "data": "12280A262F776F72646C652E776F72646C652E4D73675375626D6974576F72646C65526573706F6E7365",
+  "raw_log": "",  // [!code focus]
+  "logs": [],
+  "info": "",
+  "gas_wanted": "200000",
+  "gas_used": "84990",
+  "tx": {
+    "@type": "/cosmos.tx.v1beta1.Tx",
+    "body": {
+      "messages": [
+        {
+          "@type": "/wordle.wordle.MsgSubmitWordle",
+          "creator": "cosmos13uevxd5zen4ywjuqr7cz4903uyktqm0swvfjly",
+          "word": "giant"
+        }
+      ],
+      "memo": "",
+      "timeout_height": "0",
+      "extension_options": [],
+      "non_critical_extension_options": []
+    },
+    ...
+  },
+  "timestamp": "2024-07-16T14:24:45Z",
+  "events": [
+    ...
+  ]
+}
 ```
 
-Test out a few things for fun:
+That's a lot of information! The main thing we are looking at right now is the log to see if there were any errors. We can filter the output with `-r '.raw_logs'`. Let's run the command again.
+
+```bash
+rollkit query tx --type=hash $TX_HASH --chain-id wordle --output json | jq -r '.raw_log'
+```
+
+Now you shouldn't see any output from this because there was no error. Excellent!
+
+Let's test out a few things for fun. First let's try submitting an invalid guess.
+
+The following command as some shortcuts to auto confirm the transaction and store the txhash in a variable for you:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-wordled tx wordle submit-guess 12345 --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+TX_HASH=$(rollkit tx wordle submit-guess 12345 --from bob --keyring-backend test --chain-id wordle -b async -y | grep txhash | cut -d ' ' -f 2)
 ```
 <!-- markdownlint-enable MD013 -->
 
-After confirming the transaction, query the `txhash`
-given the same way you did above. You will see the response shows
-an Invalid Error because you submitted integers.
+Now let's query the transaction:
 
-Now try:
+```bash
+rollkit query tx --type=hash $TX_HASH --chain-id wordle --output json | jq -r '.raw_log'
+```
+
+You will see the following response because you submitted integers:
+
+```bash
+failed to execute message; message index: 0: Guess Must Only Consist of Alphabet Letters!: invalid request
+```
+
+Now let's try a guess that is too long:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-wordled tx wordle submit-guess ABCDEFG --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+TX_HASH=$(rollkit tx wordle submit-guess toolong --from bob --keyring-backend test --chain-id wordle -b async -y | grep txhash | cut -d ' ' -f 2)
+```
+
+And let's query the transaction:
+
+```bash
+rollkit query tx --type=hash $TX_HASH --chain-id wordle --output json | jq -r '.raw_log'
 ```
 <!-- markdownlint-enable MD013 -->
 
-After confirming the transaction, query the `txhash` given the same
-way you did above. You will see the response shows
-an Invalid Error because you submitted a word larger than 5 characters.
+You will see the following response:
+
+```bash
+failed to execute message; message index: 0: Guess Must Be A 5 Letter Word!: invalid request
+```
 
 Now try to submit another wordle even though one was already submitted
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-wordled tx wordle submit-wordle meter --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+TX_HASH=$(rollkit tx wordle submit-wordle meter --from bob --keyring-backend test --chain-id wordle -b async -y | grep txhash | cut -d ' ' -f 2)
 ```
 <!-- markdownlint-enable MD013 -->
 
-After submitting the transactions and confirming, query the `txhash`
-given the same way you did above. You will get an error that a wordle
-has already been submitted for the day.
+And let's query the transaction:
 
-Now let’s try to guess a five letter word:
+```bash
+rollkit query tx --type=hash $TX_HASH --chain-id wordle --output json | jq -r '.raw_log'
+```
+<!-- markdownlint-enable MD013 -->
+
+You will see the following response:
+
+```bash
+failed to execute message; message index: 0: Wordle of the Day is Already Submitted: invalid request
+```
+
+Alright, enough testing the error cases, let’s try to guess a five letter word:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-wordled tx wordle submit-guess least --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+TX_HASH=$(rollkit tx wordle submit-guess least --from bob --keyring-backend test --chain-id wordle -b async -y | grep txhash | cut -d ' ' -f 2)
 ```
 <!-- markdownlint-enable MD013 -->
 
-After submitting the transactions and confirming, query the `txhash`
-given the same way you did above. Given you didn’t guess the correct
-word, it will increment the guess count for wordle-key's account.
+Given you didn’t guess the correct word, it will increment the guess count for wordle-key's account.
 
 We can verify this by querying the list:
 
 ```bash
-wordled q wordle list-guess --output json
+rollkit q wordle list-guess --output json
 ```
 
 This outputs all Guess objects submitted so far, with the index
 being today’s date and the address of the submitter.
 
+```json
+{
+  "guess": [
+    {
+      "index": "7df4afc694ef096cb285544db57282bbdc28fcbdf75f7457d5dec4bf4367a9de",
+      "word": "6bab65a2bddec8af5dbc7f8b24ef22fc58acc385abcde4a6c4e34387d3b29261",
+      "submitter": "cosmos13uevxd5zen4ywjuqr7cz4903uyktqm0swvfjly",
+      "count": "1"
+    }
+  ],
+  "pagination": {
+    "total": "1"
+  }
+}
+```
+
 With that, we implemented a basic example of Wordle using
-Cosmos-SDK and Ignite and Rollkit. Read on to how you can
-extend the code base.
+Cosmos-SDK and Ignite and Rollkit. 
+
+You can exit out of your docker container with:
+
+```bash
+exit
+```
+
+Then you can shut down your rollup and kurtosis by running:
+
+```bash
+kurtosis clean -a
+```
+
+Read on to how you can extend the code base.
 
 ### 🔮 Extending in the future {#extending-in-the-future}
 
