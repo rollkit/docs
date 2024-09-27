@@ -62,8 +62,8 @@ wasmd config set client node tcp://127.0.0.1:36657
 wasmd config set client output json
 wasmd config set client keyring-backend test
 
-git clone --branch v24.0.0 --depth 1 https://github.com/Stride-Labs/stride
-cd stride
+git clone --branch v24.0.0 --depth 1 https://github.com/Stride-Labs/stride ../stride
+cd ../stride
 make install
 strided config chain-id stride-internal-1
 strided config node https://stride-testnet-rpc.polkachu.com:443
