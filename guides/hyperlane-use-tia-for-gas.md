@@ -27,7 +27,7 @@ cd wasmd
 #### Add token factory to app.go:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/guides/assets/hyperlane-use-tia-for-gas/add-tokenfactory.diff | git apply
+curl -sSL https://raw.githubusercontent.com/Stride-Labs/Rollkit-docs/hyperlane-v2/guides/assets/hyperlane-use-tia-for-gas/add-tokenfactory.diff | git apply
 ```
 
 #### Update packages to use rollkit and accommodate x/tokenfactory:
@@ -62,6 +62,9 @@ wasmd config set client node tcp://127.0.0.1:36657
 wasmd config set client output json
 wasmd config set client keyring-backend test
 
+git clone --branch v24.0.0 --depth 1 https://github.com/Stride-Labs/stride
+cd stride
+make install
 strided config chain-id stride-internal-1
 strided config node https://stride-testnet-rpc.polkachu.com:443
 strided config keyring-backend test
@@ -78,7 +81,7 @@ echo "join always addict position jungle jeans bus govern crack huge photo purse
 ```
 
 :::tip
-In this guide, we're using a predefined seep phrase for simplicity. Alternatively you can generate and use your own:
+In this guide, we're using a predefined seed phrase for simplicity. Alternatively you can generate and use your own:
 
 ```bash
 wasmd keys add my-key
@@ -105,7 +108,7 @@ wasmd keys export --unsafe --unarmored-hex my-key
 Create a Dockerfile in the `wasmd` repo that will be used to run the rollup.
 
 ```bash
-wget -O Dockerfile https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/guides/assets/hyperlane-use-tia-for-gas/wasmd.Dockerfile
+wget -O Dockerfile https://raw.githubusercontent.com/Stride-Labs/Rollkit-docs/hyperlane-v2/guides/assets/hyperlane-use-tia-for-gas/wasmd.Dockerfile
 ```
 
 Fork the cw-hyperlane repo
@@ -119,10 +122,10 @@ cd cw-hyperlane
 git checkout 4f5656d4704178ac54d10467ca7edc3df2312c4b
 ```
 
-Create the docker compose file that will be used for the data availability service, the localwasm chain, and the hyperlane validators and relayers.
+Create the docker compose file that will be used for the data availability service, the localwasm chain, and the Hyperlane validators and relayers.
 
 ```bash
-wget -O example/docker-compose.yml https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/guides/assets/hyperlane-use-tia-for-gas/docker-compose.yml
+wget -O example/docker-compose.yml https://raw.githubusercontent.com/Stride-Labs/Rollkit-docs/hyperlane-v2/guides/assets/hyperlane-use-tia-for-gas/docker-compose.yml
 ```
 
 To start the data availability service, run:
@@ -151,7 +154,7 @@ If you're using a new account, you can fund it from the faucet at [Stride testne
 
 #### Rollup Account
 
-We can fund the rollup account through one of the genesis account's in the docker container
+We can fund the rollup account through one of the genesis accounts in the docker container
 
 ```bash
 docker exec -it localwasm \
@@ -183,7 +186,7 @@ The transaction was successful if the `code` field is 0 (success).
 <!-- TODO: Update the fee to be denominated in the tokenfactory TIA -->
 
 ```bash
-wget -O config.yaml https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/guides/assets/hyperlane-use-tia-for-gas/hyperlane-config.yaml
+wget -O config.yaml https://raw.githubusercontent.com/Stride-Labs/Rollkit-docs/hyperlane-v2/guides/assets/hyperlane-use-tia-for-gas/hyperlane-config.yaml
 ```
 
 :::tip
@@ -199,12 +202,12 @@ However, you can pick any number as your domain ID.
 :::tip
 The fee for each transfer is calculated by:
 
-= `protocol_fee` + (`default_gas_usage` _ `gas_price` _ `exchange_rate` / `10000000000`)
+= `protocol_fee + (default_gas_usage * gas_price * exchange_rate / 10000000000)`
 
 So in our config, it will be: `1 + [(1000 * 10000 * 100000) / 10000000000] = 101uwasm`
 :::
 
-#### Inside the cw-hyperlane directory, install the hyperlane cw-cli:
+#### Inside the cw-hyperlane directory, install the Hyperlane cw-cli:
 
 ```bash
 yarn install
@@ -229,7 +232,7 @@ yarn cw-hpl deploy -n localwasm
 <!-- TODO: Change the config.yaml layout to support multiple networks -->
 
 ```bash
-wget -O config.yaml https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/guides/assets/hyperlane-use-tia-for-gas/hyperlane-config-2.yaml
+wget -O config.yaml https://raw.githubusercontent.com/Stride-Labs/Rollkit-docs/hyperlane-v2/guides/assets/hyperlane-use-tia-for-gas/hyperlane-config-2.yaml
 ```
 
 #### Deploy the contracts on the Stride testnet:
@@ -240,7 +243,7 @@ wget -O config.yaml https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/gui
 # Stride has permissioned CosmWasm, meaning only certain addresses can upload contracts.
 # The Hyperlane contracts have already been uploaded, so all that's left is to instantiate them.
 # This command will initialize the config for stride-testnet-1 with the code IDs of the Hyperlane contracts.
-wget -O context/stride-internal-1.json https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/guides/assets/hyperlane-use-tia-for-gas/stride-internal-1.json
+wget -O context/stride-internal-1.json https://raw.githubusercontent.com/Stride-Labs/Rollkit-docs/hyperlane-v2/guides/assets/hyperlane-use-tia-for-gas/stride-internal-1.json
 
 # This command will output two results.
 # - context + deployment    (default path: {cw-hyperlane-root}/context/stride-internal-1.json)
@@ -253,19 +256,19 @@ yarn cw-hpl deploy -n stride-internal-1
 #### Setup the relayer config:
 
 ```bash
-wget -O example/hyperlane/relayer.json https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/guides/assets/hyperlane-use-tia-for-gas/relayer.json
+wget -O example/hyperlane/relayer.json https://raw.githubusercontent.com/Stride-Labs/Rollkit-docs/hyperlane-v2/guides/assets/hyperlane-use-tia-for-gas/relayer.json
 ```
 
 #### Setup the validator config on the Stride side:
 
 ```bash
-wget -O example/hyperlane/validator.strideinternal1.json https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/guides/assets/hyperlane-use-tia-for-gas/validator.strideinternal1.json
+wget -O example/hyperlane/validator.strideinternal1.json https://raw.githubusercontent.com/Stride-Labs/Rollkit-docs/hyperlane-v2/guides/assets/hyperlane-use-tia-for-gas/validator.strideinternal1.json
 ```
 
 #### Setup the validator config on the localwasm rollup side:
 
 ```bash
-wget -O example/hyperlane/validator.localwasm.json https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/guides/assets/hyperlane-use-tia-for-gas/validator.localwasm.json
+wget -O example/hyperlane/validator.localwasm.json https://raw.githubusercontent.com/Stride-Labs/Rollkit-docs/hyperlane-v2/guides/assets/hyperlane-use-tia-for-gas/validator.localwasm.json
 ```
 
 #### Prepare the validators and relayer config:
@@ -294,7 +297,7 @@ docker compose -f example/docker-compose.yml up -d validator-localwasm validator
 #### Deploy a warp contract with TIA as collateral on Stride
 
 ```bash
-wget -O example/warp/utia-stride.json https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/guides/assets/hyperlane-use-tia-for-gas/utia-stride.json
+wget -O example/warp/utia-stride.json https://raw.githubusercontent.com/Stride-Labs/Rollkit-docs/hyperlane-v2/guides/assets/hyperlane-use-tia-for-gas/utia-stride.json
 
 yarn cw-hpl warp create ./example/warp/utia-stride.json -n stride-internal-1
 ```
@@ -311,7 +314,7 @@ The output should look like:
 <!-- TODO: Add metadata -->
 
 ```bash
-wget -O example/warp/utia-localwasm.json https://raw.githubusercontent.com/rollkit/docs/blob/HEAD/guides/assets/hyperlane-use-tia-for-gas/utia-localwasm.json
+wget -O example/warp/utia-localwasm.json https://raw.githubusercontent.com/Stride-Labs/Rollkit-docs/hyperlane-v2/guides/assets/hyperlane-use-tia-for-gas/utia-localwasm.json
 
 yarn cw-hpl warp create ./example/warp/utia-localwasm.json -n localwasm
 ```
@@ -350,19 +353,18 @@ yarn cw-hpl warp link \
   -n localwasm
 ```
 
-## Transfer TIA
+## Transfer Tokens
 
-### Test transferring from Stride to Localwasm
+### Transfer STRD from Stride to localwasm
 
 Initiate transfer
 
 ```bash
-# Template
 warp_contract_address=$(jq -r '.deployments.warp.native[0].address' context/stride-internal-1.json)
 recipient=$(yarn cw-hpl wallet convert-cosmos-to-eth -n localwasm $(wasmd keys show my-key -a) | perl -pe 's/0x0x//g')
 strided tx wasm execute $warp_contract_address \
-    '{"transfer_remote":{"dest_domain":963,"recipient":"'"$recipient"'","amount":"10000"}}' \
-    --amount 10101ibc/1A7653323C1A9E267FF7BEBF40B3EEA8065E8F069F47F2493ABC3E0B621BF793 \
+    '{"transfer_remote":{"dest_domain":963,"recipient":"'"$recipient"'","amount":"1"}}' \
+    --amount 1ustrd \
     --from my-key -y \
      --gas 2000000 --fees 1000ustrd
 ```
@@ -373,17 +375,14 @@ Observe logs in the validator and relayer to witness the transfer. Confirm the t
 wasmd q bank balances $(wasmd keys show my-key -a)
 ```
 
-### Transfer from Localwasm back to Stride
-
-<!-- TODO: Update fee to be only the tokenfactory tia -->
+### Transfer STRD from localwasm back to Stride
 
 ```bash
-# Template
 warp_contract_address=$(jq -r '.deployments.warp.native[0].address' context/localwasm.json)
 recipient=$(yarn cw-hpl wallet convert-cosmos-to-eth -n stride-internal-1 $(strided keys show my-key -a) | perl -pe 's/0x0x//g')
 wasmd tx wasm execute $warp_contract_address \
-    '{"transfer_remote":{"dest_domain":1651,"recipient":"'"$recipient"'","amount":"10000"}}' \
-    --amount 10000factory/${warp_contract_address}/utia,101uwasm \
+    '{"transfer_remote":{"dest_domain":1651,"recipient":"'"$recipient"'","amount":"1"}}' \
+    --amount 1factory/${warp_contract_address}/ustrd,101uwasm \
     --from my-key -y \
      --gas 2000000 --fees 50000uwasm
 ```
@@ -414,30 +413,63 @@ celestia-appd config node https://celestia-testnet-rpc.polkachu.com:443
 celestia-appd config keyring-backend test
 
 echo "join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy" | \
-  celestia-appd keys add my-key --recover
+  celestia-appd keys add my-key --recover # celestia133xh839fjn9wxzg6vhc0370lcem8939zc3uexj
 ```
 
-Fund the relayer with the [Celestia Mocha Testnet Faucet](https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet).
+Fund you account with the [Celestia Mocha Testnet Faucet](https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet).
 
-Transfer from celestia through Stride, to the rollup:
+Transfer TIA from Celestia through Stride to the localwasm rollup:
 
 ```bash
 warp_contract_address=$(jq -r '.deployments.warp.native[0].address' context/stride-internal-1.json)
 recipient=$(yarn cw-hpl wallet convert-cosmos-to-eth -n localwasm $(wasmd keys show my-key -a) | perl -pe 's/0x0x//g')
 
 forward_msg='{"transfer_remote":{"dest_domain":963,"recipient":"'"$recipient"'","amount":"10000"}}'
-funds='[{"amount":10101,"denom":"ibc/1A7653323C1A9E267FF7BEBF40B3EEA8065E8F069F47F2493ABC3E0B621BF793"}]'
+funds='[{"amount":1,"denom":"ibc/1A7653323C1A9E267FF7BEBF40B3EEA8065E8F069F47F2493ABC3E0B621BF793"}]'
 memo='{"wasm":{"contract":"'"$warp_contract_address"'","msg":'"$forward_msg"',"funds":'"$funds"'}}'
 
-celestia-appd tx ibc-transfer transfer transfer channel-78 $warp_contract_address 10101utia \
+celestia-appd tx ibc-transfer transfer transfer channel-78 $warp_contract_address 1utia \
   --from my-key -y --fees 420utia --memo "$memo"
 ```
 
 :::tip
 Stride has IBC middleware installed that automatically forwards and routes transfers directly to the rollup, therefore we only need to sign one transaction on Celestia!
+
+See the `memo` field in the above command to see how we can encode a message for the Wasm contract and send it along with the funds.
 :::
 
-<!-- TODO: Add transfer from celestia through ibc hook -->
+Confirm the tokens landed in the wasm account with:
+
+```bash
+wasmd q bank balances $(wasmd keys show my-key -a)
+```
+
+### Update localwasm to use Hyperlane bridged TIA as a gas token
+
+Update the `restart-wasmd.sh` script to include the new minimum gas prices:
+
+```bash
+warp_contract_address="$(jq -r '.deployments.warp.native[0].address' context/localwasm.json)"
+localwasm_container_id="$(docker compose -f example/docker-compose.yml ps | awk '$1~/^localwasm$/{print $1}')"
+
+docker exec "$localwasm_container_id" perl -i -pe "s;--minimum-gas-prices=0.025uwasm;--minimum-gas-prices=0.025uwasm,0.025factory/$warp_contract_address/utia;" restart-wasmd.sh
+```
+
+Restart the wasmd container:
+
+```bash
+docker compose -f example/docker-compose.yml restart localwasm
+```
+
+### Send a transaction on the localwasm using TIA to pay for gas
+
+```bash
+wasmd tx bank send my-key wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45 1uwasm -y --gas auto --gas-adjustment 1.5 --gas-prices "0.025factory/$warp_contract_address/utia"
+```
+
+## 🎉
+
+Congratulations! You've built a local rollup that uses Hyperlane bridged TIA as the gas token!
 
 ## Resources
 

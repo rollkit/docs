@@ -289,6 +289,6 @@ TX_HASH=$(gmd tx bank send "$ACCOUNT_ON_ROLLUP" "$ACCOUNT_ON_ROLLUP" 1stake --ke
 gmd q tx "$TX_HASH" --output json | jq .code # => 0
 ```
 
-## 🎉 Next steps
+## 🎉
 
 Congratulations! You've built a local rollup that posts to a local DA network and uses TIA as the gas token!
