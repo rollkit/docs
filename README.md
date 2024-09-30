@@ -1,3 +1,5 @@
+[![Deploy](https://github.com/rollkit/docs/actions/workflows/deploy.yml/badge.svg)](https://github.com/rollkit/docs/actions/workflows/deploy.yml)
+
 # Rollkit Documentation Site
 
 Welcome to the official documentation repository for Rollkit.
