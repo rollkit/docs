@@ -14,18 +14,24 @@ your life easier when developing with Rollkit.
 
 In this section, you'll find:
 
-* [How to restart your rollup](/guides/restart-rollup.md)
-* [Full rollup node setup](/guides/full-node.md)
+* [Use the Rollkit CLI](/guides/use-rollkit-cli)
+* [Connect to a local DA](/guides/connect-local-da)
+* [Create genesis for your rollup](/guides/create-genesis)
+* [Restart your rollup](/guides/restart-rollup)
+* [Run a rollup full node](/guides/full-node)
 * Configuration
-  * [How to configure gas price](/guides/gas-price.md)
-  * [How to change speed of block production](/guides/block-times.md)
-  * [How to use lazy sequencing (aggregation)](/guides/lazy-sequencing.md)
+  * [Configure gas price](/guides/gas-price)
+  * [Configure max pending blocks](/guides/max-pending-blocks)
+  * [Configure DA chain block sync time](/guides/da-block-time)
+  * [Change speed of block production](/guides/block-times)
+  * [Use lazy sequencing (aggregation)](/guides/lazy-sequencing)
 * Integrations
-  * [zkML rollup](/guides/zkml.md)
-  * [IBC connection](/guides/ibc-connection.md)
-  * [Testing and deploying smart-contract with cw-orch](/guides/cw-orch.md)
-  * [How to integrate Range with your rollup](/guides/rollkit-monitoring.md)
-  * [How to use IBC token (TIA) as gas token in your rollup](/guides/use-tia-for-gas.md)
+  * [Test and deploy cosmwasm smart-contracts](/guides/cw-orch)
+  * [Add zkML to your EVM rollup](/guides/zkml)
+  * [Add an IBC connection to your rollup](/guides/ibc-connection)
+  * [Integrate Range with your rollup](/guides/rollkit-monitoring)
+  * [Use IBC token (TIA) as gas token in your rollup](/guides/use-tia-for-gas)
+
 
 
 ## 💻 Support {#support}
