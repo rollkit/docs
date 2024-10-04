@@ -14,19 +14,18 @@ your life easier when developing with Rollkit.
 
 In this section, you'll find:
 
-* How To Guides
-  * [How to restart your rollup](/guides/restart-rollup.md)
-  * [Full rollup node setup](/guides/full-node.md)
-  * Configuration
-    * [How to configure gas price](/guides/gas-price.md)
-    * [How to change speed of block production](/guides/block-times.md)
-    * [How to use lazy sequencing (aggregation)](/guides/lazy-sequencing.md)
-  * Integrations
-    * [zkML rollup](/guides/zkml.md)
-    * [IBC connection](/guides/ibc-connection.md)
-    * [Testing and deploying smart-contract with cw-orch](/guides/cw-orch.md)
-    * [How to integrate Range with your rollup](/guides/rollkit-monitoring.md)
-    * [How to use IBC token (TIA) as gas token in your rollup](/guides/use-tia-for-gas.md)
+* [How to restart your rollup](/guides/restart-rollup.md)
+* [Full rollup node setup](/guides/full-node.md)
+* Configuration
+  * [How to configure gas price](/guides/gas-price.md)
+  * [How to change speed of block production](/guides/block-times.md)
+  * [How to use lazy sequencing (aggregation)](/guides/lazy-sequencing.md)
+* Integrations
+  * [zkML rollup](/guides/zkml.md)
+  * [IBC connection](/guides/ibc-connection.md)
+  * [Testing and deploying smart-contract with cw-orch](/guides/cw-orch.md)
+  * [How to integrate Range with your rollup](/guides/rollkit-monitoring.md)
+  * [How to use IBC token (TIA) as gas token in your rollup](/guides/use-tia-for-gas.md)
 
 
 ## 💻 Support {#support}
