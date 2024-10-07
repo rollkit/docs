@@ -10,7 +10,7 @@ const { BASE: base = "/" } = process.env;
 export default withMermaid({
   lang: "en-US",
   title: "Rollkit",
-  description: "The first sovereign rollup framework.",
+  description: "The unstoppable stack",
   lastUpdated: true,
   cleanUrls: true,
   ignoreDeadLinks: true,
@@ -67,7 +67,7 @@ export default withMermaid({
       "meta",
       {
         property: "description",
-        content: "The first sovereign rollup framework.",
+        content: "The unstoppable stack.",
       },
     ],
     ["meta", { httpEquiv: "Content-Language", content: "en" }],
@@ -352,8 +352,8 @@ function sidebarHome() {
           link: "/blog/sovereign-rollups-on-bitcoin",
         },
         {
-          text: "Rollkit: The First Sovereign Rollup Framework",
-          link: "/blog/rollkit-the-first-sovereign-rollup-framework",
+          text: "Rollkit: The Unstoppable Stack",
+          link: "/blog/rollkit-the-unstoppable-stack",
         },
       ],
     },
