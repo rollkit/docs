@@ -287,6 +287,10 @@ function sidebarHome() {
           link: "/guides/full-node",
         },
         {
+          text: "Turn your CometBFT app into a Rollkit app",
+          link: "/guides/cometbft-to-rollkit",
+        },
+        {
           text: "Configuration",
           collapsed: true,
           items: [
