@@ -9,11 +9,11 @@ import constants from '../.vitepress/constants/constants.js'
 
 This tutorial serves as a comprehensive guide for deploying your rollup on Celestia's data availability (DA) network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
 
-Before proceeding, ensure that you have completed the [GM world rollup](/tutorials/gm-world) tutorial, which covers setting up a local sovereign `gm-world` rollup and connecting it to a local DA node.
+Before proceeding, ensure that you have completed the [quick start](/tutorials/quick-start) tutorial, which covers installing the rollkit CLI and running a rollup against a local DA network.
 
 ## 🪶 Running a Celestia light node
 
-Before you can start your rollup node, you need to initiate, sync, and possibly fund a light node on one of Celestia's networks:
+Before you can start your rollup node, you need to initiate, sync, and fund a light node on one of Celestia's networks:
 
 - [Arabica Devnet](https://docs.celestia.org/nodes/arabica-devnet)
 - [Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet)
@@ -25,99 +25,39 @@ After successfully starting a light node, it's time to start posting the batches
 
 ## 🏗️ Prerequisites {#prerequisites}
 
-* `rollkit` CLI installed from the [GM world rollup](/tutorials/gm-world) tutorial.
-* `ignite` CLI v28.4.0 installed `curl https://get.ignite.com/cli@v28.4.0! | bash`
+* `rollkit` CLI installed from the [quick start](/tutorials/quick-start) tutorial.
  
-## 🏗️ Building your sovereign rollup {#building-your-sovereign-rollup}
-
-Remove the existing `gm` project and create a new one using ignite:
-
-```bash
-cd $HOME && rm -rf gm
-ignite scaffold chain gm --address-prefix gm --no-module
-```
-
-Install the Rollkit app to ignite:
-
-```bash-vue
-cd $HOME/gm
-ignite app install github.com/ignite/apps/rollkit@rollkit/{{constants.rollkitIgniteAppVersion}}
-```
-
-Add the Rollkit app:
-
-```bash
-ignite rollkit add
-```
-
-Build the rollup node binary to use it for the chain configuration and to initialize:
-
-```bash
-ignite chain build
-```
-
-Initialize the Rollkit chain configuration:
-
-```bash
-ignite rollkit init
-```
-
-This will create a `$HOME/.gm` directory with the chain configuration files.
-
-## 🧰 Configuring your sovereign rollup {#configuring-your-sovereign-rollup}
-
-From the `$HOME/gm` directory, generate a `rollkit.toml` file by running:
-
-```bash
-rollkit toml init
-```
-
-The output should be similar to this (`$HOME` in the below example is `/root`):
-
-```
-Found rollup entrypoint: /root/gm/cmd/gmd/main.go, adding to rollkit.toml
-Found rollup configuration under /root/.gm, adding to rollkit.toml
-Initialized rollkit.toml file in the current directory.
-```
-
 ## 🛠️ Configuring flags for DA
 
-Now, we're prepared to initiate our rollup and establish a connection with the Celestia light node. The `rollkit start` command requires three DA configuration flags:
+Now that we are posting to the Celestia DA instead of the local DA, the `rollkit start` command requires three DA configuration flags:
 
 - `--rollkit.da_start_height`
 - `--rollkit.da_auth_token`
 - `--rollkit.da_namespace`
 
-Let's determine which values to provide for each of them.
-
-First, let's query the DA layer start height using an RPC endpoint provided by Celestia's documentation.
-
-::: tip
+:::tip
 Optionally, you could also set the `--rollkit.da_block_time` flag. This should be set to the finality time of the DA layer, not its actual block time, as Rollkit does not handle reorganization logic. The default value is 15 seconds.
 :::
 
-Let's determine what to provide for each of them.
+Let's determine which values to provide for each of them.
 
-- Mocha testnet: [https://rpc-mocha.pops.one/block](https://rpc-mocha.pops.one/block)
-- Mainnet Beta: [https://rpc.lunaroasis.net/block](https://rpc.lunaroasis.net/block)
-
-Here is an example for the Mocha testnet (replace URL for Mainnet Beta accordingly):
+First, let's query the DA layer start height using using our light node.
 
 ```bash
-DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
+DA_BLOCK_HEIGHT=$(celestia header network-head | jq -r '.result.header.height')
 echo -e "\n Your DA_BLOCK_HEIGHT is $DA_BLOCK_HEIGHT \n"
 ```
 
 The output of the command above will look similar to this:
 
 ```bash
- Your DA_BLOCK_HEIGHT is 1777655
+ Your DA_BLOCK_HEIGHT is 2127672
 ```
 
 Now, let's obtain the authentication token of your light node using the following command (omit the --p2p.network flag for Mainnet Beta):
 
 ```bash
-AUTH_TOKEN=$(celestia light auth write --p2p.network mocha)
+AUTH_TOKEN=$(celestia light auth write --p2p.network arabica)
 echo -e "\n Your DA AUTH_TOKEN is $AUTH_TOKEN \n"
 ```
 
@@ -162,15 +102,17 @@ rollkit start \
     --rollkit.da_auth_token $AUTH_TOKEN \
     --rollkit.da_namespace $DA_NAMESPACE \
     --rollkit.da_start_height $DA_BLOCK_HEIGHT \
-    --rollkit.da_address $DA_ADDRESS \
-    --minimum-gas-prices="0.025stake"
+    --rollkit.da_address $DA_ADDRESS
 ```
 
-Now, the rollup is running and posting blocks (aggregated in batches) to Celestia. You can view your rollup by using your namespace or account on [Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet#explorers) or [Mainnet Beta](https://docs.celestia.org/nodes/mainnet#explorers) explorers.
+Now, the rollup is running and posting blocks (aggregated in batches) to Celestia. You can view your rollup by using your namespace or account on one of Celestia's block explorers.
 
-::: info
-For details on configuring gas prices, specifically for the Celestia network, see the [DA Network Gas Price Guide](/guides/gas-price). The Celestia gas price is separate from the `--minimum-gas-prices="0.025stake"` setting, which is used for the rollup network operations.
-:::
+For example, [here on Celenium for Arabica](https://arabica.celenium.io/).
+
+Other explorers:
+- [Arabica testnet](https://docs.celestia.org/nodes/arabica-testnet#explorers)
+- [Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet#explorers)
+- [Mainnet Beta](https://docs.celestia.org/nodes/mainnet#explorers)
 
 ## 🎉 Next steps
 
