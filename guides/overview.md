@@ -20,7 +20,7 @@ In this section, you'll find:
 * [Restart your rollup](/guides/restart-rollup)
 * [Run a rollup full node](/guides/full-node)
 * [Turn your CometBFT app into a Rollkit app](/guides/cometbft-to-rollkit)
-* [Use ignite to create a rollkit app](/guides/ignite-to-rollkit)
+* [Use Ignite to create a Rollkit app](/guides/ignite-rollkit)
 * Configuration
   * [Configure gas price](/guides/gas-price)
   * [Configure max pending blocks](/guides/max-pending-blocks)
