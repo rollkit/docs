@@ -287,6 +287,14 @@ function sidebarHome() {
           link: "/guides/full-node",
         },
         {
+          text: "CometBFT into a Rollkit app",
+          link: "/guides/cometbft-to-rollkit",
+        },
+        {
+          text: "Use Ignite to create a Rollkit app",
+          link: "/guides/ignite-rollkit",
+        },
+        {
           text: "Configuration",
           collapsed: true,
           items: [
