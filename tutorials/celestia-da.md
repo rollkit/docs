@@ -41,7 +41,7 @@ Optionally, you could also set the `--rollkit.da_block_time` flag. This should b
 
 Let's determine which values to provide for each of them.
 
-First, let's query the DA layer start height using using our light node.
+First, let's query the DA layer start height using our light node.
 
 ```bash
 DA_BLOCK_HEIGHT=$(celestia header network-head | jq -r '.result.header.height')
