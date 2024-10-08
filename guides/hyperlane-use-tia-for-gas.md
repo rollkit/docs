@@ -74,12 +74,9 @@ cd ../wasmd
 Add the signer accounts to each keyring
 
 ```bash
-echo "join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy" | \
-  wasmd keys add my-key --recover
-
-echo "join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy" | \
-  strided keys add my-key --recover
-```
+SEED="join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy"
+echo $SEED | wasmd keys add my-key --recover
+echo $SEED | strided keys add my-key --recover
 
 :::tip
 In this guide, we're using a predefined seed phrase for simplicity. Alternatively you can generate and use your own:
