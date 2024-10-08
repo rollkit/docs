@@ -1,0 +1,65 @@
+networks:
+  - id: "localwasm"
+    hrp: "wasm"
+    endpoint:
+      rpc: "http://127.0.0.1:36657"
+      rest: "http://127.0.0.1:1317"
+      grpc: "http://127.0.0.1:9290"
+    gas:
+      price: "0.025"
+      denom: "uwasm"
+    domain: 963
+    signer: "join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy" # wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45
+  - id: "stride-internal-1"
+    hrp: "stride"
+    endpoint:
+      rpc: "https://stride-testnet-rpc.polkachu.com"
+      rest: "https://stride-testnet-api.polkachu.com"
+      grpc: "http://stride-testnet-grpc.polkachu.com:12290"
+    gas:
+      price: "0.01"
+      denom: "ustrd"
+    domain: 1651
+    signer: "join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy" # stride133xh839fjn9wxzg6vhc0370lcem8939z2sd4gn
+
+# wasm133xh839fjn9wxzg6vhc0370lcem8939zr8uu45
+# stride133xh839fjn9wxzg6vhc0370lcem8939z2sd4gn
+signer: "join always addict position jungle jeans bus govern crack huge photo purse famous live velvet virtual weekend hire cricket media dignity wait load mercy"
+
+deploy:
+  ism:
+    type: multisig
+    owner: <signer>
+    validators:
+      1651:
+        addrs:
+          - <signer>
+        threshold: 1
+  hooks:
+    default:
+      type: aggregate
+      owner: <signer>
+      hooks:
+        - type: merkle
+
+        - type: igp
+          owner: <signer>
+          configs:
+            1651:
+              exchange_rate: 1000
+              gas_price: 10000
+          default_gas_usage: 100000
+
+    required:
+      type: aggregate
+      owner: <signer>
+      hooks:
+        - type: pausable
+          owner: <signer>
+          paused: false
+
+        - type: fee
+          owner: <signer>
+          fee:
+            denom: uwasm
+            amount: 1
