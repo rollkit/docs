@@ -2,6 +2,12 @@
 
 ## 🌞 Introduction {#introduction}
 
+:::warning Disclaimer
+This tutorial is currently broken.
+Follow the work to fix this tutorial in [rollkit/avail-da issue 57](https://github.com/rollkit/avail-da/issues/57)
+:::
+
+
 Avail DA offers scalable data availability that underpins the Avail ecosystem and ensures instantaneous and reliable data integrity, enabling rollups to grow, through the use of cutting-edge zero knowledge and KZG Polynomial commitments.
 
 This tutorial serves as a comprehensive guide for deploying your GM world rollup on Avail's data availability (DA) network.
