@@ -392,10 +392,10 @@
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.0.tgz#3188bcb273a414b0d215fd22a58540b989b9409a"
   integrity sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==
 
-"@keplr-wallet/types@0.12.130":
-  version "0.12.130"
-  resolved "https://registry.yarnpkg.com/@keplr-wallet/types/-/types-0.12.130.tgz#1179a5daf2fabaa5d2f3c068b3c816502f7b8cba"
-  integrity sha512-bUJ6JGpMYUAbPu6SdSG9HjAApgZirMnX4x+1Y9fwC5BCRP2zImYoleTSp+FNbG26iwfN+hUdM0uAcPWsKsfENg==
+"@keplr-wallet/types@0.12.132":
+  version "0.12.132"
+  resolved "https://registry.yarnpkg.com/@keplr-wallet/types/-/types-0.12.132.tgz#c0464579cabc05655f7013fcb7b882e57409a22c"
+  integrity sha512-jRz6e6ujP5EeMPUo5pMRjyK7ILwKqDL50G9e0hwJKxMULQZ6KeWdpIKpp3MwMg+GBF9FA9IzCq53DJzJm4fJCg==
   dependencies:
     long "^4.0.0"
 
@@ -1188,7 +1188,7 @@ devlop@^1.0.0:
   dependencies:
     dequal "^2.0.0"
 
-dompurify@^3.0.11:
+"dompurify@^3.0.11 <3.1.7":
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.1.6.tgz#43c714a94c6a7b8801850f82e756685300a027e2"
   integrity sha512-cTOAhc36AalkjtBpfG6O8JimdTMWNXjiePT2xQH/ppBGi/4uIpmj8eKyIkMJErXWARyINV/sB38yf8JCLF5pbQ==
@@ -1418,10 +1418,10 @@ mdast-util-to-hast@^13.0.0:
     unist-util-visit "^5.0.0"
     vfile "^6.0.0"
 
-mermaid@^11.2.1:
-  version "11.2.1"
-  resolved "https://registry.yarnpkg.com/mermaid/-/mermaid-11.2.1.tgz#b168c6f862268f77a0d3559926b193926ddc60bc"
-  integrity sha512-F8TEaLVVyxTUmvKswVFyOkjPrlJA5h5vNR1f7ZnSWSpqxgEZG1hggtn/QCa7znC28bhlcrNh10qYaIiill7q4A==
+mermaid@^11.3.0:
+  version "11.3.0"
+  resolved "https://registry.yarnpkg.com/mermaid/-/mermaid-11.3.0.tgz#971c7a02c3a8e11058d42abf74196b72e70f2889"
+  integrity sha512-fFmf2gRXLtlGzug4wpIGN+rQdZ30M8IZEB1D3eZkXNqC7puhqeURBcD/9tbwXsqBO+A6Nzzo3MSSepmnw5xSeg==
   dependencies:
     "@braintree/sanitize-url" "^7.0.1"
     "@iconify/utils" "^2.1.32"
@@ -1433,7 +1433,7 @@ mermaid@^11.2.1:
     d3-sankey "^0.12.3"
     dagre-d3-es "7.0.10"
     dayjs "^1.11.10"
-    dompurify "^3.0.11"
+    dompurify "^3.0.11 <3.1.7"
     katex "^0.16.9"
     khroma "^2.1.0"
     lodash-es "^4.17.21"
