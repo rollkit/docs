@@ -1,9 +1,6 @@
 # 🗞️ CosmWasm rollup
 
-CosmWasm is a smart contracting platform built for the Cosmos
-ecosystem by making use of [WebAssembly](https://webassembly.org) (Wasm)
-to build smart contracts for Cosmos-SDK. In this tutorial, we will be
-exploring how to integrate CosmWasm with local DA layer using Rollkit.
+CosmWasm is a smart contracting platform built for the Cosmos ecosystem by making use of [WebAssembly](https://webassembly.org) (Wasm) to build smart contracts for Cosmos-SDK. In this tutorial, we will be exploring how to integrate CosmWasm with local DA layer using Rollkit.
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
@@ -14,15 +11,14 @@ import constants from '../.vitepress/constants/constants.js'
 :::tip
 <Callout />
 :::
+
 <!-- markdownlint-enable MD033 -->
 
-The smart contract we will use for this tutorial is one provided by
-the CosmWasm team for Nameservice purchasing.
+The smart contract we will use for this tutorial is one provided by the CosmWasm team for Nameservice purchasing.
 
 You can check out the contract [here](https://github.com/InterWasm/cw-contracts/tree/main/contracts/nameservice).
 
-How to write the Rust smart contract for Nameservice is outside the scope of
-this tutorial.
+How to write the Rust smart contract for Nameservice is outside the scope of this tutorial.
 
 ## 💻 CosmWasm dependency {#dependencies}
 
@@ -167,12 +163,12 @@ We now have the nameservice contract in the `nameservice` directory.
 
 ### 🏎️ Optimized smart contract {#optimized-smart-contract}
 
-Because we are deploying the compiled smart contract to `wasmd`,
-we want it to be as small as possible.
+Because we are deploying the compiled smart contract to `wasmd`, we want it to be as small as possible.
 
 <!-- markdownlint-disable MD051 -->
-The CosmWasm team provides a tool called `rust-optimizer`, which requires
-[Docker](#docker-installation) in order to compile.
+
+The CosmWasm team provides a tool called `rust-optimizer`, which requires [Docker](#docker-installation) in order to compile.
+
 <!-- markdownlint-enable MD051 -->
 
 Run the following command in the `~/nameservice` directory you just copied:
@@ -210,24 +206,21 @@ deploy/script and test your contracts, you can use [cw-orchestrator](/guides/cw-
 ```bash
 TX_HASH=$(wasmd tx wasm store cw_nameservice.wasm --from localwasm-key --keyring-backend test --chain-id localwasm --gas-prices 0.025uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:36657 --output json -y | jq -r '.txhash') && echo $TX_HASH
 ```
+
 <!-- markdownlint-enable MD013 -->
 
 This will get you the transaction hash for the smart contract deployment.
 
 ::: danger
-If you run into errors with variables on the previous command,
-or commands in the remainder of the tutorial, cross-reference
-the variables in the command with the variables in the `init.sh` script.
+If you run into errors with variables on the previous command, or commands in the remainder of the tutorial, cross-reference the variables in the command with the variables in the `init.sh` script.
 :::
 
 ## 🌟 Contract interaction on CosmWasm {#contract-interaction-on-local-da}
 <!-- markdownlint-disable MD013 -->
 
-In the previous steps, we have stored out contract's tx hash in an
-environment variable for later use.
+In the previous steps, we have stored out contract's tx hash in an environment variable for later use.
 
-The following guide will show you how to deploy and interact with a contract using CLI. 
-For scripting using Rust, you can use [cw-orchestrator](/guides/cw-orch.md).
+The following guide will show you how to deploy and interact with a contract using CLI. For scripting using Rust, you can use [cw-orchestrator](/guides/cw-orch.md).
 
 ### 🔎 Contract querying {#contract-querying}
 
@@ -236,12 +229,11 @@ Now, let's query our transaction hash for its code ID:
 ```bash
 CODE_ID=$(wasmd query tx --type=hash $TX_HASH --node http://127.0.0.1:36657 --output json | jq -r '.events[-1].attributes[1].value')
 echo $CODE_ID
-```
+````
 
 This will give us back the Code ID of the deployed contract.
 
-In our case, since it's the first contract deployed on our local network,
-the value is `1`.
+In our case, since it's the first contract deployed on our local network, the value is `1`.
 
 Now, we can take a look at the contracts instantiated by this Code ID:
 
@@ -252,14 +244,18 @@ wasmd query wasm list-contract-by-code $CODE_ID --node http://127.0.0.1:36657 --
 We get the following output:
 
 ```json
-{"contracts":[],"pagination":{"next_key":null,"total":"0"}}
+{
+  "contracts": [],
+  "pagination": {
+    "next_key": null,
+    "total": "0"
+  }
+}
 ```
 
 ### 📃 Contract instantiation {#contract-instantiation}
 
-We start instantiating the contract by writing up the following `INIT` message
-for nameservice contract. Here, we are specifying that `purchase_price` of a name
-is `100uwasm` and `transfer_price` is `999uwasm`.
+We start instantiating the contract by writing up the following `INIT` message for nameservice contract. Here, we are specifying that `purchase_price` of a name is `100uwasm` and `transfer_price` is `999uwasm`.
 
 ```bash
 INIT='{"purchase_price":{"amount":"100","denom":"uwasm"},"transfer_price":{"amount":"999","denom":"uwasm"}}'
@@ -279,8 +275,7 @@ wasmd query wasm contract --node http://127.0.0.1:36657 $CONTRACT
 wasmd query bank balances --node http://127.0.0.1:36657 $CONTRACT
 ```
 
-This allows us to see the contract address, contract details, and
-bank balances.
+This allows us to see the contract address, contract details, and bank balances.
 
 Your output will look similar to below:
 
@@ -347,5 +342,4 @@ You'll see the owner's address in a JSON response:
 {"data":{"address":"wasm1y9ceqvnsnm9xtcdmhrjvv4rslgwfzmrzky2c5z"}}
 ```
 
-With that, we have instantiated and interacted with the CosmWasm nameservice
-smart contract on our local DA network using Rollkit!
+With that, we have instantiated and interacted with the CosmWasm Nameservice smart contract on our local DA network using Rollkit!
