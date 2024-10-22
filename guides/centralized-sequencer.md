@@ -16,7 +16,11 @@ The `centralized-sequencer` node implements a pluggable centralized  sequencer s
 
 See `centralized-sequencer --help` for details.
 
-The `centralized-sequencer` node reports Prometheus metrics when the `-metrics` flag is enabled. By default, metrics are exported to `http://localhost:8080/metrics`. The listening address and port can be configured with the `-metrics-address` flag.
+The `centralized-sequencer` node reports Prometheus metrics when the `-metrics` flag is enabled.
+
+By default, metrics are exported to `http://localhost:8080/metrics`.
+
+The listening address and port can be configured with the `-metrics-address` flag.
 
 The following metrics are available:
 
