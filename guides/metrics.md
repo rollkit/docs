@@ -65,3 +65,7 @@ In addition to these, [go-libp2p metrics](https://github.com/libp2p/go-libp2p/tr
 |--------------------------------------------|-----------|----------|--------------------------------------------------------------------------|
 | cometbft_state_block_processing_time       | Histogram | chain_id | Time spent processing FinalizeBlock.                                     |
 | cometbft_state_consensus_param_updates     | Counter   | chain_id | Number of consensus parameter updates returned by the application since process start. |
+
+## centralized-sequencer
+
+The `centralized-sequencer` has its own metrics and configuration, see the [centralized sequencer docs](guides/centralized-sequencer) for details.

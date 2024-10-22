@@ -287,6 +287,10 @@ function sidebarHome() {
           link: "/guides/full-node",
         },
         {
+          text: "Run a centralized sequencer",
+          link: "/guides/centralized-sequencer",
+        },
+        {
           text: "CometBFT into a Rollkit app",
           link: "/guides/cometbft-to-rollkit",
         },
