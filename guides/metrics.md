@@ -8,12 +8,12 @@ be consumed by Prometheus collector(s).
 This functionality is disabled by default.
 
 To enable the Prometheus metrics, set `instrumentation.prometheus=true` in your
-CometBFT App's [config file](https://docs.cometbft.com/v0.38/core/configuration)
-located in `$CMTHOME/config/config.toml`.
+CometBFT node's [config file](https://docs.cometbft.com/v0.38/core/configuration)
+located at `~/.cometbft/config/config.toml`.
 
 Metrics will be served under `/metrics` on 26660 port by default.
-Listen address can be changed in the config file (see
-`instrumentation.prometheus\_listen\_addr`).
+The listening address (default: `localhost:26660`) can be changed in the config file using
+`instrumentation.prometheus_listen_addr`.
 
 ## List of available metrics
 
