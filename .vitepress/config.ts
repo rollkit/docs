@@ -218,19 +218,9 @@ function sidebarHome() {
           text: "Quick start guide",
           link: "/tutorials/quick-start",
         },
+        { text: "Build a Rollup", link: "/tutorials/wordle" },
         {
-          text: "Rollkit",
-          collapsed: true,
-          items: [
-            {
-              text: "GM world rollup",
-              link: "/tutorials/gm-world",
-            },
-            { text: "Wordle app", link: "/tutorials/wordle" },
-          ],
-        },
-        {
-          text: "DA",
+          text: "Connect Your DA",
           collapsed: true,
           items: [
             {
@@ -244,21 +234,27 @@ function sidebarHome() {
           ],
         },
         {
-          text: "Execution",
+          text: "Choose You Execution",
           collapsed: true,
           items: [
-            { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
-	    {
+            { text: "CosmWasm", link: "/tutorials/cosmwasm" },
+            {
               text: "EVM",
-	      collapsed: true,
-	      items: [
+              collapsed: true,
+              items: [
                 { text: "Omni Octane EVM", link: "/tutorials/octane-evm" },
-	        { text: "BeaconKit EVM", link: "/tutorials/beaconkit" },
-                { text: "Artela EVM++", link: "/tutorials/artela-evm-plus-plus" },
-		{ text: "Contract interaction", link: "/tutorials/evm-contract-interaction" },
-              ]
-	    },
-	  ],
+                { text: "BeaconKit EVM", link: "/tutorials/beaconkit" },
+                {
+                  text: "Artela EVM++",
+                  link: "/tutorials/artela-evm-plus-plus",
+                },
+                {
+                  text: "Contract interaction",
+                  link: "/tutorials/evm-contract-interaction",
+                },
+              ],
+            },
+          ],
         },
       ],
     },
@@ -324,25 +320,25 @@ function sidebarHome() {
           text: "Integrations",
           collapsed: true,
           items: [
-          {
-            text: "Test and deploy cosmwasm smart-contracts",
-            link: "/guides/cw-orch",
-          },
-          { text: "Add zkML to your EVM rollup", link: "/guides/zkml" },
-          {
-            text: "Add an IBC connection to your rollup",
-            link: "/guides/ibc-connection",
-          },
-          {
-            text: "Integrate Range with your rollup",
-            link: "/guides/rollkit-monitoring",
-          },
-          {
-            text: "Use IBC token (TIA) as gas token in your rollup",
-            link: "/guides/use-tia-for-gas",
-          },
-        ],
-      },
+            {
+              text: "Test and deploy cosmwasm smart-contracts",
+              link: "/guides/cw-orch",
+            },
+            { text: "Add zkML to your EVM rollup", link: "/guides/zkml" },
+            {
+              text: "Add an IBC connection to your rollup",
+              link: "/guides/ibc-connection",
+            },
+            {
+              text: "Integrate Range with your rollup",
+              link: "/guides/rollkit-monitoring",
+            },
+            {
+              text: "Use IBC token (TIA) as gas token in your rollup",
+              link: "/guides/use-tia-for-gas",
+            },
+          ],
+        },
       ],
     },
     {
