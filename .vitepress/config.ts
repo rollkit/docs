@@ -318,6 +318,10 @@ function sidebarHome() {
               text: "Use lazy sequencing (aggregation)",
               link: "/guides/lazy-sequencing",
             },
+            {
+              text: "Configure Prometheus metrics",
+              link: "/guides/metrics",
+            },
           ],
         },
         {

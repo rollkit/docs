@@ -1,7 +1,5 @@
 # How to configure metrics
 
-# Metrics
-
 Rollkit can report and serve the Prometheus metrics, which in their turn can
 be consumed by Prometheus collector(s).
 
