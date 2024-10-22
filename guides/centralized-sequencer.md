@@ -1,6 +1,6 @@
 ### Centralized Sequencer Node
 
-The `centralized-sequencer` node implements a pluggable centralized  sequencer scheme.
+The `centralized-sequencer` node implements a pluggable centralized  sequencer scheme. It can be configured using the following flags:
 
 | Flag                         | Usage                                                            | Default                      |
 |------------------------------|------------------------------------------------------------------|------------------------------|
