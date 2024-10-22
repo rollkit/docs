@@ -26,6 +26,6 @@ The following metrics are available:
 |--------------------------------------------|-----------|------------------|------------------------------------------------------------------------|
 | gas_price                                  | Gauge     |                  | Gas Price of the DA transaction                                                    |
 | last_blob_size                             | Gauge     |                  | Last blob size submitted to the DA                                                    |
-| transaction_status                         | Gauge     |                  | Tranasction status of the DA transaction                                   |
+| transaction_status                         | Gauge     |                  | Transaction status of the DA transaction                                   |
 | num_pending_blocks                         | Gauge     |                  | Number of blocks pending DA submission                       |
 | included_block_height                      | Gauge     |                  | Block height of the last DA transaction        |
