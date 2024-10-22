@@ -27,6 +27,7 @@ In this section, you'll find:
   * [Configure DA chain block sync time](/guides/da-block-time)
   * [Change speed of block production](/guides/block-times)
   * [Use lazy sequencing (aggregation)](/guides/lazy-sequencing)
+  * [Configure Prometheus metrics](/guides/metrics)
 * Integrations
   * [Test and deploy cosmwasm smart-contracts](/guides/cw-orch)
   * [Add zkML to your EVM rollup](/guides/zkml)
