@@ -256,6 +256,24 @@ function sidebarHome() {
             },
           ],
         },
+        {
+          text: "Deploy Your Rollup",
+          collapsed: true,
+          items: [
+            {
+              text: "Overview",
+              link: "/tutorials/deploy-overview",
+            },
+            {
+              text: "Docker Compose",
+              link: "/tutorials/docker-compose",
+            },
+            {
+              text: "Kurtosis",
+              link: "/tutorials/kurtosis",
+            },
+          ],
+        },
       ],
     },
     {
