@@ -7,7 +7,7 @@ const constants = Object.freeze({
   rollkitLatestTag: "v0.13.7",
   rollkitLatestSha: "8deede4",
   rollkitCosmosSDKVersion: "v0.50.6-rollkit-v0.13.3-no-fraud-proofs",
-  rollkitIgniteAppVersion: "v0.2.1",
+  rollkitIgniteAppVersion: "rollkit/v0.2.2",
 
   localDALatestTag: "v0.3.1",
 
