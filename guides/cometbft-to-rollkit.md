@@ -14,8 +14,8 @@ This guide assumes you have a CometBFT app set up and [Ignite CLI](https://docs.
 
 You need to install Rollkit in your CometBFT app. Open a terminal in the directory where your app is located and run the following command:
 
-```bash
-ignite app install github.com/ignite/apps/rollkit@rollkit/v0.2.0
+```bash-vue
+ignite app install github.com/ignite/apps/rollkit@{{constants.rollkitIgniteAppVersion}}
 ```
 
 ## Add Rollkit Features to Your CometBFT App {#add-rollkit-features}
@@ -33,7 +33,7 @@ To prepare your app for Rollkit, you'll need to initialize it with Local Data Av
 Run the following command to initialize Rollkit with Local DA:
 
 ```bash
-ignite rollkit init --local-da
+ignite rollkit init
 ```
 
 ## Initialize Rollkit CLI Configuration {#initialize-rollkit-cli-configuration}
