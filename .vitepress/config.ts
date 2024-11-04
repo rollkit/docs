@@ -244,6 +244,32 @@ function sidebarHome() {
           ],
         },
         {
+          text: "Sequencing",
+          collapsed: true,
+          items: [
+            {
+              text: "Overview",
+              link: "/tutorials/sequencing",
+            },
+            {
+              text: "Centralized",
+              link: "/tutorials/centralized",
+            },
+            {
+              text: "Based",
+              link: "/tutorials/based",
+            },
+            {
+              text: "Forced Inclusion",
+              link: "/tutorials/forced",
+            },
+            {
+              text: "Astria",
+              link: "/tutorials/astria",
+            },
+          ],
+        },
+        {
           text: "Execution",
           collapsed: true,
           items: [
