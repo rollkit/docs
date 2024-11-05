@@ -170,7 +170,7 @@ Rollkit on our codebase.
 To install the Rollkit app to Ignite, run the following command:
 
 ```bash-vue
-ignite app install github.com/ignite/apps/rollkit@rollkit/{{constants.rollkitIgniteAppVersion}}
+ignite app install github.com/ignite/apps/rollkit@{{constants.rollkitIgniteAppVersion}}
 ```
 
 Next, add Rollkit to your project by running:
@@ -561,7 +561,7 @@ running on your machine, you're ready to build, test, and launch your own sovere
 Initialize the Rollkit chain configuration for a local DA network with this command:
 
 ```bash
-ignite chain build && ignite rollkit init --local-da
+ignite chain build && ignite rollkit init 
 ```
 
 This will create a `~/.wordle` directory with all the necessary files to run a rollup on a local DA network.

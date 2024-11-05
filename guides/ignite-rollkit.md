@@ -46,8 +46,8 @@ In a new terminal window, you'll now install and run the Ignite App Rollkit.
 
 Run the following command to install the Rollkit App:
 
-```bash
-ignite app install github.com/ignite/apps/rollkit@rollkit/v0.2.0
+```bash-vue
+ignite app install github.com/ignite/apps/rollkit@{{constants.rollkitIgniteAppVersion}}
 ```
 
 This installs the Rollkit application, which will be integrated into your blockchain.
@@ -65,7 +65,7 @@ ignite rollkit add
 Before starting your blockchain, you need to initialize it with Rollkit support. Initialize the blockchain with Local DA as follows:
 
 ```bash
-ignite rollkit init --local-da
+ignite rollkit init
 ```
 
 ### Initialize Rollkit CLI Configuration {#initialize-rollkit-cli-configuration}

@@ -5,10 +5,10 @@
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
-    "@keplr-wallet/types": "0.12.132",
+    "@keplr-wallet/types": "0.12.149",
     "i": "^0.3.7",
     "mermaid": "^11.3.0",
-    "vitepress": "^1.3.4",
+    "vitepress": "^1.4.5",
     "vitepress-plugin-mermaid": "^2.0.17"
   },
   "dependencies": {
