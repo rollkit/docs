@@ -4,8 +4,8 @@ const constants = Object.freeze({
   nodeVersion: "21.7.2",
   yarnVersion: "1.22.19",
 
-  rollkitLatestTag: "v0.13.7",
-  rollkitLatestSha: "8deede4",
+  rollkitLatestTag: "v0.14.0",
+  rollkitLatestSha: "ca746d0",
   rollkitCosmosSDKVersion: "v0.50.6-rollkit-v0.13.3-no-fraud-proofs",
   rollkitIgniteAppVersion: "rollkit/v0.2.1",
 
