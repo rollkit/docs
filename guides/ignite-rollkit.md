@@ -40,6 +40,16 @@ cd $HOME && curl -sSL https://rollkit.dev/install-local-da.sh | sh -s {{constant
 
 This script builds and runs a DA node, which will listen on port `7980`.
 
+## Run a local Seuqnecer node {#run-local-sequencer-node}
+
+First, set up a local sequencer node:
+
+```bash-vue
+cd $HOME && curl -sSL https://rollkit.dev/install-local-sequencer.sh | sh -s {{constants.localSequencerLatestTag}} gm
+```
+
+This script builds and runs a a local sequencer node, which will listen on port `50051`.
+
 ## Install Ignite App Rollkit {#install-ignite-app-rollkit}
 
 In a new terminal window, you'll now install and run the Ignite App Rollkit.
