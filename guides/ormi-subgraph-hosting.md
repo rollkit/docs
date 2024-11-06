@@ -20,7 +20,6 @@ First, install the 0xgraph CLI tool:
 ```bash
 npm i @xgraph/cli
 ```
-First, install the 0xgraph CLI tool:
 
 ### 2. Authentication
 Authenticate with Ormi using your API key:
