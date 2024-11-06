@@ -22,11 +22,12 @@ npm i @xgraph/cli
 ```
 
 ### 2. Authentication
-Authenticate with Ormi using your API key:
+Next you'll need to authenticate with Ormi using your API key. You can obtain this key by signing up at https://app.0xgraph.xyz/dashboard/api.
+
+Once you have your API key, authenticate with Ormi using the following command:
+
 ```bash
 0xgraph auth
-```
-When prompted, enter your deploy key. You can obtain this key by signing up at https://app.0xgraph.xyz/dashboard/api.
 
 ## Creating and Deploying Your Subgraph
 ### 1. Prepare Your Subgraph
