@@ -48,7 +48,7 @@ First, set up a local sequencer node:
 cd $HOME && curl -sSL https://rollkit.dev/install-local-sequencer.sh | sh -s {{constants.goSequencingLatestTag}} gm
 ```
 
-This script builds and runs a a local sequencer node, which will listen on port `50051`.
+This script builds and runs a local sequencer node, which will listen on port `50051`.
 
 ## Install Ignite App Rollkit {#install-ignite-app-rollkit}
 
