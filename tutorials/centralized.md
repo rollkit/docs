@@ -2,7 +2,7 @@
 
 A centralized sequencer is a sequencing middleware that receives rollup transactions and provides a local sequencing capabilities. Meaning, the transactions are ordered in the order they are received by the sequencer without any censorship. Further, the sequenced batches are made available in the DA network (such as Celestia). Under the hood, the centralized sequencer is a GRPC server that implements `go-sequencing` interface and the server is hosted by the same node that is running the aggregator for the Rollkit rollup.
 
-![Rollkit with Centralized Sequencer](/img/sequencing.jpg)
+![Rollkit with Centralized Sequencer](/public/img/sequencing.jpg)
 
 ### Installation and Use
 
