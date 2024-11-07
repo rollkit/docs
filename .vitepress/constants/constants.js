@@ -10,7 +10,7 @@ const constants = Object.freeze({
   rollkitIgniteAppVersion: "rollkit/v0.2.1",
 
   localDALatestTag: "v0.3.1",
-  localSequencerLatestTag: "v0.4.0",
+  goSequencingLatestTag: "v0.4.0",
   igniteVersionTag: "v28.5.3",
 });
 export default constants;

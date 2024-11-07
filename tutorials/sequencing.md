@@ -7,7 +7,7 @@ Rollkit's aggregator node was responsible for selecting and ordering transaction
 
 [go-sequencing](https://github.com/rollkit/go-sequencing) defines a sequencing interface for communicating between any sequencing network and Rollkit. The key functions of the interface are defined as shown below.
 
-```
+```go
 SubmitRollupTransaction(rollupId, data) returns (error)
 
 GetNextBatch(rollupId, lastBatchHash, maxBytes) returns (batch, timestamp)

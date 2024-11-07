@@ -45,7 +45,7 @@ This script builds and runs a DA node, which will listen on port `7980`.
 First, set up a local sequencer node:
 
 ```bash-vue
-cd $HOME && curl -sSL https://rollkit.dev/install-local-sequencer.sh | sh -s {{constants.localSequencerLatestTag}} gm
+cd $HOME && curl -sSL https://rollkit.dev/install-local-sequencer.sh | sh -s {{constants.goSequencingLatestTag}} gm
 ```
 
 This script builds and runs a a local sequencer node, which will listen on port `50051`.
