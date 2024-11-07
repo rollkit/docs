@@ -40,7 +40,7 @@ cd $HOME && curl -sSL https://rollkit.dev/install-local-da.sh | sh -s {{constant
 
 This script builds and runs a DA node, which will listen on port `7980`.
 
-## Run a local Seuqnecer node {#run-local-sequencer-node}
+## Run a local Sequencer node {#run-local-sequencer-node}
 
 First, set up a local sequencer node:
 
