@@ -234,7 +234,33 @@ function sidebarHome() {
           ],
         },
         {
-          text: "Choose You Execution",
+          text: "Sequencing",
+          collapsed: true,
+          items: [
+            {
+              text: "Overview",
+              link: "/tutorials/sequencing",
+            },
+            {
+              text: "Centralized",
+              link: "/tutorials/centralized",
+            },
+            {
+              text: "Based",
+              link: "/tutorials/based",
+            },
+            {
+              text: "Forced Inclusion",
+              link: "/tutorials/forced",
+            },
+            {
+              text: "Astria",
+              link: "/tutorials/astria",
+            },
+          ],
+        },
+        {
+          text: "Choose your execution",
           collapsed: true,
           items: [
             { text: "CosmWasm", link: "/tutorials/cosmwasm" },
