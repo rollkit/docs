@@ -218,9 +218,9 @@ function sidebarHome() {
           text: "Quick start guide",
           link: "/tutorials/quick-start",
         },
-        { text: "Build a Rollup", link: "/tutorials/wordle" },
+        { text: "Build a chain", link: "/tutorials/wordle" },
         {
-          text: "Connect Your DA",
+          text: "DA",
           collapsed: true,
           items: [
             {
@@ -260,7 +260,7 @@ function sidebarHome() {
           ],
         },
         {
-          text: "Choose your execution",
+          text: "Execution",
           collapsed: true,
           items: [
             { text: "CosmWasm", link: "/tutorials/cosmwasm" },
@@ -283,7 +283,7 @@ function sidebarHome() {
           ],
         },
         {
-          text: "Deploy Your Rollup",
+          text: "Deploy your chain",
           collapsed: true,
           items: [
             {
