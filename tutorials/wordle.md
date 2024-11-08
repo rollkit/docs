@@ -26,9 +26,9 @@ import constants from '../.vitepress/constants/constants.js'
 ## 💻 Pre-requisites {#prerequisites}
 
 This tutorial is targeted for developers who have some experience
-in the [Cosmos-SDK](https://docs.cosmos.network/). We will go through the steps to build the rollup, but for more information on how the Cosmos-SDK components work, [check out the Cosmos-SDK Docs](https://docs.cosmos.network/).
+in the [Cosmos-SDK](https://docs.cosmos.network/). We will go through the steps to build the chain, but for more information on how the Cosmos-SDK components work, [check out the Cosmos-SDK Docs](https://docs.cosmos.network/).
 
-Additionally, we recommend that you have gone over the [GM world](/tutorials/gm-world) tutorial first to see an example of a running rollup.
+Additionally, we recommend that you have gone over the [quick start guide](/tutorials/quick-start) first to see an example of a running chain.
 
 You also need to have Rollkit CLI installed. You can install it by running:
 
@@ -554,7 +554,7 @@ cd $HOME && curl -sSL https://rollkit.dev/install-local-da.sh | sh -s {{constant
 This script builds and runs the node, now listening on port `7980`.
 
 After you have Go and Ignite CLI installed, and your local data availability node
-running on your machine, you're ready to build, test, and launch your own sovereign rollup.
+running on your machine, you're ready to build, test, and launch your own sovereign chain.
 
 ### 🟢 Building and running wordle chain {#build-and-run-wordle-chain}
 
@@ -564,7 +564,7 @@ Initialize the Rollkit chain configuration for a local DA network with this comm
 ignite chain build && ignite rollkit init 
 ```
 
-This will create a `~/.wordle` directory with all the necessary files to run a rollup on a local DA network.
+This will create a `~/.wordle` directory with all the necessary files to run a chain on a local DA network.
 
 Now let's initialize a `rollkit.toml` file in the `worldle` directory by running:
 
@@ -572,7 +572,7 @@ Now let's initialize a `rollkit.toml` file in the `worldle` directory by running
 rollkit toml init
 ```
 
-To start running a rollup with the Wordle chain, run the following command:
+To start running the Wordle chain, run the following command:
 
 ```bash
 rollkit start --rollkit.aggregator --rollkit.da_address http://localhost:7980
@@ -580,7 +580,7 @@ rollkit start --rollkit.aggregator --rollkit.da_address http://localhost:7980
 
 With that, we have kickstarted our wordle network!
 
-### 🚀 Interacting with the Rollup {#interacting-with-the-rollup}
+### 🚀 Interacting with the chain {#interacting-with-the-chain}
 
 In another window, from the `~/wordle` directory  (where rollkit.toml is located)  run the following command to submit a Wordle:
 
@@ -756,4 +756,4 @@ There are many ways this codebase can be extended:
 
 ## 🎉 Next steps
 
-Congratulations! You've built a Wordle app using Cosmos-SDK and Rollkit. Now, explore connecting your rollup to DA networks like Celestia.
+Congratulations! You've built a Wordle app using Cosmos-SDK and Rollkit. Now, explore connecting your chain to DA networks like Celestia.
