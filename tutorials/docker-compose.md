@@ -36,11 +36,13 @@ Docker Compose version v2.23.0-desktop.1
 
 ## 🛠️ Setting up Your Environment {#setting-up-your-environment}
 
-The wordle rollup is a relatively simple rollup in that there are just 2 nodes involved: the rollup and the data availability network (DA) node.
+In addition to our rollup, we need to run a DA and Sequencer node.
 
-We will use a local DA node for this tutorial and run it with our rollup.
+We will use the [local-da](https://github.com/rollkit/local-da) and [local-sequencer](https://github.com/rollkit/go-sequencing) for this tutorial and run it with our rollup.
 
-To save time, we can use the [local DA Dockerfile found here.](https://github.com/rollkit/local-da/blob/main/Dockerfile)
+To save time, we can use their respective Dockerfiles:
+* [local-da Dockerfile](https://github.com/rollkit/local-da/blob/main/Dockerfile)
+* [local-sequencer Dockerfile](https://github.com/rollkit/go-sequencing/blob/main/Dockerfile)
 
 This will allow us to focus on how we can run the wordle rollup with Docker Compose.
 
@@ -60,10 +62,10 @@ RUN apt update && \
 	curl
 
 # Install rollkit
-RUN curl -sSL https://rollkit.dev/install.sh | sh -s v0.13.6
+RUN curl -sSL https://rollkit.dev/install.sh | sh -s {{constants.rollkitLatestTag}}
 
 # Install ignite
-RUN curl https://get.ignite.com/cli@v28.4.0! | bash
+RUN curl https://get.ignite.com/cli@{{constants.igniteVersionTag}}! | bash
 
 # Set the working directory
 WORKDIR /app
@@ -77,7 +79,7 @@ RUN go mod download
 COPY . .
 
 # Build the chain
-RUN ignite chain build && ignite rollkit init --local-da
+RUN ignite chain build && ignite rollkit
 
 # Initialize the rollkit.toml file
 RUN rollkit toml init
@@ -157,16 +159,27 @@ services:
     # Ensures the local-da service is up and running before starting the rollup
     depends_on:
       - local-da
+      - local-sequencer
 
   # Define the local DA service
   local-da:
     # Use the published image from rollkit
-    image: ghcr.io/rollkit/local-da:v0.2.1
+    image: ghcr.io/rollkit/local-da:{{constants.localDALatestTag}}
       # Set the name of the docker container for ease of use
     container_name: local-da
     # Publish the ports to connect
     ports:
       - "7980:7980"
+  
+  # Define the local sequencer service
+  local-sequencer:
+    # Use the published image from rollkit
+    image: ghcr.io/rollkit/local-sequencer:{{constants.localSequencerLatestTag}}
+      # Set the name of the docker container for ease of use
+    container_name: local-sequencer
+    # Publish the ports to connect
+    ports:
+      - "50051:50051"
 ```
 
 We now have all we need to run the wordle rollup and connect to a local DA node.

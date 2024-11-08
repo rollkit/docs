@@ -211,7 +211,7 @@ module is defined as the following:
 We build the module with the `bank` dependency with the following command:
 
 ```bash
-ignite scaffold module wordle --dep bank
+ignite scaffold module wordle --dep bank -y
 ```
 
 This will scaffold the Wordle module to our Wordle Chain project.
@@ -241,7 +241,7 @@ With these initial designs, we can start creating our messages!
 To create the `SubmitWordle` message, we run the following command:
 
 ```bash
-ignite scaffold message submit-wordle word
+ignite scaffold message submit-wordle word -y
 ```
 
 This creates the `submit-wordle` message that takes in `word` as a parameter.
@@ -249,7 +249,7 @@ This creates the `submit-wordle` message that takes in `word` as a parameter.
 We now create the final message, `SubmitGuess`:
 
 ```bash
-ignite scaffold message submit-guess word
+ignite scaffold message submit-guess word -y
 ```
 
 Here, we are passing a word as a guess with `submit-guess`.
@@ -262,7 +262,7 @@ the messages we created.
 ### 🏗️ Scaffolding wordle types {#scaffolding-wordle-types}
 
 ```bash
-ignite scaffold map wordle word submitter --no-message
+ignite scaffold map wordle word submitter --no-message -y
 ```
 
 This type is a map called `Wordle` with two values of
@@ -273,7 +273,7 @@ The second type is the `Guess` type. It allows us to store
 the latest guess for each address that submitted a solution.
 
 ```bash
-ignite scaffold map guess word submitter count --no-message
+ignite scaffold map guess word submitter count --no-message -y
 ```
 
 Here, we are also storing `count` to count how many guesses
