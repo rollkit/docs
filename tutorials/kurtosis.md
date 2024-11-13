@@ -6,6 +6,8 @@ You can learn more about Kurtosis [here](https://docs.kurtosis.com/).
 
 :::warning Disclaimer
 Kurtosis currently does not fully support data persistence across runs, because of this it is not recommended for production use.
+
+This tutorial is WIP and does not currently support the new sequencing API introduced in rollkit v0.14.0
 :::
 
 <!-- markdownlint-disable MD033 -->
