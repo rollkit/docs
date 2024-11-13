@@ -532,6 +532,8 @@ interface in order to allow sending the reward to the right guesser.
 
 ```go title="x/wordle/types/expected_keepers.go"
 type BankKeeper interface {
+  ...
+  // Methods imported from bank should be defined here
   SendCoinsFromModuleToAccount(ctx context.Context, senderModule string, recipientAddr sdk.AccAddress, amt sdk.Coins) error
   SendCoinsFromAccountToModule(ctx context.Context, senderAddr sdk.AccAddress, recipientModule string, amt sdk.Coins) error
 }
@@ -543,19 +545,6 @@ compile the blockchain and take it out for a test drive.
 ## ⛓️ Run the wordle chain
 <!-- markdownlint-disable MD013 -->
 
-### 🪶 Run a local DA node {#run-local-da-node}
-
-To set up a local data availability network node open a new terminal and run:
-
-```bash-vue
-cd $HOME && curl -sSL https://rollkit.dev/install-local-da.sh | sh -s {{constants.localDALatestTag}}
-```
-
-This script builds and runs the node, now listening on port `7980`.
-
-After you have Go and Ignite CLI installed, and your local data availability node
-running on your machine, you're ready to build, test, and launch your own sovereign chain.
-
 ### 🟢 Building and running wordle chain {#build-and-run-wordle-chain}
 
 Initialize the Rollkit chain configuration for a local DA network with this command:
@@ -564,7 +553,18 @@ Initialize the Rollkit chain configuration for a local DA network with this comm
 ignite chain build && ignite rollkit init 
 ```
 
-This will create a `~/.wordle` directory with all the necessary files to run a chain on a local DA network.
+This will create a `~/.wordle` directory with all the necessary files to run a chain.
+
+It will also initialize 2 accounts `alice` and `bob`:
+
+```bash
+Initializing accounts...
+✔ Added account alice ...
+
+✔ Added account bob ...
+```
+
+We will use these accounts to submit transactions.
 
 Now let's initialize a `rollkit.toml` file in the `worldle` directory by running:
 
@@ -575,18 +575,18 @@ rollkit toml init
 To start running the Wordle chain, run the following command:
 
 ```bash
-rollkit start --rollkit.aggregator --rollkit.da_address http://localhost:7980
+rollkit start --rollkit.aggregator --rollkit.sequencer_rollup_id wordle
 ```
 
 With that, we have kickstarted our wordle network!
 
 ### 🚀 Interacting with the chain {#interacting-with-the-chain}
 
-In another window, from the `~/wordle` directory  (where rollkit.toml is located)  run the following command to submit a Wordle:
+In another window, from the `~/wordle` directory  (where rollkit.toml is located)  run the following command to submit a Wordle from `alice`:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-rollkit tx wordle submit-wordle giant --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+rollkit tx wordle submit-wordle giant --from alice --keyring-backend test --chain-id wordle -b async
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -601,46 +601,29 @@ rollkit tx wordle submit-wordle giant --from wordle-key --keyring-backend test -
 
 This will ask you to confirm the transaction with the following message:
 
-```json
-{
-  "body":{
-    "messages":[
-       {
-          "@type":"/YazzyYaz.wordle.wordle.MsgSubmitWordle",
-          "creator":"cosmos17lk3fgutf00pd5s8zwz5fmefjsdv4wvzyg7d74",
-          "word":"giant"
-       }
-    ],
-    "memo":"",
-    "timeout_height":"0",
-    "extension_options":[
-    ],
-    "non_critical_extension_options":[
-    ]
-  },
-  "auth_info":{
-    "signer_infos":[
-    ],
-    "fee":{
-       "amount":[
-       ],
-       "gas_limit":"200000",
-       "payer":"",
-       "granter":""
-    }
-  },
-  "signatures":[
-  ]
-}
-```
-
-Cosmos-SDK will ask you to confirm the transaction here:
-
 ```bash
+auth_info:
+  fee:
+    amount: []
+    gas_limit: "200000"
+    granter: ""
+    payer: ""
+  signer_infos: []
+  tip: null
+body:
+  extension_options: []
+  memo: ""
+  messages:
+  - '@type': /wordle.wordle.MsgSubmitWordle
+    creator: cosmos1mr9p6wql4mmtp9xvsuklpw7fxx6g0qte7qd5q9
+    word: giant
+  non_critical_extension_options: []
+  timeout_height: "0"
+signatures: []
 confirm transaction before signing and broadcasting [y/N]:
 ```
 
-Confirm with a Y.
+Confirm with a `y`.
 
 You will then get a response with a transaction hash as shown here:
 
@@ -660,13 +643,19 @@ tx: null
 txhash: F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E
 ```
 
+Let's grab the `txhash` for later:
+
+```bash
+TX_HASH=F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E
+```
+
 Note, this does not mean the transaction was included in the block yet.
 Let's query the transaction hash to check whether it has been included in
 the block yet or if there are any errors.
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-rollkit query tx --type=hash F159E11116EC9505FC2C0D97E605357FEC0F3DAE06B57BFB17EA6A548905043E --chain-id wordle --output json | jq -r '.raw_log'
+rollkit query tx --type=hash $TX_HASH --output json | jq -r '.raw_log'
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -681,7 +670,7 @@ Test out a few things for fun:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-rollkit tx wordle submit-guess 12345 --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+rollkit tx wordle submit-guess 12345 --from bob --keyring-backend test --chain-id wordle -b async -y
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -693,7 +682,7 @@ Now try:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-rollkit  tx wordle submit-guess ABCDEFG --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+rollkit  tx wordle submit-guess ABCDEFG --from bob --keyring-backend test --chain-id wordle -b async -y
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -705,7 +694,7 @@ Now try to submit another wordle even though one was already submitted
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-rollkit tx wordle submit-wordle meter --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+rollkit tx wordle submit-wordle meter --from bob --keyring-backend test --chain-id wordle -b async -y
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -717,13 +706,13 @@ Now let’s try to guess a five letter word:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-rollkit tx wordle submit-guess least --from wordle-key --keyring-backend test --chain-id wordle -b async -y
+rollkit tx wordle submit-guess least --from bob --keyring-backend test --chain-id wordle -b async -y
 ```
 <!-- markdownlint-enable MD013 -->
 
 After submitting the transactions and confirming, query the `txhash`
 given the same way you did above. Given you didn’t guess the correct
-word, it will increment the guess count for wordle-key's account.
+word, it will increment the guess count for bob's account.
 
 We can verify this by querying the list:
 
