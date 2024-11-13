@@ -50,7 +50,7 @@ This will allow us to focus on how we can run the wordle chain with Docker Compo
 
 First, we need to create a Dockerfile for our wordle chain. Create a new file called `Dockerfile` in the root of the `wordle` directory and add the following code:
 
-```dockerfile
+```dockerfile-vue
 # Stage 1: Install ignite CLI and rollkit
 FROM golang as base
 
@@ -78,8 +78,11 @@ RUN go mod download
 # Copy all files from the current directory to the container
 COPY . .
 
+# Remove the rollkit.toml and entrypoint files if they exist. This is to avoid cross OS issues.
+RUN rm entrypoint rollkit.toml
+
 # Build the chain
-RUN ignite chain build && ignite rollkit
+RUN ignite chain build && ignite rollkit init
 
 # Initialize the rollkit.toml file
 RUN rollkit toml init
@@ -113,7 +116,11 @@ COPY --from=base /root/.wordle /root/.wordle
 RUN chmod +x ./entrypoint
 
 # Keep the container running after it has been started
-CMD tail -f /dev/null
+# CMD tail -f /dev/null
+
+ENTRYPOINT [ "rollkit" ]
+CMD [ "start", "--rollkit.aggregator", "--rollkit.sequencer_rollup_id", "wordle"]
+
 ```
 
 This Dockerfile sets up the environment to build the chain and run the wordle node. It then sets up the runtime environment to run the chain. This allows you as the developer to modify any files, and then simply rebuild the Docker image to run the new chain.
@@ -143,8 +150,7 @@ Next we need to create our `compose.yaml` file for docker compose to use.
 
 In the root of the `wordle` directory, create a new file called `compose.yaml` and add the following code:
 
-```yml
-version: "3"
+```yml-vue
 services:
   # Define the wordle chain service
   wordle:
@@ -155,7 +161,17 @@ services:
     # Used for networking between the two services
     network_mode: host
     # The command config is used for launching the chain once the Docker container is running
-    command: rollkit start --rollkit.aggregator --rollkit.da_address http://localhost:7980
+    command:
+      [
+        "start",
+        "--rollkit.aggregator",
+        "--rollkit.da_address",
+        "http://0.0.0.0:7980",
+        "--rollkit.sequencer_address",
+        "0.0.0.0:50051",
+        "--rollkit.sequencer_rollup_id",
+        "wordle",
+      ]
     # Ensures the local-da service is up and running before starting the chain
     depends_on:
       - local-da
@@ -164,19 +180,23 @@ services:
   # Define the local DA service
   local-da:
     # Use the published image from rollkit
-    image: ghcr.io/rollkit/local-da:{{constants.localDALatestTag}}
+    image:
+      ghcr.io/rollkit/local-da:{{constants.localDALatestTag}}
       # Set the name of the docker container for ease of use
     container_name: local-da
     # Publish the ports to connect
     ports:
       - "7980:7980"
-  
+
   # Define the local sequencer service
   local-sequencer:
     # Use the published image from rollkit
-    image: ghcr.io/rollkit/local-sequencer:{{constants.localSequencerLatestTag}}
+    image:
+      ghcr.io/rollkit/go-sequencing:{{constants.goSequencingLatestTag}}
       # Set the name of the docker container for ease of use
     container_name: local-sequencer
+    # Start the sequencer with the listen all flag and the rollup id set to wordle
+    command: ["-listen-all", "-rollup-id=wordle"]
     # Publish the ports to connect
     ports:
       - "50051:50051"
@@ -209,9 +229,10 @@ docker ps
 You should see output like the following:
 
 ```bash
-CONTAINER ID   IMAGE                             COMMAND                  CREATED          STATUS          PORTS                                                                              NAMES
-cbf66a881cb2   wordle:latest                     "/bin/sh -c 'rollkit…"   5 seconds ago    Up 4 seconds    0.0.0.0:26657->26657/tcp                                                           wordle
-09bdf1e94862   ghcr.io/rollkit/local-da:v0.2.1   "local-da -listen-all"   6 seconds ago    Up 5 seconds    0.0.0.0:7980->7980/tcp                                                             local-da
+CONTAINER ID   IMAGE             COMMAND                  CREATED          STATUS         PORTS                      NAMES
+86f9bfa5b6d2   wordle            "rollkit start --rol…"   7 minutes ago    Up 3 seconds                              wordle
+67a2c3058e01   local-sequencer   "local-sequencer -li…"   11 minutes ago   Up 3 seconds   0.0.0.0:50051->50051/tcp   local-sequencer
+dae3359665f8   local-da          "local-da -listen-all"   2 hours ago      Up 3 seconds   0.0.0.0:7980->7980/tcp     local-da
 ```
 
 We can see the wordle chain running in container `wordle` and the local DA network running in container `local-da`.
