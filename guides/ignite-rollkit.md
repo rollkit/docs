@@ -30,26 +30,6 @@ This will create the `gm` blockchain. Navigate to the blockchain directory:
 cd gm
 ```
 
-## Run a local Data Availability (DA) node {#run-local-da-node}
-
-First, set up a local data availability network node:
-
-```bash-vue
-cd $HOME && curl -sSL https://rollkit.dev/install-local-da.sh | sh -s {{constants.localDALatestTag}}
-```
-
-This script builds and runs a DA node, which will listen on port `7980`.
-
-## Run a local Sequencer node {#run-local-sequencer-node}
-
-First, set up a local sequencer node:
-
-```bash-vue
-cd $HOME && curl -sSL https://rollkit.dev/install-local-sequencer.sh | sh -s {{constants.goSequencingLatestTag}} gm
-```
-
-This script builds and runs a local sequencer node, which will listen on port `50051`.
-
 ## Install Ignite App Rollkit {#install-ignite-app-rollkit}
 
 In a new terminal window, you'll now install and run the Ignite App Rollkit.
@@ -70,6 +50,14 @@ Enhance your blockchain by adding Rollkit features. Use the following command:
 ignite rollkit add
 ```
 
+## Build your chain {#build-your-chain}
+
+Build your chain using the following command:
+
+```bash
+ignite chain build
+```
+
 ## Initialize Your Blockchain {#initialize-your-blockchain}
 
 Before starting your blockchain, you need to initialize it with Rollkit support. Initialize the blockchain with Local DA as follows:
@@ -88,16 +76,21 @@ rollkit toml init
 
 This will set up the Rollkit configuration file rollkit.toml, allowing you to use the Rollkit CLI for managing and running your blockchain.
 
-## Start Your Rollup {#start-your-blockchain}
+## Start your chain {#start-your-chain}
 
-Finally, start your rollup (blockchain) using the following command:
+Now you are ready to start your chain. We need to include 2 flags:
+
+1. `--rollkit.aggregator` to signal that this node is the block producer
+2. `--rollkit.sequencer_rollup_id gm` to share the chain ID with the sequencer.
+
+Start your chain using the following command:
 
 ```bash
-rollkit start --rollkit.aggregator --rollkit.da_address http://localhost:7980
+rollkit start --rollkit.aggregator --rollkit.sequencer_rollup_id gm 
 ```
 
-Your rollkit app is now up and running.
+Your rollkit chain is now up and running.
 
 ## Summary
 
-By following these steps, you've successfully installed Ignite, set up Local DA, integrated Rollkit features into your blockchain, and configured the Rollkit CLI.
+By following these steps, you've successfully installed Ignite, integrated Rollkit features into your blockchain, and configured the Rollkit CLI to run your chain against a mock DA and mock sequencer.
