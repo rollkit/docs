@@ -278,7 +278,7 @@ function sidebarHome() {
               text: "EVM",
 	      collapsed: true,
 	      items: [
-                { text: "Omni Octane EVM", link: "/tutorials/octane-evm" },
+                //{ text: "Omni Octane EVM", link: "/tutorials/octane-evm" },
 	        { text: "BeaconKit EVM", link: "/tutorials/beaconkit" },
                 { text: "Artela EVM++", link: "/tutorials/artela-evm-plus-plus" },
 		{ text: "Contract interaction", link: "/tutorials/evm-contract-interaction" },
