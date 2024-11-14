@@ -4,13 +4,13 @@ const constants = Object.freeze({
   nodeVersion: "21.7.2",
   yarnVersion: "1.22.19",
 
-  rollkitLatestTag: "v0.14.1-rc.1",
-  rollkitLatestSha: "ca746d0",
+  rollkitLatestTag: "v0.14.1",
+  rollkitLatestSha: "5a8693e",
   rollkitCosmosSDKVersion: "v0.50.6-rollkit-v0.13.3-no-fraud-proofs",
   rollkitIgniteAppVersion: "rollkit/v0.2.1",
 
   localDALatestTag: "v0.3.1",
-  goSequencingLatestTag: "v0.4.0",
+  goSequencingLatestTag: "v0.4.1",
   igniteVersionTag: "v28.5.3",
 });
 export default constants;
