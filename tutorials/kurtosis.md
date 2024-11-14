@@ -121,6 +121,8 @@ def run(plan):
         "start",
         "--rollkit.aggregator",
         "--rollkit.da_address {0}".format(da_address),
+        "--rollkit.sequencer_address {0}".format(sequencer_address),
+        "--rollkit.sequencer_rollup_id wordle",
     ]
     # Define the jsonrpc ports
     wordle_ports = {

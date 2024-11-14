@@ -17,4 +17,4 @@ These examples are for educational purposes only. Before deploying your rollup f
 :::
 
 * [Deploy with Docker Compose](/tutorials/docker-compose)
-* [Deploy with Kurtosis](/tutorials/kurtosis)
+<!-- * [Deploy with Kurtosis](/tutorials/kurtosis) -->

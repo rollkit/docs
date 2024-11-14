@@ -294,10 +294,10 @@ function sidebarHome() {
               text: "Docker Compose",
               link: "/tutorials/docker-compose",
             },
-            {
-              text: "Kurtosis",
-              link: "/tutorials/kurtosis",
-            },
+            // {
+            //   text: "Kurtosis",
+            //   link: "/tutorials/kurtosis",
+            // },
           ],
         },
       ],
