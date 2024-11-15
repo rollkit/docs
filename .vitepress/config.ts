@@ -239,23 +239,27 @@ function sidebarHome() {
           items: [
             {
               text: "Overview",
-              link: "/tutorials/sequencing",
+              link: "/tutorials/sequencing/overview",
+            },
+            {
+              text: "Local",
+              link: "/tutorials/sequencing/local",
             },
             {
               text: "Centralized",
-              link: "/tutorials/centralized",
+              link: "/tutorials/sequencing/centralized",
             },
             {
               text: "Based",
-              link: "/tutorials/based",
+              link: "/tutorials/sequencing/based",
             },
             {
               text: "Forced Inclusion",
-              link: "/tutorials/forced",
+              link: "/tutorials/sequencing/forced-inclusion",
             },
             {
               text: "Astria",
-              link: "/tutorials/astria",
+              link: "/tutorials/sequencing/astria",
             },
           ],
         },
