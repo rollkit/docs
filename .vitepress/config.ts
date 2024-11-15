@@ -174,7 +174,7 @@ function nav() {
     { text: "Learn", link: "/learn/intro" },
     { text: "Tutorials", link: "/tutorials/quick-start" },
     { text: "How To Guides", link: "/guides/overview" },
-    { text: "Testnets", link: "/testnets/cosmwasm-testnet" },
+    // { text: "Testnets", link: "/testnets/cosmwasm-testnet" },
     { text: "Blog", link: "/blog/overview" },
   ];
 }
@@ -385,11 +385,11 @@ function sidebarHome() {
         },
       ],
     },
-    {
-      text: "Testnets",
-      collapsed: true,
-      items: [{ text: "CosmWasm Testnet", link: "/testnets/cosmwasm-testnet" }],
-    },
+    // {
+    //   text: "Testnets",
+    //   collapsed: true,
+    //   items: [{ text: "CosmWasm Testnet", link: "/testnets/cosmwasm-testnet" }],
+    // },
     {
       text: "Blog",
       collapsed: true,
