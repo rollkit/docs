@@ -224,12 +224,20 @@ function sidebarHome() {
           collapsed: true,
           items: [
             {
+              text: "Overview",
+              link: "/tutorials/da/overview",
+            },
+            {
+              text: "Local DA",
+              link: "/tutorials/da/local-da",
+            },
+            {
               text: "Celestia",
-              link: "/tutorials/celestia-da",
+              link: "/tutorials/da/celestia-da",
             },
             {
               text: "Avail",
-              link: "/tutorials/avail-da",
+              link: "/tutorials/da/avail-da",
             },
           ],
         },
