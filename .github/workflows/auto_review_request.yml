@@ -7,7 +7,7 @@ on:
 jobs:
   auto-add-reviewer:
     name: Auto add reviewer to PR
-    uses: rollkit/.github/.github/workflows/reusable_housekeeping.yml@v0.4.1
+    uses: rollkit/.github/.github/workflows/reusable_housekeeping.yml@v0.5.0
     secrets: inherit
     permissions:
       issues: write
