@@ -26,11 +26,11 @@ Now that Rollkit is installed, you can add Rollkit features to your existing blo
 ignite rollkit add
 ```
 
-## Initialize Rollkit with Local DA {#initialize-rollkit-local-da}
+## Initialize Rollkit {#initialize-rollkit}
 
-To prepare your app for Rollkit, you'll need to initialize it with Local Data Availability (Local DA). This allows your app to interact with a lightweight, testable DA layer.
+To prepare your app for Rollkit, you'll need to initialize it.
 
-Run the following command to initialize Rollkit with Local DA:
+Run the following command to initialize Rollkit:
 
 ```bash
 ignite rollkit init
@@ -53,9 +53,11 @@ This command sets up the `rollkit.toml` file, where you can further customize co
 Once everything is configured, you can start your Rollkit-enabled CometBFT app or (simply rollkit app). Use the following command to start your blockchain:
 
 ```bash
-rollkit start --rollkit.aggregator --rollkit.da_address http://localhost:7980
+rollkit start --rollkit.aggregator <insert your flags>
 ```
 
 ## Summary
 
 By following this guide, you've successfully converted your CometBFT app into a Rollkit app.
+
+To learn more about how to config your DA, Sequencing, and Execution, please check out those tutorial sections.
