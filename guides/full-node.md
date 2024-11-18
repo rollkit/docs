@@ -82,7 +82,7 @@ After starting your full node, you should see output similar to:
 This output indicates that your full node is successfully connecting to the network and processing blocks.
 
 :::tip
-If your rollup uses EVM as an execution layar and you see an error like `datadir already used by another process`, it means you have to remove all the state from rollup data directory (`/root/.yourrollup_fn/data/`) and specify a different data directory for the EVM client. Preferrably to run a full node on a different machine, as some EVM clients does not have a configurable data directory.
+If your rollup uses EVM as an execution layar and you see an error like `datadir already used by another process`, it means you have to remove all the state from rollup data directory (`/root/.yourrollup_fn/data/`) and specify a different data directory for the EVM client. Preferrably to run a full node on a different machine (or using Docker), as some EVM clients does not have a configurable data directory.
 :::
 
 
