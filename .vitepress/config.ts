@@ -319,10 +319,6 @@ function sidebarHome() {
           link: "/guides/use-rollkit-cli",
         },
         {
-          text: "Connect to a local DA",
-          link: "/guides/connect-local-da",
-        },
-        {
           text: "Create genesis for your rollup",
           link: "/guides/create-genesis",
         },
