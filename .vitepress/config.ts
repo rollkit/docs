@@ -174,7 +174,7 @@ function nav() {
     { text: "Learn", link: "/learn/intro" },
     { text: "Tutorials", link: "/tutorials/quick-start" },
     { text: "How To Guides", link: "/guides/overview" },
-    { text: "Testnets", link: "/testnets/cosmwasm-testnet" },
+    // { text: "Testnets", link: "/testnets/cosmwasm-testnet" },
     { text: "Blog", link: "/blog/overview" },
   ];
 }
@@ -218,17 +218,7 @@ function sidebarHome() {
           text: "Quick start guide",
           link: "/tutorials/quick-start",
         },
-        {
-          text: "Rollkit",
-          collapsed: true,
-          items: [
-            {
-              text: "GM world rollup",
-              link: "/tutorials/gm-world",
-            },
-            { text: "Wordle app", link: "/tutorials/wordle" },
-          ],
-        },
+        { text: "Build a chain", link: "/tutorials/wordle" },
         {
           text: "DA",
           collapsed: true,
@@ -273,18 +263,41 @@ function sidebarHome() {
           text: "Execution",
           collapsed: true,
           items: [
-            { text: "CosmWasm rollup", link: "/tutorials/cosmwasm" },
-	    {
+            { text: "CosmWasm", link: "/tutorials/cosmwasm" },
+            {
               text: "EVM",
-	      collapsed: true,
-	      items: [
-                //{ text: "Omni Octane EVM", link: "/tutorials/octane-evm" },
-	        { text: "BeaconKit EVM", link: "/tutorials/beaconkit" },
-                { text: "Artela EVM++", link: "/tutorials/artela-evm-plus-plus" },
-		{ text: "Contract interaction", link: "/tutorials/evm-contract-interaction" },
-              ]
-	    },
-	  ],
+              collapsed: true,
+              items: [
+                { text: "BeaconKit EVM", link: "/tutorials/beaconkit" },
+                {
+                  text: "Artela EVM++",
+                  link: "/tutorials/artela-evm-plus-plus",
+                },
+                {
+                  text: "Contract interaction",
+                  link: "/tutorials/evm-contract-interaction",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          text: "Deploy your chain",
+          collapsed: true,
+          items: [
+            {
+              text: "Overview",
+              link: "/tutorials/deploy-overview",
+            },
+            {
+              text: "Docker Compose",
+              link: "/tutorials/docker-compose",
+            },
+            // {
+            //   text: "Kurtosis",
+            //   link: "/tutorials/kurtosis",
+            // },
+          ],
         },
       ],
     },
@@ -350,32 +363,32 @@ function sidebarHome() {
           text: "Integrations",
           collapsed: true,
           items: [
-          {
-            text: "Test and deploy cosmwasm smart-contracts",
-            link: "/guides/cw-orch",
-          },
-          { text: "Add zkML to your EVM rollup", link: "/guides/zkml" },
-          {
-            text: "Add an IBC connection to your rollup",
-            link: "/guides/ibc-connection",
-          },
-          {
-            text: "Integrate Range with your rollup",
-            link: "/guides/rollkit-monitoring",
-          },
-          {
-            text: "Use IBC token (TIA) as gas token in your rollup",
-            link: "/guides/use-tia-for-gas",
-          },
-        ],
-      },
+            {
+              text: "Test and deploy cosmwasm smart-contracts",
+              link: "/guides/cw-orch",
+            },
+            { text: "Add zkML to your EVM rollup", link: "/guides/zkml" },
+            {
+              text: "Add an IBC connection to your rollup",
+              link: "/guides/ibc-connection",
+            },
+            {
+              text: "Integrate Range with your rollup",
+              link: "/guides/rollkit-monitoring",
+            },
+            {
+              text: "Use IBC token (TIA) as gas token in your rollup",
+              link: "/guides/use-tia-for-gas",
+            },
+          ],
+        },
       ],
     },
-    {
-      text: "Testnets",
-      collapsed: true,
-      items: [{ text: "CosmWasm Testnet", link: "/testnets/cosmwasm-testnet" }],
-    },
+    // {
+    //   text: "Testnets",
+    //   collapsed: true,
+    //   items: [{ text: "CosmWasm Testnet", link: "/testnets/cosmwasm-testnet" }],
+    // },
     {
       text: "Blog",
       collapsed: true,
