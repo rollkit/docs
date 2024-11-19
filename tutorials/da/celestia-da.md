@@ -13,7 +13,26 @@ Before proceeding, ensure that you have completed the [quick start](/tutorials/q
 
 ## 🪶 Running a Celestia light node
 
-Before you can start your rollup node, you need to initiate, sync, and fund a light node on one of Celestia's networks:
+Before you can start your rollup node, you need to initiate, sync, and fund a light node on one of Celestia's networks on a compatible version:
+
+::: code-group
+
+```sh-vue [Arabica]
+Rollkit Version: {{constants.celestiaNodeArabicaRollkitTag}}
+Celestia Node Version: {{constants.celestiaNodeArabicaTag}}
+```
+
+```sh-vue [Mocha]
+Rollkit Version: {{constants.celestiaNodeMochaRollkitTag}}
+Celestia Node Version: {{constants.celestiaNodeMochaTag}}
+```
+
+```sh-vue [Mainnet]
+Rollkit Version: {{constants.celestiaNodeMainnetRollkitTag}}
+Celestia Node Version: {{constants.celestiaNodeMainnetTag}}
+```
+
+:::
 
 - [Arabica Devnet](https://docs.celestia.org/nodes/arabica-devnet)
 - [Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet)
