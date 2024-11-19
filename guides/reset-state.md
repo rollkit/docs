@@ -98,10 +98,15 @@ tree $HOME/.wordle
 The directories you need to delete to reset your state are in the `.wordle/data` directory.
 
 ```bash
-rm -rf \
-    $HOME/.wordle/data/application.db \
-    $HOME/.wordle/data/rollkit \
-    $HOME/.wordle/data/snapshots 
+$HOME/.wordle/data/application.db
+$HOME/.wordle/data/rollkit
+$HOME/.wordle/data/snapshots 
+```
+
+You can delete them with the following command:
+
+```bash
+rollkit tendermint unsafe-reset-all
 ```
 
 When you launch your chain again with your `rollkit start <flags>` command, these data directories will be re-created and you will see your chain starting at block height 1 again.
