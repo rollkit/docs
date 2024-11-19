@@ -1,4 +1,4 @@
-# Deploying a rollup to Avail  
+# Using Avail as DA  
 
 ## 🌞 Introduction {#introduction}
 
