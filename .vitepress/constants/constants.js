@@ -11,6 +11,7 @@ const constants = Object.freeze({
 
   localDALatestTag: "v0.3.1",
   goSequencingLatestTag: "v0.4.1",
+  centralizedSequencerLatestTag: "v0.4.0",
   igniteVersionTag: "v28.5.3",
 });
 export default constants;
