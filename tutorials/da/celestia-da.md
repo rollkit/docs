@@ -1,8 +1,8 @@
-# Deploying a rollup to Celestia
+# Using Celestia as DA
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
-import constants from '../.vitepress/constants/constants.js'
+import constants from '../../.vitepress/constants/constants.js'
 </script>
 
 ## 🌞 Introduction {#introduction}
@@ -13,7 +13,26 @@ Before proceeding, ensure that you have completed the [quick start](/tutorials/q
 
 ## 🪶 Running a Celestia light node
 
-Before you can start your rollup node, you need to initiate, sync, and fund a light node on one of Celestia's networks:
+Before you can start your rollup node, you need to initiate, sync, and fund a light node on one of Celestia's networks on a compatible version:
+
+::: code-group
+
+```sh-vue [Arabica]
+Rollkit Version: {{constants.celestiaNodeArabicaRollkitTag}}
+Celestia Node Version: {{constants.celestiaNodeArabicaTag}}
+```
+
+```sh-vue [Mocha]
+Rollkit Version: {{constants.celestiaNodeMochaRollkitTag}}
+Celestia Node Version: {{constants.celestiaNodeMochaTag}}
+```
+
+```sh-vue [Mainnet]
+Rollkit Version: {{constants.celestiaNodeMainnetRollkitTag}}
+Celestia Node Version: {{constants.celestiaNodeMainnetTag}}
+```
+
+:::
 
 - [Arabica Devnet](https://docs.celestia.org/nodes/arabica-devnet)
 - [Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet)
@@ -54,12 +73,26 @@ The output of the command above will look similar to this:
  Your DA_BLOCK_HEIGHT is 2127672
 ```
 
-Now, let's obtain the authentication token of your light node using the following command (omit the --p2p.network flag for Mainnet Beta):
+Now, let's obtain the authentication token of your light node using the following command:
 
-```bash
+::: code-group
+
+```bash [Arabica Devnet]
 AUTH_TOKEN=$(celestia light auth write --p2p.network arabica)
 echo -e "\n Your DA AUTH_TOKEN is $AUTH_TOKEN \n"
 ```
+
+```bash [Mocha Testnet]
+AUTH_TOKEN=$(celestia light auth write --p2p.network mocha)
+echo -e "\n Your DA AUTH_TOKEN is $AUTH_TOKEN \n"
+```
+
+```bash [Mainnet Beta]
+AUTH_TOKEN=$(celestia light auth write)
+echo -e "\n Your DA AUTH_TOKEN is $AUTH_TOKEN \n"
+```
+
+:::
 
 The output of the command above will look similar to this:
 

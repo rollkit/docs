@@ -11,6 +11,14 @@ const constants = Object.freeze({
 
   localDALatestTag: "v0.3.1",
   goSequencingLatestTag: "v0.4.1",
+  centralizedSequencerLatestTag: "v0.4.0",
   igniteVersionTag: "v28.5.3",
+
+  celestiaNodeArabicaTag: "v0.20.2-arabica",
+  celestiaNodeArabicaRollkitTag: "v0.14.1",
+  celestiaNodeMochaTag: "v0.20.2-mocha",
+  celestiaNodeMochaRollkitTag: "v0.14.1",
+  celestiaNodeMainnetTag: "v0.17.2",
+  celestiaNodeMainnetRollkitTag: "v0.13.7",
 });
 export default constants;

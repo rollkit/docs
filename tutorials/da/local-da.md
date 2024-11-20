@@ -1,11 +1,15 @@
-# How to connect a rollup to a local DA network
+# Using Local DA
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
-import constants from '../.vitepress/constants/constants.js'
+import constants from '../../.vitepress/constants/constants.js'
 </script>
 
-This guide provides a quick and straightforward method to start a local Data Availability (DA) network and configure your rollup to post data to it.
+## Introduction {#introduction}
+
+This tutorial serves as a comprehensive guide for using the [local-da](https://github.com/rollkit/local-da) with your chain. 
+
+Before proceeding, ensure that you have completed the [quick start](/tutorials/quick-start) or [build a chain](/tutorials/wordle) tutorial, which covers installing the rollkit CLI, building your chain, and running your chain.
 
 ## Setting Up a Local DA Network
 
@@ -25,10 +29,25 @@ To connect your rollup to the local DA network, you need to pass the `--rollkit.
 
 Start your rollup node with the following command, ensuring to include the DA address flag:
 
-```bash
+::: code-group
+
+```sh [Quick Start]
+rollkit start --rollkit.da_address http://localhost:7980
+```
+
+```sh [Wordle Chain]
 rollkit start \
+    --rollkit.aggregator \
     --rollkit.da_address http://localhost:7980 \
-    <other-flags>
+    --rollkit.sequencer_rollup_id wordle
+```
+
+:::
+
+You should see the following log message indicating that your rollup is connected to the local DA network:
+
+```shell
+I[2024-11-15|14:54:19.842] DA server is already running                 module=main address=http://localhost:7980
 ```
 
 ## Summary

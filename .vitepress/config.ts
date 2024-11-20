@@ -224,12 +224,20 @@ function sidebarHome() {
           collapsed: true,
           items: [
             {
+              text: "Overview",
+              link: "/tutorials/da/overview",
+            },
+            {
+              text: "Local DA",
+              link: "/tutorials/da/local-da",
+            },
+            {
               text: "Celestia",
-              link: "/tutorials/celestia-da",
+              link: "/tutorials/da/celestia-da",
             },
             {
               text: "Avail",
-              link: "/tutorials/avail-da",
+              link: "/tutorials/da/avail-da",
             },
           ],
         },
@@ -239,23 +247,27 @@ function sidebarHome() {
           items: [
             {
               text: "Overview",
-              link: "/tutorials/sequencing",
+              link: "/tutorials/sequencing/overview",
+            },
+            {
+              text: "Local",
+              link: "/tutorials/sequencing/local",
             },
             {
               text: "Centralized",
-              link: "/tutorials/centralized",
+              link: "/tutorials/sequencing/centralized",
             },
             {
               text: "Based",
-              link: "/tutorials/based",
+              link: "/tutorials/sequencing/based",
             },
             {
               text: "Forced Inclusion",
-              link: "/tutorials/forced",
+              link: "/tutorials/sequencing/forced-inclusion",
             },
             {
               text: "Astria",
-              link: "/tutorials/astria",
+              link: "/tutorials/sequencing/astria",
             },
           ],
         },
@@ -308,10 +320,6 @@ function sidebarHome() {
         {
           text: "Use the Rollkit CLI",
           link: "/guides/use-rollkit-cli",
-        },
-        {
-          text: "Connect to a local DA",
-          link: "/guides/connect-local-da",
         },
         {
           text: "Create genesis for your rollup",
