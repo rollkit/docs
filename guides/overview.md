@@ -15,7 +15,6 @@ your life easier when developing with Rollkit.
 In this section, you'll find:
 
 * [Use the Rollkit CLI](/guides/use-rollkit-cli)
-* [Connect to a local DA](/guides/connect-local-da)
 * [Create genesis for your rollup](/guides/create-genesis)
 * [Restart your rollup](/guides/restart-rollup)
 * [Run a rollup full node](/guides/full-node)
