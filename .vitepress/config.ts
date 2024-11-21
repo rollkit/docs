@@ -331,6 +331,10 @@ function sidebarHome() {
           link: "/guides/restart-rollup",
         },
         {
+          text: "Reset your chain's state",
+          link: "/guides/reset-state",
+        },
+        {
           text: "Run a rollup full node",
           link: "/guides/full-node",
         },
