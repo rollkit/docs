@@ -1,20 +1,24 @@
 # 🗞️ CosmWasm rollup
 
-CosmWasm is a smart contracting platform built for the Cosmos
-ecosystem by making use of [WebAssembly](https://webassembly.org) (Wasm)
-to build smart contracts for Cosmos-SDK. In this tutorial, we will be
-exploring how to integrate CosmWasm with local DA layer using Rollkit.
-
 <!-- markdownlint-disable MD033 -->
 <script setup>
-import Callout from '../.vitepress/components/callout.vue'
-import constants from '../.vitepress/constants/constants.js'
+import Callout from '../../.vitepress/components/callout.vue'
+import ExecutionCallout from '../../.vitepress/components/execution_callout.vue'
+import constants from '../../.vitepress/constants/constants.js'
 </script>
+<!-- markdownlint-enable MD033 -->
 
 :::tip
 <Callout />
 :::
-<!-- markdownlint-enable MD033 -->
+:::warning
+<ExecutionCallout />
+:::
+
+CosmWasm is a smart contracting platform built for the Cosmos
+ecosystem by making use of [WebAssembly](https://webassembly.org) (Wasm)
+to build smart contracts for Cosmos-SDK. In this tutorial, we will be
+exploring how to integrate CosmWasm with local DA layer using Rollkit.
 
 The smart contract we will use for this tutorial is one provided by
 the CosmWasm team for Nameservice purchasing.

@@ -1,8 +1,19 @@
 # Quick Start Guide for Artela EVM++ with Rollkit
 
+<!-- markdownlint-disable MD033 -->
 <script setup>
-import constants from '../.vitepress/constants/constants.js'
+import Callout from '../../.vitepress/components/callout.vue'
+import ExecutionCallout from '../../.vitepress/components/execution_callout.vue'
+import constants from '../../.vitepress/constants/constants.js'
 </script>
+<!-- markdownlint-enable MD033 -->
+
+:::tip
+<Callout />
+:::
+:::warning
+<ExecutionCallout />
+:::
 
 This guide will assist you to quickly set up a rollup node with [Artela EVM++](https://docs.artela.network/main/Artela-Blockchain/EVM++) execution layer using Rollkit and local-DA.
 
