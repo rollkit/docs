@@ -15,10 +15,10 @@ your life easier when developing with Rollkit.
 In this section, you'll find:
 
 * [Use the Rollkit CLI](/guides/use-rollkit-cli)
-* [Connect to a local DA](/guides/connect-local-da)
 * [Create genesis for your rollup](/guides/create-genesis)
 * [Restart your rollup](/guides/restart-rollup)
 * [Run a rollup full node](/guides/full-node)
+* [Run a centralized sequencer](/guides/centralized-sequencer)
 * [Turn your CometBFT app into a Rollkit app](/guides/cometbft-to-rollkit)
 * [Use Ignite to create a Rollkit app](/guides/ignite-rollkit)
 * Configuration
@@ -27,6 +27,7 @@ In this section, you'll find:
   * [Configure DA chain block sync time](/guides/da-block-time)
   * [Change speed of block production](/guides/block-times)
   * [Use lazy sequencing (aggregation)](/guides/lazy-sequencing)
+  * [Configure Prometheus metrics](/guides/metrics)
 * Integrations
   * [Test and deploy cosmwasm smart-contracts](/guides/cw-orch)
   * [Add zkML to your EVM rollup](/guides/zkml)

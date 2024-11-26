@@ -330,8 +330,16 @@ function sidebarHome() {
           link: "/guides/restart-rollup",
         },
         {
+          text: "Reset your chain's state",
+          link: "/guides/reset-state",
+        },
+        {
           text: "Run a rollup full node",
           link: "/guides/full-node",
+        },
+        {
+          text: "Run a centralized sequencer",
+          link: "/guides/centralized-sequencer",
         },
         {
           text: "CometBFT into a Rollkit app",
@@ -364,6 +372,10 @@ function sidebarHome() {
             {
               text: "Use lazy sequencing (aggregation)",
               link: "/guides/lazy-sequencing",
+            },
+            {
+              text: "Configure Prometheus metrics",
+              link: "/guides/metrics",
             },
           ],
         },
