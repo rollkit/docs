@@ -1,8 +1,19 @@
 # Quick start guide for Omni Octane with Rollkit
 
+<!-- markdownlint-disable MD033 -->
 <script setup>
-import constants from '../.vitepress/constants/constants.js'
+import Callout from '../../.vitepress/components/callout.vue'
+import ExecutionCallout from '../../.vitepress/components/execution_callout.vue'
+import constants from '../../.vitepress/constants/constants.js'
 </script>
+<!-- markdownlint-enable MD033 -->
+
+:::tip
+<Callout />
+:::
+:::warning
+<ExecutionCallout />
+:::
 
 This guide will help you quickly set up and run an Omni node using Rollkit and local-DA.
 

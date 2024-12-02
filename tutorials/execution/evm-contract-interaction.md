@@ -1,5 +1,20 @@
 # Smart Contract Interaction on EVM Rollup
 
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import Callout from '../../.vitepress/components/callout.vue'
+import ExecutionCallout from '../../.vitepress/components/execution_callout.vue'
+import constants from '../../.vitepress/constants/constants.js'
+</script>
+<!-- markdownlint-enable MD033 -->
+
+:::tip
+<Callout />
+:::
+:::warning
+<ExecutionCallout />
+:::
+
 In this tutorial, you will deploy a smart contract to your EVM rollup and interact with it on a frontend. This tutorial assumes that you spinned up an EVM rollup, know it's RPC URL, and have funded an account on it.
 
 ## Install Foundry

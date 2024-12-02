@@ -2,8 +2,18 @@
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
-import constants from '../.vitepress/constants/constants.js'
+import Callout from '../../.vitepress/components/callout.vue'
+import ExecutionCallout from '../../.vitepress/components/execution_callout.vue'
+import constants from '../../.vitepress/constants/constants.js'
 </script>
+<!-- markdownlint-enable MD033 -->
+
+:::tip
+<Callout />
+:::
+:::warning
+<ExecutionCallout />
+:::
 
 ![beaconkit](https://camo.githubusercontent.com/b4a9b2b1d1536bb3dbbc32a5f3885b02dd1da8cdf9e34a160830d00ebee9120f/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f6475763067343032792f696d6167652f75706c6f61642f76313731383033343331322f426561636f6e4b697442616e6e65722e706e67)
 
