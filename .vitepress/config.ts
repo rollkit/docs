@@ -280,7 +280,6 @@ function sidebarHome() {
               text: "EVM",
               collapsed: true,
               items: [
-                { text: "Omni Octane EVM", link: "/tutorials/execution/octane-evm" },
                 { text: "BeaconKit EVM", link: "/tutorials/execution/beaconkit" },
                 {
                   text: "Artela EVM++",
