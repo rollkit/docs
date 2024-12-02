@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Rollkit is currently undergoing an execution overall with the
+        <p>Rollkit is currently undergoing an execution overhaul with the
         creation of the <a
         href="https://github.com/rollkit/go-execution">go-execution
         interface</a>. In the meantime, the execution tutorials should be
