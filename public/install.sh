@@ -10,6 +10,9 @@ fi
 
 cd rollkit || { echo "Failed to find the downloaded repository."; exit 1; }
 git fetch && git checkout $1
+echo "Installing dependencies..."
+go mod tidy
+go mod download
 echo "Building and installing Rollkit..."
 make install
 cd ..
