@@ -6,20 +6,10 @@ This guide will walk you through the process of setting up a genesis for your ro
 
 For this guide you need to have a chain directory where you have created and built your chain. 
 
-If you don't have a chain directory yet, you can initialize a simple ignite chain with the following commands. 
-
-```sh
-ignite scaffold chain gm --address-prefix gm --minimal --skip-proto
-cd gm
-ignite app install github.com/ignite/apps/rollkit@rollkit/v0.2.1
-ignite rollkit add
-ignite chain build
-ignite rollkit init
-rollkit toml init
-```
+If you don't have a chain directory yet, you can initialize a simple ignite chain by following [this guide](./ignite-rollkit.md)
 
 :::tip
-This guide will use the simple ignite chain created in the previous steps. Make sure to update any relevant variables to match your chain. 
+This guide will use the simple ignite chain created in linked guide. Make sure to update any relevant variables to match your chain. 
 :::
 
 ## 1. Setting variables
