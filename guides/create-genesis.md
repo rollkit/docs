@@ -2,20 +2,40 @@
 
 This guide will walk you through the process of setting up a genesis for your rollup. Follow the steps below to initialize your rollup chain, add a genesis account, and start the chain.
 
+## 0. Pre-requisities 
+
+For this guide you need to have a chain directory where you have created and built your chain. 
+
+If you don't have a chain directory yet, you can initialize a simple ignite chain with the following commands. 
+
+```sh
+ignite scaffold chain gm --address-prefix gm --minimal --skip-proto
+cd gm
+ignite app install github.com/ignite/apps/rollkit@rollkit/v0.2.1
+ignite rollkit add
+ignite chain build
+ignite rollkit init
+rollkit toml init
+```
+
+:::tip
+This guide will use the simple ignite chain created in the previous steps. Make sure to update any relevant variables to match your chain. 
+:::
+
 ## 1. Setting variables
 
-First, set the necessary variables for your chain, here is an example:
+First, set the necessary variables for your chain in the terminal, here is an example:
 
 ```sh
 VALIDATOR_NAME=validator1
-CHAIN_ID=rollup-chain
+CHAIN_ID=gm
 KEY_NAME=rollup-key
 CHAINFLAG="--chain-id ${CHAIN_ID}"
 TOKEN_AMOUNT="10000000000000000000000000stake"
 STAKING_AMOUNT="1000000000stake"
 ```
 
-## 2. Ensuring `rollkit.toml` is present and building entrypoint
+## 2. Rebuild your chain
 
 Ensure that `rollkit.toml` is present in the root of your rollup directory (if not, follow a [Guide](/guides/use-rollkit-cli) to set it up) and run the following command to (re)generate an entrypoint binary out of the code:
 
@@ -23,20 +43,38 @@ Ensure that `rollkit.toml` is present in the root of your rollup directory (if n
 rollkit rebuild
 ```
 
-This creates an `entrypoint` binary in the root of your rollup directory. which is used to run all the operations on the rollup chain.
+This (re)creates an `entrypoint` binary in the root of your rollup directory. which is used to run all the operations on the rollup chain.
 
-Ensure that the chain configuration directory is set correctly in the `rollkit.toml` file, if you doubt it, you can remove the `rollkit.toml` file and run the following command to generate a new one:
+Ensure that the chain configuration directory is set correctly in the `rollkit.toml` file.
+
+For example:
+
+```sh
+[chain]
+  config_dir = "/Users/you/.gm"
+```
+
+:::tip
+You can always recreate the `rollkit.toml` file by deleting it and re-running the following command:
 
 ```sh
 rollkit toml init
 ```
+:::
 
 ## 3. Resetting existing genesis/chain data
 
-Reset any existing genesis or chain data:
+Reset any existing chain data:
 
 ```sh
 rollkit tendermint unsafe-reset-all
+```
+
+Reset any existing genesis data:
+
+```sh
+rm -rf $HOME/.$CHAIN_ID/config/gentx
+rm $HOME/.$CHAIN_ID/config/genesis.json
 ```
 
 ## 4. Initializing the validator
@@ -84,29 +122,21 @@ rollkit genesis collect-gentxs
 Copy the centralized sequencer address into `genesis.json`:
 
 ```sh
-ADDRESS=$(jq -r '.address' ~/.rollup/config/priv_validator_key.json)
-PUB_KEY=$(jq -r '.pub_key' ~/.rollup/config/priv_validator_key.json)
-jq --argjson pubKey "$PUB_KEY" '.consensus["validators"]=[{"address": "'$ADDRESS'", "pub_key": $pubKey, "power": "1000", "name": "Rollkit Sequencer"}]' ~/.rollup/config/genesis.json > temp.json && mv temp.json ~/.rollup/config/genesis.json
+ADDRESS=$(jq -r '.address' ~/.$CHAIN_ID/config/priv_validator_key.json)
+PUB_KEY=$(jq -r '.pub_key' ~/.$CHAIN_ID/config/priv_validator_key.json)
+jq --argjson pubKey "$PUB_KEY" '.consensus["validators"]=[{"address": "'$ADDRESS'", "pub_key": $pubKey, "power": "1000", "name": "Rollkit Sequencer"}]' ~/.$CHAIN_ID/config/genesis.json > temp.json && mv temp.json ~/.$CHAIN_ID/config/genesis.json
 ```
 
-## 10. Creating a restart script
+## 10. Starting the chain
 
-Create a `restart-rollup.sh` file to restart the chain later, notice the `rollkit.da_address` flag which is the address of the data availability node, for other DA layers it will be a different set of flags (in case of Celestia check out the tutorial [here](/tutorials/celestia-da)):
+Finally, start the chain with your start command.
 
-```sh
-[ -f restart-rollup.sh ] && rm restart-rollup.sh
-
-echo "rollkit start --rollkit.aggregator --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr \"0.0.0.0:36656\" --minimum-gas-prices=\"0.025stake\" --rollkit.da_address \"http://localhost:7980\"" >> restart-rollup.sh
-```
-
-## 11. Starting the chain
-
-Finally, start the chain with the following command:
+For example, start the simple ignite chain with the following command:
 
 ```sh
-rollkit start --rollkit.aggregator --rpc.laddr tcp://127.0.0.1:36657 --grpc.address 127.0.0.1:9290 --p2p.laddr "0.0.0.0:36656" --minimum-gas-prices="0.025stake" --rollkit.da_address "http://localhost:7980"
+rollkit start --rollkit.aggregator --rollkit.sequencer_rollup_id $CHAIN_ID
 ```
 
 ## Summary
 
-By following these steps, you will set up the genesis for your rollup, initialize the validator, add a genesis account, and start the chain on a local data availability network (DA). This guide provides a basic framework for configuring and starting your rollup using the Rollkit CLI. Make sure `rollkit.toml` is present in the root of your rollup directory, and use the `rollkit` command for all operations.
+By following these steps, you will set up the genesis for your rollup, initialize the validator, add a genesis account, and started the chain. This guide provides a basic framework for configuring and starting your rollup using the Rollkit CLI. Make sure `rollkit.toml` is present in the root of your rollup directory, and use the `rollkit` command for all operations.
