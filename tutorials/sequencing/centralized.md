@@ -30,6 +30,8 @@ make build
 ./build/centralized-sequencer -h
 ```
 
+You should see the following output:
+
 ```sh
 Usage:
   -host string
@@ -50,6 +52,7 @@ Usage:
     	DA namespace where the sequencer submits transactions
   -db_path string
     	path to the database
+...
 ```
 
 As shown by the help command, a centralized sequencer is configured to serve a rollup (via `rollup_id`). The DA network to persist the sequenced batches are specified using `da_address`, `da_auth_token` and `da_namespace`.
@@ -112,6 +115,24 @@ Then after a few blocks you should see this message confirming that your sequenc
 ```sh
 I[2024-11-15|16:04:07.698] successfully submitted Rollkit headers to DA layer module=BlockManager gasPrice=-1 daHeight=1 headerCount=14
 ```
+
+## Metrics {#metrics}
+
+The `centralized-sequencer` node reports Prometheus metrics when the `-metrics` flag is enabled.
+
+By default, metrics are exported to `http://localhost:8080/metrics`.
+
+The listening address and port can be configured with the `-metrics-address` flag.
+
+The following metrics are available:
+
+| **Name**                                  | **Type**  | **Tags**  | **Description**                                                        |
+|-------------------------------------------|-----------|-----------|------------------------------------------------------------------------|
+| sequencer_gas_price                       | Gauge     |           | Gas price of the DA transaction                                         |
+| sequencer_last_blob_size                  | Gauge     |           | Last blob size submitted to the DA                                      |
+| sequencer_transaction_status              | Gauge     |           | Transaction status of the DA transaction                                |
+| sequencer_num_pending_blocks              | Gauge     |           | Number of blocks pending DA submission                                  |
+| sequencer_included_block_height           | Gauge     |           | Block height of the last DA transaction                                 |
 
 ## Summary {#summary}
 
