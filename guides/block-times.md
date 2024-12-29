@@ -1,7 +1,7 @@
 # How to change speed of block production
 
 If you have gone through both the [quick start tutorial](../tutorials/quick-start.md) and the
-[Full and sequencer node rollup setup](./full-and-sequencer-node)
+[Full and sequencer node rollup setup](./full-node)
 already, you're now ready to experiment with faster block times.
 
 In your `rollkit start [args...]` command, you will need to add a flag
