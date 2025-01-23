@@ -322,8 +322,8 @@ function sidebarHome() {
           link: "/guides/use-rollkit-cli",
         },
         {
-          text: "Create genesis for your rollup",
-          link: "/guides/create-genesis",
+          text: "Use Ignite to create a Rollkit app",
+          link: "/guides/ignite-rollkit",
         },
         {
           text: "Restart your rollup",
@@ -338,16 +338,12 @@ function sidebarHome() {
           link: "/guides/full-node",
         },
         {
-          text: "Run a centralized sequencer",
-          link: "/guides/centralized-sequencer",
-        },
-        {
           text: "CometBFT into a Rollkit app",
           link: "/guides/cometbft-to-rollkit",
         },
         {
-          text: "Use Ignite to create a Rollkit app",
-          link: "/guides/ignite-rollkit",
+          text: "Create genesis for your rollup",
+          link: "/guides/create-genesis",
         },
         {
           text: "Configuration",
