@@ -72,18 +72,19 @@ Make sure to include these flags with your start command:
 Run your full node with the following command:
 
 ```bash
-rollkit start --rollkit.aggregator=false \
+rollkit start \
   --rollkit.da_address http://127.0.0.1:7980 \
   --p2p.seeds $P2P_ID@127.0.0.1:26656 \
   --minimum-gas-prices 0stake \
   --rpc.laddr tcp://127.0.0.1:46657 \
   --grpc.address 127.0.0.1:9390 \
   --p2p.laddr "0.0.0.0:46656" \
-  --api.address tcp://localhost:1318
+  --api.address tcp://localhost:1318 \
+  --rollkit.sequencer_rollup_id gm
 ```
 
 Key points about this command:
-- `--rollkit.aggregator=false` indicates this is not an aggregator node.
+- `rollkit.sequencer_rollup_id` is generally the `$CHAIN_ID`, which is `gm` in this case.
 - The ports and addresses are different from the sequencer node to avoid conflicts. Not everything may be necessary for your setup.
 - We use the `P2P_ID` environment variable to set the seed node.
 
