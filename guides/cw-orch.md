@@ -5,7 +5,7 @@
 
 cw-orchestrator is the most advanced scripting, testing, and deployment framework for CosmWasm smart-contracts. It makes it easy to write cross-environment compatible code for [cw-multi-test](https://github.com/CosmWasm/cw-multi-test), [Test Tube](https://github.com/osmosis-labs/test-tube), [Starship](https://github.com/cosmology-tech/starship) (alpha), and live networks, significantly reducing code duplication and test-writing time.
 
-Get ready to change the way you interact with contracts and simplify you smart-contracts journey. The following steps will allow you to integrate `cw-orch` and write clean code such as:
+Get ready to change the way you interact with contracts and simplify your smart-contracts journey. The following steps will allow you to integrate `cw-orch` and write clean code such as:
 
 ```rust
 counter.upload()?;
