@@ -415,8 +415,8 @@ function sidebarHome() {
           link: "/blog/sovereign-rollups-on-bitcoin",
         },
         {
-          text: "Rollkit: The Unstoppable Stack",
-          link: "/blog/rollkit-the-unstoppable-stack",
+          text: "Rollkit: The First Sovereign Rollup Framework",
+          link: "/blog/rollkit-the-first-sovereign-rollup-framework",
         },
       ],
     },
