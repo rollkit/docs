@@ -24,17 +24,10 @@ Thanks to this compatibility, you can use tools like [abci-cli](https://docs.com
 #### Cosmos SDK
 
 Would you like to change your Cosmos SDK application to a Rollkit rollup?
-No problem! You need to replace the Cosmos SDK Go dependency with a
+No problem! You need to replace the Cosmos SDK Go starting logic with a
 Rollkit-enabled version, which can be found
-at the [`rollkit/cosmos-sdk`](https://github.com/rollkit/cosmos-sdk) repository.
-
-Note the [`rollkit/cosmos-sdk`](https://github.com/rollkit/cosmos-sdk) repository follows the release branches of
-upstream Cosmos SDK, but with the bonus of using Rollkit instead of CometBFT
-as the ABCI client.
-
-And don't forget to replace another dependency, `CometBFT`, with
-[`rollkit/cometbft`](https://github.com/rollkit/cometbft), which has an enhanced ABCI interface that includes
-the methods needed for state fraud proofs.
+at the [`rollkit/cosmos-sdk-starter`](https://github.com/rollkit/cosmos-sdk-starter) repository.
+The modified starting handler makes use of a Rollkit node instead of CometBFT as the ABCI client.
 
 ### Data availability
 
@@ -97,8 +90,8 @@ curl http://127.0.0.1:26657/block?height=included
 ```
 
 #### Parameters
-- height (integer or string): height of the requested block. If no height is specified the latest block will be used. If height is set to the string "included", the latest DA included block will be returned.
 
+- height (integer or string): height of the requested block. If no height is specified the latest block will be used. If height is set to the string "included", the latest DA included block will be returned.
 
 ### P2P layer
 
