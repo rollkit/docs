@@ -399,10 +399,10 @@
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.0.tgz#3188bcb273a414b0d215fd22a58540b989b9409a"
   integrity sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==
 
-"@keplr-wallet/types@0.12.149":
-  version "0.12.149"
-  resolved "https://registry.yarnpkg.com/@keplr-wallet/types/-/types-0.12.149.tgz#866ec561312b339008bee710a5754f3216504e1a"
-  integrity sha512-FGBESvpXQbfFG7swIq5hRvj3AkCUvMmqQ0m5INA/FrProGoPFP/Pgc6+DyAlwvJttVFp6+zchAsA9RG5o6cHJA==
+"@keplr-wallet/types@0.12.190":
+  version "0.12.190"
+  resolved "https://registry.yarnpkg.com/@keplr-wallet/types/-/types-0.12.190.tgz#14877e805b4336c095a75182504a2f5693f65b8c"
+  integrity sha512-f/fCuUuFv0KXMOrpagY6DEMLV4EQnBk07XNAshaF0/jOeTR20LRkEp5/ew1VmGe2DAUrLPHrBkFWpbDvuYiwWw==
   dependencies:
     long "^4.0.0"
 
@@ -1508,9 +1508,9 @@ ms@^2.1.3:
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
 nanoid@^3.3.7:
-  version "3.3.7"
-  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.7.tgz"
-  integrity sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==
+  version "3.3.8"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.8.tgz#b1be3030bee36aaff18bacb375e5cce521684baf"
+  integrity sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==
 
 node-domexception@^1.0.0:
   version "1.0.0"
