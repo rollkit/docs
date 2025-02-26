@@ -25,7 +25,7 @@ We love contributions from the community! Whether you're fixing typos, improving
 * Commit Changes: Make your changes and commit them with a clear and concise commit message.
 * Push & Create PR: Push your changes to your fork and create a pull request to the main branch of this repository.
 
-Please ensure to review the detailed Contribution Guidelines above before making a pull request.
+Please ensure you review the detailed Contribution Guidelines above before making a pull request.
 
 ## Directory Structure
 
