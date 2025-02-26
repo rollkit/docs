@@ -24,16 +24,22 @@ First, update the `config_dir` in the `rollkit.toml` file:
   config_dir = "/root/.yourrollupd_fn" // [!code ++]
 ```
 
+Let's set a terminal variable for the chain ID.
+
+```sh
+CHAIN_ID=gm
+```
+
 Initialize the chain config for the full node, lets call it `FullNode` and set the chain ID to your rollup chain ID:
 
 ```bash
-rollkit init FullNode --chain-id=your-rollup-chain-id
+rollkit init FullNode --chain-id=$CHAIN_ID
 ```
 
 Copy the genesis file from the sequencer node:
 
 ```bash
-cp /root/.yourrollupd/config/genesis.json /root/.yourrollupd_fn/config/genesis.json
+cp $HOME/.$CHAIN_ID/config/genesis.json $HOME/.${CHAIN_ID}_fn/config/genesis.json
 ```
 
 ### Set Up P2P Connection to Sequencer Node
@@ -52,21 +58,33 @@ export P2P_ID="12D3KooWJbD9TQoMSSSUyfhHMmgVY3LqCjxYFz8wQ92Qa6DAqtmh"
 
 ### Start the Full Node
 
-Run your full node with the following command:
+We are now ready to run our full node. If we are running the full node on the same machine as the sequencer, we need to make sure we update the ports to avoid conflicts. 
 
-```bash
-rollkit start --rollkit.aggregator=false \
-  --rollkit.da_address http://127.0.0.1:7980 \
+Make sure to include these flags with your start command:
+
+```sh
   --rpc.laddr tcp://127.0.0.1:46657 \
   --grpc.address 127.0.0.1:9390 \
-  --p2p.seeds $P2P_ID@127.0.0.1:26656 \
   --p2p.laddr "0.0.0.0:46656" \
-  --json-rpc.ws-address 127.0.0.1:8547 \
   --api.address tcp://localhost:1318
 ```
 
+Run your full node with the following command:
+
+```bash
+rollkit start \
+  --rollkit.da_address http://127.0.0.1:7980 \
+  --p2p.seeds $P2P_ID@127.0.0.1:26656 \
+  --minimum-gas-prices 0stake \
+  --rpc.laddr tcp://127.0.0.1:46657 \
+  --grpc.address 127.0.0.1:9390 \
+  --p2p.laddr "0.0.0.0:46656" \
+  --api.address tcp://localhost:1318 \
+  --rollkit.sequencer_rollup_id gm
+```
+
 Key points about this command:
-- `--rollkit.aggregator=false` indicates this is not an aggregator node.
+- `rollkit.sequencer_rollup_id` is generally the `$CHAIN_ID`, which is `gm` in this case.
 - The ports and addresses are different from the sequencer node to avoid conflicts. Not everything may be necessary for your setup.
 - We use the `P2P_ID` environment variable to set the seed node.
 
