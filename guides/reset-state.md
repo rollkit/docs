@@ -3,7 +3,7 @@
 This guide will walk you through how you reset the state of your chain.
 
 :::warning Disclaimer
-By definition, reseting the state is deleting your chain's data. Make sure you understand the implications of this prior to completion this guide.
+By definition, resetting the state is deleting your chain's data. Make sure you understand the implications of this prior to completing this guide.
 :::
 
 Some reason you might need to reset the state of your chain are:
@@ -11,7 +11,7 @@ Some reason you might need to reset the state of your chain are:
 * During upgrades with breaking changes
 * Hardforks
 
-## Prerequisities 
+## Prerequisites 
 
 In order to complete this guide, you will need to have completed either the [quick start tutorial](/tutorials/quick-start.md) or the [build our chain tutorial](/tutorials/wordle.md).
 
@@ -51,7 +51,7 @@ When you launch your chain again with `rollkit start` your `.rollkit` directory 
 
 ## Wordle
 
-When you ran your wordle chain in the [build your chain turtorial](/tutorials/wordle.md), it created a `.wordle` directory.
+When you ran your wordle chain in the [build your chain tutorial](/tutorials/wordle.md), it created a `.wordle` directory.
 
 This directory will look like the following:
 
