@@ -8,11 +8,9 @@ reviewers:
       - tzdybal
       - gupadhyaya
       - tuxcanfly
-      - MSevey
       - yarikbratashchuk
 files:
   ".github/**":
-    - MSevey
     - jcstein
     - rollkit
 options:
