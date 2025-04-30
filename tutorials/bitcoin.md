@@ -474,7 +474,7 @@ Test result: ok. 3 passed; 0 failed; finished in 2.24ms
 ### 📜 Updating the deployment script
 
 Now that we've tested the contract, let's try deploying it locally using
-[Solidity Scripting](https://book.getfoundry.sh/tutorials/solidity-scripting.html).
+[Solidity Scripting](https://book.getfoundry.sh/guides/scripting-with-solidity).
 
 To do so, update the deloyment script at `script/Counter.s.sol` with the
 following code:
