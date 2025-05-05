@@ -4,10 +4,10 @@ In most cases, the gas price can be left to the defaults, which ensures that
 the price is greater than the minimum gas price accepted by the core node.
 
 The gas price can also be configured manually with the flag
-`--rollkit.da_gas_price`:
+`--rollkit.da.gas_price`:
 
 ```bash
-rollkit start --rollkit.da_gas_price=0.1 [existing flags...]
+${BINARY_NAME} start --rollkit.da.gas_price=0.1 [existing flags...]
 ```
 
 This configures the rollup to always use the fixed gas price of `0.1utia/gas`.
@@ -16,10 +16,10 @@ When running a rollup against a live network, the gas price may see
 occasional spikes during periods of high mempool congestion.
 
 To avoid such transient blob submission failures, the flag
-`--rollkit.da_gas_multiplier` may be used:
+`--rollkit.da.gas_multiplier` may be used:
 
 ```bash
-rollkit start --rollkit.da_gas_price=0.1 --rollkit.da_gas_multiplier=1.2 [...]
+${BINARY_NAME} start --rollkit.da.gas_price=0.1 --rollkit.da.gas_multiplier=1.2 [...]
 ```
 
 This configures the rollup to keep increasing the gas price by a factor of 1.2x

@@ -7,19 +7,20 @@ By definition, resetting the state is deleting your chain's data. Make sure you 
 :::
 
 Some reason you might need to reset the state of your chain are:
+
 * During testing and development
 * During upgrades with breaking changes
 * Hardforks
 
-## Prerequisites 
+## Prerequisites
 
 In order to complete this guide, you will need to have completed either the [quick start tutorial](/tutorials/quick-start.md) or the [build our chain tutorial](/tutorials/wordle.md).
 
 ## Quick Start
 
-When you run your chain with `rollkit start` you will create a `.rollkit` directory in your root directory. 
+When you run your chain with `rollkit start` you will create a `.rollkit` directory in your root directory.
 
-This directory will look like the following. 
+This directory will look like the following.
 
 ```bash
 tree $HOME/.rollkit
@@ -44,7 +45,7 @@ tree $HOME/.rollkit
 To reset the state of the chain, delete the entire `.rollkit` directory.
 
 ```bash
-rm -rf $HOME/.rollkit
+${BINARY} unsafe-clean
 ```
 
 When you launch your chain again with `rollkit start` your `.rollkit` directory will be re-created and you will see your chain starting at block height 1 again.
