@@ -17,10 +17,12 @@ In this section, you'll find:
 * [Use the Rollkit CLI](/guides/use-rollkit-cli)
 * [Create genesis for your rollup](/guides/create-genesis)
 * [Restart your rollup](/guides/restart-rollup)
-* [Run a rollup full node](/guides/full-node)
-* [Run a centralized sequencer](/guides/centralized-sequencer)
+* [Reset your chain's state](/guides/reset-state)
 * [Turn your CometBFT app into a Rollkit app](/guides/cometbft-to-rollkit)
 * [Use Ignite to create a Rollkit app](/guides/ignite-rollkit)
+* EVM Rollups
+  * [EVM Based Sequencer Setup](/guides/evm-based)
+  * [EVM Single Sequencer Setup](/guides/evm-single-guide)
 * Configuration
   * [Configure gas price](/guides/gas-price)
   * [Configure max pending blocks](/guides/max-pending-blocks)
@@ -34,8 +36,6 @@ In this section, you'll find:
   * [Add an IBC connection to your rollup](/guides/ibc-connection)
   * [Integrate Range with your rollup](/guides/rollkit-monitoring)
   * [Use IBC token (TIA) as gas token in your rollup](/guides/use-tia-for-gas)
-
-
 
 ## 💻 Support {#support}
 

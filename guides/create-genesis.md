@@ -2,14 +2,14 @@
 
 This guide will walk you through the process of setting up a genesis for your rollup. Follow the steps below to initialize your rollup chain, add a genesis account, and start the chain.
 
-## 0. Pre-requisities 
+## 0. Pre-requisities
 
-For this guide you need to have a chain directory where you have created and built your chain. 
+For this guide you need to have a chain directory where you have created and built your chain.
 
 If you don't have a chain directory yet, you can initialize a simple ignite chain by following [this guide](./ignite-rollkit.md)
 
 :::tip
-This guide will use the simple ignite chain created in linked guide. Make sure to update any relevant variables to match your chain. 
+This guide will use the simple ignite chain created in linked guide. Make sure to update any relevant variables to match your chain.
 :::
 
 ## 1. Setting variables
@@ -50,6 +50,7 @@ You can always recreate the `rollkit.toml` file by deleting it and re-running th
 ```sh
 rollkit toml init
 ```
+
 :::
 
 ## 3. Resetting existing genesis/chain data
