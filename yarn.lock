@@ -399,10 +399,10 @@
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.0.tgz#3188bcb273a414b0d215fd22a58540b989b9409a"
   integrity sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==
 
-"@keplr-wallet/types@0.12.212":
-  version "0.12.212"
-  resolved "https://registry.yarnpkg.com/@keplr-wallet/types/-/types-0.12.212.tgz#71a406978f243ce20940d2f9c1f074ce0fc623a1"
-  integrity sha512-UUw01GspPOnB9vDo1ANKIQ7Ms+usl3wKARft7GIlmiLaIUJhRGAYDoJvTWs7eSEYNCyIIB2TY4D8aY5fecdQ5w==
+"@keplr-wallet/types@0.12.230":
+  version "0.12.230"
+  resolved "https://registry.yarnpkg.com/@keplr-wallet/types/-/types-0.12.230.tgz#d6a9b488d9825fb16623db43817cac231391e3c6"
+  integrity sha512-fyd/Wt2accJ/avOHOWc8kOtJCLKrHtyVjMNvmxmIZw5uFYPLKFxeVUSLy1AB4JmhDupcZvshocFO1hOe+WkUMQ==
   dependencies:
     long "^4.0.0"
 
