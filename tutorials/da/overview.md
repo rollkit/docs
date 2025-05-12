@@ -19,11 +19,11 @@ The [go-da interface](https://github.com/rollkit/go-da) defines the core functio
 ```go
 // DA defines very generic interface for interaction with Data Availability layers.
 type DA interface {
-	// Get returns Blob for each given ID, or an error.
-	Get(ctx context.Context, ids []ID, namespace Namespace) ([]Blob, error)
+ // Get returns Blob for each given ID, or an error.
+ Get(ctx context.Context, ids []ID, namespace Namespace) ([]Blob, error)
 
-	// Submit submits the Blobs to Data Availability layer.
-	Submit(ctx context.Context, blobs []Blob, gasPrice float64, namespace Namespace) ([]ID, error)
+ // Submit submits the Blobs to Data Availability layer.
+ Submit(ctx context.Context, blobs []Blob, gasPrice float64, namespace Namespace) ([]ID, error)
 }
 ```
 
@@ -47,4 +47,3 @@ Now that you have a better understanding of what a DA layer is, you can start to
 
 * [Local DA](local-da.md)
 * [Celestia DA](celestia-da.md)
-* [Avail DA](avail-da.md)
