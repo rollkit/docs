@@ -341,11 +341,6 @@ function sidebarHome() {
         },
       ],
     },
-    // {
-    //   text: "Testnets",
-    //   collapsed: true,
-    //   items: [{ text: "CosmWasm Testnet", link: "/testnets/cosmwasm-testnet" }],
-    // },
     {
       text: "Blog",
       collapsed: true,
