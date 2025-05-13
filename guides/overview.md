@@ -14,7 +14,6 @@ your life easier when developing with Rollkit.
 
 In this section, you'll find:
 
-* [Use the Rollkit CLI](/guides/use-rollkit-cli)
 * [Create genesis for your rollup](/guides/create-genesis)
 * [Restart your rollup](/guides/restart-rollup)
 * [Reset your chain's state](/guides/reset-state)

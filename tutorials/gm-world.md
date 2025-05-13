@@ -29,152 +29,110 @@ import constants from '../.vitepress/constants/constants.js'
 
 ## 🛠️ Dependencies {#dependencies}
 
-As we move into more advanced use cases, we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install).
+As we move into more advanced use cases, we use [ignite](https://docs.ignite.com/welcome) to help with managing all the services we need to run. You can [install ignite here](https://docs.ignite.com/welcome/install).
 
 Once installed, you can verify the installation by running:
 
 ```bash
-kurtosis version
+ignite version
 ```
 
 ```bash
-CLI Version:   0.90.1
+Ignite CLI version:             v28.7.0
+Ignite CLI build date:          2025-01-15T08:23:41Z
+Ignite CLI source hash:         2f83cfe6114cfc58bd6add791143fe43963c1b5c
+Ignite CLI config version:      v1
+Cosmos SDK version:             v0.50.11
+Your OS:                        darwin
+Your arch:                      arm64
+Your go version:                go version go1.24.2 darwin/arm64
+Your uname -a:                  Darwin Markos-MacBook-Pro.local 24.3.0 Darwin Kernel Version 24.3.0: Thu Jan  2 20:24:16 PST 2025; root:xnu-11215.81.4~3/RELEASE_ARM64_T6000 arm64
+Your cwd:                       /Users/markobaricevic/code/CoTend/rollkit1/docs
+Is on Gitpod:                   false
+```
 
-To see the engine version (provided it is running): kurtosis engine status
+## Generate your App {#generate-your-app}
+
+```bash
+ignite s chain gm --address-prefix gm
+cd gm
+```
+
+Install a specific version of ignire to use rollkit
+
+```bash
+ignite app install -g github.com/ignite/apps/rollkit@9d51c52305be37356a1ecadab8733b77842e1c37
+```
+
+Install your app locally:
+
+```bash
+make install
 ```
 
 ## 🚀 Starting your rollup {#start-your-rollup}
 
-Now that we have kurtosis installed, we can launch our GM rollup along with the local DA by running the following command:
+Now that we have our gm app generated and installed, we can launch our GM rollup along with the local DA by running the following command:
+
+First lets start the local DA network:
 
 ```bash
-kurtosis run github.com/rollkit/gm@v0.3.1
+curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.localDALatestTag}}
+```
+
+you should see logs like:
+
+```bash
+4:58PM INF NewLocalDA: initialized LocalDA module=local-da
+4:58PM INF Listening on host=localhost maxBlobSize=1974272 module=da port=7980
+4:58PM INF server started listening on=localhost:7980 module=da
+```
+
+After which we can start the app:
+
+```bash
+gmd start --rollkit.node.aggregator
 ```
 
 You should see an output like this:
 
 ```bash
-INFO[2024-07-02T11:15:43-04:00] Creating a new enclave for Starlark to run inside...
-INFO[2024-07-02T11:15:46-04:00] Enclave 'sparse-grotto' created successfully
-INFO[2024-07-02T11:15:46-04:00] Executing Starlark package at '/Users/matt/Code/rollkit/gm' as the passed argument '.' looks like a directory
-INFO[2024-07-02T11:15:46-04:00] Compressing package 'github.com/rollkit/gm' at '.' for upload
-INFO[2024-07-02T11:15:46-04:00] Uploading and executing package 'github.com/rollkit/gm'
-
-Container images used in this run:
-> ghcr.io/rollkit/gm:05bd40e - locally cached
-> ghcr.io/rollkit/local-da:v0.2.1 - locally cached
-
-Printing a message
-Adding Local DA service
-
-Adding service with name 'local-da' and image 'ghcr.io/rollkit/local-da:v0.2.1'
-Service 'local-da' added with service UUID '990942dc84ab4b3ab2c8d64002a5bafa'
-
-Printing a message
-Adding GM service
-
-Printing a message
-NOTE: This can take a few minutes to start up...
-
-Adding service with name 'gm' and image 'ghcr.io/rollkit/gm:05bd40e'
-Service 'gm' added with service UUID 'ed0233f8291d4a42bdd0e173393af809'
-
-Starlark code successfully run. No output was returned.
-
-⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
-INFO[2024-07-02T11:15:50-04:00] ======================================================
-INFO[2024-07-02T11:15:50-04:00] ||          Created enclave: sparse-grotto          ||
-INFO[2024-07-02T11:15:50-04:00] ======================================================
-Name:            sparse-grotto
-UUID:            49dd471ac3bb
-Status:          RUNNING
-Creation Time:   Tue, 02 Jul 2024 11:15:43 EDT
-Flags:
-
-========================================= Files Artifacts =========================================
-UUID   Name
-
-========================================== User Services ==========================================
-UUID           Name       Ports                                          Status
-ed0233f8291d   gm         jsonrpc: 26657/tcp -> http://127.0.0.1:26657   RUNNING
-990942dc84ab   local-da   jsonrpc: 7980/tcp -> http://127.0.0.1:7980     RUNNING
+5:02PM INF Rollkit node run loop launched in background goroutine module=server
+5:02PM INF Attempting to start Rollkit node run loop module=server
+5:02PM INF serving HTTP listen address=[::]:26657 module=rollkit
+5:02PM INF Started RPC server addr=127.0.0.1:7331 module=rollkit
+5:02PM INF starting P2P client module=rollkit
+5:02PM INF listening on address=/ip4/10.36.65.125/tcp/7676/p2p/12D3KooWCZ4oCNDkxisUWD9CbB5yEmSmjaTEtLLySk3Sccy4Vb8m module=p2p
+5:02PM INF listening on address=/ip4/127.0.0.1/tcp/7676/p2p/12D3KooWCZ4oCNDkxisUWD9CbB5yEmSmjaTEtLLySk3Sccy4Vb8m module=p2p
+5:02PM INF no peers - only listening for connections module=p2p
+5:02PM INF working in aggregator mode block time=1s module=rollkit
+5:02PM INF Reaper started interval=1000 module=Reaper
+5:02PM INF Using pending block height=1 module=BlockManager
+5:02PM INF Executing block height=1 module=rollkit num_txs=0 timestamp=2025-04-28T11:21:24-04:00
+5:02PM INF Block executed successfully appHash=6AE75B65CDFE504876AC392554E16065C7C3699FFC99E6C4AA5FEB13B49CFB2D height=1 module=rollkit
+5:02PM ERR failed to start syncer after initializing the store: error getting latest head during Start: header: not found module=rollkit
+5:02PM ERR failed to start syncer after initializing the store: error getting latest head during Start: header: not found module=rollkit
+5:02PM INF Attempting to start executor (Adapter.Start) module=server
+5:02PM INF Executor started successfully module=server
+5:02PM INF Waiting for services to complete... module=server
+5:02PM INF starting API server... address=tcp://0.0.0.0:1317 module=api-server
+5:02PM INF serve module=api-server msg="Starting RPC HTTP server on [::]:1317"
+5:02PM INF starting gRPC server... address=localhost:9090 module=grpc-server
+5:02PM INF Creating empty block height=2 module=BlockManager
+5:02PM INF Executing block height=2 module=rollkit num_txs=0 timestamp=2025-05-13T17:02:14-04:00
+5:02PM INF Block executed successfully appHash=CACB5B55477E8813D93A29CF25BA5DB8AD4A51992D96A72CF9A4E83D47F4FAAA height=2 module=rollkit
 ```
 
-Kurtosis has successfully launched the GM rollup and the local DA network. The GM rollup is running on port `26657` and the local DA network is running on port `7980`. You can see the services running in docker as well:
-
-```bash
-docker ps
-```
-
-```bash
-CONTAINER ID   IMAGE                             COMMAND                  CREATED          STATUS          PORTS                                                                              NAMES
-af16c1a5e68c   ghcr.io/rollkit/gm:05bd40e        "/bin/sh -c 'rollkit…"   46 seconds ago   Up 45 seconds   0.0.0.0:26657->26657/tcp                                                           gm--ed0233f8291d4a42bdd0e173393af809
-9db601efd92b   ghcr.io/rollkit/local-da:v0.2.1   "local-da -listen-all"   46 seconds ago   Up 46 seconds   0.0.0.0:7980->7980/tcp                                                             local-da--990942dc84ab4b3ab2c8d64002a5bafa
-7fec3d659452   kurtosistech/core:0.90.1          "/bin/sh -c ./api-co…"   50 seconds ago   Up 50 seconds   0.0.0.0:59855->7443/tcp                                                            kurtosis-api--49dd471ac3bb413d96932d4020c20b21
-198f7873bbec   fluent/fluent-bit:1.9.7           "/fluent-bit/bin/flu…"   51 seconds ago   Up 51 seconds   2020/tcp                                                                           kurtosis-logs-collector--49dd471ac3bb413d96932d4020c20b21
-f921884f4132   kurtosistech/engine:0.90.1        "/bin/sh -c ./kurtos…"   2 hours ago      Up 2 hours      0.0.0.0:8081->8081/tcp, 0.0.0.0:9710-9711->9710-9711/tcp, 0.0.0.0:9779->9779/tcp   kurtosis-engine--1657ab3f1c3942658a3993a0e3b54327
-c5363b77b543   traefik:2.10.6                    "/bin/sh -c 'mkdir -…"   2 hours ago      Up 2 hours      80/tcp, 0.0.0.0:9730-9731->9730-9731/tcp                                           kurtosis-reverse-proxy--1657ab3f1c3942658a3993a0e3b54327
-39eb05e1c693   timberio/vector:0.31.0-debian     "/bin/sh -c 'printf …"   2 hours ago      Up 2 hours                                                                                         kurtosis-logs-aggregator
-```
-
-We can see the GM rollup running in container `gm--ed0233f8291d4a42bdd0e173393af809` and the local DA network running in container `local-da--990942dc84ab4b3ab2c8d64002a5bafa`.
-
-Let's hold on to the container name for the GM rollup as we will need it later.
-
-```bash
-GM=$(docker ps --format '{{.Names}}' | grep gm)
-echo $GM
-```
-
-You can verify the rollup is running by checking the logs:
-
-```bash
-docker logs $GM
-```
-
-```bash
-...
-12:21PM INF starting node with ABCI CometBFT in-process module=server
-12:21PM INF starting node with Rollkit in-process module=server
-12:21PM INF service start impl=multiAppConn module=proxy msg="Starting multiAppConn service"
-12:21PM INF service start connection=query impl=localClient module=abci-client msg="Starting localClient service"
-12:21PM INF service start connection=snapshot impl=localClient module=abci-client msg="Starting localClient service"
-12:21PM INF service start connection=mempool impl=localClient module=abci-client msg="Starting localClient service"
-12:21PM INF service start connection=consensus impl=localClient module=abci-client msg="Starting localClient service"
-12:21PM INF service start impl=EventBus module=events msg="Starting EventBus service"
-12:21PM INF service start impl=PubSub module=pubsub msg="Starting PubSub service"
-12:21PM INF Using default mempool ttl MempoolTTL=25 module=BlockManager
-12:21PM INF service start impl=IndexerService module=txindex msg="Starting IndexerService service"
-12:21PM INF service start impl=RPC module=server msg="Starting RPC service"
-12:21PM INF service start impl=Node module=server msg="Starting Node service"
-12:21PM INF starting P2P client module=server
-12:21PM INF serving HTTP listen address=127.0.0.1:26657 module=server
-12:21PM INF listening on address=/ip4/127.0.0.1/tcp/26656/p2p/12D3KooWSicdPmMTLf9fJbSSHZc9UVP1CbNqKPpbYVbgxHvbhAUY module=p2p
-12:21PM INF listening on address=/ip4/163.172.162.109/tcp/26656/p2p/12D3KooWSicdPmMTLf9fJbSSHZc9UVP1CbNqKPpbYVbgxHvbhAUY module=p2p
-12:21PM INF no seed nodes - only listening for connections module=p2p
-12:21PM INF working in aggregator mode block time=1000 module=server
-12:21PM INF Creating and publishing block height=22 module=BlockManager
-12:21PM INF starting gRPC server... address=127.0.0.1:9290 module=grpc-server
-12:21PM INF finalized block block_app_hash=235D3710D61F347DBBBDD6FD63AA7687842D1EF9CB475C712856D7DA32F82F09 height=22 module=BlockManager num_txs_res=0 num_val_updates=0
-12:21PM INF executed block app_hash=235D3710D61F347DBBBDD6FD63AA7687842D1EF9CB475C712856D7DA32F82F09 height=22 module=BlockManager
-12:21PM INF indexed block events height=22 module=txindex
-...
-```
+Ignite has successfully launched the GM rollup and the local DA network. The GM rollup is running on port `7331` and the local DA network is running on port `7980`.
 
 Good work so far, we have a Rollup node, DA network node, now we can start submitting transactions.
 
 ## 💸 Transactions {#transactions}
 
-Since our rollup is running in a docker container, we want to enter the docker container to interact with it via the Rollkit CLI. We can do this by running:
-
-```bash
-docker exec -it $GM sh
-```
-
 First, list your keys:
 
 ```bash
-rollkit keys list --keyring-backend test
+gmd keys list --keyring-backend test
 ```
 
 You should see an output like the following
@@ -200,7 +158,7 @@ export KEY2=gm1r2udsh4za7r7sxvzy496qfazvjp04j4zgytve3
 Now let's submit a transaction that sends coins from one account to another (don't worry about all the flags, for now, we just want to submit transaction from a high-level perspective):
 
 ```bash
-rollkit tx bank send $KEY2 $KEY1 42069stake --keyring-backend test --chain-id gm --fees 5000stake
+gmd tx bank send $KEY2 $KEY1 42069stake --keyring-backend test --chain-id gm --fees 5000stake
 ```
 
 You'll be prompted to accept the transaction:
@@ -243,7 +201,7 @@ txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
 Query balances after the transaction:
 
 ```bash
-rollkit query bank balances $KEY1
+gmd query bank balances $KEY1
 ```
 
 The receiver’s balance should show an increase.
@@ -260,7 +218,7 @@ pagination:
 For the sender’s balance:
 
 ```bash
-rollkit query bank balances $KEY2
+gmd query bank balances $KEY2
 ```
 
 Output:
@@ -274,7 +232,7 @@ pagination:
   total: "0"
 ```
 
-## 📦 GM world UI app
+<!-- ## 📦 GM world UI app
 
 Now that you have an idea of how to interact with the rollup with the rollkit CLI, let's look at the user interface (UI) application aspect of connecting a wallet to a rollup.
 
@@ -292,7 +250,7 @@ Once authorized, your wallet address will be displayed, confirming that your wal
 
 :::tip
 If you run into any issues, make sure your Keplr wallet is updated and set to connect to your local environment.
-:::
+::: -->
 
 ## 🎉 Next steps
 

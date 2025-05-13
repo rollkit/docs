@@ -297,10 +297,6 @@ function sidebarHome() {
       collapsed: true,
       items: [
         {
-          text: "Use the Rollkit CLI",
-          link: "/guides/use-rollkit-cli",
-        },
-        {
           text: "Use Ignite to create a Rollkit app",
           link: "/guides/ignite-rollkit",
         },
