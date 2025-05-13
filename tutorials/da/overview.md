@@ -10,24 +10,54 @@ Now that you have the foundations of running and building a rollup with Rollkit,
 
 The first choice you need to make is which data availability (DA) layer to use. The DA layer is a critical component of a blockchain, as it provides the data availability and finality guarantees that your chain needs to operate securely.
 
-Rollkit uses the [go-da interface](https://github.com/rollkit/go-da) to communicate to DA layers. Any DA layer that implements this interface can be used with Rollkit.
+Rollkit uses the [core da interface](https://github.com/rollkit/rollkit/blob/main/core/da/da.go#L11) to communicate to DA layers. Any DA layer that implements this interface can be used with Rollkit.
 
-## Go DA {#go-da}
+## DA {#go-da}
 
-The [go-da interface](https://github.com/rollkit/go-da) defines the core functions required to interact with a DA layer. Probably the two most important functions being `Get` and `Submit`.
+The [DA interface](https://github.com/rollkit/rollkit/blob/main/core/da/da.go#L11) defines the core functions required to interact with a DA layer. Probably the two most important functions being `Get` and `Submit`.
 
 ```go
 // DA defines very generic interface for interaction with Data Availability layers.
 type DA interface {
+ // MaxBlobSize returns the max blob size
+ MaxBlobSize(ctx context.Context) (uint64, error)
+
  // Get returns Blob for each given ID, or an error.
- Get(ctx context.Context, ids []ID, namespace Namespace) ([]Blob, error)
+ //
+ // Error should be returned if ID is not formatted properly, there is no Blob for given ID or any other client-level
+ // error occurred (dropped connection, timeout, etc).
+ Get(ctx context.Context, ids []ID, namespace []byte) ([]Blob, error)
+
+ // GetIDs returns IDs of all Blobs located in DA at given height.
+ GetIDs(ctx context.Context, height uint64, namespace []byte) (*GetIDsResult, error)
+
+ // GetProofs returns inclusion Proofs for Blobs specified by their IDs.
+ GetProofs(ctx context.Context, ids []ID, namespace []byte) ([]Proof, error)
+
+ // Commit creates a Commitment for each given Blob.
+ Commit(ctx context.Context, blobs []Blob, namespace []byte) ([]Commitment, error)
 
  // Submit submits the Blobs to Data Availability layer.
- Submit(ctx context.Context, blobs []Blob, gasPrice float64, namespace Namespace) ([]ID, error)
+ //
+ // This method is synchronous. Upon successful submission to Data Availability layer, it returns the IDs identifying blobs
+ // in DA.
+ Submit(ctx context.Context, blobs []Blob, gasPrice float64, namespace []byte) ([]ID, error)
+
+ // SubmitWithOptions submits the Blobs to Data Availability layer with additional options.
+ SubmitWithOptions(ctx context.Context, blobs []Blob, gasPrice float64, namespace []byte, options []byte) ([]ID, error)
+
+ // Validate validates Commitments against the corresponding Proofs. This should be possible without retrieving the Blobs.
+ Validate(ctx context.Context, ids []ID, proofs []Proof, namespace []byte) ([]bool, error)
+
+ // GasPrice returns the gas price for the DA layer.
+ GasPrice(ctx context.Context) (float64, error)
+
+ // GasMultiplier returns the gas multiplier for the DA layer.
+ GasMultiplier(ctx context.Context) (float64, error)
 }
 ```
 
-DA layers can integrate the `go-da` interface directly into their node like [Celestia](celestia-da), or they can define a middleware service like [Avail](avail-da).
+DA layers can integrate the `da` interface directly into their node like [Celestia](celestia-da).
 
 ## Mock DA {#mock-da}
 

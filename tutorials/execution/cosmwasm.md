@@ -30,13 +30,14 @@ this tutorial.
 
 ## 💻 CosmWasm dependency {#dependencies}
 
-As with the [GM Rollup](https://rollkit.dev/tutorials/gm-world), we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install). 
+As with the [GM Rollup](https://rollkit.dev/tutorials/gm-world), we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install).
 
 Once installed, you can verify the installation by running:
 
 ```bash
 kurtosis version
 ```
+
 ```bash
 CLI Version:   0.90.1
 
@@ -104,6 +105,7 @@ Kurtosis has successfully launched the CosmWasm rollup and the local DA network.
 ```bash
 docker ps
 ```
+
 ```bash
 CONTAINER ID   IMAGE                              COMMAND                  CREATED              STATUS              PORTS                                                                              NAMES
 5bfeda0a871f   ghcr.io/rollkit/cosmwasm:v0.1.0    "/bin/sh -c 'wasmd s…"   About a minute ago   Up About a minute   0.0.0.0:9290->9290/tcp, 0.0.0.0:36656-36657->36656-36657/tcp                       wasm--c71b0308616d40ad919ad24c3d14f35b
@@ -119,7 +121,7 @@ We can see the CosmWasm rollup running in container `wasm--c71b0308616d40ad919ad
 
 Let's hold on to the container name for the CosmWasm rollup, as we will need it later.
 
-```bash 
+```bash
 CW=$(docker ps --format '{{.Names}}' | grep wasm)
 echo $CW
 ```
@@ -129,6 +131,7 @@ You can verify the rollup is running by checking the logs:
 ```bash
 docker logs $CW
 ```
+
 ```bash
 ...
 3:55PM INF Creating and publishing block height=137 module=BlockManager
@@ -157,7 +160,7 @@ docker pull ghcr.io/rollkit/contract:v0.2.0
 
 Then run the container:
 
-```bash 
+```bash
 docker run --rm -d --name cw ghcr.io/rollkit/contract:v0.2.0
 ```
 
@@ -208,7 +211,7 @@ docker exec -it $CW sh
 
 In order to deploy a contract, you can use the command line as described below.
 For a better experience and to use Rust code instead of the command line to
-deploy/script and test your contracts, you can use [cw-orchestrator](/guides/cw-orch.md). 
+deploy/script and test your contracts, you can use [cw-orchestrator](/guides/cw-orch.md).
 
 <!-- markdownlint-disable MD013 -->
 ```bash
@@ -230,7 +233,7 @@ the variables in the command with the variables in the `init.sh` script.
 In the previous steps, we have stored out contract's tx hash in an
 environment variable for later use.
 
-The following guide will show you how to deploy and interact with a contract using CLI. 
+The following guide will show you how to deploy and interact with a contract using CLI.
 For scripting using Rust, you can use [cw-orchestrator](/guides/cw-orch.md).
 
 ### 🔎 Contract querying {#contract-querying}
