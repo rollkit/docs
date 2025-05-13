@@ -24,12 +24,7 @@ In this section, you'll find:
   * [EVM Based Sequencer Setup](/guides/evm-based)
   * [EVM Single Sequencer Setup](/guides/evm-single-guide)
 * Configuration
-  * [Configure gas price](/guides/gas-price)
-  * [Configure max pending blocks](/guides/max-pending-blocks)
-  * [Configure DA chain block sync time](/guides/da-block-time)
-  * [Change speed of block production](/guides/block-times)
-  * [Use lazy sequencing (aggregation)](/guides/lazy-sequencing)
-  * [Configure Prometheus metrics](/guides/metrics)
+  * [Config Settings](/guides/config)
 * Integrations
   * [Test and deploy cosmwasm smart-contracts](/guides/cw-orch)
   * [Add zkML to your EVM rollup](/guides/zkml)
