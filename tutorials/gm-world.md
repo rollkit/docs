@@ -29,13 +29,14 @@ import constants from '../.vitepress/constants/constants.js'
 
 ## 🛠️ Dependencies {#dependencies}
 
-As we move into more advanced use cases, we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install). 
+As we move into more advanced use cases, we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install).
 
 Once installed, you can verify the installation by running:
 
 ```bash
 kurtosis version
 ```
+
 ```bash
 CLI Version:   0.90.1
 
@@ -104,6 +105,7 @@ Kurtosis has successfully launched the GM rollup and the local DA network. The G
 ```bash
 docker ps
 ```
+
 ```bash
 CONTAINER ID   IMAGE                             COMMAND                  CREATED          STATUS          PORTS                                                                              NAMES
 af16c1a5e68c   ghcr.io/rollkit/gm:05bd40e        "/bin/sh -c 'rollkit…"   46 seconds ago   Up 45 seconds   0.0.0.0:26657->26657/tcp                                                           gm--ed0233f8291d4a42bdd0e173393af809
@@ -129,6 +131,7 @@ You can verify the rollup is running by checking the logs:
 ```bash
 docker logs $GM
 ```
+
 ```bash
 ...
 12:21PM INF starting node with ABCI CometBFT in-process module=server
@@ -273,7 +276,7 @@ pagination:
 
 ## 📦 GM world UI app
 
-Now that you have an idea of how to interact with the rollup with the rollkit CLI, let's look at the user interface (UI) application aspect of connecting a wallet to a rollup. 
+Now that you have an idea of how to interact with the rollup with the rollkit CLI, let's look at the user interface (UI) application aspect of connecting a wallet to a rollup.
 
 Connecting your wallet to your rollup is as straightforward as connecting to any other blockchain. It assumes you have the [Keplr](https://www.keplr.app/) wallet extension installed in your browser.
 

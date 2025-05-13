@@ -174,7 +174,6 @@ function nav() {
     { text: "Learn", link: "/learn/intro" },
     { text: "Tutorials", link: "/tutorials/quick-start" },
     { text: "How To Guides", link: "/guides/overview" },
-    // { text: "Testnets", link: "/testnets/cosmwasm-testnet" },
     { text: "Blog", link: "/blog/overview" },
   ];
 }
@@ -218,7 +217,7 @@ function sidebarHome() {
           text: "Quick start guide",
           link: "/tutorials/quick-start",
         },
-        { text: "Build a chain", link: "/tutorials/wordle" },
+        { text: "Build a chain", link: "/tutorials/gm-world" },
         {
           text: "DA",
           collapsed: true,
@@ -235,10 +234,6 @@ function sidebarHome() {
               text: "Celestia",
               link: "/tutorials/da/celestia-da",
             },
-            {
-              text: "Avail",
-              link: "/tutorials/da/avail-da",
-            },
           ],
         },
         {
@@ -250,12 +245,8 @@ function sidebarHome() {
               link: "/tutorials/sequencing/overview",
             },
             {
-              text: "Local",
-              link: "/tutorials/sequencing/local",
-            },
-            {
-              text: "Centralized",
-              link: "/tutorials/sequencing/centralized",
+              text: "Single",
+              link: "/tutorials/sequencing/single",
             },
             {
               text: "Based",
@@ -264,10 +255,6 @@ function sidebarHome() {
             {
               text: "Forced Inclusion",
               link: "/tutorials/sequencing/forced-inclusion",
-            },
-            {
-              text: "Astria",
-              link: "/tutorials/sequencing/astria",
             },
           ],
         },
@@ -280,11 +267,7 @@ function sidebarHome() {
               text: "EVM",
               collapsed: true,
               items: [
-                { text: "BeaconKit EVM", link: "/tutorials/execution/beaconkit" },
-                {
-                  text: "Artela EVM++",
-                  link: "/tutorials/execution/artela-evm-plus-plus",
-                },
+                // { text: "RETH EVM", link: "/tutorials/execution/reth-evm" },
                 {
                   text: "Contract interaction",
                   link: "/tutorials/execution/evm-contract-interaction",
@@ -305,10 +288,6 @@ function sidebarHome() {
               text: "Docker Compose",
               link: "/tutorials/docker-compose",
             },
-            // {
-            //   text: "Kurtosis",
-            //   link: "/tutorials/kurtosis",
-            // },
           ],
         },
       ],
