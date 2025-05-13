@@ -1,6 +1,7 @@
+
 # Sequencing
 
-The next step after choosing your DA layer is to choose your sequencing scheme.
+ Sequencing is the essential first step for handling your transactions. Think of it as an organizer that takes all incoming transactions, puts them in a clear order, and then groups them into batches. This process is vital for keeping everything consistent and making the rollup run. Rollkit uses a "Sequencing Interface" with key functions like submitting, retrieving, and verifying these transaction batches, ensuring smooth communication between the rollup and the sequencing mechanism, which often acts as a bridge to the underlying network.
 
 ## Sequencing Interface {#sequencing-interface}
 
