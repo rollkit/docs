@@ -309,10 +309,6 @@ function sidebarHome() {
           link: "/guides/reset-state",
         },
         {
-          text: "Run a rollup full node",
-          link: "/guides/full-node",
-        },
-        {
           text: "CometBFT into a Rollkit app",
           link: "/guides/cometbft-to-rollkit",
         },
@@ -322,33 +318,7 @@ function sidebarHome() {
         },
         {
           text: "Configuration",
-          collapsed: true,
-          items: [
-            {
-              text: "Configure gas price",
-              link: "/guides/gas-price",
-            },
-            {
-              text: "Configure max pending blocks",
-              link: "/guides/max-pending-blocks",
-            },
-            {
-              text: "Configure DA chain block sync time",
-              link: "/guides/da-block-time",
-            },
-            {
-              text: "Change speed of block production",
-              link: "/guides/block-times",
-            },
-            {
-              text: "Use lazy sequencing (aggregation)",
-              link: "/guides/lazy-sequencing",
-            },
-            {
-              text: "Configure Prometheus metrics",
-              link: "/guides/metrics",
-            },
-          ],
+          link: "/guides/config",
         },
         {
           text: "Integrations",
@@ -362,10 +332,6 @@ function sidebarHome() {
             {
               text: "Add an IBC connection to your rollup",
               link: "/guides/ibc-connection",
-            },
-            {
-              text: "Integrate Range with your rollup",
-              link: "/guides/rollkit-monitoring",
             },
             {
               text: "Use IBC token (TIA) as gas token in your rollup",
