@@ -301,6 +301,10 @@ function sidebarHome() {
           link: "/guides/ignite-rollkit",
         },
         {
+          text: "Run a Full Node",
+          link: "/guides/full-node",
+        },
+        {
           text: "Restart your rollup",
           link: "/guides/restart-rollup",
         },
@@ -319,6 +323,18 @@ function sidebarHome() {
         {
           text: "Configuration",
           link: "/guides/config",
+        },
+        {
+          text: "EVM Single Sequencer",
+          link: "/guides/evm-single",
+        },
+        {
+          text: "EVM Based Sequencer",
+          link: "/guides/evm-based",
+        },
+        {
+          text: "Metrics",
+          link: "/guides/metrics",
         },
         {
           text: "Integrations",
