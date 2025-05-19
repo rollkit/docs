@@ -263,17 +263,13 @@ function sidebarHome() {
           collapsed: true,
           items: [
             { text: "CosmWasm", link: "/tutorials/execution/cosmwasm" },
-            {
-              text: "EVM",
-              collapsed: true,
-              items: [
-                // { text: "RETH EVM", link: "/tutorials/execution/reth-evm" },
-                {
-                  text: "Contract interaction",
-                  link: "/tutorials/execution/evm-contract-interaction",
-                },
-              ],
-            },
+            // {
+            //   text: "EVM",
+            //   collapsed: true,
+            //   items: [
+            //     // { text: "RETH EVM", link: "/tutorials/execution/reth-evm" },
+            //   ],
+            // },
           ],
         },
         {
