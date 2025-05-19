@@ -97,8 +97,8 @@ curl http://127.0.0.1:26657/block?height=included
 ```
 
 #### Parameters
-- height (integer or string): height of the requested block. If no height is specified the latest block will be used. If height is set to the string "included", the latest DA included block will be returned.
 
+- height (integer or string): height of the requested block. If no height is specified the latest block will be used. If height is set to the string "included", the latest DA included block will be returned.
 
 ### P2P layer
 
