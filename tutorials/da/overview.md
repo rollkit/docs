@@ -57,7 +57,7 @@ type DA interface {
 }
 ```
 
-DA layers can integrate the `da` interface directly into their node like [Celestia](celestia-da).
+ DA layers can integrate the `DA` interface directly into their node like [Celestia DA](celestia-da.md).
 
 ## Mock DA {#mock-da}
 

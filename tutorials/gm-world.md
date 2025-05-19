@@ -1,6 +1,7 @@
 ---
-description: Build a sovereign rollup using only Rollkit CLI and a local DA network.
----
+++ b/tutorials/gm-world.md
+@@ 1,3
+description: Build a sovereign rollup using Ignite, the `gmd` CLI, and a local DA network.
 
 # GM world rollup
 
@@ -58,7 +59,7 @@ ignite s chain gm --address-prefix gm
 cd gm
 ```
 
-Install a specific version of ignire to use rollkit
+Install a specific version of ignite to use rollkit
 
 ```bash
 ignite app install -g github.com/ignite/apps/rollkit@9d51c52305be37356a1ecadab8733b77842e1c37
