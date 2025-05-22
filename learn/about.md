@@ -3,20 +3,18 @@
 Our mission is to allow anyone to launch their own sovereign, customizable blockchain as easily as a smart contract by utilizing the shared security of a modular data availability network.
 
 ::: tip
-In order to use Rollkit, it's important to have some familiarity with Cosmos SDK. You can get up to speed on Cosmos SDK by visiting their [official documentation page](https://docs.cosmos.network/main).
-
 If you're familiar with Rollkit, you may want to skip to the [tutorials section](/tutorials/gm-world).
 :::
 
 ## What is Rollkit?
 
-Rollkit is a sovereign rollup framework that gives developers the freedom to deploy rollups throughout the modular stack, opening new possibilities for rapid experimentation and innovation.
+Rollkit is a sovereign rollup library that gives developers the freedom to develop and deploy rollups throughout the modular stack, opening new possibilities for rapid experimentation and innovation.
 
 [Read more on the Celestia blog](https://blog.celestia.org/sovereign-rollup-chains/) to learn more about the concept of sovereign rollups.
 
-Rollkit is an [open-source framework](https://github.com/rollkit/rollkit). It features a modular node that can run rollups and exposes an [ABCI-compatible client interface](https://github.com/cometbft/cometbft/tree/main/abci), which can be used as a substitute for CometBFT in any ABCI-compatible blockchain application.
+Rollkit is an [open-source framework](https://github.com/rollkit/rollkit). It features a modular node that can run rollups and exposes the execution API, which can be used with any execution environment. By default we support [EVM](https://github.com/rollkit/rollkit/tree/marko/2248/execution/evm) and [ABCI](https://github.com/rollkit/go-execution-abci)
 
-Rollkit uses data availability (DA) layers by having a unified client interface which can be implemented for use with different DA networks, such as [Celestia](https://celestia.org/).
+Rollkit uses data availability (DA) layers by having a unified client interface which is implemented for [Celestia](https://celestia.org/).
 
 Our goal is to empower developers to quickly innovate and create new classes of rollups with minimal trade-offs, and to make deploying a new chain as easy as deploying a smart contract.
 
