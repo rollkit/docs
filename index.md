@@ -24,7 +24,7 @@ features:
     link: /learn/about#why-rollkit
     icon: ✨
   - title: Optimize for your needs
-    details: Take full advantage of modularity by optimizing your rollup to your needs. Tailor your block production. Choose your VM. Pick your DA layer.
+    details: Take full advantage of modularity by optimizing your chain to your needs. Tailor your block production. Choose your VM. Pick your DA layer.
     link: /learn/stack
     icon: ⚙️
   - title: Take Control

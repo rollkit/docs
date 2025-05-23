@@ -71,7 +71,7 @@ ignite rollkit init
 To initialize the Rollkit CLI configuration, generate the `rollkit.toml` file by running the following command:
 
 ```bash
-rollkit toml init
+{APP_BINARY} init
 ```
 
 This will set up the Rollkit configuration file rollkit.toml, allowing you to use the Rollkit CLI for managing and running your blockchain.
@@ -81,12 +81,11 @@ This will set up the Rollkit configuration file rollkit.toml, allowing you to us
 Now you are ready to start your chain. We need to include 2 flags:
 
 1. `--rollkit.aggregator` to signal that this node is the block producer
-2. `--rollkit.sequencer_rollup_id gm` to share the chain ID with the sequencer.
 
 Start your chain using the following command:
 
 ```bash
-rollkit start --rollkit.aggregator --rollkit.sequencer_rollup_id gm 
+{APP_BINARY} start --rollkit.aggregator 
 ```
 
 Your rollkit chain is now up and running.

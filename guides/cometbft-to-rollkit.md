@@ -38,7 +38,7 @@ ignite rollkit init
 
 ## Initialize Rollkit CLI Configuration {#initialize-rollkit-cli-configuration}
 
-Next, you'll need to initialize the Rollkit CLI configuration by generating the `rollkit.toml` file. This file is crucial for Rollkit to understand the structure of your rollup.
+Next, you'll need to initialize the Rollkit CLI configuration by generating the `rollkit.toml` file. This file is crucial for Rollkit to understand the structure of your chain.
 
 To create the `rollkit.toml` configuration, use this command:
 

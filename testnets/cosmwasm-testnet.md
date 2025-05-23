@@ -10,10 +10,10 @@ Our CosmWasm testnet is deployed by following the [cosmwasm tutorial](/tutorials
 
 - Chain ID: `rosm`
 - Address Prefix: `wasm`
-    - e.g., `wasm1lysztpn74kl40w6ghfhy7xr0v44r658szuysl5`
+  - e.g., `wasm1lysztpn74kl40w6ghfhy7xr0v44r658szuysl5`
 - Rollkit version: `v0.13.1`
 - RPC: `https://rpc.rosm.rollkit.dev/`
-    - Example: `https://rpc.rosm.rollkit.dev/block?height=1`
+  - Example: `https://rpc.rosm.rollkit.dev/block?height=1`
 
         ```json
         {
@@ -81,8 +81,10 @@ Our CosmWasm testnet is deployed by following the [cosmwasm tutorial](/tutorials
             "id": -1
         }
         ```
+
 - Tendermint API endpoint (uses default 1317 port): `https://api.rosm.rollkit.dev`
-    - Example: `https://api.rosm.rollkit.dev/cosmos/auth/v1beta1/accounts/wasm1lysztpn74kl40w6ghfhy7xr0v44r658szuysl5`
+  - Example: `https://api.rosm.rollkit.dev/cosmos/auth/v1beta1/accounts/wasm1lysztpn74kl40w6ghfhy7xr0v44r658szuysl5`
+
     ```json
     {
         "account": {
@@ -94,16 +96,20 @@ Our CosmWasm testnet is deployed by following the [cosmwasm tutorial](/tutorials
         }
     }
     ```
+
 - Block Explorer: [https://canary.modular.cloud/rollkit-cosmwasm](https://canary.modular.cloud/rollkit-cosmwasm)
 ::: warning
 The modular.cloud explorer is work in progress. In the meanwhile, the wasm CLI can be used to query the accounts.
 For example: to collect the transactions for any account, following command can be used.
-```
+
+```bash
 wasmd query txs --query "message.sender='wasm1lysztpn74kl40w6ghfhy7xr0v44r658szuysl5'" --node https://rpc.rosm.rollkit.dev
 ```
+
 :::
+
 - Faucet: [https://faucet.rosm.rollkit.dev/](https://faucet.rosm.rollkit.dev/)
-    - You can request 1 rosm (or 1000000urosm) every 24 hours.  
+  - You can request 1 rosm (or 1000000urosm) every 24 hours.  
 ![Faucet](/testnets/faucet.png)
 - Mocha Namespace: `000000000000000000000000000000000000b7b24d9321578eb83626`, [view it on Celenium](https://mocha.celenium.io/namespace/000000000000000000000000000000000000b7b24d9321578eb83626)
 - DA Block Time: `15s`
