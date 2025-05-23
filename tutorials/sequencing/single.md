@@ -1,8 +1,8 @@
 # Single Sequencer
 
-## Integrating `single.Sequencer` into Your Rollup
+## Integrating `single.Sequencer` into Your System
 
-This guide walks you through integrating the `single.Sequencer` from Rollkit into your custom rollup application. The process is modeled after the [`testapp`](https://github.com/rollkit/rollkit/blob/main/rollups/testapp/cmd/run.go) example, focusing on the main steps and required components.
+This guide walks you through integrating the `single.Sequencer` from Rollkit into your custom system application. The process is modeled after the [`testapp`](https://github.com/rollkit/rollkit/blob/main/rollups/testapp/cmd/run.go) example, focusing on the main steps and required components.
 
 ---
 
@@ -62,7 +62,7 @@ if err != nil {
 
 ### 4. Set Up the Datastore
 
-Create a persistent key-value store for your rollup:
+Create a persistent key-value store for your system:
 
 ```go
 datastore, err := store.NewDefaultKVStore(nodeConfig.RootDir, nodeConfig.DBPath, "yourapp")
@@ -96,7 +96,7 @@ sequencer, err := single.NewSequencer(
     logger,
     datastore,
     &daJrpc.DA, // Pass the DA client
-    []byte(nodeConfig.ChainID), // Rollup ID
+    []byte(nodeConfig.ChainID), // System ID
     nodeConfig.Node.BlockTime.Duration, // Batch time
     singleMetrics,
     nodeConfig.Node.Aggregator, // Proposer flag
@@ -110,7 +110,7 @@ if err != nil {
 
 ### 7. Set Up P2P Networking (Optional, but recommended)
 
-If your rollup uses P2P, initialize the client:
+If your system uses P2P, initialize the client:
 
 ```go
 nodeKey, err := key.LoadNodeKey(filepath.Dir(nodeConfig.ConfigPath()))
@@ -160,7 +160,7 @@ For example, if you have an HTTP server for your executor, start it before the m
 - **Datastore**: Persistent storage for batches and state.
 - **Sequencer**: The `single.Sequencer` instance.
 - **P2P Client**: For networking (if needed).
-- **Executor**: Your rollup’s application logic.
+- **Executor**: Your system’s application logic.
 
 ---
 
@@ -168,7 +168,7 @@ For example, if you have an HTTP server for your executor, start it before the m
 
 - The `single.Sequencer` expects a batch submission channel to be set if you use batch submission loops.
 - The DA client must implement the `coreda.DA` interface.
-- The rollup ID should be unique for your chain.
+- The System ID should be unique for your chain.
 - The batch time controls how frequently batches are produced.
 
 ---

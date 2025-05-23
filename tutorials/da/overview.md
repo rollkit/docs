@@ -6,7 +6,7 @@ description: This page provides an overview of how rollkit integrates with DA.
 
 # DA
 
-Now that you have the foundations of running and building a rollup with Rollkit, it is time to start customizing it to fit your needs.
+Now that you have the foundations of running and building a system with Rollkit, it is time to start customizing it to fit your needs.
 
 The first choice you need to make is which data availability (DA) layer to use. The DA layer is a critical component of a blockchain, as it provides the data availability and finality guarantees that your chain needs to operate securely.
 

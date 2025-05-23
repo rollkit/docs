@@ -1,5 +1,5 @@
 ---
-description: Quickly start a rollup node using the Rollkit CLI.
+description: Quickly start a node using the Rollkit CLI.
 ---
 
 <script setup>
@@ -8,7 +8,23 @@ import constants from '../.vitepress/constants/constants.js'
 
 # Quick start guide
 
-Welcome to Rollkit, a sovereign rollup framework! The easiest way to launch your sovereign rollup node is by using the Rollkit CLI.
+Welcome to Rollkit, a sovereign framework! The easiest way to launch your sovereign node is by using the Rollkit CLI.
+
+This tutorial will guide you through the process of building and deploying a simple "gm" (good morning) application using Rollkit.
+
+## ☀️ Introduction
+
+In this tutorial, we will explore how to use Rollkit to create a sovereign application. First, we will install the necessary dependencies. Then, we will install and set up a Rollkit node to work with a local data availability layer. Lastly, we'll look at how to create a custom execution environment and how to deploy a sovereign application using Rollkit.
+
+By the end of this tutorial, you will have a good understanding of how Rollkit works and how to create sovereign applications using Rollkit. You will also have the knowledge and skills needed to customize Rollkit with different execution environments and data availability layers, opening up new possibilities for creating scalable and efficient blockchain applications.
+
+### 📖 The stack
+
+Sovereign applications are made possible through a module that allows Rollkit instances to use a data availability layer. This integration opens up possibilities for developers to create applications with arbitrary execution environments that inherit the data availability layer's guarantees and security guarantees.
+
+The modular design of Rollkit allows for easy integration of new data availability layers, making it possible to deploy sovereign applications.
+
+The goal of Rollkit is to make it easy to build and customize applications, enabling developers to build sovereign applications or customize Rollkit with different execution environments and data availability layers.
 
 ## 📦 Install Rollkit (CLI)
 
@@ -26,9 +42,9 @@ rollkit version
 
 A successful installation will display the version number and its associated git commit hash.
 
-## 🚀 Run your sovereign rollup node
+## 🚀 Run your sovereign node
 
-To start a basic sovereign rollup node, execute:
+To start a basic sovereign node, execute:
 
 ```bash
 rollkit start
@@ -48,4 +64,4 @@ I[2024-05-01|09:58:46.082] Finalized block                              module=B
 
 ## 🎉 Conclusion
 
-That's it! Your sovereign rollup node is now up and running. It's incredibly simple to start a blockchain (which is essentially what a rollup is) these days using Rollkit. Explore further and discover how you can build useful applications on Rollkit. Good luck!
+That's it! Your sovereign node is now up and running. It's incredibly simple to start a blockchain (which is essentially what an application is) these days using Rollkit. Explore further and discover how you can build useful applications on Rollkit. Good luck!

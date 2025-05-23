@@ -1,26 +1,26 @@
-# Integrating the `based.Sequencer` into Your Rollup
+# Integrating the `based.Sequencer` into Your System
 
-This tutorial provides a step-by-step guide for integrating the `based.Sequencer` from Rollkit into your own rollup project. It is designed to be more in-depth, helping you understand not just the code, but also the architectural flow and where to begin.
+This tutorial provides a step-by-step guide for integrating the `based.Sequencer` from Rollkit into your own system project. It is designed to be more in-depth, helping you understand not just the code, but also the architectural flow and where to begin.
 
 ---
 
 ## Overview: What is the `based.Sequencer`?
 
-The `based.Sequencer` is a component that manages transaction batching, submission, and retrieval for rollups that use a Data Availability (DA) layer. It is designed for advanced rollup scenarios where you want to synchronize with an external DA layer (such as another chain or service) and handle concepts like height drift, persistent pending transactions, and robust batch submission with retries.
+The `based.Sequencer` is a component that manages transaction batching, submission, and retrieval for systems that use a Data Availability (DA) layer. It is designed for advanced system scenarios where you want to synchronize with an external DA layer (such as another chain or service) and handle concepts like height drift, persistent pending transactions, and robust batch submission with retries.
 
 ---
 
 ## When Should You Use the `based.Sequencer`?
 
-- You want your rollup to follow or synchronize with an external DA layer (e.g., a parent L1 or another rollup).
+- You want your system to follow or synchronize with an external DA layer (e.g., a parent L1 or another system).
 - You need to handle advanced DA features like height drift, batch retries, and persistent mempool.
-- You want to build a rollup that can operate in 'based' mode, as seen in the Rollkit EVM-based example.
+- You want to build a system that can operate in 'based' mode, as seen in the Rollkit EVM-based example.
 
 ---
 
 ### Prerequisites
 
-- A Rollkit-based rollup project (see the [Rollkit repo](https://github.com/rollkit/rollkit)).
+- A Rollkit-based system project (see the [Rollkit repo](https://github.com/rollkit/rollkit)).
 - A DA layer endpoint (or use the DummyDA for local testing).
 - Familiarity with Go modules and the Rollkit configuration system.
 
@@ -28,7 +28,7 @@ The `based.Sequencer` is a component that manages transaction batching, submissi
 
 ### 1. Project Structure and Where to Start
 
-**Start in your rollup's main entrypoint** (usually a `cmd/run.go` or similar). This is where you will:
+**Start in your system's main entrypoint** (usually a `cmd/run.go` or similar). This is where you will:
 
 - Parse configuration
 - Set up logging
@@ -113,7 +113,7 @@ You need to provide:
 
 - Logger
 - DA implementation
-- Rollup ID (usually your chain ID as bytes)
+- System ID (usually your chain ID as bytes)
 - DA start height (where to begin scanning the DA layer)
 - Max height drift (how far ahead you can scan)
 - Persistent datastore
@@ -122,7 +122,7 @@ You need to provide:
 sequencer, err := based.NewSequencer(
     logger,
     da,
-    []byte(nodeConfig.ChainID),
+    []byte(nodeConfig.ChainID),      // System ID
     daStartHeight,      // e.g., from config or flag
     maxHeightDrift,     // e.g., from config or flag
     datastore,
@@ -171,7 +171,7 @@ return rollcmd.StartNode(
 
 ### 9. (Optional) Support Multiple DA Layers
 
-You can instantiate multiple DA clients (e.g., one for rollup, one for 'based' parent) and pass the appropriate one to the sequencer. See the EVM-based example for how to wire this up with flags and config.
+You can instantiate multiple DA clients (e.g., one for the system, one for 'based' parent) and pass the appropriate one to the sequencer. See the EVM-based example for how to wire this up with flags and config.
 
 ---
 
@@ -206,13 +206,13 @@ cmd.Flags().Uint64Var(&basedMaxHeightDrift, based.FlagBasedMaxHeightDrift, 1, "M
 - **Datastore**: Persistent storage for batches and state.
 - **Sequencer**: The `based.Sequencer` instance.
 - **P2P Client**: For networking (if needed).
-- **Executor**: Your rollup’s application logic.
+- **Executor**: Your system’s application logic.
 
 ---
 
 ## Tips
 
-- The `based.Sequencer` is ideal for advanced rollup scenarios with external DA layers.
+- The `based.Sequencer` is ideal for advanced system scenarios with external DA layers.
 - Use persistent storage to avoid losing pending transactions on restart.
 - Tune `daStartHeight` and `maxHeightDrift` for your chain’s needs.
 - See the EVM-based example in Rollkit for a full working integration.

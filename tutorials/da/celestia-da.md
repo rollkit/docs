@@ -7,13 +7,13 @@ import constants from '../../.vitepress/constants/constants.js'
 
 ## 🌞 Introduction {#introduction}
 
-This tutorial serves as a comprehensive guide for deploying your rollup on Celestia's data availability (DA) network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
+This tutorial serves as a comprehensive guide for deploying your system on Celestia's data availability (DA) network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
 
-Before proceeding, ensure that you have completed the [quick start](/tutorials/quick-start) tutorial, which covers installing the rollkit CLI and running a rollup against a local DA network.
+Before proceeding, ensure that you have completed the [quick start](/tutorials/quick-start) tutorial, which covers installing the rollkit CLI and running a system against a local DA network.
 
 ## 🪶 Running a Celestia light node
 
-Before you can start your rollup node, you need to initiate, sync, and fund a light node on one of Celestia's networks on a compatible version:
+Before you can start your system node, you need to initiate, sync, and fund a light node on one of Celestia's networks on a compatible version:
 
 ::: code-group
 
@@ -40,7 +40,7 @@ Celestia Node Version: {{constants.celestiaNodeMainnetTag}}
 
 The main difference lies in how you fund your wallet address: using testnet TIA or [TIA](https://docs.celestia.org/learn/tia#overview-of-tia) for Mainnet Beta.
 
-After successfully starting a light node, it's time to start posting the batches of blocks of data that your rollup generates to Celestia.
+After successfully starting a light node, it's time to start posting the batches of blocks of data that your system generates to Celestia.
 
 ## 🏗️ Prerequisites {#prerequisites}
 
@@ -125,9 +125,9 @@ port 26658:
 DA_ADDRESS=http://localhost:26658
 ```
 
-## 🔥 Running your rollup connected to Celestia light node
+## 🔥 Running your system connected to Celestia light node
 
-Finally, let's initiate the rollup node with all the flags:
+Finally, let's initiate the system node with all the flags:
 
 ```bash
 rollkit start \
@@ -138,7 +138,7 @@ rollkit start \
     --rollkit.da_address $DA_ADDRESS
 ```
 
-Now, the rollup is running and posting blocks (aggregated in batches) to Celestia. You can view your rollup by using your namespace or account on one of Celestia's block explorers.
+Now, the system is running and posting blocks (aggregated in batches) to Celestia. You can view your system by using your namespace or account on one of Celestia's block explorers.
 
 For example, [here on Celenium for Arabica](https://arabica.celenium.io/).
 
@@ -150,4 +150,4 @@ Other explorers:
 
 ## 🎉 Next steps
 
-Congratulations! You've built a local rollup that posts data to Celestia's DA layer. Well done! Now, go forth and build something great! Good luck!
+Congratulations! You've built a local system that posts data to Celestia's DA layer. Well done! Now, go forth and build something great! Good luck!
