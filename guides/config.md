@@ -98,7 +98,7 @@ db_path: "data"
 ### Chain ID
 
 **Description:**
-The unique identifier for your rollup chain. This ID is used to differentiate your network from others and is crucial for network communication and transaction validation.
+The unique identifier for your chain. This ID is used to differentiate your network from others and is crucial for network communication and transaction validation.
 
 **YAML:**
 Set this in your configuration file at the top level:
@@ -109,7 +109,7 @@ chain_id: "my-rollkit-chain"
 
 **Command-line Flag:**
 `--chain_id <string>`
-*Example:* `--chain_id "super_rollup_testnet_v1"`
+*Example:* `--chain_id "super_testnet_v1"`
 *Default:* `"rollkit"`
 *Constant:* `FlagChainID`
 

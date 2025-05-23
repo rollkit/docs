@@ -1,32 +1,25 @@
 ---
-++ b/tutorials/gm-world.md
-@@ 1,3
-description: Build a sovereign rollup using Ignite, the `gmd` CLI, and a local DA network.
+title: GM World tutorial
+description: Learn how to build and deploy a CosmWasm-based "gm" (good morning) application using Rollkit.
+---
 
-# GM world rollup
+This tutorial will guide you through the process of building and deploying a CosmWasm-based "gm" (good morning) application using Rollkit.
 
-## 🌞 Introduction {#introduction}
+## ☀️ Introduction
 
-This tutorial will guide you through building a sovereign `gm-world` rollup (`gm` stands for "good morning") using Rollkit. Unlike the [quick start guide](https://rollkit.dev/tutorials/quick-start), this tutorial provides a more practical approach to understanding sovereign rollup development.
+In this tutorial, we will explore how to use Rollkit to create a sovereign CosmWasm application. First, we will install the necessary dependencies. Then, we will install and set up a Rollkit node to work with a local data availability layer. Lastly, we'll look at how to create a custom CosmWasm execution environment and how to deploy a sovereign application using Rollkit.
 
-We will cover:
+By the end of this tutorial, you will have a good understanding of how Rollkit works and how to create sovereign applications using Rollkit. You will also have the knowledge and skills needed to customize Rollkit with different execution environments and data availability layers, opening up new possibilities for creating scalable and efficient blockchain applications.
 
-- Building and configuring a Cosmos-SDK application-specific rollup blockchain.
-- Posting rollup data to a Data Availability (DA) network.
-- Executing transactions (the end goal).
+![gm world](/img/gm-world-frontend-wallet-connected.png)
 
-No prior understanding of the build process is required, just that it utilizes the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) for blockchain applications.
+### 📖 The stack
 
-<!-- markdownlint-disable MD033 -->
-<script setup>
-import Callout from '../.vitepress/components/callout.vue'
-import constants from '../.vitepress/constants/constants.js'
-</script>
+Sovereign applications are made possible through a module that allows Rollkit instances to use a data availability layer. This integration opens up possibilities for developers to create applications with arbitrary execution environments that inherit the data availability layer's guarantees and security guarantees.
 
-:::tip
-<Callout />
-:::
-<!-- markdownlint-enable MD033 -->
+The modular design of Rollkit allows for easy integration of new data availability layers, making it possible to deploy sovereign applications.
+
+The goal of Rollkit is to make it easy to build and customize applications, enabling developers to build sovereign applications or customize Rollkit with different execution environments and data availability layers.
 
 ## 🛠️ Dependencies {#dependencies}
 
@@ -71,9 +64,9 @@ Install your app locally:
 make install
 ```
 
-## 🚀 Starting your rollup {#start-your-rollup}
+## 🚀 Starting your application {#start-your-rollup}
 
-Now that we have our gm app generated and installed, we can launch our GM rollup along with the local DA by running the following command:
+Now that we have our gm app generated and installed, we can launch our GM application along with the local DA by running the following command:
 
 First lets start the local DA network:
 
@@ -124,9 +117,9 @@ You should see an output like this:
 5:02PM INF Block executed successfully appHash=CACB5B55477E8813D93A29CF25BA5DB8AD4A51992D96A72CF9A4E83D47F4FAAA height=2 module=rollkit
 ```
 
-Ignite has successfully launched the GM rollup and the local DA network. The GM rollup is running on port `7331` and the local DA network is running on port `7980`.
+Ignite has successfully launched the GM application and the local DA network. The GM application is running on port `7331` and the local DA network is running on port `7980`.
 
-Good work so far, we have a Rollup node, DA network node, now we can start submitting transactions.
+Good work so far, we have a Rollkit node, DA network node, now we can start submitting transactions.
 
 ## 💸 Transactions {#transactions}
 

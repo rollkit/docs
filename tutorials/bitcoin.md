@@ -1,10 +1,10 @@
-# Bitcoin rollup tutorial
+# Bitcoin integration tutorial
 
 ## ☀️Introduction
 
-In this tutorial, we will explore how to use Rollkit to create sovereign rollups on Bitcoin. First, we will install Bitcoin Core to run a local testnet. Then, we will install and set up a Rollkit node to work with Bitcoin as a data availability layer. Lastly, we'll look at how to create a custom EVM execution environment and how to deploy a sovereign rollup on Bitcoin using Rollkit.
+In this tutorial, we will explore how to use Rollkit to create sovereign systems on Bitcoin. First, we will install Bitcoin Core to run a local testnet. Then, we will install and set up a Rollkit node to work with Bitcoin as a data availability layer. Lastly, we'll look at how to create a custom EVM execution environment and how to deploy a sovereign system on Bitcoin using Rollkit.
 
-By the end of this tutorial, you will have a good understanding of how Rollkit works and how to create sovereign rollups on Bitcoin using Rollkit. You will also have the knowledge and skills needed to customize Rollkit with different execution environments and data availability layers, opening up new possibilities for creating scalable and efficient blockchain applications.
+By the end of this tutorial, you will have a good understanding of how Rollkit works and how to create sovereign systems on Bitcoin using Rollkit. You will also have the knowledge and skills needed to customize Rollkit with different execution environments and data availability layers, opening up new possibilities for creating scalable and efficient blockchain applications.
 
 Read more in our [blog post](../../../blog/sovereign-rollups-on-bitcoin).
 
@@ -12,11 +12,11 @@ Read more in our [blog post](../../../blog/sovereign-rollups-on-bitcoin).
 
 ### 📖 The stack
 
-Sovereign rollups on Bitcoin are made possible through a module that allows Rollkit rollups to use Bitcoin for data availability. This integration opens up possibilities for developers to create rollups with arbitrary execution environments that inherit Bitcoin’s data availability guarantees and security guarantees.
+Sovereign systems on Bitcoin are made possible through a module that allows Rollkit instances to use Bitcoin for data availability. This integration opens up possibilities for developers to create systems with arbitrary execution environments that inherit Bitcoin’s data availability guarantees and security guarantees.
 
-The Taproot upgrade and [Ordinals](https://ordinals.com/) usage of Bitcoin for publishing arbitrary data made it possible to integrate Bitcoin as a data availability layer into Rollkit. The modular design of Rollkit allows for easy integration of new data availability layers, making it possible to deploy sovereign rollups on Bitcoin.
+The Taproot upgrade and [Ordinals](https://ordinals.com/) usage of Bitcoin for publishing arbitrary data made it possible to integrate Bitcoin as a data availability layer into Rollkit. The modular design of Rollkit allows for easy integration of new data availability layers, making it possible to deploy sovereign systems on Bitcoin.
 
-The goal of Rollkit is to make it easy to build and customize rollups, enabling developers to build sovereign rollups on Bitcoin or customize Rollkit with different execution environments and data availability layers.
+The goal of Rollkit is to make it easy to build and customize systems, enabling developers to build sovereign systems on Bitcoin or customize Rollkit with different execution environments and data availability layers.
 
 ## 💻 Prerequisites
 
@@ -143,7 +143,7 @@ apt install gcc -y
 
 ### 🪙 Install Bitcoin
 
-Running the rollup requires a local regtest Bitcoin node. You can set this up by running the following commands.
+Running the system requires a local regtest Bitcoin node. You can set this up by running the following commands.
 
 Install Bitcoin Core:
 
@@ -305,7 +305,7 @@ In the case that you are starting your regtest network again, you can use the fo
 rm -rf ${LOCATION OF .bitcoin folder}
 ```
 
-## 🏃‍♀️ Running the Ethermint rollup
+## 🏃‍♀️ Running the Ethermint application
 
 :::danger
 The Ethermint tutorial is currently not supported.
@@ -340,7 +340,7 @@ Start the chain:
 ethermintd start --rollkit.aggregator --rollkit.da_layer bitcoin --rollkit.da_config='{"host":"127.0.0.1:18332","user":"rpcuser","pass":"rpcpass","http_post_mode":true,"disable_tls":true}' --rollkit.namespace_id $NAMESPACE --rollkit.da_start_height 1
 ```
 
-Congratulations! Now that you have your Ethermint and Bitcoin rollup running, you're ready to deploy some smart contracts to the EVM!
+Congratulations! Now that you have your Ethermint and Bitcoin integration running, you're ready to deploy some smart contracts to the EVM!
 
 ### ⚡️ Initialize development environment
 
@@ -552,7 +552,7 @@ We can then perform read operations with `cast call`:
 cast call $CONTRACT_ADDRESS "getCount()(int)" --rpc-url $RPC_URL
 ```
 
-### 🧪 Deploying to the Ethermint sovereign rollup
+### 🧪 Deploying to the Ethermint sovereign application
 
 Now that we've deployed and tested locally, we can deploy to our
 Ethermint chain.
@@ -582,7 +582,7 @@ Set the contract address in the output as the `CONTRACT_ADDRESS` variable:
 export CONTRACT_ADDRESS=<new-contract-address>
 ```
 
-Once the contract has been deployed to the Ethermint rollup, we can
+Once the contract has been deployed to the Ethermint application, we can
 use `cast send` to test sending transactions to it:
 
 ```bash

@@ -1,4 +1,4 @@
-# 🗞️ CosmWasm rollup
+# 🗞️ CosmWasm application
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
@@ -30,7 +30,7 @@ this tutorial.
 
 ## 💻 CosmWasm dependency {#dependencies}
 
-As with the [GM Rollup](https://rollkit.dev/tutorials/gm-world), we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install).
+As with the [GM application](https://rollkit.dev/tutorials/gm-world), we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install).
 
 Once installed, you can verify the installation by running:
 
@@ -44,9 +44,9 @@ CLI Version:   0.90.1
 To see the engine version (provided it is running): kurtosis engine status
 ```
 
-## 🚀 Starting your rollup {#start-your-rollup}
+## 🚀 Starting your application {#start-your-application}
 
-Now that we have kurtosis installed, we can launch our CosmWasm rollup along with the local DA by running the following command:
+Now that we have kurtosis installed, we can launch our CosmWasm application along with the local DA by running the following command:
 
 ```bash
 kurtosis run github.com/rollkit/cosmwasm@v0.2.0
@@ -100,7 +100,7 @@ c71b0308616d   wasm       grpc-addr: 9290/tcp -> http://127.0.0.1:9290     RUNNI
                           rpc-laddr: 36657/tcp -> http://127.0.0.1:36657   
 ```
 
-Kurtosis has successfully launched the CosmWasm rollup and the local DA network. You can see the services running in docker as well:
+Kurtosis has successfully launched the CosmWasm application and the local DA network. You can see the services running in docker as well:
 
 ```bash
 docker ps
@@ -117,16 +117,16 @@ d532fc82579f   traefik:2.10.6                     "/bin/sh -c 'mkdir -…"   39 
 7700c0b72195   timberio/vector:0.31.0-debian      "/bin/sh -c 'printf …"   39 minutes ago       Up 39 minutes                                                                                          kurtosis-logs-aggregator
 ```
 
-We can see the CosmWasm rollup running in container `wasm--c71b0308616d40ad919ad24c3d14f35b` and the local DA network running in container `local-da--96d04bc472c9455d88d046128fbdefa6`.
+We can see the CosmWasm application running in container `wasm--c71b0308616d40ad919ad24c3d14f35b` and the local DA network running in container `local-da--96d04bc472c9455d88d046128fbdefa6`.
 
-Let's hold on to the container name for the CosmWasm rollup, as we will need it later.
+Let's hold on to the container name for the CosmWasm application, as we will need it later.
 
 ```bash
 CW=$(docker ps --format '{{.Names}}' | grep wasm)
 echo $CW
 ```
 
-You can verify the rollup is running by checking the logs:
+You can verify the application is running by checking the logs:
 
 ```bash
 docker logs $CW
@@ -144,7 +144,7 @@ docker logs $CW
 ...
 ```
 
-Good work so far, we have a Rollup node, DA network node, now we can move onto the contract deployment.
+Good work so far, we have a Rollkit node, DA network node, now we can move onto the contract deployment.
 
 ## 📒 Contract deployment on CosmWasm with Rollkit {#contract-deployment-on-cosmwasm}
 
@@ -197,7 +197,7 @@ This will place the optimized Wasm bytecode at `artifacts/cw_nameservice.wasm`.
 
 Let's now deploy our smart contract!
 
-We will need to do this in the docker container that the CosmWasm rollup is running. So first let's move the compiled contract to the container:
+We will need to do this in the docker container that the CosmWasm application is running. So first let's move the compiled contract to the container:
 
 ```bash
 docker cp artifacts/cw_nameservice.wasm $CW:/root/cw_nameservice.wasm

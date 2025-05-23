@@ -1,4 +1,4 @@
-# Rollup Full Node Setup Guide
+# Full Node Setup Guide
 
 ## Introduction
 
@@ -22,7 +22,7 @@ Let's set a terminal variable for the chain ID.
 CHAIN_ID=gm
 ```
 
-Initialize the chain config for the full node, lets call it `FullNode` and set the chain ID to your rollup chain ID:
+Initialize the chain config for the full node, lets call it `FullNode` and set the chain ID to your  chain ID:
 
 ```bash
 {BINARY} init FullNode --chain-id=$CHAIN_ID
@@ -38,7 +38,7 @@ cp $HOME/.$CHAIN_ID/config/genesis.json $HOME/.${CHAIN_ID}_fn/config/genesis.jso
 
 Identify the sequencer node's P2P address from its logs. It will look similar to:
 
-```
+```bash
 1:55PM INF listening on address=/ip4/127.0.0.1/tcp/36656/p2p/12D3KooWJbD9TQoMSSSUyfhHMmgVY3LqCjxYFz8wQ92Qa6DAqtmh
 ```
 
@@ -72,12 +72,10 @@ rollkit start \
   --grpc.address 127.0.0.1:9390 \
   --p2p.laddr "0.0.0.0:46656" \
   --api.address tcp://localhost:1318 \
-  --rollkit.sequencer_rollup_id gm
 ```
 
 Key points about this command:
 
-- `rollkit.sequencer_rollup_id` is generally the `$CHAIN_ID`, which is `gm` in this case.
 - The ports and addresses are different from the sequencer node to avoid conflicts. Not everything may be necessary for your setup.
 - We use the `P2P_ID` environment variable to set the seed node.
 
@@ -93,7 +91,7 @@ After starting your full node, you should see output similar to:
 This output indicates that your full node is successfully connecting to the network and processing blocks.
 
 :::tip
-If your rollup uses EVM as an execution layar and you see an error like `datadir already used by another process`, it means you have to remove all the state from rollup data directory (`/root/.yourrollup_fn/data/`) and specify a different data directory for the EVM client.
+If your chain uses EVM as an execution layer and you see an error like `datadir already used by another process`, it means you have to remove all the state from the data directory (`/root/.{binary_home}/data/`) and specify a different data directory for the EVM client.
 :::
 
 ## Conclusion
