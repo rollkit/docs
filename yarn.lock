@@ -399,13 +399,6 @@
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.0.tgz#3188bcb273a414b0d215fd22a58540b989b9409a"
   integrity sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==
 
-"@keplr-wallet/types@0.12.212":
-  version "0.12.212"
-  resolved "https://registry.yarnpkg.com/@keplr-wallet/types/-/types-0.12.212.tgz#71a406978f243ce20940d2f9c1f074ce0fc623a1"
-  integrity sha512-UUw01GspPOnB9vDo1ANKIQ7Ms+usl3wKARft7GIlmiLaIUJhRGAYDoJvTWs7eSEYNCyIIB2TY4D8aY5fecdQ5w==
-  dependencies:
-    long "^4.0.0"
-
 "@mermaid-js/mermaid-mindmap@^9.3.0":
   version "9.3.0"
   resolved "https://registry.npmjs.org/@mermaid-js/mermaid-mindmap/-/mermaid-mindmap-9.3.0.tgz"
@@ -1609,11 +1602,6 @@ lodash-es@4.17.21, lodash-es@^4.17.21:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz"
   integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
-
-long@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/long/-/long-4.0.0.tgz"
-  integrity sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA==
 
 magic-string@^0.30.11:
   version "0.30.11"

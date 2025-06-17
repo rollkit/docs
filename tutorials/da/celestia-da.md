@@ -44,8 +44,8 @@ After successfully starting a light node, it's time to start posting the batches
 
 ## 🏗️ Prerequisites {#prerequisites}
 
-* `rollkit` CLI installed from the [quick start](/tutorials/quick-start) tutorial.
- 
+- `rollkit` CLI installed from the [quick start](/tutorials/quick-start) tutorial.
+
 ## 🛠️ Configuring flags for DA
 
 Now that we are posting to the Celestia DA instead of the local DA, the `rollkit start` command requires three DA configuration flags:
@@ -135,7 +135,7 @@ rollkit start \
     --rollkit.da_auth_token $AUTH_TOKEN \
     --rollkit.da_namespace $DA_NAMESPACE \
     --rollkit.da_start_height $DA_BLOCK_HEIGHT \
-    --rollkit.da_address $DA_ADDRESS
+    --rollkit.da.address $DA_ADDRESS
 ```
 
 Now, the rollup is running and posting blocks (aggregated in batches) to Celestia. You can view your rollup by using your namespace or account on one of Celestia's block explorers.
@@ -143,6 +143,7 @@ Now, the rollup is running and posting blocks (aggregated in batches) to Celesti
 For example, [here on Celenium for Arabica](https://arabica.celenium.io/).
 
 Other explorers:
+
 - [Arabica testnet](https://docs.celestia.org/nodes/arabica-testnet#explorers)
 - [Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet#explorers)
 - [Mainnet Beta](https://docs.celestia.org/nodes/mainnet#explorers)

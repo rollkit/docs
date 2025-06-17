@@ -23,13 +23,14 @@ Make sure you have your wordle chain ready by completing [the Build your chain t
 
 ### 💻 Docker Compose {#docker-compose}
 
-You can [install docker compose here](https://docs.docker.com/compose/install/). 
+You can [install docker compose here](https://docs.docker.com/compose/install/).
 
 Once installed, you can verify the installation by running:
 
 ```bash
 docker compose version
 ```
+
 ```bash
 Docker Compose version v2.23.0-desktop.1
 ```
@@ -41,6 +42,7 @@ In addition to our chain, we need to run a DA and Sequencer node.
 We will use the [local-da](https://github.com/rollkit/local-da) and [local-sequencer](https://github.com/rollkit/go-sequencing) for this tutorial and run it with our chain.
 
 To save time, we can use their respective Dockerfiles:
+
 * [local-da Dockerfile](https://github.com/rollkit/local-da/blob/main/Dockerfile)
 * [local-sequencer Dockerfile](https://github.com/rollkit/go-sequencing/blob/main/Dockerfile)
 
@@ -56,10 +58,10 @@ FROM golang as base
 
 # Install dependencies
 RUN apt update && \
-	apt-get install -y \
-	build-essential \
-	ca-certificates \
-	curl
+ apt-get install -y \
+ build-essential \
+ ca-certificates \
+ curl
 
 # Install rollkit
 RUN curl -sSL https://rollkit.dev/install.sh | sh -s {{constants.rollkitLatestTag}}
@@ -95,8 +97,8 @@ FROM debian:bookworm-slim
 
 # Install jq
 RUN apt update && \
-	apt-get install -y \
-	jq
+ apt-get install -y \
+ jq
 
 # Set the working directory
 WORKDIR /root
@@ -146,7 +148,7 @@ wordle      latest  5d3533c1ea1c   8 seconds ago   443MB
 
 ### 🐳 Docker Compose file {#docker-compose-file}
 
-Next we need to create our `compose.yaml` file for docker compose to use. 
+Next we need to create our `compose.yaml` file for docker compose to use.
 
 In the root of the `wordle` directory, create a new file called `compose.yaml` and add the following code:
 
@@ -165,7 +167,7 @@ services:
       [
         "start",
         "--rollkit.aggregator",
-        "--rollkit.da_address",
+        "--rollkit.da.address",
         "http://0.0.0.0:7980",
         "--rollkit.sequencer_address",
         "0.0.0.0:50051",

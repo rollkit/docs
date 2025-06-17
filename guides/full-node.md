@@ -16,24 +16,16 @@ Before starting, ensure you have:
 
 ### Initialize Chain Config and Copy Genesis File
 
-First, update the `config_dir` in the `rollkit.toml` file:
-
-```bash
-[chain]
-  config_dir = "/root/.yourrollupd" // [!code --]
-  config_dir = "/root/.yourrollupd_fn" // [!code ++]
-```
-
 Let's set a terminal variable for the chain ID.
 
-```sh
+```bash
 CHAIN_ID=gm
 ```
 
 Initialize the chain config for the full node, lets call it `FullNode` and set the chain ID to your rollup chain ID:
 
 ```bash
-rollkit init FullNode --chain-id=$CHAIN_ID
+{BINARY} init FullNode --chain-id=$CHAIN_ID
 ```
 
 Copy the genesis file from the sequencer node:
@@ -58,7 +50,7 @@ export P2P_ID="12D3KooWJbD9TQoMSSSUyfhHMmgVY3LqCjxYFz8wQ92Qa6DAqtmh"
 
 ### Start the Full Node
 
-We are now ready to run our full node. If we are running the full node on the same machine as the sequencer, we need to make sure we update the ports to avoid conflicts. 
+We are now ready to run our full node. If we are running the full node on the same machine as the sequencer, we need to make sure we update the ports to avoid conflicts.
 
 Make sure to include these flags with your start command:
 
@@ -73,7 +65,7 @@ Run your full node with the following command:
 
 ```bash
 rollkit start \
-  --rollkit.da_address http://127.0.0.1:7980 \
+  --rollkit.da.address http://127.0.0.1:7980 \
   --p2p.seeds $P2P_ID@127.0.0.1:26656 \
   --minimum-gas-prices 0stake \
   --rpc.laddr tcp://127.0.0.1:46657 \
@@ -84,6 +76,7 @@ rollkit start \
 ```
 
 Key points about this command:
+
 - `rollkit.sequencer_rollup_id` is generally the `$CHAIN_ID`, which is `gm` in this case.
 - The ports and addresses are different from the sequencer node to avoid conflicts. Not everything may be necessary for your setup.
 - We use the `P2P_ID` environment variable to set the seed node.
@@ -92,7 +85,7 @@ Key points about this command:
 
 After starting your full node, you should see output similar to:
 
-```
+``` bash
 2:33PM DBG indexed transactions height=1 module=txindex num_txs=0
 2:33PM INF block marked as DA included blockHash=7897885B959F52BF0D772E35F8DA638CF8BBC361C819C3FD3E61DCEF5034D1CC blockHeight=5532 module=BlockManager
 ```
@@ -102,7 +95,6 @@ This output indicates that your full node is successfully connecting to the netw
 :::tip
 If your rollup uses EVM as an execution layar and you see an error like `datadir already used by another process`, it means you have to remove all the state from rollup data directory (`/root/.yourrollup_fn/data/`) and specify a different data directory for the EVM client.
 :::
-
 
 ## Conclusion
 

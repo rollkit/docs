@@ -174,7 +174,6 @@ function nav() {
     { text: "Learn", link: "/learn/intro" },
     { text: "Tutorials", link: "/tutorials/quick-start" },
     { text: "How To Guides", link: "/guides/overview" },
-    // { text: "Testnets", link: "/testnets/cosmwasm-testnet" },
     { text: "Blog", link: "/blog/overview" },
   ];
 }
@@ -218,7 +217,7 @@ function sidebarHome() {
           text: "Quick start guide",
           link: "/tutorials/quick-start",
         },
-        { text: "Build a chain", link: "/tutorials/wordle" },
+        { text: "Build a chain", link: "/tutorials/gm-world" },
         {
           text: "DA",
           collapsed: true,
@@ -235,10 +234,6 @@ function sidebarHome() {
               text: "Celestia",
               link: "/tutorials/da/celestia-da",
             },
-            {
-              text: "Avail",
-              link: "/tutorials/da/avail-da",
-            },
           ],
         },
         {
@@ -250,12 +245,8 @@ function sidebarHome() {
               link: "/tutorials/sequencing/overview",
             },
             {
-              text: "Local",
-              link: "/tutorials/sequencing/local",
-            },
-            {
-              text: "Centralized",
-              link: "/tutorials/sequencing/centralized",
+              text: "Single",
+              link: "/tutorials/sequencing/single",
             },
             {
               text: "Based",
@@ -265,10 +256,6 @@ function sidebarHome() {
               text: "Forced Inclusion",
               link: "/tutorials/sequencing/forced-inclusion",
             },
-            {
-              text: "Astria",
-              link: "/tutorials/sequencing/astria",
-            },
           ],
         },
         {
@@ -276,21 +263,13 @@ function sidebarHome() {
           collapsed: true,
           items: [
             { text: "CosmWasm", link: "/tutorials/execution/cosmwasm" },
-            {
-              text: "EVM",
-              collapsed: true,
-              items: [
-                { text: "BeaconKit EVM", link: "/tutorials/execution/beaconkit" },
-                {
-                  text: "Artela EVM++",
-                  link: "/tutorials/execution/artela-evm-plus-plus",
-                },
-                {
-                  text: "Contract interaction",
-                  link: "/tutorials/execution/evm-contract-interaction",
-                },
-              ],
-            },
+            // {
+            //   text: "EVM",
+            //   collapsed: true,
+            //   items: [
+            //     // { text: "RETH EVM", link: "/tutorials/execution/reth-evm" },
+            //   ],
+            // },
           ],
         },
         {
@@ -305,10 +284,6 @@ function sidebarHome() {
               text: "Docker Compose",
               link: "/tutorials/docker-compose",
             },
-            // {
-            //   text: "Kurtosis",
-            //   link: "/tutorials/kurtosis",
-            // },
           ],
         },
       ],
@@ -318,12 +293,12 @@ function sidebarHome() {
       collapsed: true,
       items: [
         {
-          text: "Use the Rollkit CLI",
-          link: "/guides/use-rollkit-cli",
-        },
-        {
           text: "Use Ignite to create a Rollkit app",
           link: "/guides/ignite-rollkit",
+        },
+        {
+          text: "Run a Full Node",
+          link: "/guides/full-node",
         },
         {
           text: "Restart your rollup",
@@ -332,10 +307,6 @@ function sidebarHome() {
         {
           text: "Reset your chain's state",
           link: "/guides/reset-state",
-        },
-        {
-          text: "Run a rollup full node",
-          link: "/guides/full-node",
         },
         {
           text: "CometBFT into a Rollkit app",
@@ -347,33 +318,19 @@ function sidebarHome() {
         },
         {
           text: "Configuration",
-          collapsed: true,
-          items: [
-            {
-              text: "Configure gas price",
-              link: "/guides/gas-price",
-            },
-            {
-              text: "Configure max pending blocks",
-              link: "/guides/max-pending-blocks",
-            },
-            {
-              text: "Configure DA chain block sync time",
-              link: "/guides/da-block-time",
-            },
-            {
-              text: "Change speed of block production",
-              link: "/guides/block-times",
-            },
-            {
-              text: "Use lazy sequencing (aggregation)",
-              link: "/guides/lazy-sequencing",
-            },
-            {
-              text: "Configure Prometheus metrics",
-              link: "/guides/metrics",
-            },
-          ],
+          link: "/guides/config",
+        },
+        {
+          text: "EVM Single Sequencer",
+          link: "/guides/evm-single",
+        },
+        {
+          text: "EVM Based Sequencer",
+          link: "/guides/evm-based",
+        },
+        {
+          text: "Metrics",
+          link: "/guides/metrics",
         },
         {
           text: "Integrations",
@@ -389,10 +346,6 @@ function sidebarHome() {
               link: "/guides/ibc-connection",
             },
             {
-              text: "Integrate Range with your rollup",
-              link: "/guides/rollkit-monitoring",
-            },
-            {
               text: "Use IBC token (TIA) as gas token in your rollup",
               link: "/guides/use-tia-for-gas",
             },
@@ -400,11 +353,6 @@ function sidebarHome() {
         },
       ],
     },
-    // {
-    //   text: "Testnets",
-    //   collapsed: true,
-    //   items: [{ text: "CosmWasm Testnet", link: "/testnets/cosmwasm-testnet" }],
-    // },
     {
       text: "Blog",
       collapsed: true,
