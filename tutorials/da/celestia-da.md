@@ -135,7 +135,7 @@ rollkit start \
     --rollkit.da_auth_token $AUTH_TOKEN \
     --rollkit.da_namespace $DA_NAMESPACE \
     --rollkit.da_start_height $DA_BLOCK_HEIGHT \
-    --rollkit.da_address $DA_ADDRESS
+    --rollkit.da.address $DA_ADDRESS
 ```
 
 Now, the rollup is running and posting blocks (aggregated in batches) to Celestia. You can view your rollup by using your namespace or account on one of Celestia's block explorers.

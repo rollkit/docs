@@ -32,13 +32,13 @@ Start your rollup node with the following command, ensuring to include the DA ad
 ::: code-group
 
 ```sh [Quick Start]
-{BINARY} start --rollkit.da_address http://localhost:7980
+{BINARY} start --rollkit.da.address http://localhost:7980
 ```
 
 ```sh [Wordle Chain]
 {BINARY} start \
     --rollkit.aggregator \
-    --rollkit.da_address http://localhost:7980 \
+    --rollkit.da.address http://localhost:7980 \
     --rollkit.sequencer_rollup_id wordle
 ```
 

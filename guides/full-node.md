@@ -65,7 +65,7 @@ Run your full node with the following command:
 
 ```bash
 rollkit start \
-  --rollkit.da_address http://127.0.0.1:7980 \
+  --rollkit.da.address http://127.0.0.1:7980 \
   --p2p.seeds $P2P_ID@127.0.0.1:26656 \
   --minimum-gas-prices 0stake \
   --rpc.laddr tcp://127.0.0.1:46657 \

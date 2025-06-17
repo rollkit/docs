@@ -53,4 +53,4 @@ cat <<'EOF'
 
 EOF
 
-rollkit start --rollkit.da_address http://127.0.0.1:7980 --rpc.laddr tcp://127.0.0.1:46657 --grpc.address 127.0.0.1:9390 --p2p.seeds $P2P_ID@127.0.0.1:36656 --p2p.laddr "0.0.0.0:46656" --log_level debug --minimum-gas-prices="0.025stake"
+rollkit start --rollkit.da.address http://127.0.0.1:7980 --rpc.laddr tcp://127.0.0.1:46657 --grpc.address 127.0.0.1:9390 --p2p.seeds $P2P_ID@127.0.0.1:36656 --p2p.laddr "0.0.0.0:46656" --log_level debug --minimum-gas-prices="0.025stake"

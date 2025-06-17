@@ -167,7 +167,7 @@ services:
       [
         "start",
         "--rollkit.aggregator",
-        "--rollkit.da_address",
+        "--rollkit.da.address",
         "http://0.0.0.0:7980",
         "--rollkit.sequencer_address",
         "0.0.0.0:50051",
