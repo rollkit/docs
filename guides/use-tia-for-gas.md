@@ -261,7 +261,7 @@ rollkit tx bank send gm-key-2 gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc 10000000
 
 Fund the relayer on the Celestia Mocha testnet:
 
-[Mocha Testnet Faucet Instructions](https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet).
+[Mocha Testnet Faucet Instructions](https://docs.celestia.org/how-to-guides/mocha-testnet#mocha-testnet-faucet).
 
 Verify the relayer is funded:
 

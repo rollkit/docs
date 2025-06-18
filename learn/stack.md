@@ -50,9 +50,9 @@ It's important to keep in mind that there is no direct correlation between the D
 Celestia is a prominent example of a data availability integration implemented for Rollkit.
 It's using the [Celestia Node API](https://node-rpc-docs.celestia.org)
 via the [`rollkit/celestia-da`](https://github.com/rollkit/celestia-da) package.
-To deploy a Rollkit rollup on Celestia you also have to [run a Celestia light node](https://docs.celestia.org/developers/node-tutorial/).
+To deploy a Rollkit rollup on Celestia you also have to [run a Celestia light node](https://docs.celestia.org/tutorials/node-tutorial/).
 
-New DA layer integrations can be added by using the [DA interface](https://github.com/rollkit/rollkit/blob/main/core/da/da.go#L11).
+New DA layer integrations can be added by using the [DA interface](https://docs.cosmos.network/v0.50/build/building-apps/app-mempool).
 
 ## Node components
 
@@ -107,7 +107,7 @@ direct communication between rollup nodes.
 It's used to gossip transactions, headers of newly created blocks, and state fraud proofs.
 The P2P layer is implemented using [libp2p](https://github.com/libp2p).
 
-Rollkit uses [DHT-based active peer discovery](https://curriculum.pl-launchpad.io/curriculum/libp2p/dht/).
+Rollkit uses [DHT-based active peer discovery](https://pl-launchpad.io/curriculum/libp2p/dht/).
 Starting a node connects to pre-configured bootstrap peers, and advertises its namespace ID in the DHT.
 This solution is flexible, because multiple rollup networks may reuse the same DHT/bootstrap nodes,
 but specific rollup network might decide to use dedicated nodes as well.

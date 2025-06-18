@@ -30,7 +30,7 @@ this tutorial.
 
 ## 💻 CosmWasm dependency {#dependencies}
 
-As with the [GM Rollup](https://rollkit.dev/tutorials/gm-world), we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install).
+As with the [GM Rollup](https://rollkit.dev/tutorials/gm-world.md), we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install).
 
 Once installed, you can verify the installation by running:
 

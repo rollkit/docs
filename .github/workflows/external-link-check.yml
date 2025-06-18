@@ -1,0 +1,40 @@
+name: External Link Checker
+
+on:
+  # This workflow requires pull_request and won't work with pull_request_target 
+  # due to github permissions 
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+  # Uncomment the following lines to have the cronjob running daily
+  #repository_dispatch:
+  #workflow_dispatch:
+  #schedule:
+    #- cron: "00 18 * * *"
+
+jobs:
+  external-link-check:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write # required for peter-evans/create-issue-from-file
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Link Checker
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: -b . --verbose --no-progress --include-fragments './**/*.md'
+          fail: true
+
+      # Uncomment this if you want issues to be created for every dead link
+      #- name: Create Issue From File
+        #if: steps.lychee.outputs.exit_code != 0
+        #uses: peter-evans/create-issue-from-file@v5
+        #with:
+          #title: Link Checker Report
+          #content-filepath: ./lychee/out.md
+          #labels: report, automated issue

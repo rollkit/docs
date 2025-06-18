@@ -18,12 +18,12 @@ head:
 
 By Rollkit
 
-![rollkit-bitcoin](/bitcoin-rollkit/rollkit-bitcoin.png)
+![rollkit-bitcoin](/public/bitcoin-rollkit/rollkit-bitcoin.png)
 _Originally published on 5 March 2023_
 
 Today, we are proud to announce that Rollkit is the first rollup framework to support sovereign rollups on Bitcoin. An early research implementation allows Rollkit rollups to use Bitcoin for data availability.
 
-Rollkit is opening the door for developers to create rollups with arbitrary execution environments that inherit Bitcoin’s data availability guarantees and re-org resistance. With the new integration it is now possible to run the [EVM on Bitcoin as a Rollkit sovereign rollup](/docs/tutorials/bitcoin). Sovereign rollups on Bitcoin not only expand the possibilities for rollups, but also have the potential to help bootstrap a healthy blockspace fee market on Bitcoin, enabling a more sustainable security budget.
+Rollkit is opening the door for developers to create rollups with arbitrary execution environments that inherit Bitcoin’s data availability guarantees and re-org resistance. With the new integration it is now possible to run the [EVM on Bitcoin as a Rollkit sovereign rollup](/docs/tutorials/bitcoin.md). Sovereign rollups on Bitcoin not only expand the possibilities for rollups, but also have the potential to help bootstrap a healthy blockspace fee market on Bitcoin, enabling a more sustainable security budget.
 
 ## Tl;dr
 
@@ -43,7 +43,7 @@ Since then, the usage of Ordinals for NFT inscriptions and Taproot utilization h
 
 Rollkit is a modular framework for rollups, where developers can plug-in custom execution layers and data availability layers. Initially, Rollkit only supported Celestia as an option for data availability and consensus. Now, Bitcoin is an option, thanks to an early research implementation of a Bitcoin data availability module for Rollkit. In this case, sovereign rollups manage their own execution and settlement while offloading consensus and data availability to Bitcoin.
 
-![rollkit-bitcoin-rollup](/bitcoin-rollkit/rollkit-bitcoin-1.png)
+![rollkit-bitcoin-rollup](/public/bitcoin-rollkit/rollkit-bitcoin-1.png)
 
 ## How Rollkit posts data to Bitcoin
 
@@ -53,7 +53,7 @@ Rollkit was built with modularity at its core. It has a data availability interf
 
 After implementing the Taproot reader/writer interface for Bitcoin (`bitcoin-da`), adding it as a data availability module for Rollkit took less than a day. We mostly only had to implement the `SubmitBlock` and `RetrieveBlocks` functions for Rollkit to call the `Read` and `Write` methods in `bitcoin-da`.
 
-![rollkit-bitcoin-rollup-2](/bitcoin-rollkit/rollkit-bitcoin-2.png)
+![rollkit-bitcoin-rollup-2](/public/bitcoin-rollkit/rollkit-bitcoin-2.png)
 
 ## EVM on Bitcoin demo
 
@@ -70,6 +70,6 @@ Rollkit supports custom execution layers, including EVM, CosmWasm, or the Cosmos
 
 As we move towards a future where sovereign communities will form around different applications, asking them to incur the high cost and overhead of deploying a layer 1 blockchain to be sovereign is not sustainable. [Sovereign rollups](https://blog.celestia.org/sovereign-rollup-chains/) fix this by making it possible to deploy a sovereign chain that inherits the data availability and consensus of another layer 1 chain such as Bitcoin.
 
-Our goal with Rollkit is to make it easy to build and customize rollups. We invite you to play around Rollkit and build sovereign rollups on Bitcoin, or customize Rollkit with different execution environments and data availability layers. For details on how to run Rollkit with the Bitcoin data availability module, see the instructions [here](/docs/tutorials/bitcoin). Keep in mind that the integration is an early research implementation and it is not yet production-ready!
+Our goal with Rollkit is to make it easy to build and customize rollups. We invite you to play around Rollkit and build sovereign rollups on Bitcoin, or customize Rollkit with different execution environments and data availability layers. For details on how to run Rollkit with the Bitcoin data availability module, see the instructions [here](/docs/tutorials/bitcoin.md). Keep in mind that the integration is an early research implementation and it is not yet production-ready!
 
 Modularism, not maximalism.
