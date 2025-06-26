@@ -9,7 +9,7 @@ import constants from '../../.vitepress/constants/constants.js'
 
 This tutorial serves as a comprehensive guide for using the [local-da](https://github.com/rollkit/local-da) with your chain.
 
-Before proceeding, ensure that you have completed the [quick start](/tutorials/quick-start) or [build a chain](/tutorials/wordle) tutorial, which covers installing the rollkit CLI, building your chain, and running your chain.
+Before proceeding, ensure that you have completed the [quick start](/tutorials/quick-start) or [build a chain](/tutorials/gm-world.md) tutorial, which covers installing the rollkit CLI, building your chain, and running your chain.
 
 ## Setting Up a Local DA Network
 
@@ -35,11 +35,11 @@ Start your rollup node with the following command, ensuring to include the DA ad
 {BINARY} start --rollkit.da.address http://localhost:7980
 ```
 
-```sh [Wordle Chain]
+```sh [gm-world Chain]
 {BINARY} start \
     --rollkit.aggregator \
     --rollkit.da.address http://localhost:7980 \
-    --rollkit.sequencer_rollup_id wordle
+    --rollkit.sequencer_rollup_id gmd
 ```
 
 :::
