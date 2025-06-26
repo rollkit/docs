@@ -99,16 +99,6 @@ ignite rollkit init
 
 It will also initialize 2 accounts `alice` and `bob`:
 
-### Initialize Rollkit CLI Configuration {#initialize-rollkit-cli-configuration}
-
-To initialize the Rollkit CLI configuration, generate the `rollkit.toml` file by running the following command:
-
-```bash
-rollkit toml init
-```
-
-This will set up the Rollkit configuration file rollkit.toml, allowing you to use the Rollkit CLI for managing and running your blockchain.
-
 ## 🚀 Starting your rollup {#start-your-rollup}
 
 Now that we have our gm app generated and installed, we can launch our GM rollup along with the local DA by running the following command:
