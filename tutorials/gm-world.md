@@ -55,16 +55,14 @@ Is on Gitpod:                   false
 ## Generate your App {#generate-your-app}
 
 ```bash
-ignite s chain gm --address-prefix gm
+ignite scaffold chain gm --address-prefix gm
 cd gm
 ```
 
-```bas
 Install a specific version of ignite to use rollkit
-```
 
 ```bash
-ignite app install -g github.com/ignite/apps/rollkit@9d51c52305be37356a1ecadab8733b77842e1c37
+ignite app install -g github.com/ignite/apps/rollkit
 ```
 
 Install your app locally:
@@ -73,6 +71,44 @@ Install your app locally:
 make install
 ```
 
+## Add Rollkit Features {#add-rollkit-features}
+
+Enhance your blockchain by adding Rollkit features. Use the following command:
+
+```bash
+ignite rollkit add
+```
+
+## Build your chain {#build-your-chain}
+
+Build your chain using the following command:
+
+```bash
+ignite chain build
+```
+
+This will create a `~/.gm` folder with all the necessary files to run a chain.
+
+## Initialize Your Blockchain {#initialize-your-blockchain}
+
+Before starting your blockchain, you need to initialize it with Rollkit support. Initialize the blockchain with Local DA as follows:
+
+```bash
+ignite rollkit init
+```
+
+It will also initialize 2 accounts `alice` and `bob`:
+
+### Initialize Rollkit CLI Configuration {#initialize-rollkit-cli-configuration}
+
+To initialize the Rollkit CLI configuration, generate the `rollkit.toml` file by running the following command:
+
+```bash
+rollkit toml init
+```
+
+This will set up the Rollkit configuration file rollkit.toml, allowing you to use the Rollkit CLI for managing and running your blockchain.
+
 ## 🚀 Starting your rollup {#start-your-rollup}
 
 Now that we have our gm app generated and installed, we can launch our GM rollup along with the local DA by running the following command:
@@ -80,7 +116,7 @@ Now that we have our gm app generated and installed, we can launch our GM rollup
 First lets start the local DA network:
 
 ```bash
-curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.localDALatestTag}}
+curl -sSL https://rollkit.dev/install-local-da.sh | bash
 ```
 
 you should see logs like:
@@ -100,30 +136,37 @@ gmd start --rollkit.node.aggregator
 You should see an output like this:
 
 ```bash
-5:02PM INF Rollkit node run loop launched in background goroutine module=server
-5:02PM INF Attempting to start Rollkit node run loop module=server
-5:02PM INF serving HTTP listen address=[::]:26657 module=rollkit
-5:02PM INF Started RPC server addr=127.0.0.1:7331 module=rollkit
-5:02PM INF starting P2P client module=rollkit
-5:02PM INF listening on address=/ip4/10.36.65.125/tcp/7676/p2p/12D3KooWCZ4oCNDkxisUWD9CbB5yEmSmjaTEtLLySk3Sccy4Vb8m module=p2p
-5:02PM INF listening on address=/ip4/127.0.0.1/tcp/7676/p2p/12D3KooWCZ4oCNDkxisUWD9CbB5yEmSmjaTEtLLySk3Sccy4Vb8m module=p2p
-5:02PM INF no peers - only listening for connections module=p2p
-5:02PM INF working in aggregator mode block time=1s module=rollkit
-5:02PM INF Reaper started interval=1000 module=Reaper
-5:02PM INF Using pending block height=1 module=BlockManager
-5:02PM INF Executing block height=1 module=rollkit num_txs=0 timestamp=2025-04-28T11:21:24-04:00
-5:02PM INF Block executed successfully appHash=6AE75B65CDFE504876AC392554E16065C7C3699FFC99E6C4AA5FEB13B49CFB2D height=1 module=rollkit
-5:02PM ERR failed to start syncer after initializing the store: error getting latest head during Start: header: not found module=rollkit
-5:02PM ERR failed to start syncer after initializing the store: error getting latest head during Start: header: not found module=rollkit
-5:02PM INF Attempting to start executor (Adapter.Start) module=server
-5:02PM INF Executor started successfully module=server
-5:02PM INF Waiting for services to complete... module=server
-5:02PM INF starting API server... address=tcp://0.0.0.0:1317 module=api-server
-5:02PM INF serve module=api-server msg="Starting RPC HTTP server on [::]:1317"
-5:02PM INF starting gRPC server... address=localhost:9090 module=grpc-server
-5:02PM INF Creating empty block height=2 module=BlockManager
-5:02PM INF Executing block height=2 module=rollkit num_txs=0 timestamp=2025-05-13T17:02:14-04:00
-5:02PM INF Block executed successfully appHash=CACB5B55477E8813D93A29CF25BA5DB8AD4A51992D96A72CF9A4E83D47F4FAAA height=2 module=rollkit
+2:50PM INF creating new client module=rollkit namespace=
+2:50PM INF No state found in store, initializing new state module=BlockManager
+2:50PM INF Initializing chain chainID=gm genesisTime=2025-06-26T12:50:11Z initialHeight=1 module=rollkit
+2:50PM INF InitChain chainID=gm initialHeight=1 module=baseapp
+2:50PM INF initializing blockchain state from genesis.json module=baseapp
+2:50PM INF chain initialized successfully appHash=E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855 module=rollkit
+2:50PM INF using default mempool ttl MempoolTTL=25 module=BlockManager
+2:50PM INF service start impl=EventBus module=events msg="Starting EventBus service"
+2:50PM INF service start impl=PubSub module=pubsub msg="Starting PubSub service"
+2:50PM INF service start impl=IndexerService module=txindex msg="Starting IndexerService service"
+2:50PM INF rollkit node run loop launched in background goroutine module=server
+2:50PM INF serving HTTP listen address=[::]:26657 module=rollkit
+2:50PM INF starting P2P client module=rollkit
+2:50PM INF started RPC server addr=127.0.0.1:7331 module=rollkit
+2:50PM INF listening on address=/ip4/127.0.0.1/tcp/7676/p2p/12D3KooWPN1jqkgZcuF8UMZEa7nSjoF7zPmGHRrCDVrXrpfTLpfJ module=p2p
+2:50PM INF listening on address=/ip4/192.168.0.54/tcp/7676/p2p/12D3KooWPN1jqkgZcuF8UMZEa7nSjoF7zPmGHRrCDVrXrpfTLpfJ module=p2p
+2:50PM INF no peers - only listening for connections module=p2p
+2:50PM INF working in aggregator mode block time=1s module=rollkit
+2:50PM INF Reaper started interval=1000 module=Reaper
+2:50PM INF using pending block height=1 module=BlockManager
+2:50PM INF Executing block height=1 module=rollkit num_txs=0 timestamp=2025-06-26T14:50:11+02:00
+2:50PM INF block executed successfully appHash=678DE6BBA6E23B000DC5AC86B60245E6EAC503C5C7085495F3B71B22A762EB19 height=1 module=rollkit
+2:50PM INF indexed block events height=1 module=txindex
+2:50PM INF attempting to start executor (Adapter.Start) module=server
+2:50PM INF executor started successfully module=server
+2:50PM INF creating empty block height=2 module=BlockManager
+2:50PM INF Executing block height=2 module=rollkit num_txs=0 timestamp=2025-06-26T14:50:30+02:00
+2:50PM INF starting API server... address=tcp://0.0.0.0:1317 module=api-server
+2:50PM INF serve module=api-server msg="Starting RPC HTTP server on [::]:1317"
+2:50PM INF starting gRPC server... address=localhost:9090 module=grpc-server
+2:50PM INF block executed successfully appHash=0B3973A50C42D0184FB86409FC427BD528A790FA45BA2C9E20FDF14A3628CEC8 height=2 module=rollkit
 ```
 
 Ignite has successfully launched the GM rollup and the local DA network. The GM rollup is running on port `7331` and the local DA network is running on port `7980`.
@@ -154,14 +197,14 @@ You should see an output like the following
 For convenience we export two of our keys like this:
 
 ```bash
-export KEY1=gm17rpwv7lnk96ka00v93rphhvcqqztpn896q0dxx
-export KEY2=gm1r2udsh4za7r7sxvzy496qfazvjp04j4zgytve3
+export ALICE=gm17rpwv7lnk96ka00v93rphhvcqqztpn896q0dxx
+export BOB=gm1r2udsh4za7r7sxvzy496qfazvjp04j4zgytve3
 ```
 
 Now let's submit a transaction that sends coins from one account to another (don't worry about all the flags, for now, we just want to submit transaction from a high-level perspective):
 
 ```bash
-gmd tx bank send $KEY2 $KEY1 42069stake --keyring-backend test --chain-id gm --fees 5000stake
+gmd tx bank send $BOB $ALICE 42069stake --keyring-backend test --chain-id gm --fees 5000stake
 ```
 
 You'll be prompted to accept the transaction:
@@ -204,7 +247,7 @@ txhash: 677CAF6C80B85ACEF6F9EC7906FB3CB021322AAC78B015FA07D5112F2F824BFF
 Query balances after the transaction:
 
 ```bash
-gmd query bank balances $KEY1
+gmd query bank balances $ALICE
 ```
 
 The receiver’s balance should show an increase.
@@ -221,7 +264,7 @@ pagination:
 For the sender’s balance:
 
 ```bash
-gmd query bank balances $KEY2
+gmd query bank balances $BOB
 ```
 
 Output:
