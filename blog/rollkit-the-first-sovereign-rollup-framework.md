@@ -57,7 +57,7 @@ Rollkit rollups interact with a state machine via the Application Blockchain Int
 
 Rollkit allows developers to optimize between the different modular components  of a sovereign chain as needed. Rollkit allows you to:
 
-- Choose between data availability layers that implement the [go-da interface](https://github.com/rollkit/go-da).
+- Choose between data availability layers that implement the [DA interface](https://github.com/rollkit/rollkit/blob/main/core/da/da.go#L11).
 
 - Choose any ABCI++ compatible virtual machine.
 - Utilize the Sequencing API to delegate sequencing to the shared sequencer network of your choice or even delegate sequencing to the DA layer to go [based](https://ethresear.ch/t/based-rollups-superpowers-from-l1-sequencing/15016).
