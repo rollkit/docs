@@ -293,10 +293,6 @@ function sidebarHome() {
       collapsed: true,
       items: [
         {
-          text: "Use Ignite to create a Rollkit app",
-          link: "/guides/ignite-rollkit",
-        },
-        {
           text: "Run a Full Node",
           link: "/guides/full-node",
         },
