@@ -19,9 +19,6 @@ The [DA interface](https://github.com/rollkit/rollkit/blob/main/core/da/da.go#L1
 ```go
 // DA defines very generic interface for interaction with Data Availability layers.
 type DA interface {
- // MaxBlobSize returns the max blob size
- MaxBlobSize(ctx context.Context) (uint64, error)
-
  // Get returns Blob for each given ID, or an error.
  //
  // Error should be returned if ID is not formatted properly, there is no Blob for given ID or any other client-level
@@ -61,7 +58,7 @@ type DA interface {
 
 ## Mock DA {#mock-da}
 
-You might have noticed that we did not define any DA layer during the [quick start](../quick-start.md) or [build a chain](../wordle.md) tutorials. This is because we used a mock DA layer that is built into Rollkit.
+You might have noticed that we did not define any DA layer during the [quick start](../quick-start.md) or [build a chain](/tutorials/gm-world.md) tutorials. This is because we used a mock DA layer that is built into Rollkit.
 
 If you revisit the logs from those tutorials, you will see one of the first lines being:
 

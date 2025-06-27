@@ -14,7 +14,7 @@ Some reason you might need to reset the state of your chain are:
 
 ## Prerequisites
 
-In order to complete this guide, you will need to have completed either the [quick start tutorial](/tutorials/quick-start.md) or the [build our chain tutorial](/tutorials/wordle.md).
+In order to complete this guide, you will need to have completed either the [quick start tutorial](/tutorials/quick-start.md) or the [build our chain tutorial](/tutorials/gm-world.md).
 
 ## Quick Start
 
@@ -50,14 +50,14 @@ ${BINARY} unsafe-clean
 
 When you launch your chain again with `rollkit start` your `.rollkit` directory will be re-created and you will see your chain starting at block height 1 again.
 
-## Wordle
+## gm-world
 
-When you ran your wordle chain in the [build your chain tutorial](/tutorials/wordle.md), it created a `.wordle` directory.
+When you ran your gm-world chain in the [build your chain tutorial](/tutorials/gm-world.md), it created a `.gm` directory in your `$HOME` directory.
 
 This directory will look like the following:
 
 ```bash
-tree $HOME/.wordle
+tree $HOME/.gm
 
 ├── config
 │   ├── app.toml
@@ -65,9 +65,10 @@ tree $HOME/.wordle
 │   ├── config.toml
 │   ├── genesis.json
 │   ├── gentx
-│   │   └── gentx-6e46bd1f53acead98b43e63fcf2bd5435499350d.json
+│   │   └── gentx-418077c64f0cf5824c24487c9cce38241de677cd.json
 │   ├── node_key.json
-│   └── priv_validator_key.json
+│   ├── priv_validator_key.json
+│   └── rollkit.yaml
 ├── data
 │   ├── application.db
 │   │   ├── 000001.log
@@ -75,6 +76,17 @@ tree $HOME/.wordle
 │   │   ├── LOCK
 │   │   ├── LOG
 │   │   └── MANIFEST-000000
+│   ├── cache
+│   │   ├── data
+│   │   │   ├── da_included.gob
+│   │   │   ├── hashes.gob
+│   │   │   ├── items_by_hash.gob
+│   │   │   └── items_by_height.gob
+│   │   └── header
+│   │       ├── da_included.gob
+│   │       ├── hashes.gob
+│   │       ├── items_by_hash.gob
+│   │       └── items_by_height.gob
 │   ├── priv_validator_state.json
 │   ├── rollkit
 │   │   ├── 000001.sst
@@ -82,32 +94,40 @@ tree $HOME/.wordle
 │   │   ├── DISCARD
 │   │   ├── KEYREGISTRY
 │   │   └── MANIFEST
-│   └── snapshots
-│       └── metadata.db
-│           ├── 000001.log
-│           ├── CURRENT
-│           ├── LOCK
-│           ├── LOG
-│           └── MANIFEST-000000
+│   ├── snapshots
+│   │   └── metadata.db
+│   │       ├── 000001.log
+│   │       ├── CURRENT
+│   │       ├── LOCK
+│   │       ├── LOG
+│   │       └── MANIFEST-000000
+│   └── tx_index.db
+│       ├── 000001.log
+│       ├── CURRENT
+│       ├── LOCK
+│       ├── LOG
+│       └── MANIFEST-000000
 └── keyring-test
-    ├── 4a90e750914792c2d7f98775c13a588d9d304bd0.address
-    ├── 53dab037ac3bd380f4a9192b2c6eedbe95fce180.address
+    ├── 87af99a184613860ee9563be57a9fb4e7b25acb8.address
     ├── alice.info
-    └── bob.info
+    ├── bob.info
+    └── e24d9eeca2d24193bdd98ed9116ff70f8a2e2b5e.address
 ```
 
-The directories you need to delete to reset your state are in the `.wordle/data` directory.
+The directories you need to delete to reset your state are in the `./data` directory.
 
 ```bash
-$HOME/.wordle/data/application.db
-$HOME/.wordle/data/rollkit
-$HOME/.wordle/data/snapshots 
+$HOME/.gm/data/application.db
+$HOME/.gm/data/rollkit
+$HOME/.gm/data/snapshots 
+$HOME/.gm/data/cache 
+
 ```
 
 You can delete them with the following command:
 
 ```bash
-rollkit tendermint unsafe-reset-all
+gmd tendermint unsafe-reset-all
 ```
 
-When you launch your chain again with your `rollkit start <flags>` command, these data directories will be re-created and you will see your chain starting at block height 1 again.
+When you launch your chain again with your `gmd start <flags>` command, these data directories will be re-created and you will see your chain starting at block height 1 again.
