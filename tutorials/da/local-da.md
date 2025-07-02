@@ -37,9 +37,8 @@ Start your rollup node with the following command, ensuring to include the DA ad
 
 ```sh [gm-world Chain]
 {BINARY} start \
-    --rollkit.aggregator \
+    --rollkit.node.aggregator \
     --rollkit.da.address http://localhost:7980 \
-    --rollkit.sequencer_rollup_id gmd
 ```
 
 :::
