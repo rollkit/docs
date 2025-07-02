@@ -329,6 +329,10 @@ function sidebarHome() {
           link: "/guides/evm-based",
         },
         {
+          text: "EVM reth state backup",
+          link: "/guides/evm-reth-backup",
+        },
+        {
           text: "Metrics",
           link: "/guides/metrics",
         },
