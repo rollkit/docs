@@ -204,7 +204,8 @@ You should see output like the following:
 ```bash
 CONTAINER ID   IMAGE      COMMAND                  CREATED          STATUS         PORTS                    NAMES
 d50c7f2fffde   local-da   "local-da -listen-all"   10 seconds ago   Up 9 seconds   0.0.0.0:7980->7980/tcp   local-da
-b9d5e80e81fb   gm-world   "gmd start --rollkit…"   27 minutes ago   Up 9 seconds                            gm-world```
+b9d5e80e81fb   gm-world   "gmd start --rollkit…"   27 minutes ago   Up 9 seconds                            gm-world
+```
 
 We can see the gm-world chain running in container `gm-world` and the local DA network running in container `local-da`.
 
