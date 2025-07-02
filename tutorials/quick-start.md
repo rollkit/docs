@@ -1,5 +1,5 @@
 ---
-description: Quickly start a rollup node using the Rollkit CLI.
+description: Quickly start a rollup node using the Testapp CLI.
 ---
 
 <script setup>
@@ -8,9 +8,9 @@ import constants from '../.vitepress/constants/constants.js'
 
 # Quick start guide
 
-Welcome to Rollkit, a sovereign rollup framework! The easiest way to launch your sovereign rollup node is by using the Rollkit CLI.
+Welcome to Rollkit, a sovereign rollup framework! The easiest way to launch your sovereign rollup node is by using the Testapp CLI.
 
-## 📦 Install Rollkit (CLI)
+## 📦 Install Testapp (CLI)
 
 To install Rollkit, run the following command in your terminal:
 
@@ -21,17 +21,30 @@ curl -sSL https://rollkit.dev/install.sh | sh -s {{constants.rollkitLatestTag}}
 Verify the installation by checking the Rollkit version:
 
 ```bash
-rollkit version
+testapp version
 ```
 
 A successful installation will display the version number and its associated git commit hash.
+
+```bash
+rollkit version:  v0.14.1
+rollkit git sha:  888def92
+```
+
+## 🗂️ Initialize a sovereign rollup node
+
+To initialize a sovereign rollup node, execute the following command:
+
+```bash
+testapp init --rollkit.node.aggregator --rollkit.signer.passphrase verysecretpass
+```
 
 ## 🚀 Run your sovereign rollup node
 
 To start a basic sovereign rollup node, execute:
 
 ```bash
-rollkit start
+testapp start --rollkit.signer.passphrase verysecretpass
 ```
 
 Upon execution, the CLI will output log entries that provide insights into the node's initialization and operation:
