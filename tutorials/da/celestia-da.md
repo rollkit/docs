@@ -9,11 +9,13 @@ import constants from '../../.vitepress/constants/constants.js'
 
 This tutorial serves as a comprehensive guide for deploying your rollup on Celestia's data availability (DA) network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
 
-Before proceeding, ensure that you have completed the [quick start](/tutorials/quick-start) tutorial, which covers installing the rollkit CLI and running a rollup against a local DA network.
+Before proceeding, ensure that you have completed the [gm-world](/tutorials/gm-world) tutorial, which covers installing the Testapp CLI and running a rollup against a local DA network.
 
 ## 🪶 Running a Celestia light node
 
 Before you can start your rollup node, you need to initiate, sync, and fund a light node on one of Celestia's networks on a compatible version:
+
+Find more information on how to run a light node in the [Celestia documentation](https://celestia.org/run-a-light-node/#start-up-a-node).
 
 ::: code-group
 
@@ -44,18 +46,18 @@ After successfully starting a light node, it's time to start posting the batches
 
 ## 🏗️ Prerequisites {#prerequisites}
 
-- `rollkit` CLI installed from the [quick start](/tutorials/quick-start) tutorial.
+- `gmd` CLI installed from the [gm-world](/tutorials/gm-world) tutorial.
 
 ## 🛠️ Configuring flags for DA
 
 Now that we are posting to the Celestia DA instead of the local DA, the `rollkit start` command requires three DA configuration flags:
 
-- `--rollkit.da_start_height`
-- `--rollkit.da_auth_token`
-- `--rollkit.da_namespace`
+- `--rollkit.da.start_height`
+- `--rollkit.da.auth_token`
+- `--rollkit.da.namespace`
 
 :::tip
-Optionally, you could also set the `--rollkit.da_block_time` flag. This should be set to the finality time of the DA layer, not its actual block time, as Rollkit does not handle reorganization logic. The default value is 15 seconds.
+Optionally, you could also set the `--rollkit.da.block_time` flag. This should be set to the finality time of the DA layer, not its actual block time, as Rollkit does not handle reorganization logic. The default value is 15 seconds.
 :::
 
 Let's determine which values to provide for each of them.
@@ -130,11 +132,11 @@ DA_ADDRESS=http://localhost:26658
 Finally, let's initiate the rollup node with all the flags:
 
 ```bash
-rollkit start \
-    --rollkit.aggregator \
-    --rollkit.da_auth_token $AUTH_TOKEN \
-    --rollkit.da_namespace $DA_NAMESPACE \
-    --rollkit.da_start_height $DA_BLOCK_HEIGHT \
+gmd start \
+    --rollkit.node.aggregator \
+    --rollkit.da.auth_token $AUTH_TOKEN \
+    --rollkit.da.namespace $DA_NAMESPACE \
+    --rollkit.da.start_height $DA_BLOCK_HEIGHT \
     --rollkit.da.address $DA_ADDRESS
 ```
 
