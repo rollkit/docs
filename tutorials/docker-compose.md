@@ -225,6 +225,13 @@ exit
 
 Then you can shut down your chain environment by running `CRTL+C` in your terminal.
 
+
+If you want to stop the docker containers without shutting down your terminal, you can run:
+
+```bash
+docker compose down
+```
+
 ## 🎉 Next steps
 
 Congratulations again! You now know how to run your chain with docker compose and interact with it using the Rollkit CLI in the docker container.
