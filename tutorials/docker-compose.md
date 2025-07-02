@@ -37,24 +37,22 @@ Docker Compose version v2.23.0-desktop.1
 
 ## 🛠️ Setting up your environment {#setting-up-your-environment}
 
-In addition to our chain, we need to run a DA and Sequencer node.
+In addition to our chain, we need to run a DA.
 
-We will use the [local-da](https://github.com/rollkit/local-da) and [local-sequencer](https://github.com/rollkit/go-sequencing) for this tutorial and run it with our chain.
+We will use the [local-da](https://github.com/rollkit/local-da) for this tutorial and run it with our chain.
 
-To save time, we can use their respective Dockerfiles:
+To save time, we can use the local-da Dockerfile:
 
-* [local-da Dockerfile](https://github.com/rollkit/local-da/blob/main/Dockerfile)
-* [local-sequencer Dockerfile](https://github.com/rollkit/go-sequencing/blob/main/Dockerfile)
-
+* [local-da Dockerfile](https://github.com/rollkit/rollkit/blob/main/Dockerfile.da)
 This will allow us to focus on how we can run the gm-world chain with Docker Compose.
 
 ### 🐳 Dockerfile {#dockerfile}
 
-First, we need to create a Dockerfile for our gm-world chain. Create a new file called `Dockerfile` in the root of the `gm` directory and add the following code:
+First, we need to create a Dockerfile for our gm-world chain. Create a new file called `Dockerfile.gm` in the root of the `gm` directory and add the following code:
 
 ```dockerfile-vue
 # Stage 1: Install ignite CLI and rollkit
-FROM golang as base
+FROM golang AS base
 
 # Install dependencies
 RUN apt update && \
@@ -63,11 +61,11 @@ RUN apt update && \
  ca-certificates \
  curl
 
+RUN curl -sSL https://rollkit.dev/install.sh | bash 
 # Install rollkit
-RUN curl -sSL https://rollkit.dev/install.sh | sh -s {{constants.rollkitLatestTag}}
 
 # Install ignite
-RUN curl https://get.ignite.com/cli@{{constants.igniteVersionTag}}! | bash
+RUN curl https://get.ignite.com/cli! | bash
 
 # Set the working directory
 WORKDIR /app
@@ -80,17 +78,10 @@ RUN go mod download
 # Copy all files from the current directory to the container
 COPY . .
 
-# Remove the rollkit.toml and entrypoint files if they exist. This is to avoid cross OS issues.
-RUN rm entrypoint rollkit.toml
-
 # Build the chain
-RUN ignite chain build && ignite rollkit init
-
-# Initialize the rollkit.toml file
-RUN rollkit toml init
-
-# Run rollkit command to initialize the entrypoint executable
-RUN rollkit
+RUN ignite app install -g github.com/ignite/apps/rollkit
+RUN ignite chain build  -y 
+RUN ignite rollkit init 
 
 # Stage 2: Set up the runtime environment
 FROM debian:bookworm-slim
@@ -104,25 +95,18 @@ RUN apt update && \
 WORKDIR /root
 
 # Copy over the rollkit binary from the build stage
-COPY --from=base /go/bin/rollkit /usr/bin
+COPY --from=base /go/bin/gmd /usr/bin
 
-# Copy the entrypoint and rollkit.toml files from the build stage
-COPY --from=base /app/entrypoint ./entrypoint
-COPY --from=base /app/rollkit.toml ./rollkit.toml
 
 # Copy the $HOME/.gm directory from the build stage.
 # This directory contains all your chain config.
 COPY --from=base /root/.gm /root/.gm
 
-# Ensure the entrypoint script is executable
-RUN chmod +x ./entrypoint
-
 # Keep the container running after it has been started
 # CMD tail -f /dev/null
 
-ENTRYPOINT [ "rollkit" ]
-CMD [ "start", "--rollkit.aggregator", "--rollkit.sequencer_rollup_id", "gmd"]
-
+ENTRYPOINT ["gmd"]
+CMD ["start","--rollkit.node.aggregator"]
 ```
 
 This Dockerfile sets up the environment to build the chain and run the gm-world node. It then sets up the runtime environment to run the chain. This allows you as the developer to modify any files, and then simply rebuild the Docker image to run the new chain.
@@ -130,7 +114,13 @@ This Dockerfile sets up the environment to build the chain and run the gm-world 
 Build the docker image by running the following command:
 
 ```bash
-docker build -t gm-world .
+docker build -t gm-world -f Dockerfile.gm .
+```
+
+```bash
+cd rollkit
+docker build -t local-da -f Dockerfile.da .
+cd ..
 ```
 
 You can then see the built image by running:
@@ -166,42 +156,24 @@ services:
     command:
       [
         "start",
-        "--rollkit.aggregator",
+        "--rollkit.node.aggregator",
         "--rollkit.da.address",
         "http://0.0.0.0:7980",
-        "--rollkit.sequencer_address",
-        "0.0.0.0:50051",
-        "--rollkit.sequencer_rollup_id",
-        "gm",
       ]
     # Ensures the local-da service is up and running before starting the chain
     depends_on:
       - local-da
-      - local-sequencer
 
   # Define the local DA service
   local-da:
     # Use the published image from rollkit
-    image:
-      ghcr.io/rollkit/local-da:{{constants.localDALatestTag}}
+    image: local-da
       # Set the name of the docker container for ease of use
     container_name: local-da
     # Publish the ports to connect
     ports:
       - "7980:7980"
 
-  # Define the local sequencer service
-  local-sequencer:
-    # Use the published image from rollkit
-    image:
-      ghcr.io/rollkit/go-sequencing:{{constants.goSequencingLatestTag}}
-      # Set the name of the docker container for ease of use
-    container_name: local-sequencer
-    # Start the sequencer with the listen all flag and the rollup id set to gm
-    command: ["-listen-all", "-rollup-id=gm"]
-    # Publish the ports to connect
-    ports:
-      - "50051:50051"
 ```
 
 We now have all we need to run the gm-world chain and connect to a local DA node.
@@ -231,10 +203,9 @@ docker ps
 You should see output like the following:
 
 ```bash
-CONTAINER ID   IMAGE             COMMAND                  CREATED          STATUS         PORTS                      NAMES
-86f9bfa5b6d2   gm-world          "rollkit start --rol…"   7 minutes ago    Up 3 seconds                              gm-world
-67a2c3058e01   local-sequencer   "local-sequencer -li…"   11 minutes ago   Up 3 seconds   0.0.0.0:50051->50051/tcp   local-sequencer
-dae3359665f8   local-da          "local-da -listen-all"   2 hours ago      Up 3 seconds   0.0.0.0:7980->7980/tcp     local-da
+CONTAINER ID   IMAGE      COMMAND                  CREATED          STATUS         PORTS                    NAMES
+d50c7f2fffde   local-da   "local-da -listen-all"   10 seconds ago   Up 9 seconds   0.0.0.0:7980->7980/tcp   local-da
+b9d5e80e81fb   gm-world   "gmd start --rollkit…"   27 minutes ago   Up 9 seconds                            gm-world
 ```
 
 We can see the gm-world chain running in container `gm-world` and the local DA network running in container `local-da`.
@@ -254,6 +225,13 @@ exit
 ```
 
 Then you can shut down your chain environment by running `CRTL+C` in your terminal.
+
+
+If you want to stop the docker containers without shutting down your terminal, you can run:
+
+```bash
+docker compose down
+```
 
 ## 🎉 Next steps
 
