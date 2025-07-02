@@ -38,7 +38,7 @@ the methods needed for state fraud proofs.
 
 ### Data availability
 
-[Data availability (DA)](https://github.com/rollkit/rollkit/tree/main/da) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/da/da.go). This design allows for seamless integration with any DA layer. New implementations can be plugged in programmatically, without a need to fork Rollkit.
+[Data availability (DA)](https://github.com/rollkit/rollkit/tree/main/da) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/core/da/da.go#L11). This design allows for seamless integration with any DA layer. New implementations can be plugged in programmatically, without a need to fork Rollkit.
 
 The `DataAvailabilityLayerClient` interface includes essential lifecycle methods (`Init`, `Start`, `Stop`) as well as data availability methods (`SubmitBlocks`, `RetrieveBlocks`).
 
@@ -52,7 +52,7 @@ It's using the [Celestia Node API](https://node-rpc-docs.celestia.org)
 via the [`rollkit/celestia-da`](https://github.com/rollkit/celestia-da) package.
 To deploy a Rollkit rollup on Celestia you also have to [run a Celestia light node](https://docs.celestia.org/developers/node-tutorial/).
 
-New DA layer integrations can be added by using the [go-da](https://github.com/rollkit/go-da) interface.
+New DA layer integrations can be added by using the [DA interface](https://github.com/rollkit/rollkit/blob/main/core/da/da.go#L11).
 
 ## Node components
 
