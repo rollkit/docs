@@ -10,10 +10,26 @@ Before starting, ensure you have:
 
 - A running Rollkit full node - Follow the [Rollkit Full Node Setup Guide](https://rollkit.dev/guides/full-node) to set up your node
 - Zstandard (zstd) compression tool installed
+- jq JSON processor installed
 - Administrative access to the Docker host
 - Sufficient disk space for backups (at least 2x the current volume size)
 - Access to remote backup storage (optional but recommended)
 - Basic understanding of Docker volumes
+
+## Installing Dependencies
+
+For Ubuntu/Debian-based Linux distributions, install the required dependencies:
+```bash
+# Update package list
+sudo apt update
+
+# Install required tools
+sudo apt install -y zstd jq
+
+# Verify installations
+zstd --version
+jq --version
+```
 
 ## Key Component to Backup
 
@@ -122,7 +138,6 @@ log() {
 }
 
 check_sync_status() {
-    # Check Rollkit node health
     # Check Rollkit node health
     curl -fsX POST \
         -H "Content-Type: application/json" \
