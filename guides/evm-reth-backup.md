@@ -48,8 +48,8 @@ You will need to stop both rollkit and reth-rollkit on the fullnode stack, accor
 Example for docker-compose based setup:
 ```bash
 # Stop services in correct order
-docker compose stop rollkit-evm-single
-docker compose stop rollkit-reth
+docker compose stop fullnode
+docker compose stop reth-rollkit
 
 # Verify all containers are stopped
 docker compose ps
@@ -59,7 +59,10 @@ docker compose ps
 
 ```bash
 # Create backup directory
-BACKUP_BASE_DIR=""
+# Create backup directory
+# IMPORTANT: Set your backup base directory and reth-rollkit data directory paths
+BACKUP_BASE_DIR="/path/to/backups"
+RETH_ROLLKIT_DATADIR="/path/to/reth-rollkit/datadir"
 mkdir -p "${BACKUP_BASE_DIR}"
 
 # Set backup timestamp
@@ -74,7 +77,7 @@ sha256sum "${BACKUP_BASE_DIR}/reth_state_${BACKUP_DATE}.tar.zst" > "${BACKUP_BAS
 
 ### 4. Restart services
 
-You will need to stop both rollkit and reth-rollkit on the fullnode stack, according to your setup.
+You will need to restart both rollkit and reth-rollkit on the fullnode stack, according to your setup.
 
 Example for docker-compose based setup:
 ```bash
@@ -101,7 +104,7 @@ Add the following content
 set -euo pipefail
 
 # Configuration
-RETH_ROLLKIT_DATADIR=""
+RETH_ROLLKIT_DATADIR="" # IMPORTANT: Set this to your reth-rollkit data directory path
 BACKUP_BASE_DIR="${BACKUP_BASE_DIR:-/backup/rollkit}"
 REMOTE_BACKUP="${REMOTE_BACKUP:-backup-server:/backups/rollkit}"
 RETENTION_DAYS="${RETENTION_DAYS:-7}"
@@ -120,11 +123,12 @@ log() {
 
 check_sync_status() {
     # Check Rollkit node health
-    local rollkit_status=$(curl -sX POST \
+    # Check Rollkit node health
+    curl -fsX POST \
         -H "Content-Type: application/json" \
         -H "Connect-Protocol-Version: 1" \
         -d "{}" \
-        http://${FULLNODE_IP}:${FULLNODE_RPC_PORT}/rollkit.v1.HealthService/Livez)
+        "http://${FULLNODE_IP}:${FULLNODE_RPC_PORT}/rollkit.v1.HealthService/Livez" > /dev/null
 
     # Check reth sync status
     local sync_status=$(curl -sX POST \
