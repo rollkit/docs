@@ -14,22 +14,21 @@ your life easier when developing with Rollkit.
 
 In this section, you'll find:
 
-* [Create genesis for your rollup](/guides/create-genesis)
-* [Restart your rollup](/guides/restart-rollup)
-* [Reset your chain's state](/guides/reset-state)
-* [Turn your CometBFT app into a Rollkit app](/guides/cometbft-to-rollkit)
-* [Use Ignite to create a Rollkit app](/guides/ignite-rollkit)
+* [Create genesis for your rollup](./create-genesis.md)
+* [Restart your rollup](./restart-rollup.md)
+* [Reset your chain's state](./reset-state.md)
+* [Turn your CometBFT app into a Rollkit app](./cometbft-to-rollkit.md)
 * EVM Rollups
-  * [EVM Based Sequencer Setup](/guides/evm-based)
-  * [EVM Single Sequencer Setup](/guides/evm-single-guide)
+  * [EVM Based Sequencer Setup](./evm-based.md)
+  * [EVM Single Sequencer Setup](./evm-single-guide.md)
 * Configuration
-  * [Config Settings](/guides/config)
+  * [Config Settings](./config.md)
 * Integrations
-  * [Test and deploy cosmwasm smart-contracts](/guides/cw-orch)
-  * [Add zkML to your EVM rollup](/guides/zkml)
-  * [Add an IBC connection to your rollup](/guides/ibc-connection)
-  * [Integrate Range with your rollup](/guides/rollkit-monitoring)
-  * [Use IBC token (TIA) as gas token in your rollup](/guides/use-tia-for-gas)
+  * [Test and deploy cosmwasm smart-contracts](./cw-orch.md)
+  * [Add zkML to your EVM rollup](./zkml.md)
+  * [Add an IBC connection to your rollup](./ibc-connection.md)
+  * [Integrate Range with your rollup](./rollkit-monitoring.md)
+  * [Use IBC token (TIA) as gas token in your rollup](./use-tia-for-gas.md)
 
 ## 💻 Support {#support}
 
