@@ -171,7 +171,7 @@ export default withMermaid({
 
 function nav() {
   return [
-    { text: "Learn", link: "/learn/intro" },
+    { text: "Learn", link: "/learn/about" },
     { text: "Tutorials", link: "/tutorials/quick-start" },
     { text: "How To Guides", link: "/guides/overview" },
     { text: "Blog", link: "/blog/overview" },
@@ -185,11 +185,8 @@ function sidebarHome() {
       collapsed: true,
       items: [
         {
-          text: "Overview",
-          collapsed: true,
-          items: [
-            { text: "About Rollkit", link: "/learn/about" },
-          ],
+          text: "About Rollkit",
+          link: "/learn/about",
         },
         {
           text: "Technical details",
