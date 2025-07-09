@@ -16,7 +16,7 @@ hero:
       link: /tutorials/quick-start
     - theme: alt
       text: Introduction
-      link: /learn/intro
+      link: /learn/about
 
 features:
   - title: Build with the Best
@@ -29,6 +29,6 @@ features:
     icon: ⚙️
   - title: Take Control
     details: Retain the ability to upgrade via hard forks. Break free of offchain councils holding upgrade keys. Allow your community to be sovereign.
-    link: /learn/intro
+    link: /learn/about
     icon: 🎮
 ---
