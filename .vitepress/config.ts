@@ -188,7 +188,6 @@ function sidebarHome() {
           text: "Overview",
           collapsed: true,
           items: [
-            { text: "Introduction", link: "/learn/intro" },
             { text: "About Rollkit", link: "/learn/about" },
           ],
         },
@@ -323,6 +322,10 @@ function sidebarHome() {
         {
           text: "EVM Based Sequencer",
           link: "/guides/evm-based",
+        },
+        {
+          text: "EVM reth state backup",
+          link: "/guides/evm-reth-backup",
         },
         {
           text: "Metrics",
