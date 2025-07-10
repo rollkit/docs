@@ -247,19 +247,19 @@ function sidebarHome() {
           items: [
             {
               text: "Overview",
-              link: "/guides/sequencing/overview",
+              link: "/learn/sequencing/overview",
             },
             {
               text: "Single",
-              link: "/guides/sequencing/single",
+              link: "/learn/sequencing/single",
             },
             {
               text: "Based",
-              link: "/guides/sequencing/based",
+              link: "/learn/sequencing/based",
             },
             {
               text: "Forced Inclusion",
-              link: "/guides/sequencing/forced-inclusion",
+              link: "/learn/sequencing/forced-inclusion",
             },
           ],
         },
