@@ -329,23 +329,8 @@ function sidebarHome() {
           link: "/guides/metrics",
         },
         {
-          text: "Integrations",
-          collapsed: true,
-          items: [
-            {
-              text: "Test and deploy cosmwasm smart-contracts",
-              link: "/guides/cw-orch",
-            },
-            { text: "Add zkML to your EVM rollup", link: "/guides/zkml" },
-            {
-              text: "Add an IBC connection to your rollup",
-              link: "/guides/ibc-connection",
-            },
-            {
-              text: "Use IBC token (TIA) as gas token in your rollup",
-              link: "/guides/use-tia-for-gas",
-            },
-          ],
+          text: "Use IBC token (TIA) as gas token in your rollup",
+          link: "/guides/use-tia-for-gas",
         },
       ],
     },
