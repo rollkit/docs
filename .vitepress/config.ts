@@ -172,7 +172,7 @@ export default withMermaid({
 function nav() {
   return [
     { text: "Learn", link: "/learn/about" },
-    { text: "How To Guides", link: "/guides/overview" },
+    { text: "How To Guides", link: "/guides/quick-start" },
     { text: "Blog", link: "/blog/overview" },
   ];
 }
