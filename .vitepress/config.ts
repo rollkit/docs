@@ -200,6 +200,16 @@ function sidebarHome() {
           link: "/learn/data-availability",
         },
         {
+          text: "Sequencing",
+          collapsed: true,
+          items: [
+            { text: "Overview", link: "/lean/sequencing/overview" },
+            { text: "Single", link: "/lean/sequencing/single" },
+            { text: "Based", link: "/lean/sequencing/based" },
+            { text: "Forced Inclusion", link: "/lean/sequencing/forced-inclusion" },
+          ],
+        },
+        {
           text: "Resources",
           collapsed: true,
           items: [

@@ -22,9 +22,11 @@ It mainly consists of:
 
 ## Sequencing Implementations {#sequencing-implementations}
 
-An implementation of the sequencing interface mainly acts as a middleware that connects Rollkit rollup and the sequencing layer. It implements the sequencing interface functions described above. For example, [single-sequencer](https://github.com/rollkit/rollkit/blob/main/sequencers/single/README.md) is the refactored functionality from the Rollkit prior to `v1.0.0`. The single sequencer is the middleware run by the aggregator node of the Rollkit rollup. The aggregator node relays rollup transactions to single sequencer which then submits them to the DA network (Celestia). The header producer node then retrieves (via `GetNextBatch`) the batched transaction from the single sequencer to execute the transactions and produce the updated rollup state. Similarly, there are other sequencing middlewares which can be built for various sequencing strategies or even for connecting to different third-party sequencing networks.
+An implementation of the sequencing interface mainly acts as a middleware that connects Rollkit rollup and the sequencing layer. It implements the sequencing interface functions described above.
+There are several implementations of the sequencor:
 
-The sequencing implementations that are currently work in progress:
-<!-- * [single-sequencer](single) -->
-* [based-sequencer](/guides/sequencing/based.md)
-* [forced-inclusion-sequencer](/guides/sequencing/forced-inclusion.md)
+* [single-sequencer](/guides/sequencing/single.md) - The simplest and most widely used sequencing model, where a single node (the sequencer) is responsible for ordering transactions and producing blocks.
+
+* [based-sequencer](/guides/sequencing/based.md) - A more decentralized model where multiple sequencers work together to order transactions and produce blocks, improving censorship resistance (Not available yet).
+
+* [forced-inclusion-sequencer](/guides/sequencing/forced-inclusion.md) - A model that ensures all transactions are included in the rollup, even if they are not ordered by the sequencer, providing strong guarantees against censorship. (Not available yet).
