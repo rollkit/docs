@@ -209,7 +209,7 @@ docker exec -it $CW sh
 
 In order to deploy a contract, you can use the command line as described below.
 For a better experience and to use Rust code instead of the command line to
-deploy/script and test your contracts, you can use [cw-orchestrator](/guides/cw-orch.md).
+deploy/script and test your contracts, you can use cw-orchestrator.
 
 <!-- markdownlint-disable MD013 -->
 ```bash
@@ -232,7 +232,7 @@ In the previous steps, we have stored out contract's tx hash in an
 environment variable for later use.
 
 The following guide will show you how to deploy and interact with a contract using CLI.
-For scripting using Rust, you can use [cw-orchestrator](/guides/cw-orch.md).
+For scripting using Rust, you can use cw-orchestrator.
 
 ### 🔎 Contract querying {#contract-querying}
 
