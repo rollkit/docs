@@ -9,7 +9,7 @@ This section covers the case where you need to restart your rollup.
 In order to restart your rollup, you simply need to run the `<your-binary>d start [...args]`
 command for your rollup.
 
-For example, if you ran the [quick start](/tutorials/quick-start.md) tutorial, you started your rollup with:
+For example, if you ran the [quick start](/guides/quick-start.md) tutorial, you started your rollup with:
 
 ```bash
 rollkit start
@@ -48,7 +48,7 @@ you are using to post blocks to your DA and consensus layer runs out of funds (t
 and you need to restart your rollup.
 
 In this example, we're using Celestia's [Mocha testnet](https://docs.celestia.org/how-to-guides/mocha-testnet/)
-and running the [quick start](/tutorials/quick-start.md). In this example, our Celestia DA light node
+and running the [quick start](/guides/quick-start.md). In this example, our Celestia DA light node
 ran out of Mocha testnet TIA and we are unable to post new blocks to Celestia due to a
 [`Code: 19`](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go#L95)
 error. This error is defined by Cosmos SDK as:

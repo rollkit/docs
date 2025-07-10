@@ -7,7 +7,7 @@ description: Learn how to build and deploy a CosmWasm-based "gm" (good morning) 
 
 ## 🌞 Introduction {#introduction}
 
-This tutorial will guide you through building a sovereign `gm-world` rollup (`gm` stands for "good morning") using Rollkit. Unlike the [quick start guide](https://rollkit.dev/tutorials/quick-start), this tutorial provides a more practical approach to understanding sovereign rollup development.
+This tutorial will guide you through building a sovereign `gm-world` rollup (`gm` stands for "good morning") using Rollkit. Unlike the [quick start guide](/guides/quick-start.md), this tutorial provides a more practical approach to understanding sovereign rollup development.
 
 We will cover:
 

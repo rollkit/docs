@@ -4,7 +4,7 @@
 
 Welcome to the official documentation repository for Rollkit.
 
-Here you'll find comprehensive guides, tutorials, and reference materials to help you make the most out of Rollkit.
+Here you'll find comprehensive guides, and reference materials to help you make the most out of Rollkit.
 
 ## Building the site
 
@@ -29,7 +29,7 @@ Please ensure you review the detailed Contribution Guidelines above before makin
 
 ## Directory Structure
 
-* /tutorials: Step-by-step instructions to help users build their own rollups with Rollkit.
+* /guides: Step-by-step instructions to help users build their own rollups with Rollkit.
 * /learn: Technical reference materials, such as configuration options and details about the Rollkit stack.
 * /blog: Blog posts for the Rollkit blog.
 <!-- * /guides [WIP]: In-depth articles that cover specific topics in detail. -->

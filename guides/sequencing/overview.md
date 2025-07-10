@@ -26,5 +26,5 @@ An implementation of the sequencing interface mainly acts as a middleware that c
 
 The sequencing implementations that are currently work in progress:
 <!-- * [single-sequencer](single) -->
-* [based-sequencer](/tutorials/sequencing/based.md)
-* [forced-inclusion-sequencer](/tutorials/sequencing/forced-inclusion.md)
+* [based-sequencer](/guides/sequencing/based.md)
+* [forced-inclusion-sequencer](/guides/sequencing/forced-inclusion.md)
