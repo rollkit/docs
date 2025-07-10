@@ -203,10 +203,10 @@ function sidebarHome() {
           text: "Sequencing",
           collapsed: true,
           items: [
-            { text: "Overview", link: "/lean/sequencing/overview" },
-            { text: "Single", link: "/lean/sequencing/single" },
-            { text: "Based", link: "/lean/sequencing/based" },
-            { text: "Forced Inclusion", link: "/lean/sequencing/forced-inclusion" },
+            { text: "Overview", link: "/learn/sequencing/overview" },
+            { text: "Single", link: "/learn/sequencing/single" },
+            { text: "Based", link: "/learn/sequencing/based" },
+            { text: "Forced Inclusion", link: "/learn/sequencing/forced-inclusion" },
           ],
         },
         {
