@@ -209,7 +209,7 @@ docker exec -it $CW sh
 
 In order to deploy a contract, you can use the command line as described below.
 For a better experience and to use Rust code instead of the command line to
-deploy/script and test your contracts, you can use [cw-orchestrator](/guides/cw-orch.md).
+deploy/script and test your contracts, you can use cw-orchestrator.
 
 <!-- markdownlint-disable MD013 -->
 ```bash
