@@ -14,7 +14,7 @@ Our mission is to allow anyone to launch their own sovereign, customizable block
 ::: tip
 In order to use Rollkit, it's important to have some familiarity with Cosmos SDK. You can get up to speed on Cosmos SDK by visiting their [official documentation page](https://docs.cosmos.network/main).
 
-If you're familiar with Rollkit, you may want to skip to the [tutorials section](/tutorials/gm-world.md).
+If you're familiar with Rollkit, you may want to skip to the [guides section](/guides/gm-world.md).
 :::
 
 ## What is Rollkit?
@@ -94,6 +94,6 @@ As of today, Rollkit is still in the alpha stage. The framework currently provid
 
 We're currently working on implementing many new and exciting features such as light nodes and state fraud proofs.
 
-Head down to the next section to learn more about what's coming for Rollkit. If you're ready to start building, you can skip to the [Tutorials](/tutorials/gm-world.md) section.
+Head down to the next section to learn more about what's coming for Rollkit. If you're ready to start building, you can skip to the [Guides](/guides/gm-world.md) section.
 
 Spoiler alert, whichever you choose, it's going to be a great rabbit hole!

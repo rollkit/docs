@@ -70,5 +70,5 @@ Rollkit rollups pay only for data availability on demand. There is no sequencer 
 
 ## Break Free. Be Sovereign.
 
-[Get started](https://rollkit.dev/tutorials/quick-start) with launching your own sovereign chain with Rollkit.
+[Get started](/guides/quick-start.md) with launching your own sovereign chain with Rollkit.
 If you’re thinking of building a sovereign chain, we’d love to hear from you. Fill out this [form](https://forms.gle/yumLqipqr8weYmAb7).

@@ -172,7 +172,6 @@ export default withMermaid({
 function nav() {
   return [
     { text: "Learn", link: "/learn/about" },
-    { text: "Tutorials", link: "/tutorials/quick-start" },
     { text: "How To Guides", link: "/guides/overview" },
     { text: "Blog", link: "/blog/overview" },
   ];
@@ -206,29 +205,29 @@ function sidebarHome() {
       ],
     },
     {
-      text: "Tutorials",
+      text: "How To Guides",
       collapsed: true,
       items: [
         {
           text: "Quick start guide",
-          link: "/tutorials/quick-start",
+          link: "/guides/quick-start",
         },
-        { text: "Build a chain", link: "/tutorials/gm-world" },
+        { text: "Build a chain", link: "/guides/gm-world" },
         {
           text: "DA",
           collapsed: true,
           items: [
             {
               text: "Overview",
-              link: "/tutorials/da/overview",
+              link: "/guides/da/overview",
             },
             {
               text: "Local DA",
-              link: "/tutorials/da/local-da",
+              link: "/guides/da/local-da",
             },
             {
               text: "Celestia",
-              link: "/tutorials/da/celestia-da",
+              link: "/guides/da/celestia-da",
             },
           ],
         },
@@ -238,19 +237,19 @@ function sidebarHome() {
           items: [
             {
               text: "Overview",
-              link: "/tutorials/sequencing/overview",
+              link: "/guides/sequencing/overview",
             },
             {
               text: "Single",
-              link: "/tutorials/sequencing/single",
+              link: "/guides/sequencing/single",
             },
             {
               text: "Based",
-              link: "/tutorials/sequencing/based",
+              link: "/guides/sequencing/based",
             },
             {
               text: "Forced Inclusion",
-              link: "/tutorials/sequencing/forced-inclusion",
+              link: "/guides/sequencing/forced-inclusion",
             },
           ],
         },
@@ -258,14 +257,7 @@ function sidebarHome() {
           text: "Execution",
           collapsed: true,
           items: [
-            { text: "CosmWasm", link: "/tutorials/execution/cosmwasm" },
-            // {
-            //   text: "EVM",
-            //   collapsed: true,
-            //   items: [
-            //     // { text: "RETH EVM", link: "/tutorials/execution/reth-evm" },
-            //   ],
-            // },
+            { text: "CosmWasm", link: "/guides/execution/cosmwasm" },
           ],
         },
         {
@@ -274,20 +266,14 @@ function sidebarHome() {
           items: [
             {
               text: "Overview",
-              link: "/tutorials/deploy-overview",
+              link: "/guides/deploy-overview",
             },
             {
               text: "Docker Compose",
-              link: "/tutorials/docker-compose",
+              link: "/guides/docker-compose",
             },
           ],
         },
-      ],
-    },
-    {
-      text: "How To Guides",
-      collapsed: true,
-      items: [
         {
           text: "Run a Full Node",
           link: "/guides/full-node",

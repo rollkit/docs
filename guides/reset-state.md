@@ -14,7 +14,7 @@ Some reason you might need to reset the state of your chain are:
 
 ## Prerequisites
 
-In order to complete this guide, you will need to have completed either the [quick start tutorial](/tutorials/quick-start.md) or the [build our chain tutorial](/tutorials/gm-world.md).
+In order to complete this guide, you will need to have completed either the [quick start tutorial](/guides/quick-start.md) or the [build our chain tutorial](/guides/gm-world.md).
 
 ## Quick Start
 
@@ -52,7 +52,7 @@ When you launch your chain again with `rollkit start` your `.rollkit` directory 
 
 ## gm-world
 
-When you ran your gm-world chain in the [build your chain tutorial](/tutorials/gm-world.md), it created a `.gm` directory in your `$HOME` directory.
+When you ran your gm-world chain in the [build your chain tutorial](/guides/gm-world.md), it created a `.gm` directory in your `$HOME` directory.
 
 This directory will look like the following:
 

@@ -9,7 +9,7 @@ import constants from '../../.vitepress/constants/constants.js'
 
 This tutorial serves as a comprehensive guide for using the [local-da](https://github.com/rollkit/local-da) with your chain.
 
-Before proceeding, ensure that you have completed the [quick start](/tutorials/quick-start.md) or [build a chain](/tutorials/gm-world.md) tutorial, which covers installing the rollkit CLI, building your chain, and running your chain.
+Before proceeding, ensure that you have completed the [quick start](/guides/quick-start.md) or [build a chain](/guides/gm-world.md) tutorial, which covers installing the rollkit CLI, building your chain, and running your chain.
 
 ## Setting Up a Local DA Network
 
