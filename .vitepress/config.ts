@@ -196,6 +196,10 @@ function sidebarHome() {
           ],
         },
         {
+          text: "Data Availability",
+          link: "/learn/data-availability",
+        },
+        {
           text: "Resources",
           collapsed: true,
           items: [
@@ -218,15 +222,11 @@ function sidebarHome() {
           collapsed: true,
           items: [
             {
-              text: "Overview",
-              link: "/guides/da/overview",
-            },
-            {
-              text: "Local DA",
+              text: "Deploy A Local DA",
               link: "/guides/da/local-da",
             },
             {
-              text: "Celestia",
+              text: "Connect to Celestia",
               link: "/guides/da/celestia-da",
             },
           ],
