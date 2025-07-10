@@ -23,14 +23,12 @@ exploring how to integrate CosmWasm with local DA layer using Rollkit.
 The smart contract we will use for this tutorial is one provided by
 the CosmWasm team for Nameservice purchasing.
 
-You can check out the contract [here](https://github.com/InterWasm/cw-contracts/tree/main/contracts/nameservice).
-
 How to write the Rust smart contract for Nameservice is outside the scope of
 this tutorial.
 
 ## 💻 CosmWasm dependency {#dependencies}
 
-As with the [GM Rollup](https://rollkit.dev/tutorials/gm-world), we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install).
+As with the [GM Rollup](/tutorials/gm-world.md), we use [kurtosis](https://docs.kurtosis.com/) to help with managing all the services we need to run. You can [install kurtosis here](https://docs.kurtosis.com/install).
 
 Once installed, you can verify the installation by running:
 

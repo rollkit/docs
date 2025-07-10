@@ -9,7 +9,7 @@ import constants from '../../.vitepress/constants/constants.js'
 
 This tutorial serves as a comprehensive guide for deploying your rollup on Celestia's data availability (DA) network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
 
-Before proceeding, ensure that you have completed the [gm-world](/tutorials/gm-world) tutorial, which covers installing the Testapp CLI and running a rollup against a local DA network.
+Before proceeding, ensure that you have completed the [gm-world](/tutorials/gm-world.md) tutorial, which covers installing the Testapp CLI and running a rollup against a local DA network.
 
 ## 🪶 Running a Celestia light node
 
@@ -36,9 +36,9 @@ Celestia Node Version: {{constants.celestiaNodeMainnetTag}}
 
 :::
 
-- [Arabica Devnet](https://docs.celestia.org/nodes/arabica-devnet)
-- [Mocha Testnet](https://docs.celestia.org/nodes/mocha-testnet)
-- [Mainnet Beta](https://docs.celestia.org/nodes/mainnet)
+- [Arabica Devnet](https://docs.celestia.org/how-to-guides/arabica-devnet)
+- [Mocha Testnet](https://docs.celestia.org/how-to-guides/mocha-testnet)
+- [Mainnet Beta](https://docs.celestia.org/how-to-guides/mainnet)
 
 The main difference lies in how you fund your wallet address: using testnet TIA or [TIA](https://docs.celestia.org/learn/tia#overview-of-tia) for Mainnet Beta.
 
@@ -46,7 +46,7 @@ After successfully starting a light node, it's time to start posting the batches
 
 ## 🏗️ Prerequisites {#prerequisites}
 
-- `gmd` CLI installed from the [gm-world](/tutorials/gm-world) tutorial.
+- `gmd` CLI installed from the [gm-world](/tutorials/gm-world.md) tutorial.
 
 ## 🛠️ Configuring flags for DA
 
@@ -117,7 +117,7 @@ openssl rand -hex 10
 
 Replace the last 20 characters (10 bytes) in `00000000000000000000000000000000000000000008e5f679bf7116cb` with the newly generated 10 bytes.
 
-[Learn more about namespaces](https://docs.celestia.org/developers/node-tutorial#namespaces).
+[Learn more about namespaces](https://docs.celestia.org/tutorials/node-tutorial#namespaces).
 :::
 
 Lastly, set your DA address for your light node, which by default runs at
@@ -146,9 +146,9 @@ For example, [here on Celenium for Arabica](https://arabica.celenium.io/).
 
 Other explorers:
 
-- [Arabica testnet](https://docs.celestia.org/nodes/arabica-testnet#explorers)
-- [Mocha testnet](https://docs.celestia.org/nodes/mocha-testnet#explorers)
-- [Mainnet Beta](https://docs.celestia.org/nodes/mainnet#explorers)
+- [Arabica testnet](https://docs.celestia.org/how-to-guides/arabica-devnet#explorers)
+- [Mocha testnet](https://docs.celestia.org/how-to-guides/mocha-testnet#explorers)
+- [Mainnet Beta](https://docs.celestia.org/how-to-guides/mainnet#explorers)
 
 ## 🎉 Next steps
 

@@ -1,7 +1,7 @@
 # IBC connection tutorial
 
 In this tutorial, we'll learn how to use [an Inter-Blockchain Communication (IBC) Protocol relayer](https://github.com/cosmos/relayer) to
-create an IBC connection between a [GM world](./gm-world) rollup and an Osmosis local testnet.
+create an IBC connection between a [GM world](/tutorials/gm-world.md) rollup and an Osmosis local testnet.
 
 :::warning Disclaimer
 This initial version of IBC has high trust assumptions where receiving chains
@@ -66,7 +66,7 @@ bash init-local.sh
 ```
 
 :::tip
-[See the guidelines in GM world rollup for environment setup](/tutorials/gm-world#building-your-sovereign-rollup).
+[See the guidelines in GM world rollup for environment setup](/tutorials/gm-world.md).
 :::
 
 ## Run your local-osmosis-testnet

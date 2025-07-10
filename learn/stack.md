@@ -50,19 +50,19 @@ It's important to keep in mind that there is no direct correlation between the D
 Celestia is a prominent example of a data availability integration implemented for Rollkit.
 It's using the [Celestia Node API](https://node-rpc-docs.celestia.org)
 via the [`rollkit/celestia-da`](https://github.com/rollkit/celestia-da) package.
-To deploy a Rollkit rollup on Celestia you also have to [run a Celestia light node](https://docs.celestia.org/developers/node-tutorial/).
+To deploy a Rollkit rollup on Celestia you also have to [run a Celestia light node](https://docs.celestia.org/tutorials/node-tutorial/).
 
-New DA layer integrations can be added by using the [DA interface](https://github.com/rollkit/rollkit/blob/main/core/da/da.go#L11).
+New DA layer integrations can be added by using the [DA interface](https://github.com/rollkit/rollkit/blob/main/core/da/da.go).
 
 ## Node components
 
 ### Mempool
 
-The [mempool](https://github.com/rollkit/rollkit/tree/main/mempool) is inspired by the CometBFT mempool. By default, transactions are handled in a First Come, First Served (FCFS) manner. Ordering of transactions can be implemented on the application level; currently this is possible by returning a priority on `CheckTx`, and once we support ABCI++ it is also possible via `PrepareProposal` and the [application mempool](https://docs.cosmos.network/v0.47/building-apps/app-mempool).
+The [mempool](https://github.com/rollkit/go-execution-abci/blob/marko/vn/pkg/rpc/core/mempool.go) is inspired by the CometBFT mempool. By default, transactions are handled in a First Come, First Served (FCFS) manner. Ordering of transactions can be implemented on the application level; currently this is possible by returning a priority on `CheckTx`, and once we support ABCI++ it is also possible via `PrepareProposal` and the [application mempool](https://docs.cosmos.network/v0.53/build/building-apps/app-mempool).
 
 ### Block manager
 
-The [block manager](https://github.com/rollkit/rollkit/tree/main/block) contains routines `AggregationLoop`, `RetrieveLoop`, and `SyncLoop` that communicate through Go channels. These Go routines are run when a Rollkit node starts up (`OnStart`). Only the sequencer nodes run `AggregationLoop` which controls the frequency of block production for a rollup with a timer as per the `BlockTime` in `BlockManager`.
+The [block manager](https://github.com/rollkit/rollkit/blob/main/block/manager.go#L101) contains routines `AggregationLoop`, `RetrieveLoop`, and `SyncLoop` that communicate through Go channels. These Go routines are run when a Rollkit node starts up (`OnStart`). Only the sequencer nodes run `AggregationLoop` which controls the frequency of block production for a rollup with a timer as per the `BlockTime` in `BlockManager`.
 
 All nodes run `SyncLoop` which looks for the following operations:
 
@@ -75,7 +75,7 @@ All nodes also run `RetrieveLoop` which is responsible for interacting with the 
 
 ### RPC
 
-Rollkit's [RPC](https://github.com/rollkit/rollkit/tree/main/rpc) fully implements the [CometBFT RPC](https://docs.cometbft.com/v0.37/spec/rpc/) interfaces and APIs for querying:
+Rollkit's [RPC](https://github.com/rollkit/rollkit/tree/main/pkg/rpc) fully implements the [CometBFT RPC](https://docs.cometbft.com/v0.37/spec/rpc/) interfaces and APIs for querying:
 
 - **Information about the rollup node**: information such as node's health, status, and network info.
 - **The rollup blockchain**: getting information about the rollup blockchain such as blocks and block headers.
@@ -102,12 +102,12 @@ curl http://127.0.0.1:26657/block?height=included
 
 ### P2P layer
 
-Rollkit's [P2P layer](https://github.com/rollkit/rollkit/tree/main/p2p) enables
+Rollkit's [P2P layer](https://github.com/rollkit/rollkit/tree/main/pkg/p2p) enables
 direct communication between rollup nodes.
 It's used to gossip transactions, headers of newly created blocks, and state fraud proofs.
 The P2P layer is implemented using [libp2p](https://github.com/libp2p).
 
-Rollkit uses [DHT-based active peer discovery](https://curriculum.pl-launchpad.io/curriculum/libp2p/dht/).
+Rollkit uses [DHT-based active peer discovery](https://pl-launchpad.io/curriculum/libp2p/dht/).
 Starting a node connects to pre-configured bootstrap peers, and advertises its namespace ID in the DHT.
 This solution is flexible, because multiple rollup networks may reuse the same DHT/bootstrap nodes,
 but specific rollup network might decide to use dedicated nodes as well.

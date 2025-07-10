@@ -19,7 +19,7 @@ import Twitter from '../.vitepress/components/twitter.vue'
 
 By Rollkit
 
-![Rollkit blog cover](/img/Rollkit-cover.jpg)
+![Rollkit blog cover](/public/img/Rollkit-cover.jpg)
 
 Bitcoin to Ethereum took 7 years.  Ethereum to more scalable alt-L1s took 1–2 years. And then Cosmos SDK and CometBFT brought down time-to-launch a sovereign L1 to months.
 
@@ -33,7 +33,7 @@ Sovereign rollups combine the self-governance of a Layer 1 with the ease of depl
 
 Without the overhead of a settlement layer, sovereign rollups can directly interoperate with shared security when using the same DA layer.
 
-By using a generic application interface like [ABCI++](https://docs.cometbft.com/v0.38/spec/abci/), Rollkit is compatible with the Cosmos SDK, the leading framework for building sovereign blockchains. This enables all Cosmos SDK developers to build a sovereign rollup and tap into all the powerful cosmos ecosystem tooling they’re used to including [IBC](https://www.ibcprotocol.dev/), [ABCI++](https://docs.cometbft.com/v0.38/spec/abci/), and Skip Protocol's [Slinky](https://docs.skip.money/slinky/overview/) and [BlockSDK](https://skip-protocol-docs.netlify.app/blocksdk/overview).
+By using a generic application interface like [ABCI++](https://docs.cometbft.com/v0.38/spec/abci/), Rollkit is compatible with the Cosmos SDK, the leading framework for building sovereign blockchains. This enables all Cosmos SDK developers to build a sovereign rollup and tap into all the powerful cosmos ecosystem tooling they’re used to including [IBC](https://www.ibcprotocol.dev/), [ABCI++](https://docs.cometbft.com/v0.38/spec/abci/), and Skip Protocol's [Slinky](https://docs.skip.money/slinky/overview/) and BlockSDK.
 
 Developers have full-freedom to deploy a VM or define their own execution environment, unconstrained by the overhead of an enshrined settlement layer that must process fraud or ZK proofs for their rollups. This means that instead of a canonical on-chain light client that comes with an enshrined settlement layer, sovereign rollups can define how they interoperate with other blockchains by having on-chain light clients of each other as needed.
 

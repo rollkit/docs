@@ -58,7 +58,7 @@ type DA interface {
 
 ## Mock DA {#mock-da}
 
-You might have noticed that we did not define any DA layer during the [quick start](../quick-start.md) or [build a chain](/tutorials/gm-world.md) tutorials. This is because we used a mock DA layer that is built into Rollkit.
+You might have noticed that we did not define any DA layer during the [quick start](/tutorials/quick-start.md) or [build a chain](/tutorials/gm-world.md) tutorials. This is because we used a mock DA layer that is built into Rollkit.
 
 If you revisit the logs from those tutorials, you will see one of the first lines being:
 
@@ -72,5 +72,5 @@ The mock DA layer is a simple in-memory DA layer that is great for testing and d
 
 Now that you have a better understanding of what a DA layer is, you can start to explore the different DA layers that are available to use with Rollkit.
 
-* [Local DA](local-da.md)
-* [Celestia DA](celestia-da.md)
+* [Local DA](/tutorials/da/local-da.md)
+* [Celestia DA](/tutorials/da/celestia-da.md)

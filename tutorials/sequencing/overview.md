@@ -1,4 +1,3 @@
-
 # Sequencing
 
  Sequencing is the essential first step for handling your transactions. Think of it as an organizer that takes all incoming transactions, puts them in a clear order, and then groups them into batches. This process is vital for keeping everything consistent and making the rollup run. Rollkit uses a "Sequencing Interface" with key functions like submitting, retrieving, and verifying these transaction batches, ensuring smooth communication between the rollup and the sequencing mechanism, which often acts as a bridge to the underlying network.
@@ -27,5 +26,5 @@ An implementation of the sequencing interface mainly acts as a middleware that c
 
 The sequencing implementations that are currently work in progress:
 <!-- * [single-sequencer](single) -->
-* [based-sequencer](based)
-* [forced-inclusion-sequencer](forced-inclusion)
+* [based-sequencer](/tutorials/sequencing/based.md)
+* [forced-inclusion-sequencer](/tutorials/sequencing/forced-inclusion.md)
