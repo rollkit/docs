@@ -1,6 +1,8 @@
 # ABCI-Compatible Execution Layers in Rollkit
 
-Rollkit is designed to be modular and flexible, allowing different execution layers to be plugged in via the ABCI (Application Blockchain Interface) protocol. This means you can use a variety of ABCI-compatible applications as the execution environment for your rollup.
+Rollkit is designed to be modular and flexible, allowing different execution layers to be plugged in via the ABCI (Application Blockchain Interface) protocol. Rollkit defines a general-purpose execution interface ([see execution.go](https://github.com/rollkit/rollkit/blob/main/core/execution/execution.go)) that enables developers to integrate any ABCI-compatible application as the rollup's execution layer.
+
+This means you can use a variety of ABCI-compatible applications as the execution environment for your rollup.
 
 ## Supported Execution Layers
 
