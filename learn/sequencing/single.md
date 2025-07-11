@@ -24,18 +24,9 @@ A single sequencer is the simplest sequencing architecture for a Rollkit-based r
 - **Simplicity:** Easy to set up and operate, making it ideal for development, testing, and small-scale deployments.
 - **Low Latency:** Fast block production and transaction inclusion, since there is no consensus overhead among multiple sequencers.
 
-## Considerations
-
-- **Centralization:** The sequencer is a single point of control. However, this is often acceptable for many applications, especially in early stages or permissioned environments.
-- **No Fault Tolerance:** If the sequencer is unavailable, the rollup cannot make progress. High-availability setups and monitoring can mitigate this risk.
-
 ## Use Cases
 
 - Production rollups seeking simplicity and performance
 - Prototyping and development
 - Private or permissioned rollups
 - Projects that value deterministic ordering and operational control
-
-## Future-Proofing
-
-While the single sequencer model is robust and production-ready, Rollkit is designed to support more advanced sequencing architectures in the future. Projects can seamlessly upgrade to decentralized sequencing when the technology and their needs mature.

@@ -23,10 +23,6 @@ It mainly consists of:
 ## Sequencing Implementations {#sequencing-implementations}
 
 An implementation of the sequencing interface mainly acts as a middleware that connects Rollkit rollup and the sequencing layer. It implements the sequencing interface functions described above.
-There are several implementations of the sequencer:
+There are several implementations of the sequencer but for now only one is available in Rollkit.
 
 * [single-sequencer](/learn/sequencing/single.md) - The simplest and most widely used sequencing model, where a single node (the sequencer) is responsible for ordering transactions and producing blocks.
-
-* [based-sequencer](/learn/sequencing/based.md) - A more decentralized model where multiple sequencers work together to order transactions and produce blocks, improving censorship resistance (Not available yet).
-
-* [forced-inclusion-sequencer](/learn/sequencing/forced-inclusion.md) - A model that ensures all transactions are included in the rollup, even if they are not ordered by the sequencer, providing strong guarantees against censorship. (Not available yet).
