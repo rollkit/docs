@@ -193,6 +193,7 @@ function sidebarHome() {
           items: [
             { text: "Rollkit stack", link: "/learn/stack" },
             { text: "Transaction flow", link: "/learn/transaction-flow" },
+            { text: "Configuration", link: "/learn/config" },
           ],
         },
         {
@@ -205,8 +206,13 @@ function sidebarHome() {
           items: [
             { text: "Overview", link: "/learn/sequencing/overview" },
             { text: "Single", link: "/learn/sequencing/single" },
-            { text: "Based", link: "/learn/sequencing/based" },
-            { text: "Forced Inclusion", link: "/learn/sequencing/forced-inclusion" },
+          ],
+        },
+        {
+          text: "Execution",
+          collapsed: true,
+          items: [
+            { text: "ABCI", link: "/learn/execution/abci" },
           ],
         },
         {
@@ -242,28 +248,6 @@ function sidebarHome() {
           ],
         },
         {
-          text: "Sequencing",
-          collapsed: true,
-          items: [
-            {
-              text: "Overview",
-              link: "/learn/sequencing/overview",
-            },
-            {
-              text: "Single",
-              link: "/learn/sequencing/single",
-            },
-            {
-              text: "Based",
-              link: "/learn/sequencing/based",
-            },
-            {
-              text: "Forced Inclusion",
-              link: "/learn/sequencing/forced-inclusion",
-            },
-          ],
-        },
-        {
           text: "Execution",
           collapsed: true,
           items: [
@@ -285,6 +269,20 @@ function sidebarHome() {
           ],
         },
         {
+          text: "EVM",
+          collapsed: true,
+          items: [
+            {
+              text: "EVM Single Sequencer",
+              link: "/guides/evm/single",
+            },
+            {
+              text: "EVM reth state backup",
+              link: "/guides/evm/reth-backup",
+            },
+          ]
+        },
+        {
           text: "Run a Full Node",
           link: "/guides/full-node",
         },
@@ -303,22 +301,6 @@ function sidebarHome() {
         {
           text: "Create genesis for your rollup",
           link: "/guides/create-genesis",
-        },
-        {
-          text: "Configuration",
-          link: "/guides/config",
-        },
-        {
-          text: "EVM Single Sequencer",
-          link: "/guides/evm-single",
-        },
-        {
-          text: "EVM Based Sequencer",
-          link: "/guides/evm-based",
-        },
-        {
-          text: "EVM reth state backup",
-          link: "/guides/evm-reth-backup",
         },
         {
           text: "Metrics",
