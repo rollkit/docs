@@ -210,10 +210,7 @@ function sidebarHome() {
         },
         {
           text: "Execution",
-          collapsed: true,
-          items: [
-            { text: "ABCI", link: "/learn/execution/abci" },
-          ],
+          link: "/learn/execution"
         },
         {
           text: "Resources",
