@@ -5,11 +5,16 @@ A single sequencer is the simplest sequencing architecture for a Rollkit-based r
 ## How the Single Sequencer Model Works
 
 1. **Transaction Submission:**
-   - Users submit transactions directly to the sequencer node via RPC or other interfaces.
-2. **Transaction Ordering:**
-   - The sequencer collects transactions from users and orders them into blocks according to the rollup's rules.
+   - Users submit transactions to the execution environment via RPC or other interfaces.
+2. **Transaction Collection and Ordering:**
+   - The execution environment collects incoming transactions.
+   - The sequencer requests a batch of transactions from the execution environment to be included in the next block.
 3. **Block Production:**
-   - The sequencer produces new blocks at regular intervals or when enough transactions are collected.
+   - **Without lazy mode:** the sequencer produces new blocks at fixed intervals.
+   - **With lazy mode:** the sequencer produces a block once either  
+     - enough transactions are collected  
+     - the lazy-mode block interval elapses
+    More info [here](/learn/config#lazy-mode).
    - Each block contains a batch of ordered transactions and metadata.
 
 4. **Data Availability Posting:**
@@ -18,6 +23,23 @@ A single sequencer is the simplest sequencing architecture for a Rollkit-based r
 
 5. **State Update:**
    - The sequencer updates the rollup state based on the new block and makes the updated state available to light clients and full nodes.
+
+## Transaction Flow Diagram
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant ExecutionEnv as Execution Environment
+    participant Sequencer
+    participant DA as Data Availability Layer
+
+    User->>ExecutionEnv: Submit transaction
+    Sequencer->>ExecutionEnv: Request batch for block
+    ExecutionEnv->>Sequencer: Provide batch of transactions
+    Sequencer->>DA: Post block data
+    Sequencer->>ExecutionEnv: Update state
+    ExecutionEnv->>User: State/query response
+```
 
 ## Advantages
 
