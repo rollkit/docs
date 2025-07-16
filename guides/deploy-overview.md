@@ -16,4 +16,4 @@ In this section, you'll see a few examples of how you can deploy your rollup env
 These examples are for educational purposes only. Before deploying your rollup for production use you should fully understand the services you are deploying and your choice in deployment method.
 :::
 
-* [Deploy with Docker Compose](/guides/docker-compose.md)
+* [Deploy with Docker Compose](/guides/deploy/local.md)
