@@ -18,7 +18,7 @@ A single sequencer is the simplest sequencing architecture for a Rollkit-based r
    - Each block contains a batch of ordered transactions and metadata.
 
 4. **Data Availability Posting:**
-   - The sequencer posts the block data to the configured DA layer (e.g., Celestia, Avail, etc.).
+   - The sequencer posts the block data to the configured DA layer (e.g., Celestia).
    - This ensures that anyone can access the data needed to reconstruct the rollup state.
 
 5. **State Update:**
@@ -43,12 +43,7 @@ sequenceDiagram
 
 ## Advantages
 
-- **Simplicity:** Easy to set up and operate, making it ideal for development, testing, and small-scale deployments.
+- **Simplicity:** Easy to set up and operate, making it ideal for development, testing, and small-scale deployments compared to other more complex sequencers.
 - **Low Latency:** Fast block production and transaction inclusion, since there is no consensus overhead among multiple sequencers.
+- **Independence from DA block time:** The sequencer can produce blocks on its own schedule, without being tied to the block time of the DA layer, enabling more flexible transaction processing than DA-timed sequencers.
 
-## Use Cases
-
-- Production rollups seeking simplicity and performance
-- Prototyping and development
-- Private or permissioned rollups
-- Projects that value deterministic ordering and operational control
