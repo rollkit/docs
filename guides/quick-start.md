@@ -27,8 +27,8 @@ testapp version
 A successful installation will display the version number and its associated git commit hash.
 
 ```bash
-rollkit version:  v0.14.1
-rollkit git sha:  888def92
+rollkit version:  execution/evm/v1.0.0-beta.1
+rollkit git sha:  cd1970de
 ```
 
 ## 🗂️ Initialize a sovereign rollup node

@@ -18,7 +18,7 @@ Before starting, ensure you have:
 ### 1. Clone the Rollkit Repository
 
 ```bash
-git clone https://github.com/rollkit/rollkit.git
+git clone --depth 1 --branch v1.0.0-beta.1 https://github.com/rollkit/rollkit.git
 cd rollkit
 ```
 
