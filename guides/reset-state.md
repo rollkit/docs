@@ -18,37 +18,59 @@ In order to complete this guide, you will need to have completed either the [qui
 
 ## Quick Start
 
-When you run your chain with `rollkit start` you will create a `.rollkit` directory in your root directory.
+When you run your chain with `testapp start` you will create a `.testapp` directory in your root directory.
 
 This directory will look like the following.
 
 ```bash
-tree $HOME/.rollkit
+tree $HOME/.testapp
 
 ├── config
-│   ├── config.toml
 │   ├── genesis.json
 │   ├── node_key.json
-│   └── priv_validator_key.json
+│   ├── rollkit.yaml
+│   └── signer.json
 └── data
-    ├── priv_validator_state.json
-    └── rollkit
+    ├── cache
+    │   ├── data
+    │   │   ├── da_included.gob
+    │   │   ├── hashes.gob
+    │   │   ├── items_by_hash.gob
+    │   │   └── items_by_height.gob
+    │   └── header
+    │       ├── da_included.gob
+    │       ├── hashes.gob
+    │       ├── items_by_hash.gob
+    │       └── items_by_height.gob
+    ├── executor
+    │   ├── 000001.sst
+    │   ├── 000002.vlog
+    │   ├── 000003.vlog
+    │   ├── 00003.mem
+    │   ├── DISCARD
+    │   ├── KEYREGISTRY
+    │   ├── LOCK
+    │   └── MANIFEST
+    └── testapp
         ├── 000001.sst
-        ├── 000001.vlog
         ├── 000002.sst
         ├── 000002.vlog
+        ├── 000003.sst
+        ├── 000003.vlog
         ├── DISCARD
         ├── KEYREGISTRY
         └── MANIFEST
 ```
 
-To reset the state of the chain, delete the entire `.rollkit` directory.
+To reset the state of the chain, delete the content of the `data` directory.
+
+Alternatively, you can use this command.
 
 ```bash
-${BINARY} unsafe-clean
+testapp unsafe-clean
 ```
 
-When you launch your chain again with `rollkit start` your `.rollkit` directory will be re-created and you will see your chain starting at block height 1 again.
+When you launch your chain again with `testapp start` your `data` directory will be re-populated and you will see your chain starting at block height 1 again.
 
 ## gm-world
 
@@ -114,20 +136,12 @@ tree $HOME/.gm
     └── e24d9eeca2d24193bdd98ed9116ff70f8a2e2b5e.address
 ```
 
-The directories you need to delete to reset your state are in the `./data` directory.
+The directories you need to delete to reset your state are in the `data` directory.
+
+Alternatively, you can run the following command to delete the data directories:
 
 ```bash
-$HOME/.gm/data/application.db
-$HOME/.gm/data/rollkit
-$HOME/.gm/data/snapshots 
-$HOME/.gm/data/cache 
-
-```
-
-You can delete them with the following command:
-
-```bash
-gmd tendermint unsafe-reset-all
+gmd comet unsafe-reset-all
 ```
 
 When you launch your chain again with your `gmd start <flags>` command, these data directories will be re-created and you will see your chain starting at block height 1 again.

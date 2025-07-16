@@ -12,45 +12,7 @@ Metrics will be served under `/metrics` on port 26660 by default. The listening 
 
 ## List of available metrics
 
-The following metrics are available, grouped by their subsystem:
-
-### Block Manager
-
-| Name | Type | Tags | Description |
-|------|------|------|-------------|
-| `rollkit_sequencer_height` | Gauge | chain_id | Height of the chain |
-| `rollkit_sequencer_num_txs` | Gauge | chain_id | Number of transactions |
-| `rollkit_sequencer_block_size_bytes` | Gauge | chain_id | Size of the block |
-| `rollkit_sequencer_total_txs` | Gauge | chain_id | Total number of transactions |
-| `rollkit_sequencer_latest_block_height` | Gauge | chain_id | The latest block height |
-
-### P2P
-
-| Name | Type | Tags | Description |
-|------|------|------|-------------|
-| `rollkit_p2p_peers` | Gauge | chain_id | Number of connected peers |
-| `rollkit_p2p_peer_receive_bytes_total` | Counter | peer_id, chID | Number of bytes received from a given peer |
-| `rollkit_p2p_peer_send_bytes_total` | Counter | peer_id, chID | Number of bytes sent to a given peer |
-| `rollkit_p2p_peer_pending_send_bytes` | Gauge | peer_id | Pending bytes to be sent to a given peer |
-| `rollkit_p2p_num_txs` | Gauge | peer_id | Number of transactions submitted by each peer |
-| `rollkit_p2p_message_receive_bytes_total` | Counter | message_type | Number of bytes of each message type received |
-| `rollkit_p2p_message_send_bytes_total` | Counter | message_type | Number of bytes of each message type sent |
-
-In addition to these, [go-libp2p metrics](https://github.com/libp2p/go-libp2p/tree/master/dashboards) are exported as well.
-
-### Single Sequencer
-
-| Name | Type | Tags | Description |
-|------|------|------|-------------|
-| `sequencer_gas_price` | Gauge | chain_id | The gas price of DA |
-| `sequencer_last_blob_size` | Gauge | chain_id | The size in bytes of the last DA blob |
-| `sequencer_transaction_status` | Counter | chain_id, status | Count of transaction statuses for DA submissions |
-| `sequencer_num_pending_blocks` | Gauge | chain_id | The number of pending blocks for DA submission |
-| `sequencer_included_block_height` | Gauge | chain_id | The last DA included block height |
-
-### Based Sequencer
-
-The Based Sequencer uses the same metrics as the Single Sequencer, with additional metrics related to the based DA layer.
+You can find the full list of available metrics in the [Technical Specifications](https://rollkit.github.io/rollkit/specs/block-manager.html#metrics).
 
 ## Viewing Metrics
 
@@ -58,7 +20,7 @@ Once your Rollkit node is running with metrics enabled, you can view the metrics
 
 1. Accessing the metrics endpoint directly:
 
-   ```
+   ```bash
    curl http://localhost:26660/metrics
    ```
 
