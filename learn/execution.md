@@ -25,7 +25,7 @@ For more information about Reth, see the official documentation:
 
 ## How It Works
 
-- Rollkit acts as the consensus and data availability layer.
+- Rollkit acts as the consensus and uses Celestia as its data availability layer.
 - The execution layer (Cosmos SDK app or Reth) processes transactions and maintains application state.
 
 For more details on integrating an execution layer with Rollkit, see the respective documentation links above.
