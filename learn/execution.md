@@ -2,7 +2,7 @@
 
 Rollkit is designed to be modular and flexible, allowing different execution layers to be plugged in. Rollkit defines a general-purpose execution interface ([see execution.go](https://github.com/rollkit/rollkit/blob/main/core/execution/execution.go)) that enables developers to integrate any compatible application as the rollup's execution layer.
 
-This means you can use a variety of Cosmos SDK or Reth compatible applications as the execution environment for your rollup.
+This means you can use a variety of Cosmos SDK or Reth compatible applications as the execution environment for your rollup: choose the execution environment that best fits your use case.
 
 ## Supported Execution Layers
 
@@ -30,9 +30,5 @@ For more information about Reth, see the official documentation:
 - Rollkit acts as the consensus and data availability layer.
 - The execution layer (Cosmos SDK app or Reth) processes transactions and maintains application state.
 
-## Benefits
-
-- **Modularity:** Choose the execution environment that best fits your use case.
-- **Extensibility:** Easily upgrade or swap out the execution layer as your rollup evolves.
 
 For more details on integrating an execution layer with Rollkit, see the respective documentation links above.
