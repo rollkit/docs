@@ -12,7 +12,7 @@ command for your rollup.
 For example, if you ran the [quick start](/guides/quick-start.md) tutorial, you started your rollup with:
 
 ```bash
-rollkit start
+testapp start
 ```
 
 You would have see output similar to:
@@ -27,7 +27,7 @@ I[2024-10-17|14:52:12.846] indexed block events                         module=t
 If you need to restart your rollup, you can run the same command again:
 
 ```bash
-rollkit start
+testapp start
 ```
 
 You will see that the block height will continue from where it left off:
@@ -39,7 +39,7 @@ I[2024-10-17|14:52:13.845] executed block                               module=B
 I[2024-10-17|14:52:13.845] indexed block events                         module=txindex height=8
 ```
 
-It is important to include any additional flags that you used when you first started your rollup. For example, if you used the `--rollkit.da_namespace` flag, you will need to include that flag when restarting your rollup to ensure your rollup continues to publish blobs to the same namespace.
+It is important to include any additional flags that you used when you first started your rollup. For example, if you used the `--rollkit.da.namespace` flag, you will need to include that flag when restarting your rollup to ensure your rollup continues to publish blobs to the same namespace.
 
 ## Restart rollup after running out of funds
 
