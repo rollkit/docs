@@ -1,3 +1,0 @@
-# Based Sequencing
-
-Coming soon ...
