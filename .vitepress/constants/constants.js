@@ -4,8 +4,8 @@ const constants = Object.freeze({
   nodeVersion: "21.7.2",
   yarnVersion: "1.22.19",
 
-  rollkitLatestTag: "v0.14.1",
-  rollkitLatestSha: "5a8693e",
+  rollkitLatestTag: "v1.0.0-beta.1",
+  rollkitLatestSha: "cd1970de",
   rollkitCosmosSDKVersion: "v0.50.6-rollkit-v0.13.3-no-fraud-proofs",
   rollkitIgniteAppVersion: "rollkit/v0.2.1",
 
@@ -15,10 +15,10 @@ const constants = Object.freeze({
   igniteVersionTag: "v28.5.3",
 
   celestiaNodeArabicaTag: "v0.20.2-arabica",
-  celestiaNodeArabicaRollkitTag: "v0.14.1",
+  celestiaNodeArabicaRollkitTag: "v1.0.0-beta.1",
   celestiaNodeMochaTag: "v0.20.2-mocha",
-  celestiaNodeMochaRollkitTag: "v0.14.1",
+  celestiaNodeMochaRollkitTag: "v1.0.0-beta.1",
   celestiaNodeMainnetTag: "v0.17.2",
-  celestiaNodeMainnetRollkitTag: "v0.13.7",
+  celestiaNodeMainnetRollkitTag: "v1.0.0-beta.1",
 });
 export default constants;

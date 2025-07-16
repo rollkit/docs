@@ -42,7 +42,7 @@ compare_versions() {
 }
 
 print_header "Downloading Rollkit source code..."
-git clone https://github.com/rollkit/rollkit.git
+git clone --depth 1 --branch $1 https://github.com/rollkit/rollkit.git
 echo ""
 
 cd rollkit || { print_error "Failed to find the downloaded repository."; exit 1; }
@@ -78,10 +78,6 @@ elif [ $comparison_result -eq 2 ]; then
     print_warning "INFO: The installed Go version ($installed_version) is greater than the required version ($go_mod_version)."
     echo "      If you run into issues, try downgrading your version of Go."
 fi
-echo ""
-
-print_header "Fetching and checking out the specified branch or tag..."
-git fetch && git checkout "$1"
 echo ""
 
 print_header "Building and installing Rollkit..."
