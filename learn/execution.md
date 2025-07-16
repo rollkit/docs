@@ -10,8 +10,6 @@ This means you can use a variety of Cosmos SDK or Reth compatible applications a
 
 Rollkit natively supports Cosmos SDK-based applications as the execution layer for a rollup via the ABCI (Application Blockchain Interface) protocol. The Cosmos SDK provides a rich set of modules for staking, governance, IBC, and more, and is widely used in the Cosmos ecosystem. This integration allows developers to leverage the full power and flexibility of the Cosmos SDK when building their rollup applications.
 
-Take advantage of the Cosmos SDK's built-in modules for staking, governance, and IBC, and extend your rollup with CosmWasm smart contracts for added functionality.
-
 - [Cosmos SDK Documentation](https://docs.cosmos.network/)
 - [Cosmos SDK ABCI Documentation](https://docs.cosmos.network/main/build/abci/introduction)
 - [Rollkit ABCI Adapter](https://github.com/rollkit/go-execution-abci)
@@ -29,6 +27,5 @@ For more information about Reth, see the official documentation:
 
 - Rollkit acts as the consensus and data availability layer.
 - The execution layer (Cosmos SDK app or Reth) processes transactions and maintains application state.
-
 
 For more details on integrating an execution layer with Rollkit, see the respective documentation links above.
