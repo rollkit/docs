@@ -42,8 +42,14 @@ compare_versions() {
 }
 
 print_header "Downloading Rollkit source code..."
-git clone --depth 1 --branch $1 https://github.com/rollkit/rollkit.git
-echo ""
+
+if [ -z "$1" ]; then
+  print_error "Usage: install.sh <rollkit-tag|branch>"; exit 1
+fi
+
+git clone --depth 1 --branch "$1" https://github.com/rollkit/rollkit.git || {
+  print_error "Failed to clone Rollkit at ref '$1'"; exit 1;
+}
 
 cd rollkit || { print_error "Failed to find the downloaded repository."; exit 1; }
 
