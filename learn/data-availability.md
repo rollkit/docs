@@ -20,12 +20,6 @@ Rollkit is designed to be DA-agnostic, meaning it can integrate with different d
   - Rollkit can post block data to any external DA layer that implements the Rollkit [DA interface](https://github.com/rollkit/rollkit/blob/main/core/da/da.go#L11) (e.g., Celestia).
   - Anyone can verify that the data is available and reconstruct the rollup state, depending on the guarantees of the chosen DA layer.
 
-## Why Data Availability Matters in Rollkit
-
-- **Fraud Proofs and Security:**
-  - Rollkit rollups rely on data availability to enable fraud proofs and ensure that invalid state transitions can be challenged.
-  - If data is unavailable, users cannot verify the rollup's state or submit fraud proofs.
-
 ## Best Practices
 
 - **Use Local DA only for development and testing locally.**
