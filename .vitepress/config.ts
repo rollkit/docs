@@ -209,7 +209,6 @@ function sidebarHome() {
           text: "Technical Specifications",
           collapsed: true,
           items: [
-            { text: "template.md", link: "/learn/specs/template" },
             { text: "block-manager.md", link: "/learn/specs/block-manager" },
             { text: "block-validity.md", link: "/learn/specs/block-validity" },
             { text: "da.md", link: "/learn/specs/da" },
