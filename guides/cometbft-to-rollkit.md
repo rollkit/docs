@@ -36,6 +36,13 @@ Run the following command to initialize Rollkit:
 ignite rollkit init
 ```
 
+:::warning
+This tutorial is being currently update to reflect the latest changes using the rollkit ignite app.
+Please check back later for the updated version.
+:::
+
+<!-- TODO: update
+
 ## Initialize Rollkit CLI Configuration {#initialize-rollkit-cli-configuration}
 
 Next, you'll need to initialize the Rollkit CLI configuration by generating the `rollkit.toml` file. This file is crucial for Rollkit to understand the structure of your rollup.
@@ -61,3 +68,5 @@ rollkit start --rollkit.aggregator <insert your flags>
 By following this guide, you've successfully converted your CometBFT app into a Rollkit app.
 
 To learn more about how to config your DA, Sequencing, and Execution, please check out those tutorial sections.
+
+-->
