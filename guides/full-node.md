@@ -6,11 +6,12 @@ This guide covers how to set up a full node to run alongside a sequencer node in
 
 ## Prerequisites
 
-Before starting, ensure you have:
+Before proceeding, ensure that you have completed the [build a chain](/guides/gm-world.md) tutorial, which covers setting-up, building and running your chain.
+
+Ensure that you have:
 
 - A local Data Availability (DA) network node running on port `7980`.
 - A Rollkit sequencer node running and posting blocks to the DA network.
-- The Rollkit CLI installed on your system.
 
 ## Setting Up Your Full Node
 
