@@ -80,7 +80,7 @@ See [Store Interface][store_interface] and [Default Store][default_store] for it
 
 [7] [Key Value Store][kv.go]
 
-[8 ] [Serialization][serialization]
+[8] [Serialization][serialization]
 
 [store_interface]: https://github.com/rollkit/rollkit/blob/main/pkg/store/types.go#L11
 [default_store]: https://github.com/rollkit/rollkit/blob/main/pkg/store/store.go
