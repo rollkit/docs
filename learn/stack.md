@@ -36,24 +36,6 @@ And don't forget to replace another dependency, `CometBFT`, with
 [`rollkit/cometbft`](https://github.com/rollkit/cometbft), which has an enhanced ABCI interface that includes
 the methods needed for state fraud proofs.
 
-### Data availability
-
-[Data availability (DA)](https://github.com/rollkit/rollkit/tree/main/da) can be accessed using generic [interfaces](https://github.com/rollkit/rollkit/blob/main/core/da/da.go#L11). This design allows for seamless integration with any DA layer. New implementations can be plugged in programmatically, without a need to fork Rollkit.
-
-The `DataAvailabilityLayerClient` interface includes essential lifecycle methods (`Init`, `Start`, `Stop`) as well as data availability methods (`SubmitBlocks`, `RetrieveBlocks`).
-
-The `BlockRetriever` interface serves to enable syncing of full nodes from the data availability layer.
-It's important to keep in mind that there is no direct correlation between the DA layer block height and the rollup height. Each DA layer block may contain an arbitrary number of rollup blocks.
-
-#### Celestia
-
-Celestia is a prominent example of a data availability integration implemented for Rollkit.
-It's using the [Celestia Node API](https://node-rpc-docs.celestia.org)
-via the [`rollkit/celestia-da`](https://github.com/rollkit/celestia-da) package.
-To deploy a Rollkit rollup on Celestia you also have to [run a Celestia light node](https://docs.celestia.org/tutorials/node-tutorial/).
-
-New DA layer integrations can be added by using the [DA interface](https://github.com/rollkit/rollkit/blob/main/core/da/da.go).
-
 ## Node components
 
 ### Mempool
