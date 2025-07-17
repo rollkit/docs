@@ -1,20 +1,14 @@
----
-description: Build a sovereign rollup using Rollkit CLI and a local DA network, with TIA as the gas token.
----
-
 # How to use IBC token (TIA) as gas token in your rollup
 
 ## 🌞 Introduction {#introduction}
 
 This tutorial will guide you through building a sovereign `gm-world` rollup using Rollkit, with TIA as the gas token. Unlike the [quick start guide](/guides/quick-start.md), which uses a native rollup token for gas, this tutorial demonstrates how to integrate an IBC-enabled token, TIA, as the gas token within the rollup, providing a deeper exploration of sovereign rollup development.
 
-We will cover:
-
-- Building and configuring a Cosmos-SDK application-specific rollup blockchain.
-- Posting rollup data to a Data Availability (DA) network.
-- Executing transactions using TIA as the gas token (the end goal).
-
 No prior understanding of the build process is required, just that it utilizes the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) for blockchain applications.
+
+## Requirements {#requirements}
+
+Before proceeding, ensure that you have completed the [build a chain](/guides/gm-world.md) tutorial, which covers setting-up, building and running your chain.
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
@@ -28,83 +22,12 @@ import constants from '../.vitepress/constants/constants.js'
 
 <!-- markdownlint-enable MD033 -->
 
-## 🛠️ Dependencies {#dependencies}
+## Setup your local DA network {#setup-local-da}
 
-Rollkit uses the [Go programming language](https://go.dev/dl/). Here's how to install it:
-
-- **Linux or macOS**: Run the provided script:
-
-  ```bash-vue
-  curl -sSL https://rollkit.dev/install-go.sh | bash -s {{constants.golangVersion}}
-  ```
-
-<!-- markdownlint-disable MD033 -->
-
-- **Windows**: Download and execute the <a :href="`https://go.dev/dl/go${constants.golangVersion}.windows-amd64.msi`">installer</a>.
-<!-- markdownlint-enable MD033 -->
-
-## 📦 Install Rollkit (CLI) {#install-rollkit}
-
-To install Rollkit, run the following command in your terminal:
-
-```bash-vue
-curl -sSL https://rollkit.dev/install.sh | sh -s {{constants.rollkitLatestTag}}
-```
-
-Verify the installation by checking the Rollkit version:
+Your local DA network is already running if you followed the [quick start guide](/guides/quick-start.md) or the [build a chain](/guides/gm-world.md). If not, you can start it with the following command:
 
 ```bash
-rollkit version
-```
-
-A successful installation will display the version number and its associated git commit hash.
-
-## 🌐 Running a Local DA Network {#running-local-da}
-
-Learn to run a local DA network, designed for educational purposes, on your machine.
-
-To set up a local DA network node:
-
-```bash-vue
-(cd /tmp && curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.localDALatestTag}})
-```
-
-This script builds and runs the node, now listening on port `7980`.
-
-## 🏗️ Building Your Sovereign Rollup {#building-your-sovereign-rollup}
-
-With the local DA network running, let’s prepare your rollup blockchain.
-
-To make it simple, we will download a repository with a `gm-world` rollup that includes an `init.sh` script to handle all the setup for you.
-
-Download and build a `gm-world` rollup with an interactive script in a new terminal:
-
-::: warning
-Ensure the `jq` command line tool is installed before proceeding. Install it using `sudo apt-get install jq` on Ubuntu or `brew install jq` on macOS.
-:::
-::: tip
-If you get errors of `gmd` not found, you may need to add the `go/bin` directory to your PATH. You can do this by running `export PATH=$PATH:$HOME/go/bin` and then running the `init.sh` script manually again.
-:::
-
-```bash
-curl -sSL https://rollkit.dev/install-gm-rollup.sh | sh
-```
-
-## 🛠️ Initialize Rollkit TOML Configuration {#initialize-rollkit-configuration}
-
-Change to the `gm` directory and initialize the rollkit toml configuration:
-
-```bash
-cd ./gm && rollkit toml init
-```
-
-Edit the `rollkit.toml` file to include the following configuration:
-
-```toml
-entrypoint = "/root/gm/cmd/gmd/main.go"
-
-[chain]
-  config_dir = "./.gm"
+curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.rollkitLatestTag}}
 ```
 
 ## 🚀 Starting your rollup {#start-your-rollup}
@@ -112,7 +35,7 @@ entrypoint = "/root/gm/cmd/gmd/main.go"
 Start the rollup, posting to the local DA network:
 
 ```bash
-rollkit start --rollkit.aggregator --rollkit.da.address http://localhost:7980 --minimum-gas-prices="0.02ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA,0.025stake"
+gmd start --rollkit.node.aggregator --rollkit.da.address http://localhost:7980 --minimum-gas-prices="0.02ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA,0.025stake"
 ```
 
 Note that we specified the gas token to be IBC TIA. We still haven't made an IBC connection to Celestia's Mocha testnet, however, if we assume our first channel will be an ICS-20 transfer channel to Celestia, we can already calculate the token denom using this formula:
@@ -307,7 +230,7 @@ rly tx transfer mocha gm_rollup 1000000utia "$ACCOUNT_ON_ROLLUP" "$CHANNEL_ID_ON
 Verify the account on our rollup is funded with IBC TIA:
 
 ```bash
-rollkit q bank balances "$(rollkit keys show -a --keyring-backend test gm-key-2)"
+gmd query bank balances "$(rollkit keys show -a --keyring-backend test gm-key-2)"
 # =>
 # balances:
 # - amount: "1000000"

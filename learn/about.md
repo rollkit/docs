@@ -60,7 +60,7 @@ Rollups inherit security from a data availability layer, by posting blocks to it
 Rollkit rollups are deployed on specialized data availability layers like Celestia, which directly leverages the scalability of the DA layer. Additionally, rollup transactions are executed off-chain rather than the data availability layer. This means rollups have their own dedicated computational resources, rather than sharing computational resources with other applications.
 
 - **Customizability:**
-Rollkit is built as an open source modular framework, to make it easier for developers to reuse the four main components and customize their rollups. These components are data availability layers, execution environments, proof systems, and sequencer schemes. The components used by the [Rollkit stack](/learn/stack.md) are customizable.
+Rollkit is built as an open source modular framework, to make it easier for developers to reuse the four main components and customize their rollups. These components are data availability layers, execution environments, proof systems, and sequencer schemes.
 
 - **Faster time to market:**
 Rollkit eliminates the need to bootstrap a validator set, manage a consensus network, incur high economic costs, and face other trade-offs that come with deploying a new layer 1. Rollkit's goal is to make deploying a rollup as easy as it is to deploy a smart contract, cutting the time it takes to bring blockchain products to market from months or even years to just minutes.

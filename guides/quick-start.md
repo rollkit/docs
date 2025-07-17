@@ -36,15 +36,31 @@ rollkit git sha:  cd1970de
 To initialize a sovereign rollup node, execute the following command:
 
 ```bash
-testapp init --rollkit.node.aggregator --rollkit.signer.passphrase verysecretpass
+testapp init --rollkit.node.aggregator --rollkit.signer.passphrase secret
 ```
 
 ## 🚀 Run your sovereign rollup node
 
+Now that we have our testapp generated and installed, we can launch our rollup along with the local DA by running the following command:
+
+First lets start the local DA network:
+
+```bash
+curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.rollkitLatestTag}}
+```
+
+You should see logs like:
+
+```bash
+4:58PM INF NewLocalDA: initialized LocalDA module=local-da
+4:58PM INF Listening on host=localhost maxBlobSize=1974272 module=da port=7980
+4:58PM INF server started listening on=localhost:7980 module=da
+```
+
 To start a basic sovereign rollup node, execute:
 
 ```bash
-testapp start --rollkit.signer.passphrase verysecretpass
+testapp start --rollkit.signer.passphrase secret
 ```
 
 Upon execution, the CLI will output log entries that provide insights into the node's initialization and operation:

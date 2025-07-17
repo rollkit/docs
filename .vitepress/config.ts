@@ -187,15 +187,8 @@ function sidebarHome() {
           text: "About Rollkit",
           link: "/learn/about",
         },
-        {
-          text: "Technical details",
-          collapsed: true,
-          items: [
-            { text: "Rollkit stack", link: "/learn/stack" },
-            { text: "Transaction flow", link: "/learn/transaction-flow" },
-            { text: "Configuration", link: "/learn/config" },
-          ],
-        },
+        { text: "Transaction flow", link: "/learn/transaction-flow" },
+        { text: "Configuration", link: "/learn/config" },
         {
           text: "Data Availability",
           link: "/learn/data-availability",

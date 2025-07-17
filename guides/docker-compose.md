@@ -210,13 +210,13 @@ b9d5e80e81fb   gm-world   "gmd start --rollkit…"   27 minutes ago   Up 9 secon
 
 We can see the gm-world chain running in container `gm-world` and the local DA network running in container `local-da`.
 
-Since our chain is running in a docker container, we want to enter the docker container to interact with it via the Rollkit CLI. We can do this by running:
+Since our chain is running in a docker container, we want to enter the docker container to interact with it via the command `gmd`. We can do this by running:
 
 ```bash
 docker exec -it gm-world sh
 ```
 
-Now that you are in the docker container, you can interact with the chain using the Rollkit CLI and the example commands you used in the [gm-world tutorial](/guides/gm-world.md).
+Now that you are in the docker container, you can interact with the chain using the `gmd` command and the example you used in the [gm-world tutorial](/guides/gm-world.md).
 
 Once you are done interacting with your chain, you can exit out of your docker container with:
 
@@ -235,4 +235,4 @@ docker compose down
 
 ## 🎉 Next steps
 
-Congratulations again! You now know how to run your chain with docker compose and interact with it using the Rollkit CLI in the docker container.
+Congratulations again! You now know how to run your chain with docker compose and interact with it using the `gmd` command in the docker container.

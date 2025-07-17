@@ -39,17 +39,15 @@ ignite version
 ```
 
 ```bash
-Ignite CLI version:             v28.7.0
-Ignite CLI build date:          2025-01-15T08:23:41Z
-Ignite CLI source hash:         2f83cfe6114cfc58bd6add791143fe43963c1b5c
+Ignite CLI version:             v29.2.0-dev
+Ignite CLI build date:          undefined
+Ignite CLI source hash:         undefined
 Ignite CLI config version:      v1
-Cosmos SDK version:             v0.50.11
+Cosmos SDK version:             v0.53.0
+Buf.build version:              undefined
 Your OS:                        darwin
 Your arch:                      arm64
-Your go version:                go version go1.24.2 darwin/arm64
-Your uname -a:                  Darwin Markos-MacBook-Pro.local 24.3.0 Darwin Kernel Version 24.3.0: Thu Jan  2 20:24:16 PST 2025; root:xnu-11215.81.4~3/RELEASE_ARM64_T6000 arm64
-Your cwd:                       /Users/markobaricevic/code/CoTend/rollkit1/docs
-Is on Gitpod:                   false
+Your go version:                go version go1.24.3 darwin/arm64
 ```
 
 ## Generate your App {#generate-your-app}
@@ -91,7 +89,7 @@ This will create a `~/.gm` folder with all the necessary files to run a chain.
 
 ## Initialize Your Blockchain {#initialize-your-blockchain}
 
-Before starting your blockchain, you need to initialize it with Rollkit support. Initialize the blockchain with Local DA as follows:
+Before starting your blockchain, you need to initialize it with Rollkit support. Initialize the blockchain as follows:
 
 ```bash
 ignite rollkit init
@@ -106,7 +104,7 @@ Now that we have our gm app generated and installed, we can launch our GM rollup
 First lets start the local DA network:
 
 ```bash
-curl -sSL https://rollkit.dev/install-local-da.sh | bash
+curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.rollkitLatestTag}}
 ```
 
 you should see logs like:
