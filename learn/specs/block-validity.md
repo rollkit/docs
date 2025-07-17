@@ -30,7 +30,7 @@ SignedHeader.ValidateBasic()
     // Ensure that someone signed the header
     verify len(c.Signatures) not 0
   // For based rollups (sh.Signer.IsEmpty()), pass validation
-  If !sh.Signer.IsEmpty():
+  if !sh.Signer.IsEmpty():
     // Verify the signer matches the proposer address
     verify sh.Signer.Address == sh.ProposerAddress
     // Verify signature using custom verifier if set, otherwise use default
