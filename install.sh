@@ -86,9 +86,9 @@ elif [ $comparison_result -eq 2 ]; then
 fi
 echo ""
 
-print_header "Building and installing Rollkit..."
+print_header "Building and installing GM executable..."
 make install
-print_success "Rollkit CLI installed successfully!"
+print_success "gmd CLI installed successfully!"
 
 cd ..
 print_header "Cleaning up downloads..."
