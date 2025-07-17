@@ -206,10 +206,17 @@ function sidebarHome() {
           link: "/learn/execution"
         },
         {
-          text: "Resources",
+          text: "Technical Specifications",
           collapsed: true,
           items: [
-            { text: "Technical specifications", link: "/learn/specifications" },
+            { text: "overview", link: "/learn/specs/overview" },
+            { text: "block-manager", link: "/learn/specs/block-manager" },
+            { text: "block-validity", link: "/learn/specs/block-validity" },
+            { text: "da", link: "/learn/specs/da" },
+            { text: "full_node", link: "/learn/specs/full_node" },
+            { text: "header-sync", link: "/learn/specs/header-sync" },
+            { text: "p2p", link: "/learn/specs/p2p" },
+            { text: "store", link: "/learn/specs/store" },
           ],
         },
       ],
