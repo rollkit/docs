@@ -27,38 +27,26 @@ STAKING_AMOUNT="1000000000stake"
 
 ## 2. Rebuild your chain
 
-Ensure that `rollkit.toml` is present in the root of your rollup directory (if not, follow a [Guide](/guides/gm-world.md) to set it up) and run the following command to (re)generate an entrypoint binary out of the code:
+Ensure that `.gm` folder is present at `/Users/you/.gm` (if not, follow a [Guide](/guides/gm-world.md) to set it up) and run the following command to (re)generate an entrypoint binary out of the code:
 
 ```sh
-rollkit rebuild
+make install
 ```
 
-This (re)creates an `entrypoint` binary in the root of your rollup directory. which is used to run all the operations on the rollup chain.
-
-Ensure that the chain configuration directory is set correctly in the `rollkit.toml` file.
-
-For example:
+Once completed, run the following command to ensure that the `/Users/you/.gm` directory is present:
 
 ```sh
-[chain]
-  config_dir = "/Users/you/.gm"
+ignite rollkit init
 ```
 
-:::tip
-You can always recreate the `rollkit.toml` file by deleting it and re-running the following command:
-
-```sh
-rollkit toml init
-```
-
-:::
+This (re)creates an `gmd` binary that will be used for the rest of the tutorials to run all the operations on the rollup chain.
 
 ## 3. Resetting existing genesis/chain data
 
 Reset any existing chain data:
 
 ```sh
-rollkit tendermint unsafe-reset-all
+gmd comet unsafe-reset-all
 ```
 
 Reset any existing genesis data:
@@ -73,7 +61,7 @@ rm $HOME/.$CHAIN_ID/config/genesis.json
 Initialize the validator with the chain ID you set:
 
 ```sh
-rollkit init $VALIDATOR_NAME --chain-id $CHAIN_ID
+gmd init $VALIDATOR_NAME --chain-id $CHAIN_ID
 ```
 
 ## 5. Adding a key to keyring backend
@@ -81,7 +69,7 @@ rollkit init $VALIDATOR_NAME --chain-id $CHAIN_ID
 Add a key to the keyring-backend:
 
 ```sh
-rollkit keys add $KEY_NAME --keyring-backend test
+gmd keys add $KEY_NAME --keyring-backend test
 ```
 
 ## 6. Adding a genesis account
@@ -89,7 +77,7 @@ rollkit keys add $KEY_NAME --keyring-backend test
 Add a genesis account with the specified token amount:
 
 ```sh
-rollkit genesis add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
+gmd genesis add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
 ```
 
 ## 7. Setting the staking amount in the genesis transaction
@@ -97,7 +85,7 @@ rollkit genesis add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend te
 Set the staking amount in the genesis transaction:
 
 ```sh
-rollkit genesis gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
+gmd genesis gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
 ```
 
 ## 8. Collecting genesis transactions
@@ -105,7 +93,7 @@ rollkit genesis gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-b
 Collect the genesis transactions:
 
 ```sh
-rollkit genesis collect-gentxs
+gmd genesis collect-gentxs
 ```
 
 ## 9. Configuring the genesis file
@@ -125,7 +113,7 @@ Finally, start the chain with your start command.
 For example, start the simple ignite chain with the following command:
 
 ```sh
-rollkit start --rollkit.aggregator --rollkit.sequencer_rollup_id $CHAIN_ID
+gmd start --rollkit.node.aggregator --chain_id $CHAIN_ID
 ```
 
 ## Summary
