@@ -6,7 +6,7 @@ description: This page provides an overview of some common ways to deploy rollup
 
 One of the benefits of building rollups with Rollkit is the flexibility you have as a developer to choose things like the DA layer, the settlement scheme, and the execution environment.
 
-You can learn more about Rollkit architecture [here](/learn/stack.md).
+You can learn more about Rollkit architecture [here](/specs/overview.md).
 
 The challenge that comes with this flexibility is that there are more services that now need to be deployed and managed while running your rollup.
 
