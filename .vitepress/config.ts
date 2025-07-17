@@ -191,7 +191,6 @@ function sidebarHome() {
           text: "Technical details",
           collapsed: true,
           items: [
-            { text: "Rollkit stack", link: "/learn/stack" },
             { text: "Transaction flow", link: "/learn/transaction-flow" },
             { text: "Configuration", link: "/learn/config" },
           ],
