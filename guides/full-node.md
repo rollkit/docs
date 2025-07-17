@@ -25,7 +25,7 @@ CHAIN_ID=gm
 Initialize the chain config for the full node, lets call it `FullNode` and set the chain ID to your rollup chain ID:
 
 ```bash
-{BINARY} init FullNode --chain-id=$CHAIN_ID
+gmd init FullNode --chain-id $CHAIN_ID --home $HOME/.${CHAIN_ID}_fn
 ```
 
 Copy the genesis file from the sequencer node:
@@ -39,7 +39,7 @@ cp $HOME/.$CHAIN_ID/config/genesis.json $HOME/.${CHAIN_ID}_fn/config/genesis.jso
 Identify the sequencer node's P2P address from its logs. It will look similar to:
 
 ```
-1:55PM INF listening on address=/ip4/127.0.0.1/tcp/36656/p2p/12D3KooWJbD9TQoMSSSUyfhHMmgVY3LqCjxYFz8wQ92Qa6DAqtmh
+1:55PM INF listening on address=/ip4/127.0.0.1/tcp/7676/p2p/12D3KooWJbD9TQoMSSSUyfhHMmgVY3LqCjxYFz8wQ92Qa6DAqtmh module=p2p
 ```
 
 Create an environment variable with the P2P address:
@@ -64,20 +64,21 @@ Make sure to include these flags with your start command:
 Run your full node with the following command:
 
 ```bash
-rollkit start \
+gmd start \
   --rollkit.da.address http://127.0.0.1:7980 \
-  --p2p.seeds $P2P_ID@127.0.0.1:26656 \
+  --p2p.seeds $P2P_ID@127.0.0.1:7676 \
   --minimum-gas-prices 0stake \
   --rpc.laddr tcp://127.0.0.1:46657 \
   --grpc.address 127.0.0.1:9390 \
   --p2p.laddr "0.0.0.0:46656" \
   --api.address tcp://localhost:1318 \
-  --rollkit.sequencer_rollup_id gm
+  --chain_id $CHAIN_ID \
+  --home $HOME/.${CHAIN_ID}_fn
 ```
 
 Key points about this command:
 
-- `rollkit.sequencer_rollup_id` is generally the `$CHAIN_ID`, which is `gm` in this case.
+- `chain_id` is generally the `$CHAIN_ID`, which is `gm` in this case.
 - The ports and addresses are different from the sequencer node to avoid conflicts. Not everything may be necessary for your setup.
 - We use the `P2P_ID` environment variable to set the seed node.
 
