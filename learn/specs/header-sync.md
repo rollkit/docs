@@ -7,7 +7,7 @@ The nodes in the P2P network sync headers and data using separate sync services 
 |Component|Description|
 |---|---|
 |store| a prefixed [datastore][datastore] where synced items are stored (`headerSync` prefix for headers, `dataSync` prefix for data)|
-|subscriber | a [libp2p][libp2p] node pubsub subscriber for the specific data type|
+|subscriber| a [libp2p][libp2p] node pubsub subscriber for the specific data type|
 |P2P server| a server for handling requests between peers in the P2P network|
 |exchange| a client that enables sending in/out-bound requests from/to the P2P network|
 |syncer| a service for efficient synchronization. When a P2P node falls behind and wants to catch up to the latest network head via P2P network, it can use the syncer.|
