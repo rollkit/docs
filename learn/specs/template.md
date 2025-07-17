@@ -80,7 +80,7 @@ The recommendation is to use your favorite spellchecker extension in your IDE li
 
 If you want to use links use proper syntax. This goes for both internal and external links like [documentation] or [external links]
 
-At the bottom of the document in [Reference](#references), you can add the following footnotes that will be visible in the markdown document:
+At the bottom of the document in the [References](#references) section, you can add the following footnotes that will be visible in the markdown document:
 
 [1] [Grammarly][grammarly]
 
