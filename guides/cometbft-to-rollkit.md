@@ -11,7 +11,7 @@ import constants from '../.vitepress/constants/constants.js'
 This guide assumes you have a CometBFT app set up and [Ignite CLI](https://docs.ignite.com) installed.
 
 :::warning
-This tutorial is being currently update to reflect the latest changes using the rollkit ignite app.
+This tutorial is currently being updated to reflect the latest changes using the rollkit ignite app.
 Please check back later for the updated version.
 :::
 
