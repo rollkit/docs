@@ -1,6 +1,6 @@
 # Transaction flow
 
-Rollup users use a light node to communicate with the rollup P2P network for two primary reasons:
+Chain users use a light node to communicate with the chain P2P network for two primary reasons:
 
 - submitting transactions
 - gossipping headers and fraud proofs
@@ -31,7 +31,7 @@ sequenceDiagram
     FullNode->>FullNode: Add to Mempool (if valid)
     FullNode-->>User: Transaction Processed (if valid)
     FullNode->>Sequencer: Inform about Valid Transaction
-    Sequencer->>DALayer: Add to Rollup Block
+    Sequencer->>DALayer: Add to Chain Block
 ```
 
 ## Block processing
@@ -40,9 +40,9 @@ sequenceDiagram
 sequenceDiagram
     participant DALayer
     participant FullNode
-    participant RollupChain
+    participant Chain
 
-    DALayer->>RollupChain: Update State
+    DALayer->>Chain: Update State
     DALayer->>FullNode: Download & Validate Block
 ```
 

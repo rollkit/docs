@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Like all blockchains, rollups are defined as the chain of **valid** blocks from the genesis, to the head. Thus, the block and header validity rules define the chain.
+Like all blockchains, chains are defined as the chain of **valid** blocks from the genesis, to the head. Thus, the block and header validity rules define the chain.
 
 Verifying a block/header is done in 3 parts:
 
@@ -29,7 +29,7 @@ SignedHeader.ValidateBasic()
   Signature.ValidateBasic()
     // Ensure that someone signed the header
     verify len(c.Signatures) not 0
-  // For based rollups (sh.Signer.IsEmpty()), pass validation
+  // For based chains (sh.Signer.IsEmpty()), pass validation
   if !sh.Signer.IsEmpty():
     // Verify the signer matches the proposer address
     verify sh.Signer.Address == sh.ProposerAddress
@@ -96,7 +96,7 @@ SignedHeader.Verify(untrustedHeader *SignedHeader)
 |----------------|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
 | Header         | Valid header for the block                                               | `Header` passes `ValidateBasic()` and `Verify()`                                            |
 | Signature      | Valid signature from the single sequencer                                | `Signature` passes `ValidateBasic()`, verified against signer                               |
-| Signer         | Information about who signed the header                                  | Must match ProposerAddress if not empty (based rollup case)                                |
+| Signer         | Information about who signed the header                                  | Must match ProposerAddress if not empty (based chain case)                                |
 | verifier       | Optional custom signature verification function                          | Used instead of default verification if set                                                 |
 
 ## [Header](https://github.com/rollkit/rollkit/blob/main/types/header.go)

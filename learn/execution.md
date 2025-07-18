@@ -1,14 +1,14 @@
 # Execution Layers in Rollkit
 
-Rollkit is designed to be modular and flexible, allowing different execution layers to be plugged in. Rollkit defines a general-purpose execution interface ([see execution.go](https://github.com/rollkit/rollkit/blob/main/core/execution/execution.go)) that enables developers to integrate any compatible application as the rollup's execution layer.
+Rollkit is designed to be modular and flexible, allowing different execution layers to be plugged in. Rollkit defines a general-purpose execution interface ([see execution.go](https://github.com/rollkit/rollkit/blob/main/core/execution/execution.go)) that enables developers to integrate any compatible application as the chain's execution layer.
 
-This means you can use a variety of Cosmos SDK or Reth compatible applications as the execution environment for your rollup: choose the execution environment that best fits your use case.
+This means you can use a variety of Cosmos SDK or Reth compatible applications as the execution environment for your chain: choose the execution environment that best fits your use case.
 
 ## Supported Execution Layers
 
 ### Cosmos SDK Execution Layer
 
-Rollkit natively supports Cosmos SDK-based applications as the execution layer for a rollup via the ABCI (Application Blockchain Interface) protocol. The Cosmos SDK provides a rich set of modules for staking, governance, IBC, and more, and is widely used in the Cosmos ecosystem. This integration allows developers to leverage the full power and flexibility of the Cosmos SDK when building their rollup applications.
+Rollkit natively supports Cosmos SDK-based applications as the execution layer for a chain via the ABCI (Application Blockchain Interface) protocol. The Cosmos SDK provides a rich set of modules for staking, governance, IBC, and more, and is widely used in the Cosmos ecosystem. This integration allows developers to leverage the full power and flexibility of the Cosmos SDK when building their chain applications.
 
 - [Cosmos SDK Documentation](https://docs.cosmos.network/)
 - [Cosmos SDK ABCI Documentation](https://docs.cosmos.network/main/build/abci/introduction)

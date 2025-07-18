@@ -69,23 +69,23 @@ Rollkit's goal is to make deploying a chain as easy as it is to deploy a smart c
 
 ## How can you use Rollkit?
 
-As briefly mentioned above, Rollkit could be used in many different ways. From sovereign rollups, to settlement layers, and in the future even to L3s.
+As briefly mentioned above, Rollkit could be used in many different ways. From sovereign chains, to settlement layers, and in the future even to L3s.
 
-### Rollup with any execution environment
+### Chain with any execution environment
 
-Rollkit gives developers the flexibility to use pre-existing ABCI-compatible state machines or create a custom state machine tailored to their rollup needs. Rollkit does not restrict the use of any specific virtual machine, allowing developers to experiment and bring innovative applications to life.
+Rollkit gives developers the flexibility to use pre-existing ABCI-compatible state machines or create a custom state machine tailored to their chain needs. Rollkit does not restrict the use of any specific virtual machine, allowing developers to experiment and bring innovative applications to life.
 
-### Sovereign rollup with Cosmos SDK
+### Sovereign chain with Cosmos SDK
 
-Similarly to how developers utilize the Cosmos SDK to build a sovereign layer 1 chain, the Cosmos SDK could be utilized to create a Rollkit-compatible rollup chain.
+Similarly to how developers utilize the Cosmos SDK to build a sovereign layer 1 chain, the Cosmos SDK could be utilized to create a Rollkit-compatible chain.
 Cosmos-SDK has great [documentation](https://docs.cosmos.network/main) and tooling that developers can leverage to learn.
 
-Another possibility is taking an existing layer 1 built with the Cosmos SDK and deploying it as a Rollkit rollup. This can provide a great opportunity for experimentation and growth.
+Another possibility is taking an existing layer 1 built with the Cosmos SDK and deploying it as a Rollkit chain. This can provide a great opportunity for experimentation and growth.
 
 ### Build a settlement layer
 
-[Settlement layers](https://celestia.org/learn/modular-settlement-layers/settlement-in-the-modular-stack/) are ideal for developers who want to avoid deploying sovereign rollups. They provide a platform for rollups to verify proofs and resolve disputes.
-Additionally, they act as a hub for rollups to facilitate trust-minimized token transfers and liquidity sharing between rollups that share the same settlement layer.
+[Settlement layers](https://celestia.org/learn/modular-settlement-layers/settlement-in-the-modular-stack/) are ideal for developers who want to avoid deploying sovereign chains. They provide a platform for chains to verify proofs and resolve disputes.
+Additionally, they act as a hub for chains to facilitate trust-minimized token transfers and liquidity sharing between chains that share the same settlement layer.
 Think of settlement layers as a special type of execution layer.
 
 ## When can you use Rollkit?

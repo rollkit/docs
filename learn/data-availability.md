@@ -1,6 +1,6 @@
 # Data Availability in Rollkit
 
-Data availability (DA) is a core of Rollkit's. Rollkit utilize's  data availability ensures that all transaction data and block information required to verify the rollup's state is accessible to anyone running a node or light client.
+Data availability (DA) is a core of Rollkit's. Rollkit utilize's  data availability ensures that all transaction data and block information required to verify the chain's state is accessible to anyone running a node or light client.
 
 Learn more about data availability:
 
