@@ -21,7 +21,7 @@ If you're familiar with Rollkit, you may want to skip to the [guides section](/g
 
 Rollkit is a sovereign chain framework that gives developers the freedom to deploy chains throughout the modular stack, opening new possibilities for rapid experimentation and innovation.
 
-[Read more on the Celestia blog](https://blog.celestia.org/sovereign-chain-chains/) to learn more about the concept of sovereign chains.
+[Read more on the Celestia blog](https://blog.celestia.org/sovereign-rollup-chains/) to learn more about the concept of sovereign chains.
 
 Rollkit is an [open-source framework](https://github.com/rollkit/rollkit). It features a modular node that can run chains and exposes an [ABCI-compatible client interface](https://github.com/cometbft/cometbft/tree/main/abci), which can be used as a substitute for CometBFT in any ABCI-compatible blockchain application.
 
