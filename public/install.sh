@@ -88,7 +88,7 @@ echo ""
 
 print_header "Building and installing GM executable..."
 make install
-print_success "gmd CLI installed successfully!"
+print_success "CLI installed successfully!"
 
 cd ..
 print_header "Cleaning up downloads..."
