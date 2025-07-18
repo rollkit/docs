@@ -63,7 +63,7 @@ Rollkit chains are deployed on specialized data availability layers like Celesti
 Rollkit is built as an open source modular framework, to make it easier for developers to reuse the four main components and customize their chains. These components are data availability layers, execution environments, proof systems, and sequencer schemes.
 
 - **Faster time to market:**
-Rollkit's goal is to make deploying a chain as easy as it is to deploy a smart contract, cutting the time it takes to bring blockchain products to market from months or even years to just minutes.
+Rollkit eliminates the need to bootstrap a validator set, manage a consensus network, incur high economic costs, and face other trade-offs that come with deploying a new layer 1. Rollkit's goal is to make deploying a chain as easy as it is to deploy a smart contract, cutting the time it takes to bring blockchain products to market from months or even years to just minutes.
 
 - **Sovereignty**: Rollkit also enables developers to deploy sovereign chains for cases where communities require sovereignty.
 
