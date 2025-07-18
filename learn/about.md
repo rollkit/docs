@@ -49,7 +49,7 @@ In a potential future with millions of chains, it's unlikely all of those chains
 
 ## Why Rollkit?
 
-Rollkit solves the challenges encountered during the deployment of a smart contract or a new layer 1, by minimizing these tradeoffs through the implementation of chain chains (chains).
+Rollkit solves the challenges encountered during the deployment of a smart contract or a new layer 1, by minimizing these tradeoffs through the implementation of sovereign chains.
 
 With Rollkit, developers can benefit from:
 
