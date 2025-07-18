@@ -319,8 +319,8 @@ function sidebarHome() {
       items: [
         { text: "Overview", link: "/blog/overview" },
         {
-          text: "Rollkit: The First Sovereign Chain Framework",
-          link: "/blog/rollkit-the-first-sovereign-chain-framework",
+          text: "Rollkit: The First Sovereign Rollup Framework",
+          link: "/blog/rollkit-the-first-sovereign-rollup-framework",
         },
       ],
     },
