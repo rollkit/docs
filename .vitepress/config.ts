@@ -187,8 +187,6 @@ function sidebarHome() {
           text: "About Rollkit",
           link: "/learn/about",
         },
-        { text: "Transaction flow", link: "/learn/transaction-flow" },
-        { text: "Configuration", link: "/learn/config" },
         {
           text: "Data Availability",
           link: "/learn/data-availability",
@@ -219,6 +217,8 @@ function sidebarHome() {
             { text: "Store", link: "/learn/specs/store" },
           ],
         },
+        { text: "Transaction flow", link: "/learn/transaction-flow" },
+        { text: "Configuration", link: "/learn/config" },
       ],
     },
     {
