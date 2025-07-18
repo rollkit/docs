@@ -1,20 +1,3 @@
 reviewers:
   defaults:
-    - jcstein
-    - rollkit
-  groups:
-    rollkit:
-      - Manav-Aggarwal
-      - tzdybal
-      - gupadhyaya
-      - tuxcanfly
-      - yarikbratashchuk
-files:
-  ".github/**":
-    - jcstein
-    - rollkit
-options:
-  ignore_draft: true
-  ignored_keywords:
-    - WIP
-  number_of_reviewers: 3
+    - binarybuilders

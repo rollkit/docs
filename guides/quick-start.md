@@ -1,5 +1,5 @@
 ---
-description: Quickly start a rollup node using the Testapp CLI.
+description: Quickly start a chain node using the Testapp CLI.
 ---
 
 <script setup>
@@ -8,7 +8,7 @@ import constants from '../.vitepress/constants/constants.js'
 
 # Quick start guide
 
-Welcome to Rollkit, a sovereign rollup framework! The easiest way to launch your sovereign rollup node is by using the Testapp CLI.
+Welcome to Rollkit, a sovereign chain framework! The easiest way to launch your sovereign chain node is by using the Testapp CLI.
 
 ## 📦 Install Testapp (CLI)
 
@@ -31,17 +31,17 @@ rollkit version:  execution/evm/v1.0.0-beta.1
 rollkit git sha:  cd1970de
 ```
 
-## 🗂️ Initialize a sovereign rollup node
+## 🗂️ Initialize a sovereign chain node
 
-To initialize a sovereign rollup node, execute the following command:
+To initialize a sovereign chain node, execute the following command:
 
 ```bash
 testapp init --rollkit.node.aggregator --rollkit.signer.passphrase secret
 ```
 
-## 🚀 Run your sovereign rollup node
+## 🚀 Run your sovereign chain node
 
-Now that we have our testapp generated and installed, we can launch our rollup along with the local DA by running the following command:
+Now that we have our testapp generated and installed, we can launch our chain along with the local DA by running the following command:
 
 First lets start the local DA network:
 
@@ -57,7 +57,7 @@ You should see logs like:
 4:58PM INF server started listening on=localhost:7980 module=da
 ```
 
-To start a basic sovereign rollup node, execute:
+To start a basic sovereign chain node, execute:
 
 ```bash
 testapp start --rollkit.signer.passphrase secret
@@ -77,4 +77,4 @@ I[2024-05-01|09:58:46.082] Finalized block                              module=B
 
 ## 🎉 Conclusion
 
-That's it! Your sovereign rollup node is now up and running. It's incredibly simple to start a blockchain (which is essentially what a rollup is) these days using Rollkit. Explore further and discover how you can build useful applications on Rollkit. Good luck!
+That's it! Your sovereign chain node is now up and running. It's incredibly simple to start a blockchain (which is essentially what a chain is) these days using Rollkit. Explore further and discover how you can build useful applications on Rollkit. Good luck!

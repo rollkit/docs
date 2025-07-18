@@ -21,13 +21,13 @@ curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.localDAL
 
 This script will build and run the node, which will then listen on port `7980`.
 
-## Configuring your rollup to connect to the local DA network
+## Configuring your chain to connect to the local DA network
 
-To connect your rollup to the local DA network, you need to pass the `--rollkit.da.address` flag with the local DA node address.
+To connect your chain to the local DA network, you need to pass the `--rollkit.da.address` flag with the local DA node address.
 
-## Run your rollup
+## Run your chain
 
-Start your rollup node with the following command, ensuring to include the DA address flag:
+Start your chain node with the following command, ensuring to include the DA address flag:
 
 ::: code-group
 
@@ -43,7 +43,7 @@ Start your rollup node with the following command, ensuring to include the DA ad
 
 :::
 
-You should see the following log message indicating that your rollup is connected to the local DA network:
+You should see the following log message indicating that your chain is connected to the local DA network:
 
 ```shell
 11:07AM INF NewLocalDA: initialized LocalDA module=local-da
@@ -53,4 +53,4 @@ You should see the following log message indicating that your rollup is connecte
 
 ## Summary
 
-By following these steps, you will set up a local DA network node and configure your rollup to post data to it. This setup is useful for testing and development in a controlled environment. You can find more information on running the local-da binary [here](https://github.com/rollkit/rollkit/blob/main/da/cmd/local-da/README.md)
+By following these steps, you will set up a local DA network node and configure your chain to post data to it. This setup is useful for testing and development in a controlled environment. You can find more information on running the local-da binary [here](https://github.com/rollkit/rollkit/blob/main/da/cmd/local-da/README.md)

@@ -29,7 +29,7 @@ Please ensure you review the detailed Contribution Guidelines above before makin
 
 ## Directory Structure
 
-* /guides: Step-by-step instructions to help users build their own rollups with Rollkit.
+* /guides: Step-by-step instructions to help users build their own chains with Rollkit.
 * /learn: Technical reference materials, such as configuration options and details about the Rollkit stack.
 * /blog: Blog posts for the Rollkit blog.
 <!-- * /guides [WIP]: In-depth articles that cover specific topics in detail. -->

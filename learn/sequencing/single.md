@@ -1,6 +1,6 @@
 # Single Sequencer
 
-A single sequencer is the simplest sequencing architecture for a Rollkit-based rollup. In this model, one node (the sequencer) is responsible for ordering transactions, producing blocks, and submitting data to the data availability (DA) layer.
+A single sequencer is the simplest sequencing architecture for a Rollkit-based chain. In this model, one node (the sequencer) is responsible for ordering transactions, producing blocks, and submitting data to the data availability (DA) layer.
 
 ## How the Single Sequencer Model Works
 
@@ -19,10 +19,10 @@ A single sequencer is the simplest sequencing architecture for a Rollkit-based r
 
 4. **Data Availability Posting:**
    - The sequencer posts the block data to the configured DA layer (e.g., Celestia).
-   - This ensures that anyone can access the data needed to reconstruct the rollup state.
+   - This ensures that anyone can access the data needed to reconstruct the chain state.
 
 5. **State Update:**
-   - The sequencer updates the rollup state based on the new block and makes the updated state available to light clients and full nodes.
+   - The sequencer updates the chain state based on the new block and makes the updated state available to light clients and full nodes.
 
 ## Transaction Flow Diagram
 

@@ -1,15 +1,15 @@
-# 🔄 How to restart your rollup
+# 🔄 How to restart your chain
 
-This guide will teach you how to restart your Rollkit rollup.
+This guide will teach you how to restart your Rollkit chain.
 
-## Restart rollup
+## Restart chain
 
-This section covers the case where you need to restart your rollup.
+This section covers the case where you need to restart your chain.
 
-In order to restart your rollup, you simply need to run the `<your-binary>d start [...args]`
-command for your rollup.
+In order to restart your chain, you simply need to run the `<your-binary>d start [...args]`
+command for your chain.
 
-For example, if you ran the [quick start](/guides/quick-start.md) tutorial, you started your rollup with:
+For example, if you ran the [quick start](/guides/quick-start.md) tutorial, you started your chain with:
 
 ```bash
 testapp start
@@ -24,7 +24,7 @@ I[2024-10-17|14:52:12.845] executed block                               module=B
 I[2024-10-17|14:52:12.846] indexed block events                         module=txindex height=7
 ```
 
-If you need to restart your rollup, you can run the same command again:
+If you need to restart your chain, you can run the same command again:
 
 ```bash
 testapp start
@@ -39,13 +39,13 @@ I[2024-10-17|14:52:13.845] executed block                               module=B
 I[2024-10-17|14:52:13.845] indexed block events                         module=txindex height=8
 ```
 
-It is important to include any additional flags that you used when you first started your rollup. For example, if you used the `--rollkit.da.namespace` flag, you will need to include that flag when restarting your rollup to ensure your rollup continues to publish blobs to the same namespace.
+It is important to include any additional flags that you used when you first started your chain. For example, if you used the `--rollkit.da.namespace` flag, you will need to include that flag when restarting your chain to ensure your chain continues to publish blobs to the same namespace.
 
-## Restart rollup after running out of funds
+## Restart chain after running out of funds
 
 This section covers the case that the node that
 you are using to post blocks to your DA and consensus layer runs out of funds (tokens),
-and you need to restart your rollup.
+and you need to restart your chain.
 
 In this example, we're using Celestia's [Mocha testnet](https://docs.celestia.org/how-to-guides/mocha-testnet/)
 and running the [quick start](/guides/quick-start.md). In this example, our Celestia DA light node
@@ -58,7 +58,7 @@ error. This error is defined by Cosmos SDK as:
 ErrTxInMempoolCache = Register(RootCodespace, 19, "tx already in mempool")
 ```
 
-In order to get around this error, and the same error on other Rollkit rollups, you will need to re-fund your Celestia account and increase the gas fee. This will override the transaction that is stuck in the mempool.
+In order to get around this error, and the same error on other Rollkit chains, you will need to re-fund your Celestia account and increase the gas fee. This will override the transaction that is stuck in the mempool.
 
 If you top up the balance of your node and don't increase the gas fee, you will still encounter the `Code: 19` error because there is a transaction (posting block to DA) that is duplicate to one that already exists. In order to get around this, you'll need to increase the gas fee and restart the chain.
 
@@ -82,20 +82,20 @@ cd $HOME && cd celestia-node
 ./cel-key list --keyring-backend test --node.type light --p2p.network <network>
 ```
 
-### 🛑 Stopping your rollup {#stopping-your-rollup}
+### 🛑 Stopping your chain {#stopping-your-chain}
 
-You can stop your rollup by using `Control + C` in your terminal where the node is running.
+You can stop your chain by using `Control + C` in your terminal where the node is running.
 
 ### ⛽ Increase the gas fee {#increase-gas-fee}
 
 To reiterate, before restarting the chain, you will need to increase the gas fee in order to avoid a `Code: 19` error. See the [How to configure gas price](/guides/config.md#da-gas-price) guide for more information.
 
-### 🔁 Restarting your rollup {#restarting-your-rollup}
+### 🔁 Restarting your chain {#restarting-your-chain}
 
-Follow the [restart rollup](#restart-rollup) section above.
+Follow the [restart chain](#restart-chain) section above.
 
 ### 🛢️ Reduce gas fee & restart again {#reduce-gas-fee-restart-again}
 
 In order to save your TIA, we also recommend stopping the chain with `Control + C`, changing the gas fee back to the default (in our case, 8000 utia) and restarting the chain:
 
-🎊 Congrats! You've successfully restarted your Rollkit rollup after running out of TIA.
+🎊 Congrats! You've successfully restarted your Rollkit chain after running out of TIA.

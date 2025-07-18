@@ -98,7 +98,7 @@ db_path: "data"
 ### Chain ID
 
 **Description:**
-The unique identifier for your rollup chain. This ID is used to differentiate your network from others and is crucial for network communication and transaction validation.
+The unique identifier for your chain. This ID is used to differentiate your network from others and is crucial for network communication and transaction validation.
 
 **YAML:**
 Set this in your configuration file at the top level:
@@ -354,7 +354,7 @@ da:
 ### DA Namespace
 
 **Description:**
-The namespace ID used when submitting blobs (block data) to the DA layer. This helps segregate data from different rollups or applications on a shared DA layer.
+The namespace ID used when submitting blobs (block data) to the DA layer. This helps segregate data from different chains or applications on a shared DA layer.
 
 **YAML:**
 
@@ -394,7 +394,7 @@ da:
 ### DA Start Height
 
 **Description:**
-The block height on the DA layer from which Rollkit should begin syncing. This is useful when deploying a new rollup on an existing DA chain, allowing it to ignore historical data before its inception.
+The block height on the DA layer from which Rollkit should begin syncing. This is useful when deploying a new chain on an existing DA chain, allowing it to ignore historical data before its inception.
 
 **YAML:**
 

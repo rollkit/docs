@@ -1,6 +1,6 @@
-# How to create a genesis for your rollup
+# How to create a genesis for your chain
 
-This guide will walk you through the process of setting up a genesis for your rollup. Follow the steps below to initialize your rollup chain, add a genesis account, and start the chain.
+This guide will walk you through the process of setting up a genesis for your chain. Follow the steps below to initialize your chain, add a genesis account, and start the chain.
 
 ## 0. Pre-requisities
 
@@ -19,7 +19,7 @@ First, set the necessary variables for your chain in the terminal, here is an ex
 ```sh
 VALIDATOR_NAME=validator1
 CHAIN_ID=gm
-KEY_NAME=rollup-key
+KEY_NAME=chain-key
 CHAINFLAG="--chain-id ${CHAIN_ID}"
 TOKEN_AMOUNT="10000000000000000000000000stake"
 STAKING_AMOUNT="1000000000stake"
@@ -39,7 +39,7 @@ Once completed, run the following command to ensure that the `/Users/you/.gm` di
 ignite rollkit init
 ```
 
-This (re)creates an `gmd` binary that will be used for the rest of the tutorials to run all the operations on the rollup chain.
+This (re)creates an `gmd` binary that will be used for the rest of the tutorials to run all the operations on the chain.
 
 ## 3. Resetting existing genesis/chain data
 
@@ -118,4 +118,4 @@ gmd start --rollkit.node.aggregator --chain_id $CHAIN_ID
 
 ## Summary
 
-By following these steps, you will set up the genesis for your rollup, initialize the validator, add a genesis account, and started the chain. This guide provides a basic framework for configuring and starting your rollup using the gm-world binary. Make sure you initialized your chain correctly, and use the `gmd` command for all operations.
+By following these steps, you will set up the genesis for your chain, initialize the validator, add a genesis account, and started the chain. This guide provides a basic framework for configuring and starting your chain using the gm-world binary. Make sure you initialized your chain correctly, and use the `gmd` command for all operations.
