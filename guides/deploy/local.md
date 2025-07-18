@@ -1,4 +1,4 @@
-# 🐳 Docker Compose
+# 🏠 Local
 
 This tutorial is going to show you how to deploy the [gm-world chain](/guides/gm-world.md) using Docker Compose.
 
@@ -6,8 +6,8 @@ You can learn more about Docker Compose [here](https://docs.docker.com/compose/)
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
-import Callout from '../.vitepress/components/callout.vue'
-import constants from '../.vitepress/constants/constants.js'
+import Callout from '../../.vitepress/components/callout.vue'
+import constants from '../../.vitepress/constants/constants.js'
 </script>
 
 :::tip
@@ -61,7 +61,7 @@ RUN apt update && \
  ca-certificates \
  curl
 
-RUN curl -sSL https://rollkit.dev/install.sh | bash 
+RUN curl -sSL https://rollkit.dev/install.sh | bash
 # Install rollkit
 
 # Install ignite
@@ -71,8 +71,8 @@ RUN curl https://get.ignite.com/cli! | bash
 WORKDIR /app
 
 # cache dependencies.
-COPY ./go.mod . 
-COPY ./go.sum . 
+COPY ./go.mod .
+COPY ./go.sum .
 RUN go mod download
 
 # Copy all files from the current directory to the container
@@ -80,8 +80,8 @@ COPY . .
 
 # Build the chain
 RUN ignite app install -g github.com/ignite/apps/rollkit
-RUN ignite chain build  -y 
-RUN ignite rollkit init 
+RUN ignite chain build  -y
+RUN ignite rollkit init
 
 # Stage 2: Set up the runtime environment
 FROM debian:bookworm-slim

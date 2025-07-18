@@ -257,11 +257,15 @@ function sidebarHome() {
           items: [
             {
               text: "Overview",
-              link: "/guides/deploy-overview",
+              link: "/guides/deploy/overview",
             },
             {
-              text: "Docker Compose",
-              link: "/guides/docker-compose",
+              text: "Local (dev)",
+              link: "/guides/deploy/local",
+            },
+            {
+              text: "Testnet",
+              link: "/guides/deploy/testnet",
             },
           ],
         },
