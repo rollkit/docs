@@ -95,7 +95,7 @@ After starting your full node, you should see output similar to:
 This output indicates that your full node is successfully connecting to the network and processing blocks.
 
 :::tip
-If your chain uses EVM as an execution layar and you see an error like `datadir already used by another process`, it means you have to remove all the state from chain data directory (`/root/.yourchain_fn/data/`) and specify a different data directory for the EVM client.
+If your chain uses EVM as an execution layer and you see an error like `datadir already used by another process`, it means you have to remove all the state from chain data directory (`/root/.yourchain_fn/data/`) and specify a different data directory for the EVM client.
 :::
 
 ## Conclusion
