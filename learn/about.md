@@ -19,15 +19,15 @@ If you're familiar with Rollkit, you may want to skip to the [guides section](/g
 
 ## What is Rollkit?
 
-Rollkit is a sovereign rollup framework that gives developers the freedom to deploy rollups throughout the modular stack, opening new possibilities for rapid experimentation and innovation.
+Rollkit is a sovereign chain framework that gives developers the freedom to deploy chains throughout the modular stack, opening new possibilities for rapid experimentation and innovation.
 
-[Read more on the Celestia blog](https://blog.celestia.org/sovereign-rollup-chains/) to learn more about the concept of sovereign rollups.
+[Read more on the Celestia blog](https://blog.celestia.org/sovereign-chain-chains/) to learn more about the concept of sovereign chains.
 
-Rollkit is an [open-source framework](https://github.com/rollkit/rollkit). It features a modular node that can run rollups and exposes an [ABCI-compatible client interface](https://github.com/cometbft/cometbft/tree/main/abci), which can be used as a substitute for CometBFT in any ABCI-compatible blockchain application.
+Rollkit is an [open-source framework](https://github.com/rollkit/rollkit). It features a modular node that can run chains and exposes an [ABCI-compatible client interface](https://github.com/cometbft/cometbft/tree/main/abci), which can be used as a substitute for CometBFT in any ABCI-compatible blockchain application.
 
 Rollkit uses data availability (DA) layers by having a unified client interface which can be implemented for use with different DA networks, such as [Celestia](https://celestia.org/).
 
-Our goal is to empower developers to quickly innovate and create new classes of rollups with minimal trade-offs, and to make deploying a new chain as easy as deploying a smart contract.
+Our goal is to empower developers to quickly innovate and create new classes of chains with minimal trade-offs, and to make deploying a new chain as easy as deploying a smart contract.
 
 ## What problems is Rollkit solving?
 
@@ -49,23 +49,23 @@ In a potential future with millions of chains, it's unlikely all of those chains
 
 ## Why Rollkit?
 
-Rollkit solves the challenges encountered during the deployment of a smart contract or a new layer 1, by minimizing these tradeoffs through the implementation of rollup chains (rollups).
+Rollkit solves the challenges encountered during the deployment of a smart contract or a new layer 1, by minimizing these tradeoffs through the implementation of chain chains (chains).
 
 With Rollkit, developers can benefit from:
 
 - **Shared security**:
-Rollups inherit security from a data availability layer, by posting blocks to it. Rollups reduce the trust assumptions placed on rollup sequencers by allowing full nodes to download and verify the transactions in the blocks posted by the sequencer. For optimistic or zk rollups, in case of fraudulent blocks, full nodes can generate fraud or zk proofs, which they can share with the rest of the network, including light nodes. Our roadmap includes the ability for light clients to receive and verify proofs, so that everyday users can enjoy high security guarantees.
+Chains inherit security from a data availability layer, by posting blocks to it. Chains reduce the trust assumptions placed on chain sequencers by allowing full nodes to download and verify the transactions in the blocks posted by the sequencer. For optimistic or zk chains, in case of fraudulent blocks, full nodes can generate fraud or zk proofs, which they can share with the rest of the network, including light nodes. Our roadmap includes the ability for light clients to receive and verify proofs, so that everyday users can enjoy high security guarantees.
 
 - **Scalability:**
-Rollkit rollups are deployed on specialized data availability layers like Celestia, which directly leverages the scalability of the DA layer. Additionally, rollup transactions are executed off-chain rather than the data availability layer. This means rollups have their own dedicated computational resources, rather than sharing computational resources with other applications.
+Rollkit chains are deployed on specialized data availability layers like Celestia, which directly leverages the scalability of the DA layer. Additionally, chain transactions are executed off-chain rather than the data availability layer. This means chains have their own dedicated computational resources, rather than sharing computational resources with other applications.
 
 - **Customizability:**
-Rollkit is built as an open source modular framework, to make it easier for developers to reuse the four main components and customize their rollups. These components are data availability layers, execution environments, proof systems, and sequencer schemes.
+Rollkit is built as an open source modular framework, to make it easier for developers to reuse the four main components and customize their chains. These components are data availability layers, execution environments, proof systems, and sequencer schemes.
 
 - **Faster time to market:**
-Rollkit eliminates the need to bootstrap a validator set, manage a consensus network, incur high economic costs, and face other trade-offs that come with deploying a new layer 1. Rollkit's goal is to make deploying a rollup as easy as it is to deploy a smart contract, cutting the time it takes to bring blockchain products to market from months or even years to just minutes.
+Rollkit's goal is to make deploying a chain as easy as it is to deploy a smart contract, cutting the time it takes to bring blockchain products to market from months or even years to just minutes.
 
-- **Sovereignty**: Rollkit also enables developers to deploy sovereign rollups for cases where communities require sovereignty.
+- **Sovereignty**: Rollkit also enables developers to deploy sovereign chains for cases where communities require sovereignty.
 
 ## How can you use Rollkit?
 

@@ -288,8 +288,8 @@ function sidebarHome() {
           link: "/guides/full-node",
         },
         {
-          text: "Restart your rollup",
-          link: "/guides/restart-rollup",
+          text: "Restart your chain",
+          link: "/guides/restart-chain",
         },
         {
           text: "Reset your chain's state",
@@ -300,7 +300,7 @@ function sidebarHome() {
           link: "/guides/cometbft-to-rollkit",
         },
         {
-          text: "Create genesis for your rollup",
+          text: "Create genesis for your chain",
           link: "/guides/create-genesis",
         },
         {
@@ -308,7 +308,7 @@ function sidebarHome() {
           link: "/guides/metrics",
         },
         {
-          text: "Use IBC token (TIA) as gas token in your rollup",
+          text: "Use IBC token (TIA) as gas token in your chain",
           link: "/guides/use-tia-for-gas",
         },
       ],
@@ -319,8 +319,8 @@ function sidebarHome() {
       items: [
         { text: "Overview", link: "/blog/overview" },
         {
-          text: "Rollkit: The First Sovereign Rollup Framework",
-          link: "/blog/rollkit-the-first-sovereign-rollup-framework",
+          text: "Rollkit: The First Sovereign Chain Framework",
+          link: "/blog/rollkit-the-first-sovereign-chain-framework",
         },
       ],
     },

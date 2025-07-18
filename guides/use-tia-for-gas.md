@@ -1,8 +1,8 @@
-# How to use IBC token (TIA) as gas token in your rollup
+# How to use IBC token (TIA) as gas token in your chain
 
 ## 🌞 Introduction {#introduction}
 
-This tutorial will guide you through building a sovereign `gm-world` rollup using Rollkit, with TIA as the gas token. Unlike the [quick start guide](/guides/quick-start.md), which uses a native rollup token for gas, this tutorial demonstrates how to integrate an IBC-enabled token, TIA, as the gas token within the rollup, providing a deeper exploration of sovereign rollup development.
+This tutorial will guide you through building a sovereign `gm-world` chain using Rollkit, with TIA as the gas token. Unlike the [quick start guide](/guides/quick-start.md), which uses a native chain token for gas, this tutorial demonstrates how to integrate an IBC-enabled token, TIA, as the gas token within the chain, providing a deeper exploration of sovereign chain development.
 
 No prior understanding of the build process is required, just that it utilizes the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) for blockchain applications.
 
@@ -30,9 +30,9 @@ Your local DA network is already running if you followed the [quick start guide]
 curl -sSL https://rollkit.dev/install-local-da.sh | bash -s {{constants.rollkitLatestTag}}
 ```
 
-## 🚀 Starting your rollup {#start-your-rollup}
+## 🚀 Starting your chain {#start-your-chain}
 
-Start the rollup, posting to the local DA network:
+Start the chain, posting to the local DA network:
 
 ```bash
 gmd start --rollkit.node.aggregator --rollkit.da.address http://localhost:7980 --minimum-gas-prices="0.02ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA,0.025stake"
@@ -76,7 +76,7 @@ Now you should see the logs of the running node:
 
 ## ✨ Connecting to Celestia Mocha testnet using IBC {#ibc-to-celestia}
 
-Next, we will establish an IBC connection with the Celestia Mocha testnet to enable TIA transfers for gas usage on our rollup.
+Next, we will establish an IBC connection with the Celestia Mocha testnet to enable TIA transfers for gas usage on our chain.
 
 Install the IBC relayer:
 
@@ -102,7 +102,7 @@ echo "global:
     ics20-memo-limit: 0
     max-receiver-size: 150
 chains:
-    gm_rollup:
+    gm_chain:
         type: cosmos
         value:
             key-directory: '$HOME/.relayer/keys/gm'
@@ -163,20 +163,20 @@ paths:
             channel-list: []
 " > "$HOME/.relayer/config/config.yaml"
 
-rly keys restore gm_rollup a "regret resist either bid upon yellow leaf early symbol win market vital"
+rly keys restore gm_chain a "regret resist either bid upon yellow leaf early symbol win market vital"
 rly keys restore mocha     a "regret resist either bid upon yellow leaf early symbol win market vital"
 ```
 
 Get the relayer accounts:
 
 ```bash
-rly address gm_rollup a # => gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc
+rly address gm_chain a # => gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc
 rly address mocha     a # => celestia1jqevcsld0dqpjp3csfg7alkv3lehvn8u04ymsu
 ```
 
 Note: These accounts should always be the same because of the hardcoded mnemonics that we've loaded in the `rly keys restore` step.
 
-Fund the relayer on our rollup:
+Fund the relayer on our chain:
 
 ```bash
 rollkit tx bank send gm-key-2 gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc 10000000stake --keyring-backend test --chain-id gm --fees 5000stake -y
@@ -190,14 +190,14 @@ Verify the relayer is funded:
 
 ```bash
 rly q balance mocha     a # => address {celestia1jqevcsld0dqpjp3csfg7alkv3lehvn8u04ymsu} balance {10000000utia}
-rly q balance gm_rollup a # => address {gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc} balance {10000000stake}
+rly q balance gm_chain a # => address {gm1jqevcsld0dqpjp3csfg7alkv3lehvn8uswknrc} balance {10000000stake}
 ```
 
 Create IBC clients:
 
 ```bash
-rly tx client gm_rollup mocha gm_mocha-4 --override
-rly tx client mocha gm_rollup gm_mocha-4 --override
+rly tx client gm_chain mocha gm_mocha-4 --override
+rly tx client mocha gm_chain gm_mocha-4 --override
 ```
 
 Create IBC connection:
@@ -218,16 +218,16 @@ Start the relayer:
 rly start gm_mocha-4
 ```
 
-Transfer TIA from Mocha to our rollup:
+Transfer TIA from Mocha to our chain:
 
 ```bash
-ACCOUNT_ON_ROLLUP="$(rollkit keys show -a --keyring-backend test gm-key-2)"
-CHANNEL_ID_ON_MOCHA="$(rly q channels mocha gm_rollup | jq -r .channel_id | tail -1)"
+ACCOUNT_ON_CHAIN="$(rollkit keys show -a --keyring-backend test gm-key-2)"
+CHANNEL_ID_ON_MOCHA="$(rly q channels mocha gm_chain | jq -r .channel_id | tail -1)"
 
-rly tx transfer mocha gm_rollup 1000000utia "$ACCOUNT_ON_ROLLUP" "$CHANNEL_ID_ON_MOCHA" --path gm_mocha-4
+rly tx transfer mocha gm_chain 1000000utia "$ACCOUNT_ON_CHAIN" "$CHANNEL_ID_ON_MOCHA" --path gm_mocha-4
 ```
 
-Verify the account on our rollup is funded with IBC TIA:
+Verify the account on our chain is funded with IBC TIA:
 
 ```bash
 gmd query bank balances "$(rollkit keys show -a --keyring-backend test gm-key-2)"
@@ -243,13 +243,13 @@ gmd query bank balances "$(rollkit keys show -a --keyring-backend test gm-key-2)
 
 ## 💸 Transactions {#transactions}
 
-Finally, send a transaction on our rollup using IBC TIA as the gas token:
+Finally, send a transaction on our chain using IBC TIA as the gas token:
 
 ```bash
-ACCOUNT_ON_ROLLUP="$(rollkit keys show -a --keyring-backend test gm-key-2)"
+ACCOUNT_ON_CHAIN="$(rollkit keys show -a --keyring-backend test gm-key-2)"
 
 # Send the transaction
-TX_HASH=$(rollkit tx bank send "$ACCOUNT_ON_ROLLUP" "$ACCOUNT_ON_ROLLUP" 1stake --keyring-backend test --chain-id gm --gas-prices 0.02ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA -y --output json | jq -r .txhash)
+TX_HASH=$(rollkit tx bank send "$ACCOUNT_ON_CHAIN" "$ACCOUNT_ON_CHAIN" 1stake --keyring-backend test --chain-id gm --gas-prices 0.02ibc/C3E53D20BC7A4CC993B17C7971F8ECD06A433C10B6A96F4C4C3714F0624C56DA -y --output json | jq -r .txhash)
 
 # Verify success
 rollkit q tx "$TX_HASH" --output json | jq .code # => 0
@@ -257,4 +257,4 @@ rollkit q tx "$TX_HASH" --output json | jq .code # => 0
 
 ## 🎉 Next steps
 
-Congratulations! You've built a local rollup that posts to a local DA network and uses TIA as the gas token!
+Congratulations! You've built a local chain that posts to a local DA network and uses TIA as the gas token!

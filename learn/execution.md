@@ -16,7 +16,7 @@ Rollkit natively supports Cosmos SDK-based applications as the execution layer f
 
 ### Reth
 
-Reth is a high-performance Ethereum execution client written in Rust. Rollkit can integrate Reth as an execution layer, enabling Ethereum-compatible rollups to process EVM transactions and maintain Ethereum-like state. This allows developers to build rollups that leverage the Ethereum ecosystem, tooling, and smart contracts, while benefiting from Rollkit's modular consensus and data availability.
+Reth is a high-performance Ethereum execution client written in Rust. Rollkit can integrate Reth as an execution layer, enabling Ethereum-compatible chains to process EVM transactions and maintain Ethereum-like state. This allows developers to build chains that leverage the Ethereum ecosystem, tooling, and smart contracts, while benefiting from Rollkit's modular consensus and data availability.
 
 For more information about Reth, see the official documentation:
 

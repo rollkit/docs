@@ -18,7 +18,7 @@ Rollkit is designed to be DA-agnostic, meaning it can integrate with different d
 - **External Data Availability Layer (DA Interface):**
   - Used for production and secure deployments.
   - Rollkit can post block data to any external DA layer that implements the Rollkit [DA interface](https://github.com/rollkit/rollkit/blob/main/core/da/da.go#L11) (e.g., Celestia).
-  - Anyone can verify that the data is available and reconstruct the rollup state, depending on the guarantees of the chosen DA layer.
+  - Anyone can verify that the data is available and reconstruct the chain state, depending on the guarantees of the chosen DA layer.
 
 ## Best Practices
 

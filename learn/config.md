@@ -394,7 +394,7 @@ da:
 ### DA Start Height
 
 **Description:**
-The block height on the DA layer from which Rollkit should begin syncing. This is useful when deploying a new rollup on an existing DA chain, allowing it to ignore historical data before its inception.
+The block height on the DA layer from which Rollkit should begin syncing. This is useful when deploying a new chain on an existing DA chain, allowing it to ignore historical data before its inception.
 
 **YAML:**
 

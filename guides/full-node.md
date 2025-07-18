@@ -1,4 +1,4 @@
-# Rollup Full Node Setup Guide
+# Chain Full Node Setup Guide
 
 ## Introduction
 
@@ -23,7 +23,7 @@ Let's set a terminal variable for the chain ID.
 CHAIN_ID=gm
 ```
 
-Initialize the chain config for the full node, lets call it `FullNode` and set the chain ID to your rollup chain ID:
+Initialize the chain config for the full node, lets call it `FullNode` and set the chain ID to your chain ID:
 
 ```bash
 gmd init FullNode --chain-id $CHAIN_ID --home $HOME/.${CHAIN_ID}_fn
@@ -95,7 +95,7 @@ After starting your full node, you should see output similar to:
 This output indicates that your full node is successfully connecting to the network and processing blocks.
 
 :::tip
-If your rollup uses EVM as an execution layar and you see an error like `datadir already used by another process`, it means you have to remove all the state from rollup data directory (`/root/.yourrollup_fn/data/`) and specify a different data directory for the EVM client.
+If your chain uses EVM as an execution layar and you see an error like `datadir already used by another process`, it means you have to remove all the state from chain data directory (`/root/.yourchain_fn/data/`) and specify a different data directory for the EVM client.
 :::
 
 ## Conclusion

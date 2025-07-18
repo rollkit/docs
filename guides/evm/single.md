@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This guide covers how to set up and run the Single Sequencer implementation of Rollkit EVM rollups. This implementation provides a centralized approach to transaction sequencing while using EVM as the execution layer.
+This guide covers how to set up and run the Single Sequencer implementation of Rollkit EVM chains. This implementation provides a centralized approach to transaction sequencing while using EVM as the execution layer.
 
 ## Prerequisites
 
@@ -159,4 +159,4 @@ INF block marked as DA included blockHash=XXXX blockHeight=XX module=BlockManage
 
 ## Conclusion
 
-You've now set up and configured the Single Sequencer implementation of Rollkit EVM rollups. This implementation provides a centralized approach to transaction sequencing while using EVM as the execution layer.
+You've now set up and configured the Single Sequencer implementation of Rollkit EVM chains. This implementation provides a centralized approach to transaction sequencing while using EVM as the execution layer.

@@ -7,13 +7,13 @@ import constants from '../../.vitepress/constants/constants.js'
 
 ## 🌞 Introduction {#introduction}
 
-This tutorial serves as a comprehensive guide for deploying your rollup on Celestia's data availability (DA) network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
+This tutorial serves as a comprehensive guide for deploying your chain on Celestia's data availability (DA) network. From the Rollkit perspective, there's no difference in posting blocks to Celestia's testnets or Mainnet Beta.
 
-Before proceeding, ensure that you have completed the [gm-world](/guides/gm-world.md) tutorial, which covers installing the Testapp CLI and running a rollup against a local DA network.
+Before proceeding, ensure that you have completed the [gm-world](/guides/gm-world.md) tutorial, which covers installing the Testapp CLI and running a chain against a local DA network.
 
 ## 🪶 Running a Celestia light node
 
-Before you can start your rollup node, you need to initiate, sync, and fund a light node on one of Celestia's networks on a compatible version:
+Before you can start your chain node, you need to initiate, sync, and fund a light node on one of Celestia's networks on a compatible version:
 
 Find more information on how to run a light node in the [Celestia documentation](https://celestia.org/run-a-light-node/#start-up-a-node).
 
@@ -42,7 +42,7 @@ Celestia Node Version: {{constants.celestiaNodeMainnetTag}}
 
 The main difference lies in how you fund your wallet address: using testnet TIA or [TIA](https://docs.celestia.org/learn/tia#overview-of-tia) for Mainnet Beta.
 
-After successfully starting a light node, it's time to start posting the batches of blocks of data that your rollup generates to Celestia.
+After successfully starting a light node, it's time to start posting the batches of blocks of data that your chain generates to Celestia.
 
 ## 🏗️ Prerequisites {#prerequisites}
 
@@ -127,9 +127,9 @@ port 26658:
 DA_ADDRESS=http://localhost:26658
 ```
 
-## 🔥 Running your rollup connected to Celestia light node
+## 🔥 Running your chain connected to Celestia light node
 
-Finally, let's initiate the rollup node with all the flags:
+Finally, let's initiate the chain node with all the flags:
 
 ```bash
 gmd start \
@@ -140,16 +140,16 @@ gmd start \
     --rollkit.da.address $DA_ADDRESS
 ```
 
-Now, the rollup is running and posting blocks (aggregated in batches) to Celestia. You can view your rollup by using your namespace or account on one of Celestia's block explorers.
+Now, the chain is running and posting blocks (aggregated in batches) to Celestia. You can view your chain by using your namespace or account on one of Celestia's block explorers.
 
 For example, [here on Celenium for Arabica](https://arabica.celenium.io/).
 
 Other explorers:
 
-- [Arabica testnet](https://docs.celestia.org/how-to-guides/arabica-devnet#explorers)
-- [Mocha testnet](https://docs.celestia.org/how-to-guides/mocha-testnet#explorers)
-- [Mainnet Beta](https://docs.celestia.org/how-to-guides/mainnet#explorers)
+- [Arabica testnet](https://docs.celestia.org/how-to-guides/arabica-devnet)
+- [Mocha testnet](https://docs.celestia.org/how-to-guides/mocha-testnet)
+- [Mainnet Beta](https://docs.celestia.org/how-to-guides/mainnet)
 
 ## 🎉 Next steps
 
-Congratulations! You've built a local rollup that posts data to Celestia's DA layer. Well done! Now, go forth and build something great! Good luck!
+Congratulations! You've built a local chain that posts data to Celestia's DA layer. Well done! Now, go forth and build something great! Good luck!
