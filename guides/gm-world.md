@@ -3,16 +3,16 @@ title: GM World tutorial
 description: Learn how to build and deploy a CosmWasm-based "gm" (good morning) application using Rollkit.
 ---
 
-# GM world rollup
+# GM world chain
 
 ## 🌞 Introduction {#introduction}
 
-This tutorial will guide you through building a sovereign `gm-world` rollup (`gm` stands for "good morning") using Rollkit. Unlike the [quick start guide](/guides/quick-start.md), this tutorial provides a more practical approach to understanding sovereign rollup development.
+This tutorial will guide you through building a sovereign `gm-world` chain (`gm` stands for "good morning") using Rollkit. Unlike the [quick start guide](/guides/quick-start.md), this tutorial provides a more practical approach to understanding sovereign chain development.
 
 We will cover:
 
-- Building and configuring a Cosmos-SDK application-specific rollup blockchain.
-- Posting rollup data to a Data Availability (DA) network.
+- Building and configuring a Cosmos-SDK application-specific chain.
+- Posting chain data to a Data Availability (DA) network.
 - Executing transactions (the end goal).
 
 No prior understanding of the build process is required, just that it utilizes the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) for blockchain applications.
@@ -97,9 +97,9 @@ ignite rollkit init
 
 It will also initialize 2 accounts `alice` and `bob`:
 
-## 🚀 Starting your rollup {#start-your-rollup}
+## 🚀 Starting your chain {#start-your-chain}
 
-Now that we have our gm app generated and installed, we can launch our GM rollup along with the local DA by running the following command:
+Now that we have our gm app generated and installed, we can launch our GM chain along with the local DA by running the following command:
 
 First lets start the local DA network:
 
@@ -157,9 +157,9 @@ You should see an output like this:
 2:50PM INF block executed successfully appHash=0B3973A50C42D0184FB86409FC427BD528A790FA45BA2C9E20FDF14A3628CEC8 height=2 module=rollkit
 ```
 
-Ignite has successfully launched the GM rollup and the local DA network. The GM rollup is running on port `7331` and the local DA network is running on port `7980`.
+Ignite has successfully launched the GM chain and the local DA network. The GM chain is running on port `7331` and the local DA network is running on port `7980`.
 
-Good work so far, we have a Rollup node, DA network node, now we can start submitting transactions.
+Good work so far, we have a Chain node, DA network node, now we can start submitting transactions.
 
 ## 💸 Transactions {#transactions}
 
@@ -268,13 +268,13 @@ pagination:
 
 <!-- ## 📦 GM world UI app
 
-Now that you have an idea of how to interact with the rollup with the rollkit CLI, let's look at the user interface (UI) application aspect of connecting a wallet to a rollup.
+Now that you have an idea of how to interact with the chain with the rollkit CLI, let's look at the user interface (UI) application aspect of connecting a wallet to a chain.
 
-Connecting your wallet to your rollup is as straightforward as connecting to any other blockchain. It assumes you have the [Keplr](https://www.keplr.app/) wallet extension installed in your browser.
+Connecting your wallet to your chain is as straightforward as connecting to any other blockchain. It assumes you have the [Keplr](https://www.keplr.app/) wallet extension installed in your browser.
 
 ## 🔗 Connecting your wallet
 
-Kurtosis spun up a UI app alongside your rollup already, so to connect your Keplr wallet to the application, simply open your browser and go to [http://localhost:3000](https://localhost:3000).
+Kurtosis spun up a UI app alongside your chain already, so to connect your Keplr wallet to the application, simply open your browser and go to [http://localhost:3000](https://localhost:3000).
 
 Click the "Connect Wallet" button on the page, and approve the connection request in the Keplr prompt.
 
@@ -288,4 +288,4 @@ If you run into any issues, make sure your Keplr wallet is updated and set to co
 
 ## 🎉 Next steps
 
-Congratulations! You've experienced connecting to a rollup from the user side — simple and straightforward. Now, you might consider exploring how to add more application logic to your rollup using the Cosmos SDK, as demonstrated in our Wordle App tutorial.
+Congratulations! You've experienced connecting to a chain from the user side — simple and straightforward. Now, you might consider exploring how to add more application logic to your chain using the Cosmos SDK, as demonstrated in our Wordle App tutorial.

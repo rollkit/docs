@@ -97,7 +97,7 @@ The block manager is initialized using several parameters as defined below:
 signing key|crypto.PrivKey|used for signing blocks and data after creation
 config|config.BlockManagerConfig|block manager configurations (see config options below)
 genesis|*cmtypes.GenesisDoc|initialize the block manager with genesis state (genesis configuration defined in `config/genesis.json` file under the app directory)
-store|store.Store|local datastore for storing rollup blocks and states (default local store path is `$db_dir/rollkit` and `db_dir` specified in the `config.yaml` file under the app directory)
+store|store.Store|local datastore for storing chain blocks and states (default local store path is `$db_dir/rollkit` and `db_dir` specified in the `config.yaml` file under the app directory)
 mempool, proxyapp, eventbus|mempool.Mempool, proxy.AppConnConsensus, *cmtypes.EventBus|for initializing the executor (state transition function). mempool is also used in the manager to check for availability of transactions for lazy block production
 dalc|da.DAClient|the data availability light client used to submit and retrieve blocks to DA network
 headerStore|*goheaderstore.Store[*types.SignedHeader]|to store and retrieve block headers gossiped over the P2P network
@@ -290,7 +290,7 @@ flowchart TD
    * Makes `GetHeightPair(daHeight)` request to get both header and data
    * Handles three possible outcomes:
      * `Success`: Process retrieved header and data
-     * `NotFound`: No rollup block at this DA height (normal case)
+     * `NotFound`: No chain block at this DA height (normal case)
      * `Error`: Retry with backoff
 
 3. **Error Handling**:
@@ -316,7 +316,7 @@ The retrieval system uses persistent caches for both headers and data:
 
 For more details on DA integration, see the [Data Availability specification](./da.md).
 
-#### Out-of-Order Rollup Blocks on DA
+#### Out-of-Order Chain Blocks on DA
 
 Rollkit should support blocks arriving out-of-order on DA, like so:
 ![out-of-order blocks](./out-of-order-blocks.png)

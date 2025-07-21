@@ -196,8 +196,6 @@ function sidebarHome() {
           text: "About Rollkit",
           link: "/learn/about",
         },
-        { text: "Transaction flow", link: "/learn/transaction-flow" },
-        { text: "Configuration", link: "/learn/config" },
         {
           text: "Data Availability",
           link: "/learn/data-availability",
@@ -218,16 +216,18 @@ function sidebarHome() {
           text: "Technical Specifications",
           collapsed: true,
           items: [
-            { text: "overview", link: "/learn/specs/overview" },
-            { text: "block-manager", link: "/learn/specs/block-manager" },
-            { text: "block-validity", link: "/learn/specs/block-validity" },
-            { text: "da", link: "/learn/specs/da" },
-            { text: "full_node", link: "/learn/specs/full_node" },
-            { text: "header-sync", link: "/learn/specs/header-sync" },
-            { text: "p2p", link: "/learn/specs/p2p" },
-            { text: "store", link: "/learn/specs/store" },
+            { text: "Overview", link: "/learn/specs/overview" },
+            { text: "Block Manager", link: "/learn/specs/block-manager" },
+            { text: "Block Validity", link: "/learn/specs/block-validity" },
+            { text: "Data Availability", link: "/learn/specs/da" },
+            { text: "Full Node", link: "/learn/specs/full_node" },
+            { text: "Header Sync", link: "/learn/specs/header-sync" },
+            { text: "P2P", link: "/learn/specs/p2p" },
+            { text: "Store", link: "/learn/specs/store" },
           ],
         },
+        { text: "Transaction flow", link: "/learn/transaction-flow" },
+        { text: "Configuration", link: "/learn/config" },
       ],
     },
     {
@@ -266,11 +266,15 @@ function sidebarHome() {
           items: [
             {
               text: "Overview",
-              link: "/guides/deploy-overview",
+              link: "/guides/deploy/overview",
             },
             {
-              text: "Docker Compose",
-              link: "/guides/docker-compose",
+              text: "Local (dev)",
+              link: "/guides/deploy/local",
+            },
+            {
+              text: "Testnet",
+              link: "/guides/deploy/testnet",
             },
           ],
         },
@@ -293,8 +297,8 @@ function sidebarHome() {
           link: "/guides/full-node",
         },
         {
-          text: "Restart your rollup",
-          link: "/guides/restart-rollup",
+          text: "Restart your chain",
+          link: "/guides/restart-chain",
         },
         {
           text: "Reset your chain's state",
@@ -305,7 +309,7 @@ function sidebarHome() {
           link: "/guides/cometbft-to-rollkit",
         },
         {
-          text: "Create genesis for your rollup",
+          text: "Create genesis for your chain",
           link: "/guides/create-genesis",
         },
         {
@@ -313,7 +317,7 @@ function sidebarHome() {
           link: "/guides/metrics",
         },
         {
-          text: "Use IBC token (TIA) as gas token in your rollup",
+          text: "Use IBC token (TIA) as gas token in your chain",
           link: "/guides/use-tia-for-gas",
         },
       ],
