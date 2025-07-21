@@ -2,6 +2,8 @@
 import { h } from 'vue'
 import Theme from 'vitepress/theme'
 import './style.css'
+import { theme } from 'vitepress-openapi/client'
+import 'vitepress-openapi/dist/style.css'
 
 export default {
   extends: Theme,
@@ -11,6 +13,6 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
-    // ...
+    theme.enhanceApp({ app, router, siteData })
   }
 }
