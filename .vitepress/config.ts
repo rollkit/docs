@@ -96,19 +96,19 @@ export default withMermaid({
     ],
     [
       "script",
-    {
-      text: "API Documentation",
-      collapsed: true,
-      items: [
-        {
-          text: "Introduction",
-          link: "/api",
-        },
-        ...sidebar.generateSidebarGroups({
-          linkPrefix: "/api/operationsByTags/"
-        })
-      ]
-    },
+      {
+        src: "https://www.chatbase.co/embed.min.js",
+        id: "sw0sRxREFEQLTdqwC_Fbe",
+        defer: true,
+      },
+    ],
+    [
+      "script",
+      {
+        src: "https://plausible.celestia.org/js/plausible.js",
+        "data-domain": "rollkit.dev",
+        defer: true,
+      },
     ],
     [
       "script",
