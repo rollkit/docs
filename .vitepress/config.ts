@@ -102,10 +102,10 @@ export default withMermaid({
       items: [
         {
           text: "Introduction",
-          link: "/rpc",
+          link: "/api",
         },
         ...sidebar.generateSidebarGroups({
-          linkPrefix: "/rpc/operationsByTags/"
+          linkPrefix: "/api/operationsByTags/"
         })
       ]
     },
