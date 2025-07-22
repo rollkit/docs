@@ -278,7 +278,7 @@ function sidebarHome() {
               link: "/guides/evm/single",
             },
             {
-              text: "reth state backup",
+              text: "Reth State Backup",
               link: "/guides/evm/reth-backup",
             },
           ]
