@@ -274,11 +274,11 @@ function sidebarHome() {
           collapsed: true,
           items: [
             {
-              text: "EVM Single Sequencer",
+              text: "Single Sequencer",
               link: "/guides/evm/single",
             },
             {
-              text: "EVM reth state backup",
+              text: "reth state backup",
               link: "/guides/evm/reth-backup",
             },
           ]
